@@ -19,7 +19,7 @@ from affaldsfeed.models import (
     TopicId,
     sort_places,
 )
-from affaldsfeed.normalize import clean_text
+from affaldsfeed.normalize import clean_text, strip_title_prefix
 from affaldsfeed.places import PlaceMatcher, compile_places, rule_places
 from affaldsfeed.timeutil import ensure_utc
 
@@ -140,6 +140,12 @@ class _Shown:
 def _known_places(places: list[str], known: set[str]) -> list[str]:
     """Kun sted-id'er, der står i geografien (fx forsvinder en by, der er taget ud af geografi.yaml)."""
     return sort_places(p for p in places if p in known)
+
+
+def _without_prefix(item: DisplayItem, prefixes: list[str]) -> DisplayItem:
+    """Titlen uden præfikser uden indhold (settings.title_prefixes); kandidaten gemmes uændret."""
+    title = strip_title_prefix(item.title, prefixes)
+    return item if title == item.title else item.model_copy(update={"title": title})
 
 
 def _apply_overrides(found: list[Override], state: _Shown) -> _Shown:
@@ -280,6 +286,7 @@ def build_display_items(
     info = known_sources(sources, config.publishers)
     overrides = Overrides(config.overrides)
     teaser_max = config.settings.teaser_display_max
+    prefixes = config.settings.title_prefixes
     known_places = config.geo.place_ids()
 
     out: dict[str, DisplayItem] = {}
@@ -293,7 +300,7 @@ def build_display_items(
             continue
         item = _from_candidate(c, src, judgments.get(c.id), mode, overrides, teaser_max, known_places)
         if item is not None:
-            out[item.id] = item
+            out[item.id] = _without_prefix(item, prefixes)
 
     # sweep-fund fra Claude, som ikke (endnu) er kandidater
     sweeps = [j for j in judgments.values() if j.new_item is not None and j.id not in cand_ids]
@@ -306,6 +313,6 @@ def build_display_items(
             continue
         item = _from_sweep(j, src, overrides, now, teaser_max, known_places, matcher)
         if item is not None and item_time(item) >= since:
-            out[item.id] = item
+            out[item.id] = _without_prefix(item, prefixes)
 
     return sort_newest_first(list(out.values()))

@@ -164,6 +164,22 @@ def strip_site_tail(title: str, names: Iterable[str] = ()) -> str:
     return t
 
 
+def strip_title_prefix(title: str, prefixes: Iterable[str] = ()) -> str:
+    """Fjern ét præfiks uden indhold først i titlen (fx "Nyhed:"), uanset store og små bogstaver.
+
+    Titlen beholdes, hvis der ikke er et ord tilbage efter præfikset.
+    """
+    t = (title or "").strip()
+    for p in prefixes:
+        p = (p or "").strip()
+        if not p:
+            continue
+        m = re.match(rf"{re.escape(p)}\s*", t, re.IGNORECASE)
+        if m and re.search(r"\w", t[m.end():]):
+            return t[m.end():]
+    return t
+
+
 def normalize_title(title: str) -> str:
     """Små bogstaver uden tegnsætning og kildehaler. Bruges til historier og dedupe."""
     t = unicodedata.normalize("NFKC", title or "")

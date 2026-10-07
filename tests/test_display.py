@@ -209,6 +209,23 @@ def test_teaser_is_shortened(base_config):
     assert out[0].teaser.endswith("…")
 
 
+def test_title_prefix_is_removed_in_display_only(base_config):
+    cfg = dataclasses.replace(
+        base_config, settings=base_config.settings.model_copy(update={"title_prefixes": ["Nyhed:"]})
+    )
+    c = cand("praefiks", title="Nyhed: Ny emballagebekendtgørelse")
+    plain = cand("uden", title="Nyheder om pant")
+    out = {d.id: d for d in build(cfg, [c, plain], [judge(c), judge(plain)])}
+    assert out[c.id].title == "Ny emballagebekendtgørelse"
+    assert out[plain.id].title == "Nyheder om pant"
+    assert c.title == "Nyhed: Ny emballagebekendtgørelse"  # kandidaten er uændret
+
+    sweep = judge("sweep-praefiks", new_item={"url": "https://altinget.dk/sweep", "title": "nyhed: Fund fra sweep",
+                                              "teaser": "", "source": "altinget", "published": "2026-10-07T08:00:00Z"})
+    out = build(cfg, [], [sweep])
+    assert out[0].title == "Fund fra sweep"
+
+
 def test_source_maps_and_hints():
     info = known_sources(SOURCES, PUBLISHERS)
     assert set(info) == {"kefm", "altinget", "dr", "zwe", "fyens"}
