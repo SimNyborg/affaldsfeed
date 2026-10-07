@@ -626,9 +626,12 @@
   genre: folketing
   bundle: day
   basis: offentlig
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
-  note: Folketingets åbne data (Sag og Dokument) med serverfilter på affaldsord, så intet ekstra filter. Kræver oda-adapteren.
+  note: >-
+    Folketingets åbne data: dokumenter med affaldsord i titlen (settings.oda), så intet ekstra filter ud over
+    veto. Linket er dokumentets PDF på ft.dk. Afprøvet live 2026-10-07 - 20 dokumenter på 14 dage, 14 beholdt.
+    Dagsbundter (bundle - day) kommer i fase 3.
 
 - id: miljoestyrelsen
   name: Miljøstyrelsen
