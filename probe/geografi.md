@@ -1,6 +1,13 @@
-# Byg geografi 2026-10-07T12:29:14Z
+# Byg geografi 2026-10-07T12:30:25Z
 
 ```text
-FEJL: BY3: ingen folketal i svaret: 'BYER;TID;FOLKARTAET;INDHOLD\r\n00001100;2026;FOLKETAL;0,0\r\n10101100;2026;FOLKETAL;671714,0\r\n10199999;2026;FOLKETAL;0,0\r\n14701100;2026;FOLKETAL;106150,0\r\n14799999;2026;FOLKETAL;0,0\r\n15101100;2026;FOLKETAL;45001,0\r\n15110223;2026;FOLKETAL;8663,0\r\n15199997;2026;FOLKETAL;64,0\r\n15199999;2026;FOLKETAL;222,0\r\n15301100;2026;FOLKETAL;40788,0\r\n15399997;2026;FOLKETAL;156,0\r\n15399999;2026;FOLKETAL;46,0\r\n15510277'
-(fejlede: config/geografi.yaml er ikke ændret)
+5 regioner, 98 kommuner, 495 byer
+Folketal 2026, mindst 1000 indbyggere
+  ignoreret: Brande
+  flertydig, udeladt: Ejby (koege, middelfart, lejre)
+  flertydig, udeladt: Svenstrup (aalborg, slagelse)
+  flertydig, udeladt: Gelsted (middelfart, naestved)
+  flertydig, udeladt: Assens (assens, mariagerfjord)
+  flertydig, beholdt den største: Vejle (vejle)
+  flertydig, udeladt: Skærbæk (toender, fredericia)
 ```

@@ -1,0 +1,3823 @@
+# Genereret af tools/build_geografi.py fra Danmarks Statistik. Ret ikke i hånden:
+# ret config/geografi_regler.yaml og kør workflowet "Byg geografi".
+kilde:
+  udgiver: Danmarks Statistik (FOLK1A og BY3)
+  folketal_aar: 2026
+  hentet: '2026-10-07'
+  min_indbyggere: 1000
+regioner:
+- id: hovedstaden
+  kode: 084
+  navn: Region Hovedstaden
+  kort: Hovedstaden
+- id: sjaelland
+  kode: 085
+  navn: Region Sjælland
+  kort: Sjælland
+- id: syddanmark
+  kode: 083
+  navn: Region Syddanmark
+  kort: Syddanmark
+- id: midtjylland
+  kode: 082
+  navn: Region Midtjylland
+  kort: Midtjylland
+- id: nordjylland
+  kode: 081
+  navn: Region Nordjylland
+  kort: Nordjylland
+landsdele:
+  Djursland: midtjylland
+  Falster: sjaelland
+  Fyn: syddanmark
+  Himmerland: nordjylland
+  Hovedstaden: hovedstaden
+  Hovedstadsområdet: hovedstaden
+  Lolland-Falster: sjaelland
+  Midtjylland: midtjylland
+  Midtsjælland: sjaelland
+  Nordjylland: nordjylland
+  Nordsjælland: hovedstaden
+  Storkøbenhavn: hovedstaden
+  Syddanmark: syddanmark
+  Sydfyn: syddanmark
+  Sydjylland: syddanmark
+  Sydsjælland: sjaelland
+  Sønderjylland: syddanmark
+  Thy: nordjylland
+  Vendsyssel: nordjylland
+  Vestsjælland: sjaelland
+kommuner:
+- id: koebenhavn
+  kode: '101'
+  navn: Københavns Kommune
+  kort: København
+  region: hovedstaden
+  navne:
+  - København
+  kun_med_kommune: false
+- id: frederiksberg
+  kode: '147'
+  navn: Frederiksberg Kommune
+  kort: Frederiksberg
+  region: hovedstaden
+  navne:
+  - Frederiksberg
+  kun_med_kommune: false
+- id: dragoer
+  kode: '155'
+  navn: Dragør Kommune
+  kort: Dragør
+  region: hovedstaden
+  navne:
+  - Dragør
+  kun_med_kommune: false
+- id: taarnby
+  kode: '185'
+  navn: Tårnby Kommune
+  kort: Tårnby
+  region: hovedstaden
+  navne:
+  - Tårnby
+  kun_med_kommune: false
+- id: albertslund
+  kode: '165'
+  navn: Albertslund Kommune
+  kort: Albertslund
+  region: hovedstaden
+  navne:
+  - Albertslund
+  kun_med_kommune: false
+- id: ballerup
+  kode: '151'
+  navn: Ballerup Kommune
+  kort: Ballerup
+  region: hovedstaden
+  navne:
+  - Ballerup
+  kun_med_kommune: false
+- id: broendby
+  kode: '153'
+  navn: Brøndby Kommune
+  kort: Brøndby
+  region: hovedstaden
+  navne:
+  - Brøndby
+  kun_med_kommune: false
+- id: gentofte
+  kode: '157'
+  navn: Gentofte Kommune
+  kort: Gentofte
+  region: hovedstaden
+  navne:
+  - Gentofte
+  kun_med_kommune: false
+- id: gladsaxe
+  kode: '159'
+  navn: Gladsaxe Kommune
+  kort: Gladsaxe
+  region: hovedstaden
+  navne:
+  - Gladsaxe
+  kun_med_kommune: false
+- id: glostrup
+  kode: '161'
+  navn: Glostrup Kommune
+  kort: Glostrup
+  region: hovedstaden
+  navne:
+  - Glostrup
+  kun_med_kommune: false
+- id: herlev
+  kode: '163'
+  navn: Herlev Kommune
+  kort: Herlev
+  region: hovedstaden
+  navne:
+  - Herlev
+  kun_med_kommune: false
+- id: hvidovre
+  kode: '167'
+  navn: Hvidovre Kommune
+  kort: Hvidovre
+  region: hovedstaden
+  navne:
+  - Hvidovre
+  kun_med_kommune: false
+- id: hoeje-taastrup
+  kode: '169'
+  navn: Høje-Taastrup Kommune
+  kort: Høje-Taastrup
+  region: hovedstaden
+  navne:
+  - Høje-Taastrup
+  - Høje Taastrup
+  kun_med_kommune: false
+- id: ishoej
+  kode: '183'
+  navn: Ishøj Kommune
+  kort: Ishøj
+  region: hovedstaden
+  navne:
+  - Ishøj
+  kun_med_kommune: false
+- id: lyngby-taarbaek
+  kode: '173'
+  navn: Lyngby-Taarbæk Kommune
+  kort: Lyngby-Taarbæk
+  region: hovedstaden
+  navne:
+  - Lyngby-Taarbæk
+  - Lyngby
+  - Kongens Lyngby
+  kun_med_kommune: false
+- id: roedovre
+  kode: '175'
+  navn: Rødovre Kommune
+  kort: Rødovre
+  region: hovedstaden
+  navne:
+  - Rødovre
+  kun_med_kommune: false
+- id: vallensbaek
+  kode: '187'
+  navn: Vallensbæk Kommune
+  kort: Vallensbæk
+  region: hovedstaden
+  navne:
+  - Vallensbæk
+  kun_med_kommune: false
+- id: alleroed
+  kode: '201'
+  navn: Allerød Kommune
+  kort: Allerød
+  region: hovedstaden
+  navne:
+  - Allerød
+  kun_med_kommune: false
+- id: egedal
+  kode: '240'
+  navn: Egedal Kommune
+  kort: Egedal
+  region: hovedstaden
+  navne:
+  - Egedal
+  kun_med_kommune: false
+- id: fredensborg
+  kode: '210'
+  navn: Fredensborg Kommune
+  kort: Fredensborg
+  region: hovedstaden
+  navne:
+  - Fredensborg
+  kun_med_kommune: false
+- id: frederikssund
+  kode: '250'
+  navn: Frederikssund Kommune
+  kort: Frederikssund
+  region: hovedstaden
+  navne:
+  - Frederikssund
+  kun_med_kommune: false
+- id: furesoe
+  kode: '190'
+  navn: Furesø Kommune
+  kort: Furesø
+  region: hovedstaden
+  navne:
+  - Furesø
+  kun_med_kommune: false
+- id: gribskov
+  kode: '270'
+  navn: Gribskov Kommune
+  kort: Gribskov
+  region: hovedstaden
+  navne:
+  - Gribskov
+  kun_med_kommune: false
+- id: halsnaes
+  kode: '260'
+  navn: Halsnæs Kommune
+  kort: Halsnæs
+  region: hovedstaden
+  navne:
+  - Halsnæs
+  kun_med_kommune: false
+- id: helsingoer
+  kode: '217'
+  navn: Helsingør Kommune
+  kort: Helsingør
+  region: hovedstaden
+  navne:
+  - Helsingør
+  kun_med_kommune: false
+- id: hilleroed
+  kode: '219'
+  navn: Hillerød Kommune
+  kort: Hillerød
+  region: hovedstaden
+  navne:
+  - Hillerød
+  kun_med_kommune: false
+- id: hoersholm
+  kode: '223'
+  navn: Hørsholm Kommune
+  kort: Hørsholm
+  region: hovedstaden
+  navne:
+  - Hørsholm
+  kun_med_kommune: false
+- id: rudersdal
+  kode: '230'
+  navn: Rudersdal Kommune
+  kort: Rudersdal
+  region: hovedstaden
+  navne:
+  - Rudersdal
+  kun_med_kommune: false
+- id: bornholm
+  kode: '400'
+  navn: Bornholms Regionskommune
+  kort: Bornholm
+  region: hovedstaden
+  navne:
+  - Bornholm
+  kun_med_kommune: false
+- id: greve
+  kode: '253'
+  navn: Greve Kommune
+  kort: Greve
+  region: sjaelland
+  navne:
+  - Greve
+  kun_med_kommune: false
+- id: koege
+  kode: '259'
+  navn: Køge Kommune
+  kort: Køge
+  region: sjaelland
+  navne:
+  - Køge
+  kun_med_kommune: false
+- id: lejre
+  kode: '350'
+  navn: Lejre Kommune
+  kort: Lejre
+  region: sjaelland
+  navne:
+  - Lejre
+  kun_med_kommune: false
+- id: roskilde
+  kode: '265'
+  navn: Roskilde Kommune
+  kort: Roskilde
+  region: sjaelland
+  navne:
+  - Roskilde
+  kun_med_kommune: false
+- id: solroed
+  kode: '269'
+  navn: Solrød Kommune
+  kort: Solrød
+  region: sjaelland
+  navne:
+  - Solrød
+  kun_med_kommune: false
+- id: faxe
+  kode: '320'
+  navn: Faxe Kommune
+  kort: Faxe
+  region: sjaelland
+  navne:
+  - Faxe
+  kun_med_kommune: false
+- id: guldborgsund
+  kode: '376'
+  navn: Guldborgsund Kommune
+  kort: Guldborgsund
+  region: sjaelland
+  navne:
+  - Guldborgsund
+  kun_med_kommune: false
+- id: holbaek
+  kode: '316'
+  navn: Holbæk Kommune
+  kort: Holbæk
+  region: sjaelland
+  navne:
+  - Holbæk
+  kun_med_kommune: false
+- id: kalundborg
+  kode: '326'
+  navn: Kalundborg Kommune
+  kort: Kalundborg
+  region: sjaelland
+  navne:
+  - Kalundborg
+  kun_med_kommune: false
+- id: lolland
+  kode: '360'
+  navn: Lolland Kommune
+  kort: Lolland
+  region: sjaelland
+  navne:
+  - Lolland
+  kun_med_kommune: false
+- id: naestved
+  kode: '370'
+  navn: Næstved Kommune
+  kort: Næstved
+  region: sjaelland
+  navne:
+  - Næstved
+  kun_med_kommune: false
+- id: odsherred
+  kode: '306'
+  navn: Odsherred Kommune
+  kort: Odsherred
+  region: sjaelland
+  navne:
+  - Odsherred
+  kun_med_kommune: false
+- id: ringsted
+  kode: '329'
+  navn: Ringsted Kommune
+  kort: Ringsted
+  region: sjaelland
+  navne:
+  - Ringsted
+  kun_med_kommune: false
+- id: slagelse
+  kode: '330'
+  navn: Slagelse Kommune
+  kort: Slagelse
+  region: sjaelland
+  navne:
+  - Slagelse
+  kun_med_kommune: false
+- id: soroe
+  kode: '340'
+  navn: Sorø Kommune
+  kort: Sorø
+  region: sjaelland
+  navne:
+  - Sorø
+  kun_med_kommune: false
+- id: stevns
+  kode: '336'
+  navn: Stevns Kommune
+  kort: Stevns
+  region: sjaelland
+  navne:
+  - Stevns
+  kun_med_kommune: false
+- id: vordingborg
+  kode: '390'
+  navn: Vordingborg Kommune
+  kort: Vordingborg
+  region: sjaelland
+  navne:
+  - Vordingborg
+  kun_med_kommune: false
+- id: assens
+  kode: '420'
+  navn: Assens Kommune
+  kort: Assens
+  region: syddanmark
+  navne:
+  - Assens
+  kun_med_kommune: false
+- id: faaborg-midtfyn
+  kode: '430'
+  navn: Faaborg-Midtfyn Kommune
+  kort: Faaborg-Midtfyn
+  region: syddanmark
+  navne:
+  - Faaborg-Midtfyn
+  kun_med_kommune: false
+- id: kerteminde
+  kode: '440'
+  navn: Kerteminde Kommune
+  kort: Kerteminde
+  region: syddanmark
+  navne:
+  - Kerteminde
+  kun_med_kommune: false
+- id: langeland
+  kode: '482'
+  navn: Langeland Kommune
+  kort: Langeland
+  region: syddanmark
+  navne:
+  - Langeland
+  kun_med_kommune: false
+- id: middelfart
+  kode: '410'
+  navn: Middelfart Kommune
+  kort: Middelfart
+  region: syddanmark
+  navne:
+  - Middelfart
+  kun_med_kommune: false
+- id: nordfyns
+  kode: '480'
+  navn: Nordfyns Kommune
+  kort: Nordfyns
+  region: syddanmark
+  navne:
+  - Nordfyns
+  - Nordfyn
+  kun_med_kommune: false
+- id: nyborg
+  kode: '450'
+  navn: Nyborg Kommune
+  kort: Nyborg
+  region: syddanmark
+  navne:
+  - Nyborg
+  kun_med_kommune: false
+- id: odense
+  kode: '461'
+  navn: Odense Kommune
+  kort: Odense
+  region: syddanmark
+  navne:
+  - Odense
+  kun_med_kommune: false
+- id: svendborg
+  kode: '479'
+  navn: Svendborg Kommune
+  kort: Svendborg
+  region: syddanmark
+  navne:
+  - Svendborg
+  kun_med_kommune: false
+- id: aeroe
+  kode: '492'
+  navn: Ærø Kommune
+  kort: Ærø
+  region: syddanmark
+  navne:
+  - Ærø
+  kun_med_kommune: false
+- id: billund
+  kode: '530'
+  navn: Billund Kommune
+  kort: Billund
+  region: syddanmark
+  navne:
+  - Billund
+  kun_med_kommune: false
+- id: esbjerg
+  kode: '561'
+  navn: Esbjerg Kommune
+  kort: Esbjerg
+  region: syddanmark
+  navne:
+  - Esbjerg
+  kun_med_kommune: false
+- id: fanoe
+  kode: '563'
+  navn: Fanø Kommune
+  kort: Fanø
+  region: syddanmark
+  navne:
+  - Fanø
+  kun_med_kommune: false
+- id: fredericia
+  kode: '607'
+  navn: Fredericia Kommune
+  kort: Fredericia
+  region: syddanmark
+  navne:
+  - Fredericia
+  kun_med_kommune: false
+- id: haderslev
+  kode: '510'
+  navn: Haderslev Kommune
+  kort: Haderslev
+  region: syddanmark
+  navne:
+  - Haderslev
+  kun_med_kommune: false
+- id: kolding
+  kode: '621'
+  navn: Kolding Kommune
+  kort: Kolding
+  region: syddanmark
+  navne:
+  - Kolding
+  kun_med_kommune: false
+- id: soenderborg
+  kode: '540'
+  navn: Sønderborg Kommune
+  kort: Sønderborg
+  region: syddanmark
+  navne:
+  - Sønderborg
+  kun_med_kommune: false
+- id: toender
+  kode: '550'
+  navn: Tønder Kommune
+  kort: Tønder
+  region: syddanmark
+  navne:
+  - Tønder
+  kun_med_kommune: false
+- id: varde
+  kode: '573'
+  navn: Varde Kommune
+  kort: Varde
+  region: syddanmark
+  navne:
+  - Varde
+  kun_med_kommune: false
+- id: vejen
+  kode: '575'
+  navn: Vejen Kommune
+  kort: Vejen
+  region: syddanmark
+  navne:
+  - Vejen
+  kun_med_kommune: true
+- id: vejle
+  kode: '630'
+  navn: Vejle Kommune
+  kort: Vejle
+  region: syddanmark
+  navne:
+  - Vejle
+  kun_med_kommune: false
+- id: aabenraa
+  kode: '580'
+  navn: Aabenraa Kommune
+  kort: Aabenraa
+  region: syddanmark
+  navne:
+  - Aabenraa
+  kun_med_kommune: false
+- id: favrskov
+  kode: '710'
+  navn: Favrskov Kommune
+  kort: Favrskov
+  region: midtjylland
+  navne:
+  - Favrskov
+  kun_med_kommune: false
+- id: hedensted
+  kode: '766'
+  navn: Hedensted Kommune
+  kort: Hedensted
+  region: midtjylland
+  navne:
+  - Hedensted
+  kun_med_kommune: false
+- id: horsens
+  kode: '615'
+  navn: Horsens Kommune
+  kort: Horsens
+  region: midtjylland
+  navne:
+  - Horsens
+  kun_med_kommune: false
+- id: norddjurs
+  kode: '707'
+  navn: Norddjurs Kommune
+  kort: Norddjurs
+  region: midtjylland
+  navne:
+  - Norddjurs
+  kun_med_kommune: false
+- id: odder
+  kode: '727'
+  navn: Odder Kommune
+  kort: Odder
+  region: midtjylland
+  navne:
+  - Odder
+  kun_med_kommune: false
+- id: randers
+  kode: '730'
+  navn: Randers Kommune
+  kort: Randers
+  region: midtjylland
+  navne:
+  - Randers
+  kun_med_kommune: false
+- id: samsoe
+  kode: '741'
+  navn: Samsø Kommune
+  kort: Samsø
+  region: midtjylland
+  navne:
+  - Samsø
+  kun_med_kommune: false
+- id: silkeborg
+  kode: '740'
+  navn: Silkeborg Kommune
+  kort: Silkeborg
+  region: midtjylland
+  navne:
+  - Silkeborg
+  kun_med_kommune: false
+- id: skanderborg
+  kode: '746'
+  navn: Skanderborg Kommune
+  kort: Skanderborg
+  region: midtjylland
+  navne:
+  - Skanderborg
+  kun_med_kommune: false
+- id: syddjurs
+  kode: '706'
+  navn: Syddjurs Kommune
+  kort: Syddjurs
+  region: midtjylland
+  navne:
+  - Syddjurs
+  kun_med_kommune: false
+- id: aarhus
+  kode: '751'
+  navn: Aarhus Kommune
+  kort: Aarhus
+  region: midtjylland
+  navne:
+  - Aarhus
+  - Århus
+  kun_med_kommune: false
+- id: herning
+  kode: '657'
+  navn: Herning Kommune
+  kort: Herning
+  region: midtjylland
+  navne:
+  - Herning
+  kun_med_kommune: false
+- id: holstebro
+  kode: '661'
+  navn: Holstebro Kommune
+  kort: Holstebro
+  region: midtjylland
+  navne:
+  - Holstebro
+  kun_med_kommune: false
+- id: ikast-brande
+  kode: '756'
+  navn: Ikast-Brande Kommune
+  kort: Ikast-Brande
+  region: midtjylland
+  navne:
+  - Ikast-Brande
+  kun_med_kommune: false
+- id: lemvig
+  kode: '665'
+  navn: Lemvig Kommune
+  kort: Lemvig
+  region: midtjylland
+  navne:
+  - Lemvig
+  kun_med_kommune: false
+- id: ringkoebing-skjern
+  kode: '760'
+  navn: Ringkøbing-Skjern Kommune
+  kort: Ringkøbing-Skjern
+  region: midtjylland
+  navne:
+  - Ringkøbing-Skjern
+  kun_med_kommune: false
+- id: skive
+  kode: '779'
+  navn: Skive Kommune
+  kort: Skive
+  region: midtjylland
+  navne:
+  - Skive
+  kun_med_kommune: false
+- id: struer
+  kode: '671'
+  navn: Struer Kommune
+  kort: Struer
+  region: midtjylland
+  navne:
+  - Struer
+  kun_med_kommune: false
+- id: viborg
+  kode: '791'
+  navn: Viborg Kommune
+  kort: Viborg
+  region: midtjylland
+  navne:
+  - Viborg
+  kun_med_kommune: false
+- id: broenderslev
+  kode: '810'
+  navn: Brønderslev Kommune
+  kort: Brønderslev
+  region: nordjylland
+  navne:
+  - Brønderslev
+  kun_med_kommune: false
+- id: frederikshavn
+  kode: '813'
+  navn: Frederikshavn Kommune
+  kort: Frederikshavn
+  region: nordjylland
+  navne:
+  - Frederikshavn
+  kun_med_kommune: false
+- id: hjoerring
+  kode: '860'
+  navn: Hjørring Kommune
+  kort: Hjørring
+  region: nordjylland
+  navne:
+  - Hjørring
+  kun_med_kommune: false
+- id: jammerbugt
+  kode: '849'
+  navn: Jammerbugt Kommune
+  kort: Jammerbugt
+  region: nordjylland
+  navne:
+  - Jammerbugt
+  kun_med_kommune: false
+- id: laesoe
+  kode: '825'
+  navn: Læsø Kommune
+  kort: Læsø
+  region: nordjylland
+  navne:
+  - Læsø
+  kun_med_kommune: false
+- id: mariagerfjord
+  kode: '846'
+  navn: Mariagerfjord Kommune
+  kort: Mariagerfjord
+  region: nordjylland
+  navne:
+  - Mariagerfjord
+  kun_med_kommune: false
+- id: morsoe
+  kode: '773'
+  navn: Morsø Kommune
+  kort: Morsø
+  region: nordjylland
+  navne:
+  - Morsø
+  - Mors
+  kun_med_kommune: false
+- id: rebild
+  kode: '840'
+  navn: Rebild Kommune
+  kort: Rebild
+  region: nordjylland
+  navne:
+  - Rebild
+  kun_med_kommune: false
+- id: thisted
+  kode: '787'
+  navn: Thisted Kommune
+  kort: Thisted
+  region: nordjylland
+  navne:
+  - Thisted
+  kun_med_kommune: false
+- id: vesthimmerlands
+  kode: '820'
+  navn: Vesthimmerlands Kommune
+  kort: Vesthimmerlands
+  region: nordjylland
+  navne:
+  - Vesthimmerlands
+  - Vesthimmerland
+  kun_med_kommune: false
+- id: aalborg
+  kode: '851'
+  navn: Aalborg Kommune
+  kort: Aalborg
+  region: nordjylland
+  navne:
+  - Aalborg
+  kun_med_kommune: false
+byer:
+- id: aabenraa
+  navn: Aabenraa
+  kommune: aabenraa
+  kommuner:
+  - aabenraa
+  indbyggere: 16468
+- id: aabybro
+  navn: Aabybro
+  kommune: jammerbugt
+  kommuner:
+  - jammerbugt
+  indbyggere: 6773
+- id: aagaard
+  navn: Ågård
+  kommune: vejle
+  kommuner:
+  - vejle
+  indbyggere: 1358
+- id: aagerup
+  navn: Ågerup
+  kommune: roskilde
+  kommuner:
+  - roskilde
+  indbyggere: 1764
+- id: aakirkeby
+  navn: Aakirkeby
+  kommune: bornholm
+  kommuner:
+  - bornholm
+  indbyggere: 2109
+- id: aalbaek
+  navn: Ålbæk
+  kommune: frederikshavn
+  kommuner:
+  - frederikshavn
+  indbyggere: 1379
+- id: aalborg
+  navn: Aalborg
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 122550
+- id: aalestrup
+  navn: Aalestrup
+  kommune: vesthimmerlands
+  kommuner:
+  - vesthimmerlands
+  indbyggere: 2755
+- id: aarhus
+  navn: Aarhus
+  kommune: aarhus
+  kommuner:
+  - aarhus
+  indbyggere: 305227
+- id: aars
+  navn: Aars
+  kommune: vesthimmerlands
+  kommuner:
+  - vesthimmerlands
+  indbyggere: 8738
+- id: aarslev
+  navn: Årslev
+  kommune: faaborg-midtfyn
+  kommuner:
+  - faaborg-midtfyn
+  indbyggere: 4427
+- id: aarup
+  navn: Aarup
+  kommune: assens
+  kommuner:
+  - assens
+  indbyggere: 3254
+- id: agerbaek
+  navn: Agerbæk
+  kommune: varde
+  kommuner:
+  - varde
+  indbyggere: 1303
+- id: agerskov
+  navn: Agerskov
+  kommune: toender
+  kommuner:
+  - toender
+  indbyggere: 1159
+- id: allingaabro
+  navn: Allingåbro
+  kommune: norddjurs
+  kommuner:
+  - norddjurs
+  indbyggere: 1819
+- id: allinge-sandvig
+  navn: Allinge-Sandvig
+  kommune: bornholm
+  kommuner:
+  - bornholm
+  indbyggere: 1448
+- id: almind
+  navn: Almind
+  kommune: kolding
+  kommuner:
+  - kolding
+  indbyggere: 1778
+- id: alslev
+  navn: Alslev
+  kommune: varde
+  kommuner:
+  - varde
+  indbyggere: 1309
+- id: andrup
+  navn: Andrup
+  kommune: esbjerg
+  kommuner:
+  - esbjerg
+  indbyggere: 1471
+- id: annisse-nord
+  navn: Annisse Nord
+  kommune: gribskov
+  kommuner:
+  - gribskov
+  indbyggere: 1621
+- id: ans
+  navn: Ans
+  kommune: silkeborg
+  kommuner:
+  - silkeborg
+  indbyggere: 1927
+- id: ansager
+  navn: Ansager
+  kommune: varde
+  kommuner:
+  - varde
+  indbyggere: 1251
+- id: arden
+  navn: Arden
+  kommune: mariagerfjord
+  kommuner:
+  - mariagerfjord
+  indbyggere: 2595
+- id: asaa
+  navn: Asaa
+  kommune: broenderslev
+  kommuner:
+  - broenderslev
+  indbyggere: 1059
+- id: askov
+  navn: Askov
+  kommune: vejen
+  kommuner:
+  - vejen
+  indbyggere: 1972
+- id: asnaes
+  navn: Asnæs
+  kommune: odsherred
+  kommuner:
+  - odsherred
+  indbyggere: 3048
+- id: assentoft
+  navn: Assentoft
+  kommune: randers
+  kommuner:
+  - randers
+  indbyggere: 3985
+- id: augustenborg
+  navn: Augustenborg
+  kommune: soenderborg
+  kommuner:
+  - soenderborg
+  indbyggere: 3164
+- id: aulum
+  navn: Aulum
+  kommune: herning
+  kommuner:
+  - herning
+  indbyggere: 3232
+- id: auning
+  navn: Auning
+  kommune: norddjurs
+  kommuner:
+  - norddjurs
+  indbyggere: 3383
+- id: baekke
+  navn: Bække
+  kommune: vejen
+  kommuner:
+  - vejen
+  indbyggere: 1042
+- id: balling
+  navn: Balling
+  kommune: skive
+  kommuner:
+  - skive
+  indbyggere: 1166
+- id: beder-malling
+  navn: Beder-Malling
+  kommune: aarhus
+  kommuner:
+  - aarhus
+  indbyggere: 9492
+- id: bellinge
+  navn: Bellinge
+  kommune: odense
+  kommuner:
+  - odense
+  indbyggere: 5881
+- id: biersted
+  navn: Biersted
+  kommune: jammerbugt
+  kommuner:
+  - jammerbugt
+  indbyggere: 1618
+- id: billund
+  navn: Billund
+  kommune: billund
+  kommuner:
+  - billund
+  indbyggere: 7446
+- id: birkeroed
+  navn: Birkerød
+  kommune: rudersdal
+  kommuner:
+  - alleroed
+  - furesoe
+  - rudersdal
+  indbyggere: 21242
+- id: bjaeverskov
+  navn: Bjæverskov
+  kommune: koege
+  kommuner:
+  - koege
+  indbyggere: 3279
+- id: bjerringbro
+  navn: Bjerringbro
+  kommune: viborg
+  kommuner:
+  - viborg
+  indbyggere: 7407
+- id: blistrup
+  navn: Blistrup
+  kommune: gribskov
+  kommuner:
+  - gribskov
+  indbyggere: 1134
+- id: blovstroed
+  navn: Blovstrød
+  kommune: alleroed
+  kommuner:
+  - alleroed
+  indbyggere: 3019
+- id: boerkop
+  navn: Børkop
+  kommune: vejle
+  kommuner:
+  - vejle
+  indbyggere: 6361
+- id: bogense
+  navn: Bogense
+  kommune: nordfyns
+  kommuner:
+  - nordfyns
+  indbyggere: 3944
+- id: bolderslev
+  navn: Bolderslev
+  kommune: aabenraa
+  kommuner:
+  - aabenraa
+  indbyggere: 1132
+- id: bording
+  navn: Bording
+  kommune: ikast-brande
+  kommuner:
+  - ikast-brande
+  indbyggere: 2455
+- id: borup
+  navn: Borup
+  kommune: koege
+  kommuner:
+  - koege
+  indbyggere: 5063
+- id: braedstrup
+  navn: Brædstrup
+  kommune: horsens
+  kommuner:
+  - horsens
+  indbyggere: 3917
+- id: bramming
+  navn: Bramming
+  kommune: esbjerg
+  kommuner:
+  - esbjerg
+  indbyggere: 7244
+- id: bredebro
+  navn: Bredebro
+  kommune: toender
+  kommuner:
+  - toender
+  indbyggere: 1428
+- id: bredsten
+  navn: Bredsten
+  kommune: vejle
+  kommuner:
+  - vejle
+  indbyggere: 1881
+- id: brejning
+  navn: Brejning
+  kommune: vejle
+  kommuner:
+  - vejle
+  indbyggere: 3149
+- id: bremdal
+  navn: Bremdal
+  kommune: struer
+  kommuner:
+  - struer
+  indbyggere: 1629
+- id: brenderup
+  navn: Brenderup
+  kommune: middelfart
+  kommuner:
+  - middelfart
+  indbyggere: 1481
+- id: broager
+  navn: Broager
+  kommune: soenderborg
+  kommuner:
+  - soenderborg
+  indbyggere: 3202
+- id: brobyvaerk
+  navn: Brobyværk
+  kommune: faaborg-midtfyn
+  kommuner:
+  - faaborg-midtfyn
+  indbyggere: 1047
+- id: broenderslev
+  navn: Brønderslev
+  kommune: broenderslev
+  kommuner:
+  - broenderslev
+  indbyggere: 12825
+- id: broerup
+  navn: Brørup
+  kommune: vejen
+  kommuner:
+  - vejen
+  indbyggere: 4596
+- id: brovst
+  navn: Brovst
+  kommune: jammerbugt
+  kommuner:
+  - jammerbugt
+  indbyggere: 2665
+- id: brylle
+  navn: Brylle
+  kommune: assens
+  kommuner:
+  - assens
+  indbyggere: 1293
+- id: bryrup
+  navn: Bryrup
+  kommune: silkeborg
+  kommuner:
+  - silkeborg
+  indbyggere: 1651
+- id: bylderup-bov
+  navn: Bylderup-Bov
+  kommune: aabenraa
+  kommuner:
+  - aabenraa
+  indbyggere: 1277
+- id: christiansfeld
+  navn: Christiansfeld
+  kommune: kolding
+  kommuner:
+  - kolding
+  indbyggere: 3105
+- id: dalby
+  navn: Dalby
+  kommune: faxe
+  kommuner:
+  - faxe
+  indbyggere: 2506
+- id: dall-villaby
+  navn: Dall Villaby
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 1132
+- id: daugaard
+  navn: Daugård
+  kommune: hedensted
+  kommuner:
+  - hedensted
+  indbyggere: 1098
+- id: dianalund
+  navn: Dianalund
+  kommune: soroe
+  kommuner:
+  - soroe
+  indbyggere: 4132
+- id: dragoer
+  navn: Dragør
+  kommune: dragoer
+  kommuner:
+  - dragoer
+  indbyggere: 12293
+- id: dronninglund
+  navn: Dronninglund
+  kommune: broenderslev
+  kommuner:
+  - broenderslev
+  indbyggere: 3769
+- id: dybboel
+  navn: Dybbøl
+  kommune: soenderborg
+  kommuner:
+  - soenderborg
+  indbyggere: 2272
+- id: ebberup
+  navn: Ebberup
+  kommune: assens
+  kommuner:
+  - assens
+  indbyggere: 1227
+- id: ebeltoft
+  navn: Ebeltoft
+  kommune: syddjurs
+  kommuner:
+  - syddjurs
+  indbyggere: 7437
+- id: egebaek
+  navn: Egebæk
+  kommune: esbjerg
+  kommuner:
+  - esbjerg
+  indbyggere: 1129
+- id: egebjerg
+  navn: Egebjerg
+  kommune: horsens
+  kommuner:
+  - horsens
+  indbyggere: 3263
+- id: egernsund
+  navn: Egernsund
+  kommune: soenderborg
+  kommuner:
+  - soenderborg
+  indbyggere: 1410
+- id: egtved
+  navn: Egtved
+  kommune: vejle
+  kommuner:
+  - vejle
+  indbyggere: 2408
+- id: ejlstrup
+  navn: Ejlstrup
+  kommune: odense
+  kommuner:
+  - odense
+  indbyggere: 1280
+- id: ejstrupholm
+  navn: Ejstrupholm
+  kommune: ikast-brande
+  kommuner:
+  - ikast-brande
+  indbyggere: 1732
+- id: elev
+  navn: Elev
+  kommune: aarhus
+  kommuner:
+  - aarhus
+  indbyggere: 1972
+- id: elling
+  navn: Elling
+  kommune: frederikshavn
+  kommuner:
+  - frederikshavn
+  indbyggere: 1081
+- id: engesvang
+  navn: Engesvang
+  kommune: ikast-brande
+  kommuner:
+  - ikast-brande
+  indbyggere: 2205
+- id: esbjerg
+  navn: Esbjerg
+  kommune: esbjerg
+  kommuner:
+  - esbjerg
+  indbyggere: 71371
+- id: esboenderup
+  navn: Esbønderup
+  kommune: gribskov
+  kommuner:
+  - gribskov
+  indbyggere: 1416
+- id: eskilstrup
+  navn: Eskilstrup
+  kommune: guldborgsund
+  kommuner:
+  - guldborgsund
+  indbyggere: 1104
+- id: faaborg
+  navn: Faaborg
+  kommune: faaborg-midtfyn
+  kommuner:
+  - faaborg-midtfyn
+  indbyggere: 6822
+- id: faarevejle-stationsby
+  navn: Fårevejle Stationsby
+  kommune: odsherred
+  kommuner:
+  - odsherred
+  indbyggere: 1796
+- id: faarup
+  navn: Fårup
+  kommune: randers
+  kommuner:
+  - randers
+  indbyggere: 1028
+- id: faarvang
+  navn: Fårvang
+  kommune: silkeborg
+  kommuner:
+  - silkeborg
+  indbyggere: 1428
+- id: farsoe
+  navn: Farsø
+  kommune: vesthimmerlands
+  kommuner:
+  - vesthimmerlands
+  indbyggere: 3324
+- id: farum
+  navn: Farum
+  kommune: furesoe
+  kommuner:
+  - furesoe
+  indbyggere: 20558
+- id: faxe
+  navn: Faxe
+  kommune: faxe
+  kommuner:
+  - faxe
+  indbyggere: 4204
+- id: faxe-ladeplads
+  navn: Faxe Ladeplads
+  kommune: faxe
+  kommuner:
+  - faxe
+  indbyggere: 2496
+- id: felsted
+  navn: Felsted
+  kommune: aabenraa
+  kommuner:
+  - aabenraa
+  indbyggere: 1092
+- id: fensmark
+  navn: Fensmark
+  kommune: naestved
+  kommuner:
+  - naestved
+  indbyggere: 5203
+- id: ferritslev
+  navn: Ferritslev
+  kommune: faaborg-midtfyn
+  kommuner:
+  - faaborg-midtfyn
+  indbyggere: 1040
+- id: fjerritslev
+  navn: Fjerritslev
+  kommune: jammerbugt
+  kommuner:
+  - jammerbugt
+  indbyggere: 3300
+- id: folby
+  navn: Folby
+  kommune: favrskov
+  kommuner:
+  - favrskov
+  indbyggere: 1192
+- id: forlev
+  navn: Forlev
+  kommune: slagelse
+  kommuner:
+  - slagelse
+  indbyggere: 2555
+- id: fraugde
+  navn: Fraugde
+  kommune: odense
+  kommuner:
+  - odense
+  indbyggere: 2004
+- id: fredensborg
+  navn: Fredensborg
+  kommune: fredensborg
+  kommuner:
+  - fredensborg
+  indbyggere: 8941
+- id: fredericia
+  navn: Fredericia
+  kommune: fredericia
+  kommuner:
+  - fredericia
+  indbyggere: 41761
+- id: frederiks
+  navn: Frederiks
+  kommune: viborg
+  kommuner:
+  - viborg
+  indbyggere: 1775
+- id: frederiksberg
+  navn: Frederiksberg
+  kommune: soroe
+  kommuner:
+  - soroe
+  indbyggere: 4186
+- id: frederikshavn
+  navn: Frederikshavn
+  kommune: frederikshavn
+  kommuner:
+  - frederikshavn
+  indbyggere: 22496
+- id: frederikssund
+  navn: Frederikssund
+  kommune: frederikssund
+  kommuner:
+  - frederikssund
+  indbyggere: 17639
+- id: frederiksvaerk
+  navn: Frederiksværk
+  kommune: halsnaes
+  kommuner:
+  - halsnaes
+  indbyggere: 12884
+- id: frejlev
+  navn: Frejlev
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 3236
+- id: fuglebjerg
+  navn: Fuglebjerg
+  kommune: naestved
+  kommuner:
+  - naestved
+  indbyggere: 2321
+- id: gaarslev
+  navn: Gårslev
+  kommune: vejle
+  kommuner:
+  - vejle
+  indbyggere: 1355
+- id: gadevang
+  navn: Gadevang
+  kommune: hilleroed
+  kommuner:
+  - hilleroed
+  indbyggere: 1135
+- id: gadstrup
+  navn: Gadstrup
+  kommune: roskilde
+  kommuner:
+  - roskilde
+  indbyggere: 2019
+- id: galten
+  navn: Galten
+  kommune: skanderborg
+  kommuner:
+  - skanderborg
+  indbyggere: 9442
+- id: gammel-rye
+  navn: Gammel Rye
+  kommune: skanderborg
+  kommuner:
+  - skanderborg
+  indbyggere: 1568
+- id: gandrup
+  navn: Gandrup
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 1543
+- id: ganloese
+  navn: Ganløse
+  kommune: egedal
+  kommuner:
+  - egedal
+  indbyggere: 2872
+- id: gedved
+  navn: Gedved
+  kommune: horsens
+  kommuner:
+  - horsens
+  indbyggere: 2475
+- id: gerlev
+  navn: Gerlev
+  kommune: frederikssund
+  kommuner:
+  - frederikssund
+  indbyggere: 1057
+- id: gevninge
+  navn: Gevninge
+  kommune: lejre
+  kommuner:
+  - lejre
+  indbyggere: 1636
+- id: gilleleje
+  navn: Gilleleje
+  kommune: gribskov
+  kommuner:
+  - gribskov
+  indbyggere: 6598
+- id: gislev
+  navn: Gislev
+  kommune: faaborg-midtfyn
+  kommuner:
+  - faaborg-midtfyn
+  indbyggere: 1245
+- id: gislinge
+  navn: Gislinge
+  kommune: holbaek
+  kommuner:
+  - holbaek
+  indbyggere: 1576
+- id: gistrup
+  navn: Gistrup
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 3679
+- id: give
+  navn: Give
+  kommune: vejle
+  kommuner:
+  - vejle
+  indbyggere: 5215
+- id: gjern
+  navn: Gjern
+  kommune: silkeborg
+  kommuner:
+  - silkeborg
+  indbyggere: 1553
+- id: glamsbjerg
+  navn: Glamsbjerg
+  kommune: assens
+  kommuner:
+  - assens
+  indbyggere: 3308
+- id: glumsoe
+  navn: Glumsø
+  kommune: naestved
+  kommuner:
+  - naestved
+  indbyggere: 2269
+- id: glyngoere
+  navn: Glyngøre
+  kommune: skive
+  kommuner:
+  - skive
+  indbyggere: 1344
+- id: goerding
+  navn: Gørding
+  kommune: esbjerg
+  kommuner:
+  - esbjerg
+  indbyggere: 1774
+- id: goerlev
+  navn: Gørlev
+  kommune: kalundborg
+  kommuner:
+  - kalundborg
+  indbyggere: 2405
+- id: goerloese
+  navn: Gørløse
+  kommune: hilleroed
+  kommuner:
+  - hilleroed
+  indbyggere: 1234
+- id: graasten
+  navn: Gråsten
+  kommune: soenderborg
+  kommuner:
+  - soenderborg
+  indbyggere: 4291
+- id: graese-bakkeby
+  navn: Græse Bakkeby
+  kommune: frederikssund
+  kommuner:
+  - frederikssund
+  indbyggere: 2273
+- id: graested
+  navn: Græsted
+  kommune: gribskov
+  kommuner:
+  - gribskov
+  indbyggere: 3596
+- id: gram
+  navn: Gram
+  kommune: haderslev
+  kommuner:
+  - haderslev
+  indbyggere: 2457
+- id: gredstedbro
+  navn: Gredstedbro
+  kommune: esbjerg
+  kommuner:
+  - esbjerg
+  indbyggere: 1047
+- id: grejs
+  navn: Grejs
+  kommune: vejle
+  kommuner:
+  - vejle
+  indbyggere: 1500
+- id: grenaa
+  navn: Grenaa
+  kommune: norddjurs
+  kommuner:
+  - norddjurs
+  indbyggere: 13978
+- id: grindsted
+  navn: Grindsted
+  kommune: billund
+  kommuner:
+  - billund
+  indbyggere: 9789
+- id: guderup
+  navn: Guderup
+  kommune: soenderborg
+  kommuner:
+  - soenderborg
+  indbyggere: 2406
+- id: gullestrup
+  navn: Gullestrup
+  kommune: herning
+  kommuner:
+  - herning
+  indbyggere: 1914
+- id: gundsoemagle
+  navn: Gundsømagle
+  kommune: roskilde
+  kommuner:
+  - roskilde
+  indbyggere: 2877
+- id: haarby
+  navn: Haarby
+  kommune: assens
+  kommuner:
+  - assens
+  indbyggere: 2532
+- id: haarlev
+  navn: Hårlev
+  kommune: stevns
+  kommuner:
+  - stevns
+  indbyggere: 2957
+- id: haderslev
+  navn: Haderslev
+  kommune: haderslev
+  kommuner:
+  - haderslev
+  indbyggere: 22320
+- id: hadsten
+  navn: Hadsten
+  kommune: favrskov
+  kommuner:
+  - favrskov
+  indbyggere: 8551
+- id: hadsund
+  navn: Hadsund
+  kommune: mariagerfjord
+  kommuner:
+  - mariagerfjord
+  indbyggere: 4902
+- id: hals
+  navn: Hals
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 2382
+- id: hammel
+  navn: Hammel
+  kommune: favrskov
+  kommuner:
+  - favrskov
+  indbyggere: 7373
+- id: hammelev
+  navn: Hammelev
+  kommune: haderslev
+  kommuner:
+  - haderslev
+  indbyggere: 1092
+- id: hanstholm
+  navn: Hanstholm
+  kommune: thisted
+  kommuner:
+  - thisted
+  indbyggere: 2058
+- id: harbooere
+  navn: Harboøre
+  kommune: lemvig
+  kommuner:
+  - lemvig
+  indbyggere: 1314
+- id: harlev
+  navn: Harlev
+  kommune: aarhus
+  kommuner:
+  - aarhus
+  indbyggere: 4112
+- id: harridslev
+  navn: Harridslev
+  kommune: randers
+  kommuner:
+  - randers
+  indbyggere: 1294
+- id: hasle
+  navn: Hasle
+  kommune: bornholm
+  kommuner:
+  - bornholm
+  indbyggere: 1627
+- id: haslev
+  navn: Haslev
+  kommune: faxe
+  kommuner:
+  - faxe
+  indbyggere: 12894
+- id: hatting
+  navn: Hatting
+  kommune: horsens
+  kommuner:
+  - horsens
+  indbyggere: 2132
+- id: havdrup
+  navn: Havdrup
+  kommune: solroed
+  kommuner:
+  - roskilde
+  - solroed
+  indbyggere: 4599
+- id: hedehusene
+  navn: Hedehusene
+  kommune: hoeje-taastrup
+  kommuner:
+  - hoeje-taastrup
+  indbyggere: 17953
+- id: hedensted
+  navn: Hedensted
+  kommune: hedensted
+  kommuner:
+  - hedensted
+  indbyggere: 13562
+- id: hejnsvig
+  navn: Hejnsvig
+  kommune: billund
+  kommuner:
+  - billund
+  indbyggere: 1019
+- id: hellebaek
+  navn: Hellebæk
+  kommune: helsingoer
+  kommuner:
+  - helsingoer
+  indbyggere: 5765
+- id: helsinge
+  navn: Helsinge
+  kommune: gribskov
+  kommuner:
+  - gribskov
+  indbyggere: 9853
+- id: helsingoer
+  navn: Helsingør
+  kommune: helsingoer
+  kommuner:
+  - fredensborg
+  - helsingoer
+  indbyggere: 48450
+- id: herlufmagle
+  navn: Herlufmagle
+  kommune: naestved
+  kommuner:
+  - naestved
+  indbyggere: 1423
+- id: herning
+  navn: Herning
+  kommune: herning
+  kommuner:
+  - herning
+  indbyggere: 52264
+- id: hilleroed
+  navn: Hillerød
+  kommune: hilleroed
+  kommuner:
+  - fredensborg
+  - hilleroed
+  indbyggere: 36873
+- id: hinnerup
+  navn: Hinnerup
+  kommune: favrskov
+  kommuner:
+  - favrskov
+  indbyggere: 8628
+- id: hirtshals
+  navn: Hirtshals
+  kommune: hjoerring
+  kommuner:
+  - hjoerring
+  indbyggere: 5265
+- id: hjallerup
+  navn: Hjallerup
+  kommune: broenderslev
+  kommuner:
+  - broenderslev
+  indbyggere: 4498
+- id: hjerm
+  navn: Hjerm
+  kommune: struer
+  kommuner:
+  - struer
+  indbyggere: 1107
+- id: hjoerring
+  navn: Hjørring
+  kommune: hjoerring
+  kommuner:
+  - hjoerring
+  indbyggere: 25794
+- id: hjordkaer
+  navn: Hjordkær
+  kommune: aabenraa
+  kommuner:
+  - aabenraa
+  indbyggere: 1620
+- id: hjortshoej
+  navn: Hjortshøj
+  kommune: aarhus
+  kommuner:
+  - aarhus
+  indbyggere: 3579
+- id: hobro
+  navn: Hobro
+  kommune: mariagerfjord
+  kommuner:
+  - mariagerfjord
+  indbyggere: 12440
+- id: hoejby
+  navn: Højby
+  kommune: odsherred
+  kommuner:
+  - odsherred
+  indbyggere: 1400
+- id: hoejer
+  navn: Højer
+  kommune: toender
+  kommuner:
+  - toender
+  indbyggere: 1034
+- id: hoejslev-stationsby
+  navn: Højslev Stationsby
+  kommune: skive
+  kommuner:
+  - skive
+  indbyggere: 2791
+- id: hoeng
+  navn: Høng
+  kommune: kalundborg
+  kommuner:
+  - kalundborg
+  indbyggere: 4299
+- id: hoerning
+  navn: Hørning
+  kommune: skanderborg
+  kommuner:
+  - skanderborg
+  indbyggere: 8572
+- id: hoersholm
+  navn: Hørsholm
+  kommune: hoersholm
+  kommuner:
+  - fredensborg
+  - hoersholm
+  - rudersdal
+  indbyggere: 48797
+- id: hoeruphav
+  navn: Høruphav
+  kommune: soenderborg
+  kommuner:
+  - soenderborg
+  indbyggere: 2740
+- id: hoerve
+  navn: Hørve
+  kommune: odsherred
+  kommuner:
+  - odsherred
+  indbyggere: 2405
+- id: holbaek
+  navn: Holbæk
+  kommune: holbaek
+  kommuner:
+  - holbaek
+  indbyggere: 31112
+- id: holeby
+  navn: Holeby
+  kommune: lolland
+  kommuner:
+  - lolland
+  indbyggere: 1352
+- id: holme-olstrup
+  navn: Holme-Olstrup
+  kommune: naestved
+  kommuner:
+  - naestved
+  indbyggere: 1265
+- id: holstebro
+  navn: Holstebro
+  kommune: holstebro
+  kommuner:
+  - holstebro
+  indbyggere: 37533
+- id: holsted
+  navn: Holsted
+  kommune: vejen
+  kommuner:
+  - vejen
+  indbyggere: 3034
+- id: hornbaek-dronningmoelle
+  navn: Hornbæk-Dronningmølle
+  kommune: helsingoer
+  kommuner:
+  - gribskov
+  - helsingoer
+  indbyggere: 5065
+- id: hornslet
+  navn: Hornslet
+  kommune: syddjurs
+  kommuner:
+  - syddjurs
+  indbyggere: 6446
+- id: hornsyld
+  navn: Hornsyld
+  kommune: hedensted
+  kommuner:
+  - hedensted
+  indbyggere: 1649
+- id: horsens
+  navn: Horsens
+  kommune: horsens
+  kommuner:
+  - horsens
+  indbyggere: 65037
+- id: hov
+  navn: Hov
+  kommune: odder
+  kommuner:
+  - odder
+  indbyggere: 1778
+- id: hovedgaard
+  navn: Hovedgård
+  kommune: horsens
+  kommuner:
+  - horsens
+  indbyggere: 2335
+- id: humlebaek
+  navn: Humlebæk
+  kommune: fredensborg
+  kommuner:
+  - fredensborg
+  indbyggere: 9802
+- id: hundested
+  navn: Hundested
+  kommune: halsnaes
+  kommuner:
+  - halsnaes
+  indbyggere: 8609
+- id: hurup
+  navn: Hurup
+  kommune: thisted
+  kommuner:
+  - thisted
+  indbyggere: 2619
+- id: hvidbjerg
+  navn: Hvidbjerg
+  kommune: struer
+  kommuner:
+  - struer
+  indbyggere: 1067
+- id: hvide-sande
+  navn: Hvide Sande
+  kommune: ringkoebing-skjern
+  kommuner:
+  - ringkoebing-skjern
+  indbyggere: 2762
+- id: idestrup
+  navn: Idestrup
+  kommune: guldborgsund
+  kommuner:
+  - guldborgsund
+  indbyggere: 1106
+- id: ikast
+  navn: Ikast
+  kommune: ikast-brande
+  kommuner:
+  - ikast-brande
+  indbyggere: 16999
+- id: ishoej-landsby
+  navn: Ishøj Landsby
+  kommune: ishoej
+  kommuner:
+  - ishoej
+  indbyggere: 1403
+- id: jaegerspris
+  navn: Jægerspris
+  kommune: frederikssund
+  kommuner:
+  - frederikssund
+  indbyggere: 4131
+- id: jebjerg
+  navn: Jebjerg
+  kommune: skive
+  kommuner:
+  - skive
+  indbyggere: 1056
+- id: jelling
+  navn: Jelling
+  kommune: vejle
+  kommuner:
+  - vejle
+  indbyggere: 4038
+- id: jels
+  navn: Jels
+  kommune: vejen
+  kommuner:
+  - vejen
+  indbyggere: 1959
+- id: juelsminde
+  navn: Juelsminde
+  kommune: hedensted
+  kommuner:
+  - hedensted
+  indbyggere: 3998
+- id: jyderup
+  navn: Jyderup
+  kommune: holbaek
+  kommuner:
+  - holbaek
+  indbyggere: 4207
+- id: jyllinge
+  navn: Jyllinge
+  kommune: roskilde
+  kommuner:
+  - roskilde
+  indbyggere: 10920
+- id: kaas
+  navn: Kås
+  kommune: jammerbugt
+  kommuner:
+  - jammerbugt
+  indbyggere: 2292
+- id: kalundborg
+  navn: Kalundborg
+  kommune: kalundborg
+  kommuner:
+  - kalundborg
+  indbyggere: 16466
+- id: karise
+  navn: Karise
+  kommune: faxe
+  kommuner:
+  - faxe
+  indbyggere: 2431
+- id: karrebaeksminde
+  navn: Karrebæksminde
+  kommune: naestved
+  kommuner:
+  - naestved
+  indbyggere: 1775
+- id: karup
+  navn: Karup
+  kommune: viborg
+  kommuner:
+  - viborg
+  indbyggere: 2182
+- id: kerteminde
+  navn: Kerteminde
+  kommune: kerteminde
+  kommuner:
+  - kerteminde
+  indbyggere: 6150
+- id: kibaek
+  navn: Kibæk
+  kommune: herning
+  kommuner:
+  - herning
+  indbyggere: 2640
+- id: kirke-hvalsoe
+  navn: Kirke Hvalsø
+  kommune: lejre
+  kommuner:
+  - lejre
+  indbyggere: 4995
+- id: kirke-hyllinge
+  navn: Kirke Hyllinge
+  kommune: lejre
+  kommuner:
+  - lejre
+  indbyggere: 2354
+- id: kirke-saaby
+  navn: Kirke Såby
+  kommune: lejre
+  kommuner:
+  - lejre
+  indbyggere: 1651
+- id: kjellerup
+  navn: Kjellerup
+  kommune: silkeborg
+  kommuner:
+  - silkeborg
+  indbyggere: 5295
+- id: klarup
+  navn: Klarup
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 5745
+- id: kliplev
+  navn: Kliplev
+  kommune: aabenraa
+  kommuner:
+  - aabenraa
+  indbyggere: 1235
+- id: klitmoeller
+  navn: Klitmøller
+  kommune: thisted
+  kommuner:
+  - thisted
+  indbyggere: 1298
+- id: knabstrup
+  navn: Knabstrup
+  kommune: holbaek
+  kommuner:
+  - holbaek
+  indbyggere: 1105
+- id: koege
+  navn: Køge
+  kommune: koege
+  kommuner:
+  - koege
+  indbyggere: 38840
+- id: kolding
+  navn: Kolding
+  kommune: kolding
+  kommuner:
+  - kolding
+  indbyggere: 63664
+- id: kolind
+  navn: Kolind
+  kommune: syddjurs
+  kommuner:
+  - syddjurs
+  indbyggere: 1923
+- id: kongerslev
+  navn: Kongerslev
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 1294
+- id: korsoer
+  navn: Korsør
+  kommune: slagelse
+  kommuner:
+  - slagelse
+  indbyggere: 14290
+- id: krusaa
+  navn: Kruså
+  kommune: aabenraa
+  kommuner:
+  - aabenraa
+  indbyggere: 1528
+- id: kvaerndrup
+  navn: Kværndrup
+  kommune: faaborg-midtfyn
+  kommuner:
+  - faaborg-midtfyn
+  indbyggere: 1673
+- id: kvistgaard
+  navn: Kvistgård
+  kommune: helsingoer
+  kommuner:
+  - helsingoer
+  indbyggere: 1235
+- id: laasby
+  navn: Låsby
+  kommune: skanderborg
+  kommuner:
+  - skanderborg
+  indbyggere: 2059
+- id: langaa
+  navn: Langå
+  kommune: randers
+  kommuner:
+  - randers
+  indbyggere: 2901
+- id: langeskov
+  navn: Langeskov
+  kommune: kerteminde
+  kommuner:
+  - kerteminde
+  indbyggere: 4458
+- id: langholt
+  navn: Langholt
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 1048
+- id: lejre
+  navn: Lejre
+  kommune: lejre
+  kommuner:
+  - lejre
+  indbyggere: 3429
+- id: lem
+  navn: Lem
+  kommune: ringkoebing-skjern
+  kommuner:
+  - ringkoebing-skjern
+  indbyggere: 1379
+- id: lemvig
+  navn: Lemvig
+  kommune: lemvig
+  kommuner:
+  - lemvig
+  indbyggere: 6750
+- id: lille-skensved
+  navn: Lille Skensved
+  kommune: koege
+  kommuner:
+  - koege
+  - solroed
+  indbyggere: 1696
+- id: lilleroed
+  navn: Lillerød
+  kommune: alleroed
+  kommuner:
+  - alleroed
+  indbyggere: 16894
+- id: lindved
+  navn: Lindved
+  kommune: hedensted
+  kommuner:
+  - hedensted
+  indbyggere: 1466
+- id: lisbjerg
+  navn: Lisbjerg
+  kommune: aarhus
+  kommuner:
+  - aarhus
+  indbyggere: 2102
+- id: liseleje
+  navn: Liseleje
+  kommune: halsnaes
+  kommuner:
+  - halsnaes
+  indbyggere: 2390
+- id: loegstoer
+  navn: Løgstør
+  kommune: vesthimmerlands
+  kommuner:
+  - vesthimmerlands
+  indbyggere: 3929
+- id: loegstrup
+  navn: Løgstrup
+  kommune: viborg
+  kommuner:
+  - viborg
+  indbyggere: 1881
+- id: loegten
+  navn: Løgten
+  kommune: aarhus
+  kommuner:
+  - aarhus
+  indbyggere: 8623
+- id: loegumkloster
+  navn: Løgumkloster
+  kommune: toender
+  kommuner:
+  - toender
+  indbyggere: 3458
+- id: loejt-kirkeby
+  navn: Løjt Kirkeby
+  kommune: aabenraa
+  kommuner:
+  - aabenraa
+  indbyggere: 2374
+- id: loekken
+  navn: Løkken
+  kommune: hjoerring
+  kommuner:
+  - hjoerring
+  indbyggere: 1674
+- id: lund
+  navn: Lund
+  kommune: horsens
+  kommuner:
+  - horsens
+  indbyggere: 3317
+- id: lunderskov
+  navn: Lunderskov
+  kommune: kolding
+  kommuner:
+  - kolding
+  indbyggere: 2963
+- id: lynge
+  navn: Lynge
+  kommune: alleroed
+  kommuner:
+  - alleroed
+  indbyggere: 4425
+- id: lystrup
+  navn: Lystrup
+  kommune: aarhus
+  kommuner:
+  - aarhus
+  indbyggere: 10116
+- id: maarslet
+  navn: Mårslet
+  kommune: aarhus
+  kommuner:
+  - aarhus
+  indbyggere: 5176
+- id: mariager
+  navn: Mariager
+  kommune: mariagerfjord
+  kommuner:
+  - mariagerfjord
+  indbyggere: 2651
+- id: maribo
+  navn: Maribo
+  kommune: lolland
+  kommuner:
+  - lolland
+  indbyggere: 5783
+- id: marstal
+  navn: Marstal
+  kommune: aeroe
+  kommuner:
+  - aeroe
+  indbyggere: 1989
+- id: middelfart
+  navn: Middelfart
+  kommune: middelfart
+  kommuner:
+  - middelfart
+  indbyggere: 16958
+- id: moeldrup
+  navn: Møldrup
+  kommune: viborg
+  kommuner:
+  - viborg
+  indbyggere: 1309
+- id: moerke
+  navn: Mørke
+  kommune: syddjurs
+  kommuner:
+  - syddjurs
+  indbyggere: 1738
+- id: moerkoev
+  navn: Mørkøv
+  kommune: holbaek
+  kommuner:
+  - holbaek
+  indbyggere: 1899
+- id: mogenstrup
+  navn: Mogenstrup
+  kommune: naestved
+  kommuner:
+  - naestved
+  indbyggere: 2090
+- id: morud
+  navn: Morud
+  kommune: nordfyns
+  kommuner:
+  - nordfyns
+  indbyggere: 1972
+- id: mou
+  navn: Mou
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 1024
+- id: munkebo
+  navn: Munkebo
+  kommune: kerteminde
+  kommuner:
+  - kerteminde
+  indbyggere: 5538
+- id: naesbyhoved-broby
+  navn: Næsbyhoved-Broby
+  kommune: odense
+  kommuner:
+  - odense
+  indbyggere: 1527
+- id: naestved
+  navn: Næstved
+  kommune: naestved
+  kommuner:
+  - naestved
+  indbyggere: 45522
+- id: nakskov
+  navn: Nakskov
+  kommune: lolland
+  kommuner:
+  - lolland
+  indbyggere: 11969
+- id: nexoe
+  navn: Nexø
+  kommune: bornholm
+  kommuner:
+  - bornholm
+  indbyggere: 3645
+- id: nibe
+  navn: Nibe
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 5703
+- id: nivaa
+  navn: Nivå
+  kommune: fredensborg
+  kommuner:
+  - fredensborg
+  indbyggere: 8816
+- id: noedebo
+  navn: Nødebo
+  kommune: hilleroed
+  kommuner:
+  - hilleroed
+  indbyggere: 2057
+- id: noerager
+  navn: Nørager
+  kommune: rebild
+  kommuner:
+  - rebild
+  indbyggere: 1178
+- id: noerhalne
+  navn: Nørhalne
+  kommune: jammerbugt
+  kommuner:
+  - jammerbugt
+  indbyggere: 1539
+- id: noerre-aaby
+  navn: Nørre Aaby
+  kommune: middelfart
+  kommuner:
+  - middelfart
+  indbyggere: 3129
+- id: noerre-alslev
+  navn: Nørre Alslev
+  kommune: guldborgsund
+  kommuner:
+  - guldborgsund
+  indbyggere: 2324
+- id: noerre-broby
+  navn: Nørre Broby
+  kommune: faaborg-midtfyn
+  kommuner:
+  - faaborg-midtfyn
+  indbyggere: 1442
+- id: noerre-lyndelse
+  navn: Nørre Lyndelse
+  kommune: faaborg-midtfyn
+  kommuner:
+  - faaborg-midtfyn
+  indbyggere: 2340
+- id: noerre-nebel
+  navn: Nørre Nebel
+  kommune: varde
+  kommuner:
+  - varde
+  indbyggere: 1348
+- id: noerre-snede
+  navn: Nørre Snede
+  kommune: ikast-brande
+  kommuner:
+  - ikast-brande
+  indbyggere: 1928
+- id: noerresundby
+  navn: Nørresundby
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 24831
+- id: nordborg
+  navn: Nordborg
+  kommune: soenderborg
+  kommuner:
+  - soenderborg
+  indbyggere: 5661
+- id: nordby
+  navn: Nordby
+  kommune: fanoe
+  kommuner:
+  - fanoe
+  indbyggere: 2684
+- id: nordbyen
+  navn: Nordbyen
+  kommune: guldborgsund
+  kommuner:
+  - guldborgsund
+  indbyggere: 1999
+- id: nors
+  navn: Nors
+  kommune: thisted
+  kommuner:
+  - thisted
+  indbyggere: 1106
+- id: ny-hammersholt
+  navn: Ny Hammersholt
+  kommune: hilleroed
+  kommuner:
+  - hilleroed
+  indbyggere: 1259
+- id: nyboel
+  navn: Nybøl
+  kommune: soenderborg
+  kommuner:
+  - soenderborg
+  indbyggere: 1159
+- id: nyborg
+  navn: Nyborg
+  kommune: nyborg
+  kommuner:
+  - nyborg
+  indbyggere: 17930
+- id: nykoebing-f
+  navn: Nykøbing F
+  kommune: guldborgsund
+  kommuner:
+  - guldborgsund
+  indbyggere: 16656
+- id: nykoebing-m
+  navn: Nykøbing M
+  kommune: morsoe
+  kommuner:
+  - morsoe
+  indbyggere: 8866
+- id: nykoebing-s
+  navn: Nykøbing S
+  kommune: odsherred
+  kommuner:
+  - odsherred
+  indbyggere: 5034
+- id: nyraad
+  navn: Nyråd
+  kommune: vordingborg
+  kommuner:
+  - vordingborg
+  indbyggere: 2563
+- id: nysted
+  navn: Nysted
+  kommune: guldborgsund
+  kommuner:
+  - guldborgsund
+  indbyggere: 1237
+- id: odder
+  navn: Odder
+  kommune: odder
+  kommuner:
+  - odder
+  indbyggere: 13644
+- id: odense
+  navn: Odense
+  kommune: odense
+  kommuner:
+  - odense
+  indbyggere: 187558
+- id: oedsted
+  navn: Ødsted
+  kommune: vejle
+  kommuner:
+  - vejle
+  indbyggere: 1533
+- id: oelgod
+  navn: Ølgod
+  kommune: varde
+  kommuner:
+  - varde
+  indbyggere: 3714
+- id: oelsted
+  navn: Ølsted
+  kommune: halsnaes
+  kommuner:
+  - halsnaes
+  indbyggere: 1946
+- id: oelstykke-stenloese
+  navn: Ølstykke-Stenløse
+  kommune: egedal
+  kommuner:
+  - egedal
+  indbyggere: 23904
+- id: oerbaek
+  navn: Ørbæk
+  kommune: nyborg
+  kommuner:
+  - nyborg
+  indbyggere: 1747
+- id: oerslev
+  navn: Ørslev
+  kommune: vordingborg
+  kommuner:
+  - vordingborg
+  indbyggere: 2023
+- id: oersted
+  navn: Ørsted
+  kommune: norddjurs
+  kommuner:
+  - norddjurs
+  indbyggere: 1312
+- id: oerum
+  navn: Ørum
+  kommune: viborg
+  kommuner:
+  - viborg
+  indbyggere: 1511
+- id: oestbirk
+  navn: Østbirk
+  kommune: horsens
+  kommuner:
+  - horsens
+  indbyggere: 2652
+- id: oester-bjerregrav
+  navn: Øster Bjerregrav
+  kommune: randers
+  kommuner:
+  - randers
+  indbyggere: 1013
+- id: oester-hornum
+  navn: Øster Hornum
+  kommune: rebild
+  kommuner:
+  - rebild
+  indbyggere: 1070
+- id: oester-snede
+  navn: Øster Snede
+  kommune: hedensted
+  kommuner:
+  - hedensted
+  indbyggere: 1214
+- id: oestervraa
+  navn: Østervrå
+  kommune: frederikshavn
+  kommuner:
+  - frederikshavn
+  indbyggere: 1281
+- id: oksboel
+  navn: Oksbøl
+  kommune: varde
+  kommuner:
+  - varde
+  indbyggere: 2885
+- id: ollerup
+  navn: Ollerup
+  kommune: svendborg
+  kommuner:
+  - svendborg
+  indbyggere: 1582
+- id: osted
+  navn: Osted
+  kommune: lejre
+  kommuner:
+  - lejre
+  indbyggere: 2349
+- id: otterup
+  navn: Otterup
+  kommune: nordfyns
+  kommuner:
+  - nordfyns
+  indbyggere: 5264
+- id: outrup
+  navn: Outrup
+  kommune: varde
+  kommuner:
+  - varde
+  indbyggere: 1003
+- id: over-holluf
+  navn: Over Holluf
+  kommune: odense
+  kommuner:
+  - odense
+  indbyggere: 1502
+- id: over-jerstal
+  navn: Over Jerstal
+  kommune: haderslev
+  kommuner:
+  - haderslev
+  indbyggere: 1071
+- id: padborg
+  navn: Padborg
+  kommune: aabenraa
+  kommuner:
+  - aabenraa
+  indbyggere: 4263
+- id: pandrup
+  navn: Pandrup
+  kommune: jammerbugt
+  kommuner:
+  - jammerbugt
+  indbyggere: 2849
+- id: praestoe
+  navn: Præstø
+  kommune: vordingborg
+  kommuner:
+  - vordingborg
+  indbyggere: 4028
+- id: ramloese
+  navn: Ramløse
+  kommune: gribskov
+  kommuner:
+  - gribskov
+  indbyggere: 1551
+- id: randers
+  navn: Randers
+  kommune: randers
+  kommuner:
+  - randers
+  indbyggere: 64764
+- id: rantzausminde
+  navn: Rantzausminde
+  kommune: svendborg
+  kommuner:
+  - svendborg
+  indbyggere: 2227
+- id: rask-moelle
+  navn: Rask Mølle
+  kommune: hedensted
+  kommuner:
+  - hedensted
+  indbyggere: 1158
+- id: regstrup
+  navn: Regstrup
+  kommune: holbaek
+  kommuner:
+  - holbaek
+  indbyggere: 1650
+- id: ribe
+  navn: Ribe
+  kommune: esbjerg
+  kommuner:
+  - esbjerg
+  indbyggere: 8403
+- id: ringe
+  navn: Ringe
+  kommune: faaborg-midtfyn
+  kommuner:
+  - faaborg-midtfyn
+  indbyggere: 6852
+- id: ringkoebing
+  navn: Ringkøbing
+  kommune: ringkoebing-skjern
+  kommuner:
+  - ringkoebing-skjern
+  indbyggere: 9802
+- id: ringsted
+  navn: Ringsted
+  kommune: ringsted
+  kommuner:
+  - ringsted
+  indbyggere: 23866
+- id: rinkenaes
+  navn: Rinkenæs
+  kommune: soenderborg
+  kommuner:
+  - soenderborg
+  indbyggere: 1279
+- id: roedby
+  navn: Rødby
+  kommune: lolland
+  kommuner:
+  - lolland
+  indbyggere: 1927
+- id: roedbyhavn
+  navn: Rødbyhavn
+  kommune: lolland
+  kommuner:
+  - lolland
+  indbyggere: 1445
+- id: roedding
+  navn: Rødding
+  kommune: vejen
+  kommuner:
+  - vejen
+  indbyggere: 2739
+- id: roedekro
+  navn: Rødekro
+  kommune: aabenraa
+  kommuner:
+  - aabenraa
+  indbyggere: 6182
+- id: roedkaersbro
+  navn: Rødkærsbro
+  kommune: viborg
+  kommuner:
+  - viborg
+  indbyggere: 1760
+- id: roedvig
+  navn: Rødvig
+  kommune: stevns
+  kommuner:
+  - stevns
+  indbyggere: 1828
+- id: roende
+  navn: Rønde
+  kommune: syddjurs
+  kommuner:
+  - syddjurs
+  indbyggere: 3329
+- id: roenne
+  navn: Rønne
+  kommune: bornholm
+  kommuner:
+  - bornholm
+  indbyggere: 13589
+- id: roennede
+  navn: Rønnede
+  kommune: faxe
+  kommuner:
+  - faxe
+  indbyggere: 2969
+- id: roskilde
+  navn: Roskilde
+  kommune: roskilde
+  kommuner:
+  - roskilde
+  indbyggere: 53897
+- id: roslev
+  navn: Roslev
+  kommune: skive
+  kommuner:
+  - skive
+  indbyggere: 1285
+- id: rudkoebing
+  navn: Rudkøbing
+  kommune: langeland
+  kommuner:
+  - langeland
+  indbyggere: 4449
+- id: ruds-vedby
+  navn: Ruds Vedby
+  kommune: soroe
+  kommuner:
+  - soroe
+  indbyggere: 1661
+- id: ry
+  navn: Ry
+  kommune: skanderborg
+  kommuner:
+  - skanderborg
+  indbyggere: 7750
+- id: ryomgaard
+  navn: Ryomgård
+  kommune: syddjurs
+  kommuner:
+  - syddjurs
+  indbyggere: 2779
+- id: ryslinge
+  navn: Ryslinge
+  kommune: faaborg-midtfyn
+  kommuner:
+  - faaborg-midtfyn
+  indbyggere: 2009
+- id: sabro
+  navn: Sabro
+  kommune: aarhus
+  kommuner:
+  - aarhus
+  indbyggere: 3562
+- id: saeby
+  navn: Sæby
+  kommune: frederikshavn
+  kommuner:
+  - frederikshavn
+  indbyggere: 9012
+- id: sakskoebing
+  navn: Sakskøbing
+  kommune: guldborgsund
+  kommuner:
+  - guldborgsund
+  indbyggere: 4580
+- id: sankt-klemens
+  navn: Sankt Klemens
+  kommune: odense
+  kommuner:
+  - odense
+  indbyggere: 3258
+- id: saunte
+  navn: Saunte
+  kommune: helsingoer
+  kommuner:
+  - helsingoer
+  indbyggere: 1379
+- id: sejs-svejbaek
+  navn: Sejs-Svejbæk
+  kommune: silkeborg
+  kommuner:
+  - silkeborg
+  indbyggere: 4727
+- id: sengeloese
+  navn: Sengeløse
+  kommune: hoeje-taastrup
+  kommuner:
+  - hoeje-taastrup
+  indbyggere: 1488
+- id: silkeborg
+  navn: Silkeborg
+  kommune: silkeborg
+  kommuner:
+  - silkeborg
+  indbyggere: 53058
+- id: sindal
+  navn: Sindal
+  kommune: hjoerring
+  kommuner:
+  - hjoerring
+  indbyggere: 3032
+- id: skaarup
+  navn: Skårup
+  kommune: svendborg
+  kommuner:
+  - svendborg
+  indbyggere: 1924
+- id: skaelskoer
+  navn: Skælskør
+  kommune: slagelse
+  kommuner:
+  - slagelse
+  indbyggere: 6334
+- id: skaevinge
+  navn: Skævinge
+  kommune: hilleroed
+  kommuner:
+  - hilleroed
+  indbyggere: 2964
+- id: skagen
+  navn: Skagen
+  kommune: frederikshavn
+  kommuner:
+  - frederikshavn
+  indbyggere: 7250
+- id: skals
+  navn: Skals
+  kommune: viborg
+  kommuner:
+  - viborg
+  indbyggere: 1748
+- id: skanderborg
+  navn: Skanderborg
+  kommune: skanderborg
+  kommuner:
+  - skanderborg
+  indbyggere: 20370
+- id: skibby
+  navn: Skibby
+  kommune: frederikssund
+  kommuner:
+  - frederikssund
+  indbyggere: 3217
+- id: skibet
+  navn: Skibet
+  kommune: vejle
+  kommuner:
+  - vejle
+  indbyggere: 2609
+- id: skive
+  navn: Skive
+  kommune: skive
+  kommuner:
+  - skive
+  indbyggere: 20092
+- id: skjern
+  navn: Skjern
+  kommune: ringkoebing-skjern
+  kommuner:
+  - ringkoebing-skjern
+  indbyggere: 7775
+- id: skodborg
+  navn: Skodborg
+  kommune: vejen
+  kommuner:
+  - vejen
+  indbyggere: 1233
+- id: skodsborg
+  navn: Skodsborg
+  kommune: rudersdal
+  kommuner:
+  - rudersdal
+  indbyggere: 1229
+- id: skoerping
+  navn: Skørping
+  kommune: rebild
+  kommuner:
+  - rebild
+  indbyggere: 3087
+- id: slagelse
+  navn: Slagelse
+  kommune: slagelse
+  kommuner:
+  - slagelse
+  indbyggere: 36140
+- id: slangerup
+  navn: Slangerup
+  kommune: frederikssund
+  kommuner:
+  - frederikssund
+  indbyggere: 6953
+- id: slots-bjergby
+  navn: Slots Bjergby
+  kommune: slagelse
+  kommuner:
+  - slagelse
+  indbyggere: 1026
+- id: smidstrup
+  navn: Smidstrup
+  kommune: gribskov
+  kommuner:
+  - gribskov
+  indbyggere: 1153
+- id: smoerumnedre
+  navn: Smørumnedre
+  kommune: egedal
+  kommuner:
+  - ballerup
+  - egedal
+  - furesoe
+  indbyggere: 21918
+- id: snedsted
+  navn: Snedsted
+  kommune: thisted
+  kommuner:
+  - thisted
+  indbyggere: 1132
+- id: soeften
+  navn: Søften
+  kommune: favrskov
+  kommuner:
+  - favrskov
+  indbyggere: 3169
+- id: soellested
+  navn: Søllested
+  kommune: lolland
+  kommuner:
+  - lolland
+  indbyggere: 1347
+- id: soender-bjert
+  navn: Sønder Bjert
+  kommune: kolding
+  kommuner:
+  - kolding
+  indbyggere: 2324
+- id: soender-felding
+  navn: Sønder Felding
+  kommune: herning
+  kommuner:
+  - herning
+  indbyggere: 1385
+- id: soender-omme
+  navn: Sønder Omme
+  kommune: billund
+  kommuner:
+  - billund
+  indbyggere: 1699
+- id: soenderborg
+  navn: Sønderborg
+  kommune: soenderborg
+  kommuner:
+  - soenderborg
+  indbyggere: 28564
+- id: soendersoe
+  navn: Søndersø
+  kommune: nordfyns
+  kommuner:
+  - nordfyns
+  indbyggere: 3360
+- id: soerbymagle
+  navn: Sørbymagle
+  kommune: slagelse
+  kommuner:
+  - slagelse
+  indbyggere: 1112
+- id: soervad
+  navn: Sørvad
+  kommune: herning
+  kommuner:
+  - herning
+  indbyggere: 1104
+- id: soevang
+  navn: Søvang
+  kommune: dragoer
+  kommuner:
+  - dragoer
+  indbyggere: 1816
+- id: soevind
+  navn: Søvind
+  kommune: horsens
+  kommuner:
+  - horsens
+  indbyggere: 1114
+- id: solbjerg
+  navn: Solbjerg
+  kommune: aarhus
+  kommuner:
+  - aarhus
+  indbyggere: 4832
+- id: solroed-strand
+  navn: Solrød Strand
+  kommune: solroed
+  kommuner:
+  - solroed
+  indbyggere: 17964
+- id: soroe
+  navn: Sorø
+  kommune: soroe
+  kommuner:
+  - soroe
+  indbyggere: 8415
+- id: sorring
+  navn: Sorring
+  kommune: silkeborg
+  kommuner:
+  - silkeborg
+  indbyggere: 1183
+- id: spentrup
+  navn: Spentrup
+  kommune: randers
+  kommuner:
+  - randers
+  indbyggere: 2360
+- id: spjald
+  navn: Spjald
+  kommune: ringkoebing-skjern
+  kommuner:
+  - ringkoebing-skjern
+  indbyggere: 1327
+- id: spoerring
+  navn: Spørring
+  kommune: aarhus
+  kommuner:
+  - aarhus
+  indbyggere: 1225
+- id: starup
+  navn: Starup
+  kommune: haderslev
+  kommuner:
+  - haderslev
+  indbyggere: 2600
+- id: stege
+  navn: Stege
+  kommune: vordingborg
+  kommuner:
+  - vordingborg
+  indbyggere: 3811
+- id: stenlille
+  navn: Stenlille
+  kommune: soroe
+  kommuner:
+  - soroe
+  indbyggere: 2074
+- id: stenstrup
+  navn: Stenstrup
+  kommune: svendborg
+  kommuner:
+  - svendborg
+  indbyggere: 1748
+- id: stensved
+  navn: Stensved
+  kommune: vordingborg
+  kommuner:
+  - vordingborg
+  indbyggere: 1504
+- id: stevnstrup
+  navn: Stevnstrup
+  kommune: randers
+  kommuner:
+  - randers
+  indbyggere: 2689
+- id: stjaer
+  navn: Stjær
+  kommune: skanderborg
+  kommuner:
+  - skanderborg
+  indbyggere: 1054
+- id: stoevring
+  navn: Støvring
+  kommune: rebild
+  kommuner:
+  - rebild
+  indbyggere: 9808
+- id: stoholm
+  navn: Stoholm
+  kommune: viborg
+  kommuner:
+  - viborg
+  indbyggere: 2544
+- id: store-heddinge
+  navn: Store Heddinge
+  kommune: stevns
+  kommuner:
+  - stevns
+  indbyggere: 3690
+- id: store-merloese
+  navn: Store Merløse
+  kommune: holbaek
+  kommuner:
+  - holbaek
+  indbyggere: 1188
+- id: storvorde
+  navn: Storvorde
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 3491
+- id: strandby
+  navn: Strandby
+  kommune: frederikshavn
+  kommuner:
+  - frederikshavn
+  indbyggere: 2266
+- id: strib
+  navn: Strib
+  kommune: middelfart
+  kommuner:
+  - middelfart
+  indbyggere: 5285
+- id: stroeby-egede
+  navn: Strøby Egede
+  kommune: stevns
+  kommuner:
+  - stevns
+  indbyggere: 5103
+- id: struer
+  navn: Struer
+  kommune: struer
+  kommuner:
+  - struer
+  indbyggere: 9840
+- id: stubbaek
+  navn: Stubbæk
+  kommune: aabenraa
+  kommuner:
+  - aabenraa
+  indbyggere: 1180
+- id: stubbekoebing
+  navn: Stubbekøbing
+  kommune: guldborgsund
+  kommuner:
+  - guldborgsund
+  indbyggere: 2204
+- id: suldrup
+  navn: Suldrup
+  kommune: rebild
+  kommuner:
+  - rebild
+  indbyggere: 1362
+- id: sulsted
+  navn: Sulsted
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 1461
+- id: sundby
+  navn: Sundby
+  kommune: guldborgsund
+  kommuner:
+  - guldborgsund
+  indbyggere: 3236
+- id: sunds
+  navn: Sunds
+  kommune: herning
+  kommuner:
+  - herning
+  indbyggere: 4335
+- id: svaneke
+  navn: Svaneke
+  kommune: bornholm
+  kommuner:
+  - bornholm
+  indbyggere: 1074
+- id: sveboelle
+  navn: Svebølle
+  kommune: kalundborg
+  kommuner:
+  - kalundborg
+  indbyggere: 2243
+- id: svendborg
+  navn: Svendborg
+  kommune: svendborg
+  kommuner:
+  - svendborg
+  indbyggere: 27593
+- id: svinninge
+  navn: Svinninge
+  kommune: holbaek
+  kommuner:
+  - holbaek
+  indbyggere: 2891
+- id: svogerslev
+  navn: Svogerslev
+  kommune: roskilde
+  kommuner:
+  - roskilde
+  indbyggere: 4316
+- id: taars
+  navn: Tårs
+  kommune: hjoerring
+  kommuner:
+  - hjoerring
+  indbyggere: 1825
+- id: taastrup
+  navn: Taastrup
+  kommune: hoeje-taastrup
+  kommuner:
+  - hoeje-taastrup
+  indbyggere: 38328
+- id: tappernoeje
+  navn: Tappernøje
+  kommune: naestved
+  kommuner:
+  - naestved
+  indbyggere: 1686
+- id: tarm
+  navn: Tarm
+  kommune: ringkoebing-skjern
+  kommuner:
+  - ringkoebing-skjern
+  indbyggere: 4113
+- id: tarp
+  navn: Tarp
+  kommune: esbjerg
+  kommuner:
+  - esbjerg
+  indbyggere: 1683
+- id: taulov
+  navn: Taulov
+  kommune: fredericia
+  kommuner:
+  - fredericia
+  indbyggere: 3593
+- id: terndrup
+  navn: Terndrup
+  kommune: rebild
+  kommuner:
+  - rebild
+  indbyggere: 1669
+- id: them
+  navn: Them
+  kommune: silkeborg
+  kommuner:
+  - silkeborg
+  indbyggere: 2477
+- id: thisted
+  navn: Thisted
+  kommune: thisted
+  kommuner:
+  - thisted
+  indbyggere: 13535
+- id: thorning
+  navn: Thorning
+  kommune: silkeborg
+  kommuner:
+  - silkeborg
+  indbyggere: 1013
+- id: thorsager
+  navn: Thorsager
+  kommune: syddjurs
+  kommuner:
+  - syddjurs
+  indbyggere: 1400
+- id: thorsoe
+  navn: Thorsø
+  kommune: favrskov
+  kommuner:
+  - favrskov
+  indbyggere: 1753
+- id: thuroe-by
+  navn: Thurø By
+  kommune: svendborg
+  kommuner:
+  - svendborg
+  indbyggere: 3414
+- id: thyboroen
+  navn: Thyborøn
+  kommune: lemvig
+  kommuner:
+  - lemvig
+  indbyggere: 1719
+- id: thyregod
+  navn: Thyregod
+  kommune: vejle
+  kommuner:
+  - vejle
+  indbyggere: 1352
+- id: tinglev
+  navn: Tinglev
+  kommune: aabenraa
+  kommuner:
+  - aabenraa
+  indbyggere: 2761
+- id: tistrup
+  navn: Tistrup
+  kommune: varde
+  kommuner:
+  - varde
+  indbyggere: 1437
+- id: tisvilde
+  navn: Tisvilde
+  kommune: gribskov
+  kommuner:
+  - gribskov
+  indbyggere: 1341
+- id: tjaereborg
+  navn: Tjæreborg
+  kommune: esbjerg
+  kommuner:
+  - esbjerg
+  indbyggere: 2959
+- id: toelloese
+  navn: Tølløse
+  kommune: holbaek
+  kommuner:
+  - holbaek
+  indbyggere: 4028
+- id: toender
+  navn: Tønder
+  kommune: toender
+  kommuner:
+  - toender
+  indbyggere: 7481
+- id: toerring
+  navn: Tørring
+  kommune: hedensted
+  kommuner:
+  - hedensted
+  indbyggere: 2917
+- id: toftlund
+  navn: Toftlund
+  kommune: toender
+  kommuner:
+  - toender
+  indbyggere: 3252
+- id: tommerup
+  navn: Tommerup
+  kommune: assens
+  kommuner:
+  - assens
+  indbyggere: 1573
+- id: tommerup-stationsby
+  navn: Tommerup Stationsby
+  kommune: assens
+  kommuner:
+  - assens
+  indbyggere: 2518
+- id: tornby
+  navn: Tornby
+  kommune: hjoerring
+  kommuner:
+  - hjoerring
+  indbyggere: 1001
+- id: trige
+  navn: Trige
+  kommune: aarhus
+  kommuner:
+  - aarhus
+  indbyggere: 3476
+- id: troense
+  navn: Troense
+  kommune: svendborg
+  kommuner:
+  - svendborg
+  indbyggere: 1442
+- id: tulstrup
+  navn: Tulstrup
+  kommune: hilleroed
+  kommuner:
+  - hilleroed
+  indbyggere: 1187
+- id: tune
+  navn: Tune
+  kommune: greve
+  kommuner:
+  - greve
+  indbyggere: 5681
+- id: tuse
+  navn: Tuse
+  kommune: holbaek
+  kommuner:
+  - holbaek
+  indbyggere: 1387
+- id: tvis
+  navn: Tvis
+  kommune: holstebro
+  kommuner:
+  - holstebro
+  indbyggere: 1380
+- id: tylstrup
+  navn: Tylstrup
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 1230
+- id: ubby
+  navn: Ubby
+  kommune: kalundborg
+  kommuner:
+  - kalundborg
+  indbyggere: 1894
+- id: ugelboelle
+  navn: Ugelbølle
+  kommune: syddjurs
+  kommuner:
+  - syddjurs
+  indbyggere: 1542
+- id: uldum
+  navn: Uldum
+  kommune: hedensted
+  kommuner:
+  - hedensted
+  indbyggere: 1414
+- id: ulfborg
+  navn: Ulfborg
+  kommune: holstebro
+  kommuner:
+  - holstebro
+  indbyggere: 2032
+- id: ullerslev
+  navn: Ullerslev
+  kommune: nyborg
+  kommuner:
+  - nyborg
+  indbyggere: 2735
+- id: ulstrup
+  navn: Ulstrup
+  kommune: favrskov
+  kommuner:
+  - favrskov
+  indbyggere: 1908
+- id: undloese
+  navn: Undløse
+  kommune: holbaek
+  kommuner:
+  - holbaek
+  indbyggere: 1105
+- id: uvelse
+  navn: Uvelse
+  kommune: hilleroed
+  kommuner:
+  - hilleroed
+  indbyggere: 1058
+- id: vadum
+  navn: Vadum
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 2552
+- id: vaeggerloese
+  navn: Væggerløse
+  kommune: guldborgsund
+  kommuner:
+  - guldborgsund
+  indbyggere: 1292
+- id: vaerloese
+  navn: Værløse
+  kommune: furesoe
+  kommuner:
+  - furesoe
+  indbyggere: 13197
+- id: valsgaard
+  navn: Valsgård
+  kommune: mariagerfjord
+  kommuner:
+  - mariagerfjord
+  indbyggere: 1143
+- id: vamdrup
+  navn: Vamdrup
+  kommune: kolding
+  kommuner:
+  - kolding
+  indbyggere: 4943
+- id: varde
+  navn: Varde
+  kommune: varde
+  kommuner:
+  - varde
+  indbyggere: 14317
+- id: veddelev
+  navn: Veddelev
+  kommune: roskilde
+  kommuner:
+  - roskilde
+  indbyggere: 1141
+- id: vejby
+  navn: Vejby
+  kommune: gribskov
+  kommuner:
+  - gribskov
+  indbyggere: 1073
+- id: vejen
+  navn: Vejen
+  kommune: vejen
+  kommuner:
+  - vejen
+  indbyggere: 10393
+- id: vejle
+  navn: Vejle
+  kommune: vejle
+  kommuner:
+  - vejle
+  indbyggere: 62153
+- id: veksoe
+  navn: Veksø
+  kommune: egedal
+  kommuner:
+  - egedal
+  indbyggere: 1786
+- id: vemb
+  navn: Vemb
+  kommune: holstebro
+  kommuner:
+  - holstebro
+  indbyggere: 1224
+- id: vemmedrup
+  navn: Vemmedrup
+  kommune: koege
+  kommuner:
+  - koege
+  indbyggere: 1657
+- id: vestbjerg
+  navn: Vestbjerg
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 3091
+- id: vester-hassing
+  navn: Vester Hassing
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 2608
+- id: vester-nebel
+  navn: Vester Nebel
+  kommune: kolding
+  kommuner:
+  - kolding
+  indbyggere: 1984
+- id: vester-skerninge
+  navn: Vester Skerninge
+  kommune: svendborg
+  kommuner:
+  - svendborg
+  indbyggere: 1107
+- id: vester-sottrup
+  navn: Vester Sottrup
+  kommune: soenderborg
+  kommuner:
+  - soenderborg
+  indbyggere: 1455
+- id: viborg
+  navn: Viborg
+  kommune: viborg
+  kommuner:
+  - viborg
+  indbyggere: 44021
+- id: viby
+  navn: Viby
+  kommune: roskilde
+  kommuner:
+  - roskilde
+  indbyggere: 5227
+- id: videbaek
+  navn: Videbæk
+  kommune: ringkoebing-skjern
+  kommuner:
+  - ringkoebing-skjern
+  indbyggere: 4299
+- id: vig
+  navn: Vig
+  kommune: odsherred
+  kommuner:
+  - odsherred
+  indbyggere: 1720
+- id: vildbjerg
+  navn: Vildbjerg
+  kommune: herning
+  kommuner:
+  - herning
+  indbyggere: 4169
+- id: vindeby
+  navn: Vindeby
+  kommune: svendborg
+  kommuner:
+  - svendborg
+  indbyggere: 2355
+- id: vinderoed
+  navn: Vinderød
+  kommune: halsnaes
+  kommuner:
+  - halsnaes
+  indbyggere: 1024
+- id: vinderup
+  navn: Vinderup
+  kommune: holstebro
+  kommuner:
+  - holstebro
+  indbyggere: 3103
+- id: vindinge
+  navn: Vindinge
+  kommune: roskilde
+  kommuner:
+  - roskilde
+  indbyggere: 3219
+- id: vipperoed
+  navn: Vipperød
+  kommune: holbaek
+  kommuner:
+  - holbaek
+  indbyggere: 2803
+- id: virklund
+  navn: Virklund
+  kommune: silkeborg
+  kommuner:
+  - silkeborg
+  indbyggere: 3932
+- id: virring
+  navn: Virring
+  kommune: skanderborg
+  kommuner:
+  - skanderborg
+  indbyggere: 1200
+- id: vissenbjerg
+  navn: Vissenbjerg
+  kommune: assens
+  kommuner:
+  - assens
+  indbyggere: 3265
+- id: vodskov
+  navn: Vodskov
+  kommune: aalborg
+  kommuner:
+  - aalborg
+  indbyggere: 4822
+- id: voel
+  navn: Voel
+  kommune: silkeborg
+  kommuner:
+  - silkeborg
+  indbyggere: 1995
+- id: vojens
+  navn: Vojens
+  kommune: haderslev
+  kommuner:
+  - haderslev
+  indbyggere: 7387
+- id: vorbasse
+  navn: Vorbasse
+  kommune: billund
+  kommuner:
+  - billund
+  indbyggere: 1275
+- id: vordingborg
+  navn: Vordingborg
+  kommune: vordingborg
+  kommuner:
+  - vordingborg
+  indbyggere: 11850
+- id: vorgod-barde
+  navn: Vorgod-Barde
+  kommune: ringkoebing-skjern
+  kommuner:
+  - ringkoebing-skjern
+  indbyggere: 1003
+- id: vraa
+  navn: Vrå
+  kommune: hjoerring
+  kommuner:
+  - hjoerring
+  indbyggere: 2662
