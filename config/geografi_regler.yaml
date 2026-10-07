@@ -1,0 +1,60 @@
+# Håndregler til tools/build_geografi.py, som bygger config/geografi.yaml fra Danmarks Statistik.
+# Ret her, ikke i geografi.yaml, og kør workflowet "Byg geografi" bagefter.
+
+# Byer med færre indbyggere kommer ikke med.
+min_indbyggere: 1000
+
+# DST's regionskoder. Navnet i data skal være "Region <kort>".
+regioner:
+  "081": {id: nordjylland, kort: Nordjylland}
+  "082": {id: midtjylland, kort: Midtjylland}
+  "083": {id: syddanmark, kort: Syddanmark}
+  "084": {id: hovedstaden, kort: Hovedstaden}
+  "085": {id: sjaelland, kort: Sjælland}
+
+# Områdekoder i FOLK1A, der ikke er kommuner.
+ikke_kommuner: ["411"]  # Christiansø
+
+# Officielle navne, der ikke følger mønstret "<navn> Kommune".
+officielle_navne:
+  "101": Københavns Kommune
+  "400": Bornholms Regionskommune
+
+# Ekstra navne, der også betyder kommunen (ejefalds-s klares af mønstermotoren).
+ekstra_navne:
+  "751": [Århus]
+  "173": [Lyngby, Kongens Lyngby]
+  "169": [Høje Taastrup]
+  "480": [Nordfyn]
+  "820": [Vesthimmerland]
+  "773": [Mors]
+
+# Kommunenavne, der også er almindelige ord. De matches kun som "<navn> Kommune".
+kun_med_kommune: [Vejen]
+
+# Bynavne, der også er almindelige ord eller efternavne. De matches aldrig.
+ignorer_byer: [Brande]
+
+# Landsdele, der ligger i én region. Landsdele på tværs af regioner (Jylland, Sjælland,
+# Vestjylland, Østjylland) er bevidst udeladt.
+landsdele:
+  Fyn: syddanmark
+  Sydfyn: syddanmark
+  Sønderjylland: syddanmark
+  Sydjylland: syddanmark
+  Syddanmark: syddanmark
+  Nordsjælland: hovedstaden
+  Storkøbenhavn: hovedstaden
+  Hovedstadsområdet: hovedstaden
+  Hovedstaden: hovedstaden
+  Lolland-Falster: sjaelland
+  Falster: sjaelland
+  Sydsjælland: sjaelland
+  Vestsjælland: sjaelland
+  Midtsjælland: sjaelland
+  Djursland: midtjylland
+  Midtjylland: midtjylland
+  Vendsyssel: nordjylland
+  Himmerland: nordjylland
+  Thy: nordjylland
+  Nordjylland: nordjylland

@@ -1,0 +1,57 @@
+# Bygger config/geografi.yaml fra Danmarks Statistik (tools/build_geografi.py). Kører, når
+# værktøjet eller håndreglerne ændres, og kan startes manuelt. Rapporten lægges i probe/geografi.md.
+name: Byg geografi
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/build_geografi.py"
+      - "config/geografi_regler.yaml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: geografi
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - run: pip install -r requirements.txt
+
+      - name: Byg
+        shell: bash
+        run: |
+          mkdir -p probe
+          {
+            echo "# Byg geografi $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo
+            echo '```text'
+            python tools/build_geografi.py --report 2>&1 || echo "(fejlede: config/geografi.yaml er ikke ændret)"
+            echo '```'
+          } > probe/geografi.md
+          cat probe/geografi.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name "affaldsfeed-bot"
+          git config user.email "affaldsfeed-bot@users.noreply.github.com"
+          git add probe/geografi.md config/geografi.yaml 2>/dev/null || git add probe/geografi.md
+          git diff --cached --quiet && exit 0
+          git commit -m "Byg geografi $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          exit 1
