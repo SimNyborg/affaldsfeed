@@ -150,7 +150,7 @@ def test_load_heartbeat(repo):
 
 
 def test_pending_output(repo, capsys):
-    new = cand("ny", hours_ago=1)
+    new = cand("ny", hours_ago=1, places=["b:ullerslev", "k:nyborg"])
     older = cand("aeldre", hours_ago=5, decision="graa")
     judged = cand("vurderet", hours_ago=3)
     rules_only = cand("regler", source="dr", hours_ago=1)
@@ -167,16 +167,23 @@ def test_pending_output(repo, capsys):
 
     assert judgments.main_pending(ns(max=200, hours=72, now="2026-10-07T10:00:00Z")) == 0
     out = json.loads(capsys.readouterr().out)
-    assert list(out) == ["now", "profile", "topics", "genres", "pending", "recent_approved"]
+    assert list(out) == ["now", "profile", "topics", "genres", "places_help", "pending", "recent_approved"]
     assert out["now"] == "2026-10-07T10:00:00Z"
     assert "Relevansprofil" in out["profile"]
     assert set(out["topics"][0]) == {"id", "name", "definition"}
     assert set(out["genres"][0]) == {"id", "label"}
+    help_ = out["places_help"]
+    assert list(help_) == ["format", "regioner", "kommuner"]  # byer slås op i config/geografi.yaml
+    assert help_["format"] == "r:<region>, k:<kommune>, b:<by>"
+    assert help_["regioner"][0] == {"id": "hovedstaden", "navn": "Region Hovedstaden"}
+    assert len(help_["kommuner"]) == 98 and {"id": "nyborg", "navn": "Nyborg Kommune"} in help_["kommuner"]
     assert [p["id"] for p in out["pending"]] == [new.id, en.id, older.id]
     first = out["pending"][0]
     assert list(first) == ["id", "url", "title", "teaser", "source_name", "category", "lang", "published",
-                           "rule_topics", "rule_genre", "prefilter"]
+                           "rule_topics", "rule_genre", "rule_places", "prefilter"]
     assert first["source_name"] == "Altinget" and first["category"] == "fagmedie"
+    assert first["rule_places"] == ["k:nyborg", "b:ullerslev"]
+    assert out["pending"][1]["rule_places"] == []
     assert first["prefilter"] == {"decision": "vis", "score": 4, "hits": ["titel: affald"]}
     assert out["pending"][1]["lang"] == "en"
     assert [r["id"] for r in out["recent_approved"]] == [item_id(sweep_url), judged.id]
@@ -236,6 +243,36 @@ def test_validate_errors(repo, capsys):
     assert bad == set(range(2, 14))
     assert f"{prefix}7: id skal være item_id(new_item.url) = {item_id(sweep)}" in out
     assert "data/judgments/2026-10-08.jsonl" in out
+
+
+def test_validate_places(repo, capsys):
+    a = cand("a")
+    store.save_candidates([a])
+    write_judgments("2026-10-07", [
+        j(a.id, True),                                         # 1 ingen places: behold regelmærker
+        j(a.id, True, places=None),                            # 2 null: behold regelmærker
+        j(a.id, True, places=[]),                              # 3 tom liste: nationalt
+        j(a.id, True, places=["b:ullerslev", "k:nyborg"]),     # 4 ok
+        j(a.id, True, places=["k:atlantis"]),                  # 5 ukendt kommune
+        j(a.id, True, places=["nyborg"]),                      # 6 mangler præfiks
+        j(a.id, True, places=["r:syddanmark", "b:findes-ikke"]),  # 7 ukendt by
+        j(a.id, True, places=[f"k:{k}" for k in ("aarhus", "odense", "nyborg", "vejle", "kolding", "horsens",
+                                                  "silkeborg", "herning", "viborg")]),  # 8 over 8 steder
+    ])
+    assert judgments.main_validate(ns(file=None)) == 1
+    out = capsys.readouterr().out
+    prefix = "data/judgments/2026-10-07.jsonl:"
+    bad = {int(ln[len(prefix):].split(":")[0]) for ln in out.splitlines() if ln.startswith(prefix)}
+    assert bad == {5, 6, 7, 8}
+    assert f"{prefix}5: places: ukendt sted-id 'k:atlantis'" in out
+    assert f"{prefix}7: places: ukendt sted-id 'b:findes-ikke'" in out
+    assert f"{prefix}6: places: Value error, ugyldigt sted-id 'nyborg'" in out
+    assert f"{prefix}8: places: List should have at most 8 items" in out
+
+    # Rækkefølgen normaliseres; None og [] er forskellige
+    parsed = judgments.load_judgment_list()
+    assert parsed[0].places is None and parsed[1].places is None and parsed[2].places == []
+    assert parsed[3].places == ["k:nyborg", "b:ullerslev"]
 
 
 def test_validate_single_file(repo, capsys):

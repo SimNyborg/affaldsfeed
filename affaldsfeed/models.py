@@ -3,10 +3,19 @@
 from __future__ import annotations
 
 import re
+from collections.abc import Iterable
 from datetime import date, datetime
-from typing import Literal
+from typing import Annotated, Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+from pydantic import (
+    BaseModel,
+    BeforeValidator,
+    ConfigDict,
+    Field,
+    PrivateAttr,
+    field_validator,
+    model_validator,
+)
 
 CategoryId = Literal[
     "nyhedsmedie",
@@ -59,7 +68,26 @@ CATEGORY_RANK: dict[str, int] = {
 
 DEFAULT_EVERY: dict[str, int] = {"rss": 1, "search": 2, "oda": 3, "sitemap": 6, "html": 6}
 
-_ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
+ID_PATTERN = r"^[a-z0-9][a-z0-9-]*$"
+_ID_RE = re.compile(ID_PATTERN)
+
+# Sted-id'er: r:<region>, k:<kommune>, b:<by> (KONTRAKTER §4.1)
+MAX_PLACES = 8
+PLACE_RANK: dict[str, int] = {"r": 0, "k": 1, "b": 2}
+_PLACE_RE = re.compile(r"^[rkb]:[a-z0-9][a-z0-9-]*$")
+
+
+def sort_places(ids: Iterable[str], limit: int | None = MAX_PLACES) -> list[str]:
+    """Unikke sted-id'er i fast rækkefølge: regioner, kommuner, byer, hver efter id. Højst `limit`."""
+    out = sorted(set(ids), key=lambda p: (PLACE_RANK.get(p[:1], len(PLACE_RANK)), p))
+    return out if limit is None else out[:limit]
+
+
+def _check_places(v: list[str]) -> list[str]:
+    for p in v:
+        if not _PLACE_RE.match(p):
+            raise ValueError(f"ugyldigt sted-id {p!r}: brug r:<region>, k:<kommune> eller b:<by>")
+    return sort_places(v, limit=None)
 
 
 class _Strict(BaseModel):
@@ -82,6 +110,8 @@ class Source(_Strict):
     filter: FilterLevel = "normal"
     topics: list[TopicId] = Field(default_factory=list)
     genre: GenreId = "nyhed"
+    # Fast geografi for afsendere, der kun skriver om ét område (fx et kommunalt affaldsselskab)
+    places: list[str] = Field(default_factory=list, max_length=MAX_PLACES)
     lang: Lang = "da"
     paywall: Paywall = "nej"
     owner: str | None = None
@@ -102,6 +132,11 @@ class Source(_Strict):
         if not _ID_RE.match(v):
             raise ValueError("id skal bestå af små bogstaver, tal og bindestreg")
         return v
+
+    @field_validator("places")
+    @classmethod
+    def _places(cls, v: list[str]) -> list[str]:
+        return _check_places(v)
 
     @field_validator("feeds", mode="before")
     @classmethod
@@ -156,6 +191,12 @@ class Publisher(_Strict):
     basis: Basis
     paywall: Paywall = "nej"
     lang: Lang = "da"
+    places: list[str] = Field(default_factory=list, max_length=MAX_PLACES)
+
+    @field_validator("places")
+    @classmethod
+    def _places(cls, v: list[str]) -> list[str]:
+        return _check_places(v)
 
 
 class Category(_Strict):
@@ -171,6 +212,7 @@ class Category(_Strict):
 class Topic(_Strict):
     id: TopicId
     name: str
+    short: str | None = Field(default=None, min_length=1)  # kort navn til brugerfladen, ellers name
     definition: str
     patterns: list[str]
 
@@ -233,10 +275,19 @@ class PagesSettings(_Strict):
     seen_keep_days: int = 120  # seen.json: fjernes, når den ikke er set så længe
 
 
+class PlaceSettings(_Strict):
+    """Stedmærkning (places.py). Standarden passer til danske nyheder; kan overstyres i settings.yaml."""
+
+    # Står et af ordene (eller et ord, der begynder med det) lige efter et stednavn, er navnet en del
+    # af en institutions navn og tæller ikke som sted: "Aarhus Universitet", "Københavns Lufthavn".
+    institution_words: list[str] = Field(default_factory=lambda: ["Universitet", "Lufthavn"])
+
+
 class Settings(_Strict):
     fetch: FetchSettings
     routine: RoutineSettings
     pages: PagesSettings = Field(default_factory=PagesSettings)
+    places: PlaceSettings = Field(default_factory=PlaceSettings)
     window_days: int = 60
     max_age_days_on_find: int = 14
     baseline_days: int = 14
@@ -274,10 +325,16 @@ class Candidate(_Strict):
     lang: Lang = "da"
     genre: GenreId = "nyhed"
     topics: list[TopicId] = Field(default_factory=list, max_length=2)
+    places: list[str] = Field(default_factory=list, max_length=MAX_PLACES)  # regelmærker (KONTRAKTER §4.1)
     why: Why
     baseline: bool = False
     found_via: FoundVia = "feed"
     categories: list[str] = Field(default_factory=list)
+
+    @field_validator("places")
+    @classmethod
+    def _places(cls, v: list[str]) -> list[str]:
+        return _check_places(v)
 
 
 class Rejected(_Strict):
@@ -315,12 +372,19 @@ class Judgment(_Strict):
     relevant: bool
     reason: str = Field(max_length=200)
     topics: list[TopicId] = Field(default_factory=list, max_length=2)
+    # None = behold regelmærkerne; en liste (også tom) erstatter dem
+    places: list[str] | None = Field(default=None, max_length=MAX_PLACES)
     genre: GenreId = "nyhed"
     summary_da: str | None = Field(default=None, max_length=160)
     story_hint: str | None = None
     judged_at: datetime
     by: str = "claude-routine"
     new_item: NewItem | None = None
+
+    @field_validator("places")
+    @classmethod
+    def _places(cls, v: list[str] | None) -> list[str] | None:
+        return None if v is None else _check_places(v)
 
 
 class Heartbeat(_Strict):
@@ -373,6 +437,8 @@ class DisplayItem(_Strict):
     first_seen: datetime
     baseline: bool = False
     topics: list[TopicId] = Field(default_factory=list, max_length=2)
+    # For en historie: foreningen af hovedindslagets og also-indslagenes steder
+    places: list[str] = Field(default_factory=list, max_length=MAX_PLACES)
     genre: GenreId = "nyhed"
     lang: Lang = "da"
     summary_da: str | None = None
@@ -380,3 +446,161 @@ class DisplayItem(_Strict):
     reason: str | None = None
     also: list[AlsoRef] = Field(default_factory=list)
     why: Why | None = None
+
+    @field_validator("places")
+    @classmethod
+    def _places(cls, v: list[str]) -> list[str]:
+        return _check_places(v)
+
+
+# ── Geografi (config/geografi.yaml, genereret af tools/build_geografi.py) ──
+
+# DST-koder er tekst ("083"); YAML kan læse dem som tal
+GeoCode = Annotated[str, BeforeValidator(lambda v: str(v) if isinstance(v, int) else v)]
+
+
+class GeoRegion(_Strict):
+    id: str = Field(pattern=ID_PATTERN)
+    kode: GeoCode
+    navn: str  # "Region Syddanmark"
+    kort: str  # "Syddanmark"
+
+
+class GeoMunicipality(_Strict):
+    id: str = Field(pattern=ID_PATTERN)
+    kode: GeoCode
+    navn: str  # officielt navn: "Nyborg Kommune", "Københavns Kommune", "Bornholms Regionskommune"
+    kort: str
+    region: str = Field(pattern=ID_PATTERN)
+    navne: list[str] = Field(default_factory=list)  # navne i tekst, fx ["Aarhus", "Århus"]
+    kun_med_kommune: bool = False  # matches kun som "<navn> Kommune" (fx Vejen)
+
+
+class GeoTown(_Strict):
+    id: str = Field(pattern=ID_PATTERN)
+    navn: str
+    navne: list[str] = Field(default_factory=list)
+    kommune: str = Field(pattern=ID_PATTERN)  # den primære kommune
+    kommuner: list[str] = Field(default_factory=list)  # alle kommuner, byen ligger i
+    indbyggere: int = 0
+
+
+class Geo(_Strict):
+    """Regioner, landsdele, kommuner og byer. Tom geografi betyder ingen stedmærkning."""
+
+    kilde: dict[str, Any] = Field(default_factory=dict)
+    regioner: list[GeoRegion] = Field(default_factory=list)
+    landsdele: dict[str, str] = Field(default_factory=dict)  # navn -> region-id
+    kommuner: list[GeoMunicipality] = Field(default_factory=list)
+    byer: list[GeoTown] = Field(default_factory=list)
+
+    _parents: dict[str, frozenset[str]] | None = PrivateAttr(default=None)
+
+    def hierarchy(self) -> dict[str, frozenset[str]]:
+        """Alle gyldige sted-id'er -> deres forældre: by → kommuner → regioner, kommune → region."""
+        if self._parents is None:
+            region_of = {m.id: m.region for m in self.kommuner}
+            out: dict[str, frozenset[str]] = {f"r:{r.id}": frozenset() for r in self.regioner}
+            for m in self.kommuner:
+                out[f"k:{m.id}"] = frozenset({f"r:{m.region}"})
+            for t in self.byer:
+                ks = t.kommuner or [t.kommune]
+                out[f"b:{t.id}"] = frozenset(
+                    {f"k:{k}" for k in ks} | {f"r:{region_of[k]}" for k in ks if k in region_of}
+                )
+            self._parents = out
+        return self._parents
+
+    def place_ids(self) -> set[str]:
+        return set(self.hierarchy())
+
+    def expand(self, place_id: str) -> set[str]:
+        """Id'et og dets forældre (KONTRAKTER §9). Ukendte id'er udvides ikke."""
+        return {place_id} | self.hierarchy().get(place_id, frozenset())
+
+
+# ── feed.json (export, KONTRAKTER §8) ───────────────────────
+
+
+class FeedTopic(_Strict):
+    id: TopicId
+    name: str
+    short: str | None = None
+    definition: str
+
+
+class FeedGenre(_Strict):
+    id: GenreId
+    label: str
+
+
+class FeedSource(_Strict):
+    id: str
+    name: str
+    category: CategoryId
+    homepage: str | None = None
+    lang: Lang
+    paywall: Paywall
+    owner: str | None = None
+    status: Status
+    health: Health
+    via_search: bool = False
+
+
+class FeedGeoRegion(_Strict):
+    id: str
+    navn: str
+    kort: str
+
+
+class FeedGeoMunicipality(_Strict):
+    id: str
+    navn: str
+    kort: str
+    region: str
+
+
+class FeedGeoTown(_Strict):
+    id: str
+    navn: str
+    kommune: str
+    kommuner: list[str]
+
+
+class FeedGeo(_Strict):
+    regioner: list[FeedGeoRegion]
+    kommuner: list[FeedGeoMunicipality]
+    byer: list[FeedGeoTown]  # kun byer, som indslagene nævner
+
+
+class Feed(_Strict):
+    version: int
+    generated: datetime
+    window_days: int
+    mode: Literal["claude", "fallback"]
+    last_judgment: datetime | None = None
+    categories: list[Category]
+    topics: list[FeedTopic]
+    genres: list[FeedGenre]
+    sources: list[FeedSource]
+    geo: FeedGeo | None = None  # None når config/geografi.yaml mangler
+    overview: dict[Period, Overview | None]
+    items: list[DisplayItem]
+
+    @model_validator(mode="after")
+    def _places_in_geo(self) -> Feed:
+        if self.geo is None:
+            return self
+        known = (
+            {f"r:{r.id}" for r in self.geo.regioner}
+            | {f"k:{m.id}" for m in self.geo.kommuner}
+            | {f"b:{t.id}" for t in self.geo.byer}
+        )
+        used = {p for it in self.items for p in it.places}
+        unknown = sorted(used - known)
+        if unknown:
+            raise ValueError(f"items bruger sted-id'er, der ikke står i geo: {', '.join(unknown[:5])}")
+        unused = sorted({f"b:{t.id}" for t in self.geo.byer} - used)
+        if unused:
+            raise ValueError(f"geo.byer har byer, som intet indslag nævner: {', '.join(unused[:5])}")
+        return self

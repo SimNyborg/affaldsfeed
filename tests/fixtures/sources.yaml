@@ -61,6 +61,7 @@
   homepage: https://www.affaldsselskab.dk
   feeds: https://www.affaldsselskab.dk/rss
   filter: none
+  places: ["k:nyborg"]
   basis: offentlig
   status: aktiv
   checked: 2026-10-07

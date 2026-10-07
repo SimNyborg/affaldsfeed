@@ -231,6 +231,110 @@ def test_main_check_fetch_unknown_and_phase2(env, monkeypatch, capsys):
     assert "fase 2" in out
 
 
+def test_load_config_geography_and_short_names(env):
+    cfg = load_config(env.config)
+    assert [r.id for r in cfg.geo.regioner] == ["hovedstaden", "sjaelland", "syddanmark", "midtjylland",
+                                                 "nordjylland"]
+    assert len(cfg.geo.kommuner) == 98 and len(cfg.geo.byer) > 400
+    assert {"r:syddanmark", "k:nyborg", "b:ullerslev"} <= cfg.geo.place_ids()
+    topics = {t.id: t for t in cfg.topics}
+    assert topics["genbrugspladser"].short == "Genbrugspladser og genbrug"
+    assert topics["arbejdsmiljoe"].short == "Arbejdsmiljø"
+    assert topics["sortering"].short is None
+    assert all(len(t.short or t.name) <= cfgmod.TOPIC_UI_MAX for t in cfg.topics)
+    assert cfg.settings.places.institution_words == ["Universitet", "Lufthavn"]
+
+
+def test_missing_geography_is_only_a_warning(env, capsys):
+    (env.config / "geografi.yaml").unlink()
+    assert load_config(env.config).geo.place_ids() == set()
+    _write(env.sources, env.sources.read_text(encoding="utf-8").replace('  places: ["k:nyborg"]\n', ""))
+    assert main_check(argparse.Namespace(fetch=None, explain=False)) == 0
+    out = capsys.readouterr().out
+    assert "ADVARSEL geografi.yaml: filen findes ikke (ingen stedmærkning)" in out
+    assert "geografi: 0 regioner, 0 kommuner, 0 byer" in out
+
+
+GEO_BAD = """
+regioner:
+- {id: syddanmark, kode: 083, navn: Region Syddanmark, kort: Syddanmark}
+- {id: syddanmark, kode: 084, navn: Region Igen, kort: Igen}
+landsdele: {Fyn: syddanmark, Atlantis: ukendt}
+kommuner:
+- {id: nyborg, kode: '450', navn: Nyborg Kommune, kort: Nyborg, region: syddanmark, navne: [Nyborg]}
+- {id: odense, kode: '461', navn: Odense Kommune, kort: Odense, region: midtjylland, navne: [Odense]}
+byer:
+- {id: ullerslev, navn: Ullerslev, navne: [Ullerslev], kommune: nyborg, kommuner: [kerteminde, nyborg]}
+- {id: odense, navn: Odense, navne: [Odense], kommune: odense, kommuner: [nyborg]}
+"""
+
+
+def test_geography_is_validated(env):
+    _write(env.config / "geografi.yaml", GEO_BAD)
+    with pytest.raises(ConfigError) as exc:
+        load_config(env.config)
+    msg = str(exc.value)
+    assert "geografi.yaml: regioner: syddanmark: id findes flere gange" in msg
+    assert "geografi.yaml: kommuner: odense: ukendt region midtjylland" in msg
+    assert "geografi.yaml: byer: ullerslev: ukendt kommune kerteminde" in msg
+    assert "geografi.yaml: byer: odense: kommune odense står ikke i kommuner" in msg
+    assert "geografi.yaml: landsdele: Atlantis: ukendt region ukendt" in msg
+
+
+def test_geography_schema_errors(env):
+    _write(env.config / "geografi.yaml", "regioner:\n- {id: Syd Danmark, kode: '083', navn: Region Syd}\n")
+    with pytest.raises(ConfigError) as exc:
+        load_config(env.config)
+    msg = str(exc.value)
+    assert "geografi.yaml: -: regioner.0.id: String should match pattern" in msg
+    assert "geografi.yaml: -: regioner.0.kort: Field required" in msg
+
+
+def test_places_on_sources_and_medier(env, capsys):
+    text = env.sources.read_text(encoding="utf-8")
+    text = text.replace('  places: ["k:nyborg"]\n', '  places: ["k:nyborg", "b:atlantis"]\n')
+    text = text.replace("  homepage: https://www.testmedie.dk\n",
+                        "  homepage: https://www.testmedie.dk\n  places: [r:syddanmark]\n")
+    _write(env.sources, text)
+    with (env.config / "medier.yaml").open("a", encoding="utf-8") as f:
+        f.write("\n- id: lokalt-selskab\n  name: Lokalt selskab\n  category: kommunal\n  domains: [lokalt.dk]\n"
+                "  basis: offentlig\n  places: [k:odense, k:findes-ikke]\n")
+    assert main_check(argparse.Namespace(fetch=None, explain=False)) == 1
+    out = capsys.readouterr().out
+    assert "FEJL medier.yaml: lokalt-selskab: places: ukendt sted-id k:findes-ikke" in out
+    assert "k:odense" not in out
+    # sources.yaml tjekkes først, når config er gyldig
+    _write(env.config / "medier.yaml", (FIXTURES / "medier.yaml").read_text(encoding="utf-8"))
+    assert main_check(argparse.Namespace(fetch=None, explain=False)) == 1
+    out = capsys.readouterr().out
+    assert "FEJL sources.yaml: affaldsselskab: places: ukendt sted-id b:atlantis" in out
+    assert "ADVARSEL sources.yaml: testmedie: places bruges kun til afsendere med fast geografi" in out
+
+
+def test_places_format_is_validated(tmp_path):
+    p = _write(tmp_path / "sources.yaml", """
+- id: selskab
+  name: Selskab
+  category: kommunal
+  homepage: https://selskab.dk
+  feeds: https://selskab.dk/rss
+  places: [nyborg]
+  basis: offentlig
+  checked: 2026-10-07
+""")
+    with pytest.raises(ConfigError, match="sources.yaml: selskab: places: Value error, ugyldigt sted-id 'nyborg'"):
+        load_sources(p)
+
+
+def test_long_topic_name_is_a_warning(env, capsys):
+    text = (env.config / "topics.yaml").read_text(encoding="utf-8").replace("  short: Arbejdsmiljø\n", "")
+    _write(env.config / "topics.yaml", text)
+    assert main_check(argparse.Namespace(fetch=None, explain=False)) == 0
+    out = capsys.readouterr().out
+    assert ("ADVARSEL topics.yaml: arbejdsmiljoe: navnet i brugerfladen er 27 tegn (højst 26), "
+            "tilføj eller forkort short: Arbejdsmiljø og renovatører") in out
+
+
 def test_cross_check_warns_on_shared_host(env):
     sources = load_sources(env.sources)
     cfg = load_config(env.config)

@@ -91,6 +91,11 @@ def test_first_run(env, monkeypatch, caplog):
     assert "<" not in madaffald.teaser and "alert" not in madaffald.teaser
     assert madaffald.teaser.startswith("Fra 1. januar skal alle husstande sortere madaffald")
 
+    # Steder: afsenderens faste geografi (affaldsselskab) og navne i titlen
+    assert madaffald.places == ["k:nyborg"]
+    assert gebyr.places == []
+    assert cands["Nyt genbrugscenter åbner i Aarhus"].places == ["k:aarhus", "b:aarhus"]
+
     # Søgefund krediteres udgiveren; DR-fundet er en dublet af DR's eget feed
     tv2 = cands["Nye affaldsregler får stik modsat effekt"]
     assert tv2.source == "tv2" and tv2.found_via == "search"
@@ -295,6 +300,39 @@ def test_processor_search_uses_strictest_filter(env):
     assert proc.rule_source(bing, "dr").filter == "strict"  # DR er strict, Bing normal
     tv2 = proc.rule_source(bing, "tv2")
     assert tv2.category == "nyhedsmedie" and tv2.filter == "normal" and tv2.id == "tv2"
+
+
+def test_processor_sets_places(env):
+    from affaldsfeed.collect import RawEntry
+    from affaldsfeed.config import load_sources
+
+    sources = load_sources(env.sources)
+    cfg = load_config(env.config)
+    cfg.publishers.append(cfg.publishers[0].model_copy(
+        update={"id": "nfs", "name": "Nyborg Forsyning", "category": "kommunal", "domains": ["nfs.dk"],
+                "basis": "offentlig", "places": ["k:nyborg"]}))
+    now = datetime(2026, 10, 7, 8, tzinfo=UTC)
+    testmedie = next(s for s in sources if s.id == "testmedie")
+    bing = next(s for s in sources if s.id == "bing-news")
+
+    def raw(source_id: str, title: str, teaser: str = "", lang: str = "da", via: str = "feed") -> RawEntry:
+        url = "https://x.dk/" + "".join(ch for ch in title.lower() if ch.isascii() and ch.isalnum())
+        return RawEntry(source_id, url, title, teaser, now - timedelta(hours=2), "kilde", lang, [], None, None, via)
+
+    proc = pipeline.Processor(cfg, sources, now, {}, set())
+    out = proc.process(testmedie, [
+        raw("testmedie", "Ny genbrugsplads i Ullerslev åbner", "Nyborg Kommune står for driften af affaldet."),
+        raw("testmedie", "Aarhus Universitet forsker i affald og plast"),
+        raw("testmedie", "New recycling centre for waste opens in Nyborg", lang="en"),
+    ], first_run=False)
+    by_title = {c.title: c for c in out.new}
+    assert by_title["Ny genbrugsplads i Ullerslev åbner"].places == ["k:nyborg", "b:ullerslev"]
+    assert by_title["Aarhus Universitet forsker i affald og plast"].places == []
+    assert by_title["New recycling centre for waste opens in Nyborg"].places == []
+
+    # Søgefund krediteres udgiveren og får dens faste steder
+    out = proc.process(bing, [raw("nfs", "Ny ordning for haveaffald fra januar", via="search")], first_run=False)
+    assert out.new[0].source == "nfs" and out.new[0].places == ["k:nyborg"]
 
 
 def test_processor_dedupes_same_article_in_two_section_feeds(env):

@@ -8,6 +8,7 @@ import pytest
 import yaml
 
 from affaldsfeed.classify import Classifier
+from affaldsfeed.places import rule_places
 from affaldsfeed.relevance import Prefilter
 
 CASES_FILE = Path(__file__).resolve().parent / "cases.yaml"
@@ -41,9 +42,16 @@ def _source(case: dict, make_source, level: str):
     )
 
 
+def test_cases_have_places():
+    assert sum("places" in c["expect"] for c in CASES) >= 10
+
+
 @pytest.mark.parametrize("case", CASES, ids=[c["id"] for c in CASES])
-def test_case(case, keywords, topics, genres, make_source):
+def test_case(case, keywords, topics, genres, make_source, place_matcher):
     expect = case["expect"]
+    if "places" in expect:
+        got = rule_places(case["title"], case.get("teaser", ""), case.get("lang", "da"), [], place_matcher)
+        assert got == expect["places"]
     prefilter = Prefilter(keywords)
     classifier = Classifier(topics, genres)
     title = case["title"]

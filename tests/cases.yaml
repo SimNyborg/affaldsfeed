@@ -14,6 +14,7 @@
 #     none/normal/strict: forventet afgørelse (vis|graa|afvist) pr. filterniveau
 #     topics: forventede temaer i rækkefølge (udelades = tjekkes ikke)
 #     genre:  forventet genre (udelades = tjekkes ikke)
+#     places: forventede sted-id'er fra titel og teaser (udelades = tjekkes ikke)
 #
 # Et forkert indslag fra drift lægges her med den rigtige afgørelse, så tuning kan måles.
 
@@ -35,12 +36,12 @@
 - id: genbrugsplads-aabner-kommunal
   title: Ny genbrugsplads åbner i Hørsholm til foråret
   category: kommunal
-  expect: {none: vis, normal: vis, strict: vis, topics: [genbrugspladser]}
+  expect: {none: vis, normal: vis, strict: vis, topics: [genbrugspladser], places: ["k:hoersholm", "b:hoersholm"]}
 
 - id: argo-sorteringsanlaeg
   title: ARGO bygger nyt sorteringsanlæg i Roskilde
   category: kommunal
-  expect: {none: vis, normal: vis, strict: vis, topics: [genanvendelse, sortering]}
+  expect: {none: vis, normal: vis, strict: vis, topics: [genanvendelse, sortering], places: ["k:roskilde", "b:roskilde"]}
 
 - id: pant-paa-saftflasker
   title: Nu kommer der pant på saftflasker og vinflasker
@@ -48,7 +49,7 @@
 
 - id: skraldemaend-strejke
   title: Skraldemænd i Aarhus nedlægger arbejdet i protest
-  expect: {none: vis, normal: vis, strict: vis, topics: [arbejdsmiljoe]}
+  expect: {none: vis, normal: vis, strict: vis, topics: [arbejdsmiljoe], places: ["k:aarhus", "b:aarhus"]}
 
 - id: indsamling-i-udbud
   title: Kommune sender affaldsindsamlingen i udbud igen
@@ -57,11 +58,11 @@
 
 - id: amager-bakke-co2-fangst
   title: Amager Bakke får CO2-fangst for 1,5 mia. kr.
-  expect: {none: vis, normal: vis, strict: vis, topics: [klima]}
+  expect: {none: vis, normal: vis, strict: vis, topics: [klima], places: []}
 
 - id: madaffald-biogas
   title: Madaffald fra 100.000 husstande bliver til biogas i Solrød
-  expect: {none: vis, normal: vis, strict: vis, topics: [bioaffald]}
+  expect: {none: vis, normal: vis, strict: vis, topics: [bioaffald], places: ["k:solroed", "b:solroed-strand"]}
 
 - id: asbest-byggeaffald
   title: "Ny vejledning: Sådan håndteres asbest i byggeaffald"
@@ -70,7 +71,7 @@
 
 - id: skraldebiler-fraktioner
   title: Skraldebilerne kører nu med ti fraktioner i Odense
-  expect: {none: vis, normal: vis, strict: vis, topics: [sortering]}
+  expect: {none: vis, normal: vis, strict: vis, topics: [sortering], places: ["k:odense", "b:odense"]}
 
 - id: forsyningstilsynet-hvile-i-sig-selv
   title: "Forsyningstilsynet: Affaldsgebyrerne skal hvile i sig selv"
@@ -107,7 +108,7 @@
 - id: veto-radioaktivt
   title: Radioaktivt affald skal flyttes fra Risø
   category: myndighed
-  expect: {none: afvist, normal: afvist, strict: afvist}
+  expect: {none: afvist, normal: afvist, strict: afvist, places: []}
 
 - id: veto-nordic-waste
   title: "Nordic Waste: Staten har brugt 500 mio. kr. på oprydning"
@@ -121,7 +122,7 @@
 - id: veto-jobopslag
   title: "Jobopslag: Erfaren skraldemand søges til rute i Nordsjælland"
   category: kommunal
-  expect: {none: afvist, normal: afvist, strict: afvist}
+  expect: {none: afvist, normal: afvist, strict: afvist, places: ["r:hovedstaden"]}
 
 - id: veto-politisk-skraldespand
   title: Ny vejplan ryger i politisk skraldespand efter valget
@@ -144,7 +145,7 @@
   title: Finland opens the world's first deep nuclear waste repository
   category: eu_norden
   lang: en
-  expect: {none: afvist, normal: afvist, strict: afvist}
+  expect: {none: afvist, normal: afvist, strict: afvist, places: []}
 
 # ── Driftsbeskeder (service) kun for kommunale kilder ────────
 
@@ -156,7 +157,7 @@
 - id: service-forsinket-toemning-nyhedsmedie
   title: Forsinket tømning af restaffald i Vejle
   category: nyhedsmedie
-  expect: {none: vis, normal: vis, strict: vis, topics: [sortering]}
+  expect: {none: vis, normal: vis, strict: vis, topics: [sortering], places: ["k:vejle", "b:vejle"]}
 
 - id: service-aabningstider
   title: Ændrede åbningstider på genbrugspladserne i julen
@@ -171,7 +172,7 @@
 - id: service-driftsforstyrrelse
   title: Driftsforstyrrelse på forbrændingsanlægget i Glostrup
   category: kommunal
-  expect: {none: afvist, normal: afvist, strict: afvist}
+  expect: {none: afvist, normal: afvist, strict: afvist, places: ["k:glostrup"]}
 
 # ── Ordgrænser ───────────────────────────────────────────────
 
@@ -306,7 +307,7 @@
   title: Vestforbrænding sænker prisen på affaldsvarme
   url: https://vestfor.dk/pressemeddelelser/vestforbraending-saenker-prisen-paa-affaldsvarme
   category: kommunal
-  expect: {none: vis, topics: [forbraending], genre: pressemeddelelse}
+  expect: {none: vis, topics: [forbraending], genre: pressemeddelelse, places: []}
 
 - id: genre-kilde-vinder-over-url
   title: Dansk Retursystem indsamlede rekordmange flasker
@@ -356,3 +357,45 @@
   category: kommunal
   source_topics: [forbraending]
   expect: {none: vis, normal: afvist, topics: [forbraending]}
+
+# ── Steder (KONTRAKTER §4.1): hellere et sted for lidt end et forkert ──
+
+- id: sted-kommune-endelse
+  title: Aarhus Kommune indfører ny ordning for madaffald
+  expect: {places: ["k:aarhus"]}
+
+- id: sted-by-og-kommune-i-teaser
+  title: Ny genbrugsplads i Ullerslev åbner til foråret
+  teaser: Nyborg Kommune bygger pladsen ved motorvejen.
+  expect: {places: ["k:nyborg", "b:ullerslev"]}
+
+- id: sted-vejen-er-et-ord
+  title: Vejen til mindre affald går gennem bedre sortering
+  expect: {places: []}
+
+- id: sted-vejen-kommune
+  title: Vejen Kommune vil indsamle tekstiler ved husstandene
+  expect: {places: ["k:vejen"]}
+
+- id: sted-oersted-er-et-firma
+  title: Ørsted bygger nyt anlæg til CO2-fangst
+  expect: {places: []}
+
+- id: sted-universitet
+  title: Aarhus Universitet forsker i plast
+  teaser: Forskere ved Københavns Universitet er også med i projektet.
+  expect: {places: []}
+
+- id: sted-minister-aagaard
+  title: Lars Aagaard vil have mere genanvendelse af plast
+  teaser: Klima-, energi- og forsyningsminister Lars Aagaard fremlægger planen i dag.
+  expect: {places: []}
+
+- id: sted-region-og-landsdel
+  title: Region Syddanmark undersøger gamle lossepladser på Fyn
+  expect: {places: ["r:syddanmark"]}
+
+- id: sted-kun-dansk
+  title: New recycling centre opens in Nyborg
+  lang: en
+  expect: {places: []}

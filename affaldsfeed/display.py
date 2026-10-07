@@ -17,8 +17,10 @@ from affaldsfeed.models import (
     Publisher,
     Source,
     TopicId,
+    sort_places,
 )
 from affaldsfeed.normalize import clean_text
+from affaldsfeed.places import PlaceMatcher, compile_places, rule_places
 from affaldsfeed.timeutil import ensure_utc
 
 TOPIC_IDS: frozenset[str] = frozenset(get_args(TopicId))
@@ -40,6 +42,7 @@ class SourceInfo:
     owner: str | None
     status: str
     via_search: bool
+    places: tuple[str, ...] = ()  # fast geografi (sources.yaml/medier.yaml)
 
 
 def known_sources(sources: list[Source], publishers: list[Publisher]) -> dict[str, SourceInfo]:
@@ -59,6 +62,7 @@ def known_sources(sources: list[Source], publishers: list[Publisher]) -> dict[st
             owner=s.owner,
             status=s.status,
             via_search=False,
+            places=tuple(s.places),
         )
     for p in publishers:
         if p.id in out:
@@ -74,6 +78,7 @@ def known_sources(sources: list[Source], publishers: list[Publisher]) -> dict[st
             owner=None,
             status="aktiv",
             via_search=True,
+            places=tuple(p.places),
         )
     # Indslag gemt under et tidligere id (fx en udgiver fra medier.yaml, der er blevet til en kilde) vises
     # under kilden, der har overtaget det (Source.replaces). check sikrer, at id'et ikke findes andre steder.
@@ -132,6 +137,11 @@ class _Shown:
     genre: str
 
 
+def _known_places(places: list[str], known: set[str]) -> list[str]:
+    """Kun sted-id'er, der står i geografien (fx forsvinder en by, der er taget ud af geografi.yaml)."""
+    return sort_places(p for p in places if p in known)
+
+
 def _apply_overrides(found: list[Override], state: _Shown) -> _Shown:
     """Manuelle rettelser slår alt andet; de anvendes i filens rækkefølge."""
     for o in found:
@@ -155,9 +165,11 @@ def _from_candidate(
     mode: str,
     overrides: Overrides,
     teaser_max: int,
+    known_places: set[str],
 ) -> DisplayItem | None:
     reason: str | None = None
     summary: str | None = None
+    places = list(c.places)
     state = _Shown(show=False, reviewed=True, topics=list(c.topics), genre=c.genre)
     if not info.ai:
         # kilden vurderes kun af regler
@@ -170,6 +182,8 @@ def _from_candidate(
             state.topics = list(judgment.topics)
         if "genre" in judgment.model_fields_set:
             state.genre = judgment.genre
+        if judgment.places is not None:  # None = behold regelmærkerne
+            places = list(judgment.places)
         summary = judgment.summary_da
     elif mode == "fallback":
         state.show = c.why.decision == "vis"
@@ -190,6 +204,7 @@ def _from_candidate(
         first_seen=ensure_utc(c.first_seen),
         baseline=c.baseline,
         topics=state.topics[:2],
+        places=_known_places(places, known_places),
         genre=state.genre,
         lang=c.lang,
         summary_da=summary if c.lang != "da" else None,
@@ -205,6 +220,8 @@ def _from_sweep(
     overrides: Overrides,
     now: datetime,
     teaser_max: int,
+    known_places: set[str],
+    matcher: PlaceMatcher | None,
 ) -> DisplayItem | None:
     ni = j.new_item
     if ni is None or not info.ai:
@@ -218,6 +235,10 @@ def _from_sweep(
     date_quality = "kilde"
     if published is None or published > now + FUTURE_TOLERANCE:
         published, date_quality = found, "fundet"
+    # Sweep-fund har ingen kandidat; uden places i vurderingen bruges regelmærker for new_item
+    places = j.places
+    if places is None:
+        places = rule_places(ni.title, ni.teaser, info.lang, info.places, matcher)
     return DisplayItem(
         id=j.id,
         story=j.id,
@@ -230,6 +251,7 @@ def _from_sweep(
         first_seen=found,
         baseline=False,
         topics=state.topics[:2],
+        places=_known_places(places, known_places),
         genre=state.genre,
         lang=info.lang,
         summary_da=j.summary_da if info.lang != "da" else None,
@@ -258,6 +280,7 @@ def build_display_items(
     info = known_sources(sources, config.publishers)
     overrides = Overrides(config.overrides)
     teaser_max = config.settings.teaser_display_max
+    known_places = config.geo.place_ids()
 
     out: dict[str, DisplayItem] = {}
     cand_ids: set[str] = set()
@@ -268,18 +291,20 @@ def build_display_items(
         src = info.get(c.source)
         if src is None or item_time(c) < since:
             continue
-        item = _from_candidate(c, src, judgments.get(c.id), mode, overrides, teaser_max)
+        item = _from_candidate(c, src, judgments.get(c.id), mode, overrides, teaser_max, known_places)
         if item is not None:
             out[item.id] = item
 
     # sweep-fund fra Claude, som ikke (endnu) er kandidater
-    for j in judgments.values():
-        if j.new_item is None or j.id in cand_ids:
-            continue
+    sweeps = [j for j in judgments.values() if j.new_item is not None and j.id not in cand_ids]
+    matcher = None
+    if any(j.places is None for j in sweeps):
+        matcher = compile_places(config.geo, config.settings.places)
+    for j in sweeps:
         src = info.get(j.new_item.source)
         if src is None:
             continue
-        item = _from_sweep(j, src, overrides, now, teaser_max)
+        item = _from_sweep(j, src, overrides, now, teaser_max, known_places, matcher)
         if item is not None and item_time(item) >= since:
             out[item.id] = item
 

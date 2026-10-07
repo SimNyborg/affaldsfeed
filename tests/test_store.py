@@ -71,6 +71,20 @@ def test_write_jsonl_only_on_change_and_format(tmp_path):
     assert [c.id for c in store.read_jsonl(p, Candidate)] == ["aaaaaaaaaaaa", "bbbbbbbbbbbb"]
 
 
+def test_old_candidate_lines_without_places(env):
+    # En linje skrevet før stedmærkningen (uden "places") kan stadig læses og får en tom liste
+    old = _cand("aaaaaaaaaaaa", NOW).model_dump(mode="json")
+    del old["places"]
+    path = paths.CANDIDATES_DIR / "2026-10.jsonl"
+    path.parent.mkdir(parents=True)
+    path.write_text(json.dumps(old, ensure_ascii=False) + "\n", encoding="utf-8")
+    [c] = store.load_candidates()
+    assert c.places == [] and "places" not in c.model_fields_set
+    # Gemmes den igen, står feltet der
+    store.save_candidates([c.model_copy(update={"title": "Ny titel"})])
+    assert json.loads(path.read_text(encoding="utf-8"))["places"] == []
+
+
 def test_read_jsonl_skips_invalid_lines(tmp_path):
     p = tmp_path / "x.jsonl"
     good = json.dumps(_cand("aaaaaaaaaaaa", NOW).model_dump(mode="json"))

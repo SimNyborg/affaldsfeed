@@ -15,7 +15,7 @@ from affaldsfeed.display import (
     split_ids,
     story_hints,
 )
-from affaldsfeed.models import Candidate, Judgment, Override, Publisher, Source, Why
+from affaldsfeed.models import Candidate, Geo, Judgment, Override, Publisher, Source, Why
 from affaldsfeed.normalize import item_id
 from affaldsfeed.timeutil import parse_iso
 
@@ -229,6 +229,50 @@ def test_split_ids(base_config):
     config = dataclasses.replace(base_config, overrides=[Override(match={"id": a.id}, action="split")])
     items = build(config, [a, b], [judge(a), judge(b)])
     assert split_ids(config, items) == {a.id}
+
+
+def test_places_from_judgment_or_rules(base_config):
+    rules = ["k:nyborg", "b:ullerslev"]
+    keep, none_, clear, replace = (cand(s, places=rules) for s in ("keep", "none", "clear", "replace"))
+    js = [
+        judge(keep),  # places mangler: behold regelmærkerne
+        judge(none_, places=None),
+        judge(clear, places=[]),  # nationalt
+        judge(replace, places=["r:syddanmark", "b:ullerslev"]),
+    ]
+    by_id = {d.id: d for d in build(base_config, [keep, none_, clear, replace], js)}
+    assert by_id[keep.id].places == rules
+    assert by_id[none_.id].places == rules
+    assert by_id[clear.id].places == []
+    assert by_id[replace.id].places == ["r:syddanmark", "b:ullerslev"]
+
+
+def test_places_rules_only_and_fallback(base_config):
+    rules_only = cand("dr", source="dr", places=["k:aarhus"])
+    unjudged = cand("venter", places=["k:odense"])
+    out = build(base_config, [rules_only, unjudged], [judge(rules_only, places=[])], mode="fallback")
+    by_id = {d.id: d for d in out}
+    assert by_id[rules_only.id].places == ["k:aarhus"]  # ai:false ser bort fra vurderingen
+    assert by_id[unjudged.id].places == ["k:odense"]
+
+
+def test_unknown_place_ids_are_dropped(base_config):
+    a = cand("a", places=["k:nyborg", "b:findes-ikke"])
+    assert build(base_config, [a], [judge(a)])[0].places == ["k:nyborg"]
+    no_geo = dataclasses.replace(base_config, geo=Geo())
+    assert build(no_geo, [a], [judge(a)])[0].places == []
+
+
+def test_sweep_places(base_config):
+    url = "https://fyens.dk/artikel/ullerslev"
+    rules = judge(item_id(url), new_item={"url": url, "title": "Ny genbrugsplads i Ullerslev",
+                                          "teaser": "Nyborg Kommune bygger pladsen.", "source": "fyens"})
+    url2 = "https://fyens.dk/artikel/odense"
+    given = judge(item_id(url2), places=["k:odense"],
+                  new_item={"url": url2, "title": "Ny genbrugsplads i Ullerslev", "source": "fyens"})
+    by_id = {d.id: d for d in build(base_config, [], [rules, given])}
+    assert by_id[rules.id].places == ["k:nyborg", "b:ullerslev"]
+    assert by_id[given.id].places == ["k:odense"]
 
 
 def test_datetimes_are_utc(base_config):

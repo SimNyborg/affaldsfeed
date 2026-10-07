@@ -82,66 +82,79 @@
   {
    "id": "sortering",
    "name": "Sortering og indsamling",
+   "short": null,
    "definition": "Hvordan husholdninger og virksomheder sorterer, og hvordan affaldet hentes."
   },
   {
    "id": "genbrugspladser",
    "name": "Genbrugspladser, genbrug og forebyggelse",
+   "short": "Genbrugspladser og genbrug",
    "definition": "Genbrugspladser, storskrald, direkte genbrug og forebyggelse af affald."
   },
   {
    "id": "gebyrer",
    "name": "Gebyrer og økonomi",
+   "short": null,
    "definition": "Affaldsgebyrer, takster, prisregulering og benchmarking."
   },
   {
    "id": "udbud",
    "name": "Udbud, selskaber og organisering",
+   "short": "Udbud og selskaber",
    "definition": "Udbud, liberalisering, selskabsstruktur og fusioner."
   },
   {
    "id": "forbraending",
    "name": "Forbrænding og energi",
+   "short": null,
    "definition": "Forbrændingsanlæg, kapacitet, affaldsimport og affaldsvarme."
   },
   {
    "id": "klima",
    "name": "Klima, CO2-afgift og CCS",
+   "short": null,
    "definition": "CO2-afgift, kvoter og CO2-fangst ved affaldsbehandling."
   },
   {
    "id": "genanvendelse",
    "name": "Genanvendelse og afsætning",
+   "short": "Genanvendelse",
    "definition": "Sorteringsanlæg, plastgenanvendelse, eksport og afsætning af materialer."
   },
   {
    "id": "producentansvar",
    "name": "Producentansvar, emballage og pant",
+   "short": "Producentansvar og pant",
    "definition": "Udvidet producentansvar, emballage, pant og de kollektive ordninger."
   },
   {
    "id": "bioaffald",
    "name": "Mad- og bioaffald",
+   "short": null,
    "definition": "Madaffald, madspild, biogas og kompost."
   },
   {
    "id": "tekstiler",
    "name": "Tekstiler",
+   "short": null,
    "definition": "Indsamling, sortering og genanvendelse af tekstiler."
   },
   {
    "id": "byg_farligt",
    "name": "Byggeaffald, jord og farligt affald",
+   "short": "Bygge- og farligt affald",
    "definition": "Bygge- og nedrivningsaffald, deponi, jord og farligt affald inklusive el og batterier."
   },
   {
    "id": "arbejdsmiljoe",
    "name": "Arbejdsmiljø og renovatører",
+   "short": "Arbejdsmiljø",
    "definition": "Skraldemænds arbejdsforhold, ulykker og overenskomster."
   },
   {
    "id": "regler",
    "name": "Lovgivning, politik og EU",
+   "short": null,
    "definition": "Love, bekendtgørelser, høringer, EU-regulering og politiske aftaler."
   }
  ],
@@ -473,6 +486,30 @@
    "via_search": false
   },
   {
+   "id": "kredsloeb",
+   "name": "Kredsløb",
+   "category": "kommunal",
+   "homepage": "https://www.kredslob.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "nyborg-forsyning",
+   "name": "Nyborg Forsyning & Service",
+   "category": "kommunal",
+   "homepage": "https://example.org/nyborg-forsyning",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
    "id": "dansk-retursystem",
    "name": "Dansk Retursystem",
    "category": "organisation",
@@ -737,6 +774,693 @@
    "via_search": true
   }
  ],
+ "geo": {
+  "regioner": [
+   {
+    "id": "hovedstaden",
+    "navn": "Region Hovedstaden",
+    "kort": "Hovedstaden"
+   },
+   {
+    "id": "sjaelland",
+    "navn": "Region Sjælland",
+    "kort": "Sjælland"
+   },
+   {
+    "id": "syddanmark",
+    "navn": "Region Syddanmark",
+    "kort": "Syddanmark"
+   },
+   {
+    "id": "midtjylland",
+    "navn": "Region Midtjylland",
+    "kort": "Midtjylland"
+   },
+   {
+    "id": "nordjylland",
+    "navn": "Region Nordjylland",
+    "kort": "Nordjylland"
+   }
+  ],
+  "kommuner": [
+   {
+    "id": "koebenhavn",
+    "navn": "Københavns Kommune",
+    "kort": "København",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "frederiksberg",
+    "navn": "Frederiksberg Kommune",
+    "kort": "Frederiksberg",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "dragoer",
+    "navn": "Dragør Kommune",
+    "kort": "Dragør",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "taarnby",
+    "navn": "Tårnby Kommune",
+    "kort": "Tårnby",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "albertslund",
+    "navn": "Albertslund Kommune",
+    "kort": "Albertslund",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "ballerup",
+    "navn": "Ballerup Kommune",
+    "kort": "Ballerup",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "broendby",
+    "navn": "Brøndby Kommune",
+    "kort": "Brøndby",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "gentofte",
+    "navn": "Gentofte Kommune",
+    "kort": "Gentofte",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "gladsaxe",
+    "navn": "Gladsaxe Kommune",
+    "kort": "Gladsaxe",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "glostrup",
+    "navn": "Glostrup Kommune",
+    "kort": "Glostrup",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "herlev",
+    "navn": "Herlev Kommune",
+    "kort": "Herlev",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "hvidovre",
+    "navn": "Hvidovre Kommune",
+    "kort": "Hvidovre",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "hoeje-taastrup",
+    "navn": "Høje-Taastrup Kommune",
+    "kort": "Høje-Taastrup",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "ishoej",
+    "navn": "Ishøj Kommune",
+    "kort": "Ishøj",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "lyngby-taarbaek",
+    "navn": "Lyngby-Taarbæk Kommune",
+    "kort": "Lyngby-Taarbæk",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "roedovre",
+    "navn": "Rødovre Kommune",
+    "kort": "Rødovre",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "vallensbaek",
+    "navn": "Vallensbæk Kommune",
+    "kort": "Vallensbæk",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "alleroed",
+    "navn": "Allerød Kommune",
+    "kort": "Allerød",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "egedal",
+    "navn": "Egedal Kommune",
+    "kort": "Egedal",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "fredensborg",
+    "navn": "Fredensborg Kommune",
+    "kort": "Fredensborg",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "frederikssund",
+    "navn": "Frederikssund Kommune",
+    "kort": "Frederikssund",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "furesoe",
+    "navn": "Furesø Kommune",
+    "kort": "Furesø",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "gribskov",
+    "navn": "Gribskov Kommune",
+    "kort": "Gribskov",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "halsnaes",
+    "navn": "Halsnæs Kommune",
+    "kort": "Halsnæs",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "helsingoer",
+    "navn": "Helsingør Kommune",
+    "kort": "Helsingør",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "hilleroed",
+    "navn": "Hillerød Kommune",
+    "kort": "Hillerød",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "hoersholm",
+    "navn": "Hørsholm Kommune",
+    "kort": "Hørsholm",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "rudersdal",
+    "navn": "Rudersdal Kommune",
+    "kort": "Rudersdal",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "bornholm",
+    "navn": "Bornholms Regionskommune",
+    "kort": "Bornholm",
+    "region": "hovedstaden"
+   },
+   {
+    "id": "greve",
+    "navn": "Greve Kommune",
+    "kort": "Greve",
+    "region": "sjaelland"
+   },
+   {
+    "id": "koege",
+    "navn": "Køge Kommune",
+    "kort": "Køge",
+    "region": "sjaelland"
+   },
+   {
+    "id": "lejre",
+    "navn": "Lejre Kommune",
+    "kort": "Lejre",
+    "region": "sjaelland"
+   },
+   {
+    "id": "roskilde",
+    "navn": "Roskilde Kommune",
+    "kort": "Roskilde",
+    "region": "sjaelland"
+   },
+   {
+    "id": "solroed",
+    "navn": "Solrød Kommune",
+    "kort": "Solrød",
+    "region": "sjaelland"
+   },
+   {
+    "id": "faxe",
+    "navn": "Faxe Kommune",
+    "kort": "Faxe",
+    "region": "sjaelland"
+   },
+   {
+    "id": "guldborgsund",
+    "navn": "Guldborgsund Kommune",
+    "kort": "Guldborgsund",
+    "region": "sjaelland"
+   },
+   {
+    "id": "holbaek",
+    "navn": "Holbæk Kommune",
+    "kort": "Holbæk",
+    "region": "sjaelland"
+   },
+   {
+    "id": "kalundborg",
+    "navn": "Kalundborg Kommune",
+    "kort": "Kalundborg",
+    "region": "sjaelland"
+   },
+   {
+    "id": "lolland",
+    "navn": "Lolland Kommune",
+    "kort": "Lolland",
+    "region": "sjaelland"
+   },
+   {
+    "id": "naestved",
+    "navn": "Næstved Kommune",
+    "kort": "Næstved",
+    "region": "sjaelland"
+   },
+   {
+    "id": "odsherred",
+    "navn": "Odsherred Kommune",
+    "kort": "Odsherred",
+    "region": "sjaelland"
+   },
+   {
+    "id": "ringsted",
+    "navn": "Ringsted Kommune",
+    "kort": "Ringsted",
+    "region": "sjaelland"
+   },
+   {
+    "id": "slagelse",
+    "navn": "Slagelse Kommune",
+    "kort": "Slagelse",
+    "region": "sjaelland"
+   },
+   {
+    "id": "soroe",
+    "navn": "Sorø Kommune",
+    "kort": "Sorø",
+    "region": "sjaelland"
+   },
+   {
+    "id": "stevns",
+    "navn": "Stevns Kommune",
+    "kort": "Stevns",
+    "region": "sjaelland"
+   },
+   {
+    "id": "vordingborg",
+    "navn": "Vordingborg Kommune",
+    "kort": "Vordingborg",
+    "region": "sjaelland"
+   },
+   {
+    "id": "assens",
+    "navn": "Assens Kommune",
+    "kort": "Assens",
+    "region": "syddanmark"
+   },
+   {
+    "id": "faaborg-midtfyn",
+    "navn": "Faaborg-Midtfyn Kommune",
+    "kort": "Faaborg-Midtfyn",
+    "region": "syddanmark"
+   },
+   {
+    "id": "kerteminde",
+    "navn": "Kerteminde Kommune",
+    "kort": "Kerteminde",
+    "region": "syddanmark"
+   },
+   {
+    "id": "langeland",
+    "navn": "Langeland Kommune",
+    "kort": "Langeland",
+    "region": "syddanmark"
+   },
+   {
+    "id": "middelfart",
+    "navn": "Middelfart Kommune",
+    "kort": "Middelfart",
+    "region": "syddanmark"
+   },
+   {
+    "id": "nordfyns",
+    "navn": "Nordfyns Kommune",
+    "kort": "Nordfyns",
+    "region": "syddanmark"
+   },
+   {
+    "id": "nyborg",
+    "navn": "Nyborg Kommune",
+    "kort": "Nyborg",
+    "region": "syddanmark"
+   },
+   {
+    "id": "odense",
+    "navn": "Odense Kommune",
+    "kort": "Odense",
+    "region": "syddanmark"
+   },
+   {
+    "id": "svendborg",
+    "navn": "Svendborg Kommune",
+    "kort": "Svendborg",
+    "region": "syddanmark"
+   },
+   {
+    "id": "aeroe",
+    "navn": "Ærø Kommune",
+    "kort": "Ærø",
+    "region": "syddanmark"
+   },
+   {
+    "id": "billund",
+    "navn": "Billund Kommune",
+    "kort": "Billund",
+    "region": "syddanmark"
+   },
+   {
+    "id": "esbjerg",
+    "navn": "Esbjerg Kommune",
+    "kort": "Esbjerg",
+    "region": "syddanmark"
+   },
+   {
+    "id": "fanoe",
+    "navn": "Fanø Kommune",
+    "kort": "Fanø",
+    "region": "syddanmark"
+   },
+   {
+    "id": "fredericia",
+    "navn": "Fredericia Kommune",
+    "kort": "Fredericia",
+    "region": "syddanmark"
+   },
+   {
+    "id": "haderslev",
+    "navn": "Haderslev Kommune",
+    "kort": "Haderslev",
+    "region": "syddanmark"
+   },
+   {
+    "id": "kolding",
+    "navn": "Kolding Kommune",
+    "kort": "Kolding",
+    "region": "syddanmark"
+   },
+   {
+    "id": "soenderborg",
+    "navn": "Sønderborg Kommune",
+    "kort": "Sønderborg",
+    "region": "syddanmark"
+   },
+   {
+    "id": "toender",
+    "navn": "Tønder Kommune",
+    "kort": "Tønder",
+    "region": "syddanmark"
+   },
+   {
+    "id": "varde",
+    "navn": "Varde Kommune",
+    "kort": "Varde",
+    "region": "syddanmark"
+   },
+   {
+    "id": "vejen",
+    "navn": "Vejen Kommune",
+    "kort": "Vejen",
+    "region": "syddanmark"
+   },
+   {
+    "id": "vejle",
+    "navn": "Vejle Kommune",
+    "kort": "Vejle",
+    "region": "syddanmark"
+   },
+   {
+    "id": "aabenraa",
+    "navn": "Aabenraa Kommune",
+    "kort": "Aabenraa",
+    "region": "syddanmark"
+   },
+   {
+    "id": "favrskov",
+    "navn": "Favrskov Kommune",
+    "kort": "Favrskov",
+    "region": "midtjylland"
+   },
+   {
+    "id": "hedensted",
+    "navn": "Hedensted Kommune",
+    "kort": "Hedensted",
+    "region": "midtjylland"
+   },
+   {
+    "id": "horsens",
+    "navn": "Horsens Kommune",
+    "kort": "Horsens",
+    "region": "midtjylland"
+   },
+   {
+    "id": "norddjurs",
+    "navn": "Norddjurs Kommune",
+    "kort": "Norddjurs",
+    "region": "midtjylland"
+   },
+   {
+    "id": "odder",
+    "navn": "Odder Kommune",
+    "kort": "Odder",
+    "region": "midtjylland"
+   },
+   {
+    "id": "randers",
+    "navn": "Randers Kommune",
+    "kort": "Randers",
+    "region": "midtjylland"
+   },
+   {
+    "id": "samsoe",
+    "navn": "Samsø Kommune",
+    "kort": "Samsø",
+    "region": "midtjylland"
+   },
+   {
+    "id": "silkeborg",
+    "navn": "Silkeborg Kommune",
+    "kort": "Silkeborg",
+    "region": "midtjylland"
+   },
+   {
+    "id": "skanderborg",
+    "navn": "Skanderborg Kommune",
+    "kort": "Skanderborg",
+    "region": "midtjylland"
+   },
+   {
+    "id": "syddjurs",
+    "navn": "Syddjurs Kommune",
+    "kort": "Syddjurs",
+    "region": "midtjylland"
+   },
+   {
+    "id": "aarhus",
+    "navn": "Aarhus Kommune",
+    "kort": "Aarhus",
+    "region": "midtjylland"
+   },
+   {
+    "id": "herning",
+    "navn": "Herning Kommune",
+    "kort": "Herning",
+    "region": "midtjylland"
+   },
+   {
+    "id": "holstebro",
+    "navn": "Holstebro Kommune",
+    "kort": "Holstebro",
+    "region": "midtjylland"
+   },
+   {
+    "id": "ikast-brande",
+    "navn": "Ikast-Brande Kommune",
+    "kort": "Ikast-Brande",
+    "region": "midtjylland"
+   },
+   {
+    "id": "lemvig",
+    "navn": "Lemvig Kommune",
+    "kort": "Lemvig",
+    "region": "midtjylland"
+   },
+   {
+    "id": "ringkoebing-skjern",
+    "navn": "Ringkøbing-Skjern Kommune",
+    "kort": "Ringkøbing-Skjern",
+    "region": "midtjylland"
+   },
+   {
+    "id": "skive",
+    "navn": "Skive Kommune",
+    "kort": "Skive",
+    "region": "midtjylland"
+   },
+   {
+    "id": "struer",
+    "navn": "Struer Kommune",
+    "kort": "Struer",
+    "region": "midtjylland"
+   },
+   {
+    "id": "viborg",
+    "navn": "Viborg Kommune",
+    "kort": "Viborg",
+    "region": "midtjylland"
+   },
+   {
+    "id": "broenderslev",
+    "navn": "Brønderslev Kommune",
+    "kort": "Brønderslev",
+    "region": "nordjylland"
+   },
+   {
+    "id": "frederikshavn",
+    "navn": "Frederikshavn Kommune",
+    "kort": "Frederikshavn",
+    "region": "nordjylland"
+   },
+   {
+    "id": "hjoerring",
+    "navn": "Hjørring Kommune",
+    "kort": "Hjørring",
+    "region": "nordjylland"
+   },
+   {
+    "id": "jammerbugt",
+    "navn": "Jammerbugt Kommune",
+    "kort": "Jammerbugt",
+    "region": "nordjylland"
+   },
+   {
+    "id": "laesoe",
+    "navn": "Læsø Kommune",
+    "kort": "Læsø",
+    "region": "nordjylland"
+   },
+   {
+    "id": "mariagerfjord",
+    "navn": "Mariagerfjord Kommune",
+    "kort": "Mariagerfjord",
+    "region": "nordjylland"
+   },
+   {
+    "id": "morsoe",
+    "navn": "Morsø Kommune",
+    "kort": "Morsø",
+    "region": "nordjylland"
+   },
+   {
+    "id": "rebild",
+    "navn": "Rebild Kommune",
+    "kort": "Rebild",
+    "region": "nordjylland"
+   },
+   {
+    "id": "thisted",
+    "navn": "Thisted Kommune",
+    "kort": "Thisted",
+    "region": "nordjylland"
+   },
+   {
+    "id": "vesthimmerlands",
+    "navn": "Vesthimmerlands Kommune",
+    "kort": "Vesthimmerlands",
+    "region": "nordjylland"
+   },
+   {
+    "id": "aalborg",
+    "navn": "Aalborg Kommune",
+    "kort": "Aalborg",
+    "region": "nordjylland"
+   }
+  ],
+  "byer": [
+   {
+    "id": "hoersholm",
+    "navn": "Hørsholm",
+    "kommune": "hoersholm",
+    "kommuner": [
+     "fredensborg",
+     "hoersholm",
+     "rudersdal"
+    ]
+   },
+   {
+    "id": "naestved",
+    "navn": "Næstved",
+    "kommune": "naestved",
+    "kommuner": [
+     "naestved"
+    ]
+   },
+   {
+    "id": "odder",
+    "navn": "Odder",
+    "kommune": "odder",
+    "kommuner": [
+     "odder"
+    ]
+   },
+   {
+    "id": "odense",
+    "navn": "Odense",
+    "kommune": "odense",
+    "kommuner": [
+     "odense"
+    ]
+   },
+   {
+    "id": "skanderborg",
+    "navn": "Skanderborg",
+    "kommune": "skanderborg",
+    "kommuner": [
+     "skanderborg"
+    ]
+   },
+   {
+    "id": "soenderborg",
+    "navn": "Sønderborg",
+    "kommune": "soenderborg",
+    "kommuner": [
+     "soenderborg"
+    ]
+   },
+   {
+    "id": "svendborg",
+    "navn": "Svendborg",
+    "kommune": "svendborg",
+    "kommuner": [
+     "svendborg"
+    ]
+   },
+   {
+    "id": "ullerslev",
+    "navn": "Ullerslev",
+    "kommune": "nyborg",
+    "kommuner": [
+     "nyborg"
+    ]
+   }
+  ]
+ },
  "overview": {
   "dag": {
    "period": "dag",
@@ -1005,6 +1729,7 @@
     "bioaffald",
     "sortering"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1027,6 +1752,10 @@
    "topics": [
     "gebyrer",
     "regler"
+   ],
+   "places": [
+    "k:odense",
+    "b:odense"
    ],
    "genre": "pressemeddelelse",
    "lang": "da",
@@ -1054,8 +1783,75 @@
      "url": "https://example.org/kommunen/kl-gebyrmodellen-kraever-nye-it-systemer-i-kommunerne",
      "title": "KL: Gebyrmodellen kræver nye it-systemer i kommunerne",
      "published": "2026-10-07T09:15:00Z"
+    },
+    {
+     "id": "6aafaa1731f9",
+     "source": "fyens",
+     "url": "https://example.org/fyens/ny-gebyrmodel-kan-give-lavere-affaldsgebyr-i-odense",
+     "title": "Ny gebyrmodel kan give lavere affaldsgebyr i Odense",
+     "published": "2026-10-07T09:45:00Z"
     }
    ],
+   "why": null
+  },
+  {
+   "id": "c24ac7cbb3a3",
+   "story": "c24ac7cbb3a3",
+   "url": "https://example.org/nyborg-forsyning/ny-genbrugsplads-i-ullerslev-aabner-til-foraaret",
+   "title": "Ny genbrugsplads i Ullerslev åbner til foråret",
+   "teaser": "Forsyningen bygger en ny genbrugsplads ved motorvejen. Den gamle plads lukker, når den nye åbner.",
+   "source": "nyborg-forsyning",
+   "published": "2026-10-07T07:14:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-07T07:21:00Z",
+   "baseline": false,
+   "topics": [
+    "genbrugspladser"
+   ],
+   "places": [
+    "k:nyborg",
+    "b:ullerslev"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [
+    {
+     "id": "7a9cfa62866f",
+     "source": "fyens",
+     "url": "https://example.org/fyens/ullerslev-faar-ny-genbrugsplads-ved-motorvejen",
+     "title": "Ullerslev får ny genbrugsplads ved motorvejen",
+     "published": "2026-10-07T08:02:00Z"
+    }
+   ],
+   "why": null
+  },
+  {
+   "id": "f7be60ac9eea",
+   "story": "f7be60ac9eea",
+   "url": "https://example.org/nyborg-forsyning/ny-ordning-for-haveaffald-fra-1-januar",
+   "title": "Ny ordning for haveaffald fra 1. januar",
+   "teaser": "Haveaffald hentes hver 14. dag fra april til november. Borgerne skal tilmelde sig ordningen inden 1. december.",
+   "source": "nyborg-forsyning",
+   "published": "2026-10-07T06:30:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-07T06:41:00Z",
+   "baseline": false,
+   "topics": [
+    "sortering",
+    "bioaffald"
+   ],
+   "places": [
+    "k:nyborg"
+   ],
+   "genre": "pressemeddelelse",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
    "why": null
   },
   {
@@ -1073,6 +1869,7 @@
     "tekstiler",
     "sortering"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1095,6 +1892,7 @@
    "topics": [
     "tekstiler"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "en",
    "summary_da": "Europæiske byer melder om flere indsamlede tekstiler efter det første år med særskilt indsamling, men kvaliteten svinger meget.",
@@ -1117,6 +1915,7 @@
    "topics": [
     "arbejdsmiljoe"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1148,6 +1947,7 @@
     "genbrugspladser",
     "regler"
    ],
+   "places": [],
    "genre": "hoering",
    "lang": "da",
    "summary_da": null,
@@ -1178,7 +1978,37 @@
    "topics": [
     "genbrugspladser"
    ],
+   "places": [
+    "k:naestved",
+    "b:naestved"
+   ],
    "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "63a9868ca355",
+   "story": "63a9868ca355",
+   "url": "https://example.org/kredsloeb/aarhus-kommune-indfoerer-indsamling-af-tekstiler-ved-etagebo",
+   "title": "Aarhus Kommune indfører indsamling af tekstiler ved etageboliger",
+   "teaser": "Fra januar kan beboere i etageboliger aflevere tekstiler i særskilte containere. Kredsløb står for indsamlingen.",
+   "source": "kredsloeb",
+   "published": "2026-10-06T10:20:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-06T10:31:00Z",
+   "baseline": false,
+   "topics": [
+    "tekstiler",
+    "sortering"
+   ],
+   "places": [
+    "k:aarhus"
+   ],
+   "genre": "pressemeddelelse",
    "lang": "da",
    "summary_da": null,
    "reviewed": true,
@@ -1200,6 +2030,7 @@
    "topics": [
     "genanvendelse"
    ],
+   "places": [],
    "genre": "analyse",
    "lang": "en",
    "summary_da": "Genanvendelsen af husholdningsaffald i EU er stort set stået stille siden 2020, viser et nyt notat fra EEA.",
@@ -1222,6 +2053,7 @@
    "topics": [
     "producentansvar"
    ],
+   "places": [],
    "genre": "pressemeddelelse",
    "lang": "da",
    "summary_da": null,
@@ -1259,6 +2091,7 @@
    "topics": [
     "udbud"
    ],
+   "places": [],
    "genre": "debat",
    "lang": "da",
    "summary_da": null,
@@ -1279,6 +2112,7 @@
    "first_seen": "2026-10-05T11:14:00Z",
    "baseline": false,
    "topics": [],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1301,6 +2135,32 @@
    "topics": [
     "producentansvar",
     "genanvendelse"
+   ],
+   "places": [],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "934434eed2ba",
+   "story": "934434eed2ba",
+   "url": "https://example.org/jv/region-syddanmark-vil-undersoege-140-gamle-lossepladser-for",
+   "title": "Region Syddanmark vil undersøge 140 gamle lossepladser for forurening",
+   "teaser": "Regionen begynder med pladser tæt på vandløb og drikkevandsboringer. Undersøgelserne går i gang i 2027.",
+   "source": "jv",
+   "published": "2026-10-05T09:10:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-05T09:26:00Z",
+   "baseline": false,
+   "topics": [
+    "byg_farligt"
+   ],
+   "places": [
+    "r:syddanmark"
    ],
    "genre": "nyhed",
    "lang": "da",
@@ -1325,6 +2185,7 @@
     "klima",
     "forbraending"
    ],
+   "places": [],
    "genre": "analyse",
    "lang": "da",
    "summary_da": null,
@@ -1363,6 +2224,12 @@
     "bioaffald",
     "sortering"
    ],
+   "places": [
+    "k:odder",
+    "k:skanderborg",
+    "b:odder",
+    "b:skanderborg"
+   ],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1386,6 +2253,7 @@
     "klima",
     "udbud"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1409,6 +2277,7 @@
     "genbrugspladser",
     "regler"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1430,6 +2299,36 @@
    "baseline": false,
    "topics": [
     "sortering"
+   ],
+   "places": [
+    "k:svendborg",
+    "b:svendborg"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "0edb0ab45277",
+   "story": "0edb0ab45277",
+   "url": "https://example.org/tv2-regionerne/ny-genbrugsstation-i-hoersholm-skal-have-byttemarked",
+   "title": "Ny genbrugsstation i Hørsholm skal have byttemarked",
+   "teaser": "Borgerne skal kunne hente og aflevere møbler og legetøj, før resten bliver sorteret. Stationen åbner i foråret.",
+   "source": "tv2-regionerne",
+   "published": "2026-10-03T11:30:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-03T11:44:00Z",
+   "baseline": false,
+   "topics": [
+    "genbrugspladser"
+   ],
+   "places": [
+    "k:hoersholm",
+    "b:hoersholm"
    ],
    "genre": "nyhed",
    "lang": "da",
@@ -1453,6 +2352,7 @@
    "topics": [
     "arbejdsmiljoe"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1476,6 +2376,7 @@
     "producentansvar",
     "regler"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "en",
    "summary_da": "Producentansvarsorganisationerne i EXPRA ønsker fælles EU-regler for, hvordan emballagegebyrer graduereres efter genanvendelighed.",
@@ -1499,6 +2400,7 @@
     "tekstiler",
     "regler"
    ],
+   "places": [],
    "genre": "pressemeddelelse",
    "lang": "da",
    "summary_da": null,
@@ -1521,6 +2423,7 @@
    "topics": [
     "gebyrer"
    ],
+   "places": [],
    "genre": "analyse",
    "lang": "da",
    "summary_da": null,
@@ -1544,6 +2447,7 @@
     "forbraending",
     "genanvendelse"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1566,6 +2470,7 @@
    "topics": [
     "genbrugspladser"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "sv",
    "summary_da": "Svenske husholdninger smed mindre affald ud per person i 2025 end året før, viser Avfall Sveriges årlige opgørelse.",
@@ -1589,6 +2494,7 @@
     "byg_farligt",
     "regler"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1612,6 +2518,7 @@
     "regler",
     "tekstiler"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "en",
    "summary_da": "Europa-Parlamentets miljøudvalg har stemt for aftalen om ændringer af affaldsrammedirektivet om tekstiler og madaffald.",
@@ -1649,6 +2556,7 @@
    "topics": [
     "sortering"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1672,6 +2580,7 @@
     "byg_farligt",
     "genbrugspladser"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1695,6 +2604,7 @@
     "byg_farligt",
     "genbrugspladser"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1717,6 +2627,7 @@
    "topics": [
     "genanvendelse"
    ],
+   "places": [],
    "genre": "analyse",
    "lang": "da",
    "summary_da": null,
@@ -1739,6 +2650,7 @@
    "topics": [
     "byg_farligt"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1762,6 +2674,7 @@
     "gebyrer",
     "udbud"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1784,6 +2697,7 @@
    "topics": [
     "forbraending"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1814,6 +2728,7 @@
    "topics": [
     "bioaffald"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1835,6 +2750,10 @@
    "baseline": false,
    "topics": [
     "sortering"
+   ],
+   "places": [
+    "k:soenderborg",
+    "b:soenderborg"
    ],
    "genre": "nyhed",
    "lang": "da",
@@ -1859,6 +2778,7 @@
     "forbraending",
     "regler"
    ],
+   "places": [],
    "genre": "pressemeddelelse",
    "lang": "da",
    "summary_da": null,
@@ -1881,6 +2801,7 @@
    "topics": [
     "arbejdsmiljoe"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "en",
    "summary_da": "En global undersøgelse fra ISWA viser, at de fleste ulykker blandt skraldemænd skyldes trafik og tunge løft.",
@@ -1904,6 +2825,9 @@
     "genbrugspladser",
     "sortering"
    ],
+   "places": [
+    "k:esbjerg"
+   ],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1926,6 +2850,7 @@
    "topics": [
     "forbraending"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "en",
    "summary_da": "Forbrændingsanlæggenes europæiske organisation mener, at energiudnyttelse fortsat er nødvendig for affald, der ikke kan genanvendes.",
@@ -1949,6 +2874,7 @@
     "tekstiler",
     "producentansvar"
    ],
+   "places": [],
    "genre": "hoering",
    "lang": "da",
    "summary_da": null,
@@ -1971,6 +2897,7 @@
    "topics": [
     "producentansvar"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -1994,6 +2921,7 @@
     "forbraending",
     "gebyrer"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -2016,6 +2944,7 @@
    "topics": [
     "producentansvar"
    ],
+   "places": [],
    "genre": "debat",
    "lang": "da",
    "summary_da": null,
@@ -2039,6 +2968,7 @@
     "bioaffald",
     "regler"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "en",
    "summary_da": "De nye EU-regler med bindende mål for mindre madspild i forarbejdning, detailhandel og husholdninger er trådt i kraft.",
@@ -2062,6 +2992,7 @@
     "udbud",
     "sortering"
    ],
+   "places": [],
    "genre": "nyhed",
    "lang": "da",
    "summary_da": null,
@@ -2083,6 +3014,9 @@
    "baseline": true,
    "topics": [
     "genbrugspladser"
+   ],
+   "places": [
+    "k:hvidovre"
    ],
    "genre": "nyhed",
    "lang": "da",
