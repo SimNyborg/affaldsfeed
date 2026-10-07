@@ -131,6 +131,10 @@
     "fetched": "2026-10-07T11:39:46Z",
     "body": ""
   },
+  "oda.ft.dk": {
+    "fetched": "2026-10-07T20:48:10Z",
+    "body": ""
+  },
   "plast.dk": {
     "fetched": "2026-10-07T11:39:46Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://plast.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"

@@ -305,6 +305,15 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "folketinget-oda": {
+    "last_ok": "2026-10-07",
+    "last_attempt": "2026-10-07T20:48:10Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 15,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "forsyningstilsynet": {
     "last_ok": "2026-10-07",
     "last_attempt": "2026-10-07T15:53:30Z",
