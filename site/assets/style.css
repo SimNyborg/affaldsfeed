@@ -733,7 +733,7 @@ svg.i { width: 16px; height: 16px; flex: none; }
   margin-bottom: 12px;
 }
 .filters-head h2 { font-size: var(--t-l); line-height: var(--lh-l); }
-.fgroup + .fgroup, .fgroup + .more { margin-top: 20px; }
+.fgroup + .fgroup, .fgroup + .more, .more + .fgroup { margin-top: 20px; }
 .fgroup > legend {
   padding: 0 0 4px;
   color: var(--text);
@@ -812,6 +812,32 @@ svg.i { width: 16px; height: 16px; flex: none; }
 /* Sted: 8 px luft mellem de valgte steder og regionerne, og noten om landsdækkende nyheder */
 .opts:not(:empty) + .regions { margin-top: 8px; }
 .fnote { margin-top: 4px; color: var(--muted); font-size: var(--t-xs); line-height: var(--lh-xs); }
+
+/* Kilde: alle kilder med flueben, grupperet efter afsendertype (filters.js) */
+.fsrc-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 12px;
+  margin-top: 4px;
+  font-size: var(--t-xs);
+  line-height: var(--lh-xs);
+}
+.fsrc-n { color: var(--muted); }
+.fsrc-act { display: flex; gap: 16px; }
+.fsub {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: var(--t-xs);
+  line-height: var(--lh-xs);
+  font-weight: 600;
+}
+.fsub .i { width: 16px; height: 16px; color: var(--cat); }
+.fsrc-cat .opts { margin-top: 2px; }
 
 /* Flere filtre */
 .more > summary {

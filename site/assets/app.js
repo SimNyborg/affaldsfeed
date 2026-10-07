@@ -639,7 +639,7 @@ function setupFeed(feed, state, now, lastVisit) {
       const parent = f.key === 'sted' ? placeParents(data, f.value).find((p) => count(widen(f.value, p)) > 0) : null;
       if (parent) options.push({ text: `Udvid til ${placeName(data, parent)}`, mutate: widen(f.value, parent) });
       // Historien får den korte tekst; dens mærke kan være 60 tegn langt
-      else options.push({ text: f.key === 'periode' ? 'Udvid til 60 dage' : f.key === 'story' ? 'Fjern historien' : `Fjern ${f.label}`, mutate: (s) => removeFilter(s, f) });
+      else options.push({ text: f.undo || (f.key === 'periode' ? 'Udvid til 60 dage' : f.key === 'story' ? 'Fjern historien' : `Fjern ${f.label}`), mutate: (s) => removeFilter(s, f) });
     }
     if (state.q) options.push({ text: 'Ryd søgning', mutate: (s) => { s.q = ''; } });
     let best = null;
