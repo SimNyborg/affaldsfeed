@@ -1,0 +1,58 @@
+name: Foreslå en kilde
+description: En afsender, som feedet bør hente nyheder fra.
+title: "Ny kilde: "
+labels: ["ny-kilde"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Feedet henter kun fra kilder, der opfylder kriterierne i [KILDER.md](https://github.com/SimNyborg/affaldsfeed/blob/main/docs/KILDER.md). Afsenderen skal være kendt og selv stå bag indholdet. Den skal have et redaktionelt, offentligt, forskningsmæssigt eller organisatorisk grundlag, og den skal skrive om affaldsområdet.
+
+  - type: input
+    id: navn
+    attributes:
+      label: Navn på afsenderen
+      placeholder: Renosyd
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Hjemmeside
+      placeholder: https://
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kategori
+    attributes:
+      label: Kategori
+      options:
+        - Nyhedsmedie
+        - Fagmedie
+        - Myndighed og Folketing
+        - Kommune og affaldsselskab
+        - Organisation og branche
+        - Tænketank og NGO
+        - Forskning og universitet
+        - EU og Norden
+        - Ved ikke
+    validations:
+      required: false
+
+  - type: input
+    id: feed
+    attributes:
+      label: RSS-feed eller nyhedsside
+      description: Hvis du kender adressen. Ellers finder vi den.
+    validations:
+      required: false
+
+  - type: textarea
+    id: begrundelse
+    attributes:
+      label: Hvorfor er kilden relevant?
+      description: Fx hvilke emner den skriver om, og hvor ofte den udgiver.
+    validations:
+      required: false

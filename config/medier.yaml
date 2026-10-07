@@ -1,0 +1,317 @@
+# Troværdige udgivere, der kun findes via nyhedssøgning (models.Publisher, KONTRAKTER §3.3 og §5.3).
+#
+# Et søgefund krediteres udgiveren, når artiklens værtsnavn (uden www.) står i domains.
+# Aktive kilder i sources.yaml matches først. Udgivere, der hverken står her eller som aktiv
+# kilde, havner i data/state/kildeforslag.md og kommer ikke i feedet.
+#
+# Regler:
+# - id er udgiverens hoveddomæne med bindestreg i stedet for punktum (fx jv-dk). Så kolliderer
+#   id'erne aldrig med sources.yaml, hvor samme medie kan stå som kandidat (fx bt og bt-dk).
+# - Et domæne må ikke stå her, hvis det er homepage eller domains på en aktiv kilde i sources.yaml.
+#   Når en kandidat eller planlagt kilde aktiveres, fjernes dens domæner herfra.
+# - Alle har redaktionelt ansvar (basis: redaktionelt). Tjekket 2026-10-07.
+
+# ── Landsdækkende nyhedsmedier ────────────────────────────────
+- id: jyllands-posten-dk
+  name: Jyllands-Posten
+  category: nyhedsmedie
+  domains: [jyllands-posten.dk, jp.dk]
+  basis: redaktionelt
+  paywall: ja
+
+- id: finans-dk
+  name: Finans
+  category: nyhedsmedie
+  domains: [finans.dk]
+  basis: redaktionelt
+  paywall: ja
+
+- id: information-dk
+  name: Dagbladet Information
+  category: nyhedsmedie
+  domains: [information.dk]
+  basis: redaktionelt
+  paywall: ja
+
+- id: kristeligt-dagblad-dk
+  name: Kristeligt Dagblad
+  category: nyhedsmedie
+  domains: [kristeligt-dagblad.dk]
+  basis: redaktionelt
+  paywall: ja
+
+- id: weekendavisen-dk
+  name: Weekendavisen
+  category: nyhedsmedie
+  domains: [weekendavisen.dk]
+  basis: redaktionelt
+  paywall: ja
+
+- id: ekstrabladet-dk
+  name: Ekstra Bladet
+  category: nyhedsmedie
+  domains: [ekstrabladet.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: bt-dk
+  name: B.T.
+  category: nyhedsmedie
+  domains: [bt.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: tv2-dk
+  name: TV 2 Nyheder
+  category: nyhedsmedie
+  domains: [tv2.dk, nyheder.tv2.dk]
+  basis: redaktionelt
+  paywall: nej
+
+- id: zetland-dk
+  name: Zetland
+  category: nyhedsmedie
+  domains: [zetland.dk]
+  basis: redaktionelt
+  paywall: ja
+
+- id: avisendanmark-dk
+  name: Avisen Danmark
+  category: nyhedsmedie
+  domains: [avisendanmark.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: mm-dk
+  name: Mandag Morgen
+  category: nyhedsmedie
+  domains: [mm.dk]
+  basis: redaktionelt
+  paywall: ja
+
+- id: a4medier-dk
+  name: A4 Medier
+  category: nyhedsmedie
+  domains: [a4medier.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+# ── Regionale dagblade: Jysk Fynske Medier ────────────────────
+- id: jv-dk
+  name: JydskeVestkysten
+  category: nyhedsmedie
+  domains: [jv.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: fyens-dk
+  name: Fyens Stiftstidende
+  category: nyhedsmedie
+  domains: [fyens.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: faa-dk
+  name: Fyns Amts Avis
+  category: nyhedsmedie
+  domains: [faa.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: vafo-dk
+  name: Vejle Amts Folkeblad
+  category: nyhedsmedie
+  domains: [vafo.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: hsfo-dk
+  name: Horsens Folkeblad
+  category: nyhedsmedie
+  domains: [hsfo.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: frdb-dk
+  name: Fredericia Dagblad
+  category: nyhedsmedie
+  domains: [frdb.dk, fredericiadagblad.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: stiften-dk
+  name: Århus Stiftstidende
+  category: nyhedsmedie
+  domains: [stiften.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: amtsavisen-dk
+  name: Randers Amtsavis
+  category: nyhedsmedie
+  domains: [amtsavisen.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: viborg-folkeblad-dk
+  name: Viborg Folkeblad
+  category: nyhedsmedie
+  domains: [viborg-folkeblad.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: herningfolkeblad-dk
+  name: Herning Folkeblad
+  category: nyhedsmedie
+  domains: [herningfolkeblad.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: dagbladet-holstebro-struer-dk
+  name: Dagbladet Holstebro-Struer
+  category: nyhedsmedie
+  domains: [dagbladet-holstebro-struer.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: dbrs-dk
+  name: Dagbladet Ringkøbing-Skjern
+  category: nyhedsmedie
+  domains: [dbrs.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: folkebladetlemvig-dk
+  name: Folkebladet Lemvig
+  category: nyhedsmedie
+  domains: [folkebladetlemvig.dk, lemvigfolkeblad.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: midtjyllandsavis-dk
+  name: Midtjyllands Avis
+  category: nyhedsmedie
+  domains: [midtjyllandsavis.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: skivefolkeblad-dk
+  name: Skive Folkeblad
+  category: nyhedsmedie
+  domains: [skivefolkeblad.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: helsingordagblad-dk
+  name: Helsingør Dagblad
+  category: nyhedsmedie
+  domains: [helsingordagblad.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: ugeavisen-dk
+  name: Ugeaviserne (Jysk Fynske Medier)
+  category: nyhedsmedie
+  domains: [ugeavisen.dk]
+  basis: redaktionelt
+  paywall: nej
+
+# ── Øvrige regionale og lokale medier ─────────────────────────
+- id: nordjyske-dk
+  name: Nordjyske
+  category: nyhedsmedie
+  domains: [nordjyske.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: sn-dk
+  name: Sjællandske Medier
+  category: nyhedsmedie
+  domains: [sn.dk, sjnyheder.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: frederiksborgamtsavis-dk
+  name: Frederiksborg Amts Avis
+  category: nyhedsmedie
+  domains: [frederiksborgamtsavis.dk, frederiksborgamtsavis.sjnyheder.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: folketidende-dk
+  name: Lolland-Falsters Folketidende
+  category: nyhedsmedie
+  domains: [folketidende.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: tidende-dk
+  name: Bornholms Tidende
+  category: nyhedsmedie
+  domains: [tidende.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: dinavis-dk
+  name: Din Avis (lokalaviser, tidl. Lokalavisen.dk)
+  category: nyhedsmedie
+  domains: [dinavis.dk, lokalavisen.dk]
+  basis: redaktionelt
+  paywall: nej
+
+# ── Fagmedier ─────────────────────────────────────────────────
+- id: licitationen-dk
+  name: Licitationen
+  category: fagmedie
+  domains: [licitationen.dk]
+  basis: redaktionelt
+  paywall: ja
+
+- id: energiwatch-dk
+  name: EnergiWatch
+  category: fagmedie
+  domains: [energiwatch.dk]
+  basis: redaktionelt
+  paywall: ja
+
+- id: building-supply-dk
+  name: Building Supply
+  category: fagmedie
+  domains: [building-supply.dk]
+  basis: redaktionelt
+  paywall: delvis
+
+- id: pro-ing-dk
+  name: Ingeniøren PRO (bl.a. WasteTech)
+  category: fagmedie
+  domains: [pro.ing.dk]
+  basis: redaktionelt
+  paywall: ja
+
+- id: danskekommuner-dk
+  name: Danske Kommuner
+  category: fagmedie
+  domains: [danskekommuner.dk]
+  basis: redaktionelt
+  paywall: nej
+
+- id: bygtek-dk
+  name: BygTek
+  category: fagmedie
+  domains: [bygtek.dk]
+  basis: redaktionelt
+  paywall: nej
+
+- id: byggeri-arkitektur-dk
+  name: Byggeri+Arkitektur
+  category: fagmedie
+  domains: [byggeri-arkitektur.dk]
+  basis: redaktionelt
+  paywall: nej
+
+- id: fagbladet3f-dk
+  name: Fagbladet 3F
+  category: fagmedie
+  domains: [fagbladet3f.dk]
+  basis: redaktionelt
+  paywall: nej

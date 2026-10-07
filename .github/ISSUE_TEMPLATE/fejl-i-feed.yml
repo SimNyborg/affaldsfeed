@@ -1,0 +1,41 @@
+name: Fejl i feedet
+description: Et indslag hører ikke til i feedet, eller det har forkert tema, afsender eller dato.
+title: "Fejl i feed: "
+labels: ["fejl-i-feed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Skriv indslagets id eller et link til artiklen, så vi kan finde det.
+
+  - type: input
+    id: indslag
+    attributes:
+      label: Indslagets id eller link
+      description: Id'et er 12 tegn og står i adressen, når du åbner en historie (?story=...). Et link til artiklen virker også.
+      placeholder: 3f9a1c0b7e21
+    validations:
+      required: true
+
+  - type: dropdown
+    id: fejl
+    attributes:
+      label: Hvad er galt?
+      options:
+        - Ikke relevant for affaldsområdet
+        - Forkert tema
+        - Forkert afsender eller kategori
+        - Dublet af et andet indslag
+        - Forkert dato
+        - Linket virker ikke
+        - Andet
+    validations:
+      required: true
+
+  - type: textarea
+    id: beskrivelse
+    attributes:
+      label: Uddyb gerne
+      description: Fx hvilket tema der passer bedre, eller hvilket indslag det er en dublet af.
+    validations:
+      required: false

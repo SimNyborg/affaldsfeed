@@ -1,0 +1,343 @@
+# Testcases for forfilter, tema og genre. Titlerne er opdigtede, men typiske.
+# Køres af tests/test_cases.py mod den rigtige config/.
+#
+# Felter (alle undtagen id og title har standardværdier):
+#   id            kort navn (bruges som test-id)
+#   title, teaser
+#   url           standard: https://eksempel.dk/artikel/12345 (giver ingen URL-hint)
+#   category      kildens kategori (standard nyhedsmedie)
+#   lang          kildens sprog (standard da)
+#   source_topics kildens standardtemaer (standard [])
+#   source_genre  kildens genre (standard nyhed)
+#   categories    RSS-kategorier (standard [])
+#   expect:
+#     none/normal/strict: forventet afgørelse (vis|graa|afvist) pr. filterniveau
+#     topics: forventede temaer i rækkefølge (udelades = tjekkes ikke)
+#     genre:  forventet genre (udelades = tjekkes ikke)
+#
+# Et forkert indslag fra drift lægges her med den rigtige afgørelse, så tuning kan måles.
+
+# ── Klare affaldsnyheder ─────────────────────────────────────
+
+- id: affaldsgebyr-stiger
+  title: Affaldsgebyret stiger i 14 kommuner næste år
+  expect: {none: vis, normal: vis, strict: vis, topics: [gebyrer], genre: nyhed}
+
+- id: bekendtgoerelse-myndighed
+  title: Ny bekendtgørelse om affald træder i kraft 1. januar
+  category: myndighed
+  expect: {none: vis, normal: vis, strict: vis, topics: [regler], genre: nyhed}
+
+- id: tekstilaffald-sortering
+  title: Fra næste år skal alle husstande sortere tekstilaffald
+  expect: {none: vis, normal: vis, strict: vis, topics: [tekstiler, sortering]}
+
+- id: genbrugsplads-aabner-kommunal
+  title: Ny genbrugsplads åbner i Hørsholm til foråret
+  category: kommunal
+  expect: {none: vis, normal: vis, strict: vis, topics: [genbrugspladser]}
+
+- id: argo-sorteringsanlaeg
+  title: ARGO bygger nyt sorteringsanlæg i Roskilde
+  category: kommunal
+  expect: {none: vis, normal: vis, strict: vis, topics: [genanvendelse, sortering]}
+
+- id: pant-paa-saftflasker
+  title: Nu kommer der pant på saftflasker og vinflasker
+  expect: {none: vis, normal: vis, strict: vis, topics: [producentansvar]}
+
+- id: skraldemaend-strejke
+  title: Skraldemænd i Aarhus nedlægger arbejdet i protest
+  expect: {none: vis, normal: vis, strict: vis, topics: [arbejdsmiljoe]}
+
+- id: indsamling-i-udbud
+  title: Kommune sender affaldsindsamlingen i udbud igen
+  category: fagmedie
+  expect: {none: vis, normal: vis, strict: vis, topics: [udbud]}
+
+- id: amager-bakke-co2-fangst
+  title: Amager Bakke får CO2-fangst for 1,5 mia. kr.
+  expect: {none: vis, normal: vis, strict: vis, topics: [klima]}
+
+- id: madaffald-biogas
+  title: Madaffald fra 100.000 husstande bliver til biogas i Solrød
+  expect: {none: vis, normal: vis, strict: vis, topics: [bioaffald]}
+
+- id: asbest-byggeaffald
+  title: "Ny vejledning: Sådan håndteres asbest i byggeaffald"
+  category: myndighed
+  expect: {none: vis, normal: vis, strict: vis, topics: [byg_farligt], genre: nyhed}
+
+- id: skraldebiler-fraktioner
+  title: Skraldebilerne kører nu med ti fraktioner i Odense
+  expect: {none: vis, normal: vis, strict: vis, topics: [sortering]}
+
+- id: forsyningstilsynet-hvile-i-sig-selv
+  title: "Forsyningstilsynet: Affaldsgebyrerne skal hvile i sig selv"
+  category: fagmedie
+  expect: {none: vis, normal: vis, strict: vis, topics: [gebyrer]}
+
+- id: direkte-genbrug-byttestation
+  title: "Direkte genbrug: Kommunen åbner byttestation på genbrugspladsen"
+  category: kommunal
+  expect: {none: vis, normal: vis, strict: vis, topics: [genbrugspladser]}
+
+- id: epr-emballage
+  title: Kommunerne frygter at EPR-ordningen for emballage bliver dyr
+  category: fagmedie
+  expect: {none: vis, normal: vis, strict: vis, topics: [producentansvar]}
+
+- id: dakofa-erhvervsaffald-uden-tema
+  title: "DAKOFA: Kommunerne mangler data om erhvervsaffald"
+  category: organisation
+  expect: {none: vis, normal: vis, strict: vis, topics: []}
+
+- id: arc-storskrald-service-kun-i-teaser
+  title: ARC indfører ny ordning for storskrald
+  teaser: Husk at stille storskraldet ud inden kl. 6 på tømningsdagen.
+  category: kommunal
+  expect: {none: vis, normal: vis, strict: vis, topics: [genbrugspladser]}
+
+# ── Veto ──────────────────────────────────────────────────────
+
+- id: veto-atomaffald
+  title: Regeringen vil finde et slutdepot til atomaffaldet
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+- id: veto-radioaktivt
+  title: Radioaktivt affald skal flyttes fra Risø
+  category: myndighed
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+- id: veto-nordic-waste
+  title: "Nordic Waste: Staten har brugt 500 mio. kr. på oprydning"
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+- id: veto-ledig-stilling
+  title: "Ledig stilling: Projektleder til affaldsplanlægning"
+  category: kommunal
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+- id: veto-jobopslag
+  title: "Jobopslag: Erfaren skraldemand søges til rute i Nordsjælland"
+  category: kommunal
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+- id: veto-politisk-skraldespand
+  title: Ny vejplan ryger i politisk skraldespand efter valget
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+- id: veto-historiens-skraldespand
+  title: Kulkraftværket ender på historiens skraldespand
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+- id: veto-webinar
+  title: Webinar om de nye affaldsplaner – tilmeld dig nu
+  category: organisation
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+- id: veto-rumskrot
+  title: Rumskrot truer satellitter i kredsløb om Jorden
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+- id: veto-nuclear-waste-en
+  title: Finland opens the world's first deep nuclear waste repository
+  category: eu_norden
+  lang: en
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+# ── Driftsbeskeder (service) kun for kommunale kilder ────────
+
+- id: service-forsinket-toemning-kommunal
+  title: Forsinket tømning af restaffald i Vejle
+  category: kommunal
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+- id: service-forsinket-toemning-nyhedsmedie
+  title: Forsinket tømning af restaffald i Vejle
+  category: nyhedsmedie
+  expect: {none: vis, normal: vis, strict: vis, topics: [sortering]}
+
+- id: service-aabningstider
+  title: Ændrede åbningstider på genbrugspladserne i julen
+  category: kommunal
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+- id: service-juletraeer
+  title: Husk at stille juletræet ud til juletræsindsamlingen
+  category: kommunal
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+- id: service-driftsforstyrrelse
+  title: Driftsforstyrrelse på forbrændingsanlægget i Glostrup
+  category: kommunal
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+# ── Ordgrænser ───────────────────────────────────────────────
+
+- id: ordgraense-embargo
+  title: EU indfører embargo mod russisk stål
+  expect: {none: vis, normal: afvist, strict: afvist, topics: []}
+
+- id: ordgraense-pantebrev
+  title: Sådan fungerer et pantebrev, når du køber hus
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+- id: ordgraense-pantsat
+  title: Familie måtte pantsætte huset for at betale gælden
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+- id: ordgraense-wasted
+  title: Ministers wasted no time in the budget talks
+  category: eu_norden
+  lang: en
+  expect: {none: vis, normal: afvist, strict: afvist}
+
+- id: ordgraense-skraldespand-er-ikke-skrald
+  title: Ny skraldespand designet til haveejere
+  expect: {none: vis, normal: afvist, strict: afvist, topics: [sortering]}
+
+# ── Engelske og svenske kilder ───────────────────────────────
+
+- id: en-packaging-waste
+  title: Commission proposes new rules to cut packaging waste
+  category: eu_norden
+  lang: en
+  expect: {none: vis, normal: vis, strict: vis, topics: [producentansvar]}
+
+- id: en-ppwr
+  title: Council agrees on the Packaging and Packaging Waste Regulation (PPWR)
+  category: eu_norden
+  lang: en
+  expect: {none: vis, normal: vis, strict: vis, topics: [producentansvar]}
+
+- id: en-recycling-rate
+  title: Denmark's municipal recycling rate reaches 55 percent
+  category: eu_norden
+  lang: en
+  expect: {none: vis, normal: vis, strict: vis, topics: [genanvendelse]}
+
+- id: en-epr-textiles
+  title: Extended producer responsibility for textiles enters into force
+  category: eu_norden
+  lang: en
+  expect: {none: vis, normal: vis, strict: vis, topics: [tekstiler]}
+
+- id: en-strict-teaser-only
+  title: Commission adopts new chemicals strategy
+  teaser: The strategy also addresses hazardous waste and the recycling of plastics.
+  category: eu_norden
+  lang: en
+  expect: {none: vis, normal: vis, strict: graa}
+
+- id: en-irrelevant
+  title: Commission welcomes agreement on rail freight corridors
+  category: eu_norden
+  lang: en
+  expect: {none: vis, normal: afvist, strict: afvist, topics: []}
+
+- id: sv-aatervinning
+  title: Ny lag om återvinning av förpackningar
+  category: eu_norden
+  lang: sv
+  expect: {none: vis, normal: vis, strict: vis, topics: []}
+
+# ── Strict uden titelhit og svage ord ───────────────────────
+
+- id: strict-klimaplan-teaser
+  title: Regeringen præsenterer ny klimaplan
+  teaser: Planen rummer også tiltag for affaldsforbrænding og CO2-fangst.
+  expect: {none: vis, normal: vis, strict: graa, topics: []}
+
+- id: strict-genbrugsplads-i-teaser
+  title: Ny aftale på plads for kommunerne
+  teaser: Aftalen berører også genbrugspladserne.
+  category: fagmedie
+  expect: {none: vis, normal: graa, strict: graa, topics: []}
+
+- id: strict-intet
+  title: Regeringen præsenterer ny finanslov
+  teaser: Der er afsat penge til sundhed og uddannelse.
+  expect: {none: vis, normal: afvist, strict: afvist, topics: []}
+
+- id: svag-alene
+  title: Ny plan skal holde plast ude af havet
+  expect: {none: vis, normal: afvist, strict: afvist}
+
+- id: svag-to-ord
+  title: Plastemballage skal være lettere at genbruge
+  expect: {none: vis, normal: graa, strict: graa, topics: [producentansvar]}
+
+# ── Genre ────────────────────────────────────────────────────
+
+- id: genre-debat-url
+  title: Affaldsforbrændingen har brug for en plan
+  url: https://www.altinget.dk/forsyning/debat/affaldsforbraendingen-har-brug-for-en-plan
+  category: fagmedie
+  expect: {normal: vis, topics: [forbraending], genre: debat}
+
+- id: genre-kronik-praefiks
+  title: "Kronik: Producentansvaret for emballage er en gave til kommunerne"
+  category: fagmedie
+  expect: {normal: vis, topics: [producentansvar], genre: debat}
+
+- id: genre-debat-rss-kategori
+  title: Kommunerne bør samarbejde om affaldsplanerne
+  categories: [Debat]
+  category: fagmedie
+  expect: {normal: vis, topics: [regler], genre: debat}
+
+- id: genre-pressemeddelelse-url
+  title: Vestforbrænding sænker prisen på affaldsvarme
+  url: https://vestfor.dk/pressemeddelelser/vestforbraending-saenker-prisen-paa-affaldsvarme
+  category: kommunal
+  expect: {none: vis, topics: [forbraending], genre: pressemeddelelse}
+
+- id: genre-kilde-vinder-over-url
+  title: Dansk Retursystem indsamlede rekordmange flasker
+  url: https://eksempel.dk/debat/dansk-retursystem-rekord
+  source_genre: pressemeddelelse
+  category: organisation
+  expect: {normal: vis, topics: [producentansvar], genre: pressemeddelelse}
+
+- id: genre-analyse-praefiks
+  title: "Ny rapport: Kommunerne genanvender kun 40 pct. af plastaffaldet"
+  category: taenketank
+  expect: {normal: vis, strict: vis, topics: [genanvendelse], genre: analyse}
+
+- id: genre-analyse-rss-kategori
+  title: Kommunernes udgifter til affald er steget 20 procent
+  categories: ["Nyheder, Analyser"]
+  category: taenketank
+  expect: {normal: vis, topics: [], genre: analyse}
+
+- id: genre-hoering-kilde
+  title: Høring over ændring af reglerne for genbrugspladser
+  source_genre: hoering
+  category: myndighed
+  expect: {none: vis, normal: vis, topics: [genbrugspladser, regler], genre: hoering}
+
+- id: genre-hoering-praefiks
+  title: Høring over udkast til ny vejledning om madaffald
+  category: myndighed
+  expect: {normal: vis, topics: [bioaffald, regler], genre: hoering}
+
+- id: genre-folketing-giver-regler
+  title: Spørgsmål om tekstilindsamling i kommunerne
+  source_genre: folketing
+  category: myndighed
+  expect: {none: vis, normal: afvist, topics: [tekstiler, regler], genre: folketing}
+
+# ── Kildens temaer som fallback ─────────────────────────────
+
+- id: kildetema-plus-hit
+  title: Nye beholdere på vej til alle husstande
+  category: kommunal
+  source_topics: [sortering]
+  expect: {none: vis, normal: afvist, topics: [sortering]}
+
+- id: kildetema-fallback
+  title: Nyt kontrolrum indviet på værket
+  category: kommunal
+  source_topics: [forbraending]
+  expect: {none: vis, normal: afvist, topics: [forbraending]}
