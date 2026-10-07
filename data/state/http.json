@@ -1,0 +1,101 @@
+{
+  "https://a-r-c.dk/feed/": {
+    "last_modified": "Tue, 06 Oct 2026 14:41:46 GMT"
+  },
+  "https://affaldplus.dk/rss.xml": {
+    "etag": "\"1791369869\"",
+    "last_modified": "Wed, 07 Oct 2026 10:44:29 GMT"
+  },
+  "https://argo.dk/feed/": {
+    "etag": "\"0026192349ffdadfab87c3d009700a81-gzip\"",
+    "last_modified": "Tue, 06 Oct 2026 11:22:54 GMT"
+  },
+  "https://dagensbyggeri.dk/feed/?s=affald": {
+    "etag": "\"53476622ff0b37a1e745b6676c23c648-gzip\"",
+    "last_modified": "Wed, 07 Oct 2026 11:34:58 GMT"
+  },
+  "https://danskretursystem.dk/feed/": {
+    "etag": "W/\"652d54078b9d3c2458e5b4ba9c07ffc6\"",
+    "last_modified": "Wed, 07 Oct 2026 10:57:18 GMT"
+  },
+  "https://eeb.org/en/feed/": {
+    "etag": "W/\"8520c870407cb960e9dd8c0164e923db\"",
+    "last_modified": "Tue, 06 Oct 2026 09:55:00 GMT"
+  },
+  "https://expra.eu/feed/": {
+    "etag": "\"5292e8de1c8e10204fb0a8aa1973e910\"",
+    "last_modified": "Sat, 29 Aug 2026 23:25:47 GMT"
+  },
+  "https://gate21.dk/feed/": {
+    "etag": "W/\"dbabfe9af075701a1668bf07bdb07b5e\"",
+    "last_modified": "Tue, 06 Oct 2026 14:38:05 GMT"
+  },
+  "https://ing.dk/rss": {
+    "etag": "\"1791373264-gzip\"",
+    "last_modified": "Wed, 07 Oct 2026 11:41:04 GMT"
+  },
+  "https://klimaraadet.dk/da/rss.xml": {
+    "etag": "\"1790938802-gzip\"",
+    "last_modified": "Fri, 02 Oct 2026 11:00:02 GMT"
+  },
+  "https://kraka.dk/feed/": {
+    "etag": "\"c450f33da796fbe1dab7444c2c7d72ac\"",
+    "last_modified": "Thu, 27 Aug 2026 10:30:36 GMT"
+  },
+  "https://plast.dk/feed/": {
+    "etag": "\"d81165a94934a5cd970a47d70b94f660\"",
+    "last_modified": "Wed, 07 Oct 2026 11:14:52 GMT"
+  },
+  "https://renosyd.dk/feed": {
+    "etag": "\"63c9deca8c9646c042a0f750cb32c890\"",
+    "last_modified": "Tue, 06 Oct 2026 12:51:41 GMT"
+  },
+  "https://rgo.dk/feed/": {
+    "etag": "\"b585e71be505fac13550fba730c2b104-gzip\"",
+    "last_modified": "Mon, 05 Oct 2026 12:11:42 GMT"
+  },
+  "https://www.avisen.dk/rss.aspx": {
+    "last_modified": "Sun, 07 Oct 2018 11:39:58 GMT"
+  },
+  "https://www.berlingske.dk/content/rss": {
+    "etag": "\"mr4lfq9thc6hi\""
+  },
+  "https://www.biogas.dk/feed/": {
+    "etag": "\"67058e9a59f8668c5141dd8ee7647950\"",
+    "last_modified": "Wed, 07 Oct 2026 10:51:27 GMT"
+  },
+  "https://www.dr.dk/nyheder/service/feeds/indland": {
+    "etag": "W/\"3a80-NclTPVwdyCEvGuxcpMGypf0bFLA\""
+  },
+  "https://www.dr.dk/nyheder/service/feeds/penge": {
+    "etag": "W/\"3d06-rRgXlKa530gdJpJyhf51VXuiD1w\""
+  },
+  "https://www.emballagefokus.dk/feed/": {
+    "etag": "\"a110f9780f9492a919f95a6153d0b76c\"",
+    "last_modified": "Wed, 07 Oct 2026 11:30:09 GMT"
+  },
+  "https://www.hofor.dk/feed/": {
+    "etag": "\"aed5ed2a050750b525676056ff87e573\"",
+    "last_modified": "Wed, 07 Oct 2026 11:27:17 GMT"
+  },
+  "https://www.iswa.org/feed/": {
+    "etag": "\"4aae85d6e0167ac271bd23193012a76e-gzip\"",
+    "last_modified": "Wed, 07 Oct 2026 09:29:21 GMT"
+  },
+  "https://www.norden.org/da/rss.xml": {
+    "etag": "W/\"1791373319\"",
+    "last_modified": "Wed, 07 Oct 2026 11:41:59 GMT"
+  },
+  "https://www.refa.dk/feed/": {
+    "etag": "\"5724fe59a1029ce09f632270aee7b559\"",
+    "last_modified": "Wed, 07 Oct 2026 09:40:15 GMT"
+  },
+  "https://www.tekniskfokus.dk/feed/": {
+    "etag": "\"e3d05a82ee0b81e8f5887609d51c91b9\"",
+    "last_modified": "Tue, 06 Oct 2026 09:27:35 GMT"
+  },
+  "https://zerowasteeurope.eu/feed/": {
+    "etag": "W/\"74020bb1366c947ab72eb34e86e31992\"",
+    "last_modified": "Wed, 07 Oct 2026 09:51:52 GMT"
+  }
+}

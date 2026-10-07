@@ -1,0 +1,37 @@
+{
+  "fla.de": {
+    "name": "fla",
+    "count": 1,
+    "last_seen": "2026-10-07T11:39:46Z",
+    "examples": [
+      "https://www.fla.de/flensborg/lokalt/96529/dansk-inspireret-losning-genbrugspladsen-skal-vaere-aben-nar-"
+    ],
+    "ids": [
+      "4ab24a639891"
+    ]
+  },
+  "msn.com": {
+    "name": "Nyheder24 on MSN",
+    "count": 2,
+    "last_seen": "2026-10-07T11:39:46Z",
+    "examples": [
+      "https://www.msn.com/da-dk/nyheder/other/affald-skulle-blive-billigere-nu-risikerer-danskerne-at-betale-mere/ar-AA2dIQNq",
+      "https://www.msn.com/da-dk/sundhed/generelt/affaldsselskab-sl%C3%A5r-alarm-popul%C3%A6r-v%C3%A6gttabsmedicin-skaber-uventet-fare/ar-AA2dKg75"
+    ],
+    "ids": [
+      "2d282b2738cc",
+      "b1c4a705b374"
+    ]
+  },
+  "zawya.com": {
+    "name": "ZAWYA",
+    "count": 1,
+    "last_seen": "2026-10-07T11:39:46Z",
+    "examples": [
+      "https://www.zawya.com/en/press-release/companies-news/half-of-dubais-luxury-villa-buyers-now-plan-renovations-before-purchase-says-imperium-group-1543454"
+    ],
+    "ids": [
+      "3941efbe4e71"
+    ]
+  }
+}
