@@ -165,7 +165,10 @@ def by3_request(info: dict) -> tuple[dict, str]:
 def parse_population(text: str) -> dict[str, int]:
     """CSV med koder → {byområdekode: folketal}. Første kolonne er byområdet, sidste er tallet."""
     out: dict[str, int] = {}
-    rows = list(csv.reader(io.StringIO(text.lstrip("﻿")), delimiter=";"))
+    body = text.lstrip("﻿")
+    first = body.split("\n", 1)[0]
+    delimiter = max((";", "\t", ","), key=first.count)
+    rows = list(csv.reader(io.StringIO(body), delimiter=delimiter))
     for row in rows[1:]:
         if len(row) < 2:
             continue
@@ -173,7 +176,7 @@ def parse_population(text: str) -> dict[str, int]:
         if raw.isdigit():
             out[row[0].strip()] = int(raw)
     if not out:
-        raise GeoError("BY3: ingen folketal i svaret")
+        raise GeoError(f"BY3: ingen folketal i svaret: {body[:400]!r}")
     return out
 
 
