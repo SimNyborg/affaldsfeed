@@ -86,6 +86,8 @@ class Source(_Strict):
     paywall: Paywall = "nej"
     owner: str | None = None
     aliases: list[str] = Field(default_factory=list)
+    # Tidligere id'er (fx en udgiver fra medier.yaml, der er blevet til en kilde), hvis indslag nu vises her
+    replaces: list[str] = Field(default_factory=list)
     every: int | None = None
     bundle: Literal["day"] | None = None
     ai: bool = True

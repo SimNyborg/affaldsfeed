@@ -235,3 +235,15 @@ def test_datetimes_are_utc(base_config):
     a = cand("a", published=datetime.fromisoformat("2026-10-07T11:00:00+02:00"))
     out = build(base_config, [a], [judge(a)])
     assert out[0].model_dump(mode="json")["published"] == "2026-10-07T09:00:00Z"
+
+
+def test_items_under_a_replaced_id_follow_the_new_source(base_config):
+    """En udgiver fra medier.yaml er blevet til en kilde: gemte indslag vises under kilden (Source.replaces)."""
+    sources = [*SOURCES, _src("tv2-nyheder", "nyhedsmedie", replaces=["tv2-dk"])]
+    old = cand("gammel", source="tv2-dk")
+    out = build_display_items(base_config, sources, [old], {old.id: judge(old)}, "claude", NOW, SINCE)
+    assert [d.source for d in out] == ["tv2-nyheder"]
+    info = known_sources(sources, base_config.publishers)
+    assert info["tv2-dk"].id == "tv2-nyheder"
+    # Uden replaces forsvinder indslaget (ukendt afsender)
+    assert build(base_config, [old], [judge(old)]) == []

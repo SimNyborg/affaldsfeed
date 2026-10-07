@@ -75,6 +75,12 @@ def known_sources(sources: list[Source], publishers: list[Publisher]) -> dict[st
             status="aktiv",
             via_search=True,
         )
+    # Indslag gemt under et tidligere id (fx en udgiver fra medier.yaml, der er blevet til en kilde) vises
+    # under kilden, der har overtaget det (Source.replaces). check sikrer, at id'et ikke findes andre steder.
+    for s in sources:
+        if s.id in out and not out[s.id].via_search:
+            for old in s.replaces:
+                out.setdefault(old, out[s.id])
     return out
 
 
@@ -178,7 +184,7 @@ def _from_candidate(
         url=c.url,
         title=c.title,
         teaser=clean_text(c.teaser, teaser_max),
-        source=c.source,
+        source=info.id,  # nyt id, hvis kilden har overtaget et tidligere (replaces)
         published=ensure_utc(c.published) if c.published else None,
         date_quality=c.date_quality,
         first_seen=ensure_utc(c.first_seen),
@@ -218,7 +224,7 @@ def _from_sweep(
         url=ni.url,
         title=ni.title,
         teaser=clean_text(ni.teaser, teaser_max),
-        source=ni.source,
+        source=info.id,
         published=published,
         date_quality=date_quality,
         first_seen=found,

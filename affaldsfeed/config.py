@@ -315,6 +315,18 @@ def cross_check(sources: list[Source], config: Config, today: date | None = None
         if p.id in source_ids:
             errors.append(f"medier.yaml: {p.id}: id findes også i sources.yaml")
 
+    # replaces: gamle id'er må ikke stadig findes, og to kilder må ikke overtage det samme id
+    publisher_ids = {p.id for p in config.publishers}
+    taken: dict[str, str] = {}
+    for s in sources:
+        for old in s.replaces:
+            if old in source_ids or old in publisher_ids:
+                where = "sources.yaml" if old in source_ids else "medier.yaml"
+                errors.append(f"sources.yaml: {s.id}: replaces nævner {old}, som stadig findes i {where}")
+            if old in taken and taken[old] != s.id:
+                errors.append(f"sources.yaml: {s.id}: replaces nævner {old}, som {taken[old]} allerede overtager")
+            taken.setdefault(old, s.id)
+
     # Samme vært hos to forskellige aktive afsendere
     owner: dict[str, str] = {}
     for s in sources:

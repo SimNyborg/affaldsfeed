@@ -238,3 +238,19 @@ def test_cross_check_warns_on_shared_host(env):
     errors, warnings = cfgmod.cross_check([*sources, extra], cfg)
     assert not errors
     assert any("testmedie-2: værten testmedie.dk bruges også af testmedie" in w for w in warnings)
+
+
+def test_cross_check_replaces(env):
+    sources = load_sources(env.sources)
+    cfg = load_config(env.config)
+    pub = cfg.publishers[0].id
+    ok = sources[2].model_copy(update={"id": "ny-kilde", "replaces": ["nedlagt-dk"]})
+    errors, _ = cfgmod.cross_check([*sources, ok], cfg)
+    assert not errors
+    still_there = sources[2].model_copy(update={"id": "ny-kilde", "replaces": [pub, sources[3].id]})
+    errors, _ = cfgmod.cross_check([*sources, still_there], cfg)
+    assert any(f"replaces nævner {pub}, som stadig findes i medier.yaml" in e for e in errors)
+    assert any(f"replaces nævner {sources[3].id}, som stadig findes i sources.yaml" in e for e in errors)
+    twice = sources[2].model_copy(update={"id": "ny-kilde-2", "replaces": ["nedlagt-dk"]})
+    errors, _ = cfgmod.cross_check([*sources, ok, twice], cfg)
+    assert any("som ny-kilde allerede overtager" in e for e in errors)

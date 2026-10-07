@@ -77,6 +77,7 @@ En YAML-liste. Felter (se `models.Source`):
 | paywall | `nej`\|`delvis`\|`ja` | `nej` | |
 | owner | str \| None | None | udgiver hvis ikke afsender selv |
 | aliases | list[str] | `[]` | |
+| replaces | list[str] | `[]` | tidligere id'er (fx en udgiver fra `medier.yaml`, der er blevet til en kilde), hvis gemte indslag nu vises under denne kilde. Id'erne må ikke findes i `sources.yaml` eller `medier.yaml` (`check` fejler). |
 | every | int \| None | None → rss 1, search 2, oda 3, sitemap/html 6 | timer mellem kørsler |
 | bundle | `day` \| None | None | |
 | ai | bool | true | false = Claude vurderer ikke kilden; den vurderes kun af regler |
