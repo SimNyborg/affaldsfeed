@@ -1,4 +1,4 @@
-// Affaldsfeed: forsiden (feed) og "Om kilderne". Ingen build, ingen afhængigheder.
+// Affaldsfeed: forsiden (feed), Tidslinje og "Om kilderne". Ingen build, ingen afhængigheder.
 
 import {
   el, icon, hidden, sep, catStyle, cap, truncate, cph, fmtNum, fmtShort, fmtLong, fmtWhen, fmtStamp,
@@ -8,6 +8,7 @@ import {
   placeName, placeParents, precisePlaces,
 } from './filters.js';
 import { createOverview } from './overview.js';
+import { createTimeline, demoizeTimeline } from './tidslinje.js';
 
 const PAGE_SIZE = 50;
 const STALE_HOURS = 6;
@@ -23,6 +24,7 @@ store('af.theme', null);
 const page = document.body.dataset.page;
 if (page === 'feed') initFeed();
 else if (page === 'kilder') initKilder();
+else if (page === 'tidslinje') initTimeline();
 
 // ── Data ─────────────────────────────────────────────────
 
@@ -32,18 +34,22 @@ async function fetchJson(url) {
   return r.json();
 }
 
-/** feed.json, eller eksempeldata ved ?demo=1 (lokalt ../examples/, på Pages data/). */
-async function loadFeed(demo) {
-  if (!demo) return fetchJson('data/feed.json');
+/** data/<name>.json, eller eksempeldata ved ?demo=1 (lokalt ../examples/, på Pages data/). */
+async function loadData(name, demo) {
+  if (!demo) return fetchJson(`data/${name}.json`);
   const local = location.pathname.includes('/site/');
   const urls = local
-    ? ['../examples/feed.sample.json', 'data/feed.sample.json']
-    : ['data/feed.sample.json', '../examples/feed.sample.json'];
+    ? [`../examples/${name}.sample.json`, `data/${name}.sample.json`]
+    : [`data/${name}.sample.json`, `../examples/${name}.sample.json`];
   let err = null;
   for (const u of urls) {
     try { return await fetchJson(u); } catch (e) { err = e; }
   }
   throw err;
+}
+
+function loadFeed(demo) {
+  return loadData('feed', demo);
 }
 
 /** Demodata: ryk alle tidspunkter frem, så eksemplet ser aktuelt ud. */
@@ -95,15 +101,6 @@ function initDemo(demo) {
   for (const ev of ['pointerenter', 'focus', 'click']) real.addEventListener(ev, update);
   update();
   strip.hidden = false;
-}
-
-function setSubtitle(feed, now) {
-  const sub = $('subtitle');
-  if (!sub) return;
-  const gen = parseDate(feed.generated);
-  const n = (feed.sources || []).length;
-  sub.replaceChildren(el('span', { class: 'sub-lang', text: 'Nyheder om affald fra ' }),
-    `${fmtNum(n)} kilder${gen ? ` · opdateret ${fmtStamp(gen, now)}` : ''}`);
 }
 
 /** Klassiske scrollbarer tager plads fra indholdet; deres bredde trækkes fra højre polstring (--sbw). */
@@ -184,7 +181,6 @@ function setupFeed(feed, state, now, lastVisit) {
   let limit = PAGE_SIZE;
   let cards = [];
 
-  setSubtitle(feed, now);
 
   // Meddelelser: forældet feed og regelvisning
   const msgs = [];
@@ -691,7 +687,6 @@ async function initKilder() {
   if (!state.demo) {
     try { status = await fetchJson('data/status.json'); } catch { status = null; }
   }
-  setSubtitle(feed, now);
 
   const cats = feed.categories || [];
   const stat = new Map((status?.sources || []).map((s) => [s.id, s]));
@@ -779,4 +774,33 @@ function sourceRow(s, now, cats = null) {
       facts.length ? el('p', { class: 'facts', text: facts.join(' · ') }) : null,
       st?.last_error && s.health === 'roed' ? el('p', { class: 'facts', text: `Seneste fejl: ${truncate(st.last_error, 120)}` }) : null),
     healthBadge(s.health));
+}
+
+// ── Tidslinje ────────────────────────────────────────────
+
+async function initTimeline() {
+  const state = readState(location.search);
+  const now = new Date();
+  initDemo(state.demo);
+  const root = $('tidslinje-root');
+  let tl;
+  try {
+    tl = await loadData('timeline', state.demo);
+  } catch (err) {
+    console.warn('Tidslinjen kunne ikke indlæses:', err.message);
+    root.replaceChildren(el('div', { class: 'panel', role: 'alert' },
+      el('p', { text: 'Tidslinjen kunne ikke indlæses. Prøv igen om lidt.' }),
+      el('p', { class: 'actions' }, el('button', { type: 'button', class: 'btn', onclick: () => location.reload() }, 'Prøv igen'))));
+    return;
+  }
+  if (state.demo) demoizeTimeline(tl, now);
+  // Link til historien i feedet; demo står først som i resten af URL'en
+  const feedHref = (story) => {
+    const q = new URLSearchParams();
+    if (state.demo) q.set('demo', state.demo);
+    if (story) q.set('story', story);
+    const qs = q.toString();
+    return qs ? `index.html?${qs}` : './';
+  };
+  createTimeline(root, tl, { feedHref });
 }

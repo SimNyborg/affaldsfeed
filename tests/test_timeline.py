@@ -181,6 +181,9 @@ def test_items_topics_and_places_rules():
         TimelineEvent.model_validate(event("2026-10-07-x", c, places=["K:Odense"]))
     with pytest.raises(ValidationError, match="level"):
         TimelineEvent.model_validate(event("2026-10-07-x", c, level="stor"))
+    bad_url = {**ref(c), "url": "javascript:alert(1)"}
+    with pytest.raises(ValidationError, match="http"):
+        TimelineEvent.model_validate({**event("2026-10-07-x", c), "items": [bad_url]})
     ok = TimelineEvent.model_validate(event("2026-10-07-x", c, places=["b:ullerslev", "k:nyborg"]))
     assert ok.places == ["k:nyborg", "b:ullerslev"]
 

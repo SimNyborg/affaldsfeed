@@ -479,6 +479,13 @@ class TimelineRef(_Strict):
     source_name: str
     published: datetime | None = None
 
+    @field_validator("url")
+    @classmethod
+    def _http(cls, v: str) -> str:
+        if not v.startswith(("http://", "https://")):
+            raise ValueError("url skal starte med http:// eller https://")
+        return v
+
 
 class TimelineEntry(_Strict):
     """En begivenhed, som den står i timeline.json (uden by og deleted)."""
