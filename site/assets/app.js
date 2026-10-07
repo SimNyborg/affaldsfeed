@@ -4,13 +4,16 @@ import {
   el, icon, hidden, sep, catStyle, cap, truncate, cph, fmtNum, fmtShort, fmtLong, fmtWhen, fmtStamp,
   isoWeek, fmtDayRange, weekdayOf, parseDate, load, store, DAY_MS,
   readState, syncUrl, setData, defaultState, activeCount, sheetCount, activeFilters, removeFilter, resetFilters, shownSet, NATIONAL,
-  prepare, applyFilters, computeCounts, buildPanel, renderActive, topicName, genreName,
-  placeName, placeParents, precisePlaces,
+  prepare, applyFilters, computeCounts, computeDayCounts, buildPanel, renderActive, topicName, genreName,
+  placeName, placeParents, precisePlaces, rangeOf, setRange, fmtRange,
 } from './filters.js';
 import { createOverview } from './overview.js';
 import { createTimeline, demoizeTimeline } from './tidslinje.js';
+import { createDatePicker } from './calendar.js';
 
-const PAGE_SIZE = 50;
+const CHUNK = 50; // kort pr. bid, når listen bygges, mens man scroller
+const AHEAD_PX = 1500; // næste bid bygges, når listens ende er så tæt på skærmen
+const IDLE_MAX = 300; // så mange kort bygges i forvejen i ledige stunder; resten, når man scroller
 const STALE_HOURS = 6;
 const TEASER_MAX = 240;
 const TIME_KEYS = new Set(['generated', 'last_judgment', 'published', 'first_seen', 'start', 'end', 'last_attempt']);
@@ -148,7 +151,7 @@ function initFeed() {
       // Fejlen står i læsekolonnen uden sidepanel og listens hoved (søgning, Filtrér og visning)
       slot.hidden = true;
       head.hidden = true;
-      for (const id of ['overview', 'msgs', 'more-wrap']) $(id).hidden = true;
+      for (const id of ['overview', 'msgs']) $(id).hidden = true;
       $('status-text').textContent = '';
       // Fejlede opbygningen, genindlæses siden, så intet bindes to gange
       const retry = loaded ? () => location.reload() : start;
@@ -174,12 +177,19 @@ function setupFeed(feed, state, now, lastVisit) {
     filterBtn: $('filter-btn'), filterCount: $('filter-count'), filterComma: $('filter-comma'), filterCountSr: $('filter-count-sr'),
     head: $('list-head'), q: $('q'), qClear: $('q-clear'), active: $('active-filters'),
     status: $('status'), statusUnit: $('status-unit'), statusText: $('status-text'), statusSep: $('status-sep'),
-    statusAction: $('status-action'), view: $('view-seg'), period: $('period-seg'), list: $('feed'), more: $('more-wrap'),
+    statusAction: $('status-action'), view: $('view-seg'), list: $('feed'), end: $('feed-end'),
+    dateBtn: $('date-btn'), dateText: $('date-text'), dateClear: $('date-clear'),
   };
   const todayNum = cph(now).dayNum;
+  // Feedets første dag: vinduets start (som standard 60 dage) eller det ældste indslag, hvis det er ældre.
+  // Kalenderen kan vælge dage herfra til i dag.
+  const firstDay = data.members.reduce((d, m) => Math.min(d, m.day.dayNum),
+    cph(new Date(now.getTime() - (Number(feed.window_days) || 60) * DAY_MS)).dayNum);
   let total = null; // antal kort uden filtre
-  let limit = PAGE_SIZE;
   let cards = [];
+  let fill = null; // byggeriet af den aktuelle liste (renderList)
+  let fillId = 0;
+  let pumping = false;
 
   // Meddelelser: forældet feed og regelvisning
   const msgs = [];
@@ -200,14 +210,13 @@ function setupFeed(feed, state, now, lastVisit) {
 
   // ── Ændringer ──
   let qTimer = 0; // søgning, der venter på de 180 ms
-  function change(mutate, { keepLimit = false, scroll = true } = {}) {
+  function change(mutate, { scroll = true } = {}) {
     // En ventende søgning anvendes først, så et filterklik lige efter en tast ikke overskriver teksten
     if (qTimer) { clearTimeout(qTimer); qTimer = 0; state.q = ui.q.value.trim(); }
     // Stod listens hoved over skærmens top, rulles det i syne. Det måles, før DOM'en ændres (layoutet er
     // rent, så målingen er gratis), og rulningen sker i næste billede uden et ekstra, tvunget layout
     const above = scroll && ui.head.getBoundingClientRect().top < 0;
     mutate(state);
-    if (!keepLimit) limit = PAGE_SIZE;
     render();
     if (above) requestAnimationFrame(() => scrollToHead(true));
   }
@@ -250,13 +259,24 @@ function setupFeed(feed, state, now, lastVisit) {
 
   // ── Visning: Normal | Kompakt ──
   for (const input of ui.view.querySelectorAll('input')) {
-    input.addEventListener('change', () => change((s) => { s.vis = input.value; }, { keepLimit: true, scroll: false }));
+    input.addEventListener('change', () => change((s) => { s.vis = input.value; }, { scroll: false }));
   }
 
-  // ── Periode: 7, 30 eller 60 dage over listen ──
-  for (const input of ui.period.querySelectorAll('input')) {
-    input.addEventListener('change', () => change((s) => { s.periode = Number(input.value); }, { scroll: false }));
-  }
+  // ── Kalenderen: et tidsrum inden for feedets vindue ──
+  createDatePicker({
+    button: ui.dateBtn, minDay: firstDay, maxDay: todayNum, today: todayNum,
+    getRange: () => rangeOf(state),
+    getCounts: () => computeDayCounts(data, state, now),
+    onPick: (lo, hi) => change((s) => setRange(s, lo, hi), { scroll: false }),
+  });
+  ui.dateClear.addEventListener('click', () => {
+    change((s) => setRange(s, null), { scroll: false });
+    ui.dateBtn.focus();
+  });
+
+  // ── Listens ende: nærmer den sig skærmen, bygges de næste kort (renderList) ──
+  new IntersectionObserver((entries) => { if (entries.some((e) => e.isIntersecting)) pump(); },
+    { rootMargin: `0px 0px ${AHEAD_PX}px 0px` }).observe(ui.end);
 
   // ── Statuslinjen ──
   ui.statusAction.addEventListener('click', () => {
@@ -336,7 +356,10 @@ function setupFeed(feed, state, now, lastVisit) {
     ui.sheetReset.hidden = n === 0;
     if (document.activeElement !== ui.q && ui.q.value.trim() !== state.q) { ui.q.value = state.q; showClear(); }
     for (const input of ui.view.querySelectorAll('input')) input.checked = input.value === state.vis;
-    for (const input of ui.period.querySelectorAll('input')) input.checked = Number(input.value) === state.periode;
+    const range = rangeOf(state);
+    ui.dateText.textContent = range ? cap(fmtRange(range, true)) : 'Alle datoer';
+    ui.dateBtn.classList.toggle('is-set', !!range);
+    ui.dateClear.hidden = !range;
     cards = applyFilters(data, state, now);
     ui.sheetShow.textContent = `Vis ${fmtNum(cards.length)} indslag`;
     if (ui.sheet.open) {
@@ -374,7 +397,7 @@ function setupFeed(feed, state, now, lastVisit) {
       }
     }
     ui.statusText.textContent = text;
-    // Antallet står kun synligt i "Kun nye". Ellers står perioden i stedet, og antallet læses op (style.css)
+    // Antallet står kun synligt i "Kun nye". Ellers står kalenderknappen i stedet, og antallet læses op (style.css)
     ui.statusUnit.classList.toggle('st-quiet', !state.nye);
     ui.status.classList.toggle('is-empty', !state.nye && !action);
     ui.statusSep.hidden = !action;
@@ -384,23 +407,36 @@ function setupFeed(feed, state, now, lastVisit) {
   }
 
   // Grupper: I dag, I går, ugedage til 6 dage tilbage, derefter uger med kun de dage, gruppen dækker
+  // (inden for feedets vindue og et valgt tidsrum)
   function grouper() {
-    const firstDay = cph(new Date(now.getTime() - state.periode * DAY_MS)).dayNum;
+    const r = rangeOf(state);
+    const lo = r?.lo ?? firstDay;
+    const hi = r?.hi ?? todayNum;
     return (day) => {
       const diff = todayNum - day.dayNum;
       if (diff <= 0) return { key: 'i-dag', label: 'I dag', week: false };
       if (diff === 1) return { key: 'i-gaar', label: 'I går', week: false };
       if (diff < 7) return { key: `d${day.dayNum}`, label: `${cap(weekdayOf(day))} ${fmtLong(day)}`, week: false };
       const w = isoWeek(day.dayNum);
-      const from = Math.max(w.monday, firstDay);
-      const to = Math.min(w.monday + 6, todayNum - 7);
+      const from = Math.max(w.monday, lo);
+      const to = Math.min(w.monday + 6, todayNum - 7, hi);
       return { key: `w${w.year}-${w.week}`, label: `Uge ${w.week} · ${fmtDayRange(from, to)}`, week: true };
     };
   }
 
+  // ── Listen bygges i bidder: den første med det samme, de næste, når listens ende nærmer sig skærmen.
+  // I ledige stunder bygges op til IDLE_MAX kort i forvejen, så en normal liste kort efter står helt i
+  // siden (søgning i siden og footeren virker), mens et meget langt feed ikke gør hvert filterklik tungt. ──
+  function done() {
+    return !fill || fill.i >= cards.length;
+  }
+  function near() {
+    return ui.end.getBoundingClientRect().top < innerHeight + AHEAD_PX;
+  }
+
   function renderList() {
-    ui.more.replaceChildren();
-    ui.more.hidden = true;
+    fillId += 1;
+    fill = null;
     ui.list.classList.toggle('is-compact', state.vis === 'kompakt');
     if (!data.members.length) {
       ui.list.replaceChildren(el('div', { class: 'empty' }, el('p', { text: 'Der er ingen indslag i feedet endnu.' })));
@@ -415,54 +451,74 @@ function setupFeed(feed, state, now, lastVisit) {
       groupCount.set(k, (groupCount.get(k) || 0) + 1);
     }
     const out = [];
-    const visible = cards.slice(0, limit);
-
     // Intet i dag (kun uden filtre)
-    if (activeCount(state) === 0 && groupOf(visible[0].primary.day).key !== 'i-dag') {
+    if (activeCount(state) === 0 && groupOf(cards[0].primary.day).key !== 'i-dag') {
       out.push(el('div', { class: 'day' },
         el('h2', { class: 'day-head', id: 'day-i-dag' }, el('span', { text: 'I dag' })),
         el('p', { class: 'day-empty', text: `Intet nyt endnu i dag.${gen ? ` Sidst opdateret ${fmtStamp(gen, now)}.` : ''}` })));
     }
+    ui.list.replaceChildren(...out);
+    fill = {
+      id: fillId, i: 0, group: null, ul: null, groupOf, groupCount,
+      dividerDone: !lastVisit || state.nye, seenNew: false, compact: state.vis === 'kompakt',
+    };
+    appendCards(CHUNK);
+    pump();
+    idleFill();
+  }
 
-    let group = null;
-    let ul = null;
-    let dividerDone = !lastVisit || state.nye;
-    let seenNew = false;
-    const compact = state.vis === 'kompakt';
-    for (const card of visible) {
-      const g = groupOf(card.primary.day);
-      if (!group || group.key !== g.key) {
-        group = g;
-        ul = el('ul', { class: 'cards' });
-        out.push(el('div', { class: 'day' },
+  /** De næste n kort i rækkefølge, med dagsoverskrifter og "Her slap du sidst". */
+  function appendCards(n) {
+    const f = fill;
+    const end = Math.min(cards.length, f.i + n);
+    for (; f.i < end; f.i += 1) {
+      const card = cards[f.i];
+      const g = f.groupOf(card.primary.day);
+      if (!f.group || f.group.key !== g.key) {
+        f.group = g;
+        f.ul = el('ul', { class: 'cards' });
+        ui.list.append(el('div', { class: 'day' },
           el('h2', { class: 'day-head', id: `day-${g.key}` },
             el('span', { text: g.label }),
-            el('span', { class: 'n' }, fmtNum(groupCount.get(g.key) || 0), hidden(' indslag'))),
-          ul));
+            el('span', { class: 'n' }, fmtNum(f.groupCount.get(g.key) || 0), hidden(' indslag'))),
+          f.ul));
       }
-      const isNew = card.isNew;
-      if (!dividerDone && seenNew && !isNew) {
-        ul.append(el('li', { class: 'lastvisit' }, `Her slap du sidst · ${fmtWhen(lastVisit, now)}`));
-        dividerDone = true;
+      if (!f.dividerDone && f.seenNew && !card.isNew) {
+        f.ul.append(el('li', { class: 'lastvisit' }, `Her slap du sidst · ${fmtWhen(lastVisit, now)}`));
+        f.dividerDone = true;
       }
-      if (isNew) seenNew = true;
-      ul.append(el('li', null, compact ? renderRow(card, g) : renderCard(card, g)));
+      if (card.isNew) f.seenNew = true;
+      f.ul.append(el('li', null, f.compact ? renderRow(card, g) : renderCard(card, g)));
     }
-    ui.list.replaceChildren(...out);
+  }
 
-    if (cards.length > limit) {
-      const next = Math.min(PAGE_SIZE, cards.length - limit);
-      ui.more.append(el('button', {
-        type: 'button', class: 'btn',
-        onclick: () => {
-          const first = limit;
-          limit += PAGE_SIZE;
-          renderList();
-          ui.list.querySelectorAll('article .title a')[first]?.focus();
-        },
-      }, `Vis flere (${fmtNum(next)})`));
-      ui.more.hidden = false;
-    }
+  // Tæt på listens ende: ét bid pr. billede, til enden er langt nok væk igen
+  function pump() {
+    if (pumping || done()) return;
+    pumping = true;
+    requestAnimationFrame(() => {
+      pumping = false;
+      if (done() || !near()) return;
+      appendCards(CHUNK);
+      pump();
+    });
+  }
+
+  // Op til IDLE_MAX kort bygges i ledige stunder (højst 1 s mellem bidderne, også når siden har travlt)
+  function whenIdle(fn) {
+    if (window.requestIdleCallback) requestIdleCallback(fn, { timeout: 1000 });
+    else setTimeout(() => fn({ timeRemaining: () => 8 }), 50);
+  }
+  function idleFill() {
+    const id = fillId;
+    const full = () => done() || fill.i >= IDLE_MAX;
+    // Små bidder på 2 kort, kun mens der er god tid tilbage, så en langsom telefon ikke får lange opgaver
+    whenIdle((deadline) => {
+      if (id !== fillId || full()) return;
+      appendCards(2);
+      while (!full() && deadline.timeRemaining() > 20) appendCards(2);
+      idleFill();
+    });
   }
 
   // ── Kortet ──
@@ -628,11 +684,14 @@ function setupFeed(feed, state, now, lastVisit) {
     }
     const chips = activeFilters(data, state);
     const named = chips.map((f) => f.label);
-    const span = `de seneste ${state.periode} dage`;
+    // Tidsrummet: " den 7. oktober", " i perioden 7.–12. oktober" eller " fra 7. oktober"
+    const r = rangeOf(state);
+    let span = '';
+    if (r) span = r.lo !== null && r.lo === r.hi ? ` den ${fmtRange(r)}` : r.lo === null || r.hi === null ? ` ${fmtRange(r)}` : ` i perioden ${fmtRange(r)}`;
     let msg;
-    if (!named.length && state.q) msg = `Intet om "${state.q}" ${span}.`;
-    else if (named.length) msg = `Ingen indslag passer til ${[...named, ...(state.q ? [`"${state.q}"`] : [])].join(' + ')} ${span}.`;
-    else msg = `Ingen indslag ${span}.`;
+    if (!named.length && state.q) msg = `Intet om "${state.q}"${span}.`;
+    else if (named.length) msg = `Ingen indslag passer til ${[...named, ...(state.q ? [`"${state.q}"`] : [])].join(' + ')}${span}.`;
+    else msg = `Ingen indslag${span}.`;
     const places = data.geo ? shownSet(state, 'sted') : null;
     if (places && !places.has(NATIONAL)) msg += ' Landsdækkende nyheder er ikke valgt under Sted.';
     box.append(el('p', { text: msg }));
@@ -653,8 +712,8 @@ function setupFeed(feed, state, now, lastVisit) {
       // Historien får den korte tekst; dens mærke kan være 60 tegn langt
       else options.push({ text: f.undo || (f.key === 'story' ? 'Fjern historien' : `Fjern ${f.label}`), mutate: (s) => removeFilter(s, f) });
     }
-    // Perioden har intet mærke, fordi den står over listen
-    if (state.periode !== 60) options.push({ text: 'Udvid til 60 dage', mutate: (s) => { s.periode = 60; } });
+    // Tidsrummet har intet mærke, fordi det står over listen
+    if (r) options.push({ text: 'Vis alle datoer', mutate: (s) => setRange(s, null) });
     if (state.q) options.push({ text: 'Ryd søgning', mutate: (s) => { s.q = ''; } });
     let best = null;
     for (const o of options) {

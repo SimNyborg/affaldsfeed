@@ -15,7 +15,7 @@ Affaldsfeed bygges i seks faser. Fase 0 og 1 laves i den første lokale session 
 
 Opdatér tabellen, når en fase er færdig.
 
-Ud over planen er der bygget et stedfilter (regioner, kommuner og byer ud fra `geo`), fanen Tidslinje med de vigtigste begivenheder (routinens trin 7 kl. 22) og en enklere brugerflade efter brugerens ønsker: et AI-overblik, der kan foldes sammen, foldbare grupper i menuen med alt afkrydset fra start og periodevalget over listen.
+Ud over planen er der bygget et stedfilter (regioner, kommuner og byer ud fra `geo`), fanen Tidslinje med de vigtigste begivenheder (routinens trin 7 kl. 22) og en enklere brugerflade efter brugerens ønsker: et AI-overblik, der kan foldes sammen, foldbare grupper i menuen med alt afkrydset fra start og en kalender over listen.
 
 ## Fase 0: Fundament
 
