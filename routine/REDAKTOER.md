@@ -61,7 +61,7 @@ Felterne:
 2. `relevant`: `true` hvis indslaget passer til profilen, ellers `false`. Er du i tvivl, så følg profilens tommelfingerregel: tag det med, hvis en kommunal affaldsmedarbejder sandsynligvis ville bruge to minutter på at læse det.
 3. `reason`: én kort dansk sætning på højst 200 tegn om, hvorfor indslaget er med eller ikke er med. Skriv sagligt, fx "Nye regler for affaldsgebyrer i kommunerne" eller "Handler om atomaffald".
 4. `topics`: 0-2 tema-id'er fra `topics`, det vigtigste først. Brug `[]`, når intet tema passer, og altid ved `relevant: false`.
-5. `places`: `null`, når `rule_places` er rigtige, ellers den rigtige liste (se Steder herunder).
+5. `places`: `null` eller en liste efter reglerne for steder herunder. Ved `relevant: false` er `places` altid `null`.
 6. `genre`: ét id fra `genres` (`nyhed`, `debat`, `pressemeddelelse`, `analyse`, `hoering`, `folketing`). Tag udgangspunkt i `rule_genre`, og skift kun, når titel eller teaser tydeligt viser noget andet.
 7. `summary_da`: kun når `lang` ikke er `da` og indslaget er relevant. Et dansk resumé på højst 160 tegn, skrevet ud fra titel og teaser. Ellers `null`. Danske indslag har altid `null`.
 8. `story_hint`: id på et andet indslag i `pending` eller `recent_approved`, der handler om samme historie, ellers `null`. Aldrig indslagets eget id.
@@ -69,13 +69,13 @@ Felterne:
 10. `by`: `"claude-routine"`.
 11. `new_item`: `null`.
 
-**Steder.** Et sted skrives som `r:<region>`, `k:<kommune>` eller `b:<by>`, fx `k:nyborg` eller `b:ullerslev`. Højst 8 pr. indslag.
+Regler for steder:
 
-- Tjek `rule_places`. Er de rigtige, så skriv `"places": null`.
+- Et sted skrives som `r:<region>`, `k:<kommune>` eller `b:<by>`, fx `k:nyborg` eller `b:ullerslev`. Højst 8 pr. indslag.
+- `null` betyder, at `rule_places` er rigtige, også når listen er tom. `[]` betyder, at nyheden er national, selvom reglerne fandt steder. Ellers skriver du den rigtige liste.
 - Fjern steder, der kun nævnes i forbifarten, i et navn på en institution eller virksomhed (fx "Aarhus Universitet" i en forskningsnyhed) eller i et personnavn (fx minister Lars Aagaard).
-- Tilføj et sted, når artiklen tydeligt handler om det. Kommunen og regionen følger automatisk med i filtret, så en by behøver ikke også sin kommune.
-- Nationale nyheder har ingen steder: skriv `"places": []`.
-- Brug kun id'er fra `config/geografi.yaml`. Regioner og kommuner står i `places_help`. En bys id finder du med `grep -B1 "^  navn: Ullerslev$" config/geografi.yaml`. Står byen der ikke, så brug kommunen.
+- Tilføj et sted, når artiklen tydeligt handler om det.
+- Brug kun id'er fra `config/geografi.yaml`. Regioner og kommuner står i `places_help`. En by slår du op med `grep -n -i -B8 "Nykøbing Falster" config/geografi.yaml`, som også finder andre stavemåder. Id'et står i den nærmeste linje `- id:` over træffet, her `b:nykoebing-f` (en post med `kode:` er en kommune, `k:`). Står byen der ikke, så brug kommunen.
 
 Tilføj linjerne nederst i `data/judgments/DATO.jsonl` (filen oprettes, hvis den ikke findes). Én JSON-genstand pr. linje, ingen tomme linjer og ingen indrykning. Brug en heredoc med `'EOF'`, så skallen ikke ændrer teksten:
 
@@ -94,7 +94,7 @@ Ret aldrig linjer fra tidligere kørsler. Vil du ændre en tidligere vurdering, 
 .venv/bin/python -m affaldsfeed validate-judgments --file data/judgments/DATO.jsonl
 ```
 
-Fejl vises som `fil:linje: besked`. Ret de linjer, du selv har skrevet i denne kørsel, og kør kommandoen igen, indtil den slutter med `OK`. Kan en linje ikke rettes efter tre forsøg (fx fordi id'et ikke findes), så slet netop den linje.
+Fejl vises som `fil:linje: besked`. Ret kun fejl i linjer, du selv har skrevet i denne kørsel, og kør kommandoen igen, indtil den slutter med `OK` eller kun melder fejl i ældre linjer. Er fejlen i `places`, så skriv `"places": null` i stedet for at slette linjen. Kan en anden fejl ikke rettes efter tre forsøg (fx fordi id'et ikke findes), så slet netop den linje. En `ADVARSEL` om et ukendt sted-id er ikke en fejl, men ret id'et efter forslaget, hvis linjen er din.
 
 ### 5. Opdatér overblikket
 

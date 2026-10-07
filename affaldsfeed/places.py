@@ -16,7 +16,8 @@ from .models import Geo, PlaceSettings, sort_places
 # "<navn> Kommune" skrives både med stort og lille k
 _KOMMUNE = ("Kommune", "kommune")
 _REGION = ("Region", "region")
-_WORD_BEFORE = re.compile(r"(\w+)\s+$")
+# Ordet før et navn, evt. efterfulgt af initialer: "Lars Aagaard", "Lars C. Aagaard"
+_WORD_BEFORE = re.compile(r"(\w+)\s+(?:[A-ZÆØÅ]\.\s*)*$")
 
 
 @dataclass(frozen=True)
@@ -93,15 +94,17 @@ def compile_places(geo: Geo, settings: PlaceSettings | None = None) -> PlaceMatc
     body = "|".join(r"\s+".join(re.escape(w) for w in n.split(" ")) for n in alternatives)
     # Ordgrænse: intet bogstav eller ciffer lige før eller efter (bindestreg er en grænse)
     pattern = re.compile(rf"(?<!\w)(?:{body})(?!\w)")
+    # Institutionsord som præfiks lige efter navnet, også efter bindestreg ("Aarhus-konventionen")
     words = [w.strip() for w in settings.institution_words if w.strip()]
     institution = (
-        re.compile(r"\s+(?:" + "|".join(_any_case_first(w) for w in words) + r")") if words else None
+        re.compile(r"[\s-]+(?:" + "|".join(_any_case_first(w) for w in words) + r")") if words else None
     )
     return PlaceMatcher(pattern, {n: frozenset(v) for n, v in names.items()}, institution)
 
 
 def _after_person_name(text: str, start: int) -> bool:
-    """Står et ord med stort begyndelsesbogstav lige før? Så er bynavnet nok et efternavn ("Lars Aagaard")."""
+    """Står et ord med stort begyndelsesbogstav (evt. med initialer efter) lige før? Så er bynavnet nok et
+    efternavn ("Lars Aagaard", "Lars C. Aagaard")."""
     m = _WORD_BEFORE.search(text, 0, start)
     if m is None:
         return False
@@ -119,10 +122,10 @@ def match_places(text: str, matcher: PlaceMatcher) -> list[str]:
         ids = matcher.ids.get(" ".join(m.group(0).split()))
         if not ids:
             continue
-        # "Aarhus Universitet", "Københavns Lufthavn": institutionens navn, ikke stedet
+        # "Aarhus Universitet", "Københavns Vestegn", "Holbæk-motorvejen": et navn på noget andet end stedet
         if matcher.institution is not None and matcher.institution.match(text, m.end()):
             continue
-        # Rene bynavne efter et fornavn er efternavne, fx "Lars Aagaard" (byen Ågård)
+        # Rene bynavne efter et fornavn er efternavne, fx "Lars Aagaard" og "Lars C. Aagaard" (byen Ågård)
         if all(p.startswith("b:") for p in ids) and _after_person_name(text, m.start()):
             continue
         found |= ids

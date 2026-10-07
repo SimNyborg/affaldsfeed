@@ -75,6 +75,9 @@ _ID_RE = re.compile(ID_PATTERN)
 MAX_PLACES = 8
 PLACE_RANK: dict[str, int] = {"r": 0, "k": 1, "b": 2}
 _PLACE_RE = re.compile(r"^[rkb]:[a-z0-9][a-z0-9-]*$")
+PLACE_ID_HINT = "skriv r:<region>, k:<kommune> eller b:<by> med små bogstaver og æ→ae, ø→oe, å→aa (fx k:koebenhavn)"
+_PLACE_LETTERS = (("æ", "ae"), ("ø", "oe"), ("å", "aa"), ("é", "e"), ("ü", "u"), ("ö", "oe"), ("ä", "ae"))
+_PLACE_PREFIXES = {"region": "r", "kommune": "k", "by": "b"}
 
 
 def sort_places(ids: Iterable[str], limit: int | None = MAX_PLACES) -> list[str]:
@@ -83,11 +86,30 @@ def sort_places(ids: Iterable[str], limit: int | None = MAX_PLACES) -> list[str]
     return out if limit is None else out[:limit]
 
 
-def _check_places(v: list[str]) -> list[str]:
-    for p in v:
-        if not _PLACE_RE.match(p):
-            raise ValueError(f"ugyldigt sted-id {p!r}: brug r:<region>, k:<kommune> eller b:<by>")
-    return sort_places(v, limit=None)
+def suggest_place_id(raw: str) -> str | None:
+    """Et velformet bud på et forkert skrevet sted-id ("K:København" → "k:koebenhavn"), ellers None."""
+    s = raw.strip().lower()
+    for a, b in _PLACE_LETTERS:
+        s = s.replace(a, b)
+    prefix, sep, rest = s.partition(":")
+    if not sep:
+        return None
+    prefix = _PLACE_PREFIXES.get(prefix.strip(), prefix.strip())
+    out = f"{prefix}:{re.sub(r'[^a-z0-9]+', '-', rest).strip('-')}"
+    return out if out != raw and _PLACE_RE.match(out) else None
+
+
+def _check_places(v: list[str], limit: int | None = MAX_PLACES) -> list[str]:
+    """Tjek formatet, fjern dubletter og normalisér rækkefølgen. Derefter højst `limit` forskellige steder."""
+    bad = [p for p in v if not _PLACE_RE.match(p)]
+    if bad:
+        shown = ", ".join(f"{p!r} (mente du {s!r}?)" if (s := suggest_place_id(p)) else repr(p) for p in bad)
+        what = "ugyldigt sted-id" if len(bad) == 1 else "ugyldige sted-id'er"
+        raise ValueError(f"{what} {shown}: {PLACE_ID_HINT}")
+    out = sort_places(v, limit=None)
+    if limit is not None and len(out) > limit:
+        raise ValueError(f"højst {limit} forskellige steder, her er der {len(out)}")
+    return out
 
 
 class _Strict(BaseModel):
@@ -110,8 +132,8 @@ class Source(_Strict):
     filter: FilterLevel = "normal"
     topics: list[TopicId] = Field(default_factory=list)
     genre: GenreId = "nyhed"
-    # Fast geografi for afsendere, der kun skriver om ét område (fx et kommunalt affaldsselskab)
-    places: list[str] = Field(default_factory=list, max_length=MAX_PLACES)
+    # Fast geografi for afsendere, der kun skriver om ét område (fx et kommunalt affaldsselskab). Højst 8.
+    places: list[str] = Field(default_factory=list)
     lang: Lang = "da"
     paywall: Paywall = "nej"
     owner: str | None = None
@@ -191,7 +213,7 @@ class Publisher(_Strict):
     basis: Basis
     paywall: Paywall = "nej"
     lang: Lang = "da"
-    places: list[str] = Field(default_factory=list, max_length=MAX_PLACES)
+    places: list[str] = Field(default_factory=list)  # højst 8
 
     @field_validator("places")
     @classmethod
@@ -325,7 +347,7 @@ class Candidate(_Strict):
     lang: Lang = "da"
     genre: GenreId = "nyhed"
     topics: list[TopicId] = Field(default_factory=list, max_length=2)
-    places: list[str] = Field(default_factory=list, max_length=MAX_PLACES)  # regelmærker (KONTRAKTER §4.1)
+    places: list[str] = Field(default_factory=list)  # regelmærker, højst 8 (KONTRAKTER §4.1)
     why: Why
     baseline: bool = False
     found_via: FoundVia = "feed"
@@ -372,8 +394,8 @@ class Judgment(_Strict):
     relevant: bool
     reason: str = Field(max_length=200)
     topics: list[TopicId] = Field(default_factory=list, max_length=2)
-    # None = behold regelmærkerne; en liste (også tom) erstatter dem
-    places: list[str] | None = Field(default=None, max_length=MAX_PLACES)
+    # None = behold regelmærkerne; en liste (også tom) erstatter dem. Højst 8 forskellige.
+    places: list[str] | None = None
     genre: GenreId = "nyhed"
     summary_da: str | None = Field(default=None, max_length=160)
     story_hint: str | None = None
@@ -437,8 +459,8 @@ class DisplayItem(_Strict):
     first_seen: datetime
     baseline: bool = False
     topics: list[TopicId] = Field(default_factory=list, max_length=2)
-    # For en historie: foreningen af hovedindslagets og also-indslagenes steder
-    places: list[str] = Field(default_factory=list, max_length=MAX_PLACES)
+    # For en historie: foreningen af hovedindslagets og also-indslagenes steder (kan være flere end 8)
+    places: list[str] = Field(default_factory=list)
     genre: GenreId = "nyhed"
     lang: Lang = "da"
     summary_da: str | None = None
@@ -450,7 +472,7 @@ class DisplayItem(_Strict):
     @field_validator("places")
     @classmethod
     def _places(cls, v: list[str]) -> list[str]:
-        return _check_places(v)
+        return _check_places(v, limit=None)
 
 
 # ── Geografi (config/geografi.yaml, genereret af tools/build_geografi.py) ──
@@ -497,14 +519,17 @@ class Geo(_Strict):
     _parents: dict[str, frozenset[str]] | None = PrivateAttr(default=None)
 
     def hierarchy(self) -> dict[str, frozenset[str]]:
-        """Alle gyldige sted-id'er -> deres forældre: by → kommuner → regioner, kommune → region."""
+        """Alle gyldige sted-id'er -> deres forældre: by → primær kommune → region, kommune → region.
+
+        En by tæller kun under sin primære kommune (`kommune`), ikke under alle i `kommuner` (KONTRAKTER §9).
+        """
         if self._parents is None:
             region_of = {m.id: m.region for m in self.kommuner}
             out: dict[str, frozenset[str]] = {f"r:{r.id}": frozenset() for r in self.regioner}
             for m in self.kommuner:
                 out[f"k:{m.id}"] = frozenset({f"r:{m.region}"})
             for t in self.byer:
-                ks = t.kommuner or [t.kommune]
+                ks = [t.kommune]
                 out[f"b:{t.id}"] = frozenset(
                     {f"k:{k}" for k in ks} | {f"r:{region_of[k]}" for k in ks if k in region_of}
                 )

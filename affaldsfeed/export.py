@@ -74,7 +74,7 @@ def geo_block(geo: Geo, items: list[DisplayItem]) -> dict[str, Any] | None:
         "kommuner": [{"id": m.id, "navn": m.navn, "kort": m.kort, "region": m.region} for m in geo.kommuner],
         "byer": [
             {"id": t.id, "navn": t.navn, "kommune": t.kommune, "kommuner": list(t.kommuner or [t.kommune])}
-            for t in geo.byer
+            for t in sorted(geo.byer, key=lambda t: t.id)
             if t.id in used
         ],
     }

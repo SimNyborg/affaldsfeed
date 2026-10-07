@@ -292,6 +292,40 @@ def test_geo_block_and_places(repo):
     ]
 
 
+def test_story_places_are_not_cut_at_eight(repo, tmp_path):
+    """Review: 10 steder fordelt på 3 indslag; by=vojens og by=soenderborg skal stadig finde historien."""
+    title = "Kommunerne i Sønderjylland samarbejder om nyt sorteringsanlæg"
+    main = cand("anlaeg", source="kefm", hours_ago=5, title=title,
+                places=["r:syddanmark", "k:aabenraa", "k:haderslev"])
+    a = cand("anlaeg-a", hours_ago=4, title=title, places=["k:soenderborg", "k:toender", "b:aabenraa", "b:haderslev"])
+    b = cand("anlaeg-b", hours_ago=3, title=title, places=["b:soenderborg", "b:toender", "b:vojens"])
+    store.save_candidates([main, a, b])
+    judge(*({"id": c.id, "relevant": True} for c in (main, a, b)))
+    heartbeat("2026-10-07T09:30:00Z")
+    assert export_to(tmp_path / "_site") == 0
+    feed = json.loads((tmp_path / "_site" / "data" / "feed.json").read_text(encoding="utf-8"))
+    [story] = feed["items"]
+    assert len(story["also"]) == 2 and len(story["places"]) == 10
+    assert {"b:soenderborg", "b:vojens"} <= set(story["places"])
+    assert [t["id"] for t in feed["geo"]["byer"]] == ["aabenraa", "haderslev", "soenderborg", "toender", "vojens"]
+
+
+def test_geo_block_sorts_towns_by_id():
+    # KONTRAKTER §8: byerne sorteres efter id, også når geografi.yaml ikke er sorteret
+    from affaldsfeed.models import DisplayItem, Geo
+
+    geo = Geo.model_validate({
+        "regioner": [{"id": "syddanmark", "kode": "083", "navn": "Region Syddanmark", "kort": "Syddanmark"}],
+        "kommuner": [{"id": "nyborg", "kode": "450", "navn": "Nyborg Kommune", "kort": "Nyborg",
+                      "region": "syddanmark", "navne": ["Nyborg"]}],
+        "byer": [{"id": i, "navn": i.title(), "navne": [i.title()], "kommune": "nyborg"}
+                 for i in ("ullerslev", "aunslev", "nyborg", "oerbaek")],
+    })
+    item = DisplayItem(id="x", story="x", url="https://x.dk", title="T", source="s", date_quality="kilde",
+                       first_seen=NOW, places=["b:ullerslev", "b:nyborg", "b:aunslev"])
+    assert [t["id"] for t in export.geo_block(geo, [item])["byer"]] == ["aunslev", "nyborg", "ullerslev"]
+
+
 def test_without_geography_geo_is_null(repo):
     (paths.CONFIG_DIR / "geografi.yaml").unlink()
     c = cand("lokalt", title="Ny genbrugsplads i Nyborg", places=["k:nyborg", "b:nyborg"])

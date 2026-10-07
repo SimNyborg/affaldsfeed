@@ -33,9 +33,11 @@ ekstra_navne:
 kun_med_kommune: [Vejen]
 
 # Bynavne, der aldrig matches. Kommunen findes stadig via sit eget navn og de andre byer.
+# Byer, der hedder det samme som en anden kommune (byen Frederiksberg i Sorø), udelades automatisk.
 ignorer_byer:
   # almindelige ord
   - Brande
+  - Bække
   - Elev
   - Gram
   - Hals
@@ -65,6 +67,8 @@ ignorer_byer:
 
 # Ekstra navne for byer. Officielle aa-navne får automatisk en variant med å (Grenaa → Grenå).
 # Den modsatte vej tilføjes kun her, fordi aa-formen ofte er et efternavn (Aagaard, Daugaard).
+# Et navn kommer kun med, når det kun betyder byen: Dronningmølle ligger i Gribskov, men den samlede
+# by Hornbæk-Dronningmølles primære kommune er Helsingør, og Malling er også et efternavn.
 byer_ekstra_navne:
   Årslev: [Aarslev]
   Gråsten: [Graasten]
@@ -72,9 +76,9 @@ byer_ekstra_navne:
   Nykøbing M: [Nykøbing Mors, Nykøbing M.]
   Nykøbing S: [Nykøbing Sjælland, Nykøbing Sj., Nykøbing S.]
   Ølstykke-Stenløse: [Ølstykke, Stenløse]
-  Hornbæk-Dronningmølle: [Hornbæk, Dronningmølle]
+  Hornbæk-Dronningmølle: [Hornbæk]
   Allinge-Sandvig: [Allinge, Sandvig]
-  Beder-Malling: [Beder, Malling]
+  Beder-Malling: [Beder]
   Sejs-Svejbæk: [Sejs, Svejbæk]
   Thurø By: [Thurø]
   Annisse Nord: [Annisse]

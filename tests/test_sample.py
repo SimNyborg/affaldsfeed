@@ -94,7 +94,10 @@ def test_sample_places_are_realistic(feed, config):
     assert {nyborg.title, region.title} <= shown("r:syddanmark")
     assert nyborg.title in shown("k:nyborg") and region.title not in shown("k:nyborg")
     assert shown("b:ullerslev") == {nyborg.title}
-    assert hoersholm.title in shown("k:fredensborg")  # by i flere kommuner
+    # En by tæller kun under sin primære kommune: Hørsholm ligger også i Fredensborg og Rudersdal
+    assert {"fredensborg", "rudersdal"} <= set(next(t for t in feed.geo.byer if t.id == "hoersholm").kommuner)
+    assert hoersholm.title in shown("k:hoersholm") and hoersholm.title in shown("r:hovedstaden")
+    assert hoersholm.title not in shown("k:fredensborg") and hoersholm.title not in shown("k:rudersdal")
     assert shown("k:nyborg", "k:aarhus") == shown("k:nyborg") | shown("k:aarhus")
     # Alle steder ligger i en region, og landsdækkende indslag vises ikke, når et sted er valgt
     assert shown(*(f"r:{r.id}" for r in geo.regioner)) == {it.title for it in with_places}

@@ -82,6 +82,9 @@ def by3_info() -> dict:
         ("75144444", "751-44444 Delby (del af flere kommuner)"),
         ("45044444", "450-44444 Delby (del af flere kommuner)"),
         ("75655555", "756-55555 Brande"),
+        # Byer, der hedder det samme som en anden kommune (som byen Frederiksberg i Sorø)
+        ("46155556", "461-55556 Nyborg"),
+        ("45066666", "450-66666 Århus"),
     ]
     return {
         "id": "BY3",
@@ -108,6 +111,8 @@ POP = {
     "75144444": 3000,
     "45044444": 1500,
     "75655555": 7000,
+    "46155556": 4000,  # Nyborg i Odense: under 5 gange mindre end Nyborg i Nyborg
+    "45066666": 1100,
 }
 
 
@@ -166,6 +171,45 @@ def test_byer():
     body = calls[0]
     assert {"code": "Tid", "values": ["2026"]} in body["variables"]
     assert {"code": "FOLKARTÆT", "values": ["BEF"]} in body["variables"]
+
+
+def test_by_med_en_anden_kommunes_navn_udelades():
+    data, notes, _ = run()
+    byer = {t["id"]: t for t in data["byer"]}
+    # Byen Nyborg i Odense hedder det samme som Nyborg Kommune: den udelades, og Nyborgs egen by er
+    # derfor ikke længere flertydig
+    assert byer["nyborg"]["kommune"] == "nyborg" and byer["nyborg"]["indbyggere"] == 17000
+    assert "udeladt, hedder det samme som en anden kommune: Nyborg (odense; nyborg)" in notes
+    # Århus er et af Aarhus Kommunes navne
+    assert "udeladt, hedder det samme som en anden kommune: Århus (nyborg; aarhus)" in notes
+    assert not any(t["navn"] == "Århus" for t in data["byer"])
+    assert not any("flertydig" in n and "Nyborg" in n for n in notes)
+
+
+def test_town_rules_paa_faerdige_byer():
+    kommuner = [{"id": "frederiksberg", "kort": "Frederiksberg", "navne": ["Frederiksberg"]},
+                {"id": "soroe", "kort": "Sorø", "navne": ["Sorø"]},
+                {"id": "aarhus", "kort": "Aarhus", "navne": ["Aarhus", "Århus"]}]
+    byer = [{"id": "frederiksberg", "navn": "Frederiksberg", "navne": ["Frederiksberg"], "kommune": "soroe"},
+            {"id": "soroe", "navn": "Sorø", "navne": ["Sorø"], "kommune": "soroe"},
+            {"id": "beder-malling", "navn": "Beder-Malling", "navne": [], "kommune": "aarhus"},
+            {"id": "baekke", "navn": "Bække", "navne": ["Bække"], "kommune": "vejen"}]
+    rules = {"ignorer_byer": ["Bække"], "byer_ekstra_navne": {"Beder-Malling": ["Beder", "Sorø"]}}
+    out, notes = geo.town_rules(byer, kommuner, rules)
+    assert [(t["id"], t["navne"]) for t in out] == [("soroe", ["Sorø"]), ("beder-malling", ["Beder-Malling", "Beder"])]
+    assert notes == [
+        "udeladt, hedder det samme som en anden kommune: Frederiksberg (soroe; frederiksberg)",
+        "ADVARSEL: byer_ekstra_navne: Sorø (Beder-Malling) er en anden kommunes navn og bruges ikke",
+        "ignoreret: Bække",
+    ]
+
+
+def test_regelfilen_efter_review():
+    rules = yaml.safe_load((ROOT / "config" / "geografi_regler.yaml").read_text(encoding="utf-8"))
+    assert "Bække" in rules["ignorer_byer"]
+    extra = rules["byer_ekstra_navne"]
+    assert extra["Hornbæk-Dronningmølle"] == ["Hornbæk"]  # Dronningmølle ligger i Gribskov
+    assert extra["Beder-Malling"] == ["Beder"]  # Malling er også et efternavn
 
 
 def test_folketal_med_decimalkomma():

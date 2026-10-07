@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import logging
 import sys
 from datetime import UTC, date, datetime
 from pathlib import Path
@@ -134,6 +135,55 @@ def test_save_rejected_merges_and_prunes(env):
     assert [r.id for r in recs] == ["aaaaaaaaaaaa"]
     assert recs[0].first_seen == first
     assert not (paths.REJECTED_DIR / "2026-06.jsonl").exists()  # ældre end 90 dage
+
+
+def _newer_line(rec) -> str:
+    """En linje skrevet af en nyere version af koden (et felt, denne version ikke kender)."""
+    return json.dumps({**rec.model_dump(mode="json"), "felt_fra_fremtiden": [1]}, ensure_ascii=False)
+
+
+def test_candidates_file_with_unreadable_lines_is_never_rewritten(env, caplog):
+    # Tilbagerulning af koden: linjer med ukendte felter kan ikke læses og må ikke forsvinde ved næste skrivning
+    path = paths.CANDIDATES_DIR / "2026-10.jsonl"
+    path.parent.mkdir(parents=True)
+    known = json.dumps(_cand("aaaaaaaaaaaa", NOW).model_dump(mode="json"), ensure_ascii=False)
+    text = known + "\n" + "\n".join(_newer_line(_cand(f"{i:012d}", NOW)) for i in range(5)) + "\n"
+    path.write_text(text, encoding="utf-8")
+    sep = datetime(2026, 9, 30, 12, 0, tzinfo=UTC)
+    with caplog.at_level(logging.WARNING, logger="affaldsfeed.store"):
+        saved = store.save_candidates([_cand("bbbbbbbbbbbb", NOW), _cand("cccccccccccc", sep)])
+    records = list(caplog.records)
+    assert path.read_text(encoding="utf-8") == text  # filen står urørt
+    assert saved == 1  # kun september-kandidaten er gemt
+    assert [c.id for c in store.load_candidates()] == ["cccccccccccc", "aaaaaaaaaaaa"]
+    errors = [r.getMessage() for r in records if r.levelno == logging.ERROR]
+    assert len(errors) == 1
+    assert "candidates/2026-10.jsonl: 5 linjer kan ikke læses" in errors[0]
+    assert "1 nye eller ændrede poster for måneden gemmes ikke (fx https://eksempel.dk/bbbbbbbbbbbb)" in errors[0]
+    # Højst tre ugyldige linjer logges enkeltvis, så loggen ikke drukner
+    warnings = [r.getMessage() for r in records if r.levelno == logging.WARNING]
+    assert sum("felt_fra_fremtiden" in w for w in warnings) == 3
+    assert any("5 ugyldige linjer i alt" in w for w in warnings)
+
+
+def test_rejected_file_with_unreadable_lines_is_never_rewritten(env, caplog):
+    old_month = paths.REJECTED_DIR / "2026-06.jsonl"  # udløbet, men kan ikke læses: slettes ikke
+    old_month.parent.mkdir(parents=True)
+    old_text = _newer_line(_rej("oooooooooooo", datetime(2026, 6, 1, tzinfo=UTC))) + "\n"
+    old_month.write_text(old_text, encoding="utf-8")
+    oct_month = paths.REJECTED_DIR / "2026-10.jsonl"
+    oct_text = (json.dumps(_rej("aaaaaaaaaaaa", NOW).model_dump(mode="json"), ensure_ascii=False) + "\n"
+                + _newer_line(_rej("pppppppppppp", NOW)) + "\n")
+    oct_month.write_text(oct_text, encoding="utf-8")
+    with caplog.at_level(logging.ERROR, logger="affaldsfeed.store"):
+        added = store.save_rejected([_rej("bbbbbbbbbbbb", NOW), _rej("aaaaaaaaaaaa", NOW)], keep_days=90, now=NOW)
+    assert added == 0
+    assert old_month.read_text(encoding="utf-8") == old_text
+    assert oct_month.read_text(encoding="utf-8") == oct_text
+    errors = [r.getMessage() for r in caplog.records if r.levelno == logging.ERROR]
+    assert any("rejected/2026-10.jsonl: 1 linjer kan ikke læses" in e and "1 nye eller ændrede poster" in e
+               and "https://eksempel.dk/bbbbbbbbbbbb" in e for e in errors)
+    assert any("rejected/2026-06.jsonl: 1 linjer kan ikke læses" in e for e in errors)
 
 
 def test_source_states_roundtrip(env):
