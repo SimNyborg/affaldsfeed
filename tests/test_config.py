@@ -13,6 +13,7 @@ import pytest
 
 from affaldsfeed import config as cfgmod
 from affaldsfeed import fetch as fetchmod
+from affaldsfeed.collect import COLLECTORS
 from affaldsfeed.config import ConfigError, load_config, load_sources, main_check, publisher_lookup
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
@@ -226,6 +227,8 @@ def test_main_check_fetch_prints_decisions_and_writes_nothing(env, monkeypatch, 
 
 def test_main_check_fetch_unknown_and_phase2(env, monkeypatch, capsys):
     monkeypatch.setattr(fetchmod, "Fetcher", _fakes().make_fetcher_class())
+    # Alle metoder er bygget; en metode uden indsamler simuleres for kilden "ventende" (oda)
+    monkeypatch.delitem(COLLECTORS, "oda")
     assert main_check(argparse.Namespace(fetch="findes-ikke", explain=False)) == 1
     assert main_check(argparse.Namespace(fetch="ventende", explain=False)) == 1
     out = capsys.readouterr().out

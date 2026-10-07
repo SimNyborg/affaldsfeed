@@ -13,6 +13,7 @@ from pathlib import Path
 import pytest
 
 from affaldsfeed import paths, pipeline, store
+from affaldsfeed.collect import COLLECTORS
 from affaldsfeed.config import load_config, load_sources
 from affaldsfeed.health import is_due, record_result, silent
 from affaldsfeed.models import SourceState
@@ -57,6 +58,7 @@ def _by_title(cands: dict) -> dict:
 
 def test_first_run(env, monkeypatch, caplog):
     caplog.set_level(logging.INFO)
+    monkeypatch.delitem(COLLECTORS, "oda")  # kilden "ventende" (oda) skal vente som en metode uden indsamler
     code, fake = _run(monkeypatch)
     assert code == 0
     # Første kørsel er ubetinget (ingen If-None-Match)
@@ -198,6 +200,7 @@ def test_only_limits_sources(env, monkeypatch):
 
 
 def test_only_without_match_gives_exit_1(env, monkeypatch, caplog):
+    monkeypatch.delitem(COLLECTORS, "oda")
     code, fake = _run(monkeypatch, only="findes-ikke,planlagt,ventende")
     assert code == 1 and fake.calls == []
     assert "Ukendt kilde i --only: findes-ikke" in caplog.text

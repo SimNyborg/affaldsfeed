@@ -41,7 +41,7 @@ affaldsfeed/
   collect/rss.py     collect(source, fetcher, ctx) -> list[RawEntry]
   collect/search.py  collect(source, fetcher, ctx) -> list[RawEntry]   (Google News + Bing News)
   collect/pages.py   collect_sitemap / collect_html (-> CollectResult) + extract_page (sideudtræk), se 5.6
-  collect/oda.py     (fase 2) Folketingets ODA
+  collect/oda.py     collect(source, fetcher, ctx) -> CollectResult  (Folketingets åbne data, se 5.7)
   normalize.py       normalize_url(), item_id(), clean_text(), normalize_title(), to_candidate()
   relevance.py       prefilter(raw, source, keywords) -> Why
   classify.py        rule_topics(), rule_genre()
@@ -69,7 +69,7 @@ En YAML-liste. Felter (se `models.Source`):
 | name | str | påkrævet | |
 | category | CategoryId | påkrævet | 8 værdier, se 3.2 |
 | homepage | str (http/https) | påkrævet | værtsnavnet bruges til at matche søgeresultater |
-| method | `rss`\|`sitemap`\|`html`\|`oda`\|`search` | `rss` | `rss`, `search`, `sitemap` og `html` er implementeret; `oda` følger |
+| method | `rss`\|`sitemap`\|`html`\|`oda`\|`search` | `rss` | alle fem er implementeret |
 | feeds | str \| list[str] | påkrævet | normaliseres til list; sitemap: sitemap- eller indeks-URL'er; html: listesider |
 | domains | list[str] | `[]` | ekstra værtsnavne til matchning (uden `www.`) |
 | match | str \| None | None | regex for artikel-URL'er (sitemap/html; `re.search` på hele URL'en); påkrævet når aktiv |
@@ -106,7 +106,7 @@ Søgekilder (`method: search`) har `category: nyhedsmedie` (ignoreres ved visnin
 - `keywords.yaml`: `{strong: {da,en,sv}, names: [..], weak: {da,en}, veto: [..], service: [..]}` (mønster-syntaks som topics).
 - `search.yaml`: `{queries: [str], when: "2d"}` — forespørgsler med `OR`.
 - `medier.yaml`: liste af `{id, name, category, domains: [..], basis, paywall, lang, places?}` — troværdige udgivere, der kun findes via søgning (lokalaviser m.fl.). Id'er må ikke kollidere med `sources.yaml`. `places` som i 3.1 (lokalaviser får ingen).
-- `settings.yaml`: se `models.Settings` (UA, takt, tærskler, vinduer, rutinetider, fallback). Blokken `pages` (`models.PagesSettings`) har grænserne for sitemap og html (5.6) og for `state/seen.json` (6). `places.institution_words` (valgfri; uden blokken bruger koden `["Universitet", "Lufthavn"]`, `settings.yaml` sætter den fulde liste) bruges af stedmærkningen (4.1). Blokken erstatter standardlisten. Blokken `timeline` (`models.TimelineSettings`) har tidslinjens vinduer og ugeloft (7.3).
+- `settings.yaml`: se `models.Settings` (UA, takt, tærskler, vinduer, rutinetider, fallback). Blokken `pages` (`models.PagesSettings`) har grænserne for sitemap og html (5.6) og for `state/seen.json` (6). `places.institution_words` (valgfri; uden blokken bruger koden `["Universitet", "Lufthavn"]`, `settings.yaml` sætter den fulde liste) bruges af stedmærkningen (4.1). Blokken erstatter standardlisten. Blokken `timeline` (`models.TimelineSettings`) har tidslinjens vinduer og ugeloft (7.3). Blokken `oda` (`models.OdaSettings`) styrer Folketingets åbne data (5.7).
 - `geografi.yaml`: genereres af `tools/build_geografi.py` fra Danmarks Statistik og rettes aldrig i hånden. `{kilde, regioner: [{id, kode, navn, kort}], landsdele: {navn: region-id}, kommuner: [{id, kode, navn, kort, region, navne, kun_med_kommune}], byer: [{id, navn, navne, kommune, kommuner, indbyggere}]}` → `models.Geo`. `navn` er det officielle navn ("Region Syddanmark", "Nyborg Kommune", "Københavns Kommune", "Bornholms Regionskommune"), `kort` det korte. `byer.kommune` er byens primære kommune (den, byen filtreres under, §9), `byer.kommuner` alle kommuner, byen ligger i. Mangler filen, er geografien tom: ingen stedmærkning og en advarsel i `check`. `check` fejler ved dublet-id'er, når `kommune.region`, `by.kommune` eller `by.kommuner` ikke findes, når `by.kommune` ikke står i `by.kommuner`, og når en landsdel peger på en ukendt region.
   - **Kun `check` fejler på geografien.** Er filen ugyldig, logger de andre kommandoer (`run`, `pending`, `validate-judgments`, `export`, `heartbeat`, `overview-input` …) fejlen og kører videre med en tom geografi: ingen nye stedmærker, ingen `geo`-blok og intet stedfilter, til filen er rettet (`Config.geo_errors`).
   - Sted-id'er i `sources.yaml` og `medier.yaml` skal findes i geografien. Det tjekkes i `cross_check`: `check` fejler, mens `run` advarer og ignorerer de ukendte id'er. Uden geografi (filen mangler eller er ugyldig) tjekkes id'erne ikke.
@@ -201,6 +201,15 @@ Kilder uden RSS. Tallene er standardværdierne i `settings.yaml: pages` (`models
 - Titel: `og:title` → første `<h1>` (helst i hovedindholdet) → `<title>`. En kildehale (" | Navn", " - Navn", " – Navn") fjernes, når den er kort og ligner et navn, eller når den er kildens navn, alias eller vært (`names`). En kandidat, der kun er kildens navn, springes over.
 - Dato, første brugbare: JSON-LD `datePublished` (også i `@graph`, lister og indlejrede objekter; artikeltyper før fx WebPage) → meta `article:published_time` (også `itemprop="datePublished"`) → `<time datetime>` (hovedindholdets egne først; aldrig i aside/nav/footer eller i andre artikler, fx relaterede) → meta `publication-date`/`date`/`DC.date` (og `pubdate`, `dcterms.date` m.fl.) → dato i URL'en (`/2026/10/07/` eller `2026-10-07`; `url`) → dato i de første 1.500 tegn af hovedindholdets tekst ("7. oktober 2026", "7. okt. 2026", "07.10.2026", evt. efterfulgt af "kl. 14.32"; engelske månedsnavne for `lang: en`): en dato efter "Publiceret", "Udgivet", "Dato" o.l. vinder, ellers den seneste (tidligere datoer i teksten er typisk henvisninger). Datoer mere end 2 t i fremtiden og før år 2000 ignoreres, og så prøves den næste dato eller kilde til en dato. Samme regel gælder datoen ved et link på en liste.
 - Teaser: `og:description` → meta `description`, rå (renses senere af `clean_text`).
+
+
+### 5.7 Folketingets åbne data (`collect/oda.py`)
+- Én kilde med `method: oda`, hvor `feeds` er ODA's adresse (`https://oda.ft.dk/api/`). Indstillingerne står i `settings.oda` (`models.OdaSettings`): `words`, `exclude_types`, `days`, `first_run_days`, `max_pages` og `top` (højst 100).
+- Kald: `GET {feeds[0]}Dokument?$filter=(substringof('<ord>',titel) or …) and opdateringsdato gt datetime'<since>' and offentlighedskode eq 'O'&$orderby=opdateringsdato desc&$top=<top>&$expand=Dokumenttype,Fil&$format=json`. `'` i et ord fordobles. `since` er dansk tid uden zone: nu minus `first_run_days` ved kildens første kørsel (eller uden `last_ok`), ellers minus `max(days, min(first_run_days, dage siden last_ok + 1))`. `odata.nextLink` følges, til der er hentet `max_pages` sider. Ingen betinget GET.
+- Ét indslag pr. dokument. Titel: `titel` med samlet whitespace. URL: filen med `variantkode` "P" (PDF på ft.dk), ellers den første fil med en http-URL. Springes over: dokumenter uden titel eller fil, med en `Dokumenttype.type` i `exclude_types` (uanset store og små bogstaver), med `offentlighedskode` ≠ "O" og en URL, der allerede er taget i kørslen.
+- `published`: `frigivelsesdato` (dansk tid → UTC, `date_quality: kilde`), ellers `dato` som dagens start i København (`liste`), ellers `fundet`. `teaser`: `spørgsmålsordlyd` (ofte tom). `categories`: [dokumenttypen]. Genren kommer fra kildens `genre` (`folketing`).
+- Fejler første side (HTTP-fejl, ugyldig JSON eller intet `value`), fejler kilden med en kort tekst, fx "ODA: HTTP 503", fordi adressen er for lang til fejlteksten. Fejler en senere side, beholdes det hentede.
+- Forfiltret kører som for andre kilder. Med `filter: none` gælder kun veto, fx "radioaktiv*". Dagsbundter (`bundle: day`) kommer i fase 3.
 
 ## 6. Data på disk
 
