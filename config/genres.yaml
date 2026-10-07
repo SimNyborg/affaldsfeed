@@ -1,0 +1,24 @@
+# Genre er en anden akse end afsenderen. Første regel, der passer, vinder:
+# overrides.yaml → kildens genre (hvis ikke nyhed) → URL-mønstre → RSS-kategorier → titelpræfikser → nyhed.
+- id: nyhed
+  label: ""
+- id: debat
+  label: DEBAT
+  url_patterns: ["/debat/", "/kronik/", "/holdning/", "/kommentar/", "/klumme/", "/opinion/", "/synspunkt/"]
+  title_prefixes: ["Debat:", "Kronik:", "Kommentar:", "Klumme:", "Synspunkt:", "Leder:", "Opinion:"]
+- id: pressemeddelelse
+  label: PRESSEMEDDELELSE
+  url_patterns: ["/pressemeddelelse", "/presse/", "/press-release", "/pressrelease"]
+  title_prefixes: ["Pressemeddelelse:"]
+- id: analyse
+  label: ANALYSE OG RAPPORT
+  url_patterns: ["/analyse/", "/analyser/", "/rapport/", "/rapporter/", "/publikationer/", "/publications/"]
+  title_prefixes: ["Analyse:", "Ny rapport:", "Rapport:"]
+- id: hoering
+  label: HØRING OG REGLER
+  url_patterns: ["/hoering", "/høring"]
+  title_prefixes: ["Høring over", "Høring:", "Høring om"]
+- id: folketing
+  label: FOLKETINGSSAG
+  url_patterns: ["ft.dk/samling/", "oda.ft.dk"]
+  title_prefixes: []

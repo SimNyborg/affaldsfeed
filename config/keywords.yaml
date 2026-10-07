@@ -1,0 +1,26 @@
+# Forfiltret. Bevidst løst: det sorterer kun det åbenlyst irrelevante fra, Claude vurderer resten.
+# Mønster-syntaks som topics.yaml. Ordgrænser gælder, så "argo" ikke matcher "embargo".
+strong:      # 4 point i titel, 2 i teaser
+  da: ["*affald*", "genanvend*", "genbrugsplads*", "storskrald*", "*renovation*", "skraldem*",
+       "skraldebil*", "skrald", "producentansvar*", "*forbrændingsanlæg*", "affaldsforbrænding*",
+       "deponi*", "*emballageaffald*", "pant", "pantsystem*", "retursystem*", "sorteringsanlæg*",
+       "madaffald*", "bioaffald*", "tekstilaffald*", "byggeaffald*", "genvinding*", "affaldssortering*",
+       "genbrugsstation*", "direkte genbrug", "cirkulær økonomi", "affaldsgebyr*", "affaldsplan*"]
+  en: ["waste", "recycl*", "landfill*", "incinerat*", "extended producer responsibility", "EPR", "PPWR",
+       "packaging waste", "circular economy"]
+  sv: ["avfall*", "återvinn*"]
+names:       # tæller som stærkt ord i titlen
+  ["ARC", "ARGO", "AffaldPlus", "Vestforbrænding", "Kredsløb", "Nordværk", "Renosyd", "REFA",
+   "Dansk Retursystem", "VANA", "DAKOFA", "Genvindingsindustrien", "Dansk Affaldsforening",
+   "Affaldsplus", "Amager Bakke", "Amager Ressourcecenter", "Reno Djurs", "Fors", "Norfors"]
+weak:        # 1 point, højst 2 i alt og kun sammen med et andet hit
+  da: ["cirkulær*", "ressource*", "*emballage*", "plast*", "tekstil*", "biogas*", "co2-fangst",
+       "nedrivning*", "PFAS", "batteri*", "genbrug*", "sortering*"]
+  en: ["circular*", "packaging", "plastic*", "textile*"]
+veto:        # tjekkes i titlen og vinder altid
+  ["atomaffald*", "radioaktiv*", "rumskrot", "nuclear waste", "space debris", "ledig stilling",
+   "stillingsopslag", "vi søger", "jobopslag", "personalenyt", "webinar*", "tilmeld*",
+   "politisk skraldespand", "historiens skraldespand", "pantebrev*", "pantsæt*", "Nordic Waste"]
+service:     # kun kategori kommunal: driftsbeskeder til borgere
+  ["forsinket tømning", "ændret tømning", "tømningsdag*", "helligdag*", "åbningstid*", "lukket i dag",
+   "husk at stille", "juletræsindsamling*", "affaldskalender*", "driftsforstyrrelse*", "vejarbejde*"]

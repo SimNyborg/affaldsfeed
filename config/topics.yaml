@@ -1,0 +1,76 @@
+# 13 temaer. Mønstre: uden * = helt ord, * = flere bogstaver, mellemrum = præcis frase.
+# Store og små bogstaver er ligegyldige. Bruges som regelbaseret forslag; Claude har det sidste ord.
+- id: sortering
+  name: Sortering og indsamling
+  definition: Hvordan husholdninger og virksomheder sorterer, og hvordan affaldet hentes.
+  patterns: ["affaldssortering*", "husstandsindsamling*", "indsamlingsordning*", "husholdningsaffald*",
+             "fraktion*", "affaldsordning*", "beholder*", "affaldsspand*", "skraldespand*", "tømning*",
+             "renovation*", "sorteringsvejledning*", "piktogram*", "skraldebil*", "indsamling*",
+             "sortere*", "sortering*", "skrald"]
+- id: genbrugspladser
+  name: Genbrugspladser, genbrug og forebyggelse
+  definition: Genbrugspladser, storskrald, direkte genbrug og forebyggelse af affald.
+  patterns: ["genbrugsplads*", "storskrald*", "genbrugsbutik*", "direkte genbrug", "ressourcepark*",
+             "reparation*", "deleordning*", "affaldsforebyggelse*", "henkastet affald", "engangsplast*",
+             "genbrugsstation*", "byttestation*"]
+- id: gebyrer
+  name: Gebyrer og økonomi
+  definition: Affaldsgebyrer, takster, prisregulering og benchmarking.
+  patterns: ["affaldsgebyr*", "gebyr*", "takst*", "hvile i sig selv", "prisloft*", "benchmark*",
+             "Forsyningstilsynet", "affaldsafgift*", "affaldsregning*", "økonomisk regulering",
+             "renovationsgebyr*"]
+- id: udbud
+  name: Udbud, selskaber og organisering
+  definition: Udbud, liberalisering, selskabsstruktur og fusioner.
+  patterns: ["udbud*", "licitation*", "liberaliser*", "konkurrenceudsættelse*", "selskabsudskillelse*",
+             "fusion*", "affaldsselskab*", "interessentskab*", "ejerstrategi*", "indsamlingskontrakt*",
+             "renovatør*"]
+- id: forbraending
+  name: Forbrænding og energi
+  definition: Forbrændingsanlæg, kapacitet, affaldsimport og affaldsvarme.
+  patterns: ["*forbrænding*", "forbrændingsanlæg*", "ovnlinje*", "overkapacitet*", "kapacitetstilpasning*",
+             "affaldsimport*", "affaldsvarme*", "slagge*", "energiudnyttelse*", "waste-to-energy",
+             "incinerat*"]
+- id: klima
+  name: Klima, CO2-afgift og CCS
+  definition: CO2-afgift, kvoter og CO2-fangst ved affaldsbehandling.
+  patterns: ["co2-afgift*", "co2-fangst*", "CCS", "ETS", "kvote*", "kvotehandel*", "co2-udledning*",
+             "drivhusgas*", "klimaaftale*", "carbon capture"]
+- id: genanvendelse
+  name: Genanvendelse og afsætning
+  definition: Sorteringsanlæg, plastgenanvendelse, eksport og afsætning af materialer.
+  patterns: ["genanvend*", "sorteringsanlæg*", "plastaffald*", "plastgenanvend*", "materialegenanvend*",
+             "kemisk genanvendelse", "genvinding*", "afsætning*", "affaldseksport*", "sekundære råstoffer",
+             "recycl*"]
+- id: producentansvar
+  name: Producentansvar, emballage og pant
+  definition: Udvidet producentansvar, emballage, pant og de kollektive ordninger.
+  patterns: ["producentansvar*", "*emballage*", "pant", "pantsystem*", "retursystem*", "Dansk Retursystem",
+             "VANA", "PPWR", "EPR", "kollektiv ordning*", "emballagegebyr*", "packaging*"]
+- id: bioaffald
+  name: Mad- og bioaffald
+  definition: Madaffald, madspild, biogas og kompost.
+  patterns: ["madaffald*", "bioaffald*", "madspild*", "biogas*", "bioforgasning*", "kompost*",
+             "organisk affald", "haveaffald*", "biopulp*", "food waste"]
+- id: tekstiler
+  name: Tekstiler
+  definition: Indsamling, sortering og genanvendelse af tekstiler.
+  patterns: ["tekstil*", "tekstilaffald*", "tekstilindsamling*", "tøjindsamling*", "brugt tøj",
+             "genbrugstøj*", "textile*"]
+- id: byg_farligt
+  name: Byggeaffald, jord og farligt affald
+  definition: Bygge- og nedrivningsaffald, deponi, jord og farligt affald inklusive el og batterier.
+  patterns: ["byggeaffald*", "nedrivning*", "selektiv nedrivning", "PCB", "asbest*", "deponi*",
+             "forurenet jord", "jordforurening*", "PFAS", "farligt affald", "elektronikaffald*",
+             "elaffald*", "WEEE", "batteri*", "landfill*"]
+- id: arbejdsmiljoe
+  name: Arbejdsmiljø og renovatører
+  definition: Skraldemænds arbejdsforhold, ulykker og overenskomster.
+  patterns: ["skraldemand*", "skraldemænd*", "renovationsarbejder*", "arbejdsmiljø*", "arbejdsulykke*",
+             "Arbejdstilsynet", "overenskomst*", "strejke*"]
+- id: regler
+  name: Lovgivning, politik og EU
+  definition: Love, bekendtgørelser, høringer, EU-regulering og politiske aftaler.
+  patterns: ["lovforslag*", "bekendtgørelse*", "høring*", "direktiv*", "forordning*", "affaldsdirektiv*",
+             "affaldsplan*", "regulativ*", "politisk aftale", "minister*", "Folketing*", "EU-Kommission*",
+             "affaldsbekendtgørelse*", "lovændring*"]

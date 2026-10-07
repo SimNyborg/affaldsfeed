@@ -1,0 +1,11 @@
+# Nyhedssøgninger (lag 2). Hver linje er én forespørgsel til Google News og Bing News.
+# Søgemaskinerne bruges kun til at finde artikler; indslaget krediteres altid udgiveren.
+when: 2d
+queries:
+  - affald OR affaldet OR affaldssortering OR affaldsordning
+  - skrald OR skraldebil OR skraldemand OR renovation OR storskrald
+  - genbrugsplads OR genbrugspladser OR "direkte genbrug" OR genbrugsstation
+  - affaldsgebyr OR affaldsgebyrer OR "gebyr for affald"
+  - producentansvar OR emballageaffald OR pantsystem OR "Dansk Retursystem"
+  - genanvendelse OR affaldsforbrænding OR forbrændingsanlæg OR affaldsplan
+  - madaffald OR bioaffald OR tekstilaffald OR byggeaffald
