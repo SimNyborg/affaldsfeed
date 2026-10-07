@@ -299,8 +299,9 @@ Historier (`stories.py`): niveau 1 = samme id; niveau 2 = samme `normalize_title
 
 ## 9. Frontend-kontrakt
 - `site/` er statisk (ingen build). `index.html` og `kilder.html` henter `data/feed.json` (relativt). Med `?demo=1` hentes `../examples/feed.sample.json` lokalt eller `data/feed.sample.json` på Pages (export kopierer eksempelfilen dertil).
-- URL-parametre: `afsender`, `tema`, `kilde`, `genre` (kommaseparerede id'er), `region`, `kommune`, `by` (kommaseparerede id'er uden præfiks, fx `region=syddanmark&kommune=nyborg&by=ullerslev`), `periode` (7|30|60), `sprog=da`, `q`, `nye=1`, `saml=0`, `vis=kompakt`, `story=<id>`, `overblik=dag|uge|maaned|aar`.
-- Rækkefølge i URL'en: `demo, afsender, tema, kilde, genre, region, kommune, by, periode, sprog, q, nye, saml, vis, story, overblik`. Regioner skrives i `geo`-rækkefølge, kommuner og byer alfabetisk efter id, så samme valg giver samme link.
+- URL-parametre: `afsender`, `tema`, `kilde`, `uden`, `genre` (kommaseparerede id'er), `region`, `kommune`, `by` (kommaseparerede id'er uden præfiks, fx `region=syddanmark&kommune=nyborg&by=ullerslev`), `periode` (7|30|60), `sprog=da`, `q`, `nye=1`, `saml=0`, `vis=kompakt`, `story=<id>`, `overblik=dag|uge|maaned|aar`.
+- Rækkefølge i URL'en: `demo, afsender, tema, kilde, uden, genre, region, kommune, by, periode, sprog, q, nye, saml, vis, story, overblik`.
+- **Kildefiltret** (`kilde`, `uden`): de viste kilder er `kilde` (alle kilder i `feed.sources`, når den er tom) minus `uden`. Alle kilder er valgt fra start. Siden skriver den korteste form: ingen parameter, når alle er valgt; `kilde=` med de valgte, når der er højst lige så mange valgte som fravalgte (og mindst én valgt); ellers `uden=` med de fravalgte, sorteret efter id. Begge læses, også sammen. Id'er, der ikke står i `feed.sources`, ignoreres, når valget ændres. Regioner skrives i `geo`-rækkefølge, kommuner og byer alfabetisk efter id, så samme valg giver samme link.
 - **Stedfiltret** (`region`, `kommune`, `by`): hvert indslag får et udvidet sæt nøgler E ud fra `places` og `geo`:
 
   | Id i `places` | Tilføjes til E |

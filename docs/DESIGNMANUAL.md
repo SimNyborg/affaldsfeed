@@ -104,11 +104,12 @@ Panelet er et `<search>` med overskriften "Filtre" og tekstknappen "Nulstil" til
 | Sted | søgefelt med forslag, de valgte kommuner og byer som rækker, regionerne som faste rækker og en note |
 | Afsender | 8 rækker med kategoriikon og linket "Om afsendertyperne" til `kilder.html#typer` |
 | Tema | 13 rækker, en streg og "Uden tema" |
-| Kilde | søgefelt med forslag og de valgte kilder som rækker |
 | Flere filtre | foldet `<details>` med Genre (6 rækker), Periode (7, 30 eller 60 dage) og rækkerne "Kun dansk" og "Saml historier" |
+| Kilde | alle kilder med flueben, grupperet efter afsendertype, med et felt, der indsnævrer listen. Står sidst, fordi listen er lang |
 
 - Hver gruppe er en `<fieldset>` med `<legend>` i 14/20 og vægt 600. Der er 20 px mellem grupperne og ingen streger.
 - Valg inden for en gruppe kombineres med ELLER, og grupperne kombineres med OG.
+- Sted, Afsender, Tema og Genre indsnævrer: intet valgt betyder alt, og vælger man noget, ser man kun det. Kilde er omvendt: alle kilder har flueben fra start, og fjernes et flueben, skjules kilden.
 - "Flere filtre (1)" viser, hvor mange valg der afviger fra standard. Gruppen er foldet ud ved indlæsning, hvis der er valgt genre, periode 7 eller 30, "Kun dansk" eller "Saml historier" fra. Brugerens egne fold huskes ikke.
 - Sted vises kun, når `feed.json` har `geo`. Uden `geo` læses `region`, `kommune` og `by` fra URL'en og skrives uændret tilbage, men de filtrerer ikke.
 
@@ -124,6 +125,17 @@ Sted står øverst i panelet, fordi man typisk vælger sit område én gang og g
 - Tallet i en række og i et forslag er antallet af kort, stedet alene giver sammen med de øvrige filtre, efter samme regel for byer. De andre valgte steder tæller ikke med.
 - Et id i URL'en, der ikke findes i `geo`, bliver stående, giver 0 og vises som id'et i mærket. Steder skrives sorteret i URL'en: regioner i `geo`-rækkefølge, kommuner og byer alfabetisk efter id. Uden `geo` skrives værdierne tilbage i den rækkefølge, de blev læst.
 - Giver valgene 0 indslag, foreslår tom-tilstanden den ene ændring, der giver flest. Et sted foreslås udvidet til sin forælder (by til primær kommune, kommune til region), hvis det giver indslag, fx "Udvid til Nyborg Kommune (viser 4)". Ellers foreslås det fjernet.
+
+### Kildelisten
+
+Kilde viser alle kilder i `feed.json` som rækker med flueben, så man kan fravælge de kilder, man ikke vil se.
+
+- Øverst er feltet "Find kilde" med lup. Det indsnævrer listen, mens man skriver, med samme foldning som søgningen (accenter, å/aa, æ/ae og ø/oe). Esc tømmer feltet. Passer ingen, står "Ingen kilde passer til "x"." (13/18, `--muted`) som status.
+- Under feltet står "Alle 43 vises" eller "38 af 43 vises" til venstre og tekstknapperne "Vælg alle" og "Fravælg alle" til højre (13/18).
+- Kilderne står i grupper efter afsendertype i konfigurationens rækkefølge. Hver gruppe har en lille overskrift med kategoriikonet (16 px) og det korte navn i 13/18, 600 og `--muted`. Inden for gruppen står kilderne alfabetisk. Overskriften er kun visuel (`aria-hidden`), fordi rækkens navn er nok.
+- Rækkerne er filterrækker uden ikon. Tallet er antallet af kort, kilden giver med de andre filtre, også når kilden er fravalgt, så man kan se, hvad man går glip af.
+- I URL'en står de fravalgte som `uden=` (fx `uden=avisen,altinget`). Er færre kilder valgt end fravalgt, skrives de valgte i stedet som `kilde=`, så linket bliver kort. Et link med `kilde=altinget` viser kun Altinget med flueben.
+- Mærkerne over listen siger "Uden Avisen.dk" for hver fravalgt kilde og "Altinget" for hver valgt, når der er højst 3, ellers ét samlet mærke: "Uden 5 kilder" eller "13 kilder". "Filtrér (n)" tæller mærkerne. Giver valgene 0 indslag, kan tom-tilstanden foreslå "Vis Avisen.dk igen" eller "Vis alle kilder".
 
 ### Filterrækken
 
@@ -142,16 +154,16 @@ Alle lister i panelet bruger samme række: en `<label>` med et ægte afkrydsning
 
 ### Søgefelt med forslag
 
-Sted og Kilde bruger samme søgefelt med forslag (`assets/combobox.js`). Mønstret er WAI-ARIA's combobox med en listbox, hvor man kan vælge flere.
+Sted bruger et søgefelt med forslag (`assets/combobox.js`). Mønstret er WAI-ARIA's combobox med en listbox, hvor man kan vælge flere.
 
-- Feltet er 36 px højt (44 px ved berøring) med et ikon (nål eller lup) og pladsholderen "Kommune eller by" eller "Find kilde". Klik i et tomt felt viser "Flest indslag lige nu" med de 8 kommuner og byer eller kilder, der har flest indslag.
+- Feltet er 36 px højt (44 px ved berøring) med nålen og pladsholderen "Kommune eller by". Klik i et tomt felt viser "Flest indslag lige nu" med de 8 kommuner og byer, der har flest indslag.
 - Ved berøring rulles feltet op øverst i arket, når det får fokus, så forslagene står over tastaturet. Der rulles først, når trykket er landet som et klik i feltet, så trykket åbner listen.
 - Når man skriver, viser listen højst 8 forslag. Søgningen ser bort fra store og små bogstaver og accenter, og å, æ og ø kan skrives som aa, ae og oe eller a, ae og o. Navne, der begynder med søgningen, står før navne, hvor et ord begynder med den. Er der flere end 8, står "Viser 8 af 23. Skriv mere for at indsnævre." under listen.
 - Ved lige rang står kommuner før byer og byer før regioner. Tallene påvirker ikke rækkefølgen, så listen står stille, mens man filtrerer.
-- Hvert forslag har fluebenskolonne, navn og tal i samme grid som filterrækken; kilder har også kategoriikonet. Listen går 8 px ud i panelets polstring som rækkernes hover-flade (kant 1 px og 7 px polstring), så fluebenet står over afkrydsningerne, og navne og tal står i rækkernes kolonner. Det aktive forslag har `--hover-bg` og en indvendig ring i `--link`.
+- Hvert forslag har fluebenskolonne, navn og tal i samme grid som filterrækken. Listen går 8 px ud i panelets polstring som rækkernes hover-flade (kant 1 px og 7 px polstring), så fluebenet står over afkrydsningerne, og navne og tal står i rækkernes kolonner. Det aktive forslag har `--hover-bg` og en indvendig ring i `--link`.
 - Tekst uden bogstaver og tal (fx "...") giver beskeden "Ingen … passer til". En synlig besked forsvinder, når man klikker uden for feltet.
-- Enter eller klik vælger stedet eller kilden eller fravælger det, hvis det er valgt. Feltet tømmes, listen lukker, og fokus bliver i feltet. Skærmlæseren hører fx "Nyborg Kommune er valgt."
-- Valgte kilder står som rækker under feltet. En fravalgt kilde bliver stående uden flueben resten af besøget, så et fejlklik kan fortrydes. Der står højst 6 fravalgte rækker, og den ældste forsvinder først. Kun den beskårne række fjernes fra DOM'en, så fokus bliver på den række, man lige har klikket.
+- Enter eller klik vælger stedet eller fravælger det, hvis det er valgt. Feltet tømmes, listen lukker, og fokus bliver i feltet. Skærmlæseren hører fx "Nyborg Kommune er valgt."
+- Valgte kommuner og byer står som rækker under feltet. En fravalgt række bliver stående uden flueben resten af besøget, så et fejlklik kan fortrydes. Der står højst 6 fravalgte rækker, og den ældste forsvinder først. Kun den beskårne række fjernes fra DOM'en, så fokus bliver på den række, man lige har klikket.
 - Skærmlæseren hører forslag og rækker med kontekst, fx "Ullerslev, by i Nyborg Kommune, 3 indslag" og "Nyborg Kommune, i Region Syddanmark, 12 indslag". Navnet kommer fra forslagets indhold (ingen `aria-label`), så den synlige tekst altid er en del af navnet.
 - Listen ligger i flowet under feltet og skubber rækkerne ned, så panelets scroll aldrig klipper den. Kun én forslagsliste er åben ad gangen.
 
@@ -256,10 +268,10 @@ Overblikket følger samme tone. Claude skriver neutralt og markerer, når en afs
 | Søgefelt | Søg i titler og kilder · Ryd søgning |
 | Filtrér-knap | Filtrér (2) |
 | Panel og ark | Filtre · Nulstil · Luk filtre · Vis 23 indslag |
-| Grupper | Afsender · Tema · Kilde · Flere filtre (1) · Genre · Periode · Sprog og visning |
+| Grupper | Sted · Afsender · Tema · Flere filtre (1) · Genre · Periode · Sprog og visning · Kilde |
 | Afsender | Om afsendertyperne |
 | Sted | Kommune eller by · Find kommune eller by · Flest indslag lige nu · Ingen steder har indslag lige nu. · by i Nyborg · Landsdækkende nyheder vises ikke, når et sted er valgt. |
-| Kilde | Find kilde · Flest indslag lige nu · Ingen kilder har indslag lige nu. |
+| Kilde | Find kilde · Alle 43 vises · 38 af 43 vises · Vælg alle · Fravælg alle · Ingen kilde passer til "x". · Uden Avisen.dk · Uden 5 kilder · 13 kilder · Vis Avisen.dk igen · Vis alle kilder |
 | Forslag | Viser 8 af 23. Skriv mere for at indsnævre. · Ingen kommune eller by passer til "xyz". Byer kommer med, når de er nævnt i et indslag. · Ingen kilde passer til "xyz". · Nyborg Kommune er valgt. · Nyborg Kommune er fravalgt. |
 | Rækker | Uden tema · Kun dansk · Saml historier |
 | Periode | 7 dage · 30 dage · 60 dage |
