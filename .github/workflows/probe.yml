@@ -1,6 +1,7 @@
 # Afprøv kilder live fra GitHub Actions. Bruges af Claude-sessioner i skyen, hvor
 # cloud-miljøet ikke selv må hente nyhedssider. Skriv kilde-id'er (én pr. linje) i
-# probe/request.txt og push; resultatet committes til probe/result.md.
+# probe/request.txt og push; resultatet committes til probe/result.md. En linje på
+# formen "url <URL>" henter URL'en råt (første 30 kB) i stedet for at afprøve en kilde.
 name: Afprøv kilder
 
 on:
@@ -41,22 +42,47 @@ jobs:
         env:
           INPUT_IDS: ${{ github.event.inputs.ids }}
         run: |
-          ids="$INPUT_IDS"
-          if [ -z "$ids" ] && [ -f probe/request.txt ]; then
-            ids=$(grep -v '^\s*#' probe/request.txt | tr '\n' ' ')
+          # Linjer: et kilde-id (check --fetch --explain) eller "url <URL>" (rå hentning, første 30 kB).
+          if [ -n "$INPUT_IDS" ]; then
+            lines=$(echo "$INPUT_IDS" | tr ' ' '\n')
+          elif [ -f probe/request.txt ]; then
+            lines=$(grep -v '^\s*#' probe/request.txt | grep -v '^\s*$')
           fi
+          ua=$(python -c "import yaml;print(yaml.safe_load(open('config/settings.yaml'))['fetch']['user_agent'])")
           mkdir -p probe
           {
             echo "# Afprøvning $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             echo
-            for id in $ids; do
-              echo "## $id"
-              echo
-              echo '```text'
-              timeout 120 python -m affaldsfeed check --fetch "$id" --explain 2>&1 | tail -n 80 || echo "(fejl eller timeout)"
-              echo '```'
-              echo
-            done
+            while IFS= read -r line; do
+              [ -z "$line" ] && continue
+              if [[ "$line" == url\ * ]]; then
+                u="${line#url }"
+                echo "## $u"
+                echo
+                echo '```text'
+                if [[ "$u" == *affaldsviden.info* ]]; then
+                  echo "(afvist: affaldsviden.info hentes aldrig)"
+                else
+                  curl -sSL --compressed -A "$ua" --max-time 60 -o /tmp/probe.bin -w "status %{http_code}, %{content_type}, %{size_download} bytes, slut-URL %{url_effective}\n" "$u" 2>&1 || echo "(curl-fejl)"
+                  echo
+                  if [ -f /tmp/probe.bin ]; then
+                    if head -c 2 /tmp/probe.bin | od -An -tx1 | grep -q "1f 8b"; then gunzip -c /tmp/probe.bin > /tmp/probe.txt 2>/dev/null; else cp /tmp/probe.bin /tmp/probe.txt; fi
+                    head -c 30000 /tmp/probe.txt | tr -d '\000'
+                    rm -f /tmp/probe.bin /tmp/probe.txt
+                  fi
+                fi
+                echo
+                echo '```'
+                echo
+              else
+                echo "## $line"
+                echo
+                echo '```text'
+                timeout 180 python -m affaldsfeed check --fetch "$line" --explain 2>&1 | tail -n 120 || echo "(fejl eller timeout)"
+                echo '```'
+                echo
+              fi
+            done <<< "$lines"
           } > probe/result.md
 
       - name: Commit resultat
