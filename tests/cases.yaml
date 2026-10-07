@@ -399,3 +399,471 @@
   title: New recycling centre opens in Nyborg
   lang: en
   expect: {places: []}
+
+# ── Affaldsselskaber og private aktører ved navn ─────────────
+
+- id: navn-urbaser
+  title: Urbaser trækker sig fra kontrakten i Albertslund
+  expect: {none: vis, normal: vis, strict: vis}
+
+- id: navn-energnist
+  title: Energnist får ny direktør efter tre år
+  expect: {none: vis, normal: vis, strict: vis}
+
+# ── Fra drift: rigtige titler fra feedets første uge (7. oktober 2026) ──────────
+# Relevante indslag (ifølge Claude), titler uden affaldsord fra brede feeds, veto og driftsbeskeder.
+# Forventningerne er forfiltrets afgørelser på alle tre niveauer, gennemgået i hånden. Temaer og genre
+# står kun, hvor reglerne gav det samme som Claude. Ændrer et ord i config/ en afgørelse her, så tjek,
+# om ændringen er en forbedring, før casen rettes.
+
+- id: drift-nyhed-franske-producentansvarsordninger-for-emballage
+  title: 'Nyhed: Franske producentansvarsordninger for emballage medfinansierer genbrug og fælles infrastruktur'
+  teaser: De franske regler kræver, at mindst 5 pct. af producentgebyrerne bruges på udvikling af genbrugsløsninger,
+    og en del af støtten målrettes standardiserede drikkevareflasker og fødevarebeholdere. Samtidig kræver EU's
+    Emballageforordning, at p
+  category: organisation
+  expect:
+    none: vis
+    normal: vis
+    strict: vis
+    genre: nyhed
+    topics: [producentansvar]
+- id: drift-vi-udvider-vores-deponi
+  title: Vi udvider vores deponi
+  teaser: Indlægget Vi udvider vores deponi blev først udgivet på ARGO .
+  category: kommunal
+  expect: {none: vis, normal: vis, strict: vis, genre: nyhed}
+- id: drift-derfor-er-affaldssortering-ikke-blevet
+  title: Derfor er affaldssortering ikke blevet billigere i Odense
+  teaser: I 22 af landets kommuner betaler en typisk havebolig mere i affaldsgebyr i 2026, end det var tilfældet
+    i 2025, hvor det fra oktober blev producenternes ansvar. 13 kommuner har fastholdt niveauet. Det viser en kortlægning
+    fra rådgivningsvirk
+  expect: {none: vis, normal: vis, strict: vis, genre: nyhed}
+- id: drift-nyhed-koebenhavns-bygas-hjaelper-virksomheder
+  title: 'Nyhed: Københavns bygas hjælper virksomheder hen mod klimaneutralitet'
+  teaser: Mere gas ud af det samme spildevandsslam, mere udsorteret madaffald og endnu en lokal biogaskilde på nettet.
+    Samtidig giver fire gasværker og et 860 kilometer langt bygasnet København en ekstra, klimavenlig energistreng
+    ved siden af elnette
+  category: organisation
+  expect: {none: vis, normal: vis, strict: graa, genre: nyhed}
+- id: drift-dansk-fjernvarme-opretter-forum-for
+  title: Dansk Fjernvarme opretter Forum for Affaldsenergi
+  teaser: De danske affaldsenergianlæg er verdenskendte for at energiudnytte affald, der ikke kan genanvendes i
+    energisystemet. Værdien i affaldsenergien sammensluttes nu i et Forum for Affaldsenergi i Dansk Fjernvarme med
+    en ny-udpeget forperson.
+  category: organisation
+  expect: {none: vis, normal: vis, strict: vis, genre: nyhed}
+- id: drift-nyhed-regeringen-vil-implementere-producentansvar
+  title: 'Nyhed: Regeringen vil implementere producentansvar for tekstiler med blik for aktørernes byrder'
+  teaser: I svar fra klima-, energi- og forsyningsminister Samira Nawa (R) hedder det, at Regeringen vil nedbringe
+    byrder fra EU-lovgivningen, så disse er i balance med gevinster for miljø, klima og forbrugere.
+  category: organisation
+  expect: {none: vis, normal: vis, strict: vis, genre: nyhed}
+- id: drift-dansk-haandvaerk-nyt-affaldstilsyn-er
+  title: 'Dansk Håndværk: Nyt affaldstilsyn er det rene spild af tid'
+  teaser: 'Virksomhederne skal betale for tungt bureaukratisk affaldssorteringstilsyn, som kunne løses nemmere på
+    anden vis. The post Dansk Håndværk: Nyt affaldstilsyn er det rene spild af tid appeared first on Dagens Byggeri
+    .'
+  category: fagmedie
+  source_topics: [byg_farligt]
+  expect: {none: vis, normal: vis, strict: vis, genre: nyhed}
+- id: drift-tuffare-krav-paa-foerpackningar-idag
+  title: Tuffare krav på förpackningar idag
+  teaser: Nu börjar EU:s nya förpackningsförordning, PPWR, att tillämpas.
+  category: eu_norden
+  lang: sv
+  expect: {none: vis, normal: graa, strict: graa, genre: nyhed}
+- id: drift-diwass-fristen-for-gebyrfri-genindsendelse
+  title: 'DIWASS: Fristen for gebyrfri genindsendelse af anmeldelser forlænges til 1. september 2026'
+  teaser: Genvindingsindustrien, materialernes cirkularitet, sådan genvinder vi, det har vi på hjertet, genanvendelsesmarkedet,
+    teknologiinnovation
+  category: organisation
+  expect: {none: vis, normal: vis, strict: graa, genre: nyhed}
+- id: drift-now-available-expra-summer-newsletter
+  title: 'Now Available: EXPRA Summer Newsletter 2026'
+  teaser: Explore the EXPRA Summer Newsletter 2026, bringing together the latest developments in PPWR implementation,
+    EPR policy and enforcement, upcoming international exchanges, and practical initiatives from EXPRA members across
+    Europe and beyond.
+  category: eu_norden
+  lang: en
+  source_topics: [producentansvar]
+  expect:
+    none: vis
+    normal: vis
+    strict: graa
+    genre: nyhed
+    topics: [producentansvar]
+- id: drift-forbrugerne-returnerer-99-73-af
+  title: Forbrugerne returnerer 99,73% af de fastgjorte plastlåg på pantflaskerne
+  teaser: 'Næsten alle plastlåg sidder fortsat på flasken, når forbrugerne afleverer pantflasker. Det er stigning
+    på knap ti procentpoint, siden de fastgjorte låg blev indført i 2024, viser nye tal. Producenterne har gjort
+    det nemmere at skubbe låget '
+  category: organisation
+  source_topics: [producentansvar]
+  expect:
+    none: vis
+    normal: graa
+    strict: afvist
+    topics: [producentansvar]
+- id: drift-nyhed-ny-national-handlingsplan-for
+  title: 'Nyhed: Ny national handlingsplan for tekstiler'
+  teaser: Den nye nationale handlingsplan for tekstiler blev i dag lanceret på Nationalmuseet. Planen skal sætte
+    retning for en mere cirkulær tekstilsektor og ændre både den måde, vi producerer på, og den måde, vi forbruger
+    tekstiler på.
+  category: organisation
+  expect: {none: vis, normal: graa, strict: graa, genre: nyhed}
+- id: drift-nye-affaldsregler-skulle-give-besparelser
+  title: Nye affaldsregler skulle give besparelser til forbrugere - men flere steder stiger priserne
+  teaser: Nyt indgreb fra regeringen kan gøre det dyrere for danskere at komme af med deres affald, mener brancheforening
+    og affaldsselskab.
+  expect: {none: vis, normal: vis, strict: vis, genre: nyhed}
+- id: drift-sejeroe-genbrugsplads-fred-faellesskab-og
+  title: 'Sejerø Genbrugsplads: Fred, fællesskab og affaldsfraktioner'
+  teaser: 'Indlægget Sejerø Genbrugsplads: Fred, fællesskab og affaldsfraktioner blev først udgivet på ARGO .'
+  category: kommunal
+  expect:
+    none: vis
+    normal: vis
+    strict: vis
+    genre: nyhed
+    topics: [genbrugspladser]
+- id: drift-koebenhavn-bliver-selvforsynende-med-lokal
+  title: København bliver selvforsynende med lokal biogas fra affald
+  teaser: Mere end 200.000 kunder får nu bygas baseret på biogas fra blandt andet spildevand og københavnernes sorterede
+    madaffald.
+  expect:
+    none: vis
+    normal: vis
+    strict: vis
+    genre: nyhed
+    topics: [bioaffald]
+- id: drift-expra-featured-in-packaging-europe
+  title: 'EXPRA featured in Packaging Europe: Strengthening EPR implementation for Europe’s circular economy'
+  teaser: Packaging Europe has published a new article featuring EXPRA’s perspective on how Extended Producer Responsibility
+    should be strengthened through the upcoming Circular Economy Act. Drawing on more than three decades of operational
+    experienc
+  category: eu_norden
+  lang: en
+  source_topics: [producentansvar]
+  expect:
+    none: vis
+    normal: vis
+    strict: vis
+    genre: nyhed
+    topics: [producentansvar]
+- id: drift-commission-publishes-draft-list-of
+  title: Commission publishes draft list of countries authorised to import EU waste
+  teaser: An assessment of plastic waste exports to Türkiye has also been released.
+  category: eu_norden
+  lang: en
+  expect: {none: vis, normal: vis, strict: vis, genre: nyhed}
+- id: drift-brandvaesnet-rykkede-ud-til-brand
+  title: Brandvæsnet rykkede ud til brand i forbrændingsanlæg
+  teaser: Lørdag aften slap flammerne ud af en af kedlerne på et forbrændingsanlæg, og det fik brandvæsnet til at
+    rykke ud.
+  expect:
+    none: vis
+    normal: vis
+    strict: vis
+    genre: nyhed
+    topics: [forbraending]
+- id: drift-hent-skilte-til-affaldsomraader-med
+  title: Hent skilte til affaldsområder med fælles beholdere
+  teaser: Er du vicevært eller boligadministrator? Så kan du nu hente skilte til affaldsområder med fælles beholdere.
+  category: kommunal
+  expect:
+    none: vis
+    normal: vis
+    strict: vis
+    genre: nyhed
+    topics: [sortering]
+- id: drift-hvordan-stopper-vi-gode-byggematerialer
+  title: Hvordan stopper vi gode byggematerialer fra at tabe værdi?
+  teaser: Flere byggematerialer kan bevare deres værdi, hvis branchen bliver bedre til at få genbrug og genanvendelse
+    til at fungere i praksis, lyder budskabet fra Rockwool. The post Hvordan stopper vi gode byggematerialer fra
+    at tabe værdi? appeared
+  category: fagmedie
+  source_topics: [byg_farligt]
+  expect: {none: vis, normal: graa, strict: graa}
+- id: drift-tekstilhandlingsplan-mangler-bud-paa-konkrete
+  title: Tekstilhandlingsplan mangler bud på konkrete mål og regulering
+  teaser: Visionen er rigtig, men manglende mål og for mange bløde initiativer svækker national handlingsplan for
+    tekstiler, mener Cirkulær.
+  category: organisation
+  expect: {none: vis, normal: graa, strict: graa, genre: nyhed}
+- id: drift-stor-kortlaegning-af-pfas-i
+  title: Stor kortlægning af PFAS i byggeriet på vej
+  teaser: 'PFAS er fundet i en række byggevarer, men ingen har det fulde overblik over, hvor de problematiske fluorstoffer
+    gemmer sig. Det gør det svært at undgå PFAS i nyt byggeri og står i vejen for sikker genbrug og genanvendelse
+    af materialer. Et '
+  category: taenketank
+  expect:
+    none: vis
+    normal: vis
+    strict: graa
+    topics: [byg_farligt]
+- id: drift-vana-samler-vaerdikaeden-om-bedre
+  title: VANA samler værdikæden om bedre genanvendelse
+  teaser: VANA samlede kommuner, forsyninger og affaldsbranchen til tre besøg med fokus på bedre sortering, højere
+    kvalitet og mere genanvendelse af emballageaffald.
+  category: organisation
+  source_topics: [producentansvar]
+  expect: {none: vis, normal: vis, strict: vis, genre: nyhed}
+- id: drift-entreprenoer-opruster-nye-nedrivningsregler-aendrer
+  title: 'Entreprenør opruster: Nye nedrivningsregler ændrer markedet'
+  teaser: 'Nye krav til selektiv nedrivning har øget antallet af sager markant. Nu samler S.P. Jensen sine miljøkompetencer
+    i en ny afdeling. The post Entreprenør opruster: Nye nedrivningsregler ændrer markedet appeared first on Dagens
+    Byggeri .'
+  category: fagmedie
+  source_topics: [byg_farligt]
+  expect:
+    none: vis
+    normal: graa
+    strict: afvist
+    genre: nyhed
+    topics: [byg_farligt]
+- id: drift-argo-skifter-skilte-saa-du
+  title: ARGO skifter skilte, så du forstår, hvor affaldet ender
+  teaser: Indlægget ARGO skifter skilte, så du forstår, hvor affaldet ender blev først udgivet på ARGO .
+  category: kommunal
+  expect: {none: vis, normal: vis, strict: vis, genre: nyhed}
+- id: drift-ny-tildeling-af-emballageaffald-reglerne
+  title: 'Ny tildeling af emballageaffald: Reglerne risikerer fortsat at give ulige konkurrencevilkår'
+  teaser: Dansk Producentansvar (DPA) har sendt udkastet til tildeling af emballageaffald for 2027-2028 i høring.
+    VANA ser positivt på flere af de praktiske ændringer, men vi peger i vores høringssvar samtidig på en række
+    væsentlige problemer i den m
+  category: organisation
+  source_topics: [producentansvar]
+  expect:
+    none: vis
+    normal: vis
+    strict: vis
+    genre: nyhed
+    topics: [producentansvar]
+- id: drift-genbrugsplads-maatte-evakueres-da-virksomhed
+  title: Genbrugsplads måtte evakueres, da virksomhed dumpede farligt affald
+  teaser: Se eksempler på farligt affald og læs leder for genbrugspladsens gode råd til at sortere korrekt efter
+    hændelsen i sidste uge.
+  expect: {none: vis, normal: vis, strict: vis, genre: nyhed}
+- id: drift-euroheat-power-stoetter-inklusion-af
+  title: Euroheat & Power støtter inklusion af affaldsforbrænding i EU’s kvotehandel
+  teaser: Dansk Fjernvarmes faglige forberedelse og samarbejde med andre europæiske medlemsorganisationer har bidraget
+    til en fælles position i Euroheat & Power. Organisationen støtter nu inklusion af affaldsforbrænding i ETS med
+    forbehold om beskytt
+  category: organisation
+  expect:
+    none: vis
+    normal: vis
+    strict: vis
+    genre: nyhed
+    topics: [klima, forbraending]
+- id: drift-nyhed-genbrugskrav-til-drikkevareemballager-lca
+  title: 'Nyhed: Genbrugskrav til drikkevareemballager: LCA og dokumentation bliver centrale i spørgsmålet om en
+    undtagelse'
+  teaser: 'Danmark er i dialog med Finland, Norge og Sverige om en mulig fælles henvendelse til EU-Kommissionen.
+    Samtidig er dokumentationsgrundlaget i fokus: Dansk Retursystems LCA indgår i diskussionen, mens ni organisationer
+    efterlyser en bredere v'
+  category: organisation
+  expect: {none: vis, normal: vis, strict: graa, genre: nyhed}
+- id: drift-regningen-for-emballageaffald-skal-stadig
+  title: Regningen for emballageaffald skal stadig betales af danskerne
+  teaser: Selvom det varslede prisloft på kommunernes producentgebyrer reducerer virksomhedernes omkostninger til
+    emballageaffald, bliver det ikke nødvendigvis billigere at være dansker. Samtidig er det et åbent spørgsmål,
+    om Danmark når sine affalds
+  category: organisation
+  expect: {none: vis, normal: vis, strict: vis, genre: nyhed}
+- id: drift-her-er-kommissionens-forslag
+  title: Her er Kommissionens forslag
+  teaser: EU-Kommissionens forslag til CO2-kvotesystemets nye rammer byder på positive elementer for fjernvarmen
+    generelt, for affaldsforbrænding og for CO2-fangst. Nu venter en spændende proces med behandlingen af forslaget.
+  category: organisation
+  expect: {none: vis, normal: vis, strict: graa, genre: nyhed}
+- id: drift-godt-med-loft-over-kommunernes
+  title: Godt med loft over kommunernes affaldsregning til virksomheder – men kvalitet skal også tænkes ind
+  teaser: 'Plastindustrien hilser det velkommen, at regeringen vil indføre et fast loft over, hvor meget kommunerne
+    kan opkræve virksomhederne for håndteringen af emballageaffald. Brancheorganisationen har længe efterlyst en
+    model, der sikrer et mere '
+  category: organisation
+  expect: {none: vis, normal: vis, strict: vis, genre: nyhed}
+- id: drift-nye-affaldsregler-faar-stik-modsat
+  title: Nye affaldsregler får stik modsat effekt – nu risikerer regningen at blive større
+  teaser: Nyt indgreb fra regeringen kan gøre det dyrere for danskere at komme af med deres affald, mener brancheforening
+    og affaldsselskab.
+  expect: {none: vis, normal: vis, strict: vis, genre: nyhed}
+- id: drift-nyhed-12-nye-trace-projekter
+  title: 'Nyhed: 12 nye TRACE-projekter skal styrke den cirkulære økonomi'
+  teaser: TRACE har den 28. september lanceret 12 nye projekter, der skal være med til at gøre Danmark mere cirkulært.
+    Projekterne arbejder med blandt andet tekstiler, plast, genbrug og nye måder at forlænge produkters levetid
+    på.
+  category: organisation
+  expect: {none: vis, normal: graa, strict: graa, genre: nyhed}
+- id: drift-nyhed-ny-emballagebekendtgoerelse-og-pantbekendtgoerelse
+  title: 'Nyhed: Ny emballagebekendtgørelse og pantbekendtgørelse'
+  teaser: Energistyrelsen har offentliggjort et høringsnotat om ændringer af bekendtgørelsen om supplerende bestemmelser
+    til EU's forordning om emballage og emballageaffald samt pantbekendtgørelsen.
+  category: organisation
+  expect:
+    none: vis
+    normal: vis
+    strict: graa
+    topics: [producentansvar, regler]
+- id: drift-se-hvad-dit-affald-vejer
+  title: Se, hvad dit affald vejer på Mit renosyd
+  teaser: 'Hvor meget affald får I hentet hjemme hos dig? Og vejer det mere eller mindre end hos naboerne? På Mit
+    renosyd kan husstande med egne affaldsbeholdere i Skanderborg og Odder Kommuner nu følge vægten af deres affald
+    fra tømning til tømning. '
+  category: kommunal
+  expect: {none: vis, normal: vis, strict: vis, genre: nyhed}
+- id: drift-tidligere-df-er-skyder-med
+  title: 'Tidligere DF''er skyder med skarpt mod partiet: Varsler sag om injurier'
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-solceller-er-populaere-vi-goer
+  title: 'Solceller er populære: Vi gør det for pengepungens skyld'
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-frankrig-stopper-brug-af-chokgranater
+  title: Frankrig stopper brug af chokgranater under gymnasieprotester
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-danske-hjem-farvel-til-olie
+  title: 'Danske hjem farvel til olie og gas: Især én klimavenlig teknologi vinder frem'
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-sjaeldent-indblik-i-kriminalitetsniveauet-blandt
+  title: 'Sjældent indblik i kriminalitetsniveauet blandt tredjegenerationsindvandrere: Her er tallene'
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-barndom-i-modgang-boern-der
+  title: 'Barndom i modgang: Børn der vokser op med flere belastninger har større risiko for at dø tidligere'
+  category: forskning
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-salling-shopper-igennem-koeber-dansk
+  title: 'Salling shopper igennem: Køber dansk netbutik i milliardhandel'
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-han-er-selvfoelgelig-joede-populaere
+  title: ”Han er selvfølgelig jøde…” Populære krimier er fulde af jødiske stereotyper
+  category: forskning
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-hun-har-laert-dansk-og
+  title: Hun har lært dansk og håber aftenens debat fører til mere accept
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-lederrollen-kraever-laering-og-traening
+  title: Lederrollen kræver læring og træning
+  category: organisation
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-sprogmodellen-kender-ikke-dit-anlaeg
+  title: Sprogmodellen kender ikke dit anlæg — men den kan bygge analysemodellen
+  category: organisation
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-34-aarig-mand-varetaegtsfaengslet-efter
+  title: 34-årig mand varetægtsfængslet efter frihedsberøvelse og voldtægt
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-danske-universiteter-lancerer-uafhaengig-ai
+  title: 'Danske universiteter lancerer uafhængig AI-platform til forskning og innovation: UCloud AI'
+  category: forskning
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-danmark-bliver-mere-afhaengig-af
+  title: Danmark bliver mere afhængig af de elkabler, som nabolandene truer med at skrotte. Nu kommer Energinet
+    med opråb
+  category: fagmedie
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-tiltagende-digitalisering-suger-livskraften-ud
+  title: Tiltagende digitalisering suger livskraften ud af de svageste
+  category: fagmedie
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-ekspert-kalder-forsvarsministeriets-beslutning-meget
+  title: 'Ekspert kalder forsvarsministeriets beslutning ''meget usædvanlig'': Virksomhed handlede ulovligt, men
+    skal nu udvide'
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-biomasse-er-i-fokus-paa
+  title: Biomasse er i fokus på årets fælles Erfa-møde
+  category: organisation
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-flere-koeer-kan-nu-slippe
+  title: Flere køer kan nu slippe for omstridt foderstof
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-job-vacancy-policy-assistant-for
+  title: 'JOB VACANCY: Policy Assistant for European Institutions'
+  category: eu_norden
+  lang: en
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-hvad-goer-vi-i-tilfaelde
+  title: Hvad gør vi i tilfælde af en krisesituation i København?
+  category: kommunal
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-forskere-modtager-nobelpris-for-at
+  title: Forskere modtager Nobelpris for at løse 100 år gammelt kemimysterie
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-aebler-tilbagekaldes-af-frygt-for
+  title: Æbler tilbagekaldes af frygt for skadedyrsangreb
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-ny-rapport-vi-bliver-ikke
+  title: 'Ny rapport: Vi bliver ikke uafhængige af naturgas i 2035'
+  category: organisation
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-allotment-gardens-provide-cooling-benefits
+  title: Allotment gardens provide cooling benefits to residents of European cities
+  category: eu_norden
+  lang: en
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-krisehaandtering-til-unge-er-et
+  title: 'Krisehåndtering til unge er et hit: ''Jeg er blevet mindre bange'''
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-seniorer-faar-ordet-i-bedste
+  title: Seniorer får ordet i bedste sendetid – og alle bør høre deres tankevækkende refleksioner
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-det-mest-omtalte-emne-er
+  title: '''Det mest omtalte emne er afgifter'': Landets største elbilmesse står i skyggen af nye afgifter'
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-skuespillerpar-serverede-ikke-en-eneste
+  title: Skuespillerpar serverede ikke en eneste dråbe alkohol til sølvbrylluppet
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-tandlaegeklinik-indfoerer-nyt-tiltag-i
+  title: Tandlægeklinik indfører nyt tiltag i kamp mod mange udeblivelser
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-den-gode-konvertering-er-vigtig
+  title: Den gode konvertering er vigtig for alle parter
+  category: organisation
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-miljoecenter-hasseloe-holder-lukket-to
+  title: Miljøcenter Hasselø holder lukket to fredage i oktober
+  category: kommunal
+  expect: {none: afvist, normal: afvist, strict: afvist}
+- id: drift-jobopslag-vi-soeger-en-oekonomidirektoer
+  title: 'Jobopslag: Vi søger en økonomidirektør'
+  category: kommunal
+  expect: {none: afvist, normal: afvist, strict: afvist}
+- id: drift-aendrede-aabningstider-noerrekobbel-genbrugsplads-og
+  title: Ændrede åbningstider Nørrekobbel Genbrugsplads og Genbrugsbutikkerne
+  category: kommunal
+  expect: {none: afvist, normal: afvist, strict: afvist}
+- id: drift-energistyrelsens-webinar-gav-nyttige-afklaringer
+  title: Energistyrelsens webinar gav nyttige afklaringer – men centrale spørgsmål om ansvar i værdikæden står stadig
+    åbne
+  category: organisation
+  source_topics: [producentansvar]
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-webinar-den-7-oktober-2026
+  title: Webinar den 7. oktober 2026 aflyses
+  category: myndighed
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: drift-rapport-fra-kommissionen-til-raadet
+  title: RAPPORT FRA KOMMISSIONEN TIL RÅDET OG EUROPA-PARLAMENTET om forløbet af gennemførelsen af Rådets direktiv
+    2011/70/Euratom og en opgørelse over radioaktivt affald og brugt nukleart brændsel på Fællesskabets område og
+    fremtidsudsigterne FJERDE RAPPORT
+  category: myndighed
+  source_genre: folketing
+  expect: {none: afvist, normal: afvist, strict: afvist}
+- id: drift-rapport-fra-kommissionen-til-europa
+  title: RAPPORT FRA KOMMISSIONEN TIL EUROPA-PARLAMENTET, RÅDET OG DET EUROPÆISKE ØKONOMISKE OG SOCIALE UDVALG om
+    medlemsstaternes gennemførelse af Rådets direktiv 2006/117/Euratom om overvågning af og kontrol med overførsel
+    af radioaktivt affald og brugt nukleart brændsel Femte Rapport
+  category: myndighed
+  source_genre: folketing
+  expect: {none: afvist, normal: afvist, strict: afvist}
+
+- id: drift-ikke-alt-maa-klunses-hos-bofa
+  title: Ikke alt må klunses hos BOFA
+  expect: {none: vis, normal: vis, strict: vis}
+
+- id: drift-spm-asbestaffald-genbrugsstation
+  title: Spm. om, i hvor mange af landets 98 kommuner en privat boligejer i dag lovligt kan aflevere forsvarligt indpakket asbestaffald på en kommunal genbrugsstation
+  category: myndighed
+  source_genre: folketing
+  expect: {none: vis, normal: vis, strict: vis, genre: folketing}

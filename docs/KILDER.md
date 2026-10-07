@@ -71,7 +71,7 @@ Feltnavnene er på engelsk, så de passer til koden. Valideringen sker med pydan
 
 ## Filterniveauer
 
-Forfiltret giver point for affaldsord og kendte navne i titel og teaser. Ordene står i `config/keywords.yaml`. En veto-liste afviser fx atomaffald, jobopslag og webinarer, og en serviceliste afviser driftsbeskeder fra kommunale kilder. Filtret er bevidst løst. Både de klare og de tvivlsomme indslag gemmes som kandidater, og Claude vurderer dem.
+Forfiltret giver point for affaldsord og kendte navne i titel og teaser. Ordene står i `config/keywords.yaml`. En veto-liste afviser fx atomaffald, jobopslag og tilmeldinger, og en serviceliste afviser driftsbeskeder fra kommunale kilder. Filtret er bevidst løst. Både de klare og de tvivlsomme indslag gemmes som kandidater, og Claude vurderer dem.
 
 | Niveau | Bruges til | Bliver kandidat | Afvises |
 |---|---|---|---|
