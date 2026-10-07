@@ -62,16 +62,16 @@ Hver kategori har en farve, et ikon og et kort navn. Prikken er 8 px og ikonet 1
 
 | Kategori | Kort navn | Lys | Mørk | Ikon-id | Motiv |
 |---|---|---|---|---|---|
-| Nyhedsmedie | Nyhedsmedie | #1F5FA8 | #6FA8E8 | `avis` | avis |
-| Fagmedie | Fagmedie | #0E7C86 | #3CC3C3 | `tidsskrift` | tidsskrift |
-| Myndighed og Folketing | Myndighed | #6A3D9A | #B38AD9 | `soejle` | søjlebygning |
-| Kommune og affaldsselskab | Kommunal | #0A602D | #5FC487 | `raadhus` | rådhus |
-| Organisation og branche | Organisation | #B35C00 | #F0A048 | `personer` | to personer |
-| Tænketank og NGO | Tænketank/NGO | #B8336A | #E57AA6 | `paere` | pære |
-| Forskning og universitet | Forskning | #7A5C12 | #CDB05A | `kolbe` | kolbe |
-| EU og Norden | EU/Norden | #3B4A9C | #A3A8E0 | `stjerner` | stjernekreds |
+| Nyhedsmedie | Nyhedsmedie | #1862B5 | #68AAFE | `avis` | avis |
+| Fagmedie | Fagmedie | #107C86 | #2CC4CB | `tidsskrift` | tidsskrift |
+| Myndighed og Folketing | Myndighed | #5A3584 | #9B86C6 | `soejle` | søjlebygning |
+| Kommune og affaldsselskab | Kommunal | #065F35 | #5EC587 | `raadhus` | rådhus |
+| Organisation og branche | Organisation | #CA651B | #FFA350 | `personer` | to personer |
+| Tænketank og NGO | Tænketank/NGO | #B8346C | #FF84BA | `paere` | pære |
+| Forskning og universitet | Forskning | #7A5C0D | #AE9417 | `kolbe` | kolbe |
+| EU og Norden | EU/Norden | #84241B | #DD7161 | `stjerner` | stjernekreds |
 
-Ikonerne er egne inline SVG'er i `site/assets/ikoner.svg`. De bruger `currentColor`, og der er intet ikonbibliotek. `tools/check_colors.py` tjekker paletten: CIEDE2000 på mindst 20 mellem alle par, simulering af deutan og protan og kontrast på mindst 3:1 mod `--surface` i begge tilstande. Ændres en farve, skal tjekket være grønt igen.
+Ikonerne er egne inline SVG'er i `site/assets/ikoner.svg`. De bruger `currentColor`, og der er intet ikonbibliotek. `tools/check_colors.py` tjekker paletten: CIEDE2000 på mindst 20 mellem alle par, simulering af deutan og protan og kontrast på mindst 3:1 mod `--surface` i begge tilstande. Ændres en farve, skal tjekket være grønt igen. Den nuværende palet har mindst 22 mellem alle par i begge tilstande. Ved simuleret farveblindhed ligger enkelte par mellem 8,8 og 10, så farven står aldrig alene: ikon og navn følger altid med.
 
 Temaerne har ingen egne farver. Alle temachips bruger `--tag-bg` og `--link`.
 

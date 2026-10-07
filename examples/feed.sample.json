@@ -9,8 +9,8 @@
    "id": "nyhedsmedie",
    "name": "Nyhedsmedie",
    "short": "Nyhedsmedie",
-   "color": "#1F5FA8",
-   "color_dark": "#6FA8E8",
+   "color": "#1862B5",
+   "color_dark": "#68AAFE",
    "icon": "avis",
    "help": "Lands-, regional- og lokalmedier samt Ritzau-telegrammer med redaktionelt ansvar."
   },
@@ -18,8 +18,8 @@
    "id": "fagmedie",
    "name": "Fagmedie",
    "short": "Fagmedie",
-   "color": "#0E7C86",
-   "color_dark": "#3CC3C3",
+   "color": "#107C86",
+   "color_dark": "#2CC4CB",
    "icon": "tidsskrift",
    "help": "Fagblade og sektionsmedier om kommuner, forsyning, byggeri og emballage."
   },
@@ -27,8 +27,8 @@
    "id": "myndighed",
    "name": "Myndighed og Folketing",
    "short": "Myndighed",
-   "color": "#6A3D9A",
-   "color_dark": "#B38AD9",
+   "color": "#5A3584",
+   "color_dark": "#9B86C6",
    "icon": "soejle",
    "help": "Ministerier, styrelser, tilsyn, råd, nævn, Høringsportalen og Folketinget."
   },
@@ -36,8 +36,8 @@
    "id": "kommunal",
    "name": "Kommune og affaldsselskab",
    "short": "Kommunal",
-   "color": "#0A602D",
-   "color_dark": "#5FC487",
+   "color": "#065F35",
+   "color_dark": "#5EC587",
    "icon": "raadhus",
    "help": "Kommuner og kommunalt ejede affalds-, forbrændings- og forsyningsselskaber."
   },
@@ -45,8 +45,8 @@
    "id": "organisation",
    "name": "Organisation og branche",
    "short": "Organisation",
-   "color": "#B35C00",
-   "color_dark": "#F0A048",
+   "color": "#CA651B",
+   "color_dark": "#FFA350",
    "icon": "personer",
    "help": "Interesse- og brancheorganisationer. Afsenderen varetager medlemmernes interesser."
   },
@@ -54,8 +54,8 @@
    "id": "taenketank",
    "name": "Tænketank og NGO",
    "short": "Tænketank/NGO",
-   "color": "#B8336A",
-   "color_dark": "#E57AA6",
+   "color": "#B8346C",
+   "color_dark": "#FF84BA",
    "icon": "paere",
    "help": "Tænketanke og grønne organisationer, der arbejder for bestemte løsninger."
   },
@@ -63,8 +63,8 @@
    "id": "forskning",
    "name": "Forskning og universitet",
    "short": "Forskning",
-   "color": "#7A5C12",
-   "color_dark": "#CDB05A",
+   "color": "#7A5C0D",
+   "color_dark": "#AE9417",
    "icon": "kolbe",
    "help": "Universiteter, sektorforskning og godkendte teknologiske serviceinstitutter."
   },
@@ -72,8 +72,8 @@
    "id": "eu_norden",
    "name": "EU og Norden",
    "short": "EU/Norden",
-   "color": "#3B4A9C",
-   "color_dark": "#A3A8E0",
+   "color": "#84241B",
+   "color_dark": "#DD7161",
    "icon": "stjerner",
    "help": "EU-institutioner og europæiske eller nordiske organisationer."
   }
