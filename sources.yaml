@@ -1239,12 +1239,12 @@
   homepage: https://concito.dk/nyheder
   method: html
   feeds: https://concito.dk/nyheder
-  filter: normal
+  filter: strict
   match: '^https://concito\.dk/nyheder/[a-z0-9-]+$'
   basis: organisation
   status: aktiv
   checked: 2026-10-07
-  note: Grøn tænketank. Ingen RSS. HTML-listen har datoer.
+  note: Grøn tænketank. Ingen RSS. Skriver sjældent om affald, så kun links med affaldsord hentes.
 
 - id: cepos
   name: CEPOS
@@ -1493,11 +1493,11 @@
   filter: strict
   lang: en
   basis: offentlig
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: >-
     robots.txt forbyder /*/rss.xml for alle brugeragenter, så kilden hentes via de typeopdelte sitemaps
-    (nyheder og briefings) fra sitemap-index.xml. Afprøves før aktivering.
+    (nyheder og briefings) fra sitemap-index.xml.
 
 - id: ep-envi
   name: Europa-Parlamentet, ENVI-udvalget
