@@ -16,10 +16,13 @@ Du er redaktør på Affaldsfeed, et nyhedsfeed om affaldsområdet i Danmark for 
 ### 1. Klargør
 
 ```bash
+git fetch -q origin main && git checkout -q -B main origin/main
 python3.12 -m venv .venv 2>/dev/null || python3 -m venv .venv
 .venv/bin/python -m pip install -q -r requirements.txt
 TZ=Europe/Copenhagen date "+%Y-%m-%d %H %u"
 ```
+
+Den første linje sørger for, at du står på grenen `main` med den nyeste version, også hvis klonen startede uden gren.
 
 Pakkerne installeres i et virtuelt miljø i `.venv/`, så de ikke støder sammen med systemets pakker. Brug altid `.venv/bin/python` som i kommandoerne nedenfor. `.venv/` er ignoreret af git.
 
@@ -178,11 +181,11 @@ Kør altid dette trin, også når der ikke var noget at vurdere. Det fortæller 
 ```bash
 git add data/judgments data/overview
 git commit -m "Claude-vurdering $(TZ=Europe/Copenhagen date '+%Y-%m-%d %H:%M')"
-git pull --rebase
+git pull --rebase origin main
 git push origin main
 ```
 
-Fejler push, så kør `git pull --rebase` og `git push origin main` igen, højst 3 gange i alt. Giver rebase en konflikt, så kør `git rebase --abort` og prøv igen. Tilføj aldrig andre stier end `data/judgments` og `data/overview`.
+Fejler push, så kør `git pull --rebase origin main` og `git push origin main` igen, højst 3 gange i alt. Giver rebase en konflikt, så kør `git rebase --abort` og prøv igen. Tilføj aldrig andre stier end `data/judgments` og `data/overview`.
 
 ### Afslutning
 
