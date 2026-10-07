@@ -1,8 +1,3 @@
-# Lister over danske medier (til udtømmende lokalmedie-research)
-url https://da.wikipedia.org/w/api.php?action=query&list=search&srsearch=liste%20over%20danske%20aviser&srlimit=10&format=json 10
-url https://da.wikipedia.org/w/api.php?action=query&list=categorymembers&cmtitle=Kategori:Aviser_fra_Danmark&cmlimit=500&format=json 100
-url https://da.wikipedia.org/w/api.php?action=query&list=categorymembers&cmtitle=Kategori:Ugeaviser_fra_Danmark&cmlimit=500&format=json 100
-url https://www.pressenaevnet.dk/ 40
-url https://danskemedier.dk/medlemmer/ 150
-url https://www.tv2east.dk/rss-og-api 80
-url https://lokalavisen.dk/ 80
+# Pressenævnets medieregister via WordPress REST-API
+url https://www.pressenaevnet.dk/wp-json/wp/v2/types 40
+url https://www.pressenaevnet.dk/wp-json/wp/v2/pressnet_media?per_page=3 60
