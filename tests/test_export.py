@@ -151,7 +151,7 @@ def test_export_builds_site(repo, scenario, tmp_path):
 
     text, feed = read(out, "feed.json")
     assert list(feed) == ["version", "generated", "window_days", "mode", "last_judgment", "categories", "topics",
-                          "genres", "sources", "overview", "items"]
+                          "genres", "sources", "geo", "overview", "items"]
     assert feed["version"] == 1
     assert feed["generated"] == "2026-10-07T10:00:00Z"
     assert feed["window_days"] == 60
@@ -161,7 +161,10 @@ def test_export_builds_site(repo, scenario, tmp_path):
     assert "æ" in text  # ensure_ascii=False
     assert len(feed["categories"]) == 8 and set(feed["categories"][0]) == {
         "id", "name", "short", "color", "color_dark", "icon", "help"}
-    assert set(feed["topics"][0]) == {"id", "name", "definition"}
+    assert list(feed["topics"][0]) == ["id", "name", "short", "definition"]
+    topics = {t["id"]: t for t in feed["topics"]}
+    assert topics["sortering"]["short"] is None
+    assert topics["genbrugspladser"]["short"] == "Genbrugspladser og genbrug"
     assert set(feed["genres"][0]) == {"id", "label"}
     assert feed["overview"] == {"dag": None, "uge": None, "maaned": None, "aar": None}
 
@@ -176,8 +179,12 @@ def test_export_builds_site(repo, scenario, tmp_path):
     assert items[0]["genre"] == "analyse"
     assert items[1]["source"] == "fyens" and items[1]["reviewed"] is True
     assert list(items[0]) == ["id", "story", "url", "title", "teaser", "source", "published", "date_quality",
-                              "first_seen", "baseline", "topics", "genre", "lang", "summary_da", "reviewed",
-                              "reason", "also", "why"]
+                              "first_seen", "baseline", "topics", "places", "genre", "lang", "summary_da",
+                              "reviewed", "reason", "also", "why"]
+    assert items[2]["places"] == [] and items[0]["places"] == []
+    # Sweep-fundet "Nyt affaldssystem på Fyn" uden places i vurderingen får regelmærker
+    assert items[1]["places"] == ["r:syddanmark"]
+    assert feed["geo"]["byer"] == []
 
     sources = {x["id"]: x for x in feed["sources"]}
     assert set(sources) == {"altinget", "fyens", "kefm"}  # ikke søgekilder, planlagte eller ubrugte medier
@@ -236,3 +243,67 @@ def test_overview_embedded(repo, scenario, tmp_path):
 
 def test_out_inside_site_is_refused(repo):
     assert export_to(paths.SITE_DIR / "x") == 1
+
+
+def test_geo_block_and_places(repo):
+    title = "Regeringen vil ændre reglerne for affaldsgebyrer i kommunerne"
+    national = cand("gebyr", source="kefm", hours_ago=5, title=title)
+    local = cand("gebyr-lokalt", hours_ago=4, title=title, places=["k:nyborg", "b:ullerslev"])
+    region = cand("lossepladser", hours_ago=3, title="Region Syddanmark kortlægger gamle lossepladser",
+                  places=["r:syddanmark"])
+    town = cand("hoersholm", hours_ago=2, title="Ny genbrugsplads i Hørsholm", places=["k:hoersholm", "b:hoersholm"])
+    stale = cand("forsvundet", hours_ago=1, title="Byen er taget ud af geografien", places=["b:findes-ikke"])
+    corrected = cand("rettet", hours_ago=1, title="Aarhus Universitet forsker i plast", places=["k:aarhus"])
+    store.save_candidates([national, local, region, town, stale, corrected])
+    judge(
+        {"id": national.id, "relevant": True},
+        {"id": local.id, "relevant": True},
+        {"id": region.id, "relevant": True, "places": None},
+        {"id": town.id, "relevant": True},
+        {"id": stale.id, "relevant": True},
+        {"id": corrected.id, "relevant": True, "places": []},
+    )
+    heartbeat("2026-10-07T09:30:00Z")
+    feed = export.build_feed(NOW)
+
+    by_id = {i["id"]: i for i in feed["items"]}
+    # Historien: hovedindslaget er nationalt, men et indslag i also er lokalt
+    assert [a["id"] for a in by_id[national.id]["also"]] == [local.id]
+    assert by_id[national.id]["places"] == ["k:nyborg", "b:ullerslev"]
+    assert by_id[region.id]["places"] == ["r:syddanmark"]
+    assert by_id[town.id]["places"] == ["k:hoersholm", "b:hoersholm"]
+    assert by_id[stale.id]["places"] == []  # ukendt id fjernes
+    assert by_id[corrected.id]["places"] == []  # vurderingens tomme liste erstatter regelmærket
+
+    geo = feed["geo"]
+    assert list(geo) == ["regioner", "kommuner", "byer"]
+    assert [r["id"] for r in geo["regioner"]] == ["hovedstaden", "sjaelland", "syddanmark", "midtjylland",
+                                                   "nordjylland"]
+    assert geo["regioner"][2] == {"id": "syddanmark", "navn": "Region Syddanmark", "kort": "Syddanmark"}
+    assert len(geo["kommuner"]) == 98
+    assert {"id": "nyborg", "navn": "Nyborg Kommune", "kort": "Nyborg", "region": "syddanmark"} in geo["kommuner"]
+    assert {"id": "koebenhavn", "navn": "Københavns Kommune", "kort": "København",
+            "region": "hovedstaden"} in geo["kommuner"]
+    # Kun byer, som indslagene nævner (også via also)
+    assert geo["byer"] == [
+        {"id": "hoersholm", "navn": "Hørsholm", "kommune": "hoersholm",
+         "kommuner": ["fredensborg", "hoersholm", "rudersdal"]},
+        {"id": "ullerslev", "navn": "Ullerslev", "kommune": "nyborg", "kommuner": ["nyborg"]},
+    ]
+
+
+def test_without_geography_geo_is_null(repo):
+    (paths.CONFIG_DIR / "geografi.yaml").unlink()
+    c = cand("lokalt", title="Ny genbrugsplads i Nyborg", places=["k:nyborg", "b:nyborg"])
+    store.save_candidates([c])
+    judge({"id": c.id, "relevant": True})
+    feed = export.build_feed(NOW)
+    assert feed["geo"] is None
+    assert feed["items"][0]["places"] == []
+
+
+def test_feed_contract_is_validated(repo, scenario, monkeypatch, tmp_path, caplog):
+    monkeypatch.setattr(export, "geo_block", lambda geo, items: {"regioner": [], "kommuner": [], "byer": [
+        {"id": "ullerslev", "navn": "Ullerslev", "kommune": "nyborg", "kommuner": ["nyborg"]}]})
+    assert export_to(tmp_path / "_site") == 1
+    assert "skemafejl" in caplog.text

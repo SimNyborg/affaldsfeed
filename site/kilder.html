@@ -17,39 +17,36 @@
   <title>Om kilderne | Affaldsfeed</title>
   <meta name="description" content="Hvilke kilder Affaldsfeed henter fra, hvordan de er valgt, og om indsamlingen virker lige nu.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='4' width='18' height='2.6' rx='1.3' fill='%230A602D'/%3E%3Crect x='9.5' y='2' width='5' height='2.6' rx='1.1' fill='%230A602D'/%3E%3Cpath d='M4.6 8h14.8l-1.5 12.2A2 2 0 0 1 15.9 22H8.1a2 2 0 0 1-2-1.8z' fill='%230A602D'/%3E%3Cpath d='M8.4 11.6h7.2M8.4 14.9h5.4M8.4 18.2h6.3' stroke='%23fff' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
+  <link rel="preload" href="assets/fonts/open-sans-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/style.css">
   <script type="module" src="assets/app.js"></script>
 </head>
 <body data-page="kilder">
   <a class="skip-link visually-hidden" href="#indhold">Gå til indholdet</a>
 
+  <aside class="demo-strip" id="demo-strip" aria-label="Demodata" hidden>
+    <div class="inner">
+      <p>Demodata: opdigtede eksempler med links til example.org. Tiderne er rykket frem. <a href="kilder.html" id="demo-real">Vis det rigtige feed</a></p>
+    </div>
+  </aside>
+
   <header class="site-header">
     <div class="inner">
       <div class="brand">
-        <a href="./" data-internal>
-          <svg class="logo" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#logo"></use></svg>Affaldsfeed
-        </a>
+        <a href="./" data-internal><svg class="logo" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#logo"></use></svg>Affaldsfeed</a>
         <p class="subtitle" id="subtitle">Nyheder om affald</p>
       </div>
-      <div class="header-tools">
-        <nav class="site-nav" aria-label="Sider">
-          <ul>
-            <li><a href="./" data-internal>Feed</a></li>
-            <li><a href="kilder.html" aria-current="page" data-internal>Om kilderne</a></li>
-          </ul>
-        </nav>
-        <button type="button" class="theme-btn" id="theme-btn">Tema</button>
-      </div>
+      <nav class="site-nav" aria-label="Sider">
+        <ul>
+          <li><a href="./" data-internal>Feed</a></li>
+          <li><a href="kilder.html" aria-current="page" data-internal>Om kilderne</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
   <div class="layout single">
     <main class="main page" id="indhold" tabindex="-1">
-      <div class="bars" id="bars" hidden></div>
-
       <section class="panel prose" aria-labelledby="h-om">
         <h1 id="h-om">Om kilderne</h1>
         <p class="lead">Affaldsfeed henter nyheder om affald fra afsendere i Danmark og resten af Europa. Her står, hvilke kilder feedet bruger, og hvordan de er valgt. Ud for hver kilde kan du se, om indsamlingen virker lige nu.</p>
@@ -68,13 +65,13 @@
       </section>
 
       <div id="kilder-root" class="main">
-        <p class="panel loading">Henter kildelisten …</p>
+        <p class="panel loading-text">Henter kildelisten …</p>
       </div>
 
       <section class="panel prose" aria-labelledby="h-saadan">
         <h2 id="h-saadan">Sådan bliver feedet og overblikket til</h2>
         <p>Hver time henter et job på GitHub Actions nyt fra kilderne via RSS-feeds og nyhedssøgninger. Det, der tydeligvis ikke handler om affald, bliver sorteret fra, og artikler om samme historie bliver samlet på ét kort.</p>
-        <p>Mellem kl. 6 og 23 læser Claude de nye indslag en gang i timen og vurderer, om de er relevante for kommunernes arbejde med affald. Claude ser kun titlen og kildens egen korte beskrivelse. Feedet viser kun de indslag, Claude har godkendt. Er vurderingen mere end et par timer forsinket, bliver nye indslag vist ud fra faste regler med mærket "ikke vurderet".</p>
+        <p>Mellem kl. 6 og 23 læser Claude de nye indslag en gang i timen og vurderer, om de er relevante for kommunernes arbejde med affald. Claude ser kun titlen og kildens egen korte beskrivelse. Feedet viser kun de indslag, Claude har godkendt. Er vurderingen mere end et par timer forsinket, bliver nye indslag vist efter faste regler og mærket "Ikke vurderet".</p>
         <p>Overblikket øverst på forsiden skriver Claude ud fra de godkendte indslag i perioden og intet andet. Hvert punkt linker til de artikler, det bygger på, så du selv kan tjekke det. Overblikket kan indeholde fejl.</p>
         <p>Feedet viser titel, kilde og tidspunkt samt kildens egen korte beskrivelse, og overskrifterne linker altid til den oprindelige artikel. Affaldsfeed er et uafhængigt hobbyprojekt uden tilknytning til affaldsviden.info. Koden ligger åbent på <a href="https://github.com/SimNyborg/affaldsfeed">GitHub</a>.</p>
       </section>
@@ -83,8 +80,19 @@
 
   <footer class="site-footer">
     <div class="inner">
-      <p>Uafhængigt hobbyprojekt. Ikke tilknyttet affaldsviden.info. Alle overskrifter linker til den oprindelige kilde.</p>
-      <p><a href="https://github.com/SimNyborg/affaldsfeed">Koden på GitHub</a></p>
+      <div class="foot-text">
+        <p>Uafhængigt hobbyprojekt. Ikke tilknyttet affaldsviden.info. Alle overskrifter linker til den oprindelige kilde.</p>
+        <p><a href="https://github.com/SimNyborg/affaldsfeed">Koden på GitHub</a></p>
+      </div>
+      <div class="theme-pick">
+        <span class="theme-label" aria-hidden="true">Tema</span>
+        <fieldset class="seg seg-dark" id="theme-seg">
+          <legend class="visually-hidden">Tema</legend>
+          <label><input type="radio" name="af-tema" value="auto"><span>Auto</span></label>
+          <label><input type="radio" name="af-tema" value="light"><span>Lys</span></label>
+          <label><input type="radio" name="af-tema" value="dark"><span>Mørk</span></label>
+        </fieldset>
+      </div>
     </div>
   </footer>
 </body>

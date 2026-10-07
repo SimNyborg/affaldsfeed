@@ -25,6 +25,7 @@ log = logging.getLogger(__name__)
 
 JUDGMENT_FILE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})\.jsonl$")
 RECENT_APPROVED_HOURS = 72
+PLACES_FORMAT = "r:<region>, k:<kommune>, b:<by>"
 
 
 # ── Indlæsning ──────────────────────────────────────────────
@@ -213,6 +214,12 @@ def build_pending(
         "profile": config.profile,
         "topics": [{"id": t.id, "name": t.name, "definition": t.definition} for t in config.topics],
         "genres": [{"id": g.id, "label": g.label} for g in config.genres],
+        # Byer udelades for at holde output lille; routinen slår dem op i config/geografi.yaml
+        "places_help": {
+            "format": PLACES_FORMAT,
+            "regioner": [{"id": r.id, "navn": r.navn} for r in config.geo.regioner],
+            "kommuner": [{"id": m.id, "navn": m.navn} for m in config.geo.kommuner],
+        },
         "pending": [
             {
                 "id": c.id,
@@ -225,6 +232,7 @@ def build_pending(
                 "published": iso(c.published),
                 "rule_topics": list(c.topics),
                 "rule_genre": c.genre,
+                "rule_places": list(c.places),
                 "prefilter": {"decision": c.why.decision, "score": c.why.score, "hits": list(c.why.hits)},
             }
             for c in pending
@@ -281,8 +289,12 @@ def validate_lines(
     candidates: list[Candidate],
     info: dict[str, SourceInfo],
     known_ids: set[str],
+    place_ids: set[str] | None = None,
 ) -> tuple[list[str], int]:
-    """Validerer linjerne i `files`. Returnerer (fejl som "fil:linje: besked", antal linjer)."""
+    """Validerer linjerne i `files`. Returnerer (fejl som "fil:linje: besked", antal linjer).
+
+    place_ids: gyldige sted-id'er fra geografien (None = places tjekkes ikke mod geografien).
+    """
     cand_by_id = {c.id: c for c in candidates}
     errors: list[str] = []
     count = 0
@@ -302,7 +314,8 @@ def validate_lines(
             except ValidationError as e:
                 errors.extend(f"{name}:{n}: {msg}" for msg in format_errors(e))
                 continue
-            errors.extend(f"{name}:{n}: {msg}" for msg in _check(j, cand_by_id, info, known_ids, file_day))
+            msgs = _check(j, cand_by_id, info, known_ids, file_day, place_ids)
+            errors.extend(f"{name}:{n}: {msg}" for msg in msgs)
     return errors, count
 
 
@@ -312,8 +325,15 @@ def _check(
     info: dict[str, SourceInfo],
     known_ids: set[str],
     file_day: str | None,
+    place_ids: set[str] | None = None,
 ) -> list[str]:
     msgs: list[str] = []
+    if j.places and place_ids is not None:
+        msgs.extend(
+            f"places: ukendt sted-id '{p}' (brug id'er fra config/geografi.yaml)"
+            for p in j.places
+            if p not in place_ids
+        )
     lang: str | None = None
     if j.new_item is not None:
         expected = item_id(j.new_item.url)
@@ -364,7 +384,7 @@ def main_validate(args: argparse.Namespace) -> int:
             files = [Path.cwd() / p]
     else:
         files = judgment_files()
-    errors, count = validate_lines(files, candidates, info, known_ids)
+    errors, count = validate_lines(files, candidates, info, known_ids, config.geo.place_ids())
     for e in errors:
         print(e)
     if errors:

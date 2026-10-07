@@ -45,6 +45,7 @@ Læs hele `/tmp/pending.json`. Den indeholder:
 - `now`: kørselstidspunktet i UTC. Det bruger du som `judged_at`.
 - `profile`: relevansprofilen (samme tekst som `config/relevansprofil.md`). Den afgør, hvad der er relevant.
 - `topics` og `genres`: de tilladte temaer og genrer med id.
+- `places_help`: formatet for sted-id'er og alle regioner og kommuner med id. Byer står i `config/geografi.yaml`.
 - `pending`: indslag, der venter på din vurdering, nyeste først.
 - `recent_approved`: indslag, du har godkendt de sidste 72 timer. Dem bruger du til `story_hint`.
 
@@ -52,7 +53,7 @@ Er `pending` tom, og skal hverken trin 5 eller trin 6 køres i denne time, så g
 
 ### 3. Vurdér hvert indslag
 
-Skriv præcis én linje for hvert indslag i `pending`. Vurdér kun ud fra titel, teaser, afsender (`source_name`) og kategori. Åbn ikke artiklerne. `prefilter`, `rule_topics` og `rule_genre` er regelbaserede forslag, som du må tilsidesætte.
+Skriv præcis én linje for hvert indslag i `pending`. Vurdér kun ud fra titel, teaser, afsender (`source_name`) og kategori. Åbn ikke artiklerne. `prefilter`, `rule_topics`, `rule_genre` og `rule_places` er regelbaserede forslag, som du må tilsidesætte.
 
 Felterne:
 
@@ -60,19 +61,28 @@ Felterne:
 2. `relevant`: `true` hvis indslaget passer til profilen, ellers `false`. Er du i tvivl, så følg profilens tommelfingerregel: tag det med, hvis en kommunal affaldsmedarbejder sandsynligvis ville bruge to minutter på at læse det.
 3. `reason`: én kort dansk sætning på højst 200 tegn om, hvorfor indslaget er med eller ikke er med. Skriv sagligt, fx "Nye regler for affaldsgebyrer i kommunerne" eller "Handler om atomaffald".
 4. `topics`: 0-2 tema-id'er fra `topics`, det vigtigste først. Brug `[]`, når intet tema passer, og altid ved `relevant: false`.
-5. `genre`: ét id fra `genres` (`nyhed`, `debat`, `pressemeddelelse`, `analyse`, `hoering`, `folketing`). Tag udgangspunkt i `rule_genre`, og skift kun, når titel eller teaser tydeligt viser noget andet.
-6. `summary_da`: kun når `lang` ikke er `da` og indslaget er relevant. Et dansk resumé på højst 160 tegn, skrevet ud fra titel og teaser. Ellers `null`. Danske indslag har altid `null`.
-7. `story_hint`: id på et andet indslag i `pending` eller `recent_approved`, der handler om samme historie, ellers `null`. Aldrig indslagets eget id.
-8. `judged_at`: `now` fra `/tmp/pending.json`, kopieret præcist.
-9. `by`: `"claude-routine"`.
-10. `new_item`: `null`.
+5. `places`: `null`, når `rule_places` er rigtige, ellers den rigtige liste (se Steder herunder).
+6. `genre`: ét id fra `genres` (`nyhed`, `debat`, `pressemeddelelse`, `analyse`, `hoering`, `folketing`). Tag udgangspunkt i `rule_genre`, og skift kun, når titel eller teaser tydeligt viser noget andet.
+7. `summary_da`: kun når `lang` ikke er `da` og indslaget er relevant. Et dansk resumé på højst 160 tegn, skrevet ud fra titel og teaser. Ellers `null`. Danske indslag har altid `null`.
+8. `story_hint`: id på et andet indslag i `pending` eller `recent_approved`, der handler om samme historie, ellers `null`. Aldrig indslagets eget id.
+9. `judged_at`: `now` fra `/tmp/pending.json`, kopieret præcist.
+10. `by`: `"claude-routine"`.
+11. `new_item`: `null`.
+
+**Steder.** Et sted skrives som `r:<region>`, `k:<kommune>` eller `b:<by>`, fx `k:nyborg` eller `b:ullerslev`. Højst 8 pr. indslag.
+
+- Tjek `rule_places`. Er de rigtige, så skriv `"places": null`.
+- Fjern steder, der kun nævnes i forbifarten, i et navn på en institution eller virksomhed (fx "Aarhus Universitet" i en forskningsnyhed) eller i et personnavn (fx minister Lars Aagaard).
+- Tilføj et sted, når artiklen tydeligt handler om det. Kommunen og regionen følger automatisk med i filtret, så en by behøver ikke også sin kommune.
+- Nationale nyheder har ingen steder: skriv `"places": []`.
+- Brug kun id'er fra `config/geografi.yaml`. Regioner og kommuner står i `places_help`. En bys id finder du med `grep -B1 "^  navn: Ullerslev$" config/geografi.yaml`. Står byen der ikke, så brug kommunen.
 
 Tilføj linjerne nederst i `data/judgments/DATO.jsonl` (filen oprettes, hvis den ikke findes). Én JSON-genstand pr. linje, ingen tomme linjer og ingen indrykning. Brug en heredoc med `'EOF'`, så skallen ikke ændrer teksten:
 
 ```bash
 cat >> data/judgments/DATO.jsonl <<'EOF'
-{"id":"3f9a1c0b7e21","relevant":true,"reason":"Nye regler for affaldsgebyrer i kommunerne","topics":["gebyrer","regler"],"genre":"nyhed","summary_da":null,"story_hint":null,"judged_at":"2026-10-07T07:25:41Z","by":"claude-routine","new_item":null}
-{"id":"9b1e44d0c2aa","relevant":false,"reason":"Handler om atomaffald, som ikke er med i feedet","topics":[],"genre":"nyhed","summary_da":null,"story_hint":null,"judged_at":"2026-10-07T07:25:41Z","by":"claude-routine","new_item":null}
+{"id":"3f9a1c0b7e21","relevant":true,"reason":"Nye regler for affaldsgebyrer i kommunerne","topics":["gebyrer","regler"],"places":null,"genre":"nyhed","summary_da":null,"story_hint":null,"judged_at":"2026-10-07T07:25:41Z","by":"claude-routine","new_item":null}
+{"id":"9b1e44d0c2aa","relevant":false,"reason":"Handler om atomaffald, som ikke er med i feedet","topics":[],"places":null,"genre":"nyhed","summary_da":null,"story_hint":null,"judged_at":"2026-10-07T07:25:41Z","by":"claude-routine","new_item":null}
 EOF
 ```
 
@@ -156,10 +166,10 @@ Skriveregler for overblikket:
 4. Er afsenderen kendt (ikke `UKENDT`), så tilføj en vurdering til `data/judgments/DATO.jsonl` som i trin 3, med `"relevant":true` og `new_item` udfyldt:
 
    ```json
-   {"id":"<id>","relevant":true,"reason":"Ny affaldsordning i Odense Kommune","topics":["sortering"],"genre":"nyhed","summary_da":null,"story_hint":null,"judged_at":"<now fra pending>","by":"claude-routine","new_item":{"url":"https://fyens.dk/...","title":"Titel som hos udgiveren","teaser":"Kort dansk teaser ud fra søgeresultatet","source":"<afsender-id>","published":"2026-10-07T05:10:00Z"}}
+   {"id":"<id>","relevant":true,"reason":"Ny affaldsordning i Odense Kommune","topics":["sortering"],"places":["k:odense"],"genre":"nyhed","summary_da":null,"story_hint":null,"judged_at":"<now fra pending>","by":"claude-routine","new_item":{"url":"https://fyens.dk/...","title":"Titel som hos udgiveren","teaser":"Kort dansk teaser ud fra søgeresultatet","source":"<afsender-id>","published":"2026-10-07T05:10:00Z"}}
    ```
 
-   `title` og `teaser` er højst 300 tegn. Kender du ikke udgivelsestidspunktet, så skriv `"published":null`.
+   `title` og `teaser` er højst 300 tegn. Kender du ikke udgivelsestidspunktet, så skriv `"published":null`. Skriv `places` efter reglerne i trin 3; med `null` sætter reglerne stederne ud fra titel og teaser.
 5. Er afsenderen `UKENDT`, så kommer fundet ikke i feedet. Tilføj i stedet en linje nederst i `data/judgments/kildeforslag-sweep.md` (opret filen med overskriften `# Kildeforslag fra sweep`, hvis den mangler):
 
    ```text

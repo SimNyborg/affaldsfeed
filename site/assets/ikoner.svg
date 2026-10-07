@@ -88,18 +88,13 @@
     <path d="m15 15 5 5"/>
   </symbol>
 
-  <symbol id="sol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-    <circle cx="12" cy="12" r="4"/>
-    <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/>
+  <symbol id="sted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/>
+    <circle cx="12" cy="10" r="2.4"/>
   </symbol>
 
-  <symbol id="maane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
-    <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>
-  </symbol>
-
-  <symbol id="auto" viewBox="0 0 24 24">
-    <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
-    <path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/>
+  <symbol id="flueben" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m5 12.5 4.5 4.5L19 7.5"/>
   </symbol>
 
   <symbol id="advarsel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

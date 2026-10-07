@@ -1,8 +1,9 @@
 // Affaldsfeed: AI-overblikket øverst (I dag, Ugen, Måneden, Året).
 // Data kommer fra feed.json → overview.{dag,uge,maaned,aar} (KONTRAKTER §7–8).
+// Foldet viser kun "Kort sagt"-linjen; "Vis hele" folder ud. af.overviewHidden = "0" betyder udfoldet.
 
 import {
-  el, icon, hidden, cph, fmtStamp, fmtShort, fmtLongYear, fmtNum, parseDate, shortName,
+  el, icon, hidden, cph, fmtStamp, fmtWhen, fmtShort, fmtLongYear, fmtNum, parseDate, shortName,
   load, store, OV_PERIODS,
 } from './filters.js';
 
@@ -13,9 +14,9 @@ const EMPTY = {
   maaned: 'Månedens overblik kommer efter kl. 06.25.',
   aar: 'Årets overblik kommer mandag efter kl. 06.25.',
 };
-// Hvor gammelt et overblik må være, før vi siger, at det ikke er opdateret som planlagt (timer)
+// Hvor gammelt et overblik må være, før det ikke er opdateret som planlagt (timer)
 const MAX_AGE_H = { uge: 18, maaned: 30, aar: 8 * 24 };
-const KEY_HIDDEN = 'af.overviewHidden';
+const KEY = 'af.overviewHidden';
 
 /**
  * createOverview(root, {data, now, getState, onPeriod, onStory})
@@ -26,115 +27,133 @@ const KEY_HIDDEN = 'af.overviewHidden';
 export function createOverview(root, { data, now, getState, onPeriod, onStory }) {
   let filtersActive = false;
   const overviews = data.feed.overview || {};
+  const isOpen = () => load(KEY) === '0';
 
-  function render({ focusTab = false, focusToggle = false } = {}) {
-    const period = getState().overblik;
-    root.replaceChildren();
+  const per = el('span', { class: 'ov-per' });
+  const old = el('span', { class: 'ov-old' });
+  const toggleText = el('span');
+  const toggle = el('button', {
+    type: 'button', class: 'btn-text ov-toggle', 'aria-expanded': 'false', 'aria-controls': 'ov-body',
+    onclick: () => { store(KEY, isOpen() ? '1' : '0'); render(); },
+  }, toggleText, hidden(' overblikket'), icon('pil-ned'));
+  const short = el('p', { class: 'ov-short' });
 
-    if (load(KEY_HIDDEN) === '1') {
-      root.className = 'panel overview is-collapsed';
-      const show = el('button', {
-        type: 'button', class: 'btn-text', 'aria-expanded': 'false',
-        onclick: () => { store(KEY_HIDDEN, null); render({ focusToggle: true }); },
-      }, 'Vis overblik');
-      root.append(el('p', { text: 'AI-overblikket er skjult.' }), show);
-      if (focusToggle) show.focus();
-      return;
-    }
+  const tabs = OV_PERIODS.map((p) => el('button', {
+    type: 'button', role: 'tab', id: `ov-tab-${p}`, 'aria-controls': 'ov-panel', onclick: () => select(p, false),
+  }, LABELS[p]));
+  const tablist = el('div', { class: 'seg seg-tabs', role: 'tablist', 'aria-label': 'Periode for overblikket' }, tabs);
+  tablist.addEventListener('keydown', (e) => {
+    const i = OV_PERIODS.indexOf(getState().overblik);
+    const n = OV_PERIODS.length;
+    const next = { ArrowRight: (i + 1) % n, ArrowLeft: (i + n - 1) % n, Home: 0, End: n - 1 }[e.key];
+    if (next === undefined) return;
+    e.preventDefault();
+    select(OV_PERIODS[next], true);
+  });
+  const panel = el('div', { class: 'ov-panel', id: 'ov-panel', role: 'tabpanel', tabindex: '0' });
+  const body = el('div', { class: 'ov-body', id: 'ov-body' }, tablist, panel);
 
-    root.className = 'panel overview';
-    const hide = el('button', {
-      type: 'button', class: 'btn-text', 'aria-expanded': 'true', 'aria-controls': 'ov-body',
-      onclick: () => { store(KEY_HIDDEN, '1'); render({ focusToggle: true }); },
-    }, 'Skjul overblik');
-
-    const tabs = OV_PERIODS.map((p) => el('button', {
-      type: 'button', role: 'tab', id: `ov-tab-${p}`, 'aria-controls': 'ov-body',
-      'aria-selected': p === period ? 'true' : 'false', tabindex: p === period ? '0' : '-1',
-      onclick: () => select(p, false),
-    }, LABELS[p]));
-
-    const tablist = el('div', { class: 'seg', role: 'tablist', 'aria-label': 'Periode for overblikket' }, tabs);
-    tablist.addEventListener('keydown', (e) => {
-      const i = OV_PERIODS.indexOf(period);
-      let next = null;
-      if (e.key === 'ArrowRight') next = OV_PERIODS[(i + 1) % OV_PERIODS.length];
-      else if (e.key === 'ArrowLeft') next = OV_PERIODS[(i + OV_PERIODS.length - 1) % OV_PERIODS.length];
-      else if (e.key === 'Home') next = OV_PERIODS[0];
-      else if (e.key === 'End') next = OV_PERIODS[OV_PERIODS.length - 1];
-      if (next) { e.preventDefault(); select(next, true); }
-    });
-
-    const body = el('div', { class: 'ov-body', id: 'ov-body', role: 'tabpanel', tabindex: '0', 'aria-labelledby': `ov-tab-${period}` },
-      panelContent(period));
-
-    root.append(
-      el('div', { class: 'ov-head' }, el('h2', { id: 'ov-title', text: 'Overblik' }), hide),
-      tablist,
-      body,
-    );
-    root.setAttribute('aria-labelledby', 'ov-title');
-    if (focusTab) tabs[OV_PERIODS.indexOf(period)].focus();
-    if (focusToggle) hide.focus();
-  }
+  root.replaceChildren(
+    el('div', { class: 'ov-head' },
+      el('div', { class: 'ov-label' }, el('h2', { id: 'ov-title', text: 'AI-overblik' }), per, old),
+      toggle),
+    short, body);
+  root.setAttribute('aria-labelledby', 'ov-title');
 
   function select(p, focusTab) {
     if (p !== getState().overblik) onPeriod(p);
-    render({ focusTab });
+    render();
+    if (focusTab) tabs[OV_PERIODS.indexOf(p)].focus();
   }
 
-  function panelContent(period) {
-    const ov = overviews[period] || null;
-    const out = [];
-    if (!ov || !Array.isArray(ov.bullets)) {
-      // Før kl. 07 venter vi på morgenkørslen; senere på dagen er overblikket bare ikke skrevet endnu
-      const early = Number(cph(now).hh) < 7;
-      const text = early ? EMPTY[period] : 'Overblikket er ikke skrevet endnu. Det kommer ved en af de næste opdateringer.';
-      out.push(el('p', { class: 'ov-empty', text }));
-      if (filtersActive) out.push(filterNote());
-      return out;
+  function current(period) {
+    const ov = overviews[period];
+    return ov && Array.isArray(ov.bullets) ? ov : null;
+  }
+
+  function render() {
+    const period = getState().overblik;
+    const ov = current(period);
+    const open = isOpen();
+    const generated = ov ? parseDate(ov.generated) || now : null;
+    const stale = ov ? isStale(period, ov, generated) : false;
+
+    per.textContent = `\u00A0· ${LABELS[period]}`;
+    old.textContent = stale ? `\u00A0· fra ${fmtWhen(generated, now)}` : '';
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggleText.textContent = open ? 'Vis mindre' : 'Vis hele';
+    root.classList.toggle('is-open', open);
+
+    // Foldet: hovedlinjen, afkortet
+    short.hidden = open;
+    short.classList.toggle('is-empty', !ov);
+    short.replaceChildren(...(ov ? headline(ov.headline) : [emptyText(period)]));
+
+    // Udfoldet: faner, meta, hovedlinje, punkter og bund
+    body.hidden = !open;
+    tabs.forEach((t, i) => {
+      const on = OV_PERIODS[i] === period;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    panel.setAttribute('aria-labelledby', `ov-tab-${period}`);
+    panel.replaceChildren(...panelContent(period, ov, generated, stale));
+  }
+
+  /** "Kort sagt:" i fed, resten almindelig. */
+  function headline(text) {
+    const m = /^(Kort sagt:)\s*/.exec(text || '');
+    return m ? [el('b', { text: m[1] }), ' ', text.slice(m[0].length)] : [text || ''];
+  }
+
+  function emptyText(period) {
+    // Før kl. 07 venter vi på morgenkørslen; senere på dagen er overblikket bare ikke skrevet endnu
+    return Number(cph(now).hh) < 7 ? EMPTY[period] : 'Overblikket er ikke skrevet endnu. Det kommer ved en af de næste opdateringer.';
+  }
+
+  function isStale(period, ov, generated) {
+    if (period === 'dag') {
+      const end = parseDate(ov.window?.end) || generated;
+      return cph(now).dayNum - cph(end).dayNum > 0;
     }
-    const generated = parseDate(ov.generated) || now;
+    return (now - generated) / 36e5 > MAX_AGE_H[period];
+  }
 
-    // Forældet overblik: vis tidspunktet tydeligt
-    const stale = staleText(period, ov, generated);
-    if (stale) out.push(el('p', { class: 'ov-note ov-stale' }, icon('advarsel'), el('span', { text: stale })));
-
+  function panelContent(period, ov, generated, stale) {
+    if (!ov) return [el('p', { class: 'ov-empty', text: emptyText(period) }), foot(false)];
+    const out = [];
+    if (stale) out.push(el('p', { class: 'ov-warn' }, icon('advarsel'), el('span', { text: staleText(period, ov, generated) })));
+    let since = '';
     if (ov.since) {
       const [y, m, d] = String(ov.since).split('-').map(Number);
-      if (y && m && d) out.push(el('p', { class: 'ov-period', text: `${LABELS[period]} (siden ${fmtLongYear({ y, m, d })})` }));
+      if (y && m && d) since = `${LABELS[period]} (siden ${fmtLongYear({ y, m, d })}) · `;
     }
+    out.push(el('p', { class: 'ov-meta', text: `${since}${since ? 'opdateret' : 'Opdateret'} ${fmtStamp(generated, now)} · bygget på ${fmtNum(ov.based_on || 0)} indslag` }));
     out.push(el('p', { class: 'ov-headline', text: ov.headline }));
-    out.push(el('ul', { class: 'ov-bullets' }, ov.bullets.map((b) => el('li', null,
-      el('p', { text: b.text }),
-      refsLine(b),
-    ))));
-    out.push(el('p', { class: 'ov-meta' },
-      `Opdateret ${fmtStamp(generated, now)} · bygget på ${fmtNum(ov.based_on || 0)} indslag · `,
-      'Skrevet af Claude ud fra kilderne nedenfor. Kan indeholde fejl.'));
-    if (filtersActive) out.push(filterNote());
+    out.push(el('ul', { class: 'ov-bullets' }, ov.bullets.map((b) => el('li', null, el('p', { text: b.text }), refsLine(b)))));
+    out.push(foot(true));
     return out;
   }
 
   function staleText(period, ov, generated) {
-    const end = parseDate(ov.window?.end) || generated;
-    const early = Number(cph(now).hh) < 7;
     if (period === 'dag') {
+      const end = parseDate(ov.window?.end) || generated;
       const diff = cph(now).dayNum - cph(end).dayNum;
-      if (diff <= 0) return '';
+      const early = Number(cph(now).hh) < 7;
       const from = diff === 1 ? 'Dette er gårsdagens overblik' : `Dette overblik er fra ${fmtShort(cph(end))}`;
       return `${from} (opdateret ${fmtStamp(generated, now)}). ${early ? 'Dagens overblik kommer efter kl. 06.25.' : 'Dagens overblik er forsinket.'}`;
     }
-    const ageH = (now - generated) / 36e5;
-    if (ageH > MAX_AGE_H[period]) {
-      return `Overblikket blev sidst opdateret ${fmtStamp(generated, now)} og er ikke blevet opdateret som planlagt.`;
-    }
-    return '';
+    return `Overblikket blev sidst opdateret ${fmtStamp(generated, now)} og er ikke blevet opdateret som planlagt.`;
+  }
+
+  function foot(written) {
+    return el('div', { class: 'ov-foot' },
+      written ? el('p', { text: 'Skrevet af Claude ud fra kilderne. Kan indeholde fejl.' }) : null,
+      filtersActive ? filterNote() : null);
   }
 
   function filterNote() {
-    return el('p', { class: 'ov-note' }, icon('info'),
-      el('span', { text: 'Overblikket dækker hele feedet og tager ikke højde for dine filtre.' }));
+    return el('p', { class: 'ov-note' }, icon('info'), el('span', { text: 'Overblikket dækker hele feedet, ikke kun dine filtre.' }));
   }
 
   // "Altinget, KEFM +2": de to første kilder linker til artiklerne; +N filtrerer feedet til historien
@@ -163,11 +182,11 @@ export function createOverview(root, { data, now, getState, onPeriod, onStory })
     });
     const more = rest > 0
       ? el('button', {
-        type: 'button', class: 'ov-more', 'aria-label': `+${rest}: vis historien i feedet`,
+        type: 'button', class: 'btn-text ov-more', 'aria-label': `+${rest}: vis historien i feedet`,
         onclick: () => onStory(units.map((u) => u.id)),
       }, `+${rest}`)
       : null;
-    return el('p', { class: 'ov-refs' }, hidden('Kilder: '), links, more);
+    return el('p', { class: 'ov-refs' }, hidden('Kilder: '), links, more ? ' ' : null, more);
   }
 
   return {
@@ -175,10 +194,10 @@ export function createOverview(root, { data, now, getState, onPeriod, onStory })
     setFiltersActive(v) {
       if (v === filtersActive) return;
       filtersActive = v;
-      const body = root.querySelector('#ov-body');
-      if (!body) return;
-      const note = body.querySelector('.ov-note:not(.ov-stale)');
-      if (v && !note) body.append(filterNote());
+      const f = panel.querySelector('.ov-foot');
+      if (!f) return;
+      const note = f.querySelector('.ov-note');
+      if (v && !note) f.append(filterNote());
       if (!v && note) note.remove();
     },
   };

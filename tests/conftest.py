@@ -13,8 +13,9 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from affaldsfeed.models import Genre, Keywords, Source, Topic  # noqa: E402
+from affaldsfeed.models import Genre, Geo, Keywords, Source, Topic  # noqa: E402
 from affaldsfeed.paths import CONFIG_DIR  # noqa: E402
+from affaldsfeed.places import PlaceMatcher, compile_places  # noqa: E402
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
 
@@ -37,6 +38,17 @@ def topics() -> list[Topic]:
 @pytest.fixture(scope="session")
 def genres() -> list[Genre]:
     return [Genre(**g) for g in _load_yaml("genres.yaml")]
+
+
+@pytest.fixture(scope="session")
+def geo() -> Geo:
+    """Den rigtige geografi fra config/geografi.yaml."""
+    return Geo.model_validate(_load_yaml("geografi.yaml"))
+
+
+@pytest.fixture(scope="session")
+def place_matcher(geo) -> PlaceMatcher:
+    return compile_places(geo)
 
 
 @pytest.fixture

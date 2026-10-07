@@ -27,6 +27,7 @@ from affaldsfeed.fetch import Fetcher
 from affaldsfeed.health import is_due, record_result
 from affaldsfeed.models import Candidate, DateQuality, Rejected, Source, SourceState
 from affaldsfeed.normalize import clean_text, item_id, normalize_title
+from affaldsfeed.places import compile_places, rule_places
 from affaldsfeed.relevance import Prefilter
 from affaldsfeed.timeutil import ensure_utc, iso, now_utc, parse_iso
 
@@ -72,6 +73,7 @@ class Processor:
         self.recent_titles = recent_titles
         self.prefilter = Prefilter(config.keywords)
         self.classifier = Classifier(config.topics, config.genres)
+        self.places = compile_places(config.geo, config.settings.places)
         self.overrides = Overrides(config.overrides)
         self.seen_ids: set[str] = set()
         self._synthetic: dict[str, Source] = {}
@@ -95,6 +97,7 @@ class Processor:
                 domains=pub.domains,
                 lang=pub.lang,
                 paywall=pub.paywall,
+                places=pub.places,
                 basis=pub.basis,
                 status="aktiv",
                 checked=self.now.date(),
@@ -184,6 +187,7 @@ class Processor:
             genre = self.classifier.genre_for(title, url, e.categories, rsrc)
             topics = list(dict.fromkeys(self.classifier.topics_for(title, teaser, url, rsrc, genre=genre)))[:2]
             lang = e.lang if e.lang in ("da", "en", "sv") else rsrc.lang
+            places = rule_places(title, teaser, lang, rsrc.places, self.places)
             cand = Candidate(
                 id=iid,
                 url=url,
@@ -196,6 +200,7 @@ class Processor:
                 lang=lang,
                 genre=genre,
                 topics=topics,
+                places=places,
                 why=why,
                 baseline=first_run and not check_mode,
                 found_via=e.found_via if e.found_via in ("feed", "search", "sweep") else "feed",

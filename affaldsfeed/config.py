@@ -7,7 +7,7 @@ import contextlib
 import logging
 import re
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date, timedelta
 from pathlib import Path
 from typing import Any, get_args
@@ -22,6 +22,7 @@ from affaldsfeed.models import (
     CategoryId,
     Genre,
     GenreId,
+    Geo,
     Keywords,
     Override,
     Publisher,
@@ -33,6 +34,11 @@ from affaldsfeed.models import (
 )
 
 log = logging.getLogger(__name__)
+
+GEO_FILE = "geografi.yaml"
+TOPIC_UI_MAX = 26  # højst så mange tegn i et temanavn i brugerfladen (short, ellers name)
+# libyaml er meget hurtigere (geografi.yaml er stor); samme resultat som yaml.safe_load
+_YAML_LOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
 
 
 class ConfigError(Exception):
@@ -50,6 +56,7 @@ class Config:
     publishers: list[Publisher]
     overrides: list[Override]
     profile: str
+    geo: Geo = field(default_factory=Geo)
 
 
 # ── Hjælpere ─────────────────────────────────────────────────
@@ -74,7 +81,7 @@ def _read_yaml(path: Path) -> Any:
     except FileNotFoundError as e:
         raise ConfigError(f"{path.name}: filen findes ikke") from e
     try:
-        return yaml.safe_load(text)
+        return yaml.load(text, Loader=_YAML_LOADER)  # sikker loader (SafeLoader eller CSafeLoader)
     except yaml.YAMLError as e:
         mark = getattr(e, "problem_mark", None)
         where = f" (linje {mark.line + 1})" if mark is not None else ""
@@ -191,6 +198,25 @@ def _load_config(config_dir: Path) -> tuple[Config | None, list[str], list[str]]
         if not p.domains:
             errors.append(f"medier.yaml: {p.id}: domains må ikke være tom")
 
+    # Geografi og steder (KONTRAKTER §4.1)
+    geo, geo_errors, geo_warnings = _load_geo(config_dir)
+    errors.extend(geo_errors)
+    warnings.extend(geo_warnings)
+    if not geo_errors:
+        known = geo.place_ids()
+        for p in publishers:
+            errors.extend(_unknown_places("medier.yaml", p.id, p.places, known))
+            if p.places and p.category == "nyhedsmedie":
+                warnings.append(f"medier.yaml: {p.id}: {_NEWS_PLACES}")
+
+    for t in topics:
+        ui_name = t.short or t.name
+        if len(ui_name) > TOPIC_UI_MAX:
+            warnings.append(
+                f"topics.yaml: {t.id}: navnet i brugerfladen er {len(ui_name)} tegn (højst {TOPIC_UI_MAX}), "
+                f"tilføj eller forkort short: {ui_name}"
+            )
+
     # Regex og mønstre
     for g in genres:
         for pat in g.url_patterns:
@@ -238,8 +264,61 @@ def _load_config(config_dir: Path) -> tuple[Config | None, list[str], list[str]]
         publishers=publishers,
         overrides=overrides,
         profile=profile,
+        geo=geo,
     )
     return cfg, errors, warnings
+
+
+_NEWS_PLACES = "places bruges kun til afsendere med fast geografi, ikke til nyhedsmedier"
+
+
+def _unknown_places(fname: str, ident: str, places: list[str], known: set[str]) -> list[str]:
+    return [
+        f"{fname}: {ident}: places: ukendt sted-id {p} (se config/{GEO_FILE})" for p in places if p not in known
+    ]
+
+
+def _load_geo(config_dir: Path) -> tuple[Geo, list[str], list[str]]:
+    """Læs og tjek geografi.yaml. Mangler filen, er geografien tom (ingen stedmærkning)."""
+    path = config_dir / GEO_FILE
+    if not path.exists():
+        return Geo(), [], [f"{GEO_FILE}: filen findes ikke (ingen stedmærkning)"]
+    try:
+        data = _read_yaml(path)
+    except ConfigError as e:
+        return Geo(), [str(e)], []
+    geo, errors = _validate_obj(data, Geo, GEO_FILE)
+    if geo is None:
+        return Geo(), errors, []
+    errors = check_geo(geo)
+    return (Geo() if errors else geo), errors, []
+
+
+def check_geo(geo: Geo) -> list[str]:
+    """Unikke id'er, og at by → kommune(r) → region og landsdele peger på noget, der findes."""
+    f = GEO_FILE
+    errors: list[str] = []
+    for kind, ids in (
+        ("regioner", [r.id for r in geo.regioner]),
+        ("kommuner", [m.id for m in geo.kommuner]),
+        ("byer", [t.id for t in geo.byer]),
+    ):
+        errors.extend(f"{f}: {kind}: {d}: id findes flere gange" for d in _duplicates(ids))
+    regions = {r.id for r in geo.regioner}
+    municipalities = {m.id for m in geo.kommuner}
+    for m in geo.kommuner:
+        if m.region not in regions:
+            errors.append(f"{f}: kommuner: {m.id}: ukendt region {m.region}")
+    for t in geo.byer:
+        for k in dict.fromkeys([t.kommune, *t.kommuner]):
+            if k not in municipalities:
+                errors.append(f"{f}: byer: {t.id}: ukendt kommune {k}")
+        if t.kommuner and t.kommune not in t.kommuner:
+            errors.append(f"{f}: byer: {t.id}: kommune {t.kommune} står ikke i kommuner")
+    for name, region in geo.landsdele.items():
+        if region not in regions:
+            errors.append(f"{f}: landsdele: {name}: ukendt region {region}")
+    return errors
 
 
 def _check_patterns(topics: list[Topic], keywords: Keywords | None) -> list[str]:
@@ -331,6 +410,7 @@ def cross_check(sources: list[Source], config: Config, today: date | None = None
                 warnings.append(f"medier.yaml: {p.id}: domænet {h} tilhører allerede {owner[h]}")
             owner.setdefault(h, p.id)
 
+    known_places = config.geo.place_ids()
     for s in sources:
         if s.method == "search":
             for f in s.feeds:
@@ -338,6 +418,9 @@ def cross_check(sources: list[Source], config: Config, today: date | None = None
                     errors.append(f"sources.yaml: {s.id}: søgeskabelonen mangler {{q}}: {f}")
         if s.status == "aktiv" and s.checked and today and s.checked < today - timedelta(days=365):
             warnings.append(f"sources.yaml: {s.id}: checked er over 12 måneder gammel ({s.checked})")
+        errors.extend(_unknown_places("sources.yaml", s.id, s.places, known_places))
+        if s.places and s.category == "nyhedsmedie":
+            warnings.append(f"sources.yaml: {s.id}: {_NEWS_PLACES}")
     return errors, warnings
 
 
@@ -384,9 +467,11 @@ def main_check(args: argparse.Namespace) -> int:
         return 1
 
     active = [s for s in sources if s.status == "aktiv"]
+    geo = cfg.geo
     _print(
         f"OK: {len(sources)} kilder ({len(active)} aktive), {len(cfg.publishers)} udgivere i medier.yaml, "
-        f"{len(cfg.topics)} temaer, {len(cfg.genres)} genrer, {len(cfg.search.queries)} søgninger."
+        f"{len(cfg.topics)} temaer, {len(cfg.genres)} genrer, {len(cfg.search.queries)} søgninger, "
+        f"geografi: {len(geo.regioner)} regioner, {len(geo.kommuner)} kommuner, {len(geo.byer)} byer."
     )
 
     fetch_id = getattr(args, "fetch", None)
@@ -441,7 +526,10 @@ def _check_fetch(source_id: str, sources: list[Source], cfg: Config, explain: bo
             _print(f"  [{c.why.decision}] score {c.why.score:>2}  {(iso(c.published) or '')[:10]}  {c.source}: {c.title}")
             _print(f"      {c.url}")
             hits = "; ".join(c.why.hits) or "-"
-            _print(f"      hits: {hits} | tema: {', '.join(c.topics) or '-'} | genre: {c.genre}")
+            _print(
+                f"      hits: {hits} | tema: {', '.join(c.topics) or '-'} | genre: {c.genre}"
+                f" | steder: {', '.join(c.places) or '-'}"
+            )
     if out.rejected:
         _print("\nAFVIST")
         for r in out.rejected:

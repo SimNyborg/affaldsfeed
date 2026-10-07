@@ -173,3 +173,22 @@ def test_build_stories_sort_ties_by_id():
         item("a", "dr", title="Anden helt selvstændige nyhed om affald"),
     ]
     assert [it.id for it in build_stories(its, CATS, [], 3, 7)] == ["a", "b"]
+
+
+def test_build_stories_unites_places():
+    # Kun et indslag i also er lokalt; historien kan alligevel findes med stedfiltret
+    main = item("myn", "kefm", hours=0)
+    local = item("lokal", "avisen", hours=2).model_copy(update={"places": ["k:nyborg", "b:ullerslev"]})
+    other = item("fag", "altinget", hours=3).model_copy(update={"places": ["r:syddanmark", "k:nyborg"]})
+    solo = item("solo", "dr", title="En helt anden nyhed om genbrugspladser", hours=1)
+    out = {it.id: it for it in build_stories([main, local, other, solo], CATS, [], 3, 7)}
+    assert out["myn"].places == ["r:syddanmark", "k:nyborg", "b:ullerslev"]
+    assert out["solo"].places == []
+    assert "places" not in out["myn"].also[0].model_dump()  # also-indslag arver hovedindslagets
+
+
+def test_build_stories_places_max_eight():
+    kommuner = ["aarhus", "odense", "nyborg", "vejle", "kolding", "horsens", "silkeborg", "herning", "viborg"]
+    its = [item(f"i{n}", "avisen", hours=n).model_copy(update={"places": [f"k:{k}"]}) for n, k in enumerate(kommuner)]
+    [story] = build_stories(its, CATS, [], 3, 7)
+    assert story.places == sorted(f"k:{k}" for k in kommuner)[:8]
