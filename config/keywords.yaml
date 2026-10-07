@@ -13,14 +13,16 @@ strong:      # 4 point i titel, 2 i teaser
 names:       # tæller som stærkt ord i titlen
   ["ARC", "ARGO", "AffaldPlus", "Vestforbrænding", "Kredsløb", "Nordværk", "Renosyd", "REFA",
    "Dansk Retursystem", "VANA", "DAKOFA", "Genvindingsindustrien", "Dansk Affaldsforening",
-   "Affaldsplus", "Amager Bakke", "Amager Ressourcecenter", "Reno Djurs", "Fors", "Norfors"]
+   "Affaldsplus", "Amager Bakke", "Amager Ressourcecenter", "Reno Djurs", "Fors", "Norfors",
+   "BOFA", "Reno-Nord", "AVØ", "AVV", "Revas", "Nomi4s", "Energnist", "Provas", "Urbaser", "Remondis",
+   "Norrecco"]
 weak:        # 1 point, højst 2 i alt; tæller kun sammen med et andet hit eller når ordet står i titlen
   da: ["cirkulær*", "ressource*", "*emballage*", "plast*", "tekstil*", "biogas*", "co2-fangst",
        "nedrivning*", "PFAS", "batteri*", "genbrug*", "sortering*"]
   en: ["circular*", "packaging", "plastic*", "textile*"]
 veto:        # tjekkes i titlen og vinder altid
   ["atomaffald*", "radioaktiv*", "rumskrot", "nuclear waste", "space debris", "ledig stilling",
-   "stillingsopslag", "vi søger", "jobopslag", "personalenyt", "webinar*", "tilmeld*",
+   "stillingsopslag", "vi søger", "jobopslag", "personalenyt", "tilmeld*",
    "politisk skraldespand", "historiens skraldespand", "pantebrev*", "pantsæt*", "Nordic Waste"]
 service:     # kun kategori kommunal: driftsbeskeder til borgere
   ["forsinket tømning", "ændret tømning", "tømningsdag*", "helligdag*", "åbningstid*", "lukket i dag", "holder lukket",

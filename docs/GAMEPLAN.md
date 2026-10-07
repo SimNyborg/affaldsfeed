@@ -9,7 +9,7 @@ Affaldsfeed bygges i seks faser. Fase 0 og 1 laves i den første lokale session 
 | 0 | Fundament: config, kilderegister, `check`, CI og docs | Færdig |
 | 1 | Første live version: pipeline for RSS og søgning, site, workflows og Claude-routinen | Færdig, live 7. oktober 2026 |
 | 2 | Kilder uden RSS, Folketingets ODA og Claudes sweep | I gang: sitemap, html og ODA virker, og 72 kilder er aktive. Sweepet er ikke efterprøvet |
-| 3 | Kvalitet: "Hvorfor med?", bedre historier, kompakt visning | I gang: kompakt visning er færdig |
+| 3 | Kvalitet: "Hvorfor med?", bedre historier, kompakt visning | I gang: kompakt visning, dagsbundter og 150 testcases er færdige; niveau 3 og Via Ritzau er udskudt (se BESLUTNINGER) |
 | 4 | Brugerens kildeliste | Venter på listen |
 | 5 | Udvidelser | Kun ved konkret savn |
 
@@ -72,7 +72,7 @@ Leverancer:
 - Via Ritzau, hvor udgiveren matches mod `aliases` i registret
 - dagsbundter for ODA (færdig) og høringsfrist på indslag fra Høringsportalen
 - kompakt visning
-- `tests/cases.yaml` udvidet til 150 cases
+- `tests/cases.yaml` udvidet til 150 cases (færdig)
 
 Færdig, når to stikprøver i træk viser mindst 45 relevante ud af 50.
 
@@ -116,8 +116,8 @@ Fase 2, resten (lokale medier og ODA er færdige):
 Fase 3:
 1. "Hvorfor med?" bygger på feltet `why`, som allerede står i `feed.json`.
 2. "Rapportér" med issue-skabelonerne `fejl-i-feed` og `ny-kilde`, som allerede findes.
-3. Historier på niveau 3 med rapidfuzz. Tærsklen skal være høj, fordi en forkert sammenlægning skjuler en nyhed.
-4. Via Ritzau med `aliases` og høringsfrist.
-5. Flere cases i `tests/cases.yaml`, især de indslag, stikprøverne har fundet forkerte.
+3. Høringsfrist på indslag fra Høringsportalen, når der kommer en høring om affald at se formatet på.
+4. Flere cases i `tests/cases.yaml`, især de indslag, stikprøverne har fundet forkerte.
+5. Historier på niveau 3 og Via Ritzau er udskudt (se BESLUTNINGER). Tag dem op, hvis dubletterne bliver flere.
 
 Fase 4, når brugerens liste kommer: følg trinnene under fase 4 ovenfor og i `docs/KILDER.md`.

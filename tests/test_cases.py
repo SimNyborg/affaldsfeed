@@ -25,7 +25,7 @@ CASES = _load_cases()
 
 
 def test_cases_file_is_rich_enough():
-    assert len(CASES) >= 40
+    assert len(CASES) >= 140
     ids = [c["id"] for c in CASES]
     assert len(ids) == len(set(ids)), "dublet-id i cases.yaml"
     langs = {c.get("lang", "da") for c in CASES}

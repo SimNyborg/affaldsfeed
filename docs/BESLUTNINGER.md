@@ -65,3 +65,11 @@ Sidens synlige tekster nævner ikke Claude. Overblik og tidslinje er mærket "AI
 ## 2026-10-07: Indsamlingen kører efter hvert byg
 
 GitHubs tidsplan for `collect.yml` er ikke kommet i gang. Indsamlingen kører i stedet efter hvert byg af sitet (`workflow_run`), altså hver time i dagtimerne, når routinen har pushet. Det er accepteret, fordi intet alligevel vurderes om natten. Står routinen, står indsamlingen dog også, og så viser feedet advarslen om forældede data.
+
+## 2026-10-07: Fase 3 uden niveau 3 og Via Ritzau
+
+Historier på niveau 3 (rapidfuzz) er udskudt. En måling på feedets 60 kort fandt kun ét par om samme historie med forskellige titler, og det kom fra en kilde, Claude ikke vurderer (`ai: false`). En ny afhængighed og risikoen for forkerte sammenlægninger står ikke mål med det. Genovervej, når der er flere dubletter. Via Ritzau er også udskudt, fordi organisationerne bag pressemeddelelserne i forvejen hentes fra deres egne sider, så kanalen mest ville give dubletter.
+
+## 2026-10-07: Webinar er ikke længere veto
+
+Vetoet "webinar*" afviste også artikler om indholdet af et webinar, fx VANA's om afklaringer af producentansvaret. Relevansprofilen udelukker allerede webinarer og tilmeldinger, så annonceringer sorteres fra af Claude. "tilmeld*" er stadig veto. Samtidig er de kommunale affaldsselskaber med entydige navne (fx BOFA, Reno-Nord, AVØ og Revas) og enkelte private aktører kommet på navnelisten, så lokale nyheder om dem ikke afvises for mangel på affaldsord.
