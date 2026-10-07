@@ -1067,6 +1067,14 @@ byer:
   kommuner:
   - odsherred
   indbyggere: 3048
+- id: assens
+  navn: Assens
+  navne:
+  - Assens
+  kommune: assens
+  kommuner:
+  - assens
+  indbyggere: 5817
 - id: assentoft
   navn: Assentoft
   navne:
@@ -1099,14 +1107,6 @@ byer:
   kommuner:
   - norddjurs
   indbyggere: 3383
-- id: baekke
-  navn: Bække
-  navne:
-  - Bække
-  kommune: vejen
-  kommuner:
-  - vejen
-  indbyggere: 1042
 - id: balling
   navn: Balling
   navne:
@@ -1120,7 +1120,6 @@ byer:
   navne:
   - Beder-Malling
   - Beder
-  - Malling
   kommune: aarhus
   kommuner:
   - aarhus
@@ -1633,14 +1632,6 @@ byer:
   kommuner:
   - fredericia
   indbyggere: 41761
-- id: frederiksberg
-  navn: Frederiksberg
-  navne:
-  - Frederiksberg
-  kommune: soroe
-  kommuner:
-  - soroe
-  indbyggere: 4186
 - id: frederikshavn
   navn: Frederikshavn
   navne:
@@ -2295,7 +2286,6 @@ byer:
   navne:
   - Hornbæk-Dronningmølle
   - Hornbæk
-  - Dronningmølle
   kommune: helsingoer
   kommuner:
   - gribskov
