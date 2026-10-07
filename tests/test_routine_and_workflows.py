@@ -55,3 +55,27 @@ def test_geography_workflow_commits_only_after_check():
     assert steps[commit]["env"]["CHECK_OK"] == "${{ steps.build.outputs.check_ok }}"
     fail = steps[-1]
     assert fail["if"] == "steps.build.outputs.check_ok != 'true'" and "exit 1" in fail["run"]
+
+
+def test_routine_timeline_step():
+    text = " ".join(REDAKTOER.split())
+    assert "Du skriver kun i `data/judgments/`, `data/overview/` og `data/timeline/`." in text
+    assert "### 7. Tidslinje (kun når `TIME` er 22, eller når tidslinjen er tom)" in REDAKTOER
+    assert ".venv/bin/python -m affaldsfeed timeline-input > /tmp/timeline.json" in REDAKTOER
+    assert ".venv/bin/python -m affaldsfeed validate-timeline --file data/timeline/MÅNED.jsonl" in REDAKTOER
+    # git add må ikke fejle, før tidslinjen findes
+    assert "if [ -d data/timeline ]; then git add data/timeline; fi" in REDAKTOER
+    assert "Tilføj aldrig andre stier end `data/judgments`, `data/overview` og `data/timeline`." in text
+    # Eksemplet i instruksen er en gyldig linje
+    from affaldsfeed.models import TimelineEvent
+
+    line = next(ln.strip() for ln in REDAKTOER.splitlines() if ln.strip().startswith('{"id":"2026-10-07-faelles'))
+    TimelineEvent.model_validate_json(line)
+
+
+def test_publish_runs_on_timeline():
+    wf = yaml.safe_load((ROOT / ".github" / "workflows" / "publish.yml").read_text(encoding="utf-8"))
+    on = wf.get("on", wf.get(True))
+    assert "data/timeline/**" in on["push"]["paths"]
+    claude_md = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
+    assert "Claude-routinen skriver kun i `data/judgments/`, `data/overview/` og `data/timeline/`." in claude_md

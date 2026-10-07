@@ -8,6 +8,7 @@ on:
     paths:
       - "data/judgments/**"
       - "data/overview/**"
+      - "data/timeline/**"
       - "site/**"
       - "config/**"
       - "sources.yaml"

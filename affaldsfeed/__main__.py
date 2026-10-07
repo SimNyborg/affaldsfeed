@@ -26,6 +26,8 @@ COMMANDS: dict[str, tuple[str, str]] = {
     "heartbeat": ("affaldsfeed.judgments", "main_heartbeat"),
     "overview-input": ("affaldsfeed.overview", "main_overview_input"),
     "validate-overview": ("affaldsfeed.overview", "main_validate_overview"),
+    "timeline-input": ("affaldsfeed.timeline", "main_timeline_input"),
+    "validate-timeline": ("affaldsfeed.timeline", "main_validate_timeline"),
 }
 
 # kommandoer, der videregives til et script i tools/ (main(argv) -> int)
@@ -71,6 +73,14 @@ def build_parser() -> argparse.ArgumentParser:
     vo.add_argument("--period", choices=PERIOD_CHOICES, help="kun denne periode (ellers alle)")
     vo.add_argument("--archive", action="store_true", help="kopiér gyldige filer til data/overview/archive/")
     vo.add_argument("--now", metavar="ISO", help="overstyr nu (test)")
+
+    ti = sub.add_parser("timeline-input", help="JSON-input til Claudes tidslinje")
+    ti.add_argument("--days", type=int, default=None, help="historier fra så mange dage (standard 3, tom tidslinje 60)")
+    ti.add_argument("--now", metavar="ISO", help="overstyr nu (test)")
+
+    vt = sub.add_parser("validate-timeline", help="valider data/timeline/*.jsonl")
+    vt.add_argument("--file", metavar="PATH", help="kun denne fil")
+    vt.add_argument("--now", metavar="ISO", help="overstyr nu (test)")
 
     sub.add_parser("import", help="importér kildeliste fra CSV (tools/import_csv.py): import FILE.csv [--replace]")
     sub.add_parser("find-feed", help="find RSS/Atom/sitemap for en hjemmeside (tools/find_feed.py): find-feed URL")

@@ -14,6 +14,7 @@ REJECTED_DIR = DATA_DIR / "rejected"
 JUDGMENTS_DIR = DATA_DIR / "judgments"
 OVERVIEW_DIR = DATA_DIR / "overview"
 OVERVIEW_ARCHIVE_DIR = OVERVIEW_DIR / "archive"
+TIMELINE_DIR = DATA_DIR / "timeline"
 STATE_DIR = DATA_DIR / "state"
 
 HEARTBEAT_FILE = JUDGMENTS_DIR / "_heartbeat.json"

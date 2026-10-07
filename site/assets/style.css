@@ -292,13 +292,6 @@ svg.i { width: 16px; height: 16px; flex: none; }
   white-space: nowrap;
 }
 .brand .logo { width: 28px; height: 28px; margin-right: 8px; vertical-align: top; }
-.subtitle {
-  color: var(--muted);
-  font-size: var(--t-xs);
-  line-height: var(--lh-xs);
-  white-space: nowrap;
-}
-.sub-lang { display: none; }
 .site-nav { margin-right: -12px; }
 .site-nav ul { display: flex; list-style: none; }
 .site-nav a {
@@ -963,6 +956,106 @@ dialog.sheet::backdrop { background: var(--backdrop); }
 .site-footer :focus-visible { outline-color: var(--focus-on-dark); }
 .foot-text { display: grid; gap: 4px; min-width: 0; }
 
+/* ── Tidslinje ────────────────────────────────────────── */
+/* Datoen står i en fast kolonne, markøren på en lodret streg, og teksten flugter til højre for den */
+.tl-head .lead { max-width: 40rem; }
+.tl-controls { margin-top: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; }
+.tl-years { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; font-size: var(--t-xs); line-height: var(--lh-xs); }
+.tl-years:empty { display: none; }
+.tl-years-label { color: var(--muted); }
+.tl-years a { font-weight: 600; padding-block: 3px; }
+.tl-empty p + p { margin-top: 8px; }
+
+.tl-panel { padding: 0; overflow: clip; }
+.page .tl-mhead { margin: 0; font-size: var(--t-l); line-height: var(--lh-l); }   /* ikke sidens h2-stil */
+.tl-mhead:focus { outline: none; }
+.tl-mhead:focus-visible { outline: 2px solid var(--link); outline-offset: -2px; }
+.tl-list { list-style: none; padding: 4px 0 8px; }
+.tl-ev > article {
+  --tl-date: 4.25rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--tl-date) 12px minmax(0, 1fr);
+  column-gap: 12px;
+  padding: 12px var(--pad-x);
+}
+/* Den lodrette streg går gennem markørens midte og binder begivenhederne i måneden sammen */
+.tl-ev > article::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--pad-x) + var(--tl-date) + 12px + 5px);
+  width: 2px;
+  background: var(--line);
+}
+.tl-ev:first-child > article::before { top: 18px; }
+.tl-ev:last-child > article::before { bottom: calc(100% - 18px); }
+.tl-ev:only-child > article::before { display: none; }
+.tl-date {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: right;
+  color: var(--muted);
+  font-size: var(--t-xs);
+  line-height: var(--lh-l);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.tl-dot {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative;
+  z-index: 1;
+  width: 12px;
+  height: 12px;
+  margin-top: 6px;
+  border: 2px solid var(--link);
+  border-radius: 50%;
+  background: var(--surface);
+}
+.is-milestone .tl-dot { background: var(--link); }
+.tl-body { grid-column: 3; grid-row: 1 / span 2; min-width: 0; }
+.tl-level { color: var(--link); font-size: var(--t-xs); line-height: var(--lh-xs); font-weight: 600; }
+.tl-title { font-size: var(--t-l); line-height: var(--lh-l); overflow-wrap: anywhere; }
+.tl-sum { margin-top: 4px; color: var(--muted); }
+.tl-body .facets { margin-top: 4px; color: var(--muted); font-size: var(--t-xs); line-height: var(--lh-xs); }
+.tl-news { margin-top: 4px; font-size: var(--t-xs); line-height: var(--lh-xs); }
+.tl-news > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: var(--h-chip);
+  margin-block: calc((var(--lh-xs) - var(--h-chip)) / 2);
+  color: var(--link);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+.tl-news > summary::-webkit-details-marker { display: none; }
+.tl-news > summary .i { width: 14px; height: 14px; transition: transform 0.15s ease; }
+.tl-news[open] > summary .i { transform: rotate(180deg); }
+.tl-news ul { list-style: none; margin-top: 8px; padding-left: 12px; border-left: 2px solid var(--line); display: grid; gap: 8px; }
+.tl-news .who { color: var(--muted); }
+.tl-news .who b { color: var(--text); font-weight: 600; }
+.tl-feed { margin-top: 8px; font-weight: 600; }
+.tl-feed a { padding-block: 3px; }
+
+/* Smal skærm: datoen står over titlen, og stregen følger markøren i venstre side */
+@media (max-width: 29.99em) {
+  .tl-ev > article { grid-template-columns: 12px minmax(0, 1fr); }
+  .tl-ev > article::before { left: calc(var(--pad-x) + 5px); }
+  .tl-date { grid-column: 2; text-align: left; line-height: var(--lh-xs); }
+  .tl-dot { grid-column: 1; grid-row: 1; margin-top: 3px; }
+  .tl-body { grid-column: 2; grid-row: 2; }
+}
+
+@media (forced-colors: active) {
+  .tl-dot { border-color: CanvasText; }
+  .is-milestone .tl-dot { background: CanvasText; forced-color-adjust: none; }
+  .tl-ev > article::before { background: CanvasText; forced-color-adjust: none; }
+}
+
 /* ── Om kilderne ─────────────────────────────────────── */
 .page h1 { font-size: var(--t-2xl); line-height: var(--lh-2xl); }
 .page .lead { margin-top: 12px; font-size: 1rem; line-height: 1.5rem; }
@@ -1053,7 +1146,6 @@ dialog.sheet::backdrop { background: var(--backdrop); }
   /* Om kilderne: læsekolonnen (højst 720 px) står ved containerens venstrekant og flugter med logoet */
   .layout.single { max-width: var(--container); }
   .layout.single > .main { max-width: var(--col); }
-  .sub-lang { display: inline; }
   .sidebar {
     display: block;
     position: sticky;
@@ -1088,8 +1180,7 @@ dialog.sheet::backdrop { background: var(--backdrop); }
 @media (max-width: 47.99em) {
   .layout { margin-top: 8px; margin-bottom: 8px; }
   .site-header .inner { display: block; height: auto; }
-  .brand { flex-wrap: wrap; align-content: center; min-height: 3.5rem; padding-block: 8px 6px; }   /* 8 px over logoet, 6 px under undertitlen */
-  .subtitle { flex-basis: 100%; padding-left: 36px; white-space: normal; }
+  .brand { align-items: center; min-height: 3.5rem; }
   .site-nav { margin: 0 0 0 -12px; }
   .site-nav a { height: 2.75rem; }
   .panel { padding-block: 12px; }

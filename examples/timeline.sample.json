@@ -1,0 +1,624 @@
+{
+ "version": 1,
+ "generated": "2026-10-07T20:30:00Z",
+ "topics": [
+  {
+   "id": "sortering",
+   "name": "Sortering og indsamling",
+   "short": null,
+   "definition": "Hvordan husholdninger og virksomheder sorterer, og hvordan affaldet hentes."
+  },
+  {
+   "id": "genbrugspladser",
+   "name": "Genbrugspladser, genbrug og forebyggelse",
+   "short": "Genbrugspladser og genbrug",
+   "definition": "Genbrugspladser, storskrald, direkte genbrug og forebyggelse af affald."
+  },
+  {
+   "id": "gebyrer",
+   "name": "Gebyrer og økonomi",
+   "short": null,
+   "definition": "Affaldsgebyrer, takster, prisregulering og benchmarking."
+  },
+  {
+   "id": "udbud",
+   "name": "Udbud, selskaber og organisering",
+   "short": "Udbud og selskaber",
+   "definition": "Udbud, liberalisering, selskabsstruktur og fusioner."
+  },
+  {
+   "id": "forbraending",
+   "name": "Forbrænding og energi",
+   "short": null,
+   "definition": "Forbrændingsanlæg, kapacitet, affaldsimport og affaldsvarme."
+  },
+  {
+   "id": "klima",
+   "name": "Klima, CO2-afgift og CCS",
+   "short": null,
+   "definition": "CO2-afgift, kvoter og CO2-fangst ved affaldsbehandling."
+  },
+  {
+   "id": "genanvendelse",
+   "name": "Genanvendelse og afsætning",
+   "short": "Genanvendelse",
+   "definition": "Sorteringsanlæg, plastgenanvendelse, eksport og afsætning af materialer."
+  },
+  {
+   "id": "producentansvar",
+   "name": "Producentansvar, emballage og pant",
+   "short": "Producentansvar og pant",
+   "definition": "Udvidet producentansvar, emballage, pant og de kollektive ordninger."
+  },
+  {
+   "id": "bioaffald",
+   "name": "Mad- og bioaffald",
+   "short": null,
+   "definition": "Madaffald, madspild, biogas og kompost."
+  },
+  {
+   "id": "tekstiler",
+   "name": "Tekstiler",
+   "short": null,
+   "definition": "Indsamling, sortering og genanvendelse af tekstiler."
+  },
+  {
+   "id": "byg_farligt",
+   "name": "Byggeaffald, jord og farligt affald",
+   "short": "Bygge- og farligt affald",
+   "definition": "Bygge- og nedrivningsaffald, deponi, jord og farligt affald inklusive el og batterier."
+  },
+  {
+   "id": "arbejdsmiljoe",
+   "name": "Arbejdsmiljø og renovatører",
+   "short": "Arbejdsmiljø",
+   "definition": "Skraldemænds arbejdsforhold, ulykker og overenskomster."
+  },
+  {
+   "id": "regler",
+   "name": "Lovgivning, politik og EU",
+   "short": null,
+   "definition": "Love, bekendtgørelser, høringer, EU-regulering og politiske aftaler."
+  }
+ ],
+ "places": [
+  {
+   "id": "k:aalborg",
+   "navn": "Aalborg Kommune",
+   "kort": "Aalborg"
+  },
+  {
+   "id": "r:sjaelland",
+   "navn": "Region Sjælland",
+   "kort": "Sjælland"
+  },
+  {
+   "id": "r:syddanmark",
+   "navn": "Region Syddanmark",
+   "kort": "Syddanmark"
+  }
+ ],
+ "events": [
+  {
+   "id": "2026-10-07-bred-aftale-om-faelles-model-for-affaldsgebyrer",
+   "date": "2026-10-07",
+   "level": "milepael",
+   "title": "Bred aftale om fælles model for affaldsgebyrer",
+   "summary": "Regeringen og et flertal i Folketinget er enige om en fælles model for, hvordan kommunerne opgør og opkræver affaldsgebyrer fra 2028. Ifølge KL kræver modellen nye it-systemer i kommunerne.",
+   "topics": [
+    "gebyrer",
+    "regler"
+   ],
+   "places": [],
+   "items": [
+    {
+     "id": "a0b13be1eb8b",
+     "title": "Bred aftale om ny model for affaldsgebyrer i kommunerne",
+     "url": "https://example.org/kefm/bred-aftale-om-ny-model-for-affaldsgebyrer-i-kommunerne",
+     "source": "kefm",
+     "source_name": "Klima-, Energi- og Forsyningsministeriet",
+     "published": "2026-10-07T07:30:00Z"
+    },
+    {
+     "id": "685c0154fef7",
+     "title": "Gebyraftale: Kommunerne får tre år til at omlægge affaldstaksterne",
+     "url": "https://example.org/altinget/gebyraftale-kommunerne-faar-tre-aar-til-at-omlaegge-affaldst",
+     "source": "altinget",
+     "source_name": "Altinget",
+     "published": "2026-10-07T08:05:00Z"
+    },
+    {
+     "id": "dccb5a40258e",
+     "title": "KL: Gebyrmodellen kræver nye it-systemer i kommunerne",
+     "url": "https://example.org/kommunen/kl-gebyrmodellen-kraever-nye-it-systemer-i-kommunerne",
+     "source": "kommunen",
+     "source_name": "Kommunen.dk",
+     "published": "2026-10-07T09:15:00Z"
+    }
+   ],
+   "updated": "2026-10-07T20:25:00Z",
+   "story": "a0b13be1eb8b"
+  },
+  {
+   "id": "2026-10-06-pant-paa-flasker-til-saft-vin-og-spiritus-fra-2027",
+   "date": "2026-10-06",
+   "level": "milepael",
+   "title": "Pant på flasker til saft, vin og spiritus fra 2027",
+   "summary": "Pantsystemet udvides 1. januar 2027 til flasker til saft, vin og spiritus. Dansk Retursystem regner med 200 millioner ekstra flasker om året.",
+   "topics": [
+    "producentansvar"
+   ],
+   "places": [],
+   "items": [
+    {
+     "id": "71f7e2443803",
+     "title": "Pant på saftflasker og vinflasker fra 2027",
+     "url": "https://example.org/dansk-retursystem/pant-paa-saftflasker-og-vinflasker-fra-2027",
+     "source": "dansk-retursystem",
+     "source_name": "Dansk Retursystem",
+     "published": "2026-10-06T08:00:00Z"
+    },
+    {
+     "id": "d88ae2b3c8ea",
+     "title": "Dansk Retursystem klar til at tage glasflasker med i pantsystemet",
+     "url": "https://example.org/emballagefokus/dansk-retursystem-klar-til-at-tage-glasflasker-med-i-pantsys",
+     "source": "emballagefokus",
+     "source_name": "EmballageFOKUS",
+     "published": "2026-10-06T11:30:00Z"
+    },
+    {
+     "id": "3fc61e1a77ed",
+     "title": "Nu kommer der pant på vinflasken",
+     "url": "https://example.org/berlingske/nu-kommer-der-pant-paa-vinflasken",
+     "source": "berlingske",
+     "source_name": "Berlingske",
+     "published": "2026-10-06T16:05:00Z"
+    }
+   ],
+   "updated": "2026-10-06T20:25:00Z",
+   "story": "71f7e2443803"
+  },
+  {
+   "id": "2026-10-05-emballageforordningen-stiller-krav-om-genanvendt-plast",
+   "date": "2026-10-05",
+   "level": "vigtig",
+   "title": "Emballageforordningen stiller krav om genanvendt plast",
+   "summary": "En stigende andel af plastemballagen skal bestå af genanvendt plast. Plastindustrien opfordrer til hurtig afklaring af reglerne.",
+   "topics": [
+    "producentansvar",
+    "genanvendelse"
+   ],
+   "places": [],
+   "items": [
+    {
+     "id": "44f48972f4b8",
+     "title": "Ny EU-forordning stiller krav om genanvendt plast i emballage",
+     "url": "https://example.org/plastindustrien/ny-eu-forordning-stiller-krav-om-genanvendt-plast-i-emballag",
+     "source": "plastindustrien",
+     "source_name": "Plastindustrien",
+     "published": "2026-10-05T10:15:00Z"
+    }
+   ],
+   "updated": "2026-10-05T20:25:00Z",
+   "story": "44f48972f4b8"
+  },
+  {
+   "id": "2026-10-01-eu-parlamentets-miljoeudvalg-stoetter-nye-regler-for-tekstil",
+   "date": "2026-10-01",
+   "level": "vigtig",
+   "title": "EU-Parlamentets miljøudvalg støtter nye regler for tekstiler og madspild",
+   "summary": "Miljøudvalget har godkendt aftalen om ændringer i affaldsrammedirektivet om tekstiler og madaffald. European Environmental Bureau mener, at forebyggelsen er for svag.",
+   "topics": [
+    "regler",
+    "tekstiler"
+   ],
+   "places": [],
+   "items": [
+    {
+     "id": "fbebafeb75f0",
+     "title": "ENVI committee backs deal on Waste Framework Directive revision",
+     "url": "https://example.org/ep-envi/envi-committee-backs-deal-on-waste-framework-directive-revis",
+     "source": "ep-envi",
+     "source_name": "Europa-Parlamentet, ENVI-udvalget",
+     "published": "2026-10-01T13:30:00Z"
+    },
+    {
+     "id": "34b3c3a01866",
+     "title": "Commission welcomes committee vote on textiles and food waste",
+     "url": "https://example.org/dg-env/commission-welcomes-committee-vote-on-textiles-and-food-wast",
+     "source": "dg-env",
+     "source_name": "EU-Kommissionen, DG ENV",
+     "published": "2026-10-01T14:00:00Z"
+    },
+    {
+     "id": "0490a9b7fef1",
+     "title": "Waste law vote: a missed chance on prevention",
+     "url": "https://example.org/eeb/waste-law-vote-a-missed-chance-on-prevention",
+     "source": "eeb",
+     "source_name": "European Environmental Bureau (EEB)",
+     "published": "2026-10-02T07:00:00Z"
+    }
+   ],
+   "updated": "2026-10-01T20:25:00Z",
+   "story": "fbebafeb75f0"
+  },
+  {
+   "id": "2026-09-28-regeringen-nedsaetter-arbejdsgruppe-om-forbraendingskapacite",
+   "date": "2026-09-28",
+   "level": "vigtig",
+   "title": "Regeringen nedsætter arbejdsgruppe om forbrændingskapacitet",
+   "summary": "Arbejdsgruppen skal se på, hvordan kapaciteten tilpasses faldende affaldsmængder, og komme med anbefalinger i foråret 2027.",
+   "topics": [
+    "forbraending",
+    "regler"
+   ],
+   "places": [],
+   "items": [
+    {
+     "id": "fcbd01c786b6",
+     "title": "Regeringen nedsætter arbejdsgruppe om forbrændingskapacitet",
+     "url": "https://example.org/kefm/regeringen-nedsaetter-arbejdsgruppe-om-forbraendingskapacite",
+     "source": "kefm",
+     "source_name": "Klima-, Energi- og Forsyningsministeriet",
+     "published": "2026-09-28T08:00:00Z"
+    }
+   ],
+   "updated": "2026-09-28T20:25:00Z",
+   "story": "fcbd01c786b6"
+  },
+  {
+   "id": "2026-09-24-eu-s-maal-for-mindre-madspild-traeder-i-kraft",
+   "date": "2026-09-24",
+   "level": "milepael",
+   "title": "EU's mål for mindre madspild træder i kraft",
+   "summary": "Bindende mål for mindre madspild i forarbejdning, detailhandel og husholdninger gælder nu i alle medlemslande.",
+   "topics": [
+    "bioaffald",
+    "regler"
+   ],
+   "places": [],
+   "items": [
+    {
+     "id": "c97f9c556519",
+     "title": "New EU rules to cut food waste enter into force",
+     "url": "https://example.org/dg-env/new-eu-rules-to-cut-food-waste-enter-into-force",
+     "source": "dg-env",
+     "source_name": "EU-Kommissionen, DG ENV",
+     "published": "2026-09-24T11:00:00Z"
+    }
+   ],
+   "updated": "2026-09-24T20:25:00Z",
+   "story": "c97f9c556519"
+  },
+  {
+   "id": "2026-08-20-foerste-benchmarking-af-affaldsselskabernes-omkostninger",
+   "date": "2026-08-20",
+   "level": "vigtig",
+   "title": "Første benchmarking af affaldsselskabernes omkostninger",
+   "summary": "Forsyningstilsynet har sammenlignet omkostningerne i de kommunale affaldsselskaber. Forskellen mellem de billigste og de dyreste er ifølge tilsynet størst for genbrugspladser.",
+   "topics": [
+    "gebyrer",
+    "udbud"
+   ],
+   "places": [],
+   "items": [
+    {
+     "id": "ec43aea366b1",
+     "title": "Forsyningstilsynet: Stor forskel på affaldsselskabernes omkostninger",
+     "url": "https://example.org/altinget/forsyningstilsynet-stor-forskel-paa-affaldsselskabernes-omko",
+     "source": "altinget",
+     "source_name": "Altinget",
+     "published": "2026-08-20T06:30:00Z"
+    },
+    {
+     "id": "97d91633e335",
+     "title": "Benchmarking af affaldsselskaber: Genbrugspladser koster mest",
+     "url": "https://example.org/kommunen/benchmarking-af-affaldsselskaber-genbrugspladser-koster-mest",
+     "source": "kommunen",
+     "source_name": "Kommunen.dk",
+     "published": "2026-08-20T09:10:00Z"
+    }
+   ],
+   "updated": "2026-08-20T20:25:00Z",
+   "story": null
+  },
+  {
+   "id": "2026-07-01-virksomheder-skal-sortere-tekstilaffald-fra-1-juli",
+   "date": "2026-07-01",
+   "level": "milepael",
+   "title": "Virksomheder skal sortere tekstilaffald fra 1. juli",
+   "summary": "Krav om sortering af tekstilaffald gælder nu også for virksomheder. Kommunerne skal tilbyde indsamling til de mindste virksomheder.",
+   "topics": [
+    "tekstiler",
+    "regler"
+   ],
+   "places": [],
+   "items": [
+    {
+     "id": "368001468729",
+     "title": "Nye regler for tekstilaffald hos virksomheder træder i kraft",
+     "url": "https://example.org/kefm/nye-regler-for-tekstilaffald-hos-virksomheder-traeder-i-kraf",
+     "source": "kefm",
+     "source_name": "Klima-, Energi- og Forsyningsministeriet",
+     "published": "2026-07-01T05:00:00Z"
+    }
+   ],
+   "updated": "2026-07-01T20:25:00Z",
+   "story": null
+  },
+  {
+   "id": "2026-06-12-storbrand-lukker-sorteringsanlaeg-i-aalborg-i-to-uger",
+   "date": "2026-06-12",
+   "level": "vigtig",
+   "title": "Storbrand lukker sorteringsanlæg i Aalborg i to uger",
+   "summary": "En brand i et lager med blandet plast har lukket et sorteringsanlæg. Affaldet køres i mellemtiden til andre anlæg i regionen.",
+   "topics": [
+    "genanvendelse",
+    "arbejdsmiljoe"
+   ],
+   "places": [
+    "k:aalborg"
+   ],
+   "items": [
+    {
+     "id": "a86aac5b1b76",
+     "title": "Storbrand på sorteringsanlæg i Aalborg",
+     "url": "https://example.org/tv2-regionerne/storbrand-paa-sorteringsanlaeg-i-aalborg",
+     "source": "tv2-regionerne",
+     "source_name": "TV 2-regionerne",
+     "published": "2026-06-12T03:40:00Z"
+    },
+    {
+     "id": "3d31971f3445",
+     "title": "Sorteringsanlæg lukket i to uger efter brand",
+     "url": "https://example.org/avisen/sorteringsanlaeg-lukket-i-to-uger-efter-brand",
+     "source": "avisen",
+     "source_name": "Avisen.dk (Ritzau)",
+     "published": "2026-06-12T11:20:00Z"
+    }
+   ],
+   "updated": "2026-06-12T20:25:00Z",
+   "story": null
+  },
+  {
+   "id": "2026-05-27-folketinget-vedtager-udvidet-producentansvar-for-emballage",
+   "date": "2026-05-27",
+   "level": "milepael",
+   "title": "Folketinget vedtager udvidet producentansvar for emballage",
+   "summary": "Producenterne skal betale for indsamling og behandling af emballageaffald fra husholdningerne. Ordningen indføres gradvist fra 2027.",
+   "topics": [
+    "producentansvar",
+    "regler"
+   ],
+   "places": [],
+   "items": [
+    {
+     "id": "7b6ef7da3149",
+     "title": "Folketinget vedtager producentansvar for emballage",
+     "url": "https://example.org/altinget/folketinget-vedtager-producentansvar-for-emballage",
+     "source": "altinget",
+     "source_name": "Altinget",
+     "published": "2026-05-27T14:00:00Z"
+    },
+    {
+     "id": "0e8f7f64ade8",
+     "title": "Nu er producentansvaret for emballage vedtaget",
+     "url": "https://example.org/emballagefokus/nu-er-producentansvaret-for-emballage-vedtaget",
+     "source": "emballagefokus",
+     "source_name": "EmballageFOKUS",
+     "published": "2026-05-28T07:30:00Z"
+    }
+   ],
+   "updated": "2026-05-27T20:25:00Z",
+   "story": null
+  },
+  {
+   "id": "2026-04-15-genanvendelsen-af-husholdningsaffald-steg-i-2025",
+   "date": "2026-04-15",
+   "level": "vigtig",
+   "title": "Genanvendelsen af husholdningsaffald steg i 2025",
+   "summary": "Ny statistik viser, at en større andel af husholdningsaffaldet blev genanvendt i 2025. Mængden af restaffald faldt for tredje år i træk.",
+   "topics": [
+    "genanvendelse"
+   ],
+   "places": [],
+   "items": [
+    {
+     "id": "f37ae946e182",
+     "title": "Danskerne genanvendte mere husholdningsaffald i 2025",
+     "url": "https://example.org/avisen/danskerne-genanvendte-mere-husholdningsaffald-i-2025",
+     "source": "avisen",
+     "source_name": "Avisen.dk (Ritzau)",
+     "published": "2026-04-15T08:00:00Z"
+    }
+   ],
+   "updated": "2026-04-15T20:25:00Z",
+   "story": null
+  },
+  {
+   "id": "2026-03-10-to-affaldsselskaber-paa-sjaelland-undersoeger-fusion",
+   "date": "2026-03-10",
+   "level": "vigtig",
+   "title": "To affaldsselskaber på Sjælland undersøger fusion",
+   "summary": "Bestyrelserne i to fælleskommunale affaldsselskaber vil undersøge en fusion. Kommunalbestyrelserne skal tage stilling inden sommerferien.",
+   "topics": [
+    "udbud"
+   ],
+   "places": [
+    "r:sjaelland"
+   ],
+   "items": [
+    {
+     "id": "d2320429fb33",
+     "title": "To sjællandske affaldsselskaber undersøger fusion",
+     "url": "https://example.org/kommunen/to-sjaellandske-affaldsselskaber-undersoeger-fusion",
+     "source": "kommunen",
+     "source_name": "Kommunen.dk",
+     "published": "2026-03-10T09:30:00Z"
+    }
+   ],
+   "updated": "2026-03-10T20:25:00Z",
+   "story": null
+  },
+  {
+   "id": "2026-02-04-klimaraadet-anbefaler-co2-fangst-paa-de-store-forbraendingsa",
+   "date": "2026-02-04",
+   "level": "vigtig",
+   "title": "Klimarådet anbefaler CO2-fangst på de store forbrændingsanlæg",
+   "summary": "Klimarådet vurderer, at CO2-fangst på de største forbrændingsanlæg er nødvendig for at nå målene for 2030. Dansk Fjernvarme peger på usikre priser.",
+   "topics": [
+    "klima",
+    "forbraending"
+   ],
+   "places": [],
+   "items": [
+    {
+     "id": "f4ef7849ff8e",
+     "title": "Statusrapport: CO2-fangst på forbrændingsanlæg haster",
+     "url": "https://example.org/klimaraadet/statusrapport-co2-fangst-paa-forbraendingsanlaeg-haster",
+     "source": "klimaraadet",
+     "source_name": "Klimarådet",
+     "published": "2026-02-04T08:00:00Z"
+    },
+    {
+     "id": "49b034211357",
+     "title": "Fjernvarmen efterlyser klarhed om CO2-fangst",
+     "url": "https://example.org/dansk-fjernvarme/fjernvarmen-efterlyser-klarhed-om-co2-fangst",
+     "source": "dansk-fjernvarme",
+     "source_name": "Dansk Fjernvarme",
+     "published": "2026-02-05T07:15:00Z"
+    }
+   ],
+   "updated": "2026-02-04T20:25:00Z",
+   "story": null
+  },
+  {
+   "id": "2026-01-01-ens-affaldssortering-i-hele-landet-er-fuldt-indfoert",
+   "date": "2026-01-01",
+   "level": "milepael",
+   "title": "Ens affaldssortering i hele landet er fuldt indført",
+   "summary": "De sidste overgangsordninger er udløbet, og alle kommuner indsamler nu de samme affaldstyper fra husholdningerne.",
+   "topics": [
+    "sortering",
+    "regler"
+   ],
+   "places": [],
+   "items": [
+    {
+     "id": "25a2bb9bbe84",
+     "title": "Overgangsordningerne udløber: Nu sorterer hele landet ens",
+     "url": "https://example.org/danske-kommuner/overgangsordningerne-udloeber-nu-sorterer-hele-landet-ens",
+     "source": "danske-kommuner",
+     "source_name": "Danske Kommuner",
+     "published": "2025-12-30T07:00:00Z"
+    }
+   ],
+   "updated": "2026-01-01T20:25:00Z",
+   "story": null
+  },
+  {
+   "id": "2025-12-09-analyse-affaldsgebyrerne-steg-i-de-fleste-kommuner",
+   "date": "2025-12-09",
+   "level": "vigtig",
+   "title": "Analyse: Affaldsgebyrerne steg i de fleste kommuner",
+   "summary": "Kraka har sammenlignet kommunernes affaldsgebyrer. Gebyrerne steg i de fleste kommuner, og forskellen mellem kommunerne blev større.",
+   "topics": [
+    "gebyrer"
+   ],
+   "places": [],
+   "items": [
+    {
+     "id": "5c0e7fa4d337",
+     "title": "Analyse: Affaldsgebyrerne stiger, og forskellene vokser",
+     "url": "https://example.org/kraka/analyse-affaldsgebyrerne-stiger-og-forskellene-vokser",
+     "source": "kraka",
+     "source_name": "Kraka",
+     "published": "2025-12-09T06:00:00Z"
+    }
+   ],
+   "updated": "2025-12-09T20:25:00Z",
+   "story": null
+  },
+  {
+   "id": "2025-11-18-eu-kommissionen-foreslaar-producentansvar-for-tekstiler-i-al",
+   "date": "2025-11-18",
+   "level": "vigtig",
+   "title": "EU-Kommissionen foreslår producentansvar for tekstiler i alle lande",
+   "summary": "Forslaget pålægger producenterne at betale for indsamling og behandling af brugte tekstiler. Det skal nu forhandles med Parlamentet og Rådet.",
+   "topics": [
+    "tekstiler",
+    "producentansvar"
+   ],
+   "places": [],
+   "items": [
+    {
+     "id": "6a2d2eb03fb1",
+     "title": "Commission proposes extended producer responsibility for textiles",
+     "url": "https://example.org/dg-env/commission-proposes-extended-producer-responsibility-for-tex",
+     "source": "dg-env",
+     "source_name": "EU-Kommissionen, DG ENV",
+     "published": "2025-11-18T10:00:00Z"
+    }
+   ],
+   "updated": "2025-11-18T20:25:00Z",
+   "story": null
+  },
+  {
+   "id": "2025-10-22-nyt-biogasanlaeg-til-madaffald-indviet-paa-fyn",
+   "date": "2025-10-22",
+   "level": "vigtig",
+   "title": "Nyt biogasanlæg til madaffald indviet på Fyn",
+   "summary": "Anlægget skal behandle madaffald fra husholdningerne i flere fynske kommuner og levere biogas til naturgasnettet.",
+   "topics": [
+    "bioaffald"
+   ],
+   "places": [
+    "r:syddanmark"
+   ],
+   "items": [
+    {
+     "id": "80170364c169",
+     "title": "Nyt biogasanlæg skal tage madaffald fra hele Fyn",
+     "url": "https://example.org/fyens/nyt-biogasanlaeg-skal-tage-madaffald-fra-hele-fyn",
+     "source": "fyens",
+     "source_name": "Fyens Stiftstidende",
+     "published": "2025-10-22T05:30:00Z"
+    }
+   ],
+   "updated": "2025-10-22T20:25:00Z",
+   "story": null
+  },
+  {
+   "id": "2025-09-15-bred-aftale-skal-halvere-forbraendingen-af-plast-inden-2030",
+   "date": "2025-09-15",
+   "level": "milepael",
+   "title": "Bred aftale skal halvere forbrændingen af plast inden 2030",
+   "summary": "Regeringen og et bredt flertal er enige om at halvere mængden af plast, der brændes, inden 2030. Kommunerne skal sortere mere plast fra restaffaldet.",
+   "topics": [
+    "klima",
+    "forbraending"
+   ],
+   "places": [],
+   "items": [
+    {
+     "id": "4f0b0a03bc5e",
+     "title": "Bred aftale om mindre plast i forbrændingen",
+     "url": "https://example.org/kefm/bred-aftale-om-mindre-plast-i-forbraendingen",
+     "source": "kefm",
+     "source_name": "Klima-, Energi- og Forsyningsministeriet",
+     "published": "2025-09-15T12:00:00Z"
+    },
+    {
+     "id": "99a6ebb3701d",
+     "title": "Aftale: Halvdelen af plasten skal ud af forbrændingen",
+     "url": "https://example.org/berlingske/aftale-halvdelen-af-plasten-skal-ud-af-forbraendingen",
+     "source": "berlingske",
+     "source_name": "Berlingske",
+     "published": "2025-09-15T15:45:00Z"
+    }
+   ],
+   "updated": "2025-09-15T20:25:00Z",
+   "story": null
+  }
+ ]
+}

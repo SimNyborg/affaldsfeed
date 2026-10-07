@@ -43,6 +43,7 @@ def repo(tmp_path, monkeypatch):
         "JUDGMENTS_DIR": data / "judgments",
         "OVERVIEW_DIR": data / "overview",
         "OVERVIEW_ARCHIVE_DIR": data / "overview" / "archive",
+        "TIMELINE_DIR": data / "timeline",
         "STATE_DIR": data / "state",
         "HEARTBEAT_FILE": data / "judgments" / "_heartbeat.json",
     }.items():

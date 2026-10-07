@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import re
 from collections.abc import Iterable
 from datetime import date, datetime
@@ -305,11 +306,22 @@ class PlaceSettings(_Strict):
     institution_words: list[str] = Field(default_factory=lambda: ["Universitet", "Lufthavn"])
 
 
+class TimelineSettings(_Strict):
+    """Tidslinjen (KONTRAKTER §7.3)."""
+
+    input_days: int = Field(default=3, gt=0)  # timeline-input: godkendte historier fra så mange dage
+    first_fill_days: int = Field(default=60, gt=0)  # ... når tidslinjen er tom
+    events_days: int = Field(default=60, gt=0)  # eksisterende begivenheder i input (dubletter, nye indslag)
+    max_per_week: int = Field(default=3, gt=0)  # højst så mange begivenheder med dato i samme uge
+    recent_hours: int = Field(default=48, gt=0)  # linjer skrevet så nyligt tjekkes mod indslagene
+
+
 class Settings(_Strict):
     fetch: FetchSettings
     routine: RoutineSettings
     pages: PagesSettings = Field(default_factory=PagesSettings)
     places: PlaceSettings = Field(default_factory=PlaceSettings)
+    timeline: TimelineSettings = Field(default_factory=TimelineSettings)
     window_days: int = 60
     max_age_days_on_find: int = 14
     baseline_days: int = 14
@@ -434,6 +446,111 @@ class Overview(_Strict):
     headline: str
     bullets: list[Bullet] = Field(min_length=1)
     based_on: int
+
+
+# ── Tidslinjen (KONTRAKTER §7.3) ─────────────────────────────
+
+TimelineLevel = Literal["milepael", "vigtig"]
+TIMELINE_ID_MAX = 80
+TIMELINE_ITEMS_MAX = 8
+_TIMELINE_ID_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})-[a-z0-9]+(?:-[a-z0-9]+)*$")
+
+
+def _check_timeline_id(v: str) -> str:
+    m = _TIMELINE_ID_RE.match(v)
+    if not m or len(v) > TIMELINE_ID_MAX:
+        raise ValueError(
+            f"id skal være ÅÅÅÅ-MM-DD-<slug> med små bogstaver, tal og enkelte bindestreger, højst {TIMELINE_ID_MAX} tegn"
+        )
+    try:
+        date.fromisoformat(m.group(1))
+    except ValueError:
+        raise ValueError(f"id begynder med en ugyldig dato ({m.group(1)})") from None
+    return v
+
+
+class TimelineRef(_Strict):
+    """Et indslag på tidslinjen: et øjebliksbillede, så det kan vises, når indslaget er ude af feedet."""
+
+    id: str
+    title: str = Field(min_length=1, max_length=300)
+    url: str
+    source: str
+    source_name: str
+    published: datetime | None = None
+
+    @field_validator("url")
+    @classmethod
+    def _http(cls, v: str) -> str:
+        if not v.startswith(("http://", "https://")):
+            raise ValueError("url skal starte med http:// eller https://")
+        return v
+
+
+class TimelineEntry(_Strict):
+    """En begivenhed, som den står i timeline.json (uden by og deleted)."""
+
+    id: str
+    date: date
+    level: TimelineLevel
+    title: str = Field(min_length=1, max_length=200)
+    summary: str = Field(min_length=1, max_length=600)
+    topics: list[TopicId] = Field(default_factory=list, max_length=2)
+    places: list[str] = Field(default_factory=list)
+    items: list[TimelineRef] = Field(min_length=1, max_length=TIMELINE_ITEMS_MAX)
+    updated: datetime
+
+    @field_validator("id")
+    @classmethod
+    def _id(cls, v: str) -> str:
+        return _check_timeline_id(v)
+
+    @field_validator("places")
+    @classmethod
+    def _places(cls, v: list[str]) -> list[str]:
+        return _check_places(v)
+
+    @field_validator("items")
+    @classmethod
+    def _unique_items(cls, v: list[TimelineRef]) -> list[TimelineRef]:
+        ids = [r.id for r in v]
+        if len(set(ids)) != len(ids):
+            raise ValueError("samme indslag står flere gange i items")
+        return v
+
+
+class TimelineEvent(TimelineEntry):
+    """Én linje i data/timeline/ÅÅÅÅ-MM.jsonl. En ny linje med samme id erstatter den forrige."""
+
+    by: str = "claude-routine"
+    deleted: Literal[False] = False
+
+
+class TimelineDeletion(_Strict):
+    """En linje, der sletter begivenheden med samme id."""
+
+    id: str
+    deleted: Literal[True]
+    updated: datetime
+    by: str = "claude-routine"
+
+    @field_validator("id")
+    @classmethod
+    def _id(cls, v: str) -> str:
+        return _check_timeline_id(v)
+
+
+def parse_timeline_line(line: str) -> TimelineEvent | TimelineDeletion:
+    """En linje fra data/timeline/: en sletning, når "deleted" er true, ellers en begivenhed.
+
+    Kaster ValidationError, også ved ugyldig JSON."""
+    try:
+        raw = json.loads(line)
+    except ValueError:
+        return TimelineEvent.model_validate_json(line)  # giver en ValidationError (json_invalid)
+    if isinstance(raw, dict) and raw.get("deleted") is True:
+        return TimelineDeletion.model_validate(raw)
+    return TimelineEvent.model_validate(raw)
 
 
 # ── Eksport ─────────────────────────────────────────────────
@@ -628,4 +745,34 @@ class Feed(_Strict):
         unused = sorted({f"b:{t.id}" for t in self.geo.byer} - used)
         if unused:
             raise ValueError(f"geo.byer har byer, som intet indslag nævner: {', '.join(unused[:5])}")
+        return self
+
+
+# ── timeline.json (export, KONTRAKTER §7.3) ─────────────────
+
+
+class TimelinePublicEvent(TimelineEntry):
+    # Historien i feed.json med et af begivenhedens indslag (til "Vis i feedet"), ellers None
+    story: str | None = None
+
+
+class TimelinePlace(_Strict):
+    id: str  # med præfiks, fx k:nyborg
+    navn: str
+    kort: str
+
+
+class TimelineFeed(_Strict):
+    version: int
+    generated: datetime
+    topics: list[FeedTopic]
+    places: list[TimelinePlace]  # navne på de steder, begivenhederne bruger
+    events: list[TimelinePublicEvent]
+
+    @model_validator(mode="after")
+    def _places_named(self) -> TimelineFeed:
+        named = {p.id for p in self.places}
+        missing = sorted({p for e in self.events for p in e.places} - named)
+        if missing:
+            raise ValueError(f"events bruger steder uden navn i places: {', '.join(missing[:5])}")
         return self

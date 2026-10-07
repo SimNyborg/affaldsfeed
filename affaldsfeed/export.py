@@ -1,4 +1,4 @@
-"""export-kommandoen: bygger _site/ med data/feed.json og data/status.json (KONTRAKTER §8-9)."""
+"""export-kommandoen: bygger _site/ med data/feed.json, data/status.json og data/timeline.json (KONTRAKTER §7.3 og §8-9)."""
 
 from __future__ import annotations
 
@@ -28,13 +28,14 @@ from affaldsfeed.judgments import display_mode, load_all_candidates, load_heartb
 from affaldsfeed.models import DisplayItem, Feed, Geo
 from affaldsfeed.overview import PERIODS, load_overviews
 from affaldsfeed.stories import build_stories
+from affaldsfeed.timeline import export_timeline
 from affaldsfeed.timeutil import ensure_utc, iso, now_utc
 
 log = logging.getLogger(__name__)
 
 FEED_VERSION = 1
 REJECTED_DAYS = 30
-SAMPLE_NAME = "feed.sample.json"
+SAMPLE_NAMES = ("feed.sample.json", "timeline.sample.json")
 
 
 def dumps(obj: Any) -> str:
@@ -80,8 +81,8 @@ def geo_block(geo: Geo, items: list[DisplayItem]) -> dict[str, Any] | None:
     }
 
 
-def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any]]:
-    """(feed.json, status.json) som dicts."""
+def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
+    """(feed.json, status.json, timeline.json) som dicts."""
     now = ensure_utc(now)
     config = load_config(paths.CONFIG_DIR)
     sources = load_sources(paths.SOURCES_FILE)
@@ -182,7 +183,8 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any]]:
             "rejected_30d": len(store.load_rejected(now - timedelta(days=REJECTED_DAYS))),
         },
     }
-    return feed, status
+    timeline = export_timeline(now, config, heads)
+    return feed, status, timeline
 
 
 def build_feed(now: datetime) -> dict[str, Any]:
@@ -203,7 +205,7 @@ def main_export(args: argparse.Namespace) -> int:
         log.error("--out må ikke ligge i site/: %s", out)
         return 1
     try:
-        feed, status = build_all(now)
+        feed, status, timeline = build_all(now)
     except (ValidationError, ConfigError) as e:
         log.error("eksporten fejlede (skemafejl): %s", e)
         return 1
@@ -216,9 +218,11 @@ def main_export(args: argparse.Namespace) -> int:
             log.warning("site/ findes ikke; kun data skrives")
         _write_text(out / "data" / "feed.json", dumps(feed))
         _write_text(out / "data" / "status.json", dumps(status))
-        sample = paths.EXAMPLES_DIR / SAMPLE_NAME
-        if sample.is_file():
-            shutil.copyfile(sample, out / "data" / SAMPLE_NAME)
+        _write_text(out / "data" / "timeline.json", dumps(timeline))
+        for name in SAMPLE_NAMES:
+            sample = paths.EXAMPLES_DIR / name
+            if sample.is_file():
+                shutil.copyfile(sample, out / "data" / name)
     except OSError as e:
         log.error("kunne ikke skrive %s: %s", out, e)
         return 1
@@ -227,7 +231,8 @@ def main_export(args: argparse.Namespace) -> int:
     n_places = sum(bool(d["places"]) for d in feed["items"])
     filled = [p for p in PERIODS if feed["overview"][p]]
     log.info(
-        "eksport til %s: %d indslag (+%d i historier, %d med steder), tilstand %s, overblik: %s",
+        "eksport til %s: %d indslag (+%d i historier, %d med steder), tilstand %s, overblik: %s, tidslinje: %d",
         out, len(feed["items"]), n_also, n_places, feed["mode"], ", ".join(filled) or "intet",
+        len(timeline["events"]),
     )
     return 0

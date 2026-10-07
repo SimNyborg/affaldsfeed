@@ -172,6 +172,7 @@ def setup_env(tmp_path: Path, monkeypatch, sources: Path | None = None, medier: 
     monkeypatch.setattr(paths, "JUDGMENTS_DIR", data / "judgments")
     monkeypatch.setattr(paths, "OVERVIEW_DIR", data / "overview")
     monkeypatch.setattr(paths, "OVERVIEW_ARCHIVE_DIR", data / "overview" / "archive")
+    monkeypatch.setattr(paths, "TIMELINE_DIR", data / "timeline")
     monkeypatch.setattr(paths, "STATE_DIR", data / "state")
     monkeypatch.setattr(paths, "HEARTBEAT_FILE", data / "judgments" / "_heartbeat.json")
     return SimpleNamespace(root=tmp_path, config=config_dir, sources=sources_file, data=data)

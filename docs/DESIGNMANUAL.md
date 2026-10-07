@@ -20,8 +20,8 @@ Manualen beskriver, hvordan Affaldsfeed ser ud, og hvad der står på siden. Dat
 - Under 768 px går panelerne fra kant til kant uden radius, og al tekst står 16 px fra skærmkanten. Der er 8 px grå mellem panelerne. Filtrene ligger i et bundark.
 - Brudpunkterne står i em (48em og 64em), så layoutet skifter tidligere, når brugeren har større grundskrift. Siden kan vises ved 320 px uden vandret scroll, også i tom-tilstanden, hvor knapperne må brydes over to linjer.
 - Kan feedet ikke indlæses, står fejlen i læsekolonnen (også fra 1024 px, hvor sidepanelet så er skjult) uden listens hoved, fordi søgning, "Filtrér" og visning intet har at vise.
-- Headeren er hvid, ikke sticky og har `box-shadow: 0 10px 15px rgba(0,0,0,.05)`. Fra 768 px er den én række på 64 px med logo (28 px), ordmærket "Affaldsfeed" og undertitlen. Under 768 px står undertitlen under logo og ordmærke (60 px: 8 px over logoet og 6 px under undertitlen).
-- Headeren har ingen navigation, så længe der kun er én side i den. Logoet fører til feedet, og Om kilderne findes via footeren. Når Tidslinje kommer, står navigationen "Feed · Tidslinje" til højre (under 768 px på en række for sig, 44 px). Den aktive side har teksten i `--link` og en streg på 3 px i `--link` under teksten.
+- Headeren er hvid, ikke sticky og har `box-shadow: 0 10px 15px rgba(0,0,0,.05)`. Fra 768 px er den én række på 64 px med logo (28 px) og ordmærket "Affaldsfeed" til venstre og navigationen til højre. Under 768 px står logo og ordmærke på én række (56 px) og navigationen på en række for sig (44 px). Der er ingen undertitel.
+- Navigationen er Feed og Tidslinje. Om kilderne findes via footeren. Den aktive side har teksten i `--link` og en streg på 3 px i `--link` under teksten.
 - Forsiden har denne rækkefølge: demo-strimmel (kun med `?demo=1`), header, sidepanel og læsekolonnen med meddelelser, AI-overblik og listepanelet. Listepanelet har listens hoved øverst og derefter dage og kort. "Vis flere" står under panelet.
 - Afstande: 4, 8, 12, 16, 20, 24 og 32 px. Kort, listens hoved og overblik har 20 px vandret padding (16 px under 768 px). Optiske justeringer på 2, 3 og 6 px står ved de enkelte komponenter.
 - Radius: 15 px på paneler (0 under 768 px), 8 px på felter, forslagslister og meddelelser, 999 px på knapper og aktive filtre.
@@ -45,7 +45,7 @@ Open Sans 400 og 600, hostet selv i `site/assets/fonts/` (latin, licensen står 
 | `--t-in` | 15/22, ved berøring 16/24 | 400 | tekst i felter. 16 px forhindrer, at iOS zoomer ind |
 | `--t-l` | 17/24 | 600 | korttitel, udfoldet hovedlinje i overblikket, "Filtre" |
 | `--t-xl` | 20/28 | 600 | ordmærket og `h2` på Om kilderne |
-| `--t-2xl` | 28/34 | 600 | `h1` på Om kilderne |
+| `--t-2xl` | 28/34 | 600 | `h1` på Om kilderne og Tidslinje |
 
 - `letter-spacing: 0.2px` på body og ingen anden spatiering.
 - Tider, tal og tællere har `font-variant-numeric: tabular-nums`, så tallene står i kolonne.
@@ -250,6 +250,18 @@ Overblikket ligger i et hvidt panel øverst i læsekolonnen over søgning og fil
 
 Footeren har baggrund `--footer` og hvid tekst i 13/18: teksten om projektet og linkene "Om kilderne · Koden på GitHub". Skilletegnet hænger på linket før det, så en linje aldrig begynder med "·". Fokusringen er hvid. På Om kilderne har linket til siden selv `aria-current="page"`.
 
+### Tidslinje
+
+`tidslinje.html` viser de vigtigste begivenheder på affaldsområdet, valgt af Claude (KONTRAKTER 7.3). Siden har samme demo-strimmel, header, footer og læsekolonne som Om kilderne.
+
+- Øverst står "Tidslinje" (`h1`), linjen "De vigtigste begivenheder på affaldsområdet, udvalgt af Claude ud fra nyhederne i feedet. Kan indeholde fejl." og tekstvalget "Alle · Kun milepæle" (`niveau=milepael` i URL'en). Til højre står "Spring til 2026 · 2025", når begivenhederne spænder over mere end ét år. Antallet meldes til skærmlæsere, når niveauet skiftes.
+- Begivenhederne står i ét panel grupperet efter måned. Månedsoverskriften er sticky som feedets dagsoverskrifter, i 17/24 med antallet til højre, og har et anker (`#2026-10`), så man kan linke til en måned.
+- Hver begivenhed har datoen i en fast kolonne til venstre ("7. okt."), en markør på en lodret streg i `--line` og teksten til højre: "Milepæl" (13/18, 600, `--link`) ved milepæle, titlen (17/24, 600), resuméet (15/22, `--muted`), fodlinjen med steder og temaer som på kortet og "Læs 3 nyheder" (eller "Læs nyheden"). Markøren er en udfyldt cirkel på 12 px i `--link` ved milepæle og en ring ved de andre. Den er dekorativ (`aria-hidden`), fordi "Milepæl" står som tekst.
+- "Læs 3 nyheder" folder indslagene ud med kilde (600), dato og titlen som link i ny fane. Er historien stadig i feedet, står "Vis i feedet" nederst og linker til `index.html?story=<id>`.
+- Siden viser de 12 nyeste måneder med begivenheder. "Vis ældre" henter 12 måneder mere og giver fokus til den første nye måneds overskrift. "Spring til" og et anker i URL'en henter ældre måneder efter behov.
+- Under 480 px står datoen over titlen, og stregen følger markøren i venstre side.
+- Tom tidslinje: "Tidslinjen er tom endnu. Claude tilføjer de vigtigste begivenheder, efterhånden som nyhederne kommer." og linket "Gå til feedet". Ingen milepæle: "Der er ingen milepæle på tidslinjen endnu." og "Vis alle begivenheder".
+
 ### Om kilderne
 
 Siden bruger samme demo-strimmel, header og footer og en læsekolonne på højst 720 px uden sidepanel. Fra 1024 px står læsekolonnen ved containerens venstrekant og flugter med logoet; under 1024 px står den som listepanelet på forsiden. Afsendertyperne står som rækker med ikon, det fulde navn og antal kilder (`id="typer"`), i to kolonner fra 560 px med 48 px imellem. Hver kategori har sin egen sektion med ikonet (20 px) i overskriften, kategoriens forklaring og kildelisten. Statusmærket står altid øverst til højre i kildens række. Tallene i "Status lige nu" står i 20/28 og vægt 600.
@@ -262,8 +274,7 @@ Overblikket følger samme tone. Claude skriver neutralt og markerer, når en afs
 
 | Sted | Tekst |
 |---|---|
-| Undertitel | Nyheder om affald fra 72 kilder · opdateret kl. 14.17 (kort under 1024 px: 72 kilder · opdateret kl. 14.17) |
-| Navigation | ingen (senere Feed · Tidslinje) |
+| Navigation | Feed · Tidslinje |
 | Springlink | Gå til feedet |
 | Søgefelt | Søg i titler og kilder · Ryd søgning |
 | Filtrér-knap | Filtrér (2) |
