@@ -86,6 +86,7 @@ class Source(_Strict):
     paywall: Paywall = "nej"
     owner: str | None = None
     aliases: list[str] = Field(default_factory=list)
+    geo: list[str] = Field(default_factory=list)  # kommune- eller region-id'er (config/geografi.yaml)
     every: int | None = None
     bundle: Literal["day"] | None = None
     ai: bool = True
@@ -197,6 +198,50 @@ class Override(_Strict):
     match: dict[str, str]
     action: Literal["vis", "skjul", "tema", "genre", "split"]
     value: str | list[str] | None = None
+
+
+# ── Geografi (config/geografi.yaml, KONTRAKTER §3.3 og §8.1) ──
+
+
+class _Place(_Strict):
+    id: str
+    name: str
+    patterns: list[str] = Field(default_factory=list)
+
+    @field_validator("id")
+    @classmethod
+    def _valid_id(cls, v: str) -> str:
+        if not _ID_RE.match(v):
+            raise ValueError("id skal bestå af små bogstaver, tal og bindestreg")
+        return v
+
+
+class GeoRegion(_Place):
+    short: str
+
+
+class GeoKommune(_Place):
+    short: str
+    region: str
+
+
+class GeoBy(_Place):
+    kommune: str
+
+
+class Geography(_Strict):
+    regioner: list[GeoRegion] = Field(default_factory=list)
+    kommuner: list[GeoKommune] = Field(default_factory=list)
+    byer: list[GeoBy] = Field(default_factory=list)
+    ignore: list[str] = Field(default_factory=list)
+
+
+class Places(_Strict):
+    """Steder et indslag handler om. Byer giver også deres kommune, kommuner deres region."""
+
+    regioner: list[str] = Field(default_factory=list)
+    kommuner: list[str] = Field(default_factory=list)
+    byer: list[str] = Field(default_factory=list)
 
 
 class FetchSettings(_Strict):
@@ -370,6 +415,7 @@ class DisplayItem(_Strict):
     topics: list[TopicId] = Field(default_factory=list, max_length=2)
     genre: GenreId = "nyhed"
     lang: Lang = "da"
+    geo: Places = Field(default_factory=Places)
     summary_da: str | None = None
     reviewed: bool = True
     reason: str | None = None
