@@ -163,6 +163,11 @@ def test_byer():
     assert {"code": "FOLKARTÆT", "values": ["BEF"]} in body["variables"]
 
 
+def test_folketal_med_decimalkomma():
+    text = "BYER;TID;FOLKARTAET;INDHOLD\r\n10101100;2026;FOLKETAL;671714,0\r\n15110223;2026;FOLKETAL;8.663,0\r\n"
+    assert geo.parse_population(text) == {"10101100": 671714, "15110223": 8663}
+
+
 def test_forkert_antal_kommuner_stopper():
     info = folk1a()
     info["variables"][0]["values"].pop()  # fjern en kommune

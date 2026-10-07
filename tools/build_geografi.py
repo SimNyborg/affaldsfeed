@@ -172,7 +172,8 @@ def parse_population(text: str) -> dict[str, int]:
     for row in rows[1:]:
         if len(row) < 2:
             continue
-        raw = row[-1].strip().replace(".", "").replace(" ", "")
+        # DST skriver decimalkomma ("671714,0"); punktum og mellemrum er tusindtalsskilletegn
+        raw = row[-1].strip().replace(" ", "").split(",")[0].replace(".", "")
         if raw.isdigit():
             out[row[0].strip()] = int(raw)
     if not out:
