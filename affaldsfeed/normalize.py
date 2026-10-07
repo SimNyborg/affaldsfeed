@@ -6,10 +6,14 @@ import hashlib
 import html
 import re
 import unicodedata
+from collections.abc import Iterable
 from urllib.parse import parse_qsl, quote, urlencode, urlsplit, urlunsplit
 
 # Sporingsparametre, der fjernes fra URL'er
 _TRACKING_KEYS = {"fbclid", "gclid", "ref", "mc_cid", "mc_eid"}
+
+# æøå som i URL-slugs ("affaldsloesning")
+TRANSLIT = str.maketrans({"æ": "ae", "ø": "oe", "å": "aa", "Æ": "AE", "Ø": "OE", "Å": "AA"})
 
 _SCRIPT_RE = re.compile(r"<(script|style)\b[^>]*>.*?</\1\s*>", re.IGNORECASE | re.DOTALL)
 _TAG_RE = re.compile(r"<!--.*?-->|</?[a-zA-Z][^<>]*>", re.DOTALL)
@@ -110,29 +114,60 @@ def _looks_like_name(tail: str) -> bool:
     return 0 < len(words) <= 4 and all(w[0].isupper() or w[0].isdigit() for w in words)
 
 
-def _strip_tail(title: str) -> str:
-    """Fjern én kildehale (" | Altinget", " - DR") hvis den ligner et kildenavn."""
+def _squash(s: str) -> str:
+    """Kun bogstaver og tal, små bogstaver ("Amager Ressourcecenter" → "amagerressourcecenter")."""
+    return "".join(ch for ch in unicodedata.normalize("NFKC", s).casefold() if ch.isalnum())
+
+
+def _name_keys(names: Iterable[str]) -> list[str]:
+    return [k for k in dict.fromkeys(_squash(n) for n in names) if len(k) >= 3]
+
+
+def _is_name(text: str, keys: list[str]) -> bool:
+    """Er teksten et af navnene eller en del af et af dem ("MST" i "Miljøstyrelsen (MST)")?"""
+    sq = _squash(text)
+    return len(sq) >= 3 and any(sq == k or sq in k for k in keys)
+
+
+def matches_name(text: str, names: Iterable[str]) -> bool:
+    """Er teksten præcis et af navnene (fx et og:title, der kun er sidens navn)?"""
+    return _squash(text) in _name_keys(names)
+
+
+def _strip_tail(title: str, keys: list[str]) -> str:
+    """Fjern én kildehale (" | Altinget", " - DR") hvis den ligner et kildenavn eller er et af keys."""
     matches = list(_TAIL_SEP_RE.finditer(title))
     if not matches:
         return title
     m = matches[-1]
     head, tail = title[: m.start()].strip(), title[m.end() :].strip()
-    if len(head.split()) < 2 or not tail or len(tail) > 40:
+    if len(head.split()) < 2 or not tail:
+        return title
+    if keys and _is_name(tail, keys):
+        return head
+    if len(tail) > 40:
         return title
     if m.group(1) == "|":
         return head if len(tail.split()) <= 5 else title
     return head if _looks_like_name(tail) else title
 
 
-def normalize_title(title: str) -> str:
-    """Små bogstaver uden tegnsætning og kildehaler. Bruges til historier og dedupe."""
-    t = unicodedata.normalize("NFKC", title or "")
-    t = _WS_RE.sub(" ", t).strip()
+def strip_site_tail(title: str, names: Iterable[str] = ()) -> str:
+    """Fjern op til to kildehaler sidst i en titel. names (kildens navn og vært) fjernes uanset længde."""
+    keys = _name_keys(names)
+    t = title
     for _ in range(2):
-        stripped = _strip_tail(t)
+        stripped = _strip_tail(t, keys)
         if stripped == t:
             break
         t = stripped
+    return t
+
+
+def normalize_title(title: str) -> str:
+    """Små bogstaver uden tegnsætning og kildehaler. Bruges til historier og dedupe."""
+    t = unicodedata.normalize("NFKC", title or "")
+    t = strip_site_tail(_WS_RE.sub(" ", t).strip())
     t = _PUNCT_RE.sub(" ", t.casefold())
     return _WS_RE.sub(" ", t).strip()
 

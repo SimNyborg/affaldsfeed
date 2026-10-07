@@ -2,16 +2,19 @@
 
 from __future__ import annotations
 
+import hashlib
 import shutil
 from pathlib import Path
 from types import SimpleNamespace
 
 from affaldsfeed import paths
-from affaldsfeed.fetch import FetchResult
+from affaldsfeed.fetch import BUDGET_EXHAUSTED, ROBOTS_BLOCKED, TOO_LARGE, FetchResult
 
 FIXTURES = Path(__file__).resolve().parent
+RSS_TYPE = "application/rss+xml; charset=utf-8"
 
-# URL (eller præfiks) -> fixture-fil, HTTP-status (int) eller "raise"
+# URL (eller præfiks) -> fixture-fil, bytes, HTTP-status (int; 304 = uændret), "raise", "budget", "robots",
+# "timeout", "too_large" eller (fil/bytes, content-type). Uden content-type svares der som RSS.
 DEFAULT_ROUTES: dict[str, str | int] = {
     "https://www.testmedie.dk/rss": "rss2.xml",
     "https://www.dr.dk/nyheder/service/feeds/indland": "dr.xml",
@@ -24,13 +27,20 @@ DEFAULT_ROUTES: dict[str, str | int] = {
 }
 
 
-def make_fetcher_class(routes: dict[str, str | int | Path] | None = None):
-    """Lav en Fetcher-erstatning med de givne ruter. Kald registreres i klassens .calls."""
+def make_fetcher_class(routes: dict[str, str | int | Path | bytes | tuple] | None = None, etags: bool = False):
+    """Lav en Fetcher-erstatning med de givne ruter. Kald registreres i klassens .calls.
+
+    Med etags=True opfører den sig som en server med ETags: ETag'en er en hash af indholdet, og en betinget
+    forespørgsel, hvis ETag i http_cache passer, får 304. Uden svares der altid 200 (ETag "v1").
+    Ruterne kan ændres mellem kørsler via klassens .routes.
+    """
     table = dict(DEFAULT_ROUTES if routes is None else routes)
 
     class FakeFetcher:
         calls: list[tuple[str, bool]] = []
+        statuses: list[tuple[str, int]] = []  # (url, status) for svar uden fejl (200 eller 304)
         instances: list = []
+        routes = table
 
         def __init__(self, settings, http_cache, robots_cache, now):
             self.settings = settings
@@ -48,7 +58,7 @@ def make_fetcher_class(routes: dict[str, str | int | Path] | None = None):
         def allowed(self, url):
             return True
 
-        def get(self, url, conditional=True):
+        def get(self, url, conditional=True, max_bytes=None):
             FakeFetcher.calls.append((url, conditional))
             target = table.get(url)
             if target is None:
@@ -60,26 +70,68 @@ def make_fetcher_class(routes: dict[str, str | int | Path] | None = None):
                 return FetchResult(url, 404, None, None, False, "HTTP 404", {})
             if target == "raise":
                 raise RuntimeError("kunstig fejl")
+            if target == "budget":
+                return FetchResult(url, 0, None, None, False, BUDGET_EXHAUSTED, {})
+            if target == "robots":
+                return FetchResult(url, 0, None, None, False, ROBOTS_BLOCKED, {})
+            if target == "timeout":
+                return FetchResult(url, 0, None, None, False, "timeout", {})
+            if target == "too_large":
+                return FetchResult(url, 200, None, None, False, f"{TOO_LARGE} (over 5 MB)", {})
+            if target == 304:
+                FakeFetcher.statuses.append((url, 304))
+                return FetchResult(url, 304, None, None, True, None, {})
             if isinstance(target, int):
                 return FetchResult(url, target, None, None, False, f"HTTP {target}", {})
-            path = target if isinstance(target, Path) else FIXTURES / target
-            content = path.read_bytes()
-            headers = {"Content-Type": "application/rss+xml; charset=utf-8", "ETag": '"v1"'}
-            self.http_cache[url] = {"etag": '"v1"'}
-            return FetchResult(url, 200, content.decode("utf-8"), content, False, None, headers)
+            ctype = RSS_TYPE
+            if isinstance(target, tuple):
+                target, ctype = target
+            if isinstance(target, bytes):
+                content = target
+            else:
+                content = (target if isinstance(target, Path) else FIXTURES / target).read_bytes()
+            etag = f'"{hashlib.sha1(content).hexdigest()[:12]}"' if etags else '"v1"'
+            cached = self.http_cache.get(url) if conditional else None
+            if etags and isinstance(cached, dict) and cached.get("etag") == etag:
+                FakeFetcher.statuses.append((url, 304))
+                return FetchResult(url, 304, None, None, True, None, {"ETag": etag})
+            headers = {"ETag": etag}
+            if ctype:
+                headers["Content-Type"] = ctype
+            self.http_cache[url] = {"etag": etag}  # som Fetcher._remember: erstatter posten
+            text = content.decode("utf-8", errors="replace")
+            FakeFetcher.statuses.append((url, 200))
+            return FetchResult(url, 200, text, content, False, None, headers)
 
     return FakeFetcher
 
 
 class FakeResponse:
-    def __init__(self, status: int = 200, body: bytes | str = b"", headers: dict | None = None):
+    """requests.Response-erstatning. chunks (en iterator af bytes) giver et svar, der streames i bidder."""
+
+    def __init__(self, status: int = 200, body: bytes | str = b"", headers: dict | None = None, chunks=None):
         self.status_code = status
         self.content = body.encode("utf-8") if isinstance(body, str) else body
         self.headers = headers or {}
+        self.encoding = None
+        self.chunks = chunks
+        self.read = 0  # bytes læst via iter_content
+        self.closed = False
 
     @property
     def text(self) -> str:
         return self.content.decode("utf-8", errors="replace")
+
+    def iter_content(self, chunk_size=1):
+        source = self.chunks if self.chunks is not None else (
+            self.content[i : i + chunk_size] for i in range(0, len(self.content), chunk_size)
+        )
+        for chunk in source:
+            self.read += len(chunk)
+            yield chunk
+
+    def close(self):
+        self.closed = True
 
 
 class FakeSession:
@@ -90,7 +142,7 @@ class FakeSession:
         self.calls: list[tuple[str, dict]] = []
         self.headers: dict = {}
 
-    def get(self, url, headers=None, timeout=None, allow_redirects=True):
+    def get(self, url, headers=None, timeout=None, allow_redirects=True, stream=False):
         self.calls.append((url, dict(headers or {})))
         queue = self.responses.get(url)
         if not queue:

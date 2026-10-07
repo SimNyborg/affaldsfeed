@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Google News-sitemap: titel og dato bruges direkte; artiklen hentes ikke. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+  <url>
+    <loc>https://www.kilde.dk/nyheder/pant-paa-vinflasker</loc>
+    <news:news>
+      <news:publication><news:name>Kildeforeningen</news:name><news:language>da</news:language></news:publication>
+      <news:publication_date>2026-10-07T09:12:00+02:00</news:publication_date>
+      <news:title><![CDATA[Pant på vinflasker & saftflasker fra 2027]]></news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.kilde.dk/nyheder/kun-dato</loc>
+    <news:news>
+      <news:publication_date>2026-10-06</news:publication_date>
+      <news:title>Ny vejledning om madaffald</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://www.kilde.dk/nyheder/uden-titel</loc>
+    <lastmod>2026-10-07</lastmod>
+    <news:news>
+      <news:publication_date>2026-10-07</news:publication_date>
+    </news:news>
+  </url>
+</urlset>

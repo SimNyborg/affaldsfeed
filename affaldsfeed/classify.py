@@ -7,7 +7,7 @@ import re
 from urllib.parse import unquote, urlsplit
 
 from .models import Genre, Override, Source, Topic
-from .normalize import normalize_url
+from .normalize import TRANSLIT, normalize_url
 from .relevance import compile_patterns, find_hits
 
 log = logging.getLogger(__name__)
@@ -25,7 +25,6 @@ _CATEGORY_SUFFIXES = ("", "r", "e", "er", "en", "ne", "erne", "s", "ter", "ker")
 _CATEGORY_SPLIT_RE = re.compile(r"[,;/|>]+")
 _SLUG_SPLIT_RE = re.compile(r"[\W_]+")
 _TITLE_LEAD = " \t\"'«»„“”‘’"
-_TRANSLIT = str.maketrans({"æ": "ae", "ø": "oe", "å": "aa", "Æ": "AE", "Ø": "OE", "Å": "AA"})
 
 
 def _url_path(url: str) -> str:
@@ -60,7 +59,7 @@ class Classifier:
         self._topic_patterns = {t.id: compile_patterns(t.patterns) for t in topics}
         # Til URL-slugs, hvor æøå er skrevet som ae/oe/aa
         self._topic_slug_patterns = {
-            t.id: compile_patterns(sorted({p.translate(_TRANSLIT) for p in t.patterns} - set(t.patterns)))
+            t.id: compile_patterns(sorted({p.translate(TRANSLIT) for p in t.patterns} - set(t.patterns)))
             for t in topics
         }
         self._genre_urls = [(g.id, [_compile_regex(p) for p in g.url_patterns]) for g in genres]

@@ -6,7 +6,7 @@ import calendar
 import logging
 from collections.abc import Callable
 from dataclasses import dataclass, field
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 from typing import TYPE_CHECKING, Any
 
 from dateutil import parser as dateparser
@@ -42,6 +42,10 @@ class CollectContext:
     now: datetime
     publisher_lookup: dict[str, str]
     conditional: bool = True  # False ved kildens første kørsel og ved check --fetch
+    first_run: bool = False  # kildens første kørsel (ingen vellykket kørsel endnu); også ved check --fetch
+    last_ok: date | None = None  # dagen for kildens sidste vellykkede kørsel (SourceState.last_ok)
+    # state/seen.json: {kilde-id: {item-id: "ÅÅÅÅ-MM-DD"}}. Sitemap og html opdaterer den undervejs.
+    seen: dict[str, dict[str, str]] = field(default_factory=dict)
 
 
 @dataclass
@@ -50,6 +54,10 @@ class CollectResult:
     unknown_publishers: list[tuple[str, str, str]] = field(default_factory=list)  # (domæne, navn, url)
     error: str | None = None
     http_status: int | None = None
+    diagnostics: list[str] = field(default_factory=list)  # til check --fetch --explain (gemmes ikke)
+    # Sider eller dokumenter venter til næste kørsel (sitemap/html). Ved første kørsel er baseline så ikke
+    # komplet, og næste kørsel er også en første kørsel (KONTRAKTER §5.6).
+    backlog: bool = False
 
 
 # ── Fælles hjælpere ─────────────────────────────────────────
@@ -109,9 +117,11 @@ def combine_errors(errors: list[str], ok_count: int) -> str | None:
 
 Collector = Callable[[Source, "Fetcher", CollectContext], CollectResult]
 
-from affaldsfeed.collect import rss, search  # noqa: E402
+from affaldsfeed.collect import pages, rss, search  # noqa: E402
 
 COLLECTORS: dict[str, Collector] = {
     "rss": rss.collect,
     "search": search.collect,
+    "sitemap": pages.collect_sitemap,
+    "html": pages.collect_html,
 }

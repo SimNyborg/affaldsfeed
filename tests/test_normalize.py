@@ -8,9 +8,11 @@ from affaldsfeed.normalize import (
     clean_text,
     host_of,
     item_id,
+    matches_name,
     normalize_title,
     normalize_url,
     strip_publisher_suffix,
+    strip_site_tail,
 )
 
 # ── normalize_url ──────────────────────────────────────────
@@ -139,6 +141,36 @@ def test_normalize_title_same_story_from_two_sources():
     a = normalize_title("Kommuner skal sortere tekstiler fra nytår - Ritzau")
     b = normalize_title("Kommuner skal sortere tekstiler fra nytår | Avisen.dk")
     assert a == b
+
+
+# ── strip_site_tail (sideudtræk) ───────────────────────────
+
+STYRELSEN = "Styrelsen for Grøn Arealomlægning og Vandmiljø"
+
+
+@pytest.mark.parametrize(
+    ("title", "names", "expected"),
+    [
+        ("Ny genbrugsplads åbner | Kildeforeningen", (), "Ny genbrugsplads åbner"),
+        ("Ny genbrugsplads åbner - Kildeforeningen", (), "Ny genbrugsplads åbner"),
+        ("Ny genbrugsplads åbner – Kildeforeningen", (), "Ny genbrugsplads åbner"),
+        ("Nye regler – se hvad de betyder for dig", (), "Nye regler – se hvad de betyder for dig"),
+        (f"Nyt om vandløb | {STYRELSEN}", (), f"Nyt om vandløb | {STYRELSEN}"),  # lang hale uden navnet
+        (f"Nyt om vandløb | {STYRELSEN}", (STYRELSEN,), "Nyt om vandløb"),
+        ("Affaldsplan 2027 - mst.dk", ("mst.dk",), "Affaldsplan 2027"),
+        ("Nyt fra kommunen | Nyheder | Kildeforeningen", ("Kildeforeningen",), "Nyt fra kommunen"),
+        ("Kildeforeningen", ("Kildeforeningen",), "Kildeforeningen"),
+    ],
+)
+def test_strip_site_tail(title, names, expected):
+    assert strip_site_tail(title, names) == expected
+
+
+def test_matches_name_is_exact():
+    names = ["ARC (Amager Ressourcecenter)", "ARC", "a-r-c.dk"]
+    assert matches_name("ARC", names) and matches_name("a-r-c.dk", names)
+    assert not matches_name("Amager", names)  # en del af navnet er ikke hele navnet
+    assert not matches_name("", names)
 
 
 # ── strip_publisher_suffix ────────────────────────────────

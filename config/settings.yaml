@@ -6,6 +6,7 @@ fetch:
   source_budget_seconds: 60.0    # maks tid pr. kilde pr. kørsel
   max_crawl_delay_seconds: 30.0  # længere Crawl-delay => kilden hentes kun én gang i døgnet
   robots_cache_hours: 24
+  max_response_mb: 50            # større svar afbrydes under download (også udpakket gzip)
 
 # Claude-routinen (kører på brugerens abonnement)
 routine:
@@ -13,6 +14,18 @@ routine:
   minute: 25
   grace_hours: 2.0               # fallback når seneste kørsel er > 2 t forsinket
   timezone: Europe/Copenhagen
+
+# Kilder uden RSS (method sitemap og html). Se KONTRAKTER §5.6.
+pages:
+  max_pages: 15                  # nye artikelsider pr. kilde pr. kørsel; resten tages næste gang
+  lastmod_days: 3                # sitemap: kun URL'er med lastmod inden for så mange dage
+  first_run_lastmod_days: 14     # ... ved kildens første kørsel (indtil baseline er komplet)
+  max_sub_sitemaps: 5            # under-sitemaps med nyeste lastmod, der følges fra et indeks
+  max_sitemap_fetches: 6         # sitemap-hentninger pr. kilde pr. kørsel
+  max_links: 30                  # html: links pr. listeside
+  max_page_mb: 5                 # artikelsider over så mange MB afbrydes (sitemaps og lister: fetch.max_response_mb)
+  seen_refresh_days: 30          # state/seen.json: datoen fornyes kun, når den er ældre
+  seen_keep_days: 120            # ... og posten fjernes, når URL'en ikke er set så længe
 
 window_days: 60                  # så langt tilbage feed.json rækker
 max_age_days_on_find: 14         # ældre indslag afvises, når de findes

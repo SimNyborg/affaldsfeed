@@ -76,12 +76,11 @@
   checked: 2026-10-07
 
 - id: ventende
-  name: Ventende sitemap-kilde
+  name: Ventende ODA-kilde
   category: myndighed
   homepage: https://ventende.dk
-  method: sitemap
-  feeds: https://ventende.dk/sitemap.xml
-  match: "/nyheder/"
+  method: oda
+  feeds: https://ventende.dk/api/Sag
   basis: offentlig
   status: aktiv
   checked: 2026-10-07

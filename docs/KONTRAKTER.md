@@ -11,7 +11,7 @@ Pakken hedder `affaldsfeed`. Alt køres fra repoets rod med `python -m affaldsfe
 
 | Kommando | Ejer-modul | Hvad den gør | Exit-kode |
 |---|---|---|---|
-| `check [--fetch ID] [--explain]` | `config.py` (+ `collect`) | Validerer `sources.yaml` og `config/*.yaml`. Med `--fetch ID` hentes én kilde live og det udskrives, hvad forfiltret beholder og hvorfor (ingen skrivning til `data/`). | 0 ok, 1 fejl |
+| `check [--fetch ID] [--explain]` | `config.py` (+ `collect`) | Validerer `sources.yaml` og `config/*.yaml`. Med `--fetch ID` hentes én kilde live som ved dens første kørsel (tom seen-state), og det udskrives, hvad forfiltret beholder og hvorfor (ingen skrivning til `data/`). `--explain` viser også indsamlerens diagnose (sitemap/html, se 5.6). | 0 ok, 1 fejl |
 | `run [--only ID[,ID]] [--dry-run] [--now ISO]` | `pipeline.py` | Indsamling: plan → hent → normalisér → forfilter → klassificér (regler) → dedupe → gem kandidater, afviste og state. `--dry-run` skriver intet. `--now` overstyrer "nu" (til test). | 0 (også når enkelte kilder fejler), 1 kun ved systemfejl eller > 50 % kildefejl |
 | `export [--out _site] [--now ISO]` | `export.py` | Bygger `_site/` (kopi af `site/` + `data/feed.json` + `data/status.json`). | 0 / 1 ved skemafejl |
 | `pending [--max 200] [--hours 72] [--now ISO]` | `judgments.py` | Udskriver JSON (stdout) med kandidater uden vurdering (se 6.1). | 0 |
@@ -34,11 +34,11 @@ affaldsfeed/
   models.py          pydantic v2-modeller (denne kontrakt i kode) — DELT
   config.py          load_sources(), load_config() -> Config, validering, check-kommando
   timeutil.py        now_utc(override), to_cph(dt), cph_day_bounds(dt), iso(dt), parse_iso(s)
-  fetch.py           Fetcher: UA, robots (protego), takt pr. vært, conditional GET, retry, backoff
+  fetch.py           Fetcher: UA, robots (protego), takt pr. vært, conditional GET, retry, backoff, loft over svarstørrelse
   collect/__init__.py   COLLECTORS = {"rss": rss.collect, "search": search.collect, …}
   collect/rss.py     collect(source, fetcher, ctx) -> list[RawEntry]
   collect/search.py  collect(source, fetcher, ctx) -> list[RawEntry]   (Google News + Bing News)
-  collect/pages.py   (fase 2) sitemap + html + sideudtræk
+  collect/pages.py   collect_sitemap / collect_html (-> CollectResult) + extract_page (sideudtræk), se 5.6
   collect/oda.py     (fase 2) Folketingets ODA
   normalize.py       normalize_url(), item_id(), clean_text(), normalize_title(), to_candidate()
   relevance.py       prefilter(raw, source, keywords) -> Why
@@ -65,11 +65,11 @@ En YAML-liste. Felter (se `models.Source`):
 | name | str | påkrævet | |
 | category | CategoryId | påkrævet | 8 værdier, se 3.2 |
 | homepage | str (http/https) | påkrævet | værtsnavnet bruges til at matche søgeresultater |
-| method | `rss`\|`sitemap`\|`html`\|`oda`\|`search` | `rss` | v1 implementerer `rss` og `search` |
-| feeds | str \| list[str] | påkrævet | normaliseres til list |
+| method | `rss`\|`sitemap`\|`html`\|`oda`\|`search` | `rss` | `rss`, `search`, `sitemap` og `html` er implementeret; `oda` følger |
+| feeds | str \| list[str] | påkrævet | normaliseres til list; sitemap: sitemap- eller indeks-URL'er; html: listesider |
 | domains | list[str] | `[]` | ekstra værtsnavne til matchning (uden `www.`) |
-| match | str \| None | None | regex for artikel-URL'er (sitemap/html) |
-| select | str \| None | None | CSS-selektor (html) |
+| match | str \| None | None | regex for artikel-URL'er (sitemap/html; `re.search` på hele URL'en); påkrævet når aktiv |
+| select | str \| None | None | CSS-selektor for links (html; standard `a[href]`); valideres af modellen |
 | filter | `none`\|`normal`\|`strict` | `normal` | forfiltrets strenghed |
 | topics | list[TopicId] | `[]` | standardtema |
 | genre | GenreId | `nyhed` | standardgenre |
@@ -100,7 +100,7 @@ Søgekilder (`method: search`) har `category: nyhedsmedie` (ignoreres ved visnin
 - `keywords.yaml`: `{strong: {da,en,sv}, names: [..], weak: {da,en}, veto: [..], service: [..]}` (mønster-syntaks som topics).
 - `search.yaml`: `{queries: [str], when: "2d"}` — forespørgsler med `OR`.
 - `medier.yaml`: liste af `{id, name, category, domains: [..], basis, paywall, lang}` — troværdige udgivere, der kun findes via søgning (lokalaviser m.fl.). Id'er må ikke kollidere med `sources.yaml`.
-- `settings.yaml`: se `models.Settings` (UA, takt, tærskler, vinduer, rutinetider, fallback).
+- `settings.yaml`: se `models.Settings` (UA, takt, tærskler, vinduer, rutinetider, fallback). Blokken `pages` (`models.PagesSettings`) har grænserne for sitemap og html (5.6) og for `state/seen.json` (6).
 - `overrides.yaml`: liste af `{match: {id|url_regex}, action: vis|skjul|tema|genre|split, value}`.
 - `relevansprofil.md`: fritekst til Claude.
 
@@ -136,7 +136,47 @@ Score: 4 pr. stærkt ord/navn i titel; 2 pr. forskelligt stærkt ord i teaser (m
 `vis` og `graa` gemmes som kandidater (Claude vurderer begge). `afvist` gemmes i `data/rejected/`. `Why = {filter, score, decision: "vis"|"graa"|"afvist", hits: ["titel: affaldsgebyr", …], reason: str|None}`.
 
 ### 5.5 Datoregler
-published: feedets published → updated → (sideudtræk, fase 2) → ellers `first_seen` med `date_quality="fundet"`. Dato > 2 t i fremtiden → `first_seen`, `date_quality="fundet"`. Indslag ældre end 14 dage ved fund → afvist med reason `"for gammel"`. Første kørsel for en kilde (ingen state): indslag fra de sidste `settings.baseline_days` dage (60, samme som `window_days`, så feedet er fyldt fra start) gemmes med `baseline: true`; udaterede springes over.
+published: feedets published → updated (rss/search); for sitemap og html sidens egen dato efter sideudtrækket i 5.6, ellers listens dato ved linket (html) → ellers `first_seen` med `date_quality="fundet"`. Sitemappets `lastmod` er aldrig en dato. Dato > 2 t i fremtiden → `first_seen`, `date_quality="fundet"`. Indslag ældre end 14 dage ved fund → afvist med reason `"for gammel"`. Første kørsel for en kilde (ingen vellykket kørsel endnu: ingen state eller `first_run_done: false`; `CollectContext.first_run`): indslag fra de sidste `settings.baseline_days` dage (60, samme som `window_days`, så feedet er fyldt fra start) gemmes med `baseline: true`; udaterede springes over. For sitemap og html varer første kørsel, indtil kilden har en komplet baseline (5.6).
+
+`date_quality`: `kilde` = dato med klokkeslæt fra kilden (feed, artikelside eller Google News-sitemap); `url` = dato fra URL'en; `liste` = dato uden klokkeslæt fra kildens egne sider (listen ved linket, artiklens metadata eller tekst), så den vises som dato uden "kl. 00.00"; `fundet` = tidspunktet for fundet. Alle tider gemmes i UTC. For sitemap og html er en tid uden tidszone dansk tid, og en dato uden tid er starten af dagen i København.
+
+Datoformater for sitemap og html (`collect/pages.py: parse_date`). Kun eksplicitte formater læses, og der gættes aldrig på dag-først:
+- ISO 8601 og varianter med år først, altid som år-måned-dag: `2026-10-07`, `2026/10/07`, `20261007`, evt. med tid (`T` eller mellemrum) og tidszone (`Z`, `+0200`, `+02:00`, også efter et mellemrum, `UTC`, `GMT`, `GMT+2`, `CET`, `CEST` o.l.).
+- RFC 822 (`Wed, 07 Oct 2026 10:00:00 GMT`), uanset kildens sprog.
+- Danske datoer: `7. oktober 2026`, `7. okt. 2026`, `07.10.2026` (dag først), evt. efterfulgt af `kl. 14.32`.
+- Engelske månedsnavne (`October 7, 2026`, `7 October 2026`) kun for kilder med `lang: en`.
+- En ukendt eller ugyldig tidszone (fx `+24:00`) eller dato giver ingen dato og aldrig en undtagelse; så prøves næste kilde til en dato.
+
+### 5.6 Sitemap, html og sideudtræk (`collect/pages.py`)
+Kilder uden RSS. Tallene er standardværdierne i `settings.yaml: pages` (`models.PagesSettings`).
+
+**sitemap** (`feeds` = sitemap- eller indeks-URL'er)
+- gzip genkendes på de magiske bytes `1f 8b` (eller `.gz`) og pakkes ud med loft på `fetch.max_response_mb` (50 MB). XML parses med lxml uden DTD, entitetsopløsning og netværk (XXE og "billion laughs" virker ikke; et dokument, libxml2 stopper pga. entiteter, afvises). Elementer findes på local-name, så navnerummets præfiks er ligegyldigt; CDATA og whitespace i `<loc>` håndteres, et `&`, der ikke indleder en entitet (`?id=1&lang=da`), bevares, og relative URL'er gøres absolutte.
+- Indeks: de 5 under-sitemaps med nyeste `lastmod` følges (uden lastmod, eller ved samme lastmod: de sidste i dokumentet, det sidste først), dybde først. Kun under-sitemaps på kildens egne værter (homepage eller `domains`) følges. Højst ét indlejret indeks mere og højst 6 sitemap-hentninger pr. kilde pr. kørsel; samme sitemap hentes højst én gang pr. kørsel.
+- urlset: en URL er ny, når den ligger på kildens vært (homepage eller `domains`, også underdomæner), matcher `match` (`re.search`; uden `match` alle), har `lastmod` fra starten af dagen (København) for 3 dage siden (14 ved kildens første kørsel; har kilden været nede, fra dagen før dens sidste vellykkede kørsel, `CollectContext.last_ok`, dog højst 14 dage) og ikke står i seen-state. Uden `lastmod`: ved første kørsel registreres URL'en i seen som baseline uden at blive hentet; senere er den ny, hvis den ikke står i seen. Samme URL i flere sitemaps tælles én gang (`item_id`).
+- Google News-sitemap (`news:news` med `news:title` og `news:publication_date`): titel og dato bruges direkte (`kilde`; uden klokkeslæt `liste`), teaser er tom, og artikelsiden hentes ikke. Posterne behandles som RSS-indslag og markeres ikke i seen. Et tomt Google News-sitemap (navnerummet er erklæret) er ikke en fejl: det viser kun de seneste 48 timer.
+
+**html** (`feeds` = listesider)
+- Kun første listeside hentes (ingen paginering). Links findes med `select` (CSS via lxml.cssselect, standard `a[href]`; er det valgte element ikke et link, bruges første `a[href]` indeni eller nærmeste udenom), gøres absolutte med `urljoin` (`<base href>` respekteres), fragmentet fjernes, og kun links på kildens vært/domains, der matcher `match`, beholdes. Kildens egne listesider (`feeds`) er aldrig artikler. Dubletter fjernes; højst 30 pr. listeside i dokumentets rækkefølge. Linkteksten er den længste blandt de links til samme URL (et billedlink giver højst sin alt-tekst).
+- Står der en dato ved linket (`<time datetime>` eller dansk dato i linkets nærmeste container, højst 5 niveauer op og aldrig i en container med andre artikellinks), bruges den som reservedato med `date_quality: "liste"`, hvis siden selv ingen dato har.
+
+**Fælles**
+- Kun URL'er, der ikke står i seen, hentes: højst 15 sider pr. kilde pr. kørsel, for sitemap nyeste `lastmod` først (uden lastmod sidst), for html i listens rækkefølge. Resten tages ved næste kørsel og markeres ikke; er der en restkø (loft, tidsbudget, forbigående sidefejl), glemmes sitemappernes/listens ETag, så en 304 ikke skjuler den.
+- Første kørsel varer, indtil kilden har en komplet baseline. Ender en første kørsel med en restkø, eller kunne et sitemap eller en liste ikke læses pga. en forbigående fejl eller tidsbudgettet (`CollectResult.backlog`), sætter `run` ikke `first_run_done`. Næste kørsel er så også en første kørsel: 14-dages-vinduet gælder, så restkøen faktisk hentes, URL'er uden lastmod registreres som baseline, og indslagene gemmes med `baseline: true` (5.5). En varig fejl (fx 404 på et under-sitemap) holder ikke kilden i første kørsel.
+- `filter: strict`: slug'en (stien med `-` og `_` som mellemrum, procentkodning afkodet) eller linkteksten (html) skal indeholde et stærkt ord eller navn fra `keywords.yaml`, også med æøå skrevet som ae/oe/aa. Ellers hentes siden ikke.
+- Al hentning går gennem `Fetcher.get` (UA, robots.txt, takt, ETag, tidsbudget). Sitemaps og lister hentes med conditional GET efter første kørsel, også under-sitemaps fra et indeks: deres ETags gemmes i `state/http.json`, og indeksets post husker de fulgte under-sitemaps (`sitemaps`, se 6). Artikelsider hentes altid ubetinget. Sider, robots.txt forbyder, springes over (uden at tælle med i loftet); når tidsbudgettet er brugt, stoppes der, og resten venter.
+- 304: et uændret urlset eller en uændret liste læses ikke. Et indeks, der svarer 304, betyder ikke "intet nyt": de under-sitemaps, det pegede på sidst, hentes stadig med deres egne betingede forespørgsler. Først når indekset og de valgte under-sitemaps svarer 304, er der intet nyt.
+- Størrelse: `Fetcher` læser svaret i bidder og afbryder over `fetch.max_response_mb` (50 MB; artikelsider `pages.max_page_mb`, 5 MB), også når Content-Length er for stor, og efter udpakning af gzip/deflate, så gzip-bomber og enorme svar aldrig ligger i hukommelsen. robots.txt læses kun til 500 kB.
+- Seen-state (6): en URL markeres, når siden er hentet og udtrukket (også hvis den ikke er HTML, mangler titel, ikke kunne udtrækkes eller afvises af forfiltret bagefter), når hentningen fejlede varigt (4xx undtagen 408, 425 og 429, robots.txt-forbud eller svar over loftet), eller når den er registreret som baseline. Forbigående fejl (5xx, timeout, 429, netværk) markeres ikke og prøves igen ved næste kørsel. URL'er, der står i sitemappet eller på listen og allerede er i seen, tæller som observeret; et 304-svar på et urlset eller en liste tæller som observation af alle kildens kendte URL'er.
+- Fejl (`CollectResult.error`, giver gul/rød sundhed): indeks eller listeside kunne ikke hentes eller er ikke et sitemap/HTML; ingen under-sitemaps kunne hentes; et indeks gav ingen brugbare under-sitemaps (tomt, alle på fremmede værter, for dybt indlejret); et almindeligt sitemap er tomt ("tomt sitemap"); 0 URL'er/links matcher `match`/`select` (mønster eller selektor er sandsynligvis forældet); eller alle forsøgte sidehentninger fejlede (også når robots.txt blokerede dem alle). Var nogle sitemaps eller lister uændrede (304), er 0 matchende eller et tomt sitemap blandt de læste ikke en fejl, for de uændrede kan rumme URL'erne. En kilde uden nye artikler er ikke en fejl. Delvise fejl logges som advarsel. Ved en fejl i et dokuments indhold glemmes dets ETag (ved en kildefejl alle sitemaps' og listers), så det hentes helt ved næste kørsel, og fejlen bliver stående i sundheden, til den er rettet.
+- Diagnose (`CollectResult.diagnostics`, internt; udskrives af `check --fetch ID --explain` og logges på debug-niveau af `python -m affaldsfeed -v run`): valgte under-sitemaps med lastmod; antal URL'er i alt, matchende, med lastmod i vinduet, uden lastmod (og registreret som baseline), fra Google News, nye og sprunget over pga. strict; sider hentet, ok, fejlede, med varig fejl, blokeret, ikke HTML og uden titel; op til 10 jævnt fordelte eksempler på URL'er, der matcher, og på URL'er, der ikke matcher; for html antal links på siden, valgt af `select` og matchende samt op til 20 eksempler (href | linktekst) af alle links og af de matchende; og om baseline er komplet ved første kørsel. Formålet er at sætte `match` og `select` for nye kilder ud fra en probe fra GitHub Actions.
+
+**Sideudtræk** (`extract_page(content, url, content_type, *, now, names, lang) -> Page(title, published, date_quality, teaser) | None`, ren funktion, der aldrig rejser en undtagelse for sidens indhold; `lang` er kildens sprog, se datoformater i 5.5)
+- Kun HTML: content-type med `html` eller ingen content-type. PDF og andet giver `None`. Tegnsættet findes som BOM → Content-Type → `<meta charset>` → utf-8, hvis bytes er gyldig utf-8 → windows-1252. Et erklæret tegnsæt bruges med `errors="replace"`, også når enkelte bytes er ugyldige; windows-1252 er kun sidste udvej, når intet er erklæret, og bytes ikke er gyldig utf-8. Kun tekst-tegnsæt accepteres (ikke base64, hex, rot13, zip, idna o.l.). Som i browsere læses latin-1/ascii som windows-1252 og utf-16/32 uden BOM som utf-8. Erklærer siden latin-1/windows-1252, men er den gyldig utf-8 med æøå, læses den som utf-8.
+- Hovedindholdet er det `<article>` eller `<main>`, der rummer sidens `<h1>`, ellers første `<article>` uden for aside/nav/footer, ellers `<main>`/`[role=main]`. Står `<h1>` direkte i `<main>`, og rummer main præcis ét `<article>` uden egne overskrifter, er det artiklens brødtekst og ikke en anden artikel.
+- Titel: `og:title` → første `<h1>` (helst i hovedindholdet) → `<title>`. En kildehale (" | Navn", " - Navn", " – Navn") fjernes, når den er kort og ligner et navn, eller når den er kildens navn, alias eller vært (`names`). En kandidat, der kun er kildens navn, springes over.
+- Dato, første brugbare: JSON-LD `datePublished` (også i `@graph`, lister og indlejrede objekter; artikeltyper før fx WebPage) → meta `article:published_time` (også `itemprop="datePublished"`) → `<time datetime>` (hovedindholdets egne først; aldrig i aside/nav/footer eller i andre artikler, fx relaterede) → meta `publication-date`/`date`/`DC.date` (og `pubdate`, `dcterms.date` m.fl.) → dato i URL'en (`/2026/10/07/` eller `2026-10-07`; `url`) → dato i de første 1.500 tegn af hovedindholdets tekst ("7. oktober 2026", "7. okt. 2026", "07.10.2026", evt. efterfulgt af "kl. 14.32"; engelske månedsnavne for `lang: en`): en dato efter "Publiceret", "Udgivet", "Dato" o.l. vinder, ellers den seneste (tidligere datoer i teksten er typisk henvisninger). Datoer mere end 2 t i fremtiden og før år 2000 ignoreres, og så prøves den næste dato eller kilde til en dato. Samme regel gælder datoen ved et link på en liste.
+- Teaser: `og:description` → meta `description`, rå (renses senere af `clean_text`).
 
 ## 6. Data på disk
 
@@ -149,13 +189,16 @@ data/
   judgments/kildeforslag-sweep.md   ukendte udgivere fundet ved sweep (Claude)
   overview/{dag,uge,maaned,aar}.json   aktuelt Overview pr. periode. Skrives KUN af Claude-routinen.
   overview/archive/<periode>-ÅÅÅÅ-MM-DD.json   arkiv (validate-overview --archive)
-  state/http.json              {url: {etag, last_modified}}
+  state/http.json              {url: {etag, last_modified, sitemaps?}}  sitemaps: de under-sitemaps, et indeks pegede på sidst (5.6)
   state/sources.json           {source_id: SourceState}
   state/robots.json            {host: {fetched: ISO, body: str}}  (24 t cache)
   state/kildeforslag.json      se 5.3
   state/kildeforslag.md        genereret
+  state/seen.json              {source_id: {item_id(url): "ÅÅÅÅ-MM-DD"}}  sitemap/html: kendte artikel-URL'er (5.6)
 ```
 Skrivning er atomisk (skriv `.tmp`, `os.replace`). Filer ændres kun, når indholdet faktisk ændres (så git ikke får tomme commits). `SourceState.last_ok` gemmes kun som dato.
+
+`state/seen.json` (`store.load_seen`/`save_seen`): datoen er dagen (København), hvor URL'en sidst blev observeret i kildens sitemap eller på dens liste. Den fornyes kun, når den er ældre end `pages.seen_refresh_days` (30), så filen ikke ændres hver time. Poster, der ikke er observeret i `pages.seen_keep_days` (120), og kilder, der ikke længere står i `sources.yaml`, fjernes ved skrivning. Sider med en varig fejl står der også, så de ikke prøves ved hver kørsel (5.6). Nøglerne er sorteret, og filen oprettes først, når der er noget i den. `run` læser og skriver den; `run --dry-run` og `check --fetch` skriver den ikke. Fejler en kilde med en undtagelse, rulles dens poster fra kørslen tilbage.
 
 ### 6.1 `Candidate` (models.Candidate)
 `{id, url, title, teaser, source, published, date_quality: "kilde"|"url"|"liste"|"fundet", first_seen, lang, genre, topics: [≤2], why: Why, baseline: bool, found_via: "feed"|"search", categories: [str]}`
