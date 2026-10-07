@@ -25,8 +25,10 @@ from affaldsfeed.config import (
     publisher_lookup,
     source_hosts,
 )
+from affaldsfeed.display import known_sources
 from affaldsfeed.fetch import Fetcher
 from affaldsfeed.health import is_due, record_result
+from affaldsfeed.logos import refresh_logos
 from affaldsfeed.models import Candidate, DateQuality, Rejected, Source, SourceState
 from affaldsfeed.normalize import clean_text, item_id, normalize_title
 from affaldsfeed.places import compile_places, rule_places
@@ -454,6 +456,22 @@ def _run(args: argparse.Namespace) -> int:
             settings.fetch.run_budget_seconds,
             len(postponed),
             ", ".join(postponed),
+        )
+
+    # Kildernes logoer (KONTRAKTER §6.4): efter kilderne og kun, når deres tidsbudget ikke er brugt op
+    if not dry and settings.logos.max_per_run and not postponed:
+        t_logo = time.monotonic()
+        fetcher.start_budget(settings.logos.budget_seconds)
+        cut = now - timedelta(days=settings.window_days)
+        in_feed = Counter(c.source for c in proc.existing.values() if (c.published or c.first_seen) >= cut)
+        info = known_sources(sources, config.publishers)
+        n = refresh_logos(
+            [(si.id, si.homepage) for si in info.values()], fetcher, now, settings.logos, priority=in_feed, force=only
+        )
+        fetcher.start_budget(None)
+        log.info(
+            "Logoer: %d hentet, %d mangler, %d venter (%.0f s)",
+            n["hentet"], n["fejl"], n["venter"], time.monotonic() - t_logo,
         )
 
     # Regelmærkerne for steder følger den aktuelle geografi, også for indslag fundet før en ændring

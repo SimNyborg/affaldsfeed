@@ -192,7 +192,8 @@ def test_export_builds_site(repo, scenario, tmp_path):
     assert sources["fyens"]["via_search"] is True and sources["fyens"]["homepage"] == "https://fyens.dk"
     assert sources["altinget"] == {"id": "altinget", "name": "Altinget", "category": "fagmedie",
                                    "homepage": "https://altinget.dk", "lang": "da", "paywall": "delvis",
-                                   "owner": None, "status": "aktiv", "health": "gul", "via_search": False}
+                                   "owner": None, "status": "aktiv", "health": "gul", "via_search": False,
+                                   "logo": None}
     assert [x["id"] for x in feed["sources"]] == sorted(sources)
 
 
@@ -342,3 +343,24 @@ def test_feed_contract_is_validated(repo, scenario, monkeypatch, tmp_path, caplo
         {"id": "ullerslev", "navn": "Ullerslev", "kommune": "nyborg", "kommuner": ["nyborg"]}]})
     assert export_to(tmp_path / "_site") == 1
     assert "skemafejl" in caplog.text
+
+
+def test_export_includes_logos_for_sources_in_feed(repo, scenario, tmp_path):
+    """Logoer fra data/state/logos/ (KONTRAKTER §6.4) står i sources[].logo og kopieres til _site/logos/."""
+    folder = paths.STATE_DIR / "logos"
+    folder.mkdir(parents=True)
+    png = b"\x89PNG\r\n\x1a\n" + b"\x00" * 80
+    (folder / "altinget.png").write_bytes(png)
+    (folder / "jv.ico").write_bytes(b"\x00\x00\x01\x00" + b"\x00" * 80)  # JydskeVestkysten er ikke i feedet
+    store.write_json(paths.STATE_DIR / "logos.json", {
+        "altinget": {"file": "altinget.png", "src": "https://altinget.dk/f.png", "checked": "2026-10-07T06:00:00Z"},
+        "jv": {"file": "jv.ico", "src": "https://jv.dk/favicon.ico", "checked": "2026-10-07T06:00:00Z"},
+        "kefm": {"file": "kefm.png", "src": None, "checked": "2026-10-07T06:00:00Z"},  # filen mangler
+    })
+    out = tmp_path / "_site"
+    assert export_to(out) == 0
+    _, feed = read(out, "feed.json")
+    logos = {s["id"]: s["logo"] for s in feed["sources"]}
+    assert logos == {"altinget": "logos/altinget.png", "fyens": None, "kefm": None}
+    assert (out / "logos" / "altinget.png").read_bytes() == png
+    assert sorted(p.name for p in (out / "logos").iterdir()) == ["altinget.png"]

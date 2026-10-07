@@ -77,3 +77,7 @@ Vetoet "webinar*" afviste også artikler om indholdet af et webinar, fx VANA's o
 ## 2026-10-07: Kalender i stedet for periode
 
 Brugeren ville ikke have tidsvalget 7, 30 og 60 dage over listen. Tidsvalg hører til AI-overblikket, som beholder I dag, Ugen, Måneden og Året. Listen viser hele feedets vindue på 60 dage og bygges, efterhånden som man scroller, så "Vis flere" er væk. En lille kalenderknap over listen åbner en kalender, hvor man vælger første og sidste dag i et tidsrum. Det står i URL'en som `fra` og `til`. Kalenderen følger WAI-ARIA's mønster for datovælgere, så den også virker med tastatur og skærmlæser. Vil man længere tilbage end 60 dage, kræver det, at feedet deles op i månedsfiler. Det bygges først ved et konkret savn.
+
+## 2026-10-08: Kildernes logoer på kortene
+
+Brugeren ville have mediernes egne små logoer på artiklerne, fx TV 2's. Indsamlingen henter hver kildes favicon efter kilderne i hver kørsel (højst 20 ad gangen) og tjekker dem igen hver 30. dag. Logoerne ligger i `data/state/logos/`, hvor indsamlingen i forvejen må skrive, og vises fra sitets eget domæne. Læserne sender derfor ingen forespørgsler til medierne. Kun rasterbilleder gemmes, aldrig SVG, fordi en SVG kan indeholde scripts. Har en kilde intet brugbart logo, står afsendertypens ikon som før. Fravalgt: at hente logoerne direkte fra medierne i læserens browser (sporing og ustabilt) og tjenester som Googles favicon-API (afhængighed og sporing).

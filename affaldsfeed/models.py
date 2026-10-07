@@ -328,11 +328,22 @@ class TimelineSettings(_Strict):
     recent_hours: int = Field(default=48, gt=0)  # linjer skrevet så nyligt tjekkes mod indslagene
 
 
+class LogoSettings(_Strict):
+    """Kildernes logoer (favicons) til kortene (KONTRAKTER §6.4)."""
+
+    max_per_run: int = Field(default=20, ge=0)  # kilder pr. kørsel (0 = slået fra)
+    refresh_days: int = Field(default=30, gt=0)  # et hentet logo tjekkes igen efter så mange dage
+    retry_days: int = Field(default=7, gt=0)  # et mislykket forsøg prøves igen efter så mange dage
+    max_kb: int = Field(default=200, gt=0)  # større billeder afvises
+    budget_seconds: float = Field(default=120.0, gt=0)  # samlet tid til logoer i én kørsel
+
+
 class Settings(_Strict):
     fetch: FetchSettings
     routine: RoutineSettings
     pages: PagesSettings = Field(default_factory=PagesSettings)
     oda: OdaSettings = Field(default_factory=OdaSettings)
+    logos: LogoSettings = Field(default_factory=LogoSettings)
     places: PlaceSettings = Field(default_factory=PlaceSettings)
     timeline: TimelineSettings = Field(default_factory=TimelineSettings)
     window_days: int = 60
@@ -701,6 +712,7 @@ class FeedSource(_Strict):
     status: Status
     health: Health
     via_search: bool = False
+    logo: str | None = None  # "logos/<id>.<ext>" relativt til sitet, når kilden har et logo (§6.4)
 
 
 class FeedGeoRegion(_Strict):

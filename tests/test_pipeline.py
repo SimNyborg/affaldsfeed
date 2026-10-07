@@ -9,6 +9,7 @@ import logging
 import sys
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import pytest
 
@@ -195,7 +196,9 @@ def test_dry_run_writes_nothing(env, monkeypatch, caplog):
 def test_only_limits_sources(env, monkeypatch):
     code, fake = _run(monkeypatch, only="testmedie,findes-ikke")
     assert code == 0
-    assert {u for u, _ in fake.calls} == {"https://www.testmedie.dk/rss"}
+    assert "https://www.testmedie.dk/rss" in {u for u, _ in fake.calls}
+    # Kun den valgte kilde: feedet og dens logo (forsiden og /favicon.ico), ingen andre værter
+    assert {urlsplit(u).netloc for u, _ in fake.calls} == {"www.testmedie.dk"}
     assert set(store.load_source_states()) == {"testmedie"}
 
 
@@ -499,3 +502,22 @@ def test_record_result_and_silent(env):
     assert not silent(st)
     st = record_result(st, True, None, now, s)
     assert st.fails == 0 and st.last_error is None and st.health == "groen"
+
+
+def test_run_fetches_logos_after_sources_but_not_in_dry_run(env, monkeypatch):
+    """Logoerne (KONTRAKTER §6.4) hentes efter kilderne; en prøvekørsel henter og skriver intet."""
+    code, fake = _run(monkeypatch, dry_run=True)
+    assert code == 0
+    assert "https://www.testmedie.dk" not in {u for u, _ in fake.calls}
+    assert not (paths.STATE_DIR / "logos.json").exists()
+
+    icon = "https://www.testmedie.dk/favicon.ico"
+    png = b"\x89PNG\r\n\x1a\n" + b"\x00" * 8 + b"IHDR" + (32).to_bytes(4, "big") * 2 + b"\x00" * 60
+    routes = {**_fakes().DEFAULT_ROUTES, "https://www.testmedie.dk": 404, icon: (png, "image/png")}
+    code, fake = _run(monkeypatch, routes=routes)
+    assert code == 0
+    urls = [u for u, _ in fake.calls]
+    assert urls.index(icon) > urls.index("https://www.testmedie.dk/rss")  # efter kilderne
+    state = json.loads((paths.STATE_DIR / "logos.json").read_text(encoding="utf-8"))
+    assert state["testmedie"]["file"] == "testmedie.png"
+    assert (paths.STATE_DIR / "logos" / "testmedie.png").read_bytes() == png
