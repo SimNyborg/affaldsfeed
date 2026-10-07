@@ -46,7 +46,7 @@
   },
   "avfall-sverige": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
@@ -100,7 +100,7 @@
   },
   "cepos": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -118,7 +118,7 @@
   },
   "cirkulaer": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
@@ -127,16 +127,16 @@
   },
   "cleantech-watch": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 9,
-    "first_run_done": false,
+    "items_30d": 15,
+    "first_run_done": true,
     "health": "groen"
   },
   "concito": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -154,11 +154,11 @@
   },
   "dakofa": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 15,
-    "first_run_done": false,
+    "items_30d": 27,
+    "first_run_done": true,
     "health": "groen"
   },
   "dansk-erhverv": {
@@ -181,7 +181,7 @@
   },
   "dansk-producentansvar": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -199,7 +199,7 @@
   },
   "danske-kommuner": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -235,7 +235,7 @@
   },
   "dn": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -253,7 +253,7 @@
   },
   "eea": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -280,7 +280,7 @@
   },
   "energiwatch": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -316,7 +316,7 @@
   },
   "forsyningstilsynet": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -406,7 +406,7 @@
   },
   "kl": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -469,11 +469,11 @@
   },
   "miljoestyrelsen": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
-    "first_run_done": false,
+    "first_run_done": true,
     "health": "groen"
   },
   "noah": {
@@ -586,7 +586,7 @@
   },
   "sdu": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -613,7 +613,7 @@
   },
   "teknik-og-miljoe": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -631,7 +631,7 @@
   },
   "teknologisk-institut": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -667,7 +667,7 @@
   },
   "vestforbraending": {
     "last_ok": "2026-10-07",
-    "last_attempt": "2026-10-07T15:53:30Z",
+    "last_attempt": "2026-10-07T21:26:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,

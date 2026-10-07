@@ -10,6 +10,17 @@
     "etag": "\"0026192349ffdadfab87c3d009700a81-gzip\"",
     "last_modified": "Tue, 06 Oct 2026 11:22:54 GMT"
   },
+  "https://ctwatch.dk/sitemap1.xml": {
+    "etag": "W/\"7140e87e9cdeb8dd4d3d8e14c678577d-1\"",
+    "last_modified": "Wed, 07 Oct 2026 02:12:39 GMT"
+  },
+  "https://ctwatch.dk/sitemapindex.xml": {
+    "etag": "\"b6a53b68a66a63771c728c40bdc3d7c0-1\"",
+    "last_modified": "Wed, 07 Oct 2026 02:12:51 GMT",
+    "sitemaps": [
+      "https://ctwatch.dk/sitemap1.xml"
+    ]
+  },
   "https://dagensbyggeri.dk/feed/?s=affald": {
     "etag": "\"7f2ce00a14d2dcb88cd1fe89907c75e9-gzip\"",
     "last_modified": "Wed, 07 Oct 2026 13:16:43 GMT"
