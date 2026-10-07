@@ -377,7 +377,7 @@ svg.i { width: 16px; height: 16px; flex: none; }
 .ov-old { color: var(--text); font-weight: 600; }
 .ov-toggle { margin-block: calc((var(--lh-xs) - var(--h-chip)) / 2); text-decoration: none; }
 .ov-toggle:hover { text-decoration: underline; }
-.ov-toggle .i, .more > summary .i, .also > summary .i { transition: transform 0.15s ease; }
+.ov-toggle .i, .also > summary .i { transition: transform 0.15s ease; }
 .is-open .ov-toggle .i { transform: rotate(180deg); }
 .ov-short {
   margin-top: 4px;
@@ -726,14 +726,42 @@ svg.i { width: 16px; height: 16px; flex: none; }
   margin-bottom: 12px;
 }
 .filters-head h2 { font-size: var(--t-l); line-height: var(--lh-l); }
-.fgroup + .fgroup, .fgroup + .more, .more + .fgroup { margin-top: 20px; }
-.fgroup > legend {
-  padding: 0 0 4px;
-  color: var(--text);
-  font-size: var(--t-s);
-  line-height: var(--lh-s);
-  font-weight: 600;
+/* Foldbare grupper: navnet til venstre, status ("Alle", "5 af 8") og pil til højre, streg imellem */
+.fg { border-top: 1px solid var(--line); }
+.fg:last-child { border-bottom: 1px solid var(--line); }
+/* I arket har toppen sin egen streg; den første gruppe får ikke en til */
+dialog.sheet .fg:first-child { border-top: 0; }
+.fg > summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 16px;
+  align-items: center;
+  column-gap: 12px;
+  min-height: var(--h-ctl);
+  margin: 0 -8px;
+  padding: 4px 8px;
+  border-radius: var(--r-ctl);
+  cursor: pointer;
+  list-style: none;
 }
+.fg > summary::-webkit-details-marker { display: none; }
+.fg > summary:focus-visible { outline-offset: -2px; }
+.fg-name { font-size: var(--t-s); line-height: var(--lh-s); font-weight: 600; }
+.fg-state {
+  justify-self: end;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--muted);
+  font-size: var(--t-xs);
+  line-height: var(--lh-xs);
+}
+.fg > summary .i { color: var(--muted); transition: transform 0.15s ease; }
+.fg[open] > summary .i { transform: rotate(180deg); }
+.fg-body { padding: 4px 0 12px; }
+.fg-body > * + * { margin-top: 4px; }
+.fset { min-width: 0; }
+.fg-tools { display: flex; justify-content: flex-end; gap: 16px; font-size: var(--t-xs); line-height: var(--lh-xs); }
 
 /* Filterrækken: én komponent til alle lister, fast højde, navn på én linje */
 .frow {
@@ -793,32 +821,13 @@ svg.i { width: 16px; height: 16px; flex: none; }
 .filters input, .filters summary, .filters a, .filters button { scroll-margin-block: 12px; }
 
 .fsep { height: 1px; margin: 4px 0; background: var(--line); }
-.fg-link {
-  display: inline-flex;
-  align-items: center;
-  height: var(--h-chip);
-  margin-top: 4px;
-  font-size: var(--t-xs);
-  line-height: var(--lh-xs);
-}
 .opts:not(:empty) { margin-top: 4px; }
-/* Sted: 8 px luft mellem de valgte steder og regionerne, og noten om landsdækkende nyheder */
+/* Sted: de valgte kommuner og byer står over regionerne med 8 px luft */
+.opts:empty { display: none; }
 .opts:not(:empty) + .regions { margin-top: 8px; }
 .fnote { margin-top: 4px; color: var(--muted); font-size: var(--t-xs); line-height: var(--lh-xs); }
 
 /* Kilde: alle kilder med flueben, grupperet efter afsendertype (filters.js) */
-.fsrc-tools {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0 12px;
-  margin-top: 4px;
-  font-size: var(--t-xs);
-  line-height: var(--lh-xs);
-}
-.fsrc-n { color: var(--muted); }
-.fsrc-act { display: flex; gap: 16px; }
 .fsub {
   display: flex;
   align-items: center;
@@ -830,29 +839,8 @@ svg.i { width: 16px; height: 16px; flex: none; }
   font-weight: 600;
 }
 .fsub .i { width: 16px; height: 16px; color: var(--cat); }
+.fsrc-cat:first-child .fsub { margin-top: 4px; }
 .fsrc-cat .opts { margin-top: 2px; }
-
-/* Flere filtre */
-.more > summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  height: var(--h-row);
-  margin: 0 -8px;
-  padding: 0 8px;
-  border-radius: var(--r-ctl);
-  font-size: var(--t-s);
-  line-height: var(--lh-s);
-  font-weight: 600;
-  cursor: pointer;
-  list-style: none;
-}
-.more > summary::-webkit-details-marker { display: none; }
-.more > summary:focus-visible { outline-offset: -2px; }
-.more[open] > summary .i { transform: rotate(180deg); }
-.more > .fgroup { margin-top: 12px; }
-.more > summary + .fgroup { margin-top: 4px; }
 
 /* Søgefelt med forslag (combobox.js) */
 .cbx { scroll-margin-top: 40px; } /* gruppens overskrift bliver stående over feltet */
@@ -1200,7 +1188,7 @@ dialog.sheet::backdrop { background: var(--backdrop); }
 
 /* Hover-flader kun med mus, så et tryk ikke efterlader noget, der ligner et valg */
 @media (hover: hover) {
-  .frow:hover, .cbx-opt:hover, .more > summary:hover, .trow:hover { background: var(--hover-bg); }
+  .frow:hover, .cbx-opt:hover, .fg > summary:hover, .trow:hover { background: var(--hover-bg); }
   .seg > label:not(:has(input:checked)):hover, .seg > [role="tab"]:not([aria-selected="true"]):hover { color: var(--text); }
 }
 

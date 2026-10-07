@@ -212,18 +212,23 @@ export function load(key) {
 
 // ── URL-tilstand (KONTRAKTER §9) ───────────────────────────
 
-export const GROUPS = ['afsender', 'tema', 'kilde', 'genre'];
+// Afkrydsningslister: alt er valgt fra start, og et fjernet flueben skjuler. I URL'en står de valgte
+// (fx tema=gebyrer) eller med "-" foran de fravalgte (fx tema=-arbejdsmiljoe), alt efter hvad der er kortest.
+export const GROUPS = ['afsender', 'tema', 'kilde', 'genre', 'sprog'];
 export const PERIODS = [7, 30, 60];
 export const OV_PERIODS = ['dag', 'uge', 'maaned', 'aar'];
 export const NO_TOPIC = 'uden';
-// Steder: ét felt `sted` med præfiksede nøgler internt, tre parametre i URL'en.
-// Uden `geo` i feed.json læses de og skrives uændret tilbage, men filtrerer ikke.
+export const LANGS = ['da', 'en', 'sv'];
+// Steder: ét felt `sted` med præfiksede nøgler internt (r:, k:, b: og l: for landsdækkende), fire
+// parametre i URL'en. Uden `geo` i feed.json læses de og skrives uændret tilbage, men filtrerer ikke.
+export const NATIONAL = 'l:landsdaekkende';
 const PLACE_PARAMS = [['region', 'r'], ['kommune', 'k'], ['by', 'b']];
+const MAX_CHIPS = 3; // højst så mange mærker pr. gruppe og retning, ellers ét samlet ("Uden 5 kilder")
 
 export function defaultState() {
   return {
-    afsender: [], tema: [], kilde: [], uden: [], genre: [], sted: [],
-    periode: 60, sprog: '', q: '', nye: false, saml: true, vis: '',
+    afsender: [], tema: [], kilde: [], genre: [], sprog: [], sted: [],
+    periode: 60, q: '', nye: false, saml: true, vis: '',
     story: [], overblik: 'dag', demo: '',
   };
 }
@@ -233,11 +238,14 @@ export function readState(search) {
   const list = (k) => [...new Set((p.get(k) || '').split(',').map((s) => s.trim()).filter(Boolean))];
   const s = defaultState();
   for (const g of GROUPS) s[g] = list(g);
-  s.uden = list('uden');
-  s.sted = PLACE_PARAMS.flatMap(([k, pre]) => list(k).map((v) => `${pre}:${v}`));
+  // Ældre links: uden=<kilder> er fravalgte kilder
+  for (const v of list('uden')) if (!s.kilde.includes(`-${v}`)) s.kilde.push(`-${v}`);
+  s.sted = PLACE_PARAMS.flatMap(([k, pre]) => list(k).map((v) => (v.startsWith('-') ? `-${pre}:${v.slice(1)}` : `${pre}:${v}`)));
+  const land = p.get('landsdaekkende');
+  if (land === '1') s.sted.push(NATIONAL);
+  else if (land === '0') s.sted.push(`-${NATIONAL}`);
   const per = Number(p.get('periode'));
   s.periode = PERIODS.includes(per) ? per : 60;
-  s.sprog = p.get('sprog') === 'da' ? 'da' : '';
   s.q = (p.get('q') || '').trim();
   s.nye = p.get('nye') === '1';
   s.saml = p.get('saml') !== '0';
@@ -248,45 +256,103 @@ export function readState(search) {
   return s;
 }
 
-// Konfigurationens rækkefølge, så samme valg altid giver samme link, og om stedfiltret er aktivt
+// Konfigurationens rækkefølge (så samme valg altid giver samme link), alle mulige valg pr. gruppe og
+// om stedfiltret er aktivt
 let ORDER = {};
+let UNIVERSE = {};
 let GEO = false;
 export function setData(data) {
   const idx = (ids) => new Map(ids.map((id, i) => [id, i]));
-  ORDER = {
-    afsender: idx([...data.cats.keys()]),
-    tema: idx([...data.topics.keys(), NO_TOPIC]),
-    genre: idx([...data.genres.keys()]),
-    r: data.geo ? idx(data.geo.regioner.map((r) => r.id)) : null,
+  UNIVERSE = {
+    afsender: [...data.cats.keys()],
+    tema: [...data.topics.keys(), NO_TOPIC],
+    kilde: [...data.sources.keys()].sort(),
+    genre: [...data.genres.keys()],
+    sprog: LANGS,
+    sted: data.geo ? [...data.geo.regioner.map((r) => `r:${r.id}`), NATIONAL] : [],
   };
+  ORDER = Object.fromEntries(Object.entries(UNIVERSE).map(([g, ids]) => [g, idx(ids)]));
   GEO = !!data.geo;
 }
 
-/** Kendte id'er i konfigurationens rækkefølge, resten alfabetisk efter id. */
+/** Valg ("-" foran = fravalgt) i konfigurationens rækkefølge, ukendte til sidst efter id. */
 function canonical(values, order) {
-  const known = order ? values.filter((v) => order.has(v)).sort((a, b) => order.get(a) - order.get(b)) : [];
-  return [...known, ...values.filter((v) => !order || !order.has(v)).sort()];
+  const id = (v) => v.replace(/^-/, '');
+  const known = values.filter((v) => order?.has(id(v))).sort((a, b) => order.get(id(a)) - order.get(id(b)));
+  return [...known, ...values.filter((v) => !order?.has(id(v))).sort((a, b) => (id(a) < id(b) ? -1 : id(a) > id(b) ? 1 : 0))];
+}
+
+/** De viste nøgler i en gruppe (også 'sted'), eller null når alt vises. */
+export function shownSet(s, g) {
+  const vals = s[g];
+  if (!vals.length) return null;
+  const exc = new Set(vals.filter((v) => v.startsWith('-')).map((v) => v.slice(1)));
+  const inc = vals.filter((v) => !v.startsWith('-'));
+  return new Set((inc.length ? inc : UNIVERSE[g] || []).filter((k) => !exc.has(k)));
+}
+
+export function isShown(s, g, key) {
+  const set = shownSet(s, g);
+  return !set || set.has(key);
+}
+
+/** Den korteste form af et sæt viste nøgler: [] = alt, ellers de valgte eller "-" + de fravalgte. */
+function encodeShown(g, shown) {
+  const all = UNIVERSE[g] || [];
+  const extra = [...shown].filter((k) => !all.includes(k)); // fx valgte kommuner og byer under Sted
+  const on = all.filter((k) => shown.has(k));
+  if (on.length === all.length) return [];
+  if (!extra.length && (!on.length || on.length > all.length - on.length)) return all.filter((k) => !shown.has(k)).map((k) => `-${k}`);
+  return [...extra, ...on];
+}
+
+/** Flueben sat eller fjernet ved ét valg. */
+export function toggleShown(s, g, key) {
+  const cur = shownSet(s, g) || new Set(UNIVERSE[g]);
+  if (cur.has(key)) cur.delete(key);
+  else cur.add(key);
+  s[g] = encodeShown(g, cur);
+}
+
+/** "Vælg alle" og "Fravælg alle". */
+export function setAllShown(s, g, on) {
+  s[g] = on ? [] : (UNIVERSE[g] || []).map((k) => `-${k}`);
+}
+
+/**
+ * En kommune eller by fra Steds søgefelt viser kun de valgte steder: det første sted erstatter
+ * regionerne og "Landsdækkende", de næste lægges til, og et valgt sted fravælges. Regionerne og
+ * "Landsdækkende" kan derefter sættes til igen med deres flueben.
+ */
+export function pickPlace(s, key) {
+  const cur = shownSet(s, 'sted');
+  const picks = cur ? [...cur].filter((k) => /^[kb]:/.test(k)) : [];
+  if (!picks.length) { s.sted = [key]; return; }
+  if (cur.has(key)) cur.delete(key);
+  else cur.add(key);
+  s.sted = encodeShown('sted', cur);
 }
 
 const enc = (v) => encodeURIComponent(v).replace(/%2C/gi, ',');
 
-/** Rækkefølge: demo, afsender, tema, kilde, uden, genre, region, kommune, by, periode, sprog, q, nye, saml, vis, story, overblik. */
+/** Rækkefølge: demo, afsender, tema, kilde, genre, region, kommune, by, landsdaekkende, periode, sprog, q, nye, saml, vis, story, overblik. */
 export function writeState(s) {
   const out = [];
   const add = (k, v) => out.push(`${k}=${enc(v)}`);
   const addList = (k, values) => { if (values.length) add(k, values.join(',')); };
   if (s.demo) add('demo', s.demo);
-  for (const g of GROUPS) {
-    addList(g, canonical(s[g], ORDER[g]));
-    if (g === 'kilde') addList('uden', canonical(s.uden, null));
-  }
+  for (const g of ['afsender', 'tema', 'kilde', 'genre']) addList(g, canonical(s[g], ORDER[g]));
   for (const [k, pre] of PLACE_PARAMS) {
-    const ids = s.sted.filter((v) => v.startsWith(`${pre}:`)).map((v) => v.slice(2));
+    const vals = s.sted.filter((v) => v.replace(/^-/, '').startsWith(`${pre}:`))
+      .map((v) => (v.startsWith('-') ? `-${v.slice(3)}` : v.slice(2)));
     // Uden geo skrives værdierne tilbage, præcis som de blev læst (samme rækkefølge)
-    addList(k, GEO ? canonical(ids, pre === 'r' ? ORDER.r : null) : ids);
+    const order = pre === 'r' && GEO ? new Map([...ORDER.sted].filter(([key]) => key.startsWith('r:')).map(([key, i]) => [key.slice(2), i])) : null;
+    addList(k, GEO ? canonical(vals, order) : vals);
   }
+  if (s.sted.includes(NATIONAL)) add('landsdaekkende', '1');
+  else if (s.sted.includes(`-${NATIONAL}`)) add('landsdaekkende', '0');
   if (s.periode !== 60) add('periode', s.periode);
-  if (s.sprog) add('sprog', s.sprog);
+  addList('sprog', canonical(s.sprog, ORDER.sprog));
   if (s.q) add('q', s.q);
   if (s.nye) add('nye', '1');
   if (!s.saml) add('saml', '0');
@@ -302,17 +368,18 @@ export function syncUrl(s) {
   if (url !== `${location.pathname}${location.search}${location.hash}`) history.replaceState(null, '', url);
 }
 
-// Kildefiltret giver højst 3 mærker hver for kilde og uden, ellers ét samlet ("Uden 5 kilder")
-const MAX_SRC_CHIPS = 3;
-const srcChipCount = (list) => (list.length > MAX_SRC_CHIPS ? 1 : list.length);
-const groupCount = (s) => GROUPS.reduce((n, g) => n + (g === 'kilde' ? srcChipCount(s.kilde) : s[g].length), srcChipCount(s.uden));
+/** Antal mærker, en gruppe giver: højst 3 pr. retning (valgte og fravalgte), ellers ét samlet. */
+function chipCount(values) {
+  const exc = values.filter((v) => v.startsWith('-')).length;
+  const inc = values.length - exc;
+  return (inc > MAX_CHIPS ? 1 : inc) + (exc > MAX_CHIPS ? 1 : exc);
+}
+const groupsCount = (s) => GROUPS.reduce((n, g) => n + chipCount(s[g]), GEO ? chipCount(s.sted) : 0);
 
 /** Er der noget, der indsnævrer feedet? (saml og vis er visninger og tæller ikke) */
 export function activeCount(s) {
-  let n = GEO ? s.sted.length : 0;
-  n += groupCount(s);
+  let n = groupsCount(s);
   if (s.periode !== 60) n += 1;
-  if (s.sprog) n += 1;
   if (s.q) n += 1;
   if (s.nye) n += 1;
   if (s.story.length) n += 1;
@@ -321,20 +388,14 @@ export function activeCount(s) {
 
 /** Tallet på "Filtrér (n)": valg inde i arket. Søgning tæller ikke, fordi feltet står ved siden af. */
 export function sheetCount(s) {
-  let n = GEO ? s.sted.length : 0;
-  n += groupCount(s);
-  if (s.periode !== 60) n += 1;
-  if (s.sprog) n += 1;
-  return n;
+  return groupsCount(s) + Number(s.periode !== 60);
 }
 
 /** Nulstil: beholder saml, vis og overblik (og steder, når feedet ikke har geo). */
 export function resetFilters(s) {
   if (GEO) s.sted = [];
   for (const g of GROUPS) s[g] = [];
-  s.uden = [];
   s.periode = 60;
-  s.sprog = '';
   s.q = '';
   s.nye = false;
   s.story = [];
@@ -465,18 +526,19 @@ function sortKey(m) {
 }
 
 function optionKeys(group, m) {
-  if (group === 'sted') return m.placeKeys;
+  if (group === 'sted') return m.placeKeys.length ? m.placeKeys : [NATIONAL];
   if (group === 'afsender') return [m.catId];
   if (group === 'kilde') return [m.sourceId];
   if (group === 'genre') return [m.genre];
+  if (group === 'sprog') return [m.lang];
   return m.topics.length ? m.topics : [NO_TOPIC];
 }
 
 /** Prædikat for ét indslag. `skip` er grupper, der ses bort fra (til tællere). */
 export function makePredicate(s, now, skip = new Set()) {
-  const sets = Object.fromEntries(GROUPS.map((g) => [g, new Set(s[g])]));
-  // Steder: indslaget passer, når E og de valgte steder har en nøgle til fælles (landsdækkende passer aldrig)
-  const places = GEO && s.sted.length && !skip.has('sted') ? new Set(s.sted) : null;
+  const sets = GROUPS.map((g) => [g, skip.has(g) ? null : shownSet(s, g)]).filter(([, set]) => set);
+  // Steder: indslaget passer, når dets steder (udvidet med kommune og region) eller "landsdækkende" er valgt
+  const places = GEO && !skip.has('sted') ? shownSet(s, 'sted') : null;
   const minTime = now.getTime() - s.periode * DAY_MS;
   // Søgeord foldes som i forslagene (accenter, å/aa, æ/ae, ø/oe). Ord uden bogstaver og tal søges råt.
   const words = s.q.toLowerCase().split(/\s+/).filter(Boolean).map((raw) => ({ raw, keys: foldKeys(raw).filter(Boolean) }));
@@ -486,16 +548,10 @@ export function makePredicate(s, now, skip = new Set()) {
     return w.keys.some((k) => m.fold.some((t) => t.includes(k)));
   };
   const stories = new Set(s.story);
-  const uden = skip.has('kilde') ? new Set() : new Set(s.uden);
   return (m) => {
-    for (const g of GROUPS) {
-      if (skip.has(g) || !sets[g].size) continue;
-      if (!optionKeys(g, m).some((k) => sets[g].has(k))) return false;
-    }
-    if (uden.size && uden.has(m.sourceId)) return false;
-    if (places && !m.placeKeys.some((k) => places.has(k))) return false;
+    for (const [g, set] of sets) if (!optionKeys(g, m).some((k) => set.has(k))) return false;
+    if (places && !optionKeys('sted', m).some((k) => places.has(k))) return false;
     if (m.time < minTime) return false;
-    if (s.sprog === 'da' && m.lang !== 'da') return false;
     if (s.nye && !skip.has('nye') && !m.isNew) return false;
     if (stories.size && !stories.has(m.unit.id)) return false;
     if (words.length && !words.every((w) => hasWord(m, w))) return false;
@@ -623,34 +679,45 @@ export function placeParents(data, key) {
 
 // ── Aktive filtre ─────────────────────────────────────────
 
-const byOrder = (g) => (a, b) => (ORDER[g]?.get(a) ?? 1e6) - (ORDER[g]?.get(b) ?? 1e6);
-const isRegionKey = (v) => v.startsWith('r:') && !!ORDER.r?.has(v.slice(2));
+const LANG_NAMES = { da: 'Dansk', en: 'Engelsk', sv: 'Svensk' };
+export const langName = (id) => LANG_NAMES[id] || id;
+// Navne i mærkerne: ental og flertal
+const NOUNS = {
+  sted: ['sted', 'steder'], afsender: ['afsendertype', 'afsendertyper'], tema: ['tema', 'temaer'],
+  kilde: ['kilde', 'kilder'], genre: ['genre', 'genrer'], sprog: ['sprog', 'sprog'],
+};
 
-/** Aktive filtre som {key, value, label} i panelets rækkefølge. Søgning og "Kun nye" får intet mærke. */
+/** Navnet på et valg i en gruppe, som panelet og mærkerne viser det. */
+export function optionName(data, g, key) {
+  if (g === 'sted') return key === NATIONAL ? 'Landsdækkende' : placeName(data, key);
+  if (g === 'afsender') return catName(data, key);
+  if (g === 'tema') return topicName(data, key);
+  if (g === 'kilde') return data.sources.get(key)?.name || key;
+  if (g === 'genre') return genreName(data, key);
+  return langName(key);
+}
+
+/** Mærker for én gruppe: de valgte og de fravalgte, højst 3 af hver, ellers ét samlet mærke. */
+function groupChips(data, s, g) {
+  const out = [];
+  const name = (k) => optionName(data, g, k);
+  const [, many] = NOUNS[g];
+  const vals = g === 'sted' ? s.sted : canonical(s[g], ORDER[g]);
+  const inc = vals.filter((v) => !v.startsWith('-'));
+  const exc = vals.filter((v) => v.startsWith('-')).map((v) => v.slice(1));
+  if (inc.length > MAX_CHIPS) out.push({ key: g, value: '+', label: `${fmtNum(inc.length)} ${many}`, undo: `Vis alle ${many}` });
+  else for (const v of inc) out.push({ key: g, value: v, label: name(v) });
+  if (exc.length > MAX_CHIPS) out.push({ key: g, value: '-', label: `Uden ${fmtNum(exc.length)} ${many}`, undo: `Vis alle ${many}` });
+  else for (const v of exc) out.push({ key: g, value: `-${v}`, label: `Uden ${name(v)}`, undo: `Vis ${name(v)} igen` });
+  return out;
+}
+
+/** Aktive filtre som {key, value, label, undo?} i panelets rækkefølge. Søgning og "Kun nye" får intet mærke. */
 export function activeFilters(data, s) {
   const out = [];
-  if (GEO) {
-    // Valgte kommuner og byer i den rækkefølge, de blev valgt, og så regionerne i geo-rækkefølge
-    const regions = s.sted.filter(isRegionKey).sort((a, b) => ORDER.r.get(a.slice(2)) - ORDER.r.get(b.slice(2)));
-    for (const v of [...s.sted.filter((x) => !isRegionKey(x)), ...regions]) out.push({ key: 'sted', value: v, label: placeName(data, v) });
-  }
-  for (const v of [...s.afsender].sort(byOrder('afsender'))) out.push({ key: 'afsender', value: v, label: catName(data, v) });
-  for (const v of [...s.tema].sort(byOrder('tema'))) out.push({ key: 'tema', value: v, label: topicName(data, v) });
-  const srcName = (v) => data.sources.get(v)?.name || v;
-  const byName = (a, b) => srcName(a).localeCompare(srcName(b), 'da');
-  if (s.kilde.length > MAX_SRC_CHIPS) {
-    out.push({ key: 'kilde-alle', value: '', label: `${fmtNum(s.kilde.length)} kilder`, undo: 'Vis alle kilder' });
-  } else {
-    for (const v of [...s.kilde].sort(byName)) out.push({ key: 'kilde', value: v, label: srcName(v) });
-  }
-  if (s.uden.length > MAX_SRC_CHIPS) {
-    out.push({ key: 'uden-alle', value: '', label: `Uden ${fmtNum(s.uden.length)} kilder`, undo: 'Vis alle kilder' });
-  } else {
-    for (const v of [...s.uden].sort(byName)) out.push({ key: 'uden', value: v, label: `Uden ${srcName(v)}`, undo: `Vis ${srcName(v)} igen` });
-  }
-  for (const v of [...s.genre].sort(byOrder('genre'))) out.push({ key: 'genre', value: v, label: genreName(data, v) });
+  if (GEO) out.push(...groupChips(data, s, 'sted'));
+  for (const g of ['afsender', 'tema', 'kilde', 'genre', 'sprog']) out.push(...groupChips(data, s, g));
   if (s.periode !== 60) out.push({ key: 'periode', value: s.periode, label: `Seneste ${s.periode} dage` });
-  if (s.sprog) out.push({ key: 'sprog', value: s.sprog, label: 'Kun dansk' });
   if (s.story.length) {
     const head = data.units.find((u) => u.id === s.story[0])?.head;
     const more = s.story.length > 1 ? ` +${s.story.length - 1}` : '';
@@ -659,13 +726,13 @@ export function activeFilters(data, s) {
   return out;
 }
 
-/** Fjern ét filter fra en tilstand (muterer). */
+/** Fjern ét filter fra en tilstand (muterer). "+" og "-" er de samlede mærker for valgte og fravalgte. */
 export function removeFilter(s, f) {
-  if (GROUPS.includes(f.key) || f.key === 'sted' || f.key === 'uden') s[f.key] = s[f.key].filter((v) => v !== f.value);
-  else if (f.key === 'kilde-alle') s.kilde = [];
-  else if (f.key === 'uden-alle') s.uden = [];
-  else if (f.key === 'periode') s.periode = 60;
-  else if (f.key === 'sprog') s.sprog = '';
+  if (GROUPS.includes(f.key) || f.key === 'sted') {
+    if (f.value === '+') s[f.key] = s[f.key].filter((v) => v.startsWith('-'));
+    else if (f.value === '-') s[f.key] = s[f.key].filter((v) => !v.startsWith('-'));
+    else s[f.key] = s[f.key].filter((v) => v !== f.value);
+  } else if (f.key === 'periode') s.periode = 60;
   else if (f.key === 'q') s.q = '';
   else if (f.key === 'nye') s.nye = false;
   else if (f.key === 'story') s.story = [];
@@ -700,14 +767,13 @@ function frow({ name, title = null, iconName, style = null, onchange, count = tr
   };
 }
 
-const group = (legend, ...children) => el('fieldset', { class: 'fgroup' }, el('legend', { text: legend }), children);
-
 /**
- * Valgte rækker under et søgefelt (Kilde og Sted) i den rækkefølge, de blev valgt; ved indlæsning i
- * URL'ens rækkefølge. En fravalgt række bliver stående uden flueben resten af besøget, så et fejlklik
- * kan fortrydes. Højst 6 fravalgte rækker; den ældste forsvinder først.
+ * Valgte kommuner og byer under Steds søgefelt i den rækkefølge, de blev valgt; ved indlæsning i URL'ens
+ * rækkefølge. En fravalgt række bliver stående uden flueben resten af besøget, så et fejlklik kan
+ * fortrydes. Højst 6 fravalgte rækker; den ældste forsvinder først. Vises alt (intet sted valgt), er
+ * der ingen rækker, fordi et valgt sted altid indsnævrer.
  */
-function pickedRows(g, include, makeRow) {
+function pickedRows(picks, isOn, makeRow) {
   const made = new Map();
   const shown = [];
   const off = [];
@@ -716,10 +782,11 @@ function pickedRows(g, include, makeRow) {
     if (!made.has(key)) made.set(key, makeRow(key));
     return made.get(key);
   };
-  function sync(s, counts) {
-    for (const key of s[g]) if (include(key) && !shown.includes(key)) shown.push(key);
+  function sync(s, counts, all) {
+    if (all) { shown.length = 0; off.length = 0; }
+    for (const key of picks(s)) if (!shown.includes(key)) shown.push(key);
     for (const key of shown) {
-      const on = s[g].includes(key);
+      const on = isOn(s, key);
       const i = off.indexOf(key);
       if (!on && i < 0) off.push(key);
       if (on && i >= 0) off.splice(i, 1);
@@ -730,59 +797,88 @@ function pickedRows(g, include, makeRow) {
     const nodes = shown.map((key) => rowOf(key).label);
     for (const child of [...box.children]) if (!nodes.includes(child)) child.remove();
     nodes.forEach((n, i) => { if (box.children[i] !== n) box.insertBefore(n, box.children[i] || null); });
-    for (const key of shown) rowOf(key).set(s[g].includes(key), counts.get(key) || 0);
+    for (const key of shown) rowOf(key).set(isOn(s, key), counts.get(key) || 0);
   }
   return { box, sync };
 }
 
+/** Sammenfoldelig gruppe: navnet og en kort status i <summary>, indholdet nedenunder. */
+function foldGroup(name, ...body) {
+  const status = el('span', { class: 'fg-state' });
+  const root = el('details', { class: 'fg' },
+    el('summary', null, el('span', { class: 'fg-name' }, name, srPunct()), status, icon('pil-ned')),
+    el('div', { class: 'fg-body' }, body));
+  return { root, status };
+}
+
+/** Afkrydsningsliste. Legend er skjult, fordi gruppens navn står i <summary> lige over. */
+const fset = (legend, ...rows) => el('fieldset', { class: 'fset' }, el('legend', { class: 'visually-hidden', text: legend }), rows);
+
 /**
- * Bygger filterpanelet én gang. `update(state, counts)` opdaterer tal og flueben uden at
- * genopbygge noget, så fokus og scroll bevares. `onChange(mutator)` anvender en ændring.
+ * Bygger filterpanelet én gang. `update(state, counts)` opdaterer tal, flueben og status uden at
+ * genopbygge noget, så fokus, fold og scroll bevares. `onChange(mutator)` anvender en ændring.
+ *
+ * Hver gruppe er foldet sammen fra start (åben, hvis den har et valg) og viser sin status ("Alle",
+ * "5 af 8"). I alle lister er alt valgt fra start, og et fjernet flueben skjuler (KONTRAKTER §9).
  */
-export function buildPanel(data, state, onChange, { typesHref = 'kilder.html#typer', onReset } = {}) {
+export function buildPanel(data, state, onChange, { onReset } = {}) {
   let cur = state;
   let counts = null;
-  const rows = []; // faste rækker: { group, value, row }
-  const toggle = (g, value) => onChange((s) => {
-    s[g] = s[g].includes(value) ? s[g].filter((v) => v !== value) : [...s[g], value];
-  });
-  const addRow = (g, value, opts) => {
-    const row = frow({ ...opts, onchange: () => toggle(g, value) });
-    rows.push({ group: g, value, row });
+  const rows = []; // { g, key, row }
+  const groups = []; // { fg, text(s), active(s) }
+  const addRow = (g, key, opts) => {
+    const row = frow({ ...opts, onchange: () => onChange((s) => toggleShown(s, g, key)) });
+    rows.push({ g, key, row });
     return row.label;
   };
+  const tools = (g) => el('p', { class: 'fg-tools' },
+    el('button', { type: 'button', class: 'btn-text', onclick: () => onChange((s) => setAllShown(s, g, true)) }, 'Vælg alle'),
+    el('button', { type: 'button', class: 'btn-text', onclick: () => onChange((s) => setAllShown(s, g, false)) }, 'Fravælg alle'));
+  /** "Alle", "Ingen", op til to navne eller "5 af 8" ("3 steder", når kommuner eller byer er valgt). */
+  const statusOf = (g) => (s) => {
+    const set = shownSet(s, g);
+    if (!set) return 'Alle';
+    const all = UNIVERSE[g];
+    const extra = [...set].filter((k) => !all.includes(k));
+    const on = [...extra, ...all.filter((k) => set.has(k))];
+    if (!on.length) return 'Ingen';
+    if (on.length <= 2) return on.map((k) => optionName(data, g, k)).join(', ');
+    return extra.length ? `${fmtNum(on.length)} ${NOUNS[g][1]}` : `${fmtNum(on.length)} af ${fmtNum(all.length)}`;
+  };
+  const addGroup = (fg, text, active) => { groups.push({ fg, text, active }); return fg; };
 
-  // Sted (kun når feedet har geo): søgefelt, valgte kommuner og byer, regionerne og noten
+  // Sted (kun når feedet har geo): søgefelt, valgte kommuner og byer, regionerne og "Landsdækkende"
   let sted = null;
   if (data.geo) {
     const geo = data.geo;
-    const regionKeys = geo.regioner.map((r) => `r:${r.id}`);
-    const fixed = new Set(regionKeys);
-    const regionRows = regionKeys.map((key) => addRow('sted', key, { name: placeName(data, key) }));
-    const picked = pickedRows('sted', (key) => !fixed.has(key), (key) => frow({
-      name: placeName(data, key), sr: placeContext(data, key), onchange: () => toggle('sted', key),
+    const regionRows = geo.regioner.map((r) => addRow('sted', `r:${r.id}`, { name: placeName(data, `r:${r.id}`) }));
+    const nationalRow = addRow('sted', NATIONAL, { name: 'Landsdækkende' });
+    const isPick = (s, key) => !!shownSet(s, 'sted')?.has(key);
+    const picked = pickedRows((s) => s.sted.filter((v) => /^[kb]:/.test(v)), isPick, (key) => frow({
+      name: placeName(data, key), sr: placeContext(data, key), onchange: () => onChange((s) => pickPlace(s, key)),
     }));
     const kort = (id) => geo.k.get(id)?.kort || id;
     const cbx = createCombobox({
       id: 'f-sted', label: 'Find kommune eller by', placeholder: 'Kommune eller by', fieldIcon: 'sted', listLabel: 'Steder',
       // Type: kommune, by, region (bruges ved lige rang)
+      // Kun kommuner og byer; regionerne står som rækker under feltet
       items: [
         ...geo.kommuner.map((k) => ({ key: `k:${k.id}`, name: k.navn, order: 0 })),
         ...geo.byer.map((b) => ({ key: `b:${b.id}`, name: placeName(data, `b:${b.id}`), ctx: `by i ${kort(b.kommune)}`, order: 1 })),
-        ...geo.regioner.map((r) => ({ key: `r:${r.id}`, name: r.navn, order: 2 })),
       ],
-      inTop: (it) => it.order < 2, // tomt felt: kun kommuner og byer
       getCount: (key) => counts?.sted.get(key) || 0,
-      isSelected: (key) => cur.sted.includes(key),
-      onToggle: (key) => toggle('sted', key),
+      isSelected: (key) => isPick(cur, key),
+      // Det første sted erstatter regionerne og "Landsdækkende"; de næste lægges til
+      onToggle: (key) => onChange((s) => pickPlace(s, key)),
       emptyCaption: 'Flest indslag lige nu',
       emptyNone: 'Ingen steder har indslag lige nu.',
       noMatch: (q) => `Ingen kommune eller by passer til "${q}". Byer kommer med, når de er nævnt i et indslag.`,
       // Kontekst i forslagets navn: "Ullerslev, by i Nyborg Kommune, 3 indslag"
       describe: (it) => placeContext(data, it.key),
     });
-    const note = el('p', { class: 'fnote', id: 'f-sted-note', hidden: true }, 'Landsdækkende nyheder vises ikke, når et sted er valgt.');
-    sted = { cbx, picked, note, root: group('Sted', cbx.root, picked.box, el('div', { class: 'opts regions' }, regionRows), note) };
+    const fg = addGroup(foldGroup('Sted', cbx.root, tools('sted'),
+      fset('Sted', picked.box, el('div', { class: 'opts regions' }, regionRows), nationalRow)), statusOf('sted'), (s) => s.sted.length > 0);
+    sted = { cbx, picked, fg };
   }
 
   // Afsender: korte navne, fuldt navn i title
@@ -790,6 +886,7 @@ export function buildPanel(data, state, onChange, { typesHref = 'kilder.html#typ
     const name = c.short || c.name;
     return addRow('afsender', c.id, { name, title: c.name !== name ? c.name : null, iconName: c.icon, style: catStyle(c) });
   });
+  addGroup(foldGroup('Afsender', tools('afsender'), fset('Afsender', catRows)), statusOf('afsender'), (s) => s.afsender.length > 0);
 
   // Tema: `short` hvis feedet har det; title, når navnet afviger eller kan blive afkortet
   const topicRow = (id) => {
@@ -797,55 +894,37 @@ export function buildPanel(data, state, onChange, { typesHref = 'kilder.html#typ
     const full = id === NO_TOPIC ? name : data.topics.get(id)?.name || name;
     return addRow('tema', id, { name, title: full !== name || name.length > 24 ? full : null });
   };
+  addGroup(foldGroup('Tema', tools('tema'), fset('Tema', [...data.topics.keys()].map(topicRow),
+    el('div', { class: 'fsep', 'aria-hidden': 'true' }), topicRow(NO_TOPIC))), statusOf('tema'), (s) => s.tema.length > 0);
 
-  // Kilde: alle kilder med flueben, grupperet efter afsendertype. Alle er valgt fra start; fjernes et
-  // flueben, skjules kilden. Feltet øverst indsnævrer listen, og tilstanden skrives så kort som muligt:
-  // de fravalgte (uden=) eller, når færre er valgt end fravalgt, de valgte (kilde=).
+  // Kilde: alle kilder grupperet efter afsendertype; feltet øverst indsnævrer listen
   const srcIds = [...data.sources.keys()];
-  const isShown = (s, id) => (!s.kilde.length || s.kilde.includes(id)) && !s.uden.includes(id);
-  const setShown = (st, shown) => {
-    const on = srcIds.filter((id) => shown.has(id));
-    st.kilde = [];
-    st.uden = [];
-    if (on.length === srcIds.length) return;
-    if (on.length && on.length <= srcIds.length - on.length) st.kilde = on;
-    else st.uden = srcIds.filter((id) => !shown.has(id));
-  };
-  const toggleSrc = (id) => onChange((st) => {
-    const shown = new Set(srcIds.filter((x) => isShown(st, x)));
-    if (shown.has(id)) shown.delete(id);
-    else shown.add(id);
-    setShown(st, shown);
-  });
   const srcRows = new Map();
   const srcSections = [...data.cats.values()].map((c) => {
     const ids = srcIds.filter((id) => data.sources.get(id).category === c.id)
       .sort((a, b) => data.sources.get(a).name.localeCompare(data.sources.get(b).name, 'da'));
     if (!ids.length) return null;
-    const rows = ids.map((id) => {
+    const list = ids.map((id) => {
       const src = data.sources.get(id);
-      const row = frow({ name: src.name, title: src.name.length > 26 ? src.name : null, onchange: () => toggleSrc(id) });
-      srcRows.set(id, { row, keys: foldKeys(src.name) });
-      return row.label;
+      const label = addRow('kilde', id, { name: src.name, title: src.name.length > 26 ? src.name : null });
+      srcRows.set(id, { label, keys: foldKeys(src.name) });
+      return label;
     });
     const sub = el('p', { class: 'fsub cat', style: catStyle(c), 'aria-hidden': 'true' }, icon(c.icon), c.short || c.name);
-    return { el: el('div', { class: 'fsrc-cat' }, sub, el('div', { class: 'opts' }, rows)), ids };
+    return { el: el('div', { class: 'fsrc-cat' }, sub, el('div', { class: 'opts' }, list)), ids };
   }).filter(Boolean);
   const srcFind = el('input', {
     id: 'f-kilde', class: 'field', type: 'search', autocomplete: 'off', spellcheck: 'false', placeholder: 'Find kilde',
-    'aria-describedby': 'f-kilde-n', oninput: () => filterSrc(),
+    oninput: () => filterSrc(),
     onkeydown: (e) => { if (e.key === 'Escape' && srcFind.value) { e.preventDefault(); e.stopPropagation(); srcFind.value = ''; filterSrc(); } },
   });
-  const srcN = el('span', { class: 'fsrc-n', id: 'f-kilde-n' });
   const srcNone = el('p', { class: 'fnote', role: 'status' });
-  const srcBox = el('div', { class: 'fsrc' },
-    el('label', { for: 'f-kilde', class: 'visually-hidden', text: 'Find kilde' }),
-    el('div', { class: 'cbx-field' }, icon('soeg'), srcFind),
-    el('div', { class: 'fsrc-tools' }, srcN,
-      el('span', { class: 'fsrc-act' },
-        el('button', { type: 'button', class: 'btn-text', onclick: () => onChange((st) => { st.kilde = []; st.uden = []; }) }, 'Vælg alle'),
-        el('button', { type: 'button', class: 'btn-text', onclick: () => onChange((st) => { st.kilde = []; st.uden = [...srcIds]; }) }, 'Fravælg alle'))),
-    srcSections.map((x) => x.el), srcNone);
+  addGroup(foldGroup('Kilde',
+    el('div', { class: 'fsrc' },
+      el('label', { for: 'f-kilde', class: 'visually-hidden', text: 'Find kilde' }),
+      el('div', { class: 'cbx-field' }, icon('soeg'), srcFind)),
+    tools('kilde'),
+    fset('Kilde', srcSections.map((x) => x.el)), srcNone), statusOf('kilde'), (s) => s.kilde.length > 0);
 
   /** Feltet skjuler kilder, der ikke passer, og typer uden kilder tilbage. */
   function filterSrc() {
@@ -854,10 +933,10 @@ export function buildPanel(data, state, onChange, { typesHref = 'kilder.html#typ
     for (const sec of srcSections) {
       let any = false;
       for (const id of sec.ids) {
-        const { row, keys } = srcRows.get(id);
+        const { label, keys } = srcRows.get(id);
         // Feltets to stavemåder (å→aa og å→a) er alternativer; én skal passe
         const hit = !qs.length || qs.some((q) => keys.some((k) => k.includes(q)));
-        row.label.hidden = !hit;
+        label.hidden = !hit;
         if (hit) { any = true; n += 1; }
       }
       sec.el.hidden = !any;
@@ -865,57 +944,40 @@ export function buildPanel(data, state, onChange, { typesHref = 'kilder.html#typ
     srcNone.textContent = qs.length && !n ? `Ingen kilde passer til "${srcFind.value.trim()}".` : '';
   }
 
-  // Flere filtre: genre, periode, sprog og visning
-  const genreRows = [...data.genres.keys()].map((id) => addRow('genre', id, { name: genreName(data, id) }));
+  // Genre og sprog
+  addGroup(foldGroup('Genre', tools('genre'), fset('Genre', [...data.genres.keys()].map((id) => addRow('genre', id, { name: genreName(data, id) })))),
+    statusOf('genre'), (s) => s.genre.length > 0);
+  addGroup(foldGroup('Sprog', tools('sprog'), fset('Sprog', LANGS.map((id) => addRow('sprog', id, { name: langName(id) })))),
+    statusOf('sprog'), (s) => s.sprog.length > 0);
+
+  // Periode og historier
   const period = segmented({
-    name: 'f-periode', options: PERIODS.map((d) => ({ value: d, label: `${d} dage` })), value: state.periode,
+    name: 'f-periode', legend: 'Periode', options: PERIODS.map((d) => ({ value: d, label: `${d} dage` })), value: state.periode,
     onSelect: (d) => onChange((s) => { s.periode = d; }),
   });
-  const daRow = frow({ name: 'Kun dansk', count: false, onchange: (e) => onChange((s) => { s.sprog = e.target.checked ? 'da' : ''; }) });
-  const samlRow = frow({ name: 'Saml historier', count: false, onchange: (e) => onChange((s) => { s.saml = e.target.checked; }) });
-  const moreCount = el('span');
-  const more = el('details', { class: 'more' },
-    el('summary', null, el('span', null, 'Flere filtre', moreCount), icon('pil-ned')),
-    group('Genre', genreRows),
-    group('Periode', period.root),
-    group('Sprog og visning', daRow.label, samlRow.label));
-  // Åben ved indlæsning, hvis et af valgene afviger fra standard. Brugerens egne fold huskes ikke.
-  more.open = state.genre.length > 0 || state.periode !== 60 || !!state.sprog || !state.saml;
+  addGroup(foldGroup('Periode', period.root), (s) => `${s.periode} dage`, (s) => s.periode !== 60);
+  const samlRow = frow({ name: 'Saml artikler om samme historie', count: false, onchange: (e) => onChange((s) => { s.saml = e.target.checked; }) });
+  addGroup(foldGroup('Historier', samlRow.label), (s) => (s.saml ? 'Samlet' : 'Hver for sig'), (s) => !s.saml);
+
+  // Åben ved indlæsning, hvis gruppen har et valg. Brugerens egne fold huskes ikke.
+  for (const x of groups) x.fg.root.open = x.active(state);
 
   const resetBtn = el('button', { type: 'button', class: 'btn-text', hidden: true, onclick: () => onReset?.() }, 'Nulstil');
 
   const root = el('search', { class: 'filters', 'aria-labelledby': 'filters-title' },
     el('div', { class: 'filters-head' }, el('h2', { id: 'filters-title', text: 'Filtre' }), resetBtn),
-    sted?.root,
-    group('Afsender', catRows, el('a', { class: 'fg-link', href: typesHref }, 'Om afsendertyperne')),
-    group('Tema', [...data.topics.keys()].map(topicRow), el('div', { class: 'fsep', 'aria-hidden': 'true' }), topicRow(NO_TOPIC)),
-    more,
-    group('Kilde', srcBox));
+    el('div', { class: 'fgs' }, groups.map((x) => x.fg.root)));
 
   function update(s, c) {
     cur = s;
     counts = c;
-    for (const { group: g, value, row } of rows) row.set(s[g].includes(value), c[g].get(value) || 0);
+    for (const { g, key, row } of rows) row.set(isShown(s, g, key), c[g]?.get(key) || 0);
+    for (const x of groups) x.fg.status.textContent = x.text(s);
     period.set(s.periode);
-    daRow.set(s.sprog === 'da');
     samlRow.set(s.saml);
-    const extra = s.genre.length + Number(s.periode !== 60) + Number(!!s.sprog) + Number(!s.saml);
-    moreCount.textContent = extra ? ` (${extra})` : '';
     resetBtn.hidden = activeCount(s) === 0;
-    let on = 0;
-    for (const [id, { row }] of srcRows) {
-      const shown = isShown(s, id);
-      if (shown) on += 1;
-      row.set(shown, c.kilde.get(id) || 0);
-    }
-    srcN.textContent = on === srcIds.length ? `Alle ${fmtNum(on)} vises` : `${fmtNum(on)} af ${fmtNum(srcIds.length)} vises`;
     if (sted) {
-      sted.picked.sync(s, c.sted);
-      // Noten om landsdækkende nyheder vises, når mindst ét sted er valgt; feltet peger på den
-      const on = s.sted.length > 0;
-      sted.note.hidden = !on;
-      if (on) sted.cbx.input.setAttribute('aria-describedby', sted.note.id);
-      else sted.cbx.input.removeAttribute('aria-describedby');
+      sted.picked.sync(s, c.sted, !s.sted.length);
       sted.cbx.refresh();
     }
   }
@@ -931,10 +993,6 @@ export function buildPanel(data, state, onChange, { typesHref = 'kilder.html#typ
   };
 }
 
-/**
- * Aktive filtre som mærker over listen, med "Nulstil" til sidst.
- * Returnerer true, hvis fokus sad på et mærke, der forsvandt uden et mærke at gå til.
- */
 export function renderActive(container, data, s, onChange, onReset) {
   const list = activeFilters(data, s);
   const before = [...container.querySelectorAll('.chip-x')];

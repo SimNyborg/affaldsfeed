@@ -28,7 +28,7 @@ Manualen beskriver, hvordan Affaldsfeed ser ud, og hvad der står på siden. Dat
 
 | Højde | Mus fra 768 px | Berøring eller under 768 px | Bruges til |
 |---|---|---|---|
-| `--h-row` | 32 px | 44 px | filterrækker, forslag, "Flere filtre", rækker på Om kilderne |
+| `--h-row` | 32 px | 44 px | filterrækker, forslag, rækker på Om kilderne |
 | `--h-ctl` | 36 px | 44 px | søgefelter, "Filtrér", "Vis flere", primærknapper |
 | `--h-chip` | 28 px | 32 px | aktive filtre og tekstknapper |
 | `--h-day` | 40 px | 40 px | dagsoverskrifter |
@@ -97,45 +97,46 @@ Temaerne har ingen egne farver og står som almindelig tekst på kortet. Panel, 
 
 ### Filterpanelet
 
-Panelet er et `<search>` med overskriften "Filtre" og tekstknappen "Nulstil" til højre, når et filter er aktivt. Det bygges én gang. Et valg opdaterer tal og flueben på stedet, så fokus og scroll bliver, hvor de var.
+Panelet er et `<search>` med overskriften "Filtre" og tekstknappen "Nulstil" til højre, når et filter er aktivt. Det bygges én gang. Et valg opdaterer tal, flueben og status på stedet, så fokus, fold og scroll bliver, hvor de var.
 
 | Gruppe | Indhold |
 |---|---|
-| Sted | søgefelt med forslag, de valgte kommuner og byer som rækker, regionerne som faste rækker og en note |
-| Afsender | 8 rækker med kategoriikon og linket "Om afsendertyperne" til `kilder.html#typer` |
+| Sted | søgefeltet "Kommune eller by", de valgte kommuner og byer, regionerne og "Landsdækkende" |
+| Afsender | 8 rækker med kategoriikon |
 | Tema | 13 rækker, en streg og "Uden tema" |
-| Flere filtre | foldet `<details>` med Genre (6 rækker), Periode (7, 30 eller 60 dage) og rækkerne "Kun dansk" og "Saml historier" |
-| Kilde | alle kilder med flueben, grupperet efter afsendertype, med et felt, der indsnævrer listen. Står sidst, fordi listen er lang |
+| Kilde | feltet "Find kilde" og alle kilder grupperet efter afsendertype |
+| Genre | 6 rækker |
+| Sprog | Dansk, Engelsk og Svensk |
+| Periode | tekstvalget 7 dage · 30 dage · 60 dage |
+| Historier | rækken "Saml artikler om samme historie" |
 
-- Hver gruppe er en `<fieldset>` med `<legend>` i 14/20 og vægt 600. Der er 20 px mellem grupperne og ingen streger.
-- Valg inden for en gruppe kombineres med ELLER, og grupperne kombineres med OG.
-- Sted, Afsender, Tema og Genre indsnævrer: intet valgt betyder alt, og vælger man noget, ser man kun det. Kilde er omvendt: alle kilder har flueben fra start, og fjernes et flueben, skjules kilden.
-- "Flere filtre (1)" viser, hvor mange valg der afviger fra standard. Gruppen er foldet ud ved indlæsning, hvis der er valgt genre, periode 7 eller 30, "Kun dansk" eller "Saml historier" fra. Brugerens egne fold huskes ikke.
-- Sted vises kun, når `feed.json` har `geo`. Uden `geo` læses `region`, `kommune` og `by` fra URL'en og skrives uændret tilbage, men de filtrerer ikke.
+- Hver gruppe er en foldbar `<details>`. Overskriften er én række på 36 px (44 px ved berøring) med navnet (14/20, 600) til venstre og status og en pil til højre. Status er 13/18 i `--muted`: "Alle", "Ingen", op til to navne ("Nyborg Kommune, Landsdækkende"), "7 af 8" eller "3 steder", for Periode fx "60 dage" og for Historier "Samlet" eller "Hver for sig". Der er en streg i `--line` mellem grupperne.
+- Grupperne er foldet sammen fra start, så panelet er kort. En gruppe er foldet ud ved indlæsning, hvis den har et valg. Brugerens egne fold huskes ikke.
+- Alle lister følger samme regel: alt er afkrydset fra start, og fjernes et flueben, skjules det. Valg inden for en gruppe kombineres med ELLER, og grupperne kombineres med OG.
+- Grupper med lister har tekstknapperne "Vælg alle" og "Fravælg alle" øverst til højre (13/18). "Fravælg alle" efterfulgt af ét flueben er den hurtige vej til "kun dette".
+- I URL'en står de valgte (fx `tema=gebyrer`), eller med "-" foran de fravalgte (fx `tema=-arbejdsmiljoe`), alt efter hvad der er kortest. Alt valgt giver ingen parameter.
+- Mærkerne over listen siger fx "Kommunal" for et valgt og "Uden Debat" for et fravalgt, højst 3 af hver pr. gruppe, ellers ét samlet mærke: "4 temaer" eller "Uden 5 kilder". "Filtrér (n)" tæller mærkerne. Giver valgene 0 indslag, kan tom-tilstanden foreslå fx "Vis Avisen.dk igen" eller "Vis alle kilder".
+- Sted vises kun, når `feed.json` har `geo`. Uden `geo` læses stedparametrene fra URL'en og skrives uændret tilbage, men de filtrerer ikke.
 
 ### Stedfiltret
 
 Sted står øverst i panelet, fordi man typisk vælger sit område én gang og gemmer siden som bogmærke.
 
-- Øverst er søgefeltet med nålen og pladsholderen "Kommune eller by". Forslagene går på tværs af kommuner, byer og regioner. En by har konteksten "by i Nyborg" i `--muted` efter navnet.
-- Under feltet står de valgte kommuner og byer som rækker i den rækkefølge, de blev valgt. En fravalgt række bliver stående uden flueben resten af besøget (højst 6).
-- Efter 8 px luft står regionerne som faste rækker i `geo`-rækkefølge. De er bygget ud fra data og aldrig skrevet ind i koden. Vælges en region i forslagene, sættes fluebenet i regionsrækken.
-- Er et sted valgt, står noten "Landsdækkende nyheder vises ikke, når et sted er valgt." under regionerne (13/18, `--muted`), og feltet peger på den med `aria-describedby`.
-- Hvert indslag får et udvidet sæt steder: en kommune giver også dens region, og en by giver sin primære kommune (`geo.byer[].kommune`) og dennes region. En by tæller ikke under de øvrige kommuner i `kommuner`, heller ikke når den ligger i flere. Et indslag passer, når det har et af de valgte steder i sættet. Derfor viser "Region Syddanmark" også indslag om Nyborg og Ullerslev, mens "Nyborg Kommune" ikke viser et indslag, der kun nævner Region Syddanmark. Hørsholm by (primær kommune Hørsholm, men også i Fredensborg og Rudersdal) tæller under Hørsholm Kommune og Region Hovedstaden, ikke under Fredensborg eller Rudersdal. Flere steder kombineres med ELLER.
+- Regionerne og "Landsdækkende" (indslag uden steder) er rækker med flueben, som er sat fra start. Fjernes fluebenet ved en region, skjules indslag, der kun handler om den. Regionerne er bygget ud fra data og aldrig skrevet ind i koden.
+- Søgefeltet med nålen og pladsholderen "Kommune eller by" foreslår kommuner og byer. En by har konteksten "by i Nyborg" i `--muted` efter navnet. Det første valgte sted viser kun det sted: regionerne og "Landsdækkende" mister deres flueben, og de næste steder lægges til. Vil man også se de landsdækkende nyheder, sætter man fluebenet ved "Landsdækkende" igen.
+- De valgte kommuner og byer står som rækker over regionerne i den rækkefølge, de blev valgt. En fravalgt række bliver stående uden flueben resten af besøget (højst 6). Vises alt, er der ingen sådanne rækker.
+- Hvert indslag får et udvidet sæt steder: en kommune giver også dens region, og en by giver sin primære kommune (`geo.byer[].kommune`) og dennes region. En by tæller ikke under de øvrige kommuner i `kommuner`, heller ikke når den ligger i flere. Et indslag passer, når det har et af de valgte steder i sættet, eller når det er landsdækkende, og "Landsdækkende" er valgt. Derfor viser "Region Syddanmark" også indslag om Nyborg og Ullerslev, mens "Nyborg Kommune" ikke viser et indslag, der kun nævner Region Syddanmark. Hørsholm by (primær kommune Hørsholm, men også i Fredensborg og Rudersdal) tæller under Hørsholm Kommune og Region Hovedstaden, ikke under Fredensborg eller Rudersdal.
 - Tallet i en række og i et forslag er antallet af kort, stedet alene giver sammen med de øvrige filtre, efter samme regel for byer. De andre valgte steder tæller ikke med.
-- Et id i URL'en, der ikke findes i `geo`, bliver stående, giver 0 og vises som id'et i mærket. Steder skrives sorteret i URL'en: regioner i `geo`-rækkefølge, kommuner og byer alfabetisk efter id. Uden `geo` skrives værdierne tilbage i den rækkefølge, de blev læst.
-- Giver valgene 0 indslag, foreslår tom-tilstanden den ene ændring, der giver flest. Et sted foreslås udvidet til sin forælder (by til primær kommune, kommune til region), hvis det giver indslag, fx "Udvid til Nyborg Kommune (viser 4)". Ellers foreslås det fjernet.
+- Et id i URL'en, der ikke findes i `geo`, bliver stående, giver 0 og vises som id'et i mærket. Steder skrives sorteret i URL'en: regioner i `geo`-rækkefølge, kommuner og byer alfabetisk efter id.
+- Giver valgene 0 indslag, foreslår tom-tilstanden den ene ændring, der giver flest. Et valgt sted foreslås udvidet til sin forælder (by til primær kommune, kommune til region), hvis det giver indslag, fx "Udvid til Nyborg Kommune (viser 4)". Ellers foreslås det fjernet. Er "Landsdækkende" ikke valgt, står det i beskeden.
 
 ### Kildelisten
 
 Kilde viser alle kilder i `feed.json` som rækker med flueben, så man kan fravælge de kilder, man ikke vil se.
 
 - Øverst er feltet "Find kilde" med lup. Det indsnævrer listen, mens man skriver, med samme foldning som søgningen (accenter, å/aa, æ/ae og ø/oe). Esc tømmer feltet. Passer ingen, står "Ingen kilde passer til "x"." (13/18, `--muted`) som status.
-- Under feltet står "Alle 43 vises" eller "38 af 43 vises" til venstre og tekstknapperne "Vælg alle" og "Fravælg alle" til højre (13/18).
 - Kilderne står i grupper efter afsendertype i konfigurationens rækkefølge. Hver gruppe har en lille overskrift med kategoriikonet (16 px) og det korte navn i 13/18, 600 og `--muted`. Inden for gruppen står kilderne alfabetisk. Overskriften er kun visuel (`aria-hidden`), fordi rækkens navn er nok.
 - Rækkerne er filterrækker uden ikon. Tallet er antallet af kort, kilden giver med de andre filtre, også når kilden er fravalgt, så man kan se, hvad man går glip af.
-- I URL'en står de fravalgte som `uden=` (fx `uden=avisen,altinget`). Er færre kilder valgt end fravalgt, skrives de valgte i stedet som `kilde=`, så linket bliver kort. Et link med `kilde=altinget` viser kun Altinget med flueben.
-- Mærkerne over listen siger "Uden Avisen.dk" for hver fravalgt kilde og "Altinget" for hver valgt, når der er højst 3, ellers ét samlet mærke: "Uden 5 kilder" eller "13 kilder". "Filtrér (n)" tæller mærkerne. Giver valgene 0 indslag, kan tom-tilstanden foreslå "Vis Avisen.dk igen" eller "Vis alle kilder".
 
 ### Filterrækken
 
@@ -279,14 +280,15 @@ Overblikket følger samme tone. Claude skriver neutralt og markerer, når en afs
 | Søgefelt | Søg i titler og kilder · Ryd søgning |
 | Filtrér-knap | Filtrér (2) |
 | Panel og ark | Filtre · Nulstil · Luk filtre · Vis 23 indslag |
-| Grupper | Sted · Afsender · Tema · Flere filtre (1) · Genre · Periode · Sprog og visning · Kilde |
-| Afsender | Om afsendertyperne |
-| Sted | Kommune eller by · Find kommune eller by · Flest indslag lige nu · Ingen steder har indslag lige nu. · by i Nyborg · Landsdækkende nyheder vises ikke, når et sted er valgt. |
-| Kilde | Find kilde · Alle 43 vises · 38 af 43 vises · Vælg alle · Fravælg alle · Ingen kilde passer til "x". · Uden Avisen.dk · Uden 5 kilder · 13 kilder · Vis Avisen.dk igen · Vis alle kilder |
+| Grupper | Sted · Afsender · Tema · Kilde · Genre · Sprog · Periode · Historier |
+| Status i grupperne | Alle · Ingen · 7 af 8 · 3 steder · 60 dage · Samlet · Hver for sig |
+| Værktøjer | Vælg alle · Fravælg alle |
+| Sted | Kommune eller by · Find kommune eller by · Flest indslag lige nu · Ingen steder har indslag lige nu. · by i Nyborg · Landsdækkende |
+| Kilde | Find kilde · Ingen kilde passer til "x". · Uden Avisen.dk · Uden 5 kilder · 13 kilder · Vis Avisen.dk igen · Vis alle kilder |
 | Forslag | Viser 8 af 23. Skriv mere for at indsnævre. · Ingen kommune eller by passer til "xyz". Byer kommer med, når de er nævnt i et indslag. · Ingen kilde passer til "xyz". · Nyborg Kommune er valgt. · Nyborg Kommune er fravalgt. |
-| Rækker | Uden tema · Kun dansk · Saml historier |
+| Rækker | Uden tema · Dansk · Engelsk · Svensk · Saml artikler om samme historie |
 | Periode | 7 dage · 30 dage · 60 dage |
-| Aktive filtre | Fjern filter: Nyborg Kommune · Region Syddanmark · Ullerslev · Seneste 7 dage · Kun dansk · Historie: ... |
+| Aktive filtre | Fjern filter: Nyborg Kommune · Landsdækkende · Uden Region Nordjylland · Kommunal · Uden Debat · 4 temaer · Uden 5 kilder · Dansk · Seneste 7 dage · Historie: ... |
 | Statuslinje | 1.284 indslag · 23 af 1.284 indslag · Vis 7 nye · Vis 1 ny · 7 nye indslag · 1 nyt indslag · Vis alle |
 | Visning | Normal · Kompakt |
 | Kort | Betalingsmur · Delvis betalingsmur · Ikke vurderet · Auto-resumé: · udgivet af KL · fundet 09.14 · +3 andre kilder · +1 anden kilde · +3 andre kilder, 2 nye |
@@ -295,7 +297,7 @@ Overblikket følger samme tone. Claude skriver neutralt og markerer, når en afs
 | Overblik, kort data | Siden 7. oktober 2026 · opdateret kl. 09.25 |
 | Overblik, før første kørsel | Dagens overblik kommer efter kl. 06.25. |
 | Overblik, filternote | Overblikket dækker hele feedet, ikke kun dine filtre. |
-| Filtre giver 0 | Ingen indslag passer til Nyborg Kommune + Tekstiler de seneste 60 dage. Landsdækkende nyheder vises ikke, når et sted er valgt. · Fjern Tekstiler (viser 23) · Udvid til Nyborg Kommune (viser 4) · Fjern historien (viser 2) · Nulstil filtre |
+| Filtre giver 0 | Ingen indslag passer til Nyborg Kommune + Tekstiler de seneste 60 dage. Landsdækkende nyheder er ikke valgt under Sted. · Fjern Tekstiler (viser 23) · Udvid til Nyborg Kommune (viser 4) · Fjern historien (viser 2) · Nulstil filtre |
 | Søgning giver 0 | Intet om "gebyrloft" de seneste 60 dage. · Ryd søgning (viser 1.284) |
 | Kun nye, intet nyt | Intet nyt siden dit sidste besøg i går kl. 08.14. · Vis alle |
 | Intet i dag | Intet nyt endnu i dag. Sidst opdateret kl. 09.17. |
