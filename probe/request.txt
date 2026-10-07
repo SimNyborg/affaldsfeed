@@ -1,3 +1,13 @@
-# Pressenævnets medieregister via WordPress REST-API
-url https://www.pressenaevnet.dk/wp-json/wp/v2/types 40
-url https://www.pressenaevnet.dk/wp-json/wp/v2/pressnet_media?per_page=3 60
+# Feed-kandidater fra kilderesearchen (opgave 5)
+url https://www.dr.dk/nyheder/service/feeds/regionale 6
+url https://www.dr.dk/nyheder/service/feeds/regionale/fyn 4
+url https://videnskab.dk/wp-json/rss/v1/feeds 6
+url https://feeds.services.tv2.dk/api/feeds/nyheder/rss 4
+url https://cleantechwatch.dk/robots.txt 3
+url https://cleantechwatch.dk/rss 6
+url https://cleantechwatch.dk/ 40
+url https://energiwatch.dk/rss 4
+url https://www.aau.dk/nyheder/rss 4
+url https://www.cbs.dk/rss 4
+url https://www.cepos.dk/feed/ 4
+url https://www.cepos.dk/robots.txt 3
