@@ -22,14 +22,14 @@ Manualen beskriver, hvordan Affaldsfeed ser ud, og hvad der står på siden. Dat
 - Kan feedet ikke indlæses, står fejlen i læsekolonnen (også fra 1024 px, hvor sidepanelet så er skjult) uden listens hoved, fordi søgning, "Filtrér" og visning intet har at vise.
 - Headeren er hvid, ikke sticky og har `box-shadow: 0 10px 15px rgba(0,0,0,.05)`. Fra 768 px er den én række på 64 px med logo (28 px) og ordmærket "Affaldsfeed" til venstre og navigationen til højre. Under 768 px står logo og ordmærke på én række (56 px) og navigationen på en række for sig (44 px). Der er ingen undertitel.
 - Navigationen er Feed og Tidslinje. Om kilderne findes via footeren. Den aktive side har teksten i `--link` og en streg på 3 px i `--link` under teksten.
-- Forsiden har denne rækkefølge: demo-strimmel (kun med `?demo=1`), header, sidepanel og læsekolonnen med meddelelser, AI-overblik og listepanelet. Listepanelet har listens hoved øverst og derefter dage og kort. "Vis flere" står under panelet.
+- Forsiden har denne rækkefølge: demo-strimmel (kun med `?demo=1`), header, sidepanel og læsekolonnen med meddelelser, AI-overblik og listepanelet. Listepanelet har listens hoved øverst og derefter dage og kort. Listen bygges, efterhånden som man scroller (se Dage og listen).
 - Afstande: 4, 8, 12, 16, 20, 24 og 32 px. Kort, listens hoved og overblik har 20 px vandret padding (16 px under 768 px). Optiske justeringer på 2, 3 og 6 px står ved de enkelte komponenter.
 - Radius: 15 px på paneler (0 under 768 px), 8 px på felter, forslagslister og meddelelser, 999 px på knapper og aktive filtre.
 
 | Højde | Mus fra 768 px | Berøring eller under 768 px | Bruges til |
 |---|---|---|---|
 | `--h-row` | 32 px | 44 px | filterrækker, forslag, rækker på Om kilderne |
-| `--h-ctl` | 36 px | 44 px | søgefelter, "Filtrér", "Vis flere", primærknapper |
+| `--h-ctl` | 36 px | 44 px | søgefelter, "Filtrér", primærknapper |
 | `--h-chip` | 28 px | 32 px | aktive filtre og tekstknapper |
 | `--h-day` | 40 px | 40 px | dagsoverskrifter |
 
@@ -111,7 +111,7 @@ Panelet er et `<search>` med overskriften "Filtre" og tekstknappen "Nulstil" til
 - Grupperne er foldet sammen fra start, så panelet er kort. En gruppe er foldet ud ved indlæsning, hvis den har et valg. Brugerens egne fold huskes ikke.
 - Alle lister følger samme regel: alt er afkrydset fra start, og fjernes et flueben, skjules det. Valg inden for en gruppe kombineres med ELLER, og grupperne kombineres med OG.
 - Afsender, Tema, Kilde og Genre har én tekstknap øverst til højre (13/18). Den hedder "Fravælg alle", når alt i gruppen er valgt, og ellers "Vælg alle". "Fravælg alle" efterfulgt af ét flueben er den hurtige vej til "kun dette". Sted har ingen knap, fordi et sted valgt i søgefeltet allerede viser kun det.
-- Periode står over listen (se Listens hoved). Historier er altid samlet, og der er intet valg for sprog.
+- Tidsrummet vælges i kalenderen over listen (se Kalenderen). Historier er altid samlet, og der er intet valg for sprog.
 - I URL'en står de valgte (fx `tema=gebyrer`), eller med "-" foran de fravalgte (fx `tema=-arbejdsmiljoe`), alt efter hvad der er kortest. Alt valgt giver ingen parameter.
 - Mærkerne over listen siger fx "Kommunal" for et valgt og "Uden Debat" for et fravalgt, højst 3 af hver pr. gruppe, ellers ét samlet mærke: "4 temaer" eller "Uden 5 kilder". "Filtrér (n)" tæller mærkerne. Giver valgene 0 indslag, kan tom-tilstanden foreslå fx "Vis Avisen.dk igen" eller "Vis alle kilder".
 - Sted vises kun, når `feed.json` har `geo`. Uden `geo` læses stedparametrene fra URL'en og skrives uændret tilbage, men de filtrerer ikke.
@@ -180,22 +180,35 @@ Under 1024 px åbner "Filtrér" en modal `<dialog>`, og panelet flyttes ind i de
 
 Øverst i listepanelet står tre rækker med 12 px imellem:
 
-1. Søgefeltet "Søg i titler og kilder" med lup og en ryd-knap (×), som kun vises, når der er tekst. Under 1024 px står "Filtrér (2)" ved siden af. Tallet tæller valg inde i arket, men ikke søgningen og perioden.
+1. Søgefeltet "Søg i titler og kilder" med lup og en ryd-knap (×), som kun vises, når der er tekst. Under 1024 px står "Filtrér (2)" ved siden af. Tallet tæller valg inde i arket, men ikke søgningen og datoerne.
 2. De aktive filtre som mærker med × og til sidst "Nulstil". Rækken vises kun, når der er aktive filtre.
-3. Perioden "7 dage · 30 dage · 60 dage" og statuslinjen til venstre og visningen "Normal | Kompakt" til højre.
+3. Kalenderknappen og statuslinjen til venstre og visningen "Normal | Kompakt" til højre.
 
 - Søgningen slår igennem 180 ms efter sidste tast og straks ved Enter. Esc tømmer feltet. Klikker man på et filter, før de 180 ms er gået, anvendes søgningen først, så teksten ikke overskrives.
 - Søgningen folder som forslagene: accenter fjernes, og å, æ og ø kan skrives som aa, ae og oe eller a, ae og o. "århus" finder "Aarhus".
 - Mærket er 28 px højt med kant i `--link`, baggrund `--tag-bg` og teksten i 13/18. Et langt navn afkortes med "…" (højst 260 px fra 768 px). Mærker brydes mellem hinanden, aldrig inde i et mærke. Rækkefølgen er panelets.
-- Perioden står i stedet for antallet. Den tæller ikke i "Filtrér (n)" og har intet mærke, fordi den står synligt over listen. Giver den 0 indslag, foreslår tom-tilstanden "Udvid til 60 dage".
+- Kalenderknappen står i stedet for antallet. Et valgt tidsrum tæller ikke i "Filtrér (n)" og har intet mærke, fordi det står på knappen. Giver det 0 indslag, foreslår tom-tilstanden "Vis alle datoer".
 - Antallet ("1.284 indslag" eller "23 af 1.284 indslag") står kun til skærmlæseren i statuslinjens live-region. Det vises, når statuslinjen får fokus fra tastaturet, så fokus aldrig står på noget usynligt. Kendes sidste besøg, og er der nye indslag, står tekstknappen "Vis 7 nye" ("Vis 1 ny"). Med `nye=1` står der synligt "7 nye indslag · Vis alle" ("1 nyt indslag"). Skilletegnet hænger på teksten før det, så en linje aldrig begynder med "·".
-- Rækkerne følger rækkens egen bredde (container query med grænser i rem), så et tekstvalg aldrig deles. Fra 34rem står alt på én linje, og en tynd lodret streg i `--line` midt i et mellemrum på 2 × 16 px skiller perioden fra statuslinjen, når den viser noget. Fra 20rem står perioden og visningen øverst og statuslinjen på egen linje under. Under 20rem står perioden alene øverst og statuslinjen og visningen under. Står "Vis 7 nye" først på en linje, flugter knapteksten med kanten.
+- Rækkerne følger rækkens egen bredde (container query med grænser i rem), så et tekstvalg aldrig deles. Fra 34rem står alt på én linje, og en tynd lodret streg i `--line` midt i et mellemrum på 2 × 16 px skiller kalenderknappen fra statuslinjen, når den viser noget. Fra 20rem står kalenderknappen og visningen øverst og statuslinjen på egen linje under. Under 20rem står kalenderknappen alene øverst og statuslinjen og visningen under. Står "Vis 7 nye" først på en linje, flugter knapteksten med kanten.
 - Med valg siger "Filtrér (2)" "Filtrér, 2 valgt" til skærmlæseren.
-- "Nulstil" nulstiller filtre, periode, søgning, `nye` og `story`, men beholder visningen og overblikkets periode. Fokus går derefter til statuslinjen.
+- "Nulstil" nulstiller filtre, datoer, søgning, `nye` og `story`, men beholder visningen og overblikkets periode. Fokus går derefter til statuslinjen.
 
 ### Tekstvalg
 
-Visning, Periode og overblikkets faner er diskrete tekstvalg: ord på række med 16 px imellem, uden kant, pille eller baggrund. Delene er 13/18 i vægt 600 i alle tilstande, så bredden aldrig skifter. Den, der ikke er valgt, står i `--muted` (`--text` ved hover med mus). Den valgte står i `--link` med en streg på 2 px lige under teksten, lavet som en kant, så den også ses med tvungne farver. Hver del er mindst 24 × 24 px, og ved berøring udvides klikfladen usynligt til 44 px uden at flytte noget. Første dels tekst flugter med indholdets venstrekant. Ved stor skrift må delene brydes mellem hinanden, men en del deles eller afkortes aldrig. Bag Visning og Periode ligger ægte radioknapper, så piletasterne flytter valget; overblikkets faner er `role="tab"`.
+Visning og overblikkets faner er diskrete tekstvalg: ord på række med 16 px imellem, uden kant, pille eller baggrund. Delene er 13/18 i vægt 600 i alle tilstande, så bredden aldrig skifter. Den, der ikke er valgt, står i `--muted` (`--text` ved hover med mus). Den valgte står i `--link` med en streg på 2 px lige under teksten, lavet som en kant, så den også ses med tvungne farver. Hver del er mindst 24 × 24 px, og ved berøring udvides klikfladen usynligt til 44 px uden at flytte noget. Første dels tekst flugter med indholdets venstrekant. Ved stor skrift må delene brydes mellem hinanden, men en del deles eller afkortes aldrig. Bag Visning ligger ægte radioknapper, så piletasterne flytter valget; overblikkets faner er `role="tab"`.
+
+### Kalenderen
+
+Kalenderknappen står først i listens hoved: ikonet `kalender` (16 px) og "Alle datoer" i 13/18, 600 og `--muted` som et tekstvalg. Med et tidsrum står det på knappen i `--link`, fx "2.–5. okt.", "7. okt." eller "Fra 6. okt.", og et × på 24 px efter knappen viser alle datoer igen. Skærmlæseren hører "Periode: 2.–5. okt.".
+
+- Knappen åbner en modal `<dialog>` efter WAI-ARIA's mønster for datovælgere. Fra 768 px er det en boks under knappen (over den, hvis der ikke er plads) med kant i `--field`, radius 8 px og skygge. Under 768 px er det et bundark i fuld bredde med `--backdrop` bag. Siden kan ikke scrolle, mens kalenderen er åben.
+- Øverst står måneden ("Oktober 2026", 14/20, 600) mellem pilene "Forrige måned" og "Næste måned". Derunder står ugedagene "ma" til "sø" (13/18, 600, `--muted`) og dagene med 40 px pr. dag (44 px ved berøring). Ugen begynder mandag.
+- Man kan vælge dage fra feedets første dag (60 dage tilbage) til i dag. Andre dage står i `--field` og kan ikke vælges, og pilene gør intet uden for grænserne. I dag har en tynd ring, og dage med indslag har en prik på 4 px i `--link` under tallet. Prikkerne følger de øvrige filtre.
+- Første valg er første dag ("Fra 5. oktober. Vælg sidste dag."), og andet valg er sidste dag. Samme dag to gange giver kun den dag. Mens man vælger, viser et bånd tidsrummet frem til musen eller fokus. Første og sidste dag er fyldte cirkler i `--link`, og dagene imellem har bånd i `--tag-bg`.
+- Tastatur: piletasterne flytter en dag eller en uge, Home og End går til ugens første og sidste dag, Page Up og Page Down skifter måned, og Enter eller mellemrum vælger. Fokus står fra start på første valgte dag eller i dag.
+- Bunden har tekstknapperne "Alle datoer" og "Luk". Esc, "Luk" og klik udenfor lukker uden at ændre noget, og fokus går tilbage til knappen.
+- Dagene er `gridcell` med datoen og antallet som navn, fx "onsdag 7. oktober, 9 indslag". Kun de valgte dage har `aria-selected`. Måneden er en live-region, og linjen under dagene er en statusbesked.
+- Med tvungne farver står tidsrummet i Highlight og dage uden for feedet i GrayText.
 
 ### Feed-kortet
 
@@ -229,7 +242,7 @@ Fra 768 px er der én række pr. indslag i et grid med ikon (16 px), kilde i en 
 - Overskrifterne er "I dag", "I går", "Mandag 5. oktober" for 2 til 6 dage siden og derefter uger som "Uge 40 · 28.–30. september". En ugegruppe nævner kun de dage, den faktisk dækker.
 - Dagsoverskriften er en sticky `<h2>` på 40 px i 14/20 og 600 med streg over og under. Antallet står yderst til højre på samme højrekant som kortenes tider.
 - "Her slap du sidst · i går kl. 08.14" står mellem nye og gamle indslag med linjer i `--accent`.
-- Listen viser 50 kort ad gangen. "Vis flere (50)" står centreret under listepanelet, og fokus går derefter til den første nye titel.
+- Der er ingen "Vis flere". De første 50 kort bygges med det samme og de næste, når listens ende er 1.500 px fra skærmen. I ledige stunder bygges op til 300 kort i forvejen, så en normal liste kort efter står helt i siden, og søgning i siden og footeren virker. Et meget langt feed bygges videre, når man scroller, så hvert filterklik forbliver hurtigt.
 
 ### AI-overblikket
 
@@ -287,7 +300,7 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Kilde | Find kilde · Ingen kilde passer til "x". · Uden Avisen.dk · Uden 5 kilder · 13 kilder · Vis Avisen.dk igen · Vis alle kilder |
 | Forslag | Viser 8 af 23. Skriv mere for at indsnævre. · Ingen kommune eller by passer til "xyz". Byer kommer med, når de er nævnt i et indslag. · Ingen kilde passer til "xyz". · Nyborg Kommune er valgt. · Nyborg Kommune er fravalgt. |
 | Rækker | Uden tema |
-| Periode | 7 dage · 30 dage · 60 dage |
+| Kalender | Alle datoer · 2.–5. okt. · 7. okt. · Fra 6. okt. · til skærmlæseren: Periode: 2.–5. okt. · Vis alle datoer · Vælg datoer · Forrige måned · Næste måned · ma ti on to fr lø sø · Vælg første dag. · Fra 5. oktober. Vælg sidste dag. · onsdag 7. oktober, 9 indslag · ingen indslag · Luk |
 | Aktive filtre | Fjern filter: Nyborg Kommune · Landsdækkende · Uden Region Nordjylland · Kommunal · Uden Debat · 4 temaer · Uden 5 kilder · Historie: ... |
 | Statuslinje | Vis 7 nye · Vis 1 ny · 7 nye indslag · 1 nyt indslag · Vis alle · til skærmlæseren og ved fokus: 1.284 indslag · 23 af 1.284 indslag |
 | Visning | Normal · Kompakt |
@@ -297,8 +310,9 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Overblik, kort data | Siden 7. oktober 2026 · opdateret kl. 09.25 |
 | Overblik, før første kørsel | Dagens overblik kommer efter kl. 06.25. |
 | Overblik, filternote | Overblikket dækker hele feedet, ikke kun dine filtre. |
-| Filtre giver 0 | Ingen indslag passer til Nyborg Kommune + Tekstiler de seneste 60 dage. Landsdækkende nyheder er ikke valgt under Sted. · Fjern Tekstiler (viser 23) · Udvid til Nyborg Kommune (viser 4) · Fjern historien (viser 2) · Nulstil filtre |
-| Søgning giver 0 | Intet om "gebyrloft" de seneste 60 dage. · Ryd søgning (viser 1.284) |
+| Filtre giver 0 | Ingen indslag passer til Nyborg Kommune + Tekstiler. Landsdækkende nyheder er ikke valgt under Sted. · Fjern Tekstiler (viser 23) · Udvid til Nyborg Kommune (viser 4) · Fjern historien (viser 2) · Nulstil filtre |
+| Søgning giver 0 | Intet om "gebyrloft". · Ryd søgning (viser 1.284) |
+| Tidsrum giver 0 | Ingen indslag den 1. september. · Intet om "gebyrloft" i perioden 1.–3. september. · Vis alle datoer (viser 50) |
 | Kun nye, intet nyt | Intet nyt siden dit sidste besøg i går kl. 08.14. · Vis alle |
 | Intet i dag | Intet nyt endnu i dag. Sidst opdateret kl. 09.17. |
 | feed.json fejler (også data uden for kontrakten) | Feedet kunne ikke indlæses. Prøv igen om lidt. · Prøv igen |

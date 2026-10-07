@@ -67,12 +67,14 @@
           <ul class="active-filters" id="active-filters" aria-label="Aktive filtre" hidden></ul>
 
           <div class="lh-status">
-            <fieldset class="seg" id="period-seg">
-              <legend class="visually-hidden">Periode</legend>
-              <label><input type="radio" name="periode" value="7"><span>7 dage</span></label>
-              <label><input type="radio" name="periode" value="30"><span>30 dage</span></label>
-              <label><input type="radio" name="periode" value="60" checked><span>60 dage</span></label>
-            </fieldset>
+            <div class="date-ctl">
+              <button type="button" class="date-btn" id="date-btn">
+                <svg class="i" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#kalender"></use></svg><span><span class="visually-hidden">Periode: </span><span id="date-text">Alle datoer</span></span>
+              </button>
+              <button type="button" class="date-clear" id="date-clear" aria-label="Vis alle datoer" hidden>
+                <svg class="i" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#luk"></use></svg>
+              </button>
+            </div>
             <p class="status" id="status" tabindex="-1"><span class="st-unit" id="status-unit"><span id="status-text" aria-live="polite">Henter feedet …</span><span id="status-sep" aria-hidden="true" hidden>&nbsp;·</span></span><button type="button" class="btn-text" id="status-action" hidden></button></p>
             <fieldset class="seg" id="view-seg">
               <legend class="visually-hidden">Visning</legend>
@@ -83,9 +85,9 @@
         </div>
 
         <div class="feed" id="feed" aria-busy="true"></div>
+        <!-- Ældre kort bygges, når denne nærmer sig skærmen (app.js) -->
+        <div class="feed-end" id="feed-end" aria-hidden="true"></div>
       </div>
-
-      <div class="more-wrap" id="more-wrap" hidden></div>
     </main>
   </div>
 

@@ -8,9 +8,9 @@ import { createCombobox } from './combobox.js';
 export const TZ = 'Europe/Copenhagen';
 export const DAY_MS = 864e5;
 
-const MONTHS = ['januar', 'februar', 'marts', 'april', 'maj', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'december'];
+export const MONTHS = ['januar', 'februar', 'marts', 'april', 'maj', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'december'];
 const MONTHS_SHORT = ['jan.', 'feb.', 'mar.', 'apr.', 'maj', 'jun.', 'jul.', 'aug.', 'sep.', 'okt.', 'nov.', 'dec.'];
-const WEEKDAYS = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
+export const WEEKDAYS = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'];
 
 const partsFmt = new Intl.DateTimeFormat('en-GB', {
   timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit',
@@ -91,6 +91,33 @@ export function fmtDayRange(fromNum, toNum) {
   if (fromNum >= toNum) return `${b.getUTCDate()}.${NB}${MONTHS[bm]}`;
   if (am === bm) return `${a.getUTCDate()}.–${b.getUTCDate()}.${NB}${MONTHS[bm]}`;
   return `${a.getUTCDate()}.${NB}${MONTHS[am]}–${b.getUTCDate()}.${NB}${MONTHS[bm]}`;
+}
+
+// Datoer i URL'en (fra=, til=) er lokale dage i København som ÅÅÅÅ-MM-DD; internt dayNum som i cph()
+export const dayNumOf = (iso) => {
+  const [y, m, d] = iso.split('-').map(Number);
+  return Date.UTC(y, m - 1, d) / DAY_MS;
+};
+export const isoDay = (n) => new Date(n * DAY_MS).toISOString().slice(0, 10);
+const validDay = (v) => (/^\d{4}-\d{2}-\d{2}$/.test(v || '') && isoDay(dayNumOf(v)) === v ? v : '');
+const dayParts = (n) => {
+  const t = new Date(n * DAY_MS);
+  return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() };
+};
+
+/**
+ * Et tidsrum som tekst. Kort til kalenderknappen ("7. okt.", "7.–12. okt.", "29. sep.–3. okt."), langt
+ * til beskeder ("7.–12. oktober"). Året står kun ved et årsskifte. Uden start eller slut: "fra 7. okt.".
+ */
+export function fmtRange(r, short = false) {
+  const f = short ? fmtShort : fmtLong;
+  if (r.lo === null) return `til ${f(dayParts(r.hi))}`;
+  if (r.hi === null) return `fra ${f(dayParts(r.lo))}`;
+  const a = dayParts(r.lo);
+  const b = dayParts(r.hi);
+  if (r.lo === r.hi) return f(b);
+  if (a.y !== b.y) return `${f(a)} ${a.y}–${f(b)} ${b.y}`;
+  return a.m === b.m ? `${a.d}.–${f(b)}` : `${f(a)}–${f(b)}`;
 }
 
 /**
@@ -215,7 +242,6 @@ export function load(key) {
 // Afkrydsningslister: alt er valgt fra start, og et fjernet flueben skjuler. I URL'en står de valgte
 // (fx tema=gebyrer) eller med "-" foran de fravalgte (fx tema=-arbejdsmiljoe), alt efter hvad der er kortest.
 export const GROUPS = ['afsender', 'tema', 'kilde', 'genre'];
-export const PERIODS = [7, 30, 60];
 export const OV_PERIODS = ['dag', 'uge', 'maaned', 'aar'];
 export const NO_TOPIC = 'uden';
 // Steder: ét felt `sted` med præfiksede nøgler internt (r:, k:, b: og l: for landsdækkende), fire
@@ -227,9 +253,21 @@ const MAX_CHIPS = 3; // højst så mange mærker pr. gruppe og retning, ellers �
 export function defaultState() {
   return {
     afsender: [], tema: [], kilde: [], genre: [], sted: [],
-    periode: 60, q: '', nye: false, vis: '',
+    fra: '', til: '', q: '', nye: false, vis: '',
     story: [], overblik: 'dag', demo: '',
   };
+}
+
+/** Tidsrummet fra kalenderen som dayNum ({lo, hi}; null i en ende = åben), eller null for alle datoer. */
+export function rangeOf(s) {
+  if (!s.fra && !s.til) return null;
+  return { lo: s.fra ? dayNumOf(s.fra) : null, hi: s.til ? dayNumOf(s.til) : null };
+}
+
+/** Sæt tidsrummet (lo og hi som dayNum), eller ryd det med null. */
+export function setRange(s, lo, hi = lo) {
+  s.fra = lo === null ? '' : isoDay(lo);
+  s.til = lo === null ? '' : isoDay(hi);
 }
 
 export function readState(search) {
@@ -243,8 +281,10 @@ export function readState(search) {
   const land = p.get('landsdaekkende');
   if (land === '1') s.sted.push(NATIONAL);
   else if (land === '0') s.sted.push(`-${NATIONAL}`);
-  const per = Number(p.get('periode'));
-  s.periode = PERIODS.includes(per) ? per : 60;
+  // periode= fra ældre links ignoreres; tidsrummet vælges i kalenderen (fra=, til=)
+  s.fra = validDay(p.get('fra'));
+  s.til = validDay(p.get('til'));
+  if (s.fra && s.til && s.fra > s.til) [s.fra, s.til] = [s.til, s.fra];
   s.q = (p.get('q') || '').trim();
   s.nye = p.get('nye') === '1';
   // sprog= og saml= fra ældre links ignoreres; historierne er altid samlet
@@ -339,7 +379,7 @@ export function pickPlace(s, key) {
 
 const enc = (v) => encodeURIComponent(v).replace(/%2C/gi, ',');
 
-/** Rækkefølge: demo, afsender, tema, kilde, genre, region, kommune, by, landsdaekkende, periode, q, nye, vis, story, overblik. */
+/** Rækkefølge: demo, afsender, tema, kilde, genre, region, kommune, by, landsdaekkende, fra, til, q, nye, vis, story, overblik. */
 export function writeState(s) {
   const out = [];
   const add = (k, v) => out.push(`${k}=${enc(v)}`);
@@ -355,7 +395,8 @@ export function writeState(s) {
   }
   if (s.sted.includes(NATIONAL)) add('landsdaekkende', '1');
   else if (s.sted.includes(`-${NATIONAL}`)) add('landsdaekkende', '0');
-  if (s.periode !== 60) add('periode', s.periode);
+  if (s.fra) add('fra', s.fra);
+  if (s.til) add('til', s.til);
   if (s.q) add('q', s.q);
   if (s.nye) add('nye', '1');
   if (s.vis) add('vis', s.vis);
@@ -381,14 +422,14 @@ const groupsCount = (s) => GROUPS.reduce((n, g) => n + chipCount(s[g]), GEO ? ch
 /** Er der noget, der indsnævrer feedet? (vis er en visning og tæller ikke) */
 export function activeCount(s) {
   let n = groupsCount(s);
-  if (s.periode !== 60) n += 1;
+  if (s.fra || s.til) n += 1;
   if (s.q) n += 1;
   if (s.nye) n += 1;
   if (s.story.length) n += 1;
   return n;
 }
 
-/** Tallet på "Filtrér (n)": valg inde i arket. Søgning og periode tæller ikke, fordi de står over listen. */
+/** Tallet på "Filtrér (n)": valg inde i arket. Søgning og datoer tæller ikke, fordi de står over listen. */
 export function sheetCount(s) {
   return groupsCount(s);
 }
@@ -397,7 +438,8 @@ export function sheetCount(s) {
 export function resetFilters(s) {
   if (GEO) s.sted = [];
   for (const g of GROUPS) s[g] = [];
-  s.periode = 60;
+  s.fra = '';
+  s.til = '';
   s.q = '';
   s.nye = false;
   s.story = [];
@@ -540,7 +582,10 @@ export function makePredicate(s, now, skip = new Set()) {
   const sets = GROUPS.map((g) => [g, skip.has(g) ? null : shownSet(s, g)]).filter(([, set]) => set);
   // Steder: indslaget passer, når dets steder (udvidet med kommune og region) eller "landsdækkende" er valgt
   const places = GEO && !skip.has('sted') ? shownSet(s, 'sted') : null;
-  const minTime = now.getTime() - s.periode * DAY_MS;
+  // Tidsrummet gælder lokale dage; en åben ende har ingen grænse
+  const range = skip.has('dato') ? null : rangeOf(s);
+  const lo = range?.lo ?? -Infinity;
+  const hi = range?.hi ?? Infinity;
   // Søgeord foldes som i forslagene (accenter, å/aa, æ/ae, ø/oe). Ord uden bogstaver og tal søges råt.
   const words = s.q.toLowerCase().split(/\s+/).filter(Boolean).map((raw) => ({ raw, keys: foldKeys(raw).filter(Boolean) }));
   const hasWord = (m, w) => {
@@ -552,7 +597,7 @@ export function makePredicate(s, now, skip = new Set()) {
   return (m) => {
     for (const [g, set] of sets) if (!optionKeys(g, m).some((k) => set.has(k))) return false;
     if (places && !optionKeys('sted', m).some((k) => places.has(k))) return false;
-    if (m.time < minTime) return false;
+    if (m.day.dayNum < lo || m.day.dayNum > hi) return false;
     if (s.nye && !skip.has('nye') && !m.isNew) return false;
     if (stories.size && !stories.has(m.unit.id)) return false;
     if (words.length && !words.every((w) => hasWord(m, w))) return false;
@@ -591,6 +636,21 @@ export function computeCounts(data, s, now) {
       for (const k of keys) counts.set(k, (counts.get(k) || 0) + 1);
     }
     out[g] = counts;
+  }
+  return out;
+}
+
+/**
+ * Kort pr. lokal dag (dayNum) med de øvrige filtre, til kalenderen. En historie tæller på hver dag,
+ * hvor et af dens indslag passer, fordi den samme dag i kalenderen viser den.
+ */
+export function computeDayCounts(data, s, now) {
+  const pred = makePredicate(s, now, new Set(['dato']));
+  const out = new Map();
+  for (const u of data.units) {
+    const days = new Set();
+    for (const m of u.members) if (pred(m)) days.add(m.day.dayNum);
+    for (const d of days) out.set(d, (out.get(d) || 0) + 1);
   }
   return out;
 }
@@ -720,7 +780,7 @@ export function removeFilter(s, f) {
     if (f.value === '+') s[f.key] = s[f.key].filter((v) => v.startsWith('-'));
     else if (f.value === '-') s[f.key] = s[f.key].filter((v) => !v.startsWith('-'));
     else s[f.key] = s[f.key].filter((v) => v !== f.value);
-  } else if (f.key === 'periode') s.periode = 60;
+  } else if (f.key === 'dato') setRange(s, null);
   else if (f.key === 'q') s.q = '';
   else if (f.key === 'nye') s.nye = false;
   else if (f.key === 'story') s.story = [];
