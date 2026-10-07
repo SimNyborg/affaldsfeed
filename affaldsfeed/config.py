@@ -57,6 +57,8 @@ class Config:
     overrides: list[Override]
     profile: str
     geo: Geo = field(default_factory=Geo)
+    # Fejl i geografi.yaml. Kun check fejler; ellers bruges en tom geografi (ingen stedmærkning)
+    geo_errors: list[str] = field(default_factory=list)
 
 
 # ── Hjælpere ─────────────────────────────────────────────────
@@ -92,7 +94,10 @@ def _fmt_validation(fname: str, ident: str, err: ValidationError) -> list[str]:
     out = []
     for e in err.errors():
         loc = ".".join(str(x) for x in e.get("loc", ())) or "-"
-        out.append(f"{fname}: {ident}: {loc}: {e.get('msg')}")
+        msg = str(e.get("msg"))
+        if e.get("type") == "value_error":
+            msg = msg.removeprefix("Value error, ")  # vores egne beskeder er på dansk
+        out.append(f"{fname}: {ident}: {loc}: {msg}")
     return out
 
 
@@ -198,16 +203,9 @@ def _load_config(config_dir: Path) -> tuple[Config | None, list[str], list[str]]
         if not p.domains:
             errors.append(f"medier.yaml: {p.id}: domains må ikke være tom")
 
-    # Geografi og steder (KONTRAKTER §4.1)
+    # Geografi (KONTRAKTER §3.3): fejl gør kun check rød; ellers tom geografi. Steder tjekkes i cross_check.
     geo, geo_errors, geo_warnings = _load_geo(config_dir)
-    errors.extend(geo_errors)
     warnings.extend(geo_warnings)
-    if not geo_errors:
-        known = geo.place_ids()
-        for p in publishers:
-            errors.extend(_unknown_places("medier.yaml", p.id, p.places, known))
-            if p.places and p.category == "nyhedsmedie":
-                warnings.append(f"medier.yaml: {p.id}: {_NEWS_PLACES}")
 
     for t in topics:
         ui_name = t.short or t.name
@@ -265,6 +263,7 @@ def _load_config(config_dir: Path) -> tuple[Config | None, list[str], list[str]]
         overrides=overrides,
         profile=profile,
         geo=geo,
+        geo_errors=geo_errors,
     )
     return cfg, errors, warnings
 
@@ -349,13 +348,22 @@ def _check_patterns(topics: list[Topic], keywords: Keywords | None) -> list[str]
 
 
 def load_config(config_dir: Path | None = None) -> Config:
-    """Læs og validér alle filer i config/. Rejser ConfigError med alle fejl."""
+    """Læs og validér alle filer i config/. Rejser ConfigError med alle fejl.
+
+    En fejl i geografi.yaml stopper ikke kommandoerne: den logges, og geografien er tom (ingen stedmærkning),
+    til filen er rettet. Kun check fejler (KONTRAKTER §3.3).
+    """
     config_dir = config_dir or paths.CONFIG_DIR
     cfg, errors, warnings = _load_config(config_dir)
     for w in warnings:
         log.warning(w)
     if errors or cfg is None:
         raise ConfigError("\n".join(errors))
+    if cfg.geo_errors:
+        log.error(
+            "%s er ugyldig, så stedmærkningen er slået fra, til filen er rettet (se python -m affaldsfeed check):\n%s",
+            GEO_FILE, "\n".join(cfg.geo_errors),
+        )
     return cfg
 
 
@@ -422,7 +430,6 @@ def cross_check(sources: list[Source], config: Config, today: date | None = None
                 warnings.append(f"medier.yaml: {p.id}: domænet {h} tilhører allerede {owner[h]}")
             owner.setdefault(h, p.id)
 
-    known_places = config.geo.place_ids()
     for s in sources:
         if s.method == "search":
             for f in s.feeds:
@@ -430,9 +437,16 @@ def cross_check(sources: list[Source], config: Config, today: date | None = None
                     errors.append(f"sources.yaml: {s.id}: søgeskabelonen mangler {{q}}: {f}")
         if s.status == "aktiv" and s.checked and today and s.checked < today - timedelta(days=365):
             warnings.append(f"sources.yaml: {s.id}: checked er over 12 måneder gammel ({s.checked})")
-        errors.extend(_unknown_places("sources.yaml", s.id, s.places, known_places))
-        if s.places and s.category == "nyhedsmedie":
-            warnings.append(f"sources.yaml: {s.id}: {_NEWS_PLACES}")
+
+    # Faste steder (KONTRAKTER §3.1). Uden geografi (mangler eller er ugyldig) kan id'erne ikke tjekkes.
+    # run logger fejlene som advarsler og ignorerer de ukendte id'er.
+    known_places = config.geo.place_ids()
+    for fname, senders in (("sources.yaml", sources), ("medier.yaml", config.publishers)):
+        for x in senders:
+            if known_places:
+                errors.extend(_unknown_places(fname, x.id, x.places, known_places))
+            if x.places and x.category == "nyhedsmedie":
+                warnings.append(f"{fname}: {x.id}: {_NEWS_PLACES}")
     return errors, warnings
 
 
@@ -463,6 +477,8 @@ def main_check(args: argparse.Namespace) -> int:
         cfg, errs, warns = None, [str(e)], []
     errors.extend(errs)
     warnings.extend(warns)
+    if cfg is not None:
+        errors.extend(cfg.geo_errors)  # kun check fejler ved en ugyldig geografi
     if cfg is not None and not errors:
         from affaldsfeed.timeutil import now_utc, to_cph
 

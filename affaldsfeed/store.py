@@ -48,21 +48,47 @@ def _dumps_line(obj: Any) -> str:
 _M = TypeVar("_M", bound=BaseModel)
 
 
-def read_jsonl(path: Path, model: type[_M]) -> list[_M]:
-    """Læs én model pr. linje. Ugyldige linjer logges og springes over."""
+INVALID_LINES_LOGGED = 3  # så mange ugyldige linjer pr. fil logges enkeltvis; resten samles
+
+
+def read_jsonl_counted(path: Path, model: type[_M]) -> tuple[list[_M], int]:
+    """Læs én model pr. linje. Returnerer (poster, antal ugyldige linjer, der blev sprunget over)."""
     try:
         text = path.read_text(encoding="utf-8")
     except FileNotFoundError:
-        return []
+        return [], 0
     out: list[_M] = []
+    skipped = 0
     for n, line in enumerate(text.splitlines(), start=1):
         if not line.strip():
             continue
         try:
             out.append(model.model_validate_json(line))
         except ValidationError as e:
-            log.warning("%s linje %d er ugyldig og springes over: %s", path.name, n, e.errors()[0].get("msg"))
-    return out
+            skipped += 1
+            if skipped <= INVALID_LINES_LOGGED:
+                err = e.errors()[0]
+                loc = ".".join(str(x) for x in err.get("loc", ()))
+                log.warning("%s linje %d er ugyldig og springes over: %s%s", path.name, n,
+                            f"{loc}: " if loc else "", err.get("msg"))
+    if skipped > INVALID_LINES_LOGGED:
+        log.warning("%s: %d ugyldige linjer i alt sprunget over", path.name, skipped)
+    return out, skipped
+
+
+def read_jsonl(path: Path, model: type[_M]) -> list[_M]:
+    """Læs én model pr. linje. Ugyldige linjer logges og springes over."""
+    return read_jsonl_counted(path, model)[0]
+
+
+def _keep_unreadable(path: Path, skipped: int, lost: list[str]) -> None:
+    """En månedsfil med linjer, koden ikke kan læse, skrives aldrig om (KONTRAKTER §6)."""
+    example = f" (fx {', '.join(lost[:3])})" if lost else ""
+    log.error(
+        "%s/%s: %d linjer kan ikke læses (fx felter fra en anden version af koden). Filen skrives ikke om, "
+        "og %d nye eller ændrede poster for måneden gemmes ikke%s. Ret koden fremad, så den kan læse linjerne.",
+        path.parent.name, path.name, skipped, len(lost), example,
+    )
 
 
 def write_jsonl(path: Path, records: list[BaseModel], sort_key: Callable[[Any], Any] | None = None) -> bool:
@@ -116,6 +142,7 @@ def load_candidates(since: datetime | None = None) -> list[Candidate]:
 def save_candidates(records: list[Candidate]) -> int:
     """Flet nye og opdaterede kandidater ind i månedsfilerne (måned = first_seen, UTC).
 
+    En månedsfil med linjer, der ikke kan læses, skrives ikke om; dens nye poster logges som fejl.
     Returnerer antallet af poster, der blev tilføjet eller ændret.
     """
     by_month: dict[str, list[Candidate]] = {}
@@ -124,11 +151,15 @@ def save_candidates(records: list[Candidate]) -> int:
     changed = 0
     for month, recs in sorted(by_month.items()):
         path = paths.CANDIDATES_DIR / f"{month}.jsonl"
-        existing = {c.id: c for c in read_jsonl(path, Candidate)}
+        current, skipped = read_jsonl_counted(path, Candidate)
+        existing = {c.id: c for c in current}
+        fresh = [r for r in recs if existing.get(r.id) != r]
+        if skipped:
+            if fresh:
+                _keep_unreadable(path, skipped, [r.url for r in fresh])
+            continue
+        changed += len(fresh)
         for r in recs:
-            old = existing.get(r.id)
-            if old is None or old != r:
-                changed += 1
             existing[r.id] = r
         write_jsonl(path, list(existing.values()), sort_key=lambda c: c.id)
     return changed
@@ -160,27 +191,38 @@ def save_rejected(records: list[Rejected], keep_days: int, now: datetime) -> int
     files = _month_files(paths.REJECTED_DIR)
     existing_month: dict[str, str] = {}
     contents: dict[str, dict[str, Rejected]] = {}
+    unreadable: dict[str, int] = {}  # måned -> antal linjer, der ikke kan læses (filen skrives ikke om)
     for f in files:
-        recs = {r.id: r for r in read_jsonl(f, Rejected)}
+        current, skipped = read_jsonl_counted(f, Rejected)
+        if skipped:
+            unreadable[f.stem] = skipped
+        recs = {r.id: r for r in current}
         contents[f.stem] = recs
         for rid in recs:
             existing_month[rid] = f.stem
 
     added = 0
+    lost: dict[str, list[str]] = {}
     for month, recs in by_month.items():
         for r in recs:
             m = existing_month.get(r.id)
             if m is None:
+                if month in unreadable:
+                    lost.setdefault(month, []).append(r.url)
+                    continue
                 contents.setdefault(month, {})[r.id] = r
                 existing_month[r.id] = month
                 added += 1
-            else:
+            elif m not in unreadable:
                 old = contents[m][r.id]
                 # Bevar første fund; opdatér titel og begrundelse
                 contents[m][r.id] = old.model_copy(update={"title": r.title, "why": r.why, "url": r.url})
 
     for month, recs in sorted(contents.items()):
         path = paths.REJECTED_DIR / f"{month}.jsonl"
+        if month in unreadable:
+            _keep_unreadable(path, unreadable[month], lost.get(month, []))
+            continue
         kept = [r for r in recs.values() if r.first_seen >= cutoff]
         if not kept:
             if path.exists():

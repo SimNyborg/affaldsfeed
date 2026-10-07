@@ -1,5 +1,7 @@
 # Bygger config/geografi.yaml fra Danmarks Statistik (tools/build_geografi.py). Kører, når
 # værktøjet eller håndreglerne ændres, og kan startes manuelt. Rapporten lægges i probe/geografi.md.
+# Den nye fil committes kun, når python -m affaldsfeed check er OK (bot-commits starter ikke CI);
+# rapporten committes altid, og jobbet fejler, når check fejler.
 name: Byg geografi
 
 on:
@@ -32,7 +34,8 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-      - name: Byg
+      - name: Byg og tjek
+        id: build
         shell: bash
         run: |
           mkdir -p probe
@@ -42,16 +45,40 @@ jobs:
             echo '```text'
             python tools/build_geografi.py --report 2>&1 || echo "(fejlede: config/geografi.yaml er ikke ændret)"
             echo '```'
+            echo
+            echo "## python -m affaldsfeed check"
+            echo
+            echo '```text'
+            if python -m affaldsfeed check 2>&1; then
+              echo "check_ok=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "(check fejlede: config/geografi.yaml committes ikke)"
+              echo "check_ok=false" >> "$GITHUB_OUTPUT"
+            fi
+            echo '```'
           } > probe/geografi.md
           cat probe/geografi.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Commit
         shell: bash
+        env:
+          CHECK_OK: ${{ steps.build.outputs.check_ok }}
         run: |
           git config user.name "affaldsfeed-bot"
           git config user.email "affaldsfeed-bot@users.noreply.github.com"
-          git add probe/geografi.md config/geografi.yaml 2>/dev/null || git add probe/geografi.md
+          git add probe/geografi.md
+          if [ "$CHECK_OK" = "true" ]; then
+            git add config/geografi.yaml
+          else
+            git checkout -- config/geografi.yaml  # behold den gyldige fil
+          fi
           git diff --cached --quiet && exit 0
           git commit -m "Byg geografi $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          exit 1
+
+      - name: Fejl, når check fejlede
+        if: steps.build.outputs.check_ok != 'true'
+        run: |
+          echo "::error::python -m affaldsfeed check fejlede; config/geografi.yaml er ikke committet (se probe/geografi.md)."
           exit 1

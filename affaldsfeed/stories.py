@@ -129,7 +129,7 @@ def build_stories(
     """Hovedindslag med story og also udfyldt, sorteret efter published (faldende) og id.
 
     places bliver foreningen af alle indslagenes steder, så et lokalt indslag i en national
-    historie kan findes med stedfiltret.
+    historie kan findes med stedfiltret. Foreningen skæres ikke (den kan have flere end 8 steder).
     """
     out: list[DisplayItem] = []
     for main, *others in group_stories(
@@ -138,7 +138,7 @@ def build_stories(
         also = [
             AlsoRef(id=o.id, source=o.source, url=o.url, title=o.title, published=o.published) for o in others
         ]
-        places = sort_places(p for it in (main, *others) for p in it.places)
+        places = sort_places((p for it in (main, *others) for p in it.places), limit=None)
         out.append(main.model_copy(update={"story": main.id, "also": also, "places": places}))
     out.sort(key=lambda it: (-_when(it).timestamp(), it.id))
     return out

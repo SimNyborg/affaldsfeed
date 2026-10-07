@@ -150,7 +150,7 @@ def test_load_heartbeat(repo):
 
 
 def test_pending_output(repo, capsys):
-    new = cand("ny", hours_ago=1, places=["b:ullerslev", "k:nyborg"])
+    new = cand("ny", hours_ago=1, places=["b:ullerslev", "k:nyborg", "b:taget-ud-af-geografien"])
     older = cand("aeldre", hours_ago=5, decision="graa")
     judged = cand("vurderet", hours_ago=3)
     rules_only = cand("regler", source="dr", hours_ago=1)
@@ -166,8 +166,16 @@ def test_pending_output(repo, capsys):
     ])
 
     assert judgments.main_pending(ns(max=200, hours=72, now="2026-10-07T10:00:00Z")) == 0
-    out = json.loads(capsys.readouterr().out)
+    raw = capsys.readouterr().out
+    out = json.loads(raw)
     assert list(out) == ["now", "profile", "topics", "genres", "places_help", "pending", "recent_approved"]
+    # places_help står med én post pr. linje, ikke som én lang linje
+    lines = raw.splitlines()
+    assert '    {"id":"nyborg","navn":"Nyborg Kommune"},' in lines
+    assert '    {"id":"hovedstaden","navn":"Region Hovedstaden"},' in lines
+    help_start = lines.index('"places_help":{')
+    help_lines = lines[help_start:lines.index("},", help_start) + 1]
+    assert len(help_lines) > 100 and max(len(ln) for ln in help_lines) < 80
     assert out["now"] == "2026-10-07T10:00:00Z"
     assert "Relevansprofil" in out["profile"]
     assert set(out["topics"][0]) == {"id", "name", "definition"}
@@ -182,7 +190,7 @@ def test_pending_output(repo, capsys):
     assert list(first) == ["id", "url", "title", "teaser", "source_name", "category", "lang", "published",
                            "rule_topics", "rule_genre", "rule_places", "prefilter"]
     assert first["source_name"] == "Altinget" and first["category"] == "fagmedie"
-    assert first["rule_places"] == ["k:nyborg", "b:ullerslev"]
+    assert first["rule_places"] == ["k:nyborg", "b:ullerslev"]  # id'er uden for geografien udelades
     assert out["pending"][1]["rule_places"] == []
     assert first["prefilter"] == {"decision": "vis", "score": 4, "hits": ["titel: affald"]}
     assert out["pending"][1]["lang"] == "en"
@@ -248,31 +256,77 @@ def test_validate_errors(repo, capsys):
 def test_validate_places(repo, capsys):
     a = cand("a")
     store.save_candidates([a])
+    nine = ["aarhus", "odense", "nyborg", "vejle", "kolding", "horsens", "silkeborg", "herning", "viborg"]
     write_judgments("2026-10-07", [
         j(a.id, True),                                         # 1 ingen places: behold regelmærker
         j(a.id, True, places=None),                            # 2 null: behold regelmærker
         j(a.id, True, places=[]),                              # 3 tom liste: nationalt
         j(a.id, True, places=["b:ullerslev", "k:nyborg"]),     # 4 ok
-        j(a.id, True, places=["k:atlantis"]),                  # 5 ukendt kommune
-        j(a.id, True, places=["nyborg"]),                      # 6 mangler præfiks
-        j(a.id, True, places=["r:syddanmark", "b:findes-ikke"]),  # 7 ukendt by
-        j(a.id, True, places=[f"k:{k}" for k in ("aarhus", "odense", "nyborg", "vejle", "kolding", "horsens",
-                                                  "silkeborg", "herning", "viborg")]),  # 8 over 8 steder
+        j(a.id, True, places=[f"k:{k}" for k in nine[:8]] + ["k:aarhus"]),  # 5 otte unikke + en dublet: ok
+    ])
+    assert judgments.main_validate(ns(file=None)) == 0
+    assert "validate-judgments: OK, 5 linjer i 1 filer" in capsys.readouterr().out
+    parsed = judgments.load_judgment_list()
+    assert parsed[0].places is None and parsed[1].places is None and parsed[2].places == []
+    assert parsed[3].places == ["k:nyborg", "b:ullerslev"]  # rækkefølgen normaliseres
+    assert len(parsed[4].places) == 8
+
+
+def test_validate_unknown_place_is_a_warning(repo, capsys):
+    # Velformede, men ukendte id'er (fx efter en ny geografi): advarsel med forslag, exit 0
+    a = cand("a")
+    store.save_candidates([a])
+    write_judgments("2026-10-07", [
+        j(a.id, True, places=["k:kobenhavn"]),                     # 1 stavefejl
+        j(a.id, True, places=["r:syddanmark", "k:ullerslev"]),     # 2 byen skrevet som kommune
+        j(a.id, True, places=["b:qqqqqq"]),                        # 3 intet ligner
+    ])
+    assert judgments.main_validate(ns(file=None)) == 0
+    out = capsys.readouterr().out
+    prefix = "ADVARSEL data/judgments/2026-10-07.jsonl:"
+    assert (f"{prefix}1: places: ukendt sted-id 'k:kobenhavn' (mente du 'k:koebenhavn'?); "
+            "brug id'er fra config/geografi.yaml") in out
+    assert f"{prefix}2: places: ukendt sted-id 'k:ullerslev' (mente du 'b:ullerslev'?)" in out
+    assert f"{prefix}3: places: ukendt sted-id 'b:qqqqqq'; brug" in out
+    assert "validate-judgments: OK, 3 linjer i 1 filer, 3 advarsler" in out
+
+
+def test_validate_place_format_errors_in_danish(repo, capsys):
+    a = cand("a")
+    store.save_candidates([a])
+    nine = ["aarhus", "odense", "nyborg", "vejle", "kolding", "horsens", "silkeborg", "herning", "viborg"]
+    write_judgments("2026-10-07", [
+        j(a.id, True, places=["nyborg"]),                      # 1 mangler præfiks
+        j(a.id, True, places=["K:Odense"]),                    # 2 store bogstaver
+        j(a.id, True, places=["k:københavn"]),                 # 3 æøå
+        j(a.id, True, places=["kommune:odense", "k:odense "]),  # 4 langt præfiks og mellemrum
+        j(a.id, True, places=[f"k:{k}" for k in nine]),        # 5 ni forskellige
+        j(a.id, True, places=["k:atlantis"]),                  # 6 velformet: kun en advarsel
     ])
     assert judgments.main_validate(ns(file=None)) == 1
     out = capsys.readouterr().out
     prefix = "data/judgments/2026-10-07.jsonl:"
     bad = {int(ln[len(prefix):].split(":")[0]) for ln in out.splitlines() if ln.startswith(prefix)}
-    assert bad == {5, 6, 7, 8}
-    assert f"{prefix}5: places: ukendt sted-id 'k:atlantis'" in out
-    assert f"{prefix}7: places: ukendt sted-id 'b:findes-ikke'" in out
-    assert f"{prefix}6: places: Value error, ugyldigt sted-id 'nyborg'" in out
-    assert f"{prefix}8: places: List should have at most 8 items" in out
+    assert bad == {1, 2, 3, 4, 5}
+    hint = "skriv r:<region>, k:<kommune> eller b:<by> med små bogstaver og æ→ae, ø→oe, å→aa (fx k:koebenhavn)"
+    assert f"{prefix}1: places: ugyldigt sted-id 'nyborg': {hint}" in out
+    assert f"{prefix}2: places: ugyldigt sted-id 'K:Odense' (mente du 'k:odense'?): {hint}" in out
+    assert f"{prefix}3: places: ugyldigt sted-id 'k:københavn' (mente du 'k:koebenhavn'?)" in out
+    assert (f"{prefix}4: places: ugyldige sted-id'er 'kommune:odense' (mente du 'k:odense'?), "
+            "'k:odense ' (mente du 'k:odense'?)") in out
+    assert f"{prefix}5: places: højst 8 forskellige steder, her er der 9" in out
+    assert "ADVARSEL data/judgments/2026-10-07.jsonl:6: places: ukendt sted-id 'k:atlantis'" in out
+    assert "List should have" not in out and "Value error" not in out
 
-    # Rækkefølgen normaliseres; None og [] er forskellige
-    parsed = judgments.load_judgment_list()
-    assert parsed[0].places is None and parsed[1].places is None and parsed[2].places == []
-    assert parsed[3].places == ["k:nyborg", "b:ullerslev"]
+
+def test_validate_places_without_geography(repo, capsys):
+    (paths.CONFIG_DIR / "geografi.yaml").unlink()
+    a = cand("a")
+    store.save_candidates([a])
+    write_judgments("2026-10-07", [j(a.id, True, places=["k:atlantis", "b:ullerslev"])])
+    assert judgments.main_validate(ns(file=None)) == 0
+    out = capsys.readouterr().out
+    assert "ADVARSEL" not in out and "validate-judgments: OK, 1 linjer i 1 filer" in out
 
 
 def test_validate_single_file(repo, capsys):

@@ -202,14 +202,45 @@ def parse_population(text: str) -> dict[str, int]:
     return out
 
 
+def town_rules(towns: list[dict], municipalities: list[dict], rules: dict) -> tuple[list[dict], list[str]]:
+    """Håndreglerne for byer: ignorer_byer, navne (med byer_ekstra_navne) og navne, der tilhører en anden kommune.
+
+    En by, der hedder det samme som en ANDEN kommunes kort navn eller navne (byen Frederiksberg i Sorø),
+    udelades: navnet betyder næsten altid kommunen. Et ekstra navn, der er en anden kommunes, bruges ikke.
+    towns: dicts med mindst navn og kommune (primær kommunes id); navne sættes her. Bruges af parse_towns
+    og af testene, der anvender reglerne på den committede geografi.
+    """
+    ignore = set(rules.get("ignorer_byer") or [])
+    extra = rules.get("byer_ekstra_navne") or {}
+    owner: dict[str, str] = {}  # kommunenavn -> kommunens id
+    for m in municipalities:
+        for name in (m["kort"], *m.get("navne", [])):
+            owner.setdefault(name, m["id"])
+    out: list[dict] = []
+    notes: list[str] = []
+    for t in towns:
+        if t["navn"] in ignore:
+            notes.append(f"ignoreret: {t['navn']}")
+            continue
+        own = with_variants([t["navn"]])
+        other = next((owner[n] for n in own if owner.get(n, t["kommune"]) != t["kommune"]), None)
+        if other:
+            notes.append(f"udeladt, hedder det samme som en anden kommune: {t['navn']} ({t['kommune']}; {other})")
+            continue
+        aliases = with_variants(extra.get(t["navn"], []))
+        taken = [n for n in aliases if owner.get(n, t["kommune"]) != t["kommune"]]
+        for n in taken:
+            notes.append(f"ADVARSEL: byer_ekstra_navne: {n} ({t['navn']}) er en anden kommunes navn og bruges ikke")
+        out.append({**t, "navne": [n for n in dict.fromkeys([*own, *aliases]) if n not in taken]})
+    return out, notes
+
+
 def parse_towns(info: dict, population: dict[str, int], municipalities: list[dict], rules: dict) -> tuple[list[dict], list[str]]:
     """Byer med mindst min_indbyggere. Navne der findes flere steder, beholdes kun hvis én er klart størst."""
     towns_var = _variable(info, lambda v: v.get("id", "").upper() == "BYER", "BYER")
     by_code = {m["kode"]: m for m in municipalities}
     min_pop = int(rules.get("min_indbyggere", 1000))
-    ignore = set(rules.get("ignorer_byer") or [])
     extra = rules.get("byer_ekstra_navne") or {}
-    notes: list[str] = []
 
     # Saml dele af samme by (en by kan ligge i flere kommuner)
     towns: dict[str, dict] = {}
@@ -229,9 +260,6 @@ def parse_towns(info: dict, population: dict[str, int], municipalities: list[dic
         total = sum(t["dele"].values())
         if total < min_pop:
             continue
-        if t["navn"] in ignore:
-            notes.append(f"ignoreret: {t['navn']}")
-            continue
         main = max(t["dele"], key=lambda k: t["dele"][k])
         kept.append(
             {
@@ -242,6 +270,8 @@ def parse_towns(info: dict, population: dict[str, int], municipalities: list[dic
                 "indbyggere": total,
             }
         )
+    # Før flertydigheden: en by med en anden kommunes navn gør ikke kommunens egen by flertydig
+    kept, notes = town_rules(kept, municipalities, rules)
 
     # Samme navn flere steder: behold den største, hvis den er mindst 5 gange større end nr. 2
     by_name: dict[str, list[dict]] = {}
@@ -275,7 +305,7 @@ def parse_towns(info: dict, population: dict[str, int], municipalities: list[dic
         {
             "id": t["id"],
             "navn": t["navn"],
-            "navne": with_variants([t["navn"], *extra.get(t["navn"], [])]),
+            "navne": t["navne"],
             "kommune": t["kommune"],
             "kommuner": t["kommuner"],
             "indbyggere": t["indbyggere"],
