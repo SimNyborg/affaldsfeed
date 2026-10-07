@@ -1,4 +1,15 @@
 {
+  "bornholm.nu": {
+    "name": "Bornholm.nu",
+    "count": 1,
+    "last_seen": "2026-10-07T15:53:30Z",
+    "examples": [
+      "https://bornholm.nu/nyheder/ikke-alt-maa-klunses-hos-bofa/141859"
+    ],
+    "ids": [
+      "89a0b12eb936"
+    ]
+  },
   "fla.de": {
     "name": "fla",
     "count": 1,
@@ -21,6 +32,28 @@
     "ids": [
       "2d282b2738cc",
       "b1c4a705b374"
+    ]
+  },
+  "nytimes.com": {
+    "name": "The New York Times",
+    "count": 1,
+    "last_seen": "2026-10-07T15:53:30Z",
+    "examples": [
+      "https://www.nytimes.com/2026/10/07/business/chrysler-building-tishman-speyer.html"
+    ],
+    "ids": [
+      "18bc4c764f45"
+    ]
+  },
+  "wspa.com": {
+    "name": "WSPA 7News",
+    "count": 1,
+    "last_seen": "2026-10-07T15:53:30Z",
+    "examples": [
+      "https://www.wspa.com/your-carolina/the-salvation-army-greenville-2/"
+    ],
+    "ids": [
+      "d74da58147af"
     ]
   },
   "zawya.com": {
