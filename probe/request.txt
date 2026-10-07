@@ -1,23 +1,8 @@
-# Geografidata (officielle kilder)
-url https://api.dataforsyningen.dk/regioner?format=json
-url https://api.dataforsyningen.dk/kommuner?format=json&per_side=2
-url https://api.dataforsyningen.dk/steder?hovedtype=Bebyggelse&undertype=by&per_side=2
-url https://api.statbank.dk/v1/tableinfo/BY3?lang=da&format=JSON
-url https://api.statbank.dk/v1/tableinfo/BY1?lang=da&format=JSON
-# robots.txt for kilder i fase 2
-url https://mst.dk/robots.txt
-url https://forsyningstilsynet.dk/robots.txt
-url https://vestfor.dk/robots.txt
-url https://www.kredslob.dk/robots.txt
-url https://cirkulaer.dk/robots.txt
-url https://dakofa.dk/robots.txt
-url https://www.kl.dk/robots.txt
-url https://producentansvar.dk/robots.txt
-url https://danskekommuner.dk/robots.txt
-url https://www.dkteknikogmiljoe.dk/robots.txt
-url https://concito.dk/robots.txt
-url https://www.dn.dk/robots.txt
-url https://www.teknologisk.dk/robots.txt
-url https://www.sdu.dk/robots.txt
-url https://www.avfallsverige.se/robots.txt
-url https://www.eea.europa.eu/robots.txt
+# Lister over danske medier (til udtømmende lokalmedie-research)
+url https://da.wikipedia.org/w/api.php?action=query&list=search&srsearch=liste%20over%20danske%20aviser&srlimit=10&format=json 10
+url https://da.wikipedia.org/w/api.php?action=query&list=categorymembers&cmtitle=Kategori:Aviser_fra_Danmark&cmlimit=500&format=json 100
+url https://da.wikipedia.org/w/api.php?action=query&list=categorymembers&cmtitle=Kategori:Ugeaviser_fra_Danmark&cmlimit=500&format=json 100
+url https://www.pressenaevnet.dk/ 40
+url https://danskemedier.dk/medlemmer/ 150
+url https://www.tv2east.dk/rss-og-api 80
+url https://lokalavisen.dk/ 80

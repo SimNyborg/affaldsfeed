@@ -1,7 +1,7 @@
 # Afprøv kilder live fra GitHub Actions. Bruges af Claude-sessioner i skyen, hvor
 # cloud-miljøet ikke selv må hente nyhedssider. Skriv kilde-id'er (én pr. linje) i
 # probe/request.txt og push; resultatet committes til probe/result.md. En linje på
-# formen "url <URL>" henter URL'en råt (første 30 kB) i stedet for at afprøve en kilde.
+# formen "url <URL> [kB]" henter URL'en råt (standard 30 kB, højst 400) i stedet for at afprøve en kilde.
 name: Afprøv kilder
 
 on:
@@ -42,7 +42,7 @@ jobs:
         env:
           INPUT_IDS: ${{ github.event.inputs.ids }}
         run: |
-          # Linjer: et kilde-id (check --fetch --explain) eller "url <URL>" (rå hentning, første 30 kB).
+          # Linjer: et kilde-id (check --fetch --explain) eller "url <URL> [kB]" (rå hentning, standard 30 kB).
           if [ -n "$INPUT_IDS" ]; then
             lines=$(echo "$INPUT_IDS" | tr ' ' '\n')
           elif [ -f probe/request.txt ]; then
@@ -56,7 +56,11 @@ jobs:
             while IFS= read -r line; do
               [ -z "$line" ] && continue
               if [[ "$line" == url\ * ]]; then
-                u="${line#url }"
+                rest="${line#url }"
+                u="${rest%% *}"
+                kb="${rest#"$u"}"; kb="${kb// /}"
+                [[ "$kb" =~ ^[0-9]+$ ]] || kb=30
+                (( kb > 400 )) && kb=400
                 echo "## $u"
                 echo
                 echo '```text'
@@ -67,7 +71,7 @@ jobs:
                   echo
                   if [ -f /tmp/probe.bin ]; then
                     if head -c 2 /tmp/probe.bin | od -An -tx1 | grep -q "1f 8b"; then gunzip -c /tmp/probe.bin > /tmp/probe.txt 2>/dev/null; else cp /tmp/probe.bin /tmp/probe.txt; fi
-                    head -c 30000 /tmp/probe.txt | tr -d '\000'
+                    head -c $(( kb * 1000 )) /tmp/probe.txt | tr -d '\000'
                     rm -f /tmp/probe.bin /tmp/probe.txt
                   fi
                 fi
