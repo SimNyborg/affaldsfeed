@@ -1,405 +1,698 @@
-# Afprøvning 2026-10-07T14:37:43Z
+# Afprøvning 2026-10-07T14:38:34Z
 
-## https://www.dr.dk/nyheder/service/feeds/regionale
+## https://ctwatch.dk/robots.txt
 
 ```text
-status 200, application/rss+xml; charset=utf-8, 3976 bytes, slut-URL https://www.dr.dk/nyheder/service/feeds/regionale
+status 200, text/plain, 10791 bytes, slut-URL https://ctwatch.dk/robots.txt
 
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
-    <channel>
-        <title>Regionalt | DR</title>
-        <link>https://www.dr.dk/</link>
-        <description>Nyheder fra sektionen Regionalt</description>
-        <lastBuildDate>Wed, 07 Oct 2026 14:37:44 GMT</lastBuildDate>
-        <docs>https://www.dr.dk/nyheder/dr-nyheder-som-rss-feed</docs>
-        <generator>rss-feeds</generator>
-        <language>da</language>
-        <atom:link href="https://www.dr.dk/nyheder/service/feeds/regionale" rel="self" type="application/rss+xml"/>
-        <item>
-            <title><![CDATA[Underskriftsindsamling mod datacenter når målet på en uge]]></title>
-            <link>https://www.dr.dk/nyheder/seneste/underskriftsindsamling-mod-datacenter-naar-maalet-paa-en-uge</link>
-            <guid isPermaLink="false">urn:dr:umbraco:article:d51ca73a-4c82-4c6f-91ae-2fe093b5abc0</guid>
-            <pubDate>Wed, 07 Oct 2026 14:07:25 GMT</pubDate>
-        </item>
-        <item>
-            <title><![CDATA[10 anholdt i sag om hvidvask]]></title>
-            <link>https://www.dr.dk/nyheder/seneste/10-anholdt-i-sag-om-hvidvask</link>
-            <guid isPermaLink="false">urn:dr:umbraco:article:ab13ac6e-7081-401e-bdcb-0ccebbbce868</guid>
-            <pubDate>Wed, 07 Oct 2026 13:55:10 GMT</pubDate>
-        </item>
-        <item>
-            <title><![CDATA[Mand erkender flere overgreb på børn]]></title>
-            <link>https://www.dr.dk/nyheder/indland/mand-erkender-flere-overgreb-paa-boern</link>
-            <guid isPermaLink="false">urn:dr:umbraco:article:f2e433df-6fb8-46af-bfbb-64907a8b456f</guid>
-            <pubDate>Wed, 07 Oct 2026 13:20:33 GMT</pubDate>
-            <description><![CDATA[Manden er foreløbigt varetægtsfængslet i fire uger, mens politiet efterforsker sagen.]]></description>
-            <media:content url="https://asset.dr.dk/drdk/umbraco-images/zkukotlh/20230612-164507-3.jpg?im=AspectCrop=(1200,675),xPosition=.5,yPosition=.5;Resize=(1200,675)&amp;impolicy=medium" medium="image"/>
-        </item>
-        <item>
-            <title><![CDATA[Ung vanvidsbilist idømt fire års fængsel: 'Jeg har det forfærdeligt']]></title>
-            <link>https://www.dr.dk/nyheder/indland/ung-vanvidsbilist-idoemt-fire-aars-faengsel-jeg-har-det-forfaerdeligt</link>
-            <guid isPermaLink="false">urn:dr:umbraco:article:1408808f-92de-4417-8205-570f1ee1e9da</guid>
-            <pubDate>Wed, 07 Oct 2026 08:41:34 GMT</pubDate>
-            <description><![CDATA[En 64-årig beboer i huset blev dræbt, da en 20-årig mand blev jagtet af politiet.]]></description>
-            <media:content url="https://asset.dr.dk/drdk/umbraco-images/ggdlm5cf/20260624-101149-5.jpg?im=AspectCrop=(1200,675),xPosition=.5,yPosition=.5;Resize=(1200,675)&amp;impolicy=medium" medium="image"/>
-        </item>
-        <item>
-            <title><![CDATA[Lad opvasken stå og spar strøm]]></title>
-            <link>https://www.dr.dk/nyheder/indland/reels/lad-opvasken-staa-og-spar-stroem</link>
-            <guid isPermaLink="false">urn:dr:umbraco:reel:014f7201-2fbf-4b3c-a43e-c008ea9b3287</guid>
-            <pubDate>Wed, 07 Oct 2026 08:30:00 GMT</pubDate>
-        </item>
-        <item>
-            <title><![CDATA[Krisehåndtering til unge er et hit: 'Jeg er blevet mindre bange']]></title>
-            <link>https://www.dr.dk/nyheder/indland/krisehaandtering-til-unge-er-et-hit-jeg-er-blevet-mindre-bange</link>
-            <guid isPermaLink="false">urn:dr:umbraco:article:9194ef8d-4077-4d75-a311-0f5af0694235</guid>
-            <pubDate>Wed, 07 Oct 2026 07:44:00 GMT</pubDate>
-            <description><![CDATA[Strømsvigt, stormfloder og dåsemad er kommet på skoleskemaet, når unge lærer om krisehåndtering i folkeskolen rundt i hele landet. ]]></description>
-            <media:content url="https://asset.dr.dk/drdk/umbraco-images/100kqt5x/processed-f9f679bb-28c6-462b-a6e7-b32b8db7bd35.jpeg?im=AspectCrop=(1200,675),xPosition=.5,yPosition=.5;Resize=(1200,675)&amp;impolicy=medium" medium="image"/>
-        </item>
-        <item>
-            <title><![CDATA[64-årig dræbt i sin seng af vanvidsbilist: Nu falder dommen]]></title>
-            <link>https://www.dr.dk/nyheder/indland/64-aarig-draebt-i-sin-seng-af-vanvidsbilist-nu-falder-dommen</link>
-            <guid isPermaLink="false">urn:dr:umbraco:article:efcba540-ade5-4940-bff3-7543266eeca7</guid>
-            <pubDate>Wed, 07 Oct 2026 04:29:00 GMT</pubDate>
-            <description><![CDATA[Vanvidsbilisten forventes at tilstå drabet, og det bliver første sag med skærpet straf. ]]></description>
-            <media:content url="https://asset.dr.dk/drdk/umbraco-images/wtkf5rpe/20260624-101151-2.jpg?im=AspectCrop=(1200,675),xPosition=.5,yPosition=.5;Resize=(1200,675)&amp;impolicy=medium" medium="image"/>
-        </item>
-        <item>
-            <title><![CDATA[Biografer bedt om at sætte hypet film om Gaza-krigen på pause]]></title>
-            <link>https://www.dr.dk/nyheder/indland/biografer-bedt-om-droppe-hypet-film-om-gaza-krigen</link>
-            <guid isPermaLink="false">urn:dr:umbraco:article:051577a5-7d88-4b0d-823f-7e3f93441436</guid>
-            <pubDate>Tue, 06 Oct 2026 19:15:00 GMT</pubDate>
-            <description><![CDATA[Instruktørerne af 'Naza' ønsker ikke dokumentarfilmen vist på årsdag for Hamas' terrorangreb onsdag den 7. oktober.]]></description>
-            <media:content url="https://asset.dr.dk/drdk/umbraco-images/jkdly0rs/20260913-110842-l.jpg?im=AspectCrop=(1200,675),xPosition=.5,yPosition=.5;Resize=(1200,675)&amp;impolicy=medium" medium="image"/>
-        </item>
-        <item>
-            <title><![CDATA[Puk blev straffet, når hun ikke spiste – nu håber hun på bedre behandling]]></title>
-            <link>https://www.dr.dk/nyheder/indland/puk-blev-straffet-naar-hun
+
+ ########################################################################################################################
+ ### AI crawler reference                                                                                             ###
+ ### The link below provides instructions to what kind of content can be used to train AI models on this website      ###
+ ### https://ctwatch.dk/ai.txt
+ ########################################################################################################################
+
+ #=======================================================================================================================
+ # AI Training Crawlers - collect content to train or fine-tune AI/LLM models
+ #
+ # Sources:
+ #   OpenAI:    https://platform.openai.com/docs/bots
+ #   Anthropic: https://support.anthropic.com/en/articles/8896518
+ #   Google:    https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers
+ #   Meta:      https://developers.facebook.com/docs/sharing/webmasters/crawler
+ #   Community: https://github.com/ai-robots-txt/ai.robots.txt
+ #   Agents:    https://knownagents.com/agents
+ #=======================================================================================================================
+
+ # Common Crawl (open dataset used for ML/AI training)
+ # https://commoncrawl.org/big-picture/frequently-asked-questions
+ User-agent: CCBot
+ Disallow: /
+
+ # OpenAI - model training (GPT-4, GPT-5, etc.)
+ # https://platform.openai.com/docs/bots
+ User-agent: GPTBot
+ Disallow: /
+
+ # Anthropic - model training
+ # https://support.anthropic.com/en/articles/8896518
+ User-agent: ClaudeBot
+ Disallow: /
+
+ # Anthropic - legacy training token (not on current official docs, but widely referenced)
+ # https://github.com/ai-robots-txt/ai.robots.txt
+ User-agent: anthropic-ai
+ Disallow: /
+
+ # Google - AI training (Gemini, Vertex AI, etc.)
+ # https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers
+ User-agent: Google-Extended
+ Disallow: /
+
+ # Google - Cloud Vertex AI
+ # https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers
+ User-agent: Google-CloudVertexBot
+ Disallow: /
+
+ # Google - generic crawler used for internal R&D
+ # https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers
+ User-agent: GoogleOther
+ Disallow: /
+
+ # ByteDance / TikTok - LLM training (Doubao)
+ # https://knownagents.com/agents/bytespider
+ User-agent: Bytespider
+ Disallow: /
+
+ # ByteDance - image scraping for AI products
+ # https://knownagents.com/agents/imagespider
+ User-agent: imageSpider
+ Disallow: /
+
+ # Apple - AI model training
+ # https://support.apple.com/en-us/119829
+ User-agent: Applebot-Extended
+ Disallow: /
+
+ # Amazon - web content indexing for AI products
+ # https://developer.amazon.com/amazonbot
+ User-agent: Amazonbot
+ Disallow: /
+
+ # Meta - AI training and product improvement
+ # https://developers.facebook.com/docs/sharing/webmasters/crawler
+ User-agent: Meta-ExternalAgent
+ Disallow: /
+
+ # Meta - broader AI bot
+ # https://developers.facebook.com/docs/sharing/webmasters/crawler
+ User-agent: FacebookBot
+ Disallow: /
+
+ # Cohere - AI model training
+ # https://cohere.com/bot
+ User-agent: cohere-ai
+ Disallow: /
+
+ # Cohere - dedicated training data crawler
+ # https://github.com/ai-robots-txt/ai.robots.txt
+ User-agent: cohere-training-data-crawler
+ Disallow: /
+
+ # Allen Institute for AI - general crawler
+ # https://allenai.org/crawler
+ User-agent: AI2Bot
+ Disallow: /
+
+ # Allen Institute for AI - training data for open-source models (Dolma)
+ # https://knownagents.com/agents/ai2bot-dolma
+ User-agent: Ai2Bot-Dolma
+ Disallow: /
+
+ # Diffbot - web data extraction for AI
+ # https://docs.diffbot.com/reference/crawl
+ User-agent: Diffbot
+ Disallow: /
+
+ # Webz.io / Omgili - sells crawled data to LLM companies
+ # https://neil-clarke.com/block-the-bots-that-feed-ai-models-by-scraping-your-website/
+ User-agent: Omgilibot
+ Disallow: /
+
+ # Webz.io - newer AI
 ```
 
-## https://www.dr.dk/nyheder/service/feeds/regionale/fyn
+## https://ctwatch.dk/sitemap.xml
 
 ```text
-status 200, application/rss+xml; charset=utf-8, 4038 bytes, slut-URL https://www.dr.dk/nyheder/service/feeds/regionale/fyn
-
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
-    <channel>
-        <title>Fyn | DR</title>
-        <link>https://www.dr.dk/</link>
-        <description>Nyheder fra sektionen Fyn</description>
-        <lastBuildDate>Wed, 07 Oct 2026 14:37:33 GMT</lastBuildDate>
-        <docs>https://www.dr.dk/nyheder/dr-nyheder-som-rss-feed</docs>
-        <generator>rss-feeds</generator>
-        <language>da</language>
-        <atom:link href="https://www.dr.dk/nyheder/service/feeds/regionale/fyn" rel="self" type="application/rss+xml"/>
-        <item>
-            <title><![CDATA[Mand erkender flere overgreb på børn]]></title>
-            <link>https://www.dr.dk/nyheder/indland/mand-erkender-flere-overgreb-paa-boern</link>
-            <guid isPermaLink="false">urn:dr:umbraco:article:f2e433df-6fb8-46af-bfbb-64907a8b456f</guid>
-            <pubDate>Wed, 07 Oct 2026 13:20:33 GMT</pubDate>
-            <description><![CDATA[Manden er foreløbigt varetægtsfængslet i fire uger, mens politiet efterforsker sagen.]]></description>
-            <media:content url="https://asset.dr.dk/drdk/umbraco-images/zkukotlh/20230612-164507-3.jpg?im=AspectCrop=(1200,675),xPosition=.5,yPosition=.5;Resize=(1200,675)&amp;impolicy=medium" medium="image"/>
-        </item>
-        <item>
-            <title><![CDATA[Lad opvasken stå og spar strøm]]></title>
-            <link>https://www.dr.dk/nyheder/indland/reels/lad-opvasken-staa-og-spar-stroem</link>
-            <guid isPermaLink="false">urn:dr:umbraco:reel:014f7201-2fbf-4b3c-a43e-c008ea9b3287</guid>
-            <pubDate>Wed, 07 Oct 2026 08:30:00 GMT</pubDate>
-        </item>
-        <item>
-            <title><![CDATA[LGBTQ+-håndbog afvist: 'Der er kun to køn']]></title>
-            <link>https://www.dr.dk/nyheder/indland/lgbtq-haandbog-til-afvist-der-er-kun-koen</link>
-            <guid isPermaLink="false">urn:dr:umbraco:article:61b85df1-9396-4bf0-8ab4-b511c4bb3c9b</guid>
-            <pubDate>Tue, 06 Oct 2026 08:32:00 GMT</pubDate>
-            <description><![CDATA[Lommebog om LGBTQ-venlig praksis i sundhedsvæsnet er ikke blevet godkendt, fordi flertal mener, at Region Syddanmark ikke skal anvende "woke-ideologisk sprogbrug".]]></description>
-            <media:content url="https://asset.dr.dk/drdk/umbraco-images/advnjuzs/20181023-190808-4.jpg?im=AspectCrop=(1200,675),xPosition=.5,yPosition=.5;Resize=(1200,675)&amp;impolicy=medium" medium="image"/>
-        </item>
-        <item>
-            <title><![CDATA[Er solceller for dig?]]></title>
-            <link>https://www.dr.dk/nyheder/indland/er-solceller-dig</link>
-            <guid isPermaLink="false">urn:dr:umbraco:article:c78ebe5f-a747-4818-9946-b3742c5dee69</guid>
-            <pubDate>Sun, 04 Oct 2026 14:34:00 GMT</pubDate>
-            <description><![CDATA[Fem ting, der er værd at tjekke, hvis du overvejer at få solceller.]]></description>
-            <media:content url="https://asset.dr.dk/drdk/umbraco-images/ocajfsev/20251104-204113-6.jpg?im=AspectCrop=(1200,675),xPosition=.5,yPosition=.5;Resize=(1200,675)&amp;impolicy=medium" medium="image"/>
-        </item>
-        <item>
-            <title><![CDATA[Solceller er populære: Vi gør det for pengepungens skyld]]></title>
-            <link>https://www.dr.dk/nyheder/indland/solceller-er-populaere-vi-goer-det-pengepungens-skyld</link>
-            <guid isPermaLink="false">urn:dr:umbraco:article:f63a7f30-5c01-42f7-b6bf-35d65f782a7f</guid>
-            <pubDate>Sun, 04 Oct 2026 05:23:00 GMT</pubDate>
-            <description><![CDATA[Når energipriserne går op, fyldes ordrebøgerne hos de virksomheder, der lever af at sætte solceller på folks huse. ]]></description>
-            <media:content url="https://asset.dr.dk/drdk/umbraco-images/fd3frmfk/20260930-130911-6.jpg?im=AspectCrop=(1200,675),xPosition=.5,yPosition=
-```
-
-## https://videnskab.dk/wp-json/rss/v1/feeds
-
-```text
-status 200, application/xml;  charset=UTF-8, 8638 bytes, slut-URL https://videnskab.dk/wp-json/rss/v1/feeds
+status 403, application/xml, 111 bytes, slut-URL https://ctwatch.dk/sitemap.xml
 
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xml:base="https://videnskab.dk/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">
-<channel>
-	<title><![CDATA[Videnskab.dk]]></title>
-	<description><![CDATA[Videnskab.dk er et uafhængigt nyhedsmedie, der formidler nyheder om dansk og udenlandsk forskning.]]></description>
-	<link>https://videnskab.dk/</link>
-	<atom:link rel="self" href="https://videnskab.dk/">
-	</atom:link>
-	<language>da</language>
-	<image>
-		<url>https://videnskab.dk/wp-content/uploads/2023/03/cropped-favicon-orange-150x150.png</url>
-		<title><![CDATA[Videnskab.dk]]></title>
-		<link>https://videnskab.dk/</link>
-		<description><![CDATA[ ]]></description>
-		<width>144</width>
-		<height>144</height>
-	</image>
-	<copyright>Copyright 2026 Videnskab.dk</copyright>
-	<pubDate>ons, 07 okt 2026 17:27:00 +0200</pubDate>
-	<lastBuildDate>Wed, 07 Oct 2026 16:37:45 +0200</lastBuildDate>
-	<item>
-		<title><![CDATA[Psykedeliske stoffers påvirkning af hjernen kan sammenlignes med et jazzorkester]]></title>
-		<link>https://videnskab.dk/krop-sundhed/psykedeliske-stoffers-paavirkning-af-hjernen-kan-sammenlignes-med-et-jazzorkester/</link>
-		<description><![CDATA[Psykedeliske stoffer bliver ofte omtalt som én samlet gruppe, men ny forskning på rotter viser, at  hjernen reagerer forskelligt på dem. Det kan få betydning for fremtidens behandling af mennesker.]]></description>
-		<enclosure url="https://videnskab.dk/wp-content/uploads/2026/09/psykedeliske-stoffer-topfoto-620x413.jpg" length="749176" type="image/jpeg">
-		</enclosure>
-		<guid>https://videnskab.dk/?p=364514</guid>
-		<pubDate>Wed, 07 Oct 2026 17:27:00 +0200</pubDate>
-		<source url="https://videnskab.dk/wp-json/rss/v1/feeds">Videnskab.dk</source>
-	</item>
-	<item>
-		<title><![CDATA[Efter russers død af pest: Det ved vi nu]]></title>
-		<link>https://videnskab.dk/krop-sundhed/efter-russers-doed-af-pest-det-ved-vi-nu/</link>
-		<description><![CDATA[Pest hører ikke kun middelalderen til. Sådan smitter og behandles den frygtede sygdom.]]></description>
-		<enclosure url="https://videnskab.dk/wp-content/uploads/2026/10/pestforskers-doed-scaled.jpeg" length="749176" type="image/jpeg">
-		</enclosure>
-		<guid>https://videnskab.dk/?p=366785</guid>
-		<pubDate>Wed, 07 Oct 2026 16:41:00 +0200</pubDate>
-		<source url="https://videnskab.dk/wp-json/rss/v1/feeds">Videnskab.dk</source>
-	</item>
-	<item>
-		<title><![CDATA[Vildt kompleks kemi vinder årets nobelpris]]></title>
-		<link>https://videnskab.dk/naturvidenskab/nobelprisen-kemi-2026/</link>
-		<description><![CDATA[Årets nobelpris i kemi hylder kemisk opdagelse, der ændrede medicinalindustrien.
-]]></description>
-		<enclosure url="https://videnskab.dk/wp-content/uploads/2026/10/design-uden-navn-620x413.jpg" length="749176" type="image/jpeg">
-		</enclosure>
-		<guid>https://videnskab.dk/?p=365527</guid>
-		<pubDate>Wed, 07 Oct 2026 16:24:03 +0200</pubDate>
-		<source url="https://videnskab.dk/wp-json/rss/v1/feeds">Videnskab.dk</source>
-	</item>
-	<item>
-		<title><![CDATA[Aldrig set før: Sørger pukkelhvaler over død kalv?]]></title>
-		<link>https://videnskab.dk/naturvidenskab/aldrig-set-foer-soerger-pukkelhvaler-over-doed-kalv/</link>
-		<description><![CDATA[Forskere kan nu for første gang dokumentere, hvordan en hun-pukkelhval tager sig af sin dødfødte kalv. Observationerne giver ny indsigt i moderens tilknytning til sin unge og kan tolkes som et eksempel på sorg blandt pukkelhvaler.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Det skriver mediet New Scientist. Det var et trist og yderst sjældent syn, der mødte havforsker Andrew Mulville, da...]]></description>
-		<enclosure url="https://videnskab.dk/wp-content/uploads/2026/10/pukkelhval-2-620x413.jpg" length="749176" type="image/jpeg">
-		</enclosure>
-		<guid>https://videnskab.dk/?p=366399</guid>
-		<pubDate>Wed, 07 Oct 2026 12:12:25 +0200</pubDate>
-		<source url="https://videnskab.dk/wp-json/rss/v1/feeds">Videnskab.dk</source>
-	</item>
-	<item>
-		<title><![CDATA[200 år gamle journaler afslører danske 'sørøvere': »6 mænd kom om bord med pistoler og sabler«]]></title>
-		<link>https://videnskab.dk/kultur-samfund/200-aar-gamle-journaler-afsloerer-danske-soeroevere-6-maend-kom-om-bord-med-pistoler-og-sabler/</link>
-		<description><![CDATA[Det vrimlede med danske kapere – ‘lovlige’ sørøvere – under Englandskrigene i 1807-1814. Nu viser nyfundne skibsjournaler, hvordan det var at være et engelsk offer for angrebene.]]></description>
-		<enclosure url="https://videnskab.dk/wp-content/uploads/2026/10/ezgif-6aa078a8a442f6bf-1-620x413.webp" length="749176" type="image/jpeg">
-		</enclosure>
-		<guid>https://videnskab.dk/?p=366634</guid>
-		<pubDate>Wed, 07 Oct 2026 05:30:00 +0200</pubDate>
-		<source url="https://videnskab.dk/wp-json/rss/v1/feeds">Videnskab.dk</source>
-	</item>
-	<item>
-		<title><![CDATA[Bag Nobelprisen: Forskere fra København var med til at fange mystiske spøgelsespartikler]]></title>
-		<link>https://videnskab.dk/naturvidenskab/bag-nobelprisen-forskere-fra-koebenhavn-har-vaeret-med-til-at-fange-de-mystiske-spoegelsespartikler/</link>
-		<description><![CDATA[Forskere i Danmark har spillet en central rolle i det vilde projekt, der har ført til årets nobelpris i fysik.]]></description>
-		<enclosure url="https://videnskab.dk/wp-content/uploads/2023/06/icecube-sydpolen-neutrinoer-620x413.jpg" length="749176" type="image/jpeg">
-		</enclosure>
-		<guid>https://videnskab.dk/?p=366655</guid>
-		<pubDate>Tue, 06 Oct 2026 21:52:28 +0200</pubDate>
-		<source url="https://videnskab.dk/wp-json/rss/v1/feeds">Videnskab.dk</source>
-	</item>
-	<item>
-		<title><![CDATA[Mistanke om udbrud af pest: Russisk laborant død]]></title>
-		<link>https://videnskab.dk/krop-sundhed/mistanke-om-udbrud-af-pest-russisk-forsker-doed/</link>
-		<description><![CDATA[Pest eller lungebetændelse? Rygterne svirrer, efter en russisk laborant for nylig mistede livet med, hvad der kan have været en pestinfektion. Det skriver nyhedsbur
+<Error><Code>AccessDenied</Code><Message>Access Denied</Message></Error>
 ```
 
-## https://feeds.services.tv2.dk/api/feeds/nyheder/rss
+## https://cepos.dk/sitemap.xml
 
 ```text
-status 200, application/rss+xml, 256583 bytes, slut-URL https://feeds.services.tv2.dk/api/feeds/nyheder/rss
+status 200, text/xml; charset=UTF-8, 89561 bytes, slut-URL https://cepos.dk/sitemap.xml
 
-<?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-<channel>
- <atom:link href="http://feeds.services.tv2.dk/api/feeds/nyheder/rss" rel="self" type="application/rss+xml" />
- <title>TV 2 Nyheder</title>
- <description></description>
- <link>http://feeds.services.tv2.dk/api/feeds/nyheder/rss</link>
- <lastBuildDate>Wed, 17 May 2023 07:34:51 GMT</lastBuildDate>
- <pubDate>Tue, 01 Nov 2016 10:13:12 GMT</pubDate>
- <ttl>1800</ttl>
-   <item>
-    <title>Hvad fanden er det for et skilt, raser borgmester i TV 2-indslag</title>
-    <description>Et ord på et papskilt har fået Guldborgsunds borgmester op i det røde felt – det viser, at TV 2 ikke er neutrale, mener han. </description>
-    <link>https://nyheder.tv2.dk/samfund/2026-10-07-hvad-fanden-er-det-for-et-skilt-raser-borgmester-i-tv-2-indslag</link>
-    <guid isPermaLink="true">https://nyheder.tv2.dk/samfund/2026-10-07-hvad-fanden-er-det-for-et-skilt-raser-borgmester-i-tv-2-indslag</guid>
-    <pubDate>Wed, 07 Oct 2026 09:58:13 GMT</pubDate>
-    <content:encoded><![CDATA[<p>- Jeg er rasende!</p><p>Sådan begynder Guldborgsunds borgmester Simon Hansen (S) et opslag på Facebook, hvor han langer hårdt ud efter TV 2 for et indslag, der blev vist i tirsdagens udgave af 19 News.</p><p>Indslaget var en del af dækningen af Folketingets åbning og statsministerens forslag om at sikre bedre udviklingsmuligheder i landdistrikter gennem en såkaldt rød løber-model. Og i den forbindelse sendte tv-stationen en journalist og en fotograf fra København til Nykøbing Falster.</p><h2>Et provokerende papskilt</h2><p>På et tomt butikslokale på gågaden satte han et papskilt med påskriften "Udkants-butik" – og det er lige præcis de ord, der får borgmesteren op i det røde felt.</p><p>- De kommer buldrende til Nykøbing Falster med alle fordommene i bagagen og sætter et papskilt på et tomt butikslokale med teksten: “Udkants-butik”. Altså helt ærligt, skriver Simon Hansen og fortsætter med et retorisk spørgsmål:</p><p>- Kunne vi ikke for én gangs skyld få en neutral dækning af noget, der faktisk handler om nogle af de muligheder og perspektiver, der er for vores landdistrikter?</p><h2>Fordomme og stereotyper</h2><p>I selve nyhedsindslaget giver Simon Hansen også udtryk for sin vrede.</p><p>- Hvad fanden er det for et skilt at sætte op? Så kommer der sådan nogle københavnerjournalister til Nykøbing Falster og sætter sådan et skilt op. Jeg stiller mig ikke foran skiltet. Det gør jeg simpelthen ikke, siger Simon Hansen i indslaget.</p><p>Simon Hansen mener, at TV 2 bidrager til at skabe større forskelle mellem land og by, end godt er.</p><p>- Lidt paradoksalt synes jeg faktisk, at TV 2’s tilgang illustrerer noget af det, hun (statsministeren, red.) selv talte om: At vi risikerer at komme for langt fra hinanden, hvis vi bliver ved med at se hinanden gennem fordomme og stereotyper, skriver han.</p><h2>TV 2: Vi vil ikke stigmatisere</h2><p>Thomas Gadsbølle, der er chefredaktør for TV 2 NEWS, er ikke enig i kritikken.</p><p>- Jeg er uenig i, at vi kommer buldrende med en masse fordomme. Jeg synes generelt, at vi er gode til at dække hele Danmark, og at vi er gode til at gå nuanceret til det, siger han til TV2 ØST.</p><p>Det er dog helt fair at diskutere formen, understreger han.</p><p>- Vi lytter selvfølgelig til kritikken. Ellers ville vi da være tonedøve. Ambitionen var ikke at skubbe til en stigmatisering, men at få nogle stemmer i tale om, hvad det er, folk på gaden oplever, der er brug for, siger han.</p><p>Simon Hansen håber, at hans kritik giver stof til eftertanke i redaktionslokalerne på TV 2 i København.</p><p>- Jeg ville være glad for, hvis de tænker lidt mere over det en anden gang. Jeg er med på, at der er meget, der går den forkerte vej på Lolland-Falster, men lige i dag handlede det jo om noget andet, nemlig et meget positivt initiativ fra 
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/__sitemap__/style.xsl"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://cepos.dk/</loc>
+        <lastmod>2026-10-02</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/abent-seminar-den-smukke-borgerlighed/</loc>
+        <lastmod>2024-10-01</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/cookie-og-privatlivspolitik/</loc>
+        <lastmod>2024-08-28</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/english/</loc>
+        <lastmod>2024-09-24</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/nyheder/</loc>
+        <lastmod>2024-09-17</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/om-cepos/</loc>
+        <lastmod>2024-09-25</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/presse/</loc>
+        <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/privatlivspolitik/</loc>
+        <lastmod>2024-08-27</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/soegeresultater/</loc>
+    </url>
+    <url>
+        <loc>https://cepos.dk/stot-cepos/</loc>
+        <lastmod>2026-07-10</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/undervisning/</loc>
+        <lastmod>2024-08-20</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/viden/</loc>
+        <lastmod>2025-09-29</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/1-700-sygeplejersker-fritages-for-topskatten-ved-oget-topskattegraense/</loc>
+        <lastmod>2021-11-08</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0001-646000-personer-i-den-erhvervsaktive-alder-er-pa-overforselsindkomst/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/2-200-flere-praktikpladser-ved-at-saenke-elevlonnen-med-5-kr-i-timen/</loc>
+        <lastmod>2016-04-12</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/2-artiers-skattereformer-storrelse-af-skattelettelserne-og-effekter-pa-arbejdsudbud/</loc>
+        <lastmod>2024-09-12</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0002-danmark-har-de-12-hojeste-offentlige-udgifter-blandt-oecd-landene/</loc>
+        <lastmod>2026-02-03</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/2-millioner-personer-pa-overforelsesindkomst-i-2015/</loc>
+        <lastmod>2010-11-24</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/2-ud-af-3-danskere-onsker-at-privathospitalerne-skal-forblive-en-del-af-sundhedssystemet/</loc>
+        <lastmod>2012-10-15</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/2-ud-af-3-synes-at-skat-pa-sundhedsforsikringer-er-en-darlig-ide/</loc>
+        <lastmod>2011-11-25</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/3-800-sygeplejersker-betaler-topskat-i-2022/</loc>
+        <lastmod>2015-11-17</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0003-danmark-har-de-7-hojeste-offentlige-udgifter-til-forskning-og-udvikling-blandt-oecd-landene/</loc>
+        <lastmod>2025-01-16</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/3-ud-af-43%c2%bd-mio-over-18-ar-modtager-overforselsindkomst/</loc>
+        <lastmod>2017-12-27</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/3f-vildleder-om-overforsler-og-skattetryk/</loc>
+        <lastmod>2019-01-04</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0004-danmark-har-den-9-laveste-ulighed-blandt-oecd-landene/</loc>
+        <lastmod>2026-05-20</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0005-danmark-har-det-9-hojeste-offentlige-forbrug-blandt-oecd-landene/</loc>
+        <lastmod>2026-02-20</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0006-danmark-har-oecds-hojeste-skattetryk-i-2024/</loc>
+        <lastmod>2025-12-18</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/7-000-ikke-vestlige-indvandrere-i-job-ved-at-indfore-en-indslusningslon-pa-70-kr-i-timen/</loc>
+        <lastmod>2015-06-02</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/7-000-indvandrere-i-job-ved-indslusningslon/</loc>
+        <lastmod>2015-06-02</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/8-500-flere-til-administration-efter-kommunalreform/</loc>
+        <lastmod>2010-02-08</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0008-hojere-efterlonsalder-oger-beskaeftigelsen/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0009-hojere-produktivitet-giver-hojere-lon/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/10-000-flere-skal-betale-topskat-de-kommende-ar/</loc>
+        <lastmod>2024-08-30</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0010-kontanthjaelp-hvor-meget-far-man-udbetalt/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0011-konsekvenser-af-at-afskaffe-mellemskat-topskat-og-toptopskat/</loc>
+        <lastmod>2026-02-03</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/11-milliarder-kroner-kan-forsvinde-forbavsende-hurtigt-isaer-nar-man-serverer-dem-for-sultne-politikere/</loc>
+        <lastmod>2024-06-04</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/12-000-kr-ekstra-arligt-til-hver-lo-familie-fra-lokkes-skattelettelser-siden-2015/</loc>
+        <lastmod>2018-10-22</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/12-13-kr-i-manedlig-gevinst-ved-lavtlonsjob-for-person-pa-maksimal-dagpenge/</loc>
+        <lastmod>2015-05-07</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0012-su-til-personer-med-lang-videregaende-uddannelse-mindsker-ikke-uligheden-set-over-hele-livet/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/13-pct-af-vaelgerne-vil-betale-prisen-for-efterlonsordningen/</loc>
+        <lastmod>2008-11-14</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0013-topskatten-har-kun-lille-betydning-for-uligheden/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0014-uligheden-reduceres-med-ca-35-pct-nar-man-ser-pa-livsindkomster/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/15-pct-pensionsfradrag-loser-samspilsproblemer-i-pensionssystemet-1/</loc>
+        <lastmod>2017-05-24</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/15-pct-pensionsfradrag-loser-samspilsproblemer-i-pensionssystemet/</loc>
+        <lastmod>2017-05-24</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0015-velfaerdskoalitionen-overforselsmodtagere-og-offentligt-ansatte-udgor-6-ud-af-10-voksne/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0016-danmark-har-de-8-hojeste-offentlige-udgifter-til-uddannelse-blandt-oecd-landene/</loc>
+        <lastmod>2026-02-20</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0017-hoj-og-uens-beskatning-af-kapitalafkast-i-danmark/</loc>
+        <lastmod>2024-09-11</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/18-000-flere-faglaerte-i-2025-ved-bortfald-af-efterlon/</loc>
+        <lastmod>2016-05-09</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0018-danmark-har-den-3-hojeste-skat-pa-aktieudbytte-blandt-oecd-lande/</loc>
+        <lastmod>2026-02-03</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0020-dagpenge-hoj-kompensationsgrad-ved-ledighed-for-lavtlonnede-i-danmark-sammenlignet-med-oecd-lande/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/20-pct-af-fleksjobberne-kunne-klare-et-job-uden-offentlig-stotte/</loc>
+        <lastmod>2012-06-29</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0021-ikke-videnskabelig-dokumentation-for-dynamiske-effekter-af-offentligt-forbrug/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0022-global-fattigdom-er-reduceret-markant-siden-1990-13-mia-loftet-ud-af-fattigdom/</loc>
+        <lastmod>2025-01-13</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0023-imf-undersogelse-oget-frihandel-giver-hojere-produktivitet/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0024-danskerne-har-et-lavere-privatforbrug-end-vores-velstandsniveau-tilsiger/</loc>
+        <lastmod>2026-08-03</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/25-aars-arbejdsudbudsreformer/</loc>
+        <lastmod>2026-04-08</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0025-efter-indforelse-af-budgetloven-og-sanktionsmekanismen-overholder-kommunerne-budgetterne/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/26-anbefalinger-til-omkostningseffektivt-energiforlig/</loc>
+        <lastmod>2018-02-09</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0026-danskerne-har-lav-samlet-arbejdsindsats-blandt-oecd-lande-trods-hoj-beskaeftigelsesgrad/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0027-top-1-pct-betaler-108-pct-af-alle-skatter-og-afgifter-svarende-til-127-mia-kr/</loc>
+        <lastmod>2026-02-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0028-veldokumenteret-at-lavere-topskat-har-positive-effekter-pa-arbejdsindsats-og-velstand/</loc>
+        <lastmod>2024-09-11</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0029-absolutte-og-relative-fattigdomsgraenser/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/29-millioner-personer-er-enten-pa-overforelsesindkomst-eller-offentligt-ansat/</loc>
+        <lastmod>2013-08-20</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/30-000-personer-i-beskaeftigelse-ved-reduktion-i-dagpengeperiode-til-1-ar/</loc>
+        <lastmod>2007-01-07</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/30-ar-efter-berlinmuren-ideen-om-at-borgerne-tilhorer-staten-stortrives-stadig/</loc>
+        <lastmod>2019-11-11</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0030-reformer-der-oger-vaekst-og-beskaeftigelse-oger-ogsa-uligheden/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0031-kun-1-ud-af-7-med-lav-indkomst-defineres-som-relativt-fattig/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0032-danskerne-har-4-hojeste-produktivitet-og-10-laveste-arbejdsindsats-blandt-oecd-landene/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0033-77-personer-pa-overforselsindkomst-for-hver-100-personer-i-beskaeftigelse/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0035-svagt-incitament-til-at-tage-lavtlonsjob-for-dagpengemodtagere-pa-maksimale-dagpenge/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0036-mediemarkedet-er-i-hastigt-opbrud/</loc>
+        <lastmod>2024-09-11</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0037-mediestotte-dr-modtager-37-mia-kr-6-gange-sa-meget-som-private-aktorer/</loc>
+        <lastmod>2024-09-11</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0038-licens-international-sammenligning/</loc>
+        <lastmod>2024-09-11</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0039-oget-arbejdsudbud-medforer-oget-beskaeftigelse/</loc>
+        <lastmod>2025-01-13</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0040-velstandseffekt-af-forskellige-skattelettelser-topskat-bundskat-beskaeftigelsesfradrag-mv/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0041-beskaeftigelseseffekt-af-forskellige-skattelettelser-topskat-bundskat-beskaeftigelsesfradrag-mv/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0042-top-10-pct-betaler-324-pct-af-alle-skatter-og-afgifter-svarende-til-382-mia-kr/</loc>
+        <lastmod>2026-02-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0043-undervisningseffekten/</loc>
+        <lastmod>2024-12-10</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/44-000-far-forhojet-marginalskatten-som-folge-af-indkomstaftrapningen-af-bornechecken/</loc>
+        <lastmod>2012-08-01</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0044-mange-boligejere-med-dyre-ejendomme-har-lave-indkomster-2/</loc>
+        <lastmod>2024-09-11</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/44-pct-med-en-lang-videregaende-uddannelse-betaler-topskat/</loc>
+        <lastmod>2016-08-15</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0045-kommunepotentiale/</loc>
+        <lastmod>2024-09-11</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0048-4-ud-af-10-vil-betale-topskat-pa-et-tidspunkt-i-livet/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0049-imf-analyse-om-ulighed-og-omfordeling-er-ikke-relevant-for-danmark/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0050-oecd-analyse-af-ulighed-ikke-relevant-for-danmark/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0051-unge-under-30-ar-op-til-8000-kr-ekstra-i-kontanthjaelp-ved-at-blive-erklaeret-ikke-jobparat/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0052-dobbelt-sa-mange-ikke-jobparate-kontanthjaelpsmodtagere-i-darligste-kommune-sammenlignet-med-bedste-kommune/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0053-stor-stigning-i-offentlige-bevillinger-til-forskning-siden-2006/</loc>
+        <lastmod>2026-08-07</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0054-hvad-er-en-marginalskat/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/55-000-flere-ikke-vestlige-indvandrere-i-job-fjerner-negativt-bidrag-pa-offentlige-finanser/</loc>
+        <lastmod>2015-12-11</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/55-000-ikke-vestlige-indvandrere-i-job-fjerner-negativt-bidrag-pa-offentlige-finanser/</loc>
+        <lastmod>2015-12-11</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0055-hvad-er-en-sammensat-marginalskat/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0056-2-mio-danskere-er-pa-overforselsindkomst-naesten-halvdelen-af-de-voksne-danskere/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0058-knap-halvdelen-er-ude-af-den-1-arige-lavindkomstgruppe-efter-1-ar/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0059-danmark-har-det-4-hojeste-niveau-for-udviklingsbistand-blandt-oecd-lande/</loc>
+        <lastmod>2026-08-07</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0060-danmark-har-det-11-storste-beskaeftigelsesgab-for-indvandrere-blandt-oecd-lande/</loc>
+        <lastmod>2025-01-16</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0062-skatteprovenu-fra-boligskatter-er-hojt-i-en-international-sammenligning/</loc>
+        <lastmod>2026-05-20</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0064-robotter-og-anden-ny-teknologi-truer-ikke-beskaeftigelsen/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0065-lille-lonpraemie-ved-at-tage-en-videregaende-uddannelse-i-danmark/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0069-det-offentlige-forbrugs-andel-af-bnp-over-tid/</loc>
+        <lastmod>2025-09-19</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0070-hoj-tillid-skyldes-ikke-velfaerdsstaten/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0071-udviklingen-i-venezuela-og-chile-illustrerer-betydning-af-okonomisk-frihed/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0072-top-1-pct-betaler-108-pct-af-alle-skatter-og-afgifter-i-2024-en-stigning-fra-64-pct-i-1994/</loc>
+        <lastmod>2026-02-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0073-skat-pa-arbejde-er-en-skat-pa-samhandel-mellem-personer/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0074-danmark-har-det-naestmest-progressive-skattesystem-i-oecd/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/74-pct-af-pendlere-takker-nej-til-en-betalingsring/</loc>
+        <lastmod>2011-11-22</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/75-pct-af-stigningen-i-skattetrykket-fra-1970-2001-skyldes-kommuneskatten/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0076-skattestop-standsede-stigning-i-kommuneskatter/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0077-flere-offentligt-ansatte-i-2026-end-i-2010/</loc>
+        <lastmod>2026-08-07</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0081-markant-fald-i-privatforbrugets-andel-af-bnp-over-de-sidste-60-ar/</loc>
+        <lastmod>2025-10-14</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/81-pct-af-danskerne-mener-der-kan-fas-mere-service-for-pengene-i-den-offentlige-sektor/</loc>
+        <lastmod>2008-07-28</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0082-danmark-har-hoj-grad-af-okonomisk-frihed/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0083-lande-med-hoj-grad-af-okonomisk-frihed-har-ogsa-et-hojt-velstandsniveau/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0084-hoj-grad-af-okonomisk-frihed-i-danmark-pa-trods-af-hoje-skatter-og-stor-offentlig-sektor/</loc>
+        <lastmod>2024-12-26</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0085-danmark-havde-skattetryk-pa-25-pct-af-bnp-i-1960-som-i-usa/</loc>
+        <lastmod>2026-04-21</lastmod>
+    </url>
+    <url>
+        <loc>https://cepos.dk/artikler/0087-hoj-okonomisk-frihed-gavner-folk-med-lave-indkomster/</loc>
+    
 ```
 
-## https://cleantechwatch.dk/robots.txt
+## https://www.aau.dk/robots.txt
 
 ```text
-status 200, text/html; charset=utf-8, 207669 bytes, slut-URL https://ctwatch.dk/
-
-<!DOCTYPE html><html data-dpl-id="bf67c25728376762a4bf0f3416cbe1cf63c23b59" class="scrollbar-gutter-stable print:text-[12px]" lang="da" data-sentry-component="RootLayout" data-sentry-source-file="layout.tsx"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/_next/static/chunks/2x6jr1yz29ufz.css?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/3ad3t3orezgi1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59"/><script src="/_next/static/chunks/0ze6-eaiwd3fx.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/0nq-c_k-el6h5.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/2xram0-e1yaqr.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/353zo_our386p.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/2aevbu3_0cguk.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1bmjcrs38oo7u.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/39pvi6m2ls0y5.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/turbopack-2ova0ju2kfu5t.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3sa77iv1nd2k-.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/071cfiddx3ftm.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=
-```
-
-## https://cleantechwatch.dk/rss
-
-```text
-status 200, text/html; charset=utf-8, 207669 bytes, slut-URL https://ctwatch.dk/
-
-<!DOCTYPE html><html data-dpl-id="bf67c25728376762a4bf0f3416cbe1cf63c23b59" class="scrollbar-gutter-stable print:text-[12px]" lang="da" data-sentry-component="RootLayout" data-sentry-source-file="layout.tsx"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/_next/static/chunks/2x6jr1yz29ufz.css?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/3ad3t3orezgi1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59"/><script src="/_next/static/chunks/0ze6-eaiwd3fx.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/0nq-c_k-el6h5.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/2xram0-e1yaqr.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/353zo_our386p.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/2aevbu3_0cguk.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1bmjcrs38oo7u.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/39pvi6m2ls0y5.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/turbopack-2ova0ju2kfu5t.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3sa77iv1nd2k-.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/071cfiddx3ftm.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/05yniq933zizh.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1s4rq870j88p1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><meta name="next-size-adjust" content=""/><script src="/_next/static/chunks/0cz1d0mv5g_q7.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" noModule=""></script></head><body class="bg-white text-black theme-ctwatch.dk font-body"><div hidden=""><!--$?--><template id="B:0"></template><!--/$--></div><!--&--><!--$?--><template id="B:1"></template><!--/$--><!--/&--><script>requestAnimationFrame(function(){$RT=performance.now()});</script><script src="/_next/static/chunks/3ad3t3orezgi1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" id="_R_" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script src="/_next/static/chunks/0cz1d0mv5g_q7.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" noModule=""></script><script src="/_next/static/chunks/3kpj1-estn5p_.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3r2qyamjmmcc1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/2174artl9hpwz.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:I[34021,[\"/_next/static/chunks/3sa77iv1nd2k-.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"default\"]\n3:I[746418,[\"/_next/static/chunks/3sa77iv1nd2k-.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"default\"]\n5:I[965952,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"ServerConfigurationProvider\"]\n6:I[23351,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"HeaderProvider\"]\n7:I[7983,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\
-```
-
-## https://cleantechwatch.dk/
-
-```text
-status 200, text/html; charset=utf-8, 207669 bytes, slut-URL https://ctwatch.dk/
-
-<!DOCTYPE html><html data-dpl-id="bf67c25728376762a4bf0f3416cbe1cf63c23b59" class="scrollbar-gutter-stable print:text-[12px]" lang="da" data-sentry-component="RootLayout" data-sentry-source-file="layout.tsx"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/_next/static/chunks/2x6jr1yz29ufz.css?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/3ad3t3orezgi1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59"/><script src="/_next/static/chunks/0ze6-eaiwd3fx.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/0nq-c_k-el6h5.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/2xram0-e1yaqr.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/353zo_our386p.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/2aevbu3_0cguk.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1bmjcrs38oo7u.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/39pvi6m2ls0y5.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/turbopack-2ova0ju2kfu5t.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3sa77iv1nd2k-.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/071cfiddx3ftm.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/05yniq933zizh.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1s4rq870j88p1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><meta name="next-size-adjust" content=""/><script src="/_next/static/chunks/0cz1d0mv5g_q7.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" noModule=""></script></head><body class="bg-white text-black theme-ctwatch.dk font-body"><div hidden=""><!--$?--><template id="B:0"></template><!--/$--></div><!--&--><!--$?--><template id="B:1"></template><!--/$--><!--/&--><script>requestAnimationFrame(function(){$RT=performance.now()});</script><script src="/_next/static/chunks/3ad3t3orezgi1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" id="_R_" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script src="/_next/static/chunks/0cz1d0mv5g_q7.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" noModule=""></script><script src="/_next/static/chunks/3kpj1-estn5p_.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3r2qyamjmmcc1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/2174artl9hpwz.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:I[34021,[\"/_next/static/chunks/3sa77iv1nd2k-.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"default\"]\n3:I[746418,[\"/_next/static/chunks/3sa77iv1nd2k-.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"default\"]\n5:I[965952,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"ServerConfigurationProvider\"]\n6:I[23351,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"HeaderProvider\"]\n7:I[7983,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"TopAdProviderContainer\"]\n8:I[168471,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"\"]\na:I[34021,[\"/_next/static/chunks/3sa77iv1nd2k-.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"LoadingBoundaryProvider\"]\n10:I[563491,[\"/_next/static/chunks/071cfiddx3ftm.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"default\"]\n1c:I[444962,[\"/_next/static/chunks/3sa77iv1nd2k-.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"OutletBoundary\"]\n1d:\"$Sreact.suspense\"\n20:I[444962,[\"/_next/static/chunks/3sa77iv1nd2k-.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"ViewportBoundary\"]\n22:I[444962,[\"/_next/static/chunks/3sa77iv1nd2k-.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"MetadataBoundary\"]\n24:I[45264,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"TopAd\"]\n25:I[800418,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r"])</script><script>self.__next_f.push([1,"90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"PlatformSwitch\"]\n26:I[738287,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"ShopLinksProvider\"]\n29:I[367858,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/05yniq933zizh.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"default\"]\n2a:I[953894,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjn"])</script><script>self.__next_f.push([1,"el.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"AppConsentButton\"]\n2f:I[948100,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"PreloadResources\"]\n30:I[662313,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"WebviewProvider\"]\n32:I[654102,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"SiteConfigurationProvider\"]\n33:I[76312,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"SiteProvider\"]\n35:I[625476,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"AuthenticationProvider\"]\n37:I[279083,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"ChronologyProvider\"]\n38:I[722672,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"FeatureFlagsProvider\"]\n3a:I[862931,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"TopLoader\"]\n3b:I[161227,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"Kilkaya\"]\n3e:I[683709,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25"])</script><script>self.__next_f.push([1,"728376762a4bf0f3416cbe1cf63c23b59\"],\"FacebookPixel\"]\n3f:I[947019,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"GoogleAdsRemarketing\"]\n40:I[791456,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"AppBridgeScripts\"]\n41:I[910790,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"SnowplowContainer\"]\n43:I[177610,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1s4rq870j88p1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"default\"]\n45:I[606593,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"NavigationProvider\"]\n46:I[854120,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"StickyHeaderShell\"]\n47:I[105559,[\"/"])</script><script>self.__next_f.push([1,"_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"Translation\"]\n48:I[583429,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"Link\"]\n49:I[945021,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"FrontPageLink\"]\n56:I[572627,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks"])</script><script>self.__next_f.push([1,"/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"UserLabel\"]\n57:I[332969,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"ToolbarMenuButtonToggleMenu\"]\n58:I[123961,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"NavigationLinkItem\"]\n59:I[89242,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/"])</script><script>self.__next_f.push([1,"chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"DesktopToolbar\"]\n5d:I[340467,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"MegaMenu\"]\n66:I[526454,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"EmailLink\"]\n70:I[973309,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3udsbis5ermzs.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"ObservedBoundary\"]\n71:I[245120,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b5"])</script><script>self.__next_f.push([1,"9\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"Carousel\"]\n72:I[460660,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"CarouselPrevious\"]\n73:I[353766,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"CarouselContent\"]\n74:I[822644,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_ne"])</script><script>self.__next_f.push([1,"xt/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1t7uryl37mx1b.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/246fjzi5l_ma0.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\"],\"RelativePublicationDateTime\"]\n8e:I[460660,[\"/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59\",\"/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c
-```
-
-## https://energiwatch.dk/rss
-
-```text
-status 200, text/html; charset=utf-8, 107875 bytes, slut-URL https://energiwatch.dk/rss
-
-<!DOCTYPE html><html data-dpl-id="bf67c25728376762a4bf0f3416cbe1cf63c23b59" class="scrollbar-gutter-stable print:text-[12px]" lang="da" data-sentry-component="RootLayout" data-sentry-source-file="layout.tsx"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/_next/static/chunks/2x6jr1yz29ufz.css?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/3ad3t3orezgi1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59"/><script src="/_next/static/chunks/0ze6-eaiwd3fx.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/0nq-c_k-el6h5.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/2xram0-e1yaqr.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/353zo_our386p.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/2aevbu3_0cguk.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1bmjcrs38oo7u.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/39pvi6m2ls0y5.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/turbopack-2ova0ju2kfu5t.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3sa77iv1nd2k-.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3cfjspsmmu8du.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/0sa4jhq25eb-x.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1r90k4r6nbr73.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/0cfc_njlzm_j3.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1bvj7on-s5exu.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/071cfiddx3ftm.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/0o7616xcyd-o1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/39uttpesiqzv4.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3l_yc_6apm25q.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/3h11rg9e6sx78.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1nygxdysjjnel.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/27anf6c35oyyv.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/242e9b3z_aa2c.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/05yniq933zizh.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/1s4rq870j88p1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><script src="/_next/static/chunks/2huzi3-296c2m.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" async=""></script><meta name="next-size-adjust" content=""/><script src="/_next/static/chunks/0cz1d0mv5g_q7.js?dpl=bf67c25728376762a4bf0f3416cbe1cf63c23b59" noModule=""></script></head><body class="bg-white text-black theme-energiwatch.dk font-body"><div hidden=""><!--$?--><template id="B:0"></template><!--/$--></div><!--&--><!--$?--><template id="B:1"></template><!--/$--><!--/&--><script>requestAnimationFrame(function(){$RT=performance.now()});</script><script src="/_next/static/chunks/3ad3t3orezgi1.js?dpl=bf67c25728376762a4bf0f3416cbe1cf6
-```
-
-## https://www.aau.dk/nyheder/rss
-
-```text
-status 404, text/html; charset=utf-8, 839 bytes, slut-URL https://www.aau.dk/nyheder/rss
-
-<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" as="font" type="font/woff2" href="/fonts/Barlow/Barlow-400.woff2" crossorigin="anonymous"/><link rel="preload" as="font" type="font/woff2" href="/fonts/Barlow/Barlow-500.woff2" crossorigin="anonymous"/><link rel="preload" as="font" type="font/woff2" href="/fonts/Barlow/Barlow-600.woff2" crossorigin="anonymous"/><link rel="preload" as="font" type="font/woff2" href="/fonts/Barlow/Barlow-700.woff2" crossorigin="anonymous"/><link rel="preload" as="font" type="font/woff2" href="/fonts/Barlow/Barlow-800.woff2" crossorigin="anonymous"/><link rel="preload" as="font" type="font/woff2" href="/fonts/Barlow/Barlow-900.woff2" crossorigin="anonymous"/><link rel="preload" as="font" type="font/woff2" href="/fonts/Montserrat/Montserrat.woff2" crossorigin="anonymous"/><link rel="preload" href="/_next/static/css/4be42b603d912279.css" as="style"/><link rel="stylesheet" href="/_next/static/css/4be42b603d912279.css" data-n-g=""/><link rel="preload" href="/_next/static/css/2e8a8311dadc3703.css" as="style"/><link rel="stylesheet" href="/_next/static/css/2e8a8311dadc3703.css" data-n-p=""/><link rel="preload" href="/_next/static/css/2eb4b52d6a12e832.css" as="style"/><link rel="stylesheet" href="/_next/static/css/2eb4b52d6a12e832.css" data-n-p=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script id="CookieConsent" src="https://policy.app.cookieinformation.com/uc.js" type="text/javascript" defer="" data-nscript="beforeInteractive"></script><script src="/_next/static/chunks/webpack-65ba086bdc9361b5.js" defer=""></script><script src="/_next/static/chunks/framework-b0ec748c7a4c483a.js" defer=""></script><script src="/_next/static/chunks/main-6f119220507e615f.js" defer=""></script><script src="/_next/static/chunks/pages/_app-d92543688bed41d0.js" defer=""></script><script src="/_next/static/chunks/7013-f2380881e1e9bd63.js" defer=""></script><script src="/_next/static/chunks/8558-23f0f0c4a0e6d893.js" defer=""></script><script src="/_next/static/chunks/5383-15c9ffa267310c28.js" defer=""></script><script src="/_next/static/chunks/7663-fb3416badc21c229.js" defer=""></script><script src="/_next/static/chunks/pages/404-41664f97d222267c.js" defer=""></script><script src="/_next/static/jFRk8QjRvBbOsH3nsZp0E/_buildManifest.js" defer=""></script><script src="/_next/static/jFRk8QjRvBbOsH3nsZp0E/_ssgManifest.js" defer=""></script></head><body class="notranslate"><div id="__next"><div class=""></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/404","query":{},"buildId":"jFRk8QjRvBbOsH3nsZp0E","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
-```
-
-## https://www.cbs.dk/rss
-
-```text
-status 404, text/html; charset=UTF-8, 62557 bytes, slut-URL https://www.cbs.dk/rss
-
-<!DOCTYPE html>
-<html lang="da" dir="ltr" prefix="og: https://ogp.me/ns#" style="--domain: 'https://www.cbs.dk'">
-  <head>
-    <meta charset="utf-8" />
-<meta name="description" content="Beklager! Du har ramt et link der ikke virker længere. Brug menuen og søgefeltet ovenfor eller prøv et af nedenstående links. Vi håber, at du finder hvad du søger." />
-<link rel="canonical" href="https://www.cbs.dk/siden-blev-ikke-fundet-404" />
-<meta name="business_teams" content="Corporate" />
-<meta name="node_id" content="5226" />
-<meta property="og:site_name" content="CBS - Copenhagen Business School" />
-<meta property="og:type" content="Section page" />
-<meta property="og:url" content="https://www.cbs.dk/rss" />
-<meta property="og:title" content="Siden blev ikke fundet (404)" />
-<meta property="og:description" content="Beklager! Du har ramt et link der ikke virker længere. Brug menuen og søgefeltet ovenfor eller prøv et af nedenstående links. Vi håber, at du finder hvad du søger." />
-<meta name="google-site-verification" content="HBEcBL6R2b7YvbYP7rQoehRSAXgbAwS7yELfcp1XCAA" />
-<link rel="alternate" hreflang="x-default" href="https://www.cbs.dk/siden-blev-ikke-fundet-404" />
-<meta name="MobileOptimized" content="width" />
-<meta name="HandheldFriendly" content="true" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script type="application/ld+json">{
-    "@context": "https://schema.org",
-    "@graph": [
-        {
-            "@type": "CollegeOrUniversity",
-            "@id": "https://www.cbs.dk/#organization",
-            "name": "CBS",
-            "sameAs": [
-                "https://ror.org/04sppb023",
-                "https://www.wikidata.org/wiki/Q703620",
-                "https://en.wikipedia.org/wiki/Copenhagen_Business_School",
-                "https://www.linkedin.com/school/copenhagen-business-school/",
-                "https://www.facebook.com/CopenhagenBusinessSchool/",
-                "https://www.instagram.com/cbscph"
-            ],
-            "url": "https://www.cbs.dk",
-            "telephone": "+45 3815 3815",
-            "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+45 3815 3815",
-                "email": "cbs@cbs.dk",
-                "availableLanguage": [
-                    "English",
-                    "Danish"
-                ],
-                "contactType": "customer service"
-            },
-            "alternateName": "Copenhagen Business School",
-            "identifier": {
-                "@type": "PropertyValue",
-                "propertyID": "CVR",
-                "value": "19596915"
-            },
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://www.cbs.dk/themes/custom/campus/assets/svg/svg-sprite.svg?v=14#CBS-logo",
-                "width": "600",
-                "height": "60"
-            },
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Solbjerg Plads 3",
-                "addressLocality": "Frederiksberg",
-                "postalCode": "2000",
-                "addressCountry": "Danmark"
-            }
-        },
-        {
-            "@type": "WebPage",
-            "breadcrumb": {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                    {
-                        "@type": "ListItem",
-                        "position": 1,
-                        "name": "Hjem",
-                        "item": "https://www.cbs.dk/"
-                    }
-                ]
-            }
-        }
-    ]
-}</script>
-<link rel="icon" href="/themes/custom/campus/favicon.ico" type="image/vnd.microsoft.icon" />
-<link rel="alternate" hreflang="da" href="https://www.cbs.dk/siden-blev-ikke-fundet-404" />
-<link rel="alternate" hreflang="en" href="https://www.cbs.dk/en/page-not-found-404" />
-
-
-        <link rel="preload" href="/themes/custom/campus/assets/fonts/CBSDKNew/CBSDKNew-bold.woff2" as="font" type="font/woff2"
-```
-
-## https://www.cepos.dk/feed/
-
-```text
-status 404, text/html;charset=utf-8, 15546 bytes, slut-URL https://cepos.dk/feed/
-
-<!DOCTYPE html><html  lang="da" class="scroll-smooth"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Siden blev ikke fundet...</title><style>h1[data-v-968180cb],h2[data-v-968180cb],h3[data-v-968180cb],h4[data-v-968180cb],h5[data-v-968180cb],h6[data-v-968180cb]{overflow-wrap:break-word}</style><link rel="stylesheet" href="/_nuxt/entry.BkA1pGyB.css" crossorigin><link rel="modulepreload" as="script" crossorigin href="/_nuxt/B0lzI-Sa.js"><script type="module" src="/_nuxt/B0lzI-Sa.js" crossorigin></script><link rel="prefetch" as="script" crossorigin href="/_nuxt/Bsbzwyu8.js"><link rel="prefetch" as="script" crossorigin href="/_nuxt/rUQwQkUc.js"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"><meta hid="robots" name="robots" content="noindex, nofollow, max-image-preview:none, max-snippet:-1, max-video-preview:-1"><meta hid="og:title" property="og:title" content="Siden blev ikke fundet..."><meta hid="og:locale" property="og:locale" content="da_DK"><meta hid="og:site_name" property="og:site_name" content="CEPOS"><meta hid="twitter:card" name="twitter:card" content="summary_large_image"><meta hid="twitter:title" name="twitter:title" content="Siden blev ikke fundet..."><meta name="google-site-verification" content="crZmNrL77BinCXbudntTVEEC8d8sprU16-BJnILtygI"><meta name="csrf-token" content="IsVrOYdZnvi2j3TGO9uPVg==:g7FrXwUxUlnTJJmvrrg3VgFj1YNQd7lGFv7KTXl1xKYqndJqKasIHBrXZ4YdOFmB"></head><body  class="h-dvh overflow-x-hidden text-black text-base md:text-[18px] font-neoris bg-light-brown antialiased"><div id="__nuxt"><div id="mainLayout" class="relative"><!--[--><header class="bg-white !text-black text-black translate-y-0 transition-all duration-500 h-[4.444rem] w-full text-white absolute top-0 left-0 z-[100]"><div class="h-full w-full bg-transparent z-50 relative border-b border-transparent transition-border"><div class="container h-full"><div class="flex flex-row justify-between w-full h-full items-center"><div class="flex flex-row"><a href="/" class="block" rel="home"><span class="sr-only">CEPOS logo</span><svg class="h-[25px] w-[110px]" viewbox="0 0 110 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_410_10612)"><path d="M87.2267 12.4673C87.2343 10.8996 87.0844 9.34785 86.7031 7.82252C86.3463 6.39807 85.8027 5.0726 84.8996 3.9517C83.9623 2.78932 82.7982 2.05305 81.4093 1.75044C79.9445 1.43086 78.4864 1.48459 77.0567 1.95595C75.1612 2.58098 73.8188 3.93285 72.9336 5.8494C72.2809 7.26349 71.9479 8.77656 71.8047 10.3462C71.7383 11.0759 71.7032 11.7377 71.7089 12.4664V12.3976C71.7041 13.1263 71.7373 13.8569 71.8047 14.5866C71.9479 16.1562 72.2809 17.6693 72.9336 19.0834C73.8178 20.9999 75.1612 22.3518 77.0567 22.9768C78.4873 23.4482 79.9445 23.5019 81.4093 23.1823C82.7973 22.8797 83.9623 22.1434 84.8996 20.9811C85.8027 19.8611 86.3463 18.5347 86.7031 17.1102C87.0854 15.5849 87.2353 14.0332 87.2267 12.4654V12.4673ZM79.5015 24.7963C78.178 24.7963 76.8508 24.586 75.5264 24.1656C73.5664 23.5434 71.8597 22.4659 70.4518 20.9622C68.6711 19.0598 67.6162 16.7822 67.3154 14.1916C67.2481 13.608 67.2139 13.0273 67.2149 12.4673C67.2139 11.9064 67.2471 11.3266 67.3154 10.7431C67.6162 8.15248 68.6721 5.87391 70.4518 3.97244C71.8587 2.4688 73.5664 1.39126 75.5264 0.769064C78.3023 -0.112382 81.0943 -0.0690169 83.8247 0.896332C85.7496 1.57698 87.3728 2.67525 88.6507 4.1591C90.7085 6.55079 91.7416 9.34597 91.7217 12.4673C91.7416 15.5877 90.7085 18.3829 88.6507 20.7746C87.3738 22.2594 85.7496 23.3567 83.8247 24.0374C82.3969 24.5427 80.952 24.7953 79.5005 24.7953L79.5015 24.7963Z" fill="currentColor"></path><path d="M55.5762 11.6458C55.5762 11.6458 56.0487 11.6458 56.5372 11.6449C57.02
-```
-
-## https://www.cepos.dk/robots.txt
-
-```text
-status 200, text/plain, 64 bytes, slut-URL https://cepos.dk/robots.txt
+status 200, text/plain; charset=UTF-8, 22 bytes, slut-URL https://www.aau.dk/robots.txt
 
 User-agent: *
-Disallow:
+Allow: /
+```
 
-Sitemap: https://cepos.dk/sitemap.xml
+## https://www.cbs.dk/robots.txt
+
+```text
+status 200, text/plain; charset=UTF-8, 1683 bytes, slut-URL https://www.cbs.dk/robots.txt
+
+User-agent: *
+# CSS, JS, Images
+Allow: /core/*.css$
+Allow: /core/*.css?
+Allow: /core/*.js$
+Allow: /core/*.js?
+Allow: /core/*.gif
+Allow: /core/*.jpg
+Allow: /core/*.jpeg
+Allow: /core/*.png
+Allow: /core/*.svg
+Allow: /profiles/*.css$
+Allow: /profiles/*.css?
+Allow: /profiles/*.js$
+Allow: /profiles/*.js?
+Allow: /profiles/*.gif
+Allow: /profiles/*.jpg
+Allow: /profiles/*.jpeg
+Allow: /profiles/*.png
+Allow: /profiles/*.svg
+# Directories
+Disallow: /core/
+Disallow: /profiles/
+# Files
+Disallow: /README.md
+Disallow: /composer/Metapackage/README.txt
+Disallow: /composer/Plugin/ProjectMessage/README.md
+Disallow: /composer/Plugin/Scaffold/README.md
+Disallow: /composer/Plugin/VendorHardening/README.txt
+Disallow: /composer/Template/README.txt
+Disallow: /modules/README.txt
+Disallow: /sites/README.txt
+Disallow: /themes/README.txt
+Disallow: /web.config
+# Paths (clean URLs)
+Disallow: /admin/
+Disallow: /comment/reply/
+Disallow: /filter/tips
+Disallow: /node/add/
+Disallow: /search/
+Disallow: /user/register
+Disallow: /user/password
+Disallow: /user/login
+Disallow: /user/logout
+Disallow: /media/oembed
+Disallow: /*/media/oembed
+Disallow: /?query=
+Disallow: /?keywords=
+# Paths (no clean URLs)
+Disallow: /index.php/admin/
+Disallow: /index.php/comment/reply/
+Disallow: /index.php/filter/tips
+Disallow: /index.php/node/add/
+Disallow: /index.php/search/
+Disallow: /index.php/user/password
+Disallow: /index.php/user/register
+Disallow: /index.php/user/login
+Disallow: /index.php/user/logout
+Disallow: /index.php/media/oembed
+Disallow: /index.php/*/media/oembed
+Sitemap: https://www.cbs.dk/en/sitemap.xml
+Sitemap: https://www.cbs.dk/sitemap.xml
+```
+
+## https://www.itu.dk/robots.txt
+
+```text
+status 200, text/plain; charset=utf-8, 147 bytes, slut-URL https://www.itu.dk/robots.txt
+
+
+   User-agent: AhrefsBot
+   Disallow: /
+
+   User-agent: *
+   Disallow: /docadm/
+   Disallow: /kommunikation/
+   Disallow: /sitecore/
+     
 ```
 
