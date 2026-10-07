@@ -557,15 +557,18 @@ function setupFeed(feed, state, now, lastVisit) {
     let also = null;
     if (others.length) {
       const fresh = others.filter((o) => o.isNew).length;
-      // Fra samme kilde (fx Folketingets dagsbundt): "+4 flere"; ellers "+4 andre kilder"
-      const same = others.every((o) => o.sourceId === m.sourceId);
-      const noun = same ? (others.length === 1 ? 'mere' : 'flere') : (others.length === 1 ? 'anden kilde' : 'andre kilder');
+      const ids = others.map((o) => o.sourceId);
+      // "+4 andre kilder" kun, når de øvrige er fra hver sin anden kilde; ellers "+4 flere" (fx Folketingets dagsbundt)
+      const distinct = !ids.includes(m.sourceId) && new Set(ids).size === ids.length;
+      // Samme kilde og dag som kortet: afsenderlinjen og tiden står allerede øverst, så kun titlerne vises
+      const bare = others.every((o) => o.sourceId === m.sourceId && o.day.dayNum === headDay);
+      const noun = distinct ? (others.length === 1 ? 'anden kilde' : 'andre kilder') : (others.length === 1 ? 'mere' : 'flere');
       also = el('details', { class: 'also' },
         el('summary', null,
           `+${others.length} ${noun}${fresh ? `, ${fresh} ${fresh === 1 ? 'ny' : 'nye'}` : ''}`,
           icon('pil-ned')),
-        el('ul', null, others.map((o) => el('li', { class: 'cat', style: catStyle(o.cat) },
-          el('div', { class: 'meta' }, who(o, { genre: false, review: false }), timeEl(o, group, headDay)),
+        el('ul', { class: bare ? 'bare' : null }, others.map((o) => el('li', { class: 'cat', style: catStyle(o.cat) },
+          bare ? null : el('div', { class: 'meta' }, who(o, { genre: false, review: false }), timeEl(o, group, headDay)),
           el('p', { class: 'mtitle' }, o.isNew ? hidden('Ny: ') : null, titleLink(o))))));
     }
 
