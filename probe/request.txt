@@ -1,7 +1,3 @@
-# Sitemaps for kilder uden RSS (opgave 5)
-url https://ctwatch.dk/robots.txt 4
-url https://ctwatch.dk/sitemap.xml 20
-url https://cepos.dk/sitemap.xml 20
-url https://www.aau.dk/robots.txt 4
-url https://www.cbs.dk/robots.txt 4
-url https://www.itu.dk/robots.txt 4
+# CleanTech Watch: hele robots.txt og ai.txt
+url https://ctwatch.dk/robots.txt 14
+url https://ctwatch.dk/ai.txt 6
