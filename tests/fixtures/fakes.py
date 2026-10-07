@@ -38,6 +38,7 @@ def make_fetcher_class(routes: dict[str, str | int | Path | bytes | tuple] | Non
 
     class FakeFetcher:
         calls: list[tuple[str, bool]] = []
+        accepts: list[tuple[str, str | None]] = []  # (url, accept) pr. kald
         statuses: list[tuple[str, int]] = []  # (url, status) for svar uden fejl (200 eller 304)
         instances: list = []
         routes = table
@@ -58,8 +59,9 @@ def make_fetcher_class(routes: dict[str, str | int | Path | bytes | tuple] | Non
         def allowed(self, url):
             return True
 
-        def get(self, url, conditional=True, max_bytes=None):
+        def get(self, url, conditional=True, max_bytes=None, accept=None):
             FakeFetcher.calls.append((url, conditional))
+            FakeFetcher.accepts.append((url, accept))
             target = table.get(url)
             if target is None:
                 for prefix, t in table.items():

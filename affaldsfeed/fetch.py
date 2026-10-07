@@ -232,8 +232,13 @@ class Fetcher:
                 raise TimeoutError(BUDGET_EXHAUSTED)
         return bytes(buf)
 
-    def get(self, url: str, conditional: bool = True, max_bytes: int | None = None) -> FetchResult:
-        """Hent url. max_bytes er loftet over svaret (standard fetch.max_response_mb)."""
+    def get(
+        self, url: str, conditional: bool = True, max_bytes: int | None = None, accept: str | None = None
+    ) -> FetchResult:
+        """Hent url. max_bytes er loftet over svaret (standard fetch.max_response_mb).
+
+        accept erstatter sessionens Accept-header (feeds først), fx "application/json" til ODA.
+        """
         host = _netloc(url)
         if host in self._blocked_hosts:
             return self._fail(url, 0, f"springes over: {self._blocked_hosts[host]}")
@@ -246,7 +251,7 @@ class Fetcher:
                 return self._fail(url, 0, f"springes over: {self._blocked_hosts[host]}")
             return self._fail(url, 0, ROBOTS_BLOCKED)
 
-        headers: dict[str, str] = {}
+        headers: dict[str, str] = {"Accept": accept} if accept else {}
         cached = self.http_cache.get(url) if conditional else None
         if isinstance(cached, dict):
             if cached.get("etag"):

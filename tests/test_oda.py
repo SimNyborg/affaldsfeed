@@ -154,6 +154,7 @@ def test_collect_follows_next_link_and_maps_documents(ctx):
     calls = [u for u, _ in type(fetcher).calls]
     assert calls[0].startswith(FIRST) and calls[1] == NEXT
     assert all(conditional is False for _, conditional in type(fetcher).calls)
+    assert all(accept == "application/json" for _, accept in type(fetcher).accepts)  # ellers svarer ODA med Atom
     by_url = {e.url: e for e in res.entries}
     assert set(by_url) == {
         "https://www.ft.dk/samling/20252/almdel/beu/spm/240/3195008.pdf",
@@ -187,7 +188,9 @@ def test_collect_stops_at_max_pages(ctx):
 def test_collect_errors(ctx):
     src = _source(ctx)
     assert COLLECTORS["oda"](src, _fetcher({FIRST: 503}), ctx).error == "ODA: HTTP 503"
-    assert COLLECTORS["oda"](src, _fetcher({FIRST: (b"<html>", "text/html")}), ctx).error == "ODA svarede ikke med gyldig JSON"
+    assert COLLECTORS["oda"](src, _fetcher({FIRST: (b"<feed/>", "application/atom+xml")}), ctx).error == (
+        "ODA svarede ikke med gyldig JSON (application/atom+xml)"
+    )
     assert COLLECTORS["oda"](src, _fetcher({FIRST: (b'{"fejl": 1}', JSON)}), ctx).error == "ODA-svaret mangler value"
     # Fejler en senere side, beholdes den første, og kilden fejler ikke
     res = COLLECTORS["oda"](src, _fetcher({FIRST: ("oda/side1.json", JSON), NEXT: 500}), ctx)

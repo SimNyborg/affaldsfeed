@@ -134,7 +134,8 @@ def collect(source: Source, fetcher: Fetcher, ctx: CollectContext) -> CollectRes
     skipped: dict[str, int] = {}
     total = pages = 0
     while url and pages < cfg.max_pages:
-        res = fetcher.get(url, conditional=False)
+        # ODA svarer med Atom, når Accept foretrækker XML (sessionens standard); derfor JSON eksplicit
+        res = fetcher.get(url, conditional=False, accept="application/json")
         result.http_status = res.status or result.http_status
         if res.error:
             log.warning("%s: %s", source.id, res.error)
@@ -144,7 +145,8 @@ def collect(source: Source, fetcher: Fetcher, ctx: CollectContext) -> CollectRes
         try:
             data = json.loads(res.content or b"")
         except ValueError:
-            result.error = None if pages else "ODA svarede ikke med gyldig JSON"
+            ctype = {k.lower(): v for k, v in res.headers.items()}.get("content-type", "ukendt")
+            result.error = None if pages else f"ODA svarede ikke med gyldig JSON ({ctype})"
             break
         docs = data.get("value") if isinstance(data, dict) else None
         if not isinstance(docs, list):

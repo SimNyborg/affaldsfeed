@@ -268,6 +268,14 @@ def test_fetcher_conditional_get_and_cache_update():
     assert http_cache["https://x.dk/rss"] == {"etag": '"def"'}
 
 
+def test_fetcher_accept_overrides_the_session_default():
+    f = _real_fetcher({"https://x.dk/robots.txt": [_resp(404)], "https://x.dk/api": [_resp(200, "{}")]})
+    f.get("https://x.dk/api", conditional=False, accept="application/json")
+    assert f.session.calls[-1][1]["Accept"] == "application/json"
+    f.get("https://x.dk/api", conditional=False)
+    assert "Accept" not in f.session.calls[-1][1]  # sessionens standard (feeds først) gælder
+
+
 def test_fetcher_retries_once_on_5xx_and_timeout():
     f = _real_fetcher({"https://x.dk/robots.txt": [_resp(404)], "https://x.dk/rss": [_resp(502), _resp(200, "ok")]})
     assert f.get("https://x.dk/rss").ok
