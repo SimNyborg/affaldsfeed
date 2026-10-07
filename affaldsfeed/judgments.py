@@ -133,13 +133,18 @@ def last_scheduled_run(now: datetime, routine: RoutineSettings) -> datetime | No
 
 
 def display_mode(now: datetime, heartbeat: Heartbeat | None, routine: RoutineSettings) -> str:
-    """Tilstand "claude" eller "fallback". Fallback når heartbeat mangler eller last_run < S - grace_hours."""
+    """Tilstand "claude" eller "fallback".
+
+    En planlagt kørsel regnes først som misset, når grace_hours er gået siden dens tidspunkt.
+    S* = seneste planlagte kørsel <= now - grace_hours. Fallback når heartbeat mangler eller
+    last_run < S*. Så skifter feedet ikke til fallback hver morgen, før kl. 06:25-kørslen er nået.
+    """
     if heartbeat is None:
         return "fallback"
-    slot = last_scheduled_run(now, routine)
+    slot = last_scheduled_run(ensure_utc(now) - timedelta(hours=routine.grace_hours), routine)
     if slot is None:
         return "claude"
-    if ensure_utc(heartbeat.last_run) < slot - timedelta(hours=routine.grace_hours):
+    if ensure_utc(heartbeat.last_run) < slot:
         return "fallback"
     return "claude"
 
@@ -228,8 +233,26 @@ def build_pending(
     }
 
 
+def compact_json(obj: Any) -> str:
+    """Kompakt men læsbar JSON til Claude: én linje pr. topnøgle og pr. listeelement."""
+
+    def one(v: Any) -> str:
+        return json.dumps(v, ensure_ascii=False, separators=(",", ":"))
+
+    if not isinstance(obj, dict):
+        return one(obj)
+    parts: list[str] = []
+    for k, v in obj.items():
+        if isinstance(v, list) and v and isinstance(v[0], dict):
+            body = ",\n  ".join(one(x) for x in v)
+            parts.append(f"{one(k)}:[\n  {body}\n]")
+        else:
+            parts.append(f"{one(k)}:{one(v)}")
+    return "{\n" + ",\n".join(parts) + "\n}"
+
+
 def print_json(obj: Any) -> None:
-    print(json.dumps(obj, ensure_ascii=False, indent=1))
+    print(compact_json(obj))
 
 
 def main_pending(args: argparse.Namespace) -> int:
@@ -335,9 +358,10 @@ def main_validate(args: argparse.Namespace) -> int:
     file_arg = getattr(args, "file", None)
     if file_arg:
         p = Path(file_arg)
-        files = [p if p.is_absolute() else (Path.cwd() / p)]
+        # Relative stier regnes fra repoets rod (som export --out), ellers fra cwd
+        files = [p if p.is_absolute() else (paths.ROOT / p)]
         if not files[0].exists() and not p.is_absolute():
-            files = [paths.ROOT / p]
+            files = [Path.cwd() / p]
     else:
         files = judgment_files()
     errors, count = validate_lines(files, candidates, info, known_ids)

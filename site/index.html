@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    // Valgt tema sættes før første maling (undgår blink)
+    try {
+      var t = localStorage.getItem('af.theme');
+      if (t === 'light' || t === 'dark') {
+        document.documentElement.dataset.theme = t;
+        document.querySelector('meta[name="color-scheme"]').content = t;
+      }
+    } catch (e) {}
+  </script>
+  <title>Affaldsfeed: nyheder om affald</title>
+  <meta name="description" content="Nyheder om affaldsområdet i Danmark fra kommuner, myndigheder, medier, organisationer og forskning. Nyeste øverst, med link til den oprindelige kilde.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='4' width='18' height='2.6' rx='1.3' fill='%230A602D'/%3E%3Crect x='9.5' y='2' width='5' height='2.6' rx='1.1' fill='%230A602D'/%3E%3Cpath d='M4.6 8h14.8l-1.5 12.2A2 2 0 0 1 15.9 22H8.1a2 2 0 0 1-2-1.8z' fill='%230A602D'/%3E%3Cpath d='M8.4 11.6h7.2M8.4 14.9h5.4M8.4 18.2h6.3' stroke='%23fff' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
+  <link rel="stylesheet" href="assets/style.css">
+  <script type="module" src="assets/app.js"></script>
+</head>
+<body data-page="feed">
+  <a class="skip-link visually-hidden" href="#indhold">Gå til feedet</a>
+
+  <header class="site-header">
+    <div class="inner">
+      <div class="brand">
+        <a href="./" data-internal>
+          <svg class="logo" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#logo"></use></svg>Affaldsfeed
+        </a>
+        <p class="subtitle" id="subtitle">Nyheder om affald</p>
+      </div>
+      <div class="header-tools">
+        <nav class="site-nav" aria-label="Sider">
+          <ul>
+            <li><a href="./" aria-current="page" data-internal>Feed</a></li>
+            <li><a href="kilder.html" data-internal>Om kilderne</a></li>
+          </ul>
+        </nav>
+        <button type="button" class="theme-btn" id="theme-btn">Tema</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar-slot" aria-label="Filtre"></aside>
+
+    <main class="main" id="indhold" tabindex="-1">
+      <h1 class="visually-hidden">Affaldsfeed: nyheder om affald</h1>
+
+      <div class="bars" id="bars" hidden></div>
+
+      <div class="panel intro" id="intro" hidden>
+        <p>Nyheder om affald fra kommuner, myndigheder, medier, organisationer og forskning. Nyeste øverst. Brug filtrene til at vælge afsender, tema eller kilde.</p>
+        <button type="button" class="icon-btn" id="intro-close" aria-label="Luk introduktionen">
+          <svg class="i" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#luk"></use></svg>
+        </button>
+      </div>
+
+      <section class="panel overview" id="overview" aria-label="Overblik" hidden></section>
+
+      <div class="toolbar" id="toolbar">
+        <div class="toolbar-row">
+          <button type="button" class="btn filter-btn" id="filter-btn" aria-haspopup="dialog" aria-controls="filter-sheet">
+            <svg class="i" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#filter"></use></svg>Filtrér<span id="filter-count"></span>
+          </button>
+          <ul class="active-chips" id="active-filters" aria-label="Aktive filtre" hidden></ul>
+          <button type="button" class="btn-text" id="reset-top" hidden>Nulstil filtre</button>
+        </div>
+        <div class="status" id="status" tabindex="-1">
+          <span id="status-text" aria-live="polite"></span>
+          <button type="button" class="btn-text" id="status-action" hidden></button>
+        </div>
+      </div>
+
+      <div class="feed" id="feed">
+        <p class="loading">Henter feedet …</p>
+      </div>
+      <div class="more-wrap" id="more-wrap"></div>
+    </main>
+  </div>
+
+  <dialog class="sheet" id="filter-sheet" closedby="any" aria-labelledby="sheet-title">
+    <div class="sheet-head">
+      <h2 id="sheet-title">Filtrér</h2>
+      <button type="button" class="icon-btn" id="sheet-close" aria-label="Luk filtre">
+        <svg class="i" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#luk"></use></svg>
+      </button>
+    </div>
+    <div class="sheet-body" id="sheet-body"></div>
+    <div class="sheet-foot">
+      <button type="button" class="btn btn-primary" id="sheet-show">Vis indslag</button>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <p>Uafhængigt hobbyprojekt. Ikke tilknyttet affaldsviden.info. Alle overskrifter linker til den oprindelige kilde.</p>
+      <p><a href="https://github.com/SimNyborg/affaldsfeed">Koden på GitHub</a></p>
+    </div>
+  </footer>
+</body>
+</html>

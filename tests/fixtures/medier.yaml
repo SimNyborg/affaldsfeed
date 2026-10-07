@@ -1,0 +1,12 @@
+# Troværdige udgivere, der kun findes via søgning (testudgave).
+- id: tv2
+  name: TV 2
+  category: nyhedsmedie
+  domains: [tv2.dk]
+  basis: redaktionelt
+
+- id: tv2-ostjylland
+  name: TV2 Østjylland
+  category: nyhedsmedie
+  domains: [www.tv2ostjylland.dk]
+  basis: redaktionelt

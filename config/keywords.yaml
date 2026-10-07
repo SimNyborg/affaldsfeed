@@ -5,7 +5,8 @@ strong:      # 4 point i titel, 2 i teaser
        "skraldebil*", "skrald", "producentansvar*", "*forbrændingsanlæg*", "affaldsforbrænding*",
        "deponi*", "*emballageaffald*", "pant", "pantsystem*", "retursystem*", "sorteringsanlæg*",
        "madaffald*", "bioaffald*", "tekstilaffald*", "byggeaffald*", "genvinding*", "affaldssortering*",
-       "genbrugsstation*", "direkte genbrug", "cirkulær økonomi", "affaldsgebyr*", "affaldsplan*"]
+       "genbrugsstation*", "direkte genbrug", "cirkulær økonomi", "affaldsgebyr*", "affaldsplan*",
+       "emballagegebyr*"]
   en: ["waste", "recycl*", "landfill*", "incinerat*", "extended producer responsibility", "EPR", "PPWR",
        "packaging waste", "circular economy"]
   sv: ["avfall*", "återvinn*"]
@@ -13,7 +14,7 @@ names:       # tæller som stærkt ord i titlen
   ["ARC", "ARGO", "AffaldPlus", "Vestforbrænding", "Kredsløb", "Nordværk", "Renosyd", "REFA",
    "Dansk Retursystem", "VANA", "DAKOFA", "Genvindingsindustrien", "Dansk Affaldsforening",
    "Affaldsplus", "Amager Bakke", "Amager Ressourcecenter", "Reno Djurs", "Fors", "Norfors"]
-weak:        # 1 point, højst 2 i alt og kun sammen med et andet hit
+weak:        # 1 point, højst 2 i alt; tæller kun sammen med et andet hit eller når ordet står i titlen
   da: ["cirkulær*", "ressource*", "*emballage*", "plast*", "tekstil*", "biogas*", "co2-fangst",
        "nedrivning*", "PFAS", "batteri*", "genbrug*", "sortering*"]
   en: ["circular*", "packaging", "plastic*", "textile*"]
@@ -22,5 +23,5 @@ veto:        # tjekkes i titlen og vinder altid
    "stillingsopslag", "vi søger", "jobopslag", "personalenyt", "webinar*", "tilmeld*",
    "politisk skraldespand", "historiens skraldespand", "pantebrev*", "pantsæt*", "Nordic Waste"]
 service:     # kun kategori kommunal: driftsbeskeder til borgere
-  ["forsinket tømning", "ændret tømning", "tømningsdag*", "helligdag*", "åbningstid*", "lukket i dag",
+  ["forsinket tømning", "ændret tømning", "tømningsdag*", "helligdag*", "åbningstid*", "lukket i dag", "holder lukket",
    "husk at stille", "juletræsindsamling*", "affaldskalender*", "driftsforstyrrelse*", "vejarbejde*"]

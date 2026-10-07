@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0" xmlns:News="https://www.bing.com:443/news/search?q=affald&amp;format=rss&amp;setlang=da&amp;cc=DK">
+  <channel>
+    <title>affald - BingNews</title>
+    <link>https://www.bing.com:443/news/search?q=affald&amp;format=rss&amp;setlang=da&amp;cc=DK</link>
+    <description>Search results</description>
+    <image>
+      <url>http://www.bing.com/s/a/bing_p.ico</url>
+      <title>affald</title>
+      <link>https://www.bing.com:443/news/search?q=affald&amp;format=rss&amp;setlang=da&amp;cc=DK</link>
+    </image>
+    <copyright>Testdata.</copyright>
+    <item>
+      <title>Nye affaldsregler får stik modsat effekt</title>
+      <link>http://www.bing.com/news/apiclick.aspx?ref=FexRss&amp;aid=&amp;tid=68E4A1B2C3D4E5F6&amp;url=https%3a%2f%2fnyheder.tv2.dk%2fsamfund%2f2026-10-06-nye-affaldsregler-faar-stik-modsat-effekt&amp;c=1234567890123456789&amp;mkt=da-dk</link>
+      <description>Kommunerne advarer om, at de nye regler for affaldssortering kan give mere restaffald.</description>
+      <pubDate>Tue, 06 Oct 2026 14:23:00 GMT</pubDate>
+      <News:Source>TV 2</News:Source>
+      <News:Image>http://www.bing.com/th?id=ON.ABCDEF&amp;pid=News</News:Image>
+      <News:ImageMaxWidth>700</News:ImageMaxWidth>
+    </item>
+    <item>
+      <title>Kommuner skal sortere mere affald</title>
+      <link>http://www.bing.com/news/apiclick.aspx?ref=FexRss&amp;aid=&amp;tid=68E4A1B2C3D4E5F7&amp;url=https%3a%2f%2fwww.dr.dk%2fnyheder%2findland%2fkommuner-skal-sortere-mere-affald&amp;c=1234567890123456780&amp;mkt=da-dk</link>
+      <description>Et nyt krav betyder, at kommunerne skal indsamle flere fraktioner af affald.</description>
+      <pubDate>Wed, 07 Oct 2026 05:15:00 GMT</pubDate>
+      <News:Source>DR</News:Source>
+    </item>
+    <item>
+      <title>Nyt genbrugscenter åbner i Aarhus</title>
+      <link>http://www.bing.com/news/apiclick.aspx?ref=FexRss&amp;aid=&amp;tid=68E4A1B2C3D4E5F9&amp;url=https%3a%2f%2fwww.tv2ostjylland.dk%2faarhus%2fnyt-genbrugscenter&amp;c=2&amp;mkt=da-dk</link>
+      <description>Det nye genbrugscenter skal gøre det lettere at aflevere storskrald.</description>
+      <pubDate>Tue, 06 Oct 2026 15:30:00 GMT</pubDate>
+      <News:Source>TV2 Østjylland</News:Source>
+    </item>
+    <item>
+      <title>Ukendt blog skriver om skraldespande</title>
+      <link>http://www.bing.com/news/apiclick.aspx?ref=FexRss&amp;aid=&amp;tid=68E4A1B2C3D4E5F8&amp;url=https%3a%2f%2fwww.ukendtblog.dk%2fskraldespande&amp;c=1&amp;mkt=da-dk</link>
+      <description>Om skraldespande og affald.</description>
+      <pubDate>Tue, 06 Oct 2026 10:00:00 GMT</pubDate>
+      <News:Source>Ukendt Blog</News:Source>
+    </item>
+    <item>
+      <title>Kendt skuespiller køber villa i Hellerup</title>
+      <link>http://www.bing.com/news/apiclick.aspx?ref=FexRss&amp;aid=&amp;tid=68E4A1B2C3D4E5FA&amp;url=https%3a%2f%2fwww.sladder.dk%2fvilla&amp;c=3&amp;mkt=da-dk</link>
+      <description>Huset har ti værelser og egen strand.</description>
+      <pubDate>Tue, 06 Oct 2026 09:00:00 GMT</pubDate>
+      <News:Source>Sladder</News:Source>
+    </item>
+  </channel>
+</rss>

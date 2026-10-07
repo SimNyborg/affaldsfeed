@@ -120,12 +120,12 @@ Søgekilder (`method: search`) har `category: nyhedsmedie` (ignoreres ved visnin
 
 ### 5.3 Søgning (`collect/search.py`)
 - Google News: `https://news.google.com/rss/search?q={q}+when:{when}&hl=da&gl=DK&ceid=DK:da`. Udgiver fra `<source url="…">Navn</source>` (feedparser: `entry.source.href`/`entry.source.title`). Titlen har halen `" - Udgiver"`, som fjernes. Linket er en Google-redirect; prøv base64-afkodning af `/articles/<id>`; ellers beholdes linket.
-- Bing News: `https://www.bing.com/news/search?q={q}&format=rss&setlang=da&cc=DK`. URL fra `url`-parameteren i `apiclick.aspx`. Udgiver fra `News:Source`.
+- Bing News: `https://www.bing.com/news/search?q={q}&format=rss&setlang=da-DK&cc=DK&qft=sortbydate%3d%221%22` (uden `sortbydate` og med `setlang=da` giver Bing 0 resultater for OR-forespørgsler). URL fra `url`-parameteren i `apiclick.aspx`. Udgiver fra `News:Source`.
 - Udgiver → afsender: værtsnavn (uden `www.`) matches mod `homepage`-vært og `domains` i `sources.yaml` (status aktiv) og derefter `medier.yaml`. Match → `RawEntry.source_id = <id>`. Intet match → skrives til `data/state/kildeforslag.json` (`{domain: {name, count, last_seen, examples: [url ≤3]}}`), ikke kandidat. `data/state/kildeforslag.md` genereres fra JSON'en (top 50 efter count).
-- Søgeresultater, hvis normaliserede titel + udgiver allerede findes blandt kandidater fra de sidste 7 dage, springes over.
+- Søgeresultater, hvis normaliserede titel + udgiver allerede findes blandt kandidater fra de sidste 7 dage, springes over. Det samme gælder feedindslag med en normaliseret titel på mindst 4 ord (samme artikel i flere sektionsfeeds med hver sin URL).
 
 ### 5.4 Forfilter (`relevance.py: prefilter`) → `Why`
-Score: 4 pr. stærkt ord/navn i titel; 2 pr. forskelligt stærkt ord i teaser (max 6); 1 pr. svagt ord (max 2, kun sammen med et andet hit). Veto i titel → `afvist`. Service (kun kategori `kommunal`) → `afvist`.
+Score: 4 pr. stærkt ord/navn i titel; 2 pr. forskelligt stærkt ord i teaser (max 6); 1 pr. svagt ord (max 2, kun sammen med et andet hit, eller når et svagt ord står i titlen — så giver et svagt titelord alene `graa` ved `normal`). Veto i titel → `afvist`. Service (kun kategori `kommunal`) → `afvist`.
 
 | filter | kandidat (`vis`) | kandidat (`graa`) | `afvist` |
 |---|---|---|---|
@@ -136,7 +136,7 @@ Score: 4 pr. stærkt ord/navn i titel; 2 pr. forskelligt stærkt ord i teaser (m
 `vis` og `graa` gemmes som kandidater (Claude vurderer begge). `afvist` gemmes i `data/rejected/`. `Why = {filter, score, decision: "vis"|"graa"|"afvist", hits: ["titel: affaldsgebyr", …], reason: str|None}`.
 
 ### 5.5 Datoregler
-published: feedets published → updated → (sideudtræk, fase 2) → ellers `first_seen` med `date_quality="fundet"`. Dato > 2 t i fremtiden → `first_seen`, `date_quality="fundet"`. Indslag ældre end 14 dage ved fund → afvist med reason `"for gammel"`. Første kørsel for en kilde (ingen state): indslag fra sidste 14 dage gemmes med `baseline: true`; udaterede springes over.
+published: feedets published → updated → (sideudtræk, fase 2) → ellers `first_seen` med `date_quality="fundet"`. Dato > 2 t i fremtiden → `first_seen`, `date_quality="fundet"`. Indslag ældre end 14 dage ved fund → afvist med reason `"for gammel"`. Første kørsel for en kilde (ingen state): indslag fra de sidste `settings.baseline_days` dage (60, samme som `window_days`, så feedet er fyldt fra start) gemmes med `baseline: true`; udaterede springes over.
 
 ## 6. Data på disk
 
@@ -172,7 +172,7 @@ Skrivning er atomisk (skriv `.tmp`, `os.replace`). Filer ændres kun, når indho
 - `pending` udskriver: `{"now": ISO, "profile": "<relevansprofil.md>", "topics": [{id,name,definition}], "genres": [{id,label}], "pending": [{id,url,title,teaser,source_name,category,lang,published,rule_topics,rule_genre,prefilter:{decision,score,hits}}], "recent_approved": [{id,title,source_name,published}]}`. `pending` = kandidater uden vurdering, `first_seen` inden for `--hours`, ikke fra kilder med `ai: false`, nyeste først, maks `--max`. `recent_approved` = godkendte fra sidste 72 t (til `story_hint`).
 
 ### 6.3 Fallback (judgments.py: `display_mode(now, heartbeat, settings) -> "claude"|"fallback"`)
-Rutinen kører kl. `settings.routine.minute` i timerne `settings.routine.hours` (København). Seneste planlagte kørsel `S` = seneste tidspunkt ≤ now på formen HH:MM i vinduet. Tilstand er `fallback`, når heartbeat mangler, eller `last_run < S - settings.routine.grace_hours` (standard 2). Ellers `claude`.
+Rutinen kører kl. `settings.routine.minute` i timerne `settings.routine.hours` (København). En planlagt kørsel regnes først som misset, når `settings.routine.grace_hours` (standard 2) er gået siden dens tidspunkt: `S*` = seneste tidspunkt ≤ `now - grace_hours` på formen HH:MM i vinduet. Tilstand er `fallback`, når heartbeat mangler, eller `last_run < S*`. Ellers `claude`.
 - `claude`: vis kandidater med `relevant: true`-vurdering; skjul `relevant: false`; uvurderede vises ikke (venter).
 - `fallback`: som `claude`, men uvurderede kandidater med `why.decision == "vis"` vises også med `reviewed: false`.
 - Kilder med `ai: false` vurderes altid af regler: vises når `why.decision == "vis"`, `reviewed: false`.

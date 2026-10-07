@@ -98,8 +98,15 @@ def test_score_teaser_capped_at_six():
     assert score == 6
 
 
-def test_weak_alone_gives_nothing(mini_keywords):
-    score, hits, _ = Prefilter(mini_keywords).score("Ny plan for plast", "")
+def test_weak_alone_in_title_gives_one(mini_keywords):
+    score, hits, title_hit = Prefilter(mini_keywords).score("Ny plan for plast", "")
+    assert score == 1
+    assert hits == ["svag: plast*"]
+    assert not title_hit
+
+
+def test_weak_alone_in_teaser_gives_nothing(mini_keywords):
+    score, hits, _ = Prefilter(mini_keywords).score("Ny plan", "Om plast i havet")
     assert score == 0
     assert hits == ["svag: plast*"]
 

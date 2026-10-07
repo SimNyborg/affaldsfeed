@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>DR Indland</title>
+    <link>https://www.dr.dk/nyheder/indland</link>
+    <description>Nyheder fra DR</description>
+    <item>
+      <title>Kommuner skal sortere mere affald</title>
+      <link>https://www.dr.dk/nyheder/indland/kommuner-skal-sortere-mere-affald</link>
+      <description>Et nyt krav betyder, at kommunerne skal indsamle flere fraktioner.</description>
+      <pubDate>Wed, 07 Oct 2026 07:10:00 +0200</pubDate>
+    </item>
+    <item>
+      <title>Regeringen vil sænke skatten</title>
+      <link>https://www.dr.dk/nyheder/politik/skat</link>
+      <description>Finansministeren fremlægger forslag.</description>
+      <pubDate>Wed, 07 Oct 2026 06:00:00 +0200</pubDate>
+    </item>
+  </channel>
+</rss>

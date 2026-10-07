@@ -1,0 +1,95 @@
+# Lille kilderegister til test af config, indsamling og pipeline.
+- id: google-news
+  name: Google News (søgning)
+  category: nyhedsmedie
+  homepage: https://news.google.com
+  method: search
+  feeds: "https://news.google.com/rss/search?q={q}+when:2d&hl=da&gl=DK&ceid=DK:da"
+  filter: normal
+  every: 2
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-07
+
+- id: bing-news
+  name: Bing News (søgning)
+  category: nyhedsmedie
+  homepage: https://www.bing.com/news
+  method: search
+  feeds: "https://www.bing.com/news/search?q={q}&format=rss&setlang=da&cc=DK"
+  filter: normal
+  every: 2
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-07
+
+- id: testmedie
+  name: Testmedie
+  category: nyhedsmedie
+  homepage: https://www.testmedie.dk
+  feeds: https://www.testmedie.dk/rss
+  filter: normal
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-07
+
+- id: dr
+  name: DR
+  category: nyhedsmedie
+  homepage: https://www.dr.dk/nyheder
+  feeds: https://www.dr.dk/nyheder/service/feeds/indland
+  filter: strict
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-07
+
+- id: testorg
+  name: Testorganisationen
+  category: organisation
+  homepage: https://testorg.dk
+  feeds:
+    - https://testorg.dk/atom.xml
+    - https://testorg.dk/ekstra.xml
+  filter: none
+  basis: organisation
+  status: aktiv
+  checked: 2026-10-07
+
+- id: affaldsselskab
+  name: Affaldsselskabet
+  category: kommunal
+  homepage: https://www.affaldsselskab.dk
+  feeds: https://www.affaldsselskab.dk/rss
+  filter: none
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-07
+
+- id: udateret
+  name: Udateret Kommune
+  category: kommunal
+  homepage: https://udateret.dk
+  feeds: https://udateret.dk/rss
+  filter: normal
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-07
+
+- id: ventende
+  name: Ventende sitemap-kilde
+  category: myndighed
+  homepage: https://ventende.dk
+  method: sitemap
+  feeds: https://ventende.dk/sitemap.xml
+  match: "/nyheder/"
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-07
+
+- id: planlagt
+  name: Planlagt kilde
+  category: organisation
+  homepage: https://planlagt.dk
+  method: html
+  feeds: https://planlagt.dk/nyheder
+  status: planlagt

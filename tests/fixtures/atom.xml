@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="da">
+  <title>Testorganisationen</title>
+  <link href="https://testorg.dk/" rel="alternate"/>
+  <link href="https://testorg.dk/atom.xml" rel="self"/>
+  <id>urn:uuid:60a76c80-d399-11d9-b93c-0003939e0af6</id>
+  <updated>2026-10-07T06:00:00Z</updated>
+  <entry>
+    <title>Høring over ny affaldsbekendtgørelse</title>
+    <link href="https://testorg.dk/nyheder/hoering-affaldsbekendtgoerelse" rel="alternate"/>
+    <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a</id>
+    <published>2026-10-06T08:15:00+02:00</published>
+    <updated>2026-10-06T09:00:00+02:00</updated>
+    <summary type="html">&lt;p&gt;Miljøministeriet sender udkast til &lt;b&gt;affaldsbekendtgørelse&lt;/b&gt; i høring.&lt;/p&gt;</summary>
+    <category term="Høring"/>
+  </entry>
+  <entry>
+    <title>Årsrapport om tekstilindsamling</title>
+    <link href="https://testorg.dk/publikationer/tekstil-2026" rel="alternate"/>
+    <id>urn:uuid:1225c695-cfb8-4ebb-bbbb-80da344efa6b</id>
+    <updated>2026-10-05T12:00:00Z</updated>
+    <summary>Ny rapport om indsamling af tekstiler i kommunerne.</summary>
+  </entry>
+  <entry>
+    <title>Medlemsmøde i november</title>
+    <link href="https://testorg.dk/nyheder/medlemsmoede" rel="alternate"/>
+    <id>urn:uuid:1225c695-cfb8-4ebb-cccc-80da344efa6c</id>
+    <updated>2026-10-04T12:00:00Z</updated>
+    <summary>Vi holder medlemsmøde.</summary>
+  </entry>
+</feed>

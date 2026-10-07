@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Udateret kilde</title>
+    <link>https://udateret.dk/</link>
+    <description>Et feed uden datoer</description>
+    <item>
+      <title>Affaldsplan for 2027 er vedtaget</title>
+      <link>https://udateret.dk/nyheder/affaldsplan-2027</link>
+      <description>Byrådet har vedtaget den nye affaldsplan.</description>
+    </item>
+    <item>
+      <title>Genbrugspladsen får ny indgang for erhverv</title>
+      <link>https://udateret.dk/nyheder/genbrugsplads-erhverv</link>
+      <description>Erhvervskunder skal bruge en ny indgang.</description>
+    </item>
+  </channel>
+</rss>

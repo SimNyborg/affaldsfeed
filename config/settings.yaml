@@ -16,7 +16,7 @@ routine:
 
 window_days: 60                  # så langt tilbage feed.json rækker
 max_age_days_on_find: 14         # ældre indslag afvises, når de findes
-baseline_days: 14                # første kørsel for en kilde: gem 14 dage som baseline
+baseline_days: 60                # første kørsel for en kilde: gem hele vinduet (window_days) som baseline
 teaser_max: 300
 teaser_display_max: 240
 rejected_keep_days: 90

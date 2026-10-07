@@ -115,7 +115,9 @@ def test_last_scheduled_run(now, slot):
         ("2026-10-07T07:26:00Z", "2026-10-07T10:00:00Z", "claude"),  # 09:26 >= 11:25 - 2 t
         ("2026-10-07T07:20:00Z", "2026-10-07T10:00:00Z", "fallback"),  # over 2 t forsinket
         ("2026-10-06T21:30:00Z", "2026-10-07T01:00:00Z", "claude"),  # nat: venter til 06:25
-        ("2026-10-06T21:30:00Z", "2026-10-07T05:00:00Z", "fallback"),  # 07:00, kørslen 06:25 mangler
+        ("2026-10-06T21:30:00Z", "2026-10-07T04:30:00Z", "claude"),  # 06:30, kørslen 06:25 er lige startet
+        ("2026-10-06T21:30:00Z", "2026-10-07T05:00:00Z", "claude"),  # 07:00, 06:25 er under 2 t forsinket
+        ("2026-10-06T21:30:00Z", "2026-10-07T06:30:00Z", "fallback"),  # 08:30, kørslen 06:25 mangler
     ],
 )
 def test_display_mode(last_run, now, mode):

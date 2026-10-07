@@ -1,0 +1,68 @@
+# Genudgiv sitet, når Claude-routinen skubber vurderinger/overblik, eller når site, config
+# eller kilder ændres. Se docs/KONTRAKTER.md §10.
+name: Udgiv
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/judgments/**"
+      - "data/overview/**"
+      - "site/**"
+      - "config/**"
+      - "sources.yaml"
+      - "examples/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # Seneste main (ikke det udløsende commit), så en ventende kørsel ikke deployer ældre data
+      - name: Hent repo
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Opsæt Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Installér afhængigheder
+        run: pip install -r requirements.txt
+
+      - name: Byg site
+        run: python -m affaldsfeed export --out _site
+
+      - name: Konfigurér Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy til GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

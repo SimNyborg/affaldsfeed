@@ -31,7 +31,7 @@
   category: nyhedsmedie
   homepage: https://www.bing.com/news
   method: search
-  feeds: "https://www.bing.com/news/search?q={q}&format=rss&setlang=da&cc=DK"
+  feeds: "https://www.bing.com/news/search?q={q}&format=rss&setlang=da-DK&cc=DK&qft=sortbydate%3d%221%22"
   filter: normal
   every: 2
   basis: redaktionelt

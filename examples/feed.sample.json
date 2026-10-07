@@ -1,0 +1,2096 @@
+{
+ "version": 1,
+ "generated": "2026-10-07T12:40:30Z",
+ "window_days": 60,
+ "mode": "claude",
+ "last_judgment": "2026-10-07T12:39:30Z",
+ "categories": [
+  {
+   "id": "nyhedsmedie",
+   "name": "Nyhedsmedie",
+   "short": "Nyhedsmedie",
+   "color": "#1F5FA8",
+   "color_dark": "#6FA8E8",
+   "icon": "avis",
+   "help": "Lands-, regional- og lokalmedier samt Ritzau-telegrammer med redaktionelt ansvar."
+  },
+  {
+   "id": "fagmedie",
+   "name": "Fagmedie",
+   "short": "Fagmedie",
+   "color": "#0E7C86",
+   "color_dark": "#3CC3C3",
+   "icon": "tidsskrift",
+   "help": "Fagblade og sektionsmedier om kommuner, forsyning, byggeri og emballage."
+  },
+  {
+   "id": "myndighed",
+   "name": "Myndighed og Folketing",
+   "short": "Myndighed",
+   "color": "#6A3D9A",
+   "color_dark": "#B38AD9",
+   "icon": "soejle",
+   "help": "Ministerier, styrelser, tilsyn, råd, nævn, Høringsportalen og Folketinget."
+  },
+  {
+   "id": "kommunal",
+   "name": "Kommune og affaldsselskab",
+   "short": "Kommunal",
+   "color": "#0A602D",
+   "color_dark": "#5FC487",
+   "icon": "raadhus",
+   "help": "Kommuner og kommunalt ejede affalds-, forbrændings- og forsyningsselskaber."
+  },
+  {
+   "id": "organisation",
+   "name": "Organisation og branche",
+   "short": "Organisation",
+   "color": "#B35C00",
+   "color_dark": "#F0A048",
+   "icon": "personer",
+   "help": "Interesse- og brancheorganisationer. Afsenderen varetager medlemmernes interesser."
+  },
+  {
+   "id": "taenketank",
+   "name": "Tænketank og NGO",
+   "short": "Tænketank/NGO",
+   "color": "#B8336A",
+   "color_dark": "#E57AA6",
+   "icon": "paere",
+   "help": "Tænketanke og grønne organisationer, der arbejder for bestemte løsninger."
+  },
+  {
+   "id": "forskning",
+   "name": "Forskning og universitet",
+   "short": "Forskning",
+   "color": "#7A5C12",
+   "color_dark": "#CDB05A",
+   "icon": "kolbe",
+   "help": "Universiteter, sektorforskning og godkendte teknologiske serviceinstitutter."
+  },
+  {
+   "id": "eu_norden",
+   "name": "EU og Norden",
+   "short": "EU/Norden",
+   "color": "#3B4A9C",
+   "color_dark": "#A3A8E0",
+   "icon": "stjerner",
+   "help": "EU-institutioner og europæiske eller nordiske organisationer."
+  }
+ ],
+ "topics": [
+  {
+   "id": "sortering",
+   "name": "Sortering og indsamling",
+   "definition": "Hvordan husholdninger og virksomheder sorterer, og hvordan affaldet hentes."
+  },
+  {
+   "id": "genbrugspladser",
+   "name": "Genbrugspladser, genbrug og forebyggelse",
+   "definition": "Genbrugspladser, storskrald, direkte genbrug og forebyggelse af affald."
+  },
+  {
+   "id": "gebyrer",
+   "name": "Gebyrer og økonomi",
+   "definition": "Affaldsgebyrer, takster, prisregulering og benchmarking."
+  },
+  {
+   "id": "udbud",
+   "name": "Udbud, selskaber og organisering",
+   "definition": "Udbud, liberalisering, selskabsstruktur og fusioner."
+  },
+  {
+   "id": "forbraending",
+   "name": "Forbrænding og energi",
+   "definition": "Forbrændingsanlæg, kapacitet, affaldsimport og affaldsvarme."
+  },
+  {
+   "id": "klima",
+   "name": "Klima, CO2-afgift og CCS",
+   "definition": "CO2-afgift, kvoter og CO2-fangst ved affaldsbehandling."
+  },
+  {
+   "id": "genanvendelse",
+   "name": "Genanvendelse og afsætning",
+   "definition": "Sorteringsanlæg, plastgenanvendelse, eksport og afsætning af materialer."
+  },
+  {
+   "id": "producentansvar",
+   "name": "Producentansvar, emballage og pant",
+   "definition": "Udvidet producentansvar, emballage, pant og de kollektive ordninger."
+  },
+  {
+   "id": "bioaffald",
+   "name": "Mad- og bioaffald",
+   "definition": "Madaffald, madspild, biogas og kompost."
+  },
+  {
+   "id": "tekstiler",
+   "name": "Tekstiler",
+   "definition": "Indsamling, sortering og genanvendelse af tekstiler."
+  },
+  {
+   "id": "byg_farligt",
+   "name": "Byggeaffald, jord og farligt affald",
+   "definition": "Bygge- og nedrivningsaffald, deponi, jord og farligt affald inklusive el og batterier."
+  },
+  {
+   "id": "arbejdsmiljoe",
+   "name": "Arbejdsmiljø og renovatører",
+   "definition": "Skraldemænds arbejdsforhold, ulykker og overenskomster."
+  },
+  {
+   "id": "regler",
+   "name": "Lovgivning, politik og EU",
+   "definition": "Love, bekendtgørelser, høringer, EU-regulering og politiske aftaler."
+  }
+ ],
+ "genres": [
+  {
+   "id": "nyhed",
+   "label": ""
+  },
+  {
+   "id": "debat",
+   "label": "DEBAT"
+  },
+  {
+   "id": "pressemeddelelse",
+   "label": "PRESSEMEDDELELSE"
+  },
+  {
+   "id": "analyse",
+   "label": "ANALYSE OG RAPPORT"
+  },
+  {
+   "id": "hoering",
+   "label": "HØRING OG REGLER"
+  },
+  {
+   "id": "folketing",
+   "label": "FOLKETINGSSAG"
+  }
+ ],
+ "sources": [
+  {
+   "id": "avisen",
+   "name": "Avisen.dk (Ritzau)",
+   "category": "nyhedsmedie",
+   "homepage": "https://www.avisen.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "berlingske",
+   "name": "Berlingske",
+   "category": "nyhedsmedie",
+   "homepage": "https://www.berlingske.dk",
+   "lang": "da",
+   "paywall": "delvis",
+   "owner": null,
+   "status": "aktiv",
+   "health": "gul",
+   "via_search": false
+  },
+  {
+   "id": "dr-nyheder",
+   "name": "DR Nyheder",
+   "category": "nyhedsmedie",
+   "homepage": "https://www.dr.dk/nyheder",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "tv2-regionerne",
+   "name": "TV 2-regionerne",
+   "category": "nyhedsmedie",
+   "homepage": "https://www.tv2nord.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "ingenioeren",
+   "name": "Ingeniøren",
+   "category": "nyhedsmedie",
+   "homepage": "https://ing.dk",
+   "lang": "da",
+   "paywall": "delvis",
+   "owner": "Teknologiens Mediehus",
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "politiken",
+   "name": "Politiken",
+   "category": "nyhedsmedie",
+   "homepage": "https://politiken.dk",
+   "lang": "da",
+   "paywall": "ja",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "borsen",
+   "name": "Børsen",
+   "category": "nyhedsmedie",
+   "homepage": "https://borsen.dk",
+   "lang": "da",
+   "paywall": "ja",
+   "owner": null,
+   "status": "aktiv",
+   "health": "graa",
+   "via_search": false
+  },
+  {
+   "id": "altinget",
+   "name": "Altinget",
+   "category": "fagmedie",
+   "homepage": "https://www.altinget.dk",
+   "lang": "da",
+   "paywall": "delvis",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "kommunen",
+   "name": "Kommunen.dk",
+   "category": "fagmedie",
+   "homepage": "https://www.kommunen.dk",
+   "lang": "da",
+   "paywall": "delvis",
+   "owner": "DK Medier",
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "dagens-byggeri",
+   "name": "Dagens Byggeri",
+   "category": "fagmedie",
+   "homepage": "https://dagensbyggeri.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "emballagefokus",
+   "name": "EmballageFOKUS",
+   "category": "fagmedie",
+   "homepage": "https://www.emballagefokus.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "tekniskfokus",
+   "name": "TekniskFOKUS",
+   "category": "fagmedie",
+   "homepage": "https://www.tekniskfokus.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "energy-supply",
+   "name": "Energy Supply",
+   "category": "fagmedie",
+   "homepage": "https://www.energy-supply.dk",
+   "lang": "da",
+   "paywall": "delvis",
+   "owner": null,
+   "status": "aktiv",
+   "health": "gul",
+   "via_search": false
+  },
+  {
+   "id": "danske-kommuner",
+   "name": "Danske Kommuner",
+   "category": "fagmedie",
+   "homepage": "https://danskekommuner.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": "KL",
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "teknik-og-miljoe",
+   "name": "Teknik & Miljø",
+   "category": "fagmedie",
+   "homepage": "https://www.dkteknikogmiljoe.dk",
+   "lang": "da",
+   "paywall": "delvis",
+   "owner": "DK Medier",
+   "status": "aktiv",
+   "health": "graa",
+   "via_search": false
+  },
+  {
+   "id": "kefm",
+   "name": "Klima-, Energi- og Forsyningsministeriet",
+   "category": "myndighed",
+   "homepage": "https://www.kefm.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "hoeringsportalen",
+   "name": "Høringsportalen",
+   "category": "myndighed",
+   "homepage": "https://hoeringsportalen.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "klimaraadet",
+   "name": "Klimarådet",
+   "category": "myndighed",
+   "homepage": "https://klimaraadet.dk/da",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "arc",
+   "name": "ARC (Amager Ressourcecenter)",
+   "category": "kommunal",
+   "homepage": "https://www.a-r-c.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "argo",
+   "name": "ARGO",
+   "category": "kommunal",
+   "homepage": "https://argo.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "affaldplus",
+   "name": "AffaldPlus",
+   "category": "kommunal",
+   "homepage": "https://www.affaldplus.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "renosyd",
+   "name": "Renosyd",
+   "category": "kommunal",
+   "homepage": "https://renosyd.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "refa",
+   "name": "REFA",
+   "category": "kommunal",
+   "homepage": "https://www.refa.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "gul",
+   "via_search": false
+  },
+  {
+   "id": "sonfor",
+   "name": "SONFOR (Sønderborg Forsyning)",
+   "category": "kommunal",
+   "homepage": "https://sonfor.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "hofor",
+   "name": "HOFOR",
+   "category": "kommunal",
+   "homepage": "https://www.hofor.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "dansk-retursystem",
+   "name": "Dansk Retursystem",
+   "category": "organisation",
+   "homepage": "https://danskretursystem.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "plastindustrien",
+   "name": "Plastindustrien",
+   "category": "organisation",
+   "homepage": "https://plast.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "dansk-fjernvarme",
+   "name": "Dansk Fjernvarme",
+   "category": "organisation",
+   "homepage": "https://danskfjernvarme.dk",
+   "lang": "da",
+   "paywall": "delvis",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "biogas-danmark",
+   "name": "Biogas Danmark",
+   "category": "organisation",
+   "homepage": "https://www.biogas.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "gate-21",
+   "name": "Gate 21",
+   "category": "organisation",
+   "homepage": "https://www.gate21.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "danske-regioner",
+   "name": "Danske Regioner",
+   "category": "organisation",
+   "homepage": "https://www.regioner.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "rgo",
+   "name": "Rådet for Grøn Omstilling",
+   "category": "taenketank",
+   "homepage": "https://rgo.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "kraka",
+   "name": "Kraka",
+   "category": "taenketank",
+   "homepage": "https://kraka.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "ku",
+   "name": "Københavns Universitet",
+   "category": "forskning",
+   "homepage": "https://nyheder.ku.dk",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "au",
+   "name": "Aarhus Universitet",
+   "category": "forskning",
+   "homepage": "https://www.au.dk/nyheder",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "dg-env",
+   "name": "EU-Kommissionen, DG ENV",
+   "category": "eu_norden",
+   "homepage": "https://environment.ec.europa.eu",
+   "lang": "en",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "eea",
+   "name": "Det Europæiske Miljøagentur (EEA)",
+   "category": "eu_norden",
+   "homepage": "https://www.eea.europa.eu",
+   "lang": "en",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "ep-envi",
+   "name": "Europa-Parlamentet, ENVI-udvalget",
+   "category": "eu_norden",
+   "homepage": "https://www.europarl.europa.eu/committees/en/envi",
+   "lang": "en",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "nordisk-ministerraad",
+   "name": "Nordisk Ministerråd",
+   "category": "eu_norden",
+   "homepage": "https://www.norden.org/da",
+   "lang": "da",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "zero-waste-europe",
+   "name": "Zero Waste Europe",
+   "category": "eu_norden",
+   "homepage": "https://zerowasteeurope.eu",
+   "lang": "en",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "iswa",
+   "name": "ISWA",
+   "category": "eu_norden",
+   "homepage": "https://www.iswa.org",
+   "lang": "en",
+   "paywall": "delvis",
+   "owner": null,
+   "status": "aktiv",
+   "health": "roed",
+   "via_search": false
+  },
+  {
+   "id": "eeb",
+   "name": "European Environmental Bureau (EEB)",
+   "category": "eu_norden",
+   "homepage": "https://eeb.org",
+   "lang": "en",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "cewep",
+   "name": "CEWEP",
+   "category": "eu_norden",
+   "homepage": "https://cewep.eu",
+   "lang": "en",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "expra",
+   "name": "EXPRA",
+   "category": "eu_norden",
+   "homepage": "https://expra.eu",
+   "lang": "en",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "avfall-sverige",
+   "name": "Avfall Sverige",
+   "category": "eu_norden",
+   "homepage": "https://www.avfallsverige.se",
+   "lang": "sv",
+   "paywall": "nej",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": false
+  },
+  {
+   "id": "fyens",
+   "name": "Fyens Stiftstidende",
+   "category": "nyhedsmedie",
+   "homepage": "https://fyens.dk",
+   "lang": "da",
+   "paywall": "ja",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": true
+  },
+  {
+   "id": "jv",
+   "name": "JydskeVestkysten",
+   "category": "nyhedsmedie",
+   "homepage": "https://jv.dk",
+   "lang": "da",
+   "paywall": "ja",
+   "owner": null,
+   "status": "aktiv",
+   "health": "groen",
+   "via_search": true
+  }
+ ],
+ "overview": {
+  "dag": {
+   "period": "dag",
+   "window": {
+    "start": "2026-10-06T22:00:00Z",
+    "end": "2026-10-07T12:26:10Z"
+   },
+   "generated": "2026-10-07T12:26:10Z",
+   "since": null,
+   "headline": "Kort sagt: Et flertal i Folketinget er enige om en fælles model for affaldsgebyrer, og indsamlingen af tekstiler breder sig.",
+   "bullets": [
+    {
+     "text": "Regeringen og et flertal i Folketinget har aftalt en fælles model for affaldsgebyrer fra 2028. Ifølge KL kræver modellen nye it-systemer i kommunerne.",
+     "item_ids": [
+      "a0b13be1eb8b",
+      "dccb5a40258e",
+      "685c0154fef7",
+      "7e6b1d0cf58a"
+     ],
+     "topics": [
+      "gebyrer",
+      "regler"
+     ]
+    },
+    {
+     "text": "ARGO udvider indsamlingen af tekstilaffald til alle ni ejerkommuner. Europæiske byer melder om flere indsamlede tekstiler, men svingende kvalitet.",
+     "item_ids": [
+      "95b7f4342c8e",
+      "5269b3e10dd1"
+     ],
+     "topics": [
+      "tekstiler"
+     ]
+    },
+    {
+     "text": "Biogas Danmark efterlyser renere madaffald, fordi plast og emballage giver driftsstop og ekstra omkostninger på flere anlæg.",
+     "item_ids": [
+      "5637ebb3c24e"
+     ],
+     "topics": [
+      "bioaffald"
+     ]
+    }
+   ],
+   "based_on": 7
+  },
+  "uge": {
+   "period": "uge",
+   "window": {
+    "start": "2026-09-30T12:27:05Z",
+    "end": "2026-10-07T12:27:05Z"
+   },
+   "generated": "2026-10-07T12:27:05Z",
+   "since": null,
+   "headline": "Kort sagt: Ugen bød på en aftale om affaldsgebyrer, pant på flere flasker og en analyse, der gør CO2-fangst central.",
+   "bullets": [
+    {
+     "text": "Et flertal i Folketinget har aftalt en fælles model for affaldsgebyrer, som gælder fra 2028. Kommunerne får tre år til at omlægge taksterne.",
+     "item_ids": [
+      "a0b13be1eb8b",
+      "685c0154fef7",
+      "7e6b1d0cf58a"
+     ],
+     "topics": [
+      "gebyrer",
+      "regler"
+     ]
+    },
+    {
+     "text": "Pantsystemet udvides 1. januar 2027 til flasker til saft, vin og spiritus, oplyser Dansk Retursystem.",
+     "item_ids": [
+      "71f7e2443803",
+      "d88ae2b3c8ea",
+      "3fc61e1a77ed"
+     ],
+     "topics": [
+      "producentansvar"
+     ]
+    },
+    {
+     "text": "Klimarådet vurderer, at CO2-fangst på forbrændingsanlæg er afgørende for 2030-målet. Ifølge Dansk Fjernvarme mangler der afklaring om CCS.",
+     "item_ids": [
+      "49ef94ae8e5c",
+      "d6cad44a46c0",
+      "423f3c14d3f2"
+     ],
+     "topics": [
+      "klima",
+      "forbraending"
+     ]
+    },
+    {
+     "text": "Et udkast til nye regler for genbrugspladser er i høring med frist 4. november. Det ændrer blandt andet virksomhedernes adgang.",
+     "item_ids": [
+      "c85fddc0cdfd",
+      "8234280365c7"
+     ],
+     "topics": [
+      "genbrugspladser",
+      "regler"
+     ]
+    },
+    {
+     "text": "Europa-Parlamentets miljøudvalg har stemt for ændringerne af affaldsrammedirektivet om tekstiler og madaffald.",
+     "item_ids": [
+      "fbebafeb75f0",
+      "34b3c3a01866",
+      "0490a9b7fef1"
+     ],
+     "topics": [
+      "regler",
+      "tekstiler"
+     ]
+    }
+   ],
+   "based_on": 37
+  },
+  "maaned": {
+   "period": "maaned",
+   "window": {
+    "start": "2026-09-07T04:27:30Z",
+    "end": "2026-10-07T04:27:30Z"
+   },
+   "generated": "2026-10-07T04:27:30Z",
+   "since": "2026-09-24",
+   "headline": "Kort sagt: Gebyrer, pant og CO2-fangst fyldte mest, mens nye EU-regler for tekstiler og madaffald rykkede tættere på.",
+   "bullets": [
+    {
+     "text": "Kraka har opgjort, at affaldsgebyrerne varierer med op til 2.000 kr. om året. Forsyningstilsynet efterlyser bedre dokumentation af omkostningerne.",
+     "item_ids": [
+      "c0ff848d28a1",
+      "608aa7a11d93"
+     ],
+     "topics": [
+      "gebyrer"
+     ]
+    },
+    {
+     "text": "Pantsystemet udvides til saft- og vinflasker fra 2027, og der er kommet en ny vejledning om genanvendelige fødevareemballager.",
+     "item_ids": [
+      "71f7e2443803",
+      "d88ae2b3c8ea",
+      "f75f10a1aeed"
+     ],
+     "topics": [
+      "producentansvar"
+     ]
+    },
+    {
+     "text": "Klimarådet peger på CO2-fangst ved forbrænding som afgørende for 2030-målet. ARC har sendt en kontrakt om CO2-fangst på Amager Bakke i udbud.",
+     "item_ids": [
+      "49ef94ae8e5c",
+      "34ba76f7a6b5"
+     ],
+     "topics": [
+      "klima",
+      "forbraending"
+     ]
+    },
+    {
+     "text": "Tekstiler fylder mere: EU-reglerne er på vej, et lovforslag om producentansvar har været i høring, og virksomheder skal sortere tekstilaffald.",
+     "item_ids": [
+      "fbebafeb75f0",
+      "608e73e95f49",
+      "98439455609e"
+     ],
+     "topics": [
+      "tekstiler",
+      "regler"
+     ]
+    },
+    {
+     "text": "Nye EU-regler om madspild er trådt i kraft. Renosyd ændrer tømningen af madaffald, og forskere ser mere biogas i biopulp.",
+     "item_ids": [
+      "c97f9c556519",
+      "76dbeb4ce0ae",
+      "779b4b7e39fc"
+     ],
+     "topics": [
+      "bioaffald"
+     ]
+    }
+   ],
+   "based_on": 46
+  },
+  "aar": {
+   "period": "aar",
+   "window": {
+    "start": "2025-10-05T04:28:10Z",
+    "end": "2026-10-05T04:28:10Z"
+   },
+   "generated": "2026-10-05T04:28:10Z",
+   "since": "2026-09-24",
+   "headline": "Kort sagt: Siden 24. september har gebyrer, emballage, forbrændingens kapacitet og nye regler for tekstiler fyldt mest.",
+   "bullets": [
+    {
+     "text": "Affaldsgebyrerne er under pres. Kraka viser store forskelle mellem kommunerne, og Forsyningstilsynet efterlyser bedre dokumentation af omkostningerne.",
+     "item_ids": [
+      "c0ff848d28a1",
+      "608aa7a11d93"
+     ],
+     "topics": [
+      "gebyrer"
+     ]
+    },
+    {
+     "text": "Ifølge EXPRA bør emballagegebyrer graduereres efter ens EU-regler. En ny vejledning om genanvendelige fødevareemballager er udkommet.",
+     "item_ids": [
+      "24ae87fe7959",
+      "f75f10a1aeed",
+      "2928f9de9553"
+     ],
+     "topics": [
+      "producentansvar"
+     ]
+    },
+    {
+     "text": "Regeringen har nedsat en arbejdsgruppe om forbrændingskapaciteten. Dansk Fjernvarme frygter højere varmepriser, når der brændes mindre affald.",
+     "item_ids": [
+      "fcbd01c786b6",
+      "372f3a9a8495",
+      "853c4934c1a5"
+     ],
+     "topics": [
+      "forbraending"
+     ]
+    },
+    {
+     "text": "Tekstiler får producentansvar fra 2028 ifølge lovforslaget i høring, og virksomheder skal sortere tekstilaffald som husholdningerne.",
+     "item_ids": [
+      "608e73e95f49",
+      "98439455609e"
+     ],
+     "topics": [
+      "tekstiler",
+      "regler"
+     ]
+    },
+    {
+     "text": "Arbejdsmiljøet for renovationsarbejdere er på dagsordenen. Fagforbundet varsler overenskomstkrav, og ISWA peger på trafik og tunge løft.",
+     "item_ids": [
+      "c0f1abebd669",
+      "8801be0dba1e"
+     ],
+     "topics": [
+      "arbejdsmiljoe"
+     ]
+    }
+   ],
+   "based_on": 31
+  }
+ },
+ "items": [
+  {
+   "id": "5637ebb3c24e",
+   "story": "5637ebb3c24e",
+   "url": "https://example.org/biogas-danmark/biogasanlaeg-efterlyser-renere-madaffald-fra-husholdningerne",
+   "title": "Biogasanlæg efterlyser renere madaffald fra husholdningerne",
+   "teaser": "Plast og emballage i det indsamlede madaffald giver driftsstop og ekstra omkostninger på flere anlæg. Biogas Danmark foreslår fælles krav til forbehandling.",
+   "source": "biogas-danmark",
+   "published": "2026-10-07T09:50:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-07T10:04:00Z",
+   "baseline": false,
+   "topics": [
+    "bioaffald",
+    "sortering"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "a0b13be1eb8b",
+   "story": "a0b13be1eb8b",
+   "url": "https://example.org/kefm/bred-aftale-om-ny-model-for-affaldsgebyrer-i-kommunerne",
+   "title": "Bred aftale om ny model for affaldsgebyrer i kommunerne",
+   "teaser": "Regeringen og et flertal i Folketinget er enige om en fælles model for, hvordan kommunerne opgør og opkræver affaldsgebyrer fra 2028. Modellen skal gøre gebyrerne lettere at sammenligne på tværs af landet.",
+   "source": "kefm",
+   "published": "2026-10-07T07:30:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-07T07:37:00Z",
+   "baseline": false,
+   "topics": [
+    "gebyrer",
+    "regler"
+   ],
+   "genre": "pressemeddelelse",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [
+    {
+     "id": "685c0154fef7",
+     "source": "altinget",
+     "url": "https://example.org/altinget/gebyraftale-kommunerne-faar-tre-aar-til-at-omlaegge-affaldst",
+     "title": "Gebyraftale: Kommunerne får tre år til at omlægge affaldstaksterne",
+     "published": "2026-10-07T08:05:00Z"
+    },
+    {
+     "id": "7e6b1d0cf58a",
+     "source": "avisen",
+     "url": "https://example.org/avisen/ny-aftale-skal-goere-affaldsgebyrer-ens-paa-tvaers-af-kommun",
+     "title": "Ny aftale skal gøre affaldsgebyrer ens på tværs af kommuner",
+     "published": "2026-10-07T08:40:00Z"
+    },
+    {
+     "id": "dccb5a40258e",
+     "source": "kommunen",
+     "url": "https://example.org/kommunen/kl-gebyrmodellen-kraever-nye-it-systemer-i-kommunerne",
+     "title": "KL: Gebyrmodellen kræver nye it-systemer i kommunerne",
+     "published": "2026-10-07T09:15:00Z"
+    }
+   ],
+   "why": null
+  },
+  {
+   "id": "95b7f4342c8e",
+   "story": "95b7f4342c8e",
+   "url": "https://example.org/argo/argo-udvider-indsamlingen-af-tekstilaffald-til-alle-ni-ejerk",
+   "title": "ARGO udvider indsamlingen af tekstilaffald til alle ni ejerkommuner",
+   "teaser": "Fra januar kan borgerne i alle ARGOs ejerkommuner aflevere tekstiler i en særskilt beholder ved boligen. Hidtil har ordningen kun kørt i tre kommuner.",
+   "source": "argo",
+   "published": "2026-10-07T06:10:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-07T06:19:00Z",
+   "baseline": false,
+   "topics": [
+    "tekstiler",
+    "sortering"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "5269b3e10dd1",
+   "story": "5269b3e10dd1",
+   "url": "https://example.org/zero-waste-europe/cities-report-early-lessons-from-separate-textile-collection",
+   "title": "Cities report early lessons from separate textile collection",
+   "teaser": "A year into mandatory separate collection of textiles, cities across Europe report rising volumes but very uneven quality of the collected material.",
+   "source": "zero-waste-europe",
+   "published": "2026-10-07T05:45:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-07T06:16:00Z",
+   "baseline": false,
+   "topics": [
+    "tekstiler"
+   ],
+   "genre": "nyhed",
+   "lang": "en",
+   "summary_da": "Europæiske byer melder om flere indsamlede tekstiler efter det første år med særskilt indsamling, men kvaliteten svinger meget.",
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "6887fdd1392e",
+   "story": "6887fdd1392e",
+   "url": "https://example.org/kommunen/kommuner-kaemper-med-at-finde-chauffoerer-til-skraldebilerne",
+   "title": "Kommuner kæmper med at finde chauffører til skraldebilerne",
+   "teaser": "Flere kommuner og renovatører har svært ved at besætte stillinger som chauffør. Det giver forsinkede tømninger i nogle områder.",
+   "source": "kommunen",
+   "published": "2026-10-07T04:55:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-07T05:17:00Z",
+   "baseline": false,
+   "topics": [
+    "arbejdsmiljoe"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": false,
+   "reason": null,
+   "also": [],
+   "why": {
+    "filter": "normal",
+    "score": 6,
+    "decision": "vis",
+    "hits": [
+     "titel: kommuner"
+    ],
+    "reason": null
+   }
+  },
+  {
+   "id": "c85fddc0cdfd",
+   "story": "c85fddc0cdfd",
+   "url": "https://example.org/hoeringsportalen/hoering-over-udkast-til-bekendtgoerelse-om-affald-aendring-a",
+   "title": "Høring over udkast til bekendtgørelse om affald (ændring af regler for genbrugspladser)",
+   "teaser": "Udkastet ændrer reglerne for, hvilke virksomheder der må benytte de kommunale genbrugspladser, og hvordan kommunerne opkræver betaling. Høringsfrist 4. november 2026.",
+   "source": "hoeringsportalen",
+   "published": "2026-10-06T13:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-06T13:07:00Z",
+   "baseline": false,
+   "topics": [
+    "genbrugspladser",
+    "regler"
+   ],
+   "genre": "hoering",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [
+    {
+     "id": "8234280365c7",
+     "source": "tekniskfokus",
+     "url": "https://example.org/tekniskfokus/ny-bekendtgoerelse-genbrugspladser-maa-tage-imod-mere-fra-vi",
+     "title": "Ny bekendtgørelse: Genbrugspladser må tage imod mere fra virksomheder",
+     "published": "2026-10-06T14:20:00Z"
+    }
+   ],
+   "why": null
+  },
+  {
+   "id": "283908628b42",
+   "story": "283908628b42",
+   "url": "https://example.org/affaldplus/affaldplus-aabner-genbrugsbutik-paa-naestved-genbrugsplads",
+   "title": "AffaldPlus åbner genbrugsbutik på Næstved Genbrugsplads",
+   "teaser": "Brugte møbler, cykler og byggematerialer kan nu hentes gratis i den nye butik. Butikken drives sammen med en lokal forening.",
+   "source": "affaldplus",
+   "published": "2026-10-06T11:40:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-06T12:02:00Z",
+   "baseline": false,
+   "topics": [
+    "genbrugspladser"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "04c6dbd4ce82",
+   "story": "04c6dbd4ce82",
+   "url": "https://example.org/eea/europe-s-municipal-waste-recycling-has-stalled-new-briefing-",
+   "title": "Europe's municipal waste recycling has stalled, new briefing shows",
+   "teaser": "The share of municipal waste recycled in the EU has barely moved since 2020, according to a new EEA briefing. Only a handful of countries are on track for the 2025 target.",
+   "source": "eea",
+   "published": "2026-10-06T09:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-06T09:14:00Z",
+   "baseline": false,
+   "topics": [
+    "genanvendelse"
+   ],
+   "genre": "analyse",
+   "lang": "en",
+   "summary_da": "Genanvendelsen af husholdningsaffald i EU er stort set stået stille siden 2020, viser et nyt notat fra EEA.",
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "71f7e2443803",
+   "story": "71f7e2443803",
+   "url": "https://example.org/dansk-retursystem/pant-paa-saftflasker-og-vinflasker-fra-2027",
+   "title": "Pant på saftflasker og vinflasker fra 2027",
+   "teaser": "Pantsystemet udvides 1. januar 2027 til flasker til saft, vin og spiritus. Dansk Retursystem regner med 200 millioner ekstra flasker om året.",
+   "source": "dansk-retursystem",
+   "published": "2026-10-06T08:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-06T08:25:00Z",
+   "baseline": false,
+   "topics": [
+    "producentansvar"
+   ],
+   "genre": "pressemeddelelse",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [
+    {
+     "id": "d88ae2b3c8ea",
+     "source": "emballagefokus",
+     "url": "https://example.org/emballagefokus/dansk-retursystem-klar-til-at-tage-glasflasker-med-i-pantsys",
+     "title": "Dansk Retursystem klar til at tage glasflasker med i pantsystemet",
+     "published": "2026-10-06T11:30:00Z"
+    },
+    {
+     "id": "3fc61e1a77ed",
+     "source": "berlingske",
+     "url": "https://example.org/berlingske/nu-kommer-der-pant-paa-vinflasken",
+     "title": "Nu kommer der pant på vinflasken",
+     "published": "2026-10-06T16:05:00Z"
+    }
+   ],
+   "why": null
+  },
+  {
+   "id": "bfba5a4a35e4",
+   "story": "bfba5a4a35e4",
+   "url": "https://example.org/altinget/debat-kommunerne-boer-selv-bestemme-over-affaldsindsamlingen",
+   "title": "Debat: Kommunerne bør selv bestemme over affaldsindsamlingen",
+   "teaser": "Kravet om udbud af indsamlingen har ikke givet de besparelser, der var lovet. Kommunerne bør have frihed til at vælge egen drift, skriver to borgmestre.",
+   "source": "altinget",
+   "published": "2026-10-06T07:12:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-06T07:30:00Z",
+   "baseline": false,
+   "topics": [
+    "udbud"
+   ],
+   "genre": "debat",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "5ccc80f3f2d9",
+   "story": "5ccc80f3f2d9",
+   "url": "https://example.org/ku/ny-metode-kan-spore-mikroplast-fra-sorteringsanlaeg",
+   "title": "Ny metode kan spore mikroplast fra sorteringsanlæg",
+   "teaser": "Forskere ved Københavns Universitet har udviklet en metode til at måle mikroplast i spildevand fra anlæg, der sorterer plastaffald.",
+   "source": "ku",
+   "published": "2026-10-05T11:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-05T11:14:00Z",
+   "baseline": false,
+   "topics": [],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "44f48972f4b8",
+   "story": "44f48972f4b8",
+   "url": "https://example.org/plastindustrien/ny-eu-forordning-stiller-krav-om-genanvendt-plast-i-emballag",
+   "title": "Ny EU-forordning stiller krav om genanvendt plast i emballage",
+   "teaser": "Med emballageforordningen skal en stigende andel af plastemballagen bestå af genanvendt plast. Plastindustrien opfordrer til hurtig afklaring af reglerne.",
+   "source": "plastindustrien",
+   "published": "2026-10-05T10:15:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-05T10:24:00Z",
+   "baseline": false,
+   "topics": [
+    "producentansvar",
+    "genanvendelse"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "49ef94ae8e5c",
+   "story": "49ef94ae8e5c",
+   "url": "https://example.org/klimaraadet/analyse-co2-fangst-paa-forbraendingsanlaeg-er-afgoerende-for",
+   "title": "Analyse: CO2-fangst på forbrændingsanlæg er afgørende for 2030-målet",
+   "teaser": "Klimarådet vurderer, at fangst og lagring af CO2 fra affaldsforbrænding skal levere en væsentlig del af reduktionerne frem mod 2030. Rådet peger på usikkerhed om tidsplanerne.",
+   "source": "klimaraadet",
+   "published": "2026-10-05T08:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-05T08:07:00Z",
+   "baseline": false,
+   "topics": [
+    "klima",
+    "forbraending"
+   ],
+   "genre": "analyse",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [
+    {
+     "id": "d6cad44a46c0",
+     "source": "altinget",
+     "url": "https://example.org/altinget/klimaraadet-forbraendingen-skal-levere-en-stor-del-af-redukt",
+     "title": "Klimarådet: Forbrændingen skal levere en stor del af reduktionerne",
+     "published": "2026-10-05T09:30:00Z"
+    },
+    {
+     "id": "423f3c14d3f2",
+     "source": "dansk-fjernvarme",
+     "url": "https://example.org/dansk-fjernvarme/dansk-fjernvarme-klimaraadets-analyse-understreger-behov-for",
+     "title": "Dansk Fjernvarme: Klimarådets analyse understreger behov for afklaring om CCS",
+     "published": "2026-10-05T12:00:00Z"
+    }
+   ],
+   "why": null
+  },
+  {
+   "id": "76dbeb4ce0ae",
+   "story": "76dbeb4ce0ae",
+   "url": "https://example.org/renosyd/renosyd-indfoerer-ny-toemmeplan-for-madaffald-i-skanderborg-",
+   "title": "Renosyd indfører ny tømmeplan for madaffald i Skanderborg og Odder",
+   "teaser": "Madaffald hentes hver uge i sommerperioden og hver anden uge resten af året. Den nye plan gælder fra 1. november.",
+   "source": "renosyd",
+   "published": "2026-10-05T07:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-05T07:31:00Z",
+   "baseline": false,
+   "topics": [
+    "bioaffald",
+    "sortering"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "34ba76f7a6b5",
+   "story": "34ba76f7a6b5",
+   "url": "https://example.org/arc/arc-sender-kontrakt-om-co2-fangst-paa-amager-bakke-i-udbud",
+   "title": "ARC sender kontrakt om CO2-fangst på Amager Bakke i udbud",
+   "teaser": "ARC har sendt anlæg og drift af CO2-fangst på Amager Bakke i EU-udbud. Kontrakten ventes underskrevet i 2027.",
+   "source": "arc",
+   "published": "2026-10-05T06:30:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-05T06:55:00Z",
+   "baseline": false,
+   "topics": [
+    "klima",
+    "udbud"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "3e0af7eabee2",
+   "story": "3e0af7eabee2",
+   "url": "https://example.org/rgo/affaldsplanerne-mangler-maal-for-forebyggelse",
+   "title": "Affaldsplanerne mangler mål for forebyggelse",
+   "teaser": "En gennemgang af de kommunale affaldsplaner viser, at kun få har konkrete mål for at forebygge affald, skriver Rådet for Grøn Omstilling.",
+   "source": "rgo",
+   "published": "2026-10-04T14:00:00Z",
+   "date_quality": "fundet",
+   "first_seen": "2026-10-04T14:00:00Z",
+   "baseline": false,
+   "topics": [
+    "genbrugspladser",
+    "regler"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "42b7210c81d1",
+   "story": "42b7210c81d1",
+   "url": "https://example.org/fyens/borgere-i-svendborg-skal-sortere-i-ti-fraktioner-fra-nytaar",
+   "title": "Borgere i Svendborg skal sortere i ti fraktioner fra nytår",
+   "teaser": "Svendborg Kommune indfører den sidste del af den fælles sorteringsordning. Husstande får en ekstra beholder til glas og metal.",
+   "source": "fyens",
+   "published": "2026-10-04T05:30:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-04T05:52:00Z",
+   "baseline": false,
+   "topics": [
+    "sortering"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "c0f1abebd669",
+   "story": "c0f1abebd669",
+   "url": "https://example.org/avisen/skraldemaend-i-flere-kommuner-varsler-overenskomstkrav-om-ar",
+   "title": "Skraldemænd i flere kommuner varsler overenskomstkrav om arbejdsmiljø",
+   "teaser": "Fagforbundet vil have faste regler for løft og arbejdstid ind i den næste overenskomst for renovationsarbejdere.",
+   "source": "avisen",
+   "published": "2026-10-03T09:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-03T09:12:00Z",
+   "baseline": false,
+   "topics": [
+    "arbejdsmiljoe"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "24ae87fe7959",
+   "story": "24ae87fe7959",
+   "url": "https://example.org/expra/expra-calls-for-harmonised-fee-modulation-under-ppwr",
+   "title": "EXPRA calls for harmonised fee modulation under PPWR",
+   "teaser": "Extended producer responsibility organisations ask for common EU rules on how packaging fees are adjusted to recyclability.",
+   "source": "expra",
+   "published": "2026-10-03T07:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-03T07:18:00Z",
+   "baseline": false,
+   "topics": [
+    "producentansvar",
+    "regler"
+   ],
+   "genre": "nyhed",
+   "lang": "en",
+   "summary_da": "Producentansvarsorganisationerne i EXPRA ønsker fælles EU-regler for, hvordan emballagegebyrer graduereres efter genanvendelighed.",
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "98439455609e",
+   "story": "98439455609e",
+   "url": "https://example.org/kefm/forslag-om-sortering-af-tekstiler-hos-virksomheder-sendes-i-",
+   "title": "Forslag om sortering af tekstiler hos virksomheder sendes i høring",
+   "teaser": "Virksomheder skal sortere tekstilaffald på samme måde som husholdningerne. Ministeren sender forslaget i høring i oktober.",
+   "source": "kefm",
+   "published": "2026-10-02T12:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-02T12:25:00Z",
+   "baseline": false,
+   "topics": [
+    "tekstiler",
+    "regler"
+   ],
+   "genre": "pressemeddelelse",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "c0ff848d28a1",
+   "story": "c0ff848d28a1",
+   "url": "https://example.org/kraka/analyse-kommunale-affaldsgebyrer-varierer-med-op-til-2-000-k",
+   "title": "Analyse: Kommunale affaldsgebyrer varierer med op til 2.000 kr. om året",
+   "teaser": "Kraka har sammenlignet gebyrerne for et standardparcelhus i alle 98 kommuner. Forskellen mellem den billigste og den dyreste kommune er op til 2.000 kr. om året.",
+   "source": "kraka",
+   "published": "2026-10-02T10:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-02T10:14:00Z",
+   "baseline": false,
+   "topics": [
+    "gebyrer"
+   ],
+   "genre": "analyse",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "b80365c25172",
+   "story": "b80365c25172",
+   "url": "https://example.org/hofor/hofor-og-vestforbraending-undersoeger-faelles-loesning-for-s",
+   "title": "HOFOR og Vestforbrænding undersøger fælles løsning for slagge",
+   "teaser": "De to selskaber vil se på, om slagge fra forbrændingen kan behandles i fællesskab, så flere metaller kan genvindes.",
+   "source": "hofor",
+   "published": "2026-10-02T08:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-02T08:09:00Z",
+   "baseline": false,
+   "topics": [
+    "forbraending",
+    "genanvendelse"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "a2257de776c6",
+   "story": "a2257de776c6",
+   "url": "https://example.org/avfall-sverige/ny-statistik-hushaallsavfallet-minskade-under-2025",
+   "title": "Ny statistik: hushållsavfallet minskade under 2025",
+   "teaser": "Mängden hushållsavfall per person i Sverige minskade under 2025 enligt Avfall Sveriges årliga sammanställning.",
+   "source": "avfall-sverige",
+   "published": "2026-10-02T07:30:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-02T07:52:00Z",
+   "baseline": false,
+   "topics": [
+    "genbrugspladser"
+   ],
+   "genre": "nyhed",
+   "lang": "sv",
+   "summary_da": "Svenske husholdninger smed mindre affald ud per person i 2025 end året før, viser Avfall Sveriges årlige opgørelse.",
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "a79f7117228d",
+   "story": "a79f7117228d",
+   "url": "https://example.org/dagens-byggeri/krav-om-selektiv-nedrivning-skaerpes-for-stoerre-byggerier",
+   "title": "Krav om selektiv nedrivning skærpes for større byggerier",
+   "teaser": "Fra næste år skal bygherrer kortlægge materialer og sortere byggeaffald på stedet ved nedrivning af bygninger over 250 kvadratmeter.",
+   "source": "dagens-byggeri",
+   "published": "2026-10-02T06:20:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-02T06:51:00Z",
+   "baseline": false,
+   "topics": [
+    "byg_farligt",
+    "regler"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "fbebafeb75f0",
+   "story": "fbebafeb75f0",
+   "url": "https://example.org/ep-envi/envi-committee-backs-deal-on-waste-framework-directive-revis",
+   "title": "ENVI committee backs deal on Waste Framework Directive revision",
+   "teaser": "The Environment Committee endorsed the provisional agreement on targeted changes to the Waste Framework Directive covering textiles and food waste.",
+   "source": "ep-envi",
+   "published": "2026-10-01T13:30:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-01T13:37:00Z",
+   "baseline": false,
+   "topics": [
+    "regler",
+    "tekstiler"
+   ],
+   "genre": "nyhed",
+   "lang": "en",
+   "summary_da": "Europa-Parlamentets miljøudvalg har stemt for aftalen om ændringer af affaldsrammedirektivet om tekstiler og madaffald.",
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [
+    {
+     "id": "34b3c3a01866",
+     "source": "dg-env",
+     "url": "https://example.org/dg-env/commission-welcomes-committee-vote-on-textiles-and-food-wast",
+     "title": "Commission welcomes committee vote on textiles and food waste",
+     "published": "2026-10-01T14:00:00Z"
+    },
+    {
+     "id": "0490a9b7fef1",
+     "source": "eeb",
+     "url": "https://example.org/eeb/waste-law-vote-a-missed-chance-on-prevention",
+     "title": "Waste law vote: a missed chance on prevention",
+     "published": "2026-10-02T07:00:00Z"
+    }
+   ],
+   "why": null
+  },
+  {
+   "id": "e6eeb9878bcb",
+   "story": "e6eeb9878bcb",
+   "url": "https://example.org/tekniskfokus/elektriske-skraldebiler-holder-i-vinterdrift-viser-forsoeg",
+   "title": "Elektriske skraldebiler holder i vinterdrift, viser forsøg",
+   "teaser": "Et forsøg med elektriske skraldebiler i tre kommuner viser, at rækkevidden holder, også i frostvejr.",
+   "source": "tekniskfokus",
+   "published": "2026-10-01T11:15:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-01T11:46:00Z",
+   "baseline": false,
+   "topics": [
+    "sortering"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "1d8b7bf532d2",
+   "story": "1d8b7bf532d2",
+   "url": "https://example.org/gate-21/kommuner-paa-sjaelland-samarbejder-om-genbrug-af-byggemateri",
+   "title": "Kommuner på Sjælland samarbejder om genbrug af byggematerialer",
+   "teaser": "Elleve kommuner går sammen om en fælles platform, hvor materialer fra kommunale nedrivninger kan genbruges i nye byggerier.",
+   "source": "gate-21",
+   "published": "2026-10-01T09:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-01T09:25:00Z",
+   "baseline": false,
+   "topics": [
+    "byg_farligt",
+    "genbrugspladser"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "903adf0a9ff7",
+   "story": "903adf0a9ff7",
+   "url": "https://example.org/avisen/rekordmange-danskere-afleverede-elektronik-paa-genbrugsplads",
+   "title": "Rekordmange danskere afleverede elektronik på genbrugspladserne",
+   "teaser": "Mængden af indsamlet elektronikaffald steg sidste år. Især små apparater og batterier bliver oftere afleveret korrekt.",
+   "source": "avisen",
+   "published": "2026-10-01T06:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-10-01T06:09:00Z",
+   "baseline": false,
+   "topics": [
+    "byg_farligt",
+    "genbrugspladser"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "690dbbdb9f0a",
+   "story": "690dbbdb9f0a",
+   "url": "https://example.org/nordisk-ministerraad/nordisk-rapport-faelles-marked-for-genanvendt-plast-kan-loef",
+   "title": "Nordisk rapport: Fælles marked for genanvendt plast kan løfte afsætningen",
+   "teaser": "Et fælles nordisk marked for genanvendt plast kan gøre det lettere at afsætte materialerne, viser en ny rapport.",
+   "source": "nordisk-ministerraad",
+   "published": "2026-09-30T11:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-09-30T11:07:00Z",
+   "baseline": false,
+   "topics": [
+    "genanvendelse"
+   ],
+   "genre": "analyse",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "dbd9ba8f4525",
+   "story": "dbd9ba8f4525",
+   "url": "https://example.org/danske-regioner/regionerne-vil-have-klarere-regler-for-jordforurening-fra-ga",
+   "title": "Regionerne vil have klarere regler for jordforurening fra gamle lossepladser",
+   "teaser": "Danske Regioner peger på, at mange gamle lossepladser ikke er kortlagt, og efterlyser en national plan.",
+   "source": "danske-regioner",
+   "published": "2026-09-30T08:30:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-09-30T08:44:00Z",
+   "baseline": false,
+   "topics": [
+    "byg_farligt"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "608aa7a11d93",
+   "story": "608aa7a11d93",
+   "url": "https://example.org/altinget/forsyningstilsynet-affaldsselskaber-skal-dokumentere-omkostn",
+   "title": "Forsyningstilsynet: Affaldsselskaber skal dokumentere omkostninger bedre",
+   "teaser": "Tilsynet har gennemgået gebyrberegningerne i ti kommuner og finder mangelfuld dokumentation i flere af dem.",
+   "source": "altinget",
+   "published": "2026-09-30T06:45:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-09-30T07:07:00Z",
+   "baseline": false,
+   "topics": [
+    "gebyrer",
+    "udbud"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "d5ced208221a",
+   "story": "d5ced208221a",
+   "url": "https://example.org/berlingske/affaldsimport-til-danske-forbraendingsanlaeg-steg-igen-i-202",
+   "title": "Affaldsimport til danske forbrændingsanlæg steg igen i 2025",
+   "teaser": "De danske anlæg importerede mere affald end året før for at fylde kapaciteten ud.",
+   "source": "berlingske",
+   "published": "2026-09-29T17:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-09-29T17:25:00Z",
+   "baseline": false,
+   "topics": [
+    "forbraending"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": false,
+   "reason": null,
+   "also": [],
+   "why": {
+    "filter": "normal",
+    "score": 6,
+    "decision": "vis",
+    "hits": [
+     "titel: affaldsimport"
+    ],
+    "reason": null
+   }
+  },
+  {
+   "id": "779b4b7e39fc",
+   "story": "779b4b7e39fc",
+   "url": "https://example.org/au/forskere-biopulp-fra-madaffald-kan-give-mere-biogas",
+   "title": "Forskere: Biopulp fra madaffald kan give mere biogas",
+   "teaser": "Forsøg ved Aarhus Universitet viser, at en anden forbehandling af madaffald kan øge biogasudbyttet.",
+   "source": "au",
+   "published": "2026-09-29T09:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-09-29T09:18:00Z",
+   "baseline": false,
+   "topics": [
+    "bioaffald"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "05072d957699",
+   "story": "05072d957699",
+   "url": "https://example.org/sonfor/soenderborg-forsyning-tester-kameraer-paa-skraldebiler-mod-f",
+   "title": "Sønderborg Forsyning tester kameraer på skraldebiler mod fejlsortering",
+   "teaser": "Kameraer på bilerne skal vise, hvor der ofte er fejl i sorteringen. Borgerne får besked, hvis beholderen er fejlsorteret.",
+   "source": "sonfor",
+   "published": "2026-09-29T07:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-09-29T07:12:00Z",
+   "baseline": false,
+   "topics": [
+    "sortering"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "fcbd01c786b6",
+   "story": "fcbd01c786b6",
+   "url": "https://example.org/kefm/regeringen-nedsaetter-arbejdsgruppe-om-forbraendingskapacite",
+   "title": "Regeringen nedsætter arbejdsgruppe om forbrændingskapacitet",
+   "teaser": "Arbejdsgruppen skal se på, hvordan kapaciteten tilpasses faldende affaldsmængder, og komme med anbefalinger i foråret 2027.",
+   "source": "kefm",
+   "published": "2026-09-28T08:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-09-28T08:09:00Z",
+   "baseline": false,
+   "topics": [
+    "forbraending",
+    "regler"
+   ],
+   "genre": "pressemeddelelse",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "8801be0dba1e",
+   "story": "8801be0dba1e",
+   "url": "https://example.org/iswa/global-survey-safety-incidents-among-waste-collection-worker",
+   "title": "Global survey: safety incidents among waste collection workers",
+   "teaser": "A global ISWA survey of collection crews finds that traffic and heavy lifting cause most injuries.",
+   "source": "iswa",
+   "published": "2026-09-28T06:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-09-28T06:31:00Z",
+   "baseline": false,
+   "topics": [
+    "arbejdsmiljoe"
+   ],
+   "genre": "nyhed",
+   "lang": "en",
+   "summary_da": "En global undersøgelse fra ISWA viser, at de fleste ulykker blandt skraldemænd skyldes trafik og tunge løft.",
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "e59b010cb5d0",
+   "story": "e59b010cb5d0",
+   "url": "https://example.org/jv/esbjerg-kommune-overvejer-at-hente-storskrald-efter-bestilli",
+   "title": "Esbjerg Kommune overvejer at hente storskrald efter bestilling",
+   "teaser": "I dag hentes storskrald fire gange om året. Et nyt forslag vil lade borgerne bestille afhentning, når de har behov.",
+   "source": "jv",
+   "published": "2026-09-27T10:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-09-27T10:14:00Z",
+   "baseline": false,
+   "topics": [
+    "genbrugspladser",
+    "sortering"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "853c4934c1a5",
+   "story": "853c4934c1a5",
+   "url": "https://example.org/cewep/energy-recovery-remains-essential-for-non-recyclable-waste",
+   "title": "Energy recovery remains essential for non-recyclable waste",
+   "teaser": "CEWEP argues that waste-to-energy plants will still be needed for residual waste that cannot be recycled.",
+   "source": "cewep",
+   "published": "2026-09-26T08:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-09-26T08:22:00Z",
+   "baseline": false,
+   "topics": [
+    "forbraending"
+   ],
+   "genre": "nyhed",
+   "lang": "en",
+   "summary_da": "Forbrændingsanlæggenes europæiske organisation mener, at energiudnyttelse fortsat er nødvendig for affald, der ikke kan genanvendes.",
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "608e73e95f49",
+   "story": "608e73e95f49",
+   "url": "https://example.org/hoeringsportalen/hoering-over-forslag-til-lov-om-aendring-af-miljoebeskyttels",
+   "title": "Høring over forslag til lov om ændring af miljøbeskyttelsesloven (udvidet producentansvar for tekstiler)",
+   "teaser": "Lovforslaget indfører producentansvar for tekstiler fra 2028. Høringsfrist 23. oktober 2026.",
+   "source": "hoeringsportalen",
+   "published": "2026-09-25T12:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-09-25T12:12:00Z",
+   "baseline": false,
+   "topics": [
+    "tekstiler",
+    "producentansvar"
+   ],
+   "genre": "hoering",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "f75f10a1aeed",
+   "story": "f75f10a1aeed",
+   "url": "https://example.org/emballagefokus/ny-vejledning-om-genanvendelige-emballager-til-foedevarer",
+   "title": "Ny vejledning om genanvendelige emballager til fødevarer",
+   "teaser": "Vejledningen giver producenter konkrete råd om materialevalg, farver og etiketter, så emballagen kan genanvendes.",
+   "source": "emballagefokus",
+   "published": "2026-09-25T09:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-09-25T09:18:00Z",
+   "baseline": false,
+   "topics": [
+    "producentansvar"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "372f3a9a8495",
+   "story": "372f3a9a8495",
+   "url": "https://example.org/dansk-fjernvarme/fjernvarmeselskaber-frygter-hoejere-priser-ved-lavere-affald",
+   "title": "Fjernvarmeselskaber frygter højere priser ved lavere affaldsmængder",
+   "teaser": "Når der brændes mindre affald, skal varmen komme fra andre kilder. Dansk Fjernvarme vil have en plan for overgangen.",
+   "source": "dansk-fjernvarme",
+   "published": "2026-09-25T07:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-09-25T07:07:00Z",
+   "baseline": false,
+   "topics": [
+    "forbraending",
+    "gebyrer"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "2928f9de9553",
+   "story": "2928f9de9553",
+   "url": "https://example.org/altinget/debat-pant-paa-flere-emballager-er-den-rigtige-vej",
+   "title": "Debat: Pant på flere emballager er den rigtige vej",
+   "teaser": "Erfaringerne fra pantsystemet viser, at økonomiske incitamenter virker. Det bør bruges på flere typer emballage, skriver en organisation.",
+   "source": "altinget",
+   "published": "2026-09-24T13:20:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-09-24T13:34:00Z",
+   "baseline": false,
+   "topics": [
+    "producentansvar"
+   ],
+   "genre": "debat",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "c97f9c556519",
+   "story": "c97f9c556519",
+   "url": "https://example.org/dg-env/new-eu-rules-to-cut-food-waste-enter-into-force",
+   "title": "New EU rules to cut food waste enter into force",
+   "teaser": "Binding food waste reduction targets for processing, retail and households now apply in all member states.",
+   "source": "dg-env",
+   "published": "2026-09-24T11:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-09-24T11:31:00Z",
+   "baseline": false,
+   "topics": [
+    "bioaffald",
+    "regler"
+   ],
+   "genre": "nyhed",
+   "lang": "en",
+   "summary_da": "De nye EU-regler med bindende mål for mindre madspild i forarbejdning, detailhandel og husholdninger er trådt i kraft.",
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "e893b11b9b5a",
+   "story": "e893b11b9b5a",
+   "url": "https://example.org/danske-kommuner/flere-kommuner-vil-dele-affaldsordninger-paa-tvaers-af-kommu",
+   "title": "Flere kommuner vil dele affaldsordninger på tværs af kommunegrænser",
+   "teaser": "Mindre kommuner ser fordele i at indsamle sammen. Det kræver dog ens regulativer og fælles udbud.",
+   "source": "danske-kommuner",
+   "published": "2026-09-24T08:00:00Z",
+   "date_quality": "kilde",
+   "first_seen": "2026-09-24T08:09:00Z",
+   "baseline": false,
+   "topics": [
+    "udbud",
+    "sortering"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  },
+  {
+   "id": "446ce22531c8",
+   "story": "446ce22531c8",
+   "url": "https://example.org/arc/ny-genbrugsstation-aabner-i-hvidovre",
+   "title": "Ny genbrugsstation åbner i Hvidovre",
+   "teaser": "Den nye station har plads til flere fraktioner og en afdeling for direkte genbrug.",
+   "source": "arc",
+   "published": "2026-09-23T22:00:00Z",
+   "date_quality": "liste",
+   "first_seen": "2026-09-24T08:05:00Z",
+   "baseline": true,
+   "topics": [
+    "genbrugspladser"
+   ],
+   "genre": "nyhed",
+   "lang": "da",
+   "summary_da": null,
+   "reviewed": true,
+   "reason": "Relevant for kommunernes affaldsområde",
+   "also": [],
+   "why": null
+  }
+ ]
+}

@@ -262,7 +262,22 @@
 
 - id: svag-alene
   title: Ny plan skal holde plast ude af havet
+  expect: {none: vis, normal: graa, strict: afvist}
+
+- id: svag-alene-tekstiler
+  title: "I tråd med tiden: National handlingsplan for tekstiler er på plads"
+  category: myndighed
+  expect: {none: vis, normal: graa, strict: afvist}
+
+- id: svag-kun-i-teaser
+  title: Regeringen præsenterer ny finanslov
+  teaser: Der er også penge til en plastikstrategi.
   expect: {none: vis, normal: afvist, strict: afvist}
+
+- id: emballagegebyr
+  title: "Nawa vil sætte loft på emballagegebyr, men ikke ændre klimaloven"
+  category: fagmedie
+  expect: {none: vis, normal: vis, strict: vis, topics: [producentansvar]}
 
 - id: svag-to-ord
   title: Plastemballage skal være lettere at genbruge
@@ -326,7 +341,7 @@
   title: Spørgsmål om tekstilindsamling i kommunerne
   source_genre: folketing
   category: myndighed
-  expect: {none: vis, normal: afvist, topics: [tekstiler, regler], genre: folketing}
+  expect: {none: vis, normal: graa, topics: [tekstiler, regler], genre: folketing}
 
 # ── Kildens temaer som fallback ─────────────────────────────
 

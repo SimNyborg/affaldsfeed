@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Testmedie</title>
+    <link>https://www.testmedie.dk/</link>
+    <description>Nyheder fra Testmedie</description>
+    <language>da</language>
+    <item>
+      <title>Nye regler for affaldsgebyrer i kommunerne</title>
+      <link>https://www.testmedie.dk/nyheder/affaldsgebyrer?utm_source=rss</link>
+      <description>Kommunerne skal fremover beregne affaldsgebyret på en ny måde, oplyser ministeriet.</description>
+      <pubDate>Tue, 06 Oct 2026 10:00:00 +0200</pubDate>
+      <category>Kommunal</category>
+      <category>Forsyning</category>
+      <guid>https://www.testmedie.dk/nyheder/affaldsgebyrer</guid>
+    </item>
+    <item>
+      <title>Kronik: Genanvendelse af plast halter langt bagefter</title>
+      <link>https://www.testmedie.dk/debat/kronik-genanvendelse</link>
+      <description>Danmark når ikke målene for genanvendelse af plastemballage.</description>
+      <pubDate>Wed, 07 Oct 2026 06:00:00 GMT</pubDate>
+      <category>Debat</category>
+    </item>
+    <item>
+      <title>Fodboldkamp aflyst i regnvejr</title>
+      <link>https://www.testmedie.dk/sport/fodbold-aflyst</link>
+      <description>Kampen blev aflyst på grund af vand på banen.</description>
+      <pubDate>Tue, 06 Oct 2026 18:30:00 +0200</pubDate>
+    </item>
+    <item>
+      <title>Ledig stilling: projektleder til affaldsområdet</title>
+      <link>https://www.testmedie.dk/job/projektleder-affald</link>
+      <description>Vi søger en projektleder.</description>
+      <pubDate>Tue, 06 Oct 2026 09:00:00 +0200</pubDate>
+    </item>
+    <item>
+      <title>Gammel nyhed om affaldssortering i boligforeninger</title>
+      <link>https://www.testmedie.dk/nyheder/gammel-affaldssortering</link>
+      <description>Boligforeningerne har fået nye containere.</description>
+      <pubDate>Tue, 28 Jul 2026 08:00:00 +0200</pubDate>
+    </item>
+    <item>
+      <title>Gammel sportsnyhed om håndbold</title>
+      <link>https://www.testmedie.dk/sport/gammel-haandbold</link>
+      <description>Landsholdet vandt.</description>
+      <pubDate>Tue, 28 Jul 2026 20:00:00 +0200</pubDate>
+    </item>
+    <item>
+      <title>Meget gammel nyhed om affaldsgebyrer</title>
+      <link>https://www.testmedie.dk/nyheder/meget-gammel-affaldsgebyr</link>
+      <description>Fra sidste år.</description>
+      <pubDate>Mon, 06 Oct 2025 08:00:00 +0200</pubDate>
+    </item>
+    <item>
+      <title>Skraldebil med el kører i fremtiden</title>
+      <link>https://www.testmedie.dk/nyheder/fremtidig-skraldebil</link>
+      <description>En dato langt ude i fremtiden.</description>
+      <pubDate>Fri, 09 Oct 2026 12:00:00 +0200</pubDate>
+    </item>
+    <item>
+      <title>Relativt link om genbrugspladser</title>
+      <link>/nyheder/relativ-genbrugsplads</link>
+      <description>Et indslag med relativt link.</description>
+      <pubDate>Tue, 06 Oct 2026 07:00:00 +0200</pubDate>
+    </item>
+  </channel>
+</rss>

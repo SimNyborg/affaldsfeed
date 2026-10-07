@@ -93,8 +93,10 @@ class Prefilter:
         score = TITLE_POINTS * (len(t_strong) + len(t_names))
         score += min(TEASER_MAX, TEASER_POINTS * len(s_strong))
         others = len(t_strong) + len(t_names) + len(s_strong)
+        weak_in_title = bool(find_hits(_mask(title, self.strong), self.weak))
         # Svage ord tæller kun sammen med et andet hit (stærkt ord, navn eller et andet svagt ord)
-        if weak and (others > 0 or len(weak) >= 2):
+        # eller når det svage ord står i titlen (så "normal"-kilder giver gråzone, fx "handlingsplan for tekstiler")
+        if weak and (others > 0 or len(weak) >= 2 or weak_in_title):
             score += min(WEAK_MAX, len(weak))
 
         hits = (

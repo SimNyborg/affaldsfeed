@@ -1,0 +1,46 @@
+# Lint, tests og validering af konfiguration. Ingen netværkskald i tests.
+name: CI
+
+on:
+  push:
+    # Rene datacommits (indsamling og vurderinger) kræver ikke CI
+    paths-ignore:
+      - "data/**"
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Hent repo
+        uses: actions/checkout@v4
+
+      - name: Opsæt Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+
+      - name: Installér afhængigheder
+        run: pip install -r requirements-dev.txt
+
+      - name: Ruff
+        run: python -m ruff check .
+
+      - name: Pytest
+        run: python -m pytest -q
+
+      - name: Tjek konfiguration
+        run: python -m affaldsfeed check
