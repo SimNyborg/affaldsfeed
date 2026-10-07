@@ -15,13 +15,19 @@ TEASER_MAX = 6
 WEAK_MAX = 2
 
 
-def _pattern_regex(pattern: str) -> str:
-    """Oversæt et mønster til regex: uden * = helt ord, * = \\w*, mellemrum = frase."""
+def _pattern_regex(pattern: str, proper_noun: bool = False) -> str:
+    """Oversæt et mønster til regex: uden * = helt ord, * = \\w*, mellemrum = frase.
+
+    proper_noun: første bogstav skal stå med stort (egennavne), resten må have alle store/små bogstaver,
+    så "Argo" og "ARGO" matcher, men det almindelige ord "kredsløb" ikke matcher selskabet "Kredsløb".
+    """
     lead = pattern.startswith("*")
     trail = pattern.endswith("*")
     core = pattern.strip("*")
     segments = [r"\s+".join(re.escape(w) for w in seg.split()) for seg in core.split("*")]
     body = r"\w*".join(segments)
+    if proper_noun and not lead and body[:1].isalpha():
+        body = f"(?-i:{body[0]})" + body[1:]
     start = r"\w*" if lead else r"(?<!\w)"
     end = r"\w*" if trail else ""
     if not (lead and trail):
@@ -29,14 +35,17 @@ def _pattern_regex(pattern: str) -> str:
     return start + body + end
 
 
-def compile_patterns(patterns: list[str]) -> list[tuple[str, re.Pattern]]:
-    """Kompilér mønstre til (originalt mønster, regex). Tomme mønstre springes over."""
+def compile_patterns(patterns: list[str], proper_nouns: bool = False) -> list[tuple[str, re.Pattern]]:
+    """Kompilér mønstre til (originalt mønster, regex). Tomme mønstre springes over.
+
+    proper_nouns: mønstrene er egennavne og kræver stort begyndelsesbogstav (se _pattern_regex).
+    """
     out: list[tuple[str, re.Pattern]] = []
     for p in patterns:
         p = unicodedata.normalize("NFC", (p or "").strip())
         if not p.strip("*").strip():
             continue
-        out.append((p, re.compile(_pattern_regex(p), _FLAGS)))
+        out.append((p, re.compile(_pattern_regex(p, proper_nouns), _FLAGS)))
     return out
 
 
@@ -73,7 +82,7 @@ class Prefilter:
     def __init__(self, keywords: Keywords):
         # Alle sprog bruges for alle kilder (engelske ord optræder også i danske titler)
         self.strong = compile_patterns(_merged(*keywords.strong.values()))
-        self.names = compile_patterns(keywords.names)
+        self.names = compile_patterns(keywords.names, proper_nouns=True)  # egennavne: stort begyndelsesbogstav
         self.weak = compile_patterns(_merged(*keywords.weak.values()))
         self.veto = compile_patterns(keywords.veto)
         self.service = compile_patterns(keywords.service)

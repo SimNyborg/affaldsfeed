@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import pytest
 
+from affaldsfeed.config import load_config
 from affaldsfeed.models import Keywords
 from affaldsfeed.relevance import Prefilter, compile_patterns, find_hits
 
@@ -194,3 +195,26 @@ def test_service_only_in_title(mini_keywords, make_source):
 def test_real_keywords_load(keywords):
     pf = Prefilter(keywords)
     assert pf.strong and pf.names and pf.weak and pf.veto and pf.service
+
+
+@pytest.mark.parametrize(
+    "text, hit",
+    [
+        ("Kredsløb bygger nyt anlæg", ["Kredsløb"]),
+        ("Det økonomiske kredsløb er under pres", []),  # almindeligt ord, ikke selskabet
+        ("Kredsløbet i kroppen", []),
+        ("Argo henter ny direktør", ["ARGO"]),  # medierne skriver ofte navnet med småt efter første bogstav
+        ("ARGO udvider indsamlingen", ["ARGO"]),
+        ("An arc of history", []),
+        ("Dakofa mener", ["DAKOFA"]),
+    ],
+)
+def test_names_need_capital_first_letter(text, hit):
+    names = compile_patterns(["Kredsløb", "ARGO", "ARC", "DAKOFA"], proper_nouns=True)
+    assert find_hits(text, names) == hit
+
+
+def test_prefilter_ignores_lowercase_company_word():
+    pf = Prefilter(load_config().keywords)
+    score, hits, _ = pf.score("Sådan påvirker stress dit kredsløb", "")
+    assert not any(h.startswith("navn:") for h in hits)

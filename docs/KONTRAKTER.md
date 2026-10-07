@@ -105,7 +105,7 @@ Søgekilder (`method: search`) har `category: nyhedsmedie` (ignoreres ved visnin
 - `relevansprofil.md`: fritekst til Claude.
 
 ## 4. Mønstermotor (delt)
-`relevance.py` eksporterer `compile_patterns(list[str]) -> list[re.Pattern]` og `find_hits(text, patterns) -> list[str]`. Et mønster `"affald*"` → `(?<!\w)affald\w*(?!\w)`, `"*affald*"` → `\w*affald\w*`, `"pant"` → `(?<!\w)pant(?!\w)`, alt `re.IGNORECASE | re.UNICODE`. Både `classify.py` og `relevance.py` bruger den.
+`relevance.py` eksporterer `compile_patterns(list[str], proper_nouns=False) -> list[re.Pattern]` og `find_hits(text, patterns) -> list[str]`. Med `proper_nouns=True` (bruges til `keywords.names` i forfiltret) skal første bogstav stå med stort, mens resten matcher uanset store/små bogstaver: "Argo" og "ARGO" giver træf på `ARGO`, men "kredsløb" giver ikke træf på `Kredsløb`. Et mønster `"affald*"` → `(?<!\w)affald\w*(?!\w)`, `"*affald*"` → `\w*affald\w*`, `"pant"` → `(?<!\w)pant(?!\w)`, alt `re.IGNORECASE | re.UNICODE`. Både `classify.py` og `relevance.py` bruger den.
 
 ## 5. Indsamling
 
