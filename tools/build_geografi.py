@@ -65,13 +65,15 @@ def slug(text: str) -> str:
 
 
 def spelling_variants(name: str) -> list[str]:
-    """Aa og å skrives begge dele: 'Grenaa' → ['Grenå'], 'Årslev' → ['Aarslev']."""
-    out: list[str] = []
-    if "aa" in name.lower():
-        out.append(name.replace("Aa", "Å").replace("aa", "å"))
-    if "å" in name.lower():
-        out.append(name.replace("Å", "Aa").replace("å", "aa"))
-    return [v for v in out if v != name]
+    """Officielle aa-navne skrives også med å: 'Grenaa' → ['Grenå'].
+
+    Den modsatte vej (å → aa) laves ikke automatisk, fordi den giver efternavne som Aagaard (Ågård),
+    Daugaard og Kvistgaard. Gamle aa-stavemåder, der bruges om byen, står i byer_ekstra_navne.
+    """
+    if "aa" not in name.lower():
+        return []
+    variant = name.replace("Aa", "Å").replace("aa", "å")
+    return [variant] if variant != name else []
 
 
 def with_variants(names: list[str]) -> list[str]:

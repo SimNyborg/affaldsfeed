@@ -197,7 +197,8 @@ def test_ukendte_koder_i_regler_stopper():
 
 def test_stavevarianter():
     assert geo.spelling_variants("Grenaa") == ["Grenå"]
-    assert geo.spelling_variants("Årslev") == ["Aarslev"]
+    assert geo.spelling_variants("Årslev") == []  # å → aa giver efternavne (Aagaard), så kun via alias
+    assert geo.spelling_variants("Ågård") == []
     assert geo.spelling_variants("Nyborg") == []
     assert geo.with_variants(["Aarhus", "Århus"]) == ["Aarhus", "Århus"]
 

@@ -63,8 +63,11 @@ ignorer_byer:
   - Sundby
   - Viby
 
-# Ekstra navne for byer. Stavevarianter med aa og å tilføjes automatisk.
+# Ekstra navne for byer. Officielle aa-navne får automatisk en variant med å (Grenaa → Grenå).
+# Den modsatte vej tilføjes kun her, fordi aa-formen ofte er et efternavn (Aagaard, Daugaard).
 byer_ekstra_navne:
+  Årslev: [Aarslev]
+  Gråsten: [Graasten]
   Nykøbing F: [Nykøbing Falster, Nykøbing F.]
   Nykøbing M: [Nykøbing Mors, Nykøbing M.]
   Nykøbing S: [Nykøbing Sjælland, Nykøbing Sj., Nykøbing S.]
