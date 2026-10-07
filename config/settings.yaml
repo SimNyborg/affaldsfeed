@@ -28,6 +28,11 @@ pages:
   seen_refresh_days: 30          # state/seen.json: datoen fornyes kun, når den er ældre
   seen_keep_days: 120            # ... og posten fjernes, når URL'en ikke er set så længe
 
+# Stedmærkning (KONTRAKTER §4.1). Står et af ordene (som præfiks, også efter bindestreg) lige efter et
+# stednavn, er navnet en del af noget andet: "Aarhus Universitet", "Københavns Vestegn", "Holbæk-motorvejen".
+places:
+  institution_words: [Universit, Lufthavn, Vestegn, Amt, Landevej, Bugt, Motorvej, konvention]
+
 window_days: 60                  # så langt tilbage feed.json rækker
 max_age_days_on_find: 14         # ældre indslag afvises, når de findes
 baseline_days: 60                # første kørsel for en kilde: gem hele vinduet (window_days) som baseline

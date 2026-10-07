@@ -25,7 +25,7 @@ from affaldsfeed.display import (
 )
 from affaldsfeed.health import silent
 from affaldsfeed.judgments import display_mode, load_all_candidates, load_heartbeat, load_judgment_list
-from affaldsfeed.models import DisplayItem
+from affaldsfeed.models import DisplayItem, Feed, Geo
 from affaldsfeed.overview import PERIODS, load_overviews
 from affaldsfeed.stories import build_stories
 from affaldsfeed.timeutil import ensure_utc, iso, now_utc
@@ -59,6 +59,25 @@ def _sort_items(items: list[DisplayItem]) -> list[DisplayItem]:
     out.sort(key=lambda d: d.id)
     out.sort(key=item_time, reverse=True)
     return out
+
+
+def geo_block(geo: Geo, items: list[DisplayItem]) -> dict[str, Any] | None:
+    """geo i feed.json: alle regioner og kommuner, men kun byer, som indslagene nævner (inkl. also).
+
+    None, når der ingen geografi er (config/geografi.yaml mangler).
+    """
+    if not geo.regioner:
+        return None
+    used = {p[2:] for d in items for p in d.places if p.startswith("b:")}
+    return {
+        "regioner": [{"id": r.id, "navn": r.navn, "kort": r.kort} for r in geo.regioner],
+        "kommuner": [{"id": m.id, "navn": m.navn, "kort": m.kort, "region": m.region} for m in geo.kommuner],
+        "byer": [
+            {"id": t.id, "navn": t.navn, "kommune": t.kommune, "kommuner": list(t.kommuner or [t.kommune])}
+            for t in sorted(geo.byer, key=lambda t: t.id)
+            if t.id in used
+        ],
+    }
 
 
 def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any]]:
@@ -126,12 +145,16 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any]]:
         "mode": mode,
         "last_judgment": last_judgment,
         "categories": [c.model_dump(mode="json") for c in config.categories],
-        "topics": [{"id": t.id, "name": t.name, "definition": t.definition} for t in config.topics],
+        "topics": [
+            {"id": t.id, "name": t.name, "short": t.short, "definition": t.definition} for t in config.topics
+        ],
         "genres": [{"id": g.id, "label": g.label} for g in config.genres],
         "sources": feed_sources,
+        "geo": geo_block(config.geo, heads),
         "overview": {p: (ov.model_dump(mode="json") if ov else None) for p, ov in overviews.items()},
         "items": [d.model_dump(mode="json") for d in heads],
     }
+    Feed.model_validate(feed)  # kontrakten (KONTRAKTER §8); ValidationError giver exit 1
 
     status_sources = []
     for s in sorted(sources, key=lambda s: s.id):
@@ -201,9 +224,10 @@ def main_export(args: argparse.Namespace) -> int:
         return 1
 
     n_also = sum(len(d["also"]) for d in feed["items"])
+    n_places = sum(bool(d["places"]) for d in feed["items"])
     filled = [p for p in PERIODS if feed["overview"][p]]
     log.info(
-        "eksport til %s: %d indslag (+%d i historier), tilstand %s, overblik: %s",
-        out, len(feed["items"]), n_also, feed["mode"], ", ".join(filled) or "intet",
+        "eksport til %s: %d indslag (+%d i historier, %d med steder), tilstand %s, overblik: %s",
+        out, len(feed["items"]), n_also, n_places, feed["mode"], ", ".join(filled) or "intet",
     )
     return 0

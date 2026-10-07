@@ -1,10 +1,11 @@
 // Affaldsfeed: forsiden (feed) og "Om kilderne". Ingen build, ingen afhængigheder.
 
 import {
-  el, icon, hidden, catStyle, cap, truncate, cph, fmtNum, fmtShort, fmtLong, fmtWhen, fmtStamp,
-  isoWeek, fmtWeekRange, weekdayOf, parseDate, load, store, DAY_MS,
-  readState, syncUrl, activeCount, activeFilters, removeFilter, resetFilters,
-  prepare, applyFilters, computeCounts, buildPanel, renderActive, topicName,
+  el, icon, hidden, sep, catStyle, cap, truncate, cph, fmtNum, fmtShort, fmtLong, fmtWhen, fmtStamp,
+  isoWeek, fmtDayRange, weekdayOf, parseDate, load, store, DAY_MS,
+  readState, syncUrl, setData, defaultState, activeCount, sheetCount, activeFilters, removeFilter, resetFilters,
+  prepare, applyFilters, computeCounts, buildPanel, renderActive, topicName, genreName,
+  placeName, placeParents, precisePlaces,
 } from './filters.js';
 import { createOverview } from './overview.js';
 
@@ -14,39 +15,14 @@ const TEASER_MAX = 240;
 const TIME_KEYS = new Set(['generated', 'last_judgment', 'published', 'first_seen', 'start', 'end', 'last_attempt']);
 
 const $ = (id) => document.getElementById(id);
+const narrow = matchMedia('(max-width: 47.99em)');
 
-initTheme();
+// Siden følger enhedens farvetema (prefers-color-scheme). En gammel værdi fra den fjernede temavælger
+// slettes, så ingen sidder fast i et tema uden en knap til at skifte (store kører i try/catch)
+store('af.theme', null);
 const page = document.body.dataset.page;
 if (page === 'feed') initFeed();
 else if (page === 'kilder') initKilder();
-
-// ── Tema: auto → lys → mørk ────────────────────────────────
-
-function initTheme() {
-  const btn = $('theme-btn');
-  if (!btn) return;
-  const order = ['auto', 'light', 'dark'];
-  const names = { auto: 'Auto', light: 'Lys', dark: 'Mørk' };
-  const icons = { auto: 'auto', light: 'sol', dark: 'maane' };
-  const meta = document.querySelector('meta[name="color-scheme"]');
-  let mode = load('af.theme');
-  if (mode !== 'light' && mode !== 'dark') mode = 'auto';
-
-  const apply = (save) => {
-    const rootEl = document.documentElement;
-    if (mode === 'auto') delete rootEl.dataset.theme;
-    else rootEl.dataset.theme = mode;
-    if (meta) meta.content = mode === 'auto' ? 'light dark' : mode;
-    if (save) store('af.theme', mode === 'auto' ? null : mode);
-    btn.replaceChildren(icon(icons[mode]), el('span', { class: 'lbl', text: names[mode] }));
-    btn.setAttribute('aria-label', `Farvetema: ${names[mode]}. Skift tema`);
-  };
-  btn.addEventListener('click', () => {
-    mode = order[(order.indexOf(mode) + 1) % order.length];
-    apply(true);
-  });
-  apply(false);
-}
 
 // ── Data ─────────────────────────────────────────────────
 
@@ -92,14 +68,33 @@ function demoize(feed, now) {
   if (gen) shiftTimes(feed, Math.floor((now - gen) / 6e4) * 6e4);
 }
 
-/** Behold ?demo= på interne links. */
-function keepDemo(demo) {
+const withDemo = (href, demo) => {
+  if (!demo) return href;
+  const [path, hash] = href.split('#');
+  return `${path}?demo=${encodeURIComponent(demo)}${hash ? `#${hash}` : ''}`;
+};
+
+/** Demo-strimlen over headeren, og ?demo= på interne links. */
+function initDemo(demo) {
   if (!demo) return;
   for (const a of document.querySelectorAll('a[data-internal]')) {
     const url = new URL(a.getAttribute('href'), location.href);
     url.searchParams.set('demo', demo);
-    a.href = url.pathname.split('/').pop() + url.search;
+    // "./" har intet filnavn; uden "index.html" ville linket pege på siden selv (kilder.html?demo=1)
+    a.href = (url.pathname.split('/').pop() || 'index.html') + url.search + url.hash;
   }
+  const strip = $('demo-strip');
+  const real = $('demo-real');
+  if (!strip || !real) return;
+  // "Vis det rigtige feed": samme side og filtre uden demo
+  const update = () => {
+    const url = new URL(location.href);
+    url.searchParams.delete('demo');
+    real.href = (url.pathname.split('/').pop() || './') + url.search;
+  };
+  for (const ev of ['pointerenter', 'focus', 'click']) real.addEventListener(ev, update);
+  update();
+  strip.hidden = false;
 }
 
 function setSubtitle(feed, now) {
@@ -107,20 +102,13 @@ function setSubtitle(feed, now) {
   if (!sub) return;
   const gen = parseDate(feed.generated);
   const n = (feed.sources || []).length;
-  sub.textContent = `Nyheder om affald fra ${fmtNum(n)} kilder${gen ? ` · opdateret ${fmtStamp(gen, now)}` : ''}`;
+  sub.replaceChildren(el('span', { class: 'sub-lang', text: 'Nyheder om affald fra ' }),
+    `${fmtNum(n)} kilder${gen ? ` · opdateret ${fmtStamp(gen, now)}` : ''}`);
 }
 
-function bar(kind, iconName, ...content) {
-  return el('div', { class: `bar ${kind}` }, icon(iconName), el('p', null, content));
-}
-
-function demoBar() {
-  const url = new URL(location.href);
-  url.searchParams.delete('demo');
-  return bar('bar-demo', 'info',
-    el('strong', { text: 'Demodata. ' }),
-    'Indslagene er opdigtede eksempler, og links går til example.org. Tidspunkterne er rykket frem, så eksemplet ser aktuelt ud. ',
-    el('a', { href: url.pathname.split('/').pop() + url.search || './' }, 'Vis det rigtige feed'));
+/** Klassiske scrollbarer tager plads fra indholdet; deres bredde trækkes fra højre polstring (--sbw). */
+function fitScrollbar(box) {
+  box.style.setProperty('--sbw', `${Math.max(0, box.offsetWidth - box.clientWidth)}px`);
 }
 
 // ── Forsiden ─────────────────────────────────────────────
@@ -135,127 +123,200 @@ function initFeed() {
   addEventListener('pagehide', saveVisit);
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') saveVisit(); });
 
-  keepDemo(state.demo);
+  initDemo(state.demo);
   const list = $('feed');
+  const slot = $('sidebar-slot');
+  const head = $('list-head');
+  if (state.q) $('q').value = state.q;
 
   const start = async () => {
     list.setAttribute('aria-busy', 'true');
-    list.replaceChildren(el('p', { class: 'loading', text: 'Henter feedet …' }));
-    let feed;
+    list.replaceChildren();
+    slot.hidden = false;
+    head.hidden = false;
+    $('status-text').textContent = 'Henter feedet …';
+    let loaded = false;
     try {
-      feed = await loadFeed(state.demo);
+      const feed = await loadFeed(state.demo);
       if (!feed || !Array.isArray(feed.items)) throw new Error('feed.json mangler items');
+      if (state.demo) demoize(feed, now);
+      loaded = true;
+      list.removeAttribute('aria-busy');
+      // Data uden for kontrakten (fx places: null eller et indslag uden titel) giver fejltilstanden
+      // i stedet for en side, der bliver ved med at hente
+      setupFeed(feed, state, now, lastVisit);
     } catch (err) {
       console.warn('Feedet kunne ikke indlæses:', err.message);
       list.removeAttribute('aria-busy');
+      // Fejlen står i læsekolonnen uden sidepanel og listens hoved (søgning, Filtrér og visning)
+      slot.hidden = true;
+      head.hidden = true;
+      for (const id of ['overview', 'msgs', 'more-wrap']) $(id).hidden = true;
+      $('status-text').textContent = '';
+      // Fejlede opbygningen, genindlæses siden, så intet bindes to gange
+      const retry = loaded ? () => location.reload() : start;
       list.replaceChildren(el('div', { class: 'empty', role: 'alert' },
         el('p', { text: 'Feedet kunne ikke indlæses. Prøv igen om lidt.' }),
-        el('div', { class: 'actions' }, el('button', { type: 'button', class: 'btn btn-primary', onclick: start }, 'Prøv igen'))));
-      $('status-text').textContent = '';
-      return;
+        el('div', { class: 'actions' }, el('button', { type: 'button', class: 'btn btn-primary', onclick: retry }, 'Prøv igen'))));
     }
-    list.removeAttribute('aria-busy');
-    if (state.demo) demoize(feed, now);
-    setupFeed(feed, state, now, lastVisit);
   };
   start();
 }
 
+function message(kind, iconName, ...content) {
+  return el('div', { class: `msg ${kind}`.trim() }, icon(iconName), el('p', null, content));
+}
+
 function setupFeed(feed, state, now, lastVisit) {
   const data = prepare(feed, lastVisit);
+  setData(data);
   const ui = {
-    bars: $('bars'), overview: $('overview'), slot: $('sidebar-slot'), sheet: $('filter-sheet'),
-    sheetBody: $('sheet-body'), sheetShow: $('sheet-show'), sheetClose: $('sheet-close'),
-    filterBtn: $('filter-btn'), filterCount: $('filter-count'), active: $('active-filters'),
-    resetTop: $('reset-top'), toolbar: $('toolbar'), status: $('status'), statusText: $('status-text'),
-    statusAction: $('status-action'), intro: $('intro'), list: $('feed'), more: $('more-wrap'),
+    msgs: $('msgs'), overview: $('overview'), slot: $('sidebar-slot'),
+    sheet: $('filter-sheet'), sheetTitle: $('sheet-title'), sheetBody: $('sheet-body'), sheetShow: $('sheet-show'),
+    sheetClose: $('sheet-close'), sheetReset: $('sheet-reset'), sheetLive: $('sheet-live'),
+    filterBtn: $('filter-btn'), filterCount: $('filter-count'), filterComma: $('filter-comma'), filterCountSr: $('filter-count-sr'),
+    head: $('list-head'), q: $('q'), qClear: $('q-clear'), active: $('active-filters'),
+    status: $('status'), statusText: $('status-text'), statusSep: $('status-sep'), statusAction: $('status-action'),
+    view: $('view-seg'), list: $('feed'), more: $('more-wrap'),
   };
   const todayNum = cph(now).dayNum;
+  const totals = new Map(); // antal kort uden filtre, pr. "Saml historier"
   let limit = PAGE_SIZE;
   let cards = [];
 
   setSubtitle(feed, now);
 
-  // Bjælker: demo, forældet feed, regelbaseret visning
-  const bars = [];
-  if (state.demo) bars.push(demoBar());
+  // Meddelelser: forældet feed og regelvisning
+  const msgs = [];
   const gen = parseDate(feed.generated);
   if (gen) {
     const hours = Math.floor((now - gen) / 36e5);
     if (hours > STALE_HOURS) {
       const ago = hours < 48 ? `${hours} timer` : `${Math.floor(hours / 24)} dage`;
-      bars.push(bar('', 'advarsel', `Feedet blev sidst opdateret for ${ago} siden. Indsamlingen kører måske ikke. `,
-        el('a', { href: `kilder.html${state.demo ? `?demo=${encodeURIComponent(state.demo)}` : ''}` }, 'Se kildernes status')));
+      msgs.push(message('', 'advarsel', `Feedet blev sidst opdateret for ${ago} siden. Indsamlingen kører måske ikke. `,
+        el('a', { href: withDemo('kilder.html', state.demo) }, 'Se kildernes status')));
     }
   }
   if (feed.mode === 'fallback') {
-    bars.push(bar('bar-info', 'info', 'Claudes vurdering er forsinket. Nye indslag vises lige nu ud fra regler og er mærket "ikke vurderet".'));
+    msgs.push(message('msg-info', 'info', 'Claudes vurdering er forsinket. Nye indslag vises efter faste regler og er mærket "Ikke vurderet".'));
   }
-  ui.bars.replaceChildren(...bars);
-  ui.bars.hidden = !bars.length;
+  ui.msgs.replaceChildren(...msgs);
+  ui.msgs.hidden = !msgs.length;
 
-  // Introlinje ved første besøg
-  if (!lastVisit && load('af.introClosed') !== '1') {
-    ui.intro.hidden = false;
-    $('intro-close').addEventListener('click', () => {
-      store('af.introClosed', '1');
-      ui.intro.hidden = true;
-      ui.status.focus();
-    });
+  // ── Ændringer ──
+  let qTimer = 0; // søgning, der venter på de 180 ms
+  function change(mutate, { keepLimit = false, scroll = true } = {}) {
+    // En ventende søgning anvendes først, så et filterklik lige efter en tast ikke overskriver teksten
+    if (qTimer) { clearTimeout(qTimer); qTimer = 0; state.q = ui.q.value.trim(); }
+    // Stod listens hoved over skærmens top, rulles det i syne. Det måles, før DOM'en ændres (layoutet er
+    // rent, så målingen er gratis), og rulningen sker i næste billede uden et ekstra, tvunget layout
+    const above = scroll && ui.head.getBoundingClientRect().top < 0;
+    mutate(state);
+    if (!keepLimit) limit = PAGE_SIZE;
+    render();
+    if (above) requestAnimationFrame(() => scrollToHead(true));
+  }
+  function reset() {
+    change(resetFilters);
+    if (ui.sheet.open) ui.sheetTitle.focus();
+    else ui.status.focus();
   }
 
-  // Filterpanel (flyttes ind i bundarket på smalle skærme)
-  const change = (mutate) => { mutate(state); limit = PAGE_SIZE; render(); };
-  const panel = buildPanel(data, state, change);
-  ui.slot.append(panel.root);
+  // Filterpanelet (flyttes ind i arket under 1024 px)
+  const panel = buildPanel(data, state, change, { typesHref: withDemo('kilder.html#typer', state.demo), onReset: reset });
+  ui.slot.replaceChildren(panel.root);
+  fitScrollbar(ui.slot);
+  addEventListener('resize', () => fitScrollbar(ui.slot));
 
   const overview = createOverview(ui.overview, {
     data, now, getState: () => state,
     onPeriod: (p) => { state.overblik = p; syncUrl(state); },
-    onStory: (ids) => { change((s) => { s.story = ids; }); toList(); },
+    onStory: (ids) => { change((s) => { s.story = ids; }, { scroll: false }); toList(); },
   });
   ui.overview.hidden = false;
   overview.render();
 
-  const mq = matchMedia('(max-width: 1023px)');
-  const openSheet = () => { ui.sheetBody.append(panel.root); ui.sheet.showModal(); };
-  ui.filterBtn.addEventListener('click', openSheet);
+  // ── Søgefeltet over listen ──
+  const applyQ = () => {
+    clearTimeout(qTimer);
+    qTimer = 0;
+    const v = ui.q.value.trim();
+    if (v !== state.q) change((s) => { s.q = v; });
+  };
+  const showClear = () => { ui.qClear.hidden = !ui.q.value; };
+  ui.q.addEventListener('input', () => { showClear(); clearTimeout(qTimer); qTimer = setTimeout(applyQ, 180); });
+  ui.q.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); applyQ(); }
+    if (e.key === 'Escape' && ui.q.value) { e.preventDefault(); ui.q.value = ''; showClear(); applyQ(); }
+  });
+  ui.qClear.addEventListener('click', () => { ui.q.value = ''; showClear(); applyQ(); ui.q.focus(); });
+  showClear();
+  applyQ(); // tekst skrevet, mens feedet blev hentet
+
+  // ── Visning: Normal | Kompakt ──
+  for (const input of ui.view.querySelectorAll('input')) {
+    input.addEventListener('change', () => change((s) => { s.vis = input.value; }, { keepLimit: true, scroll: false }));
+  }
+
+  // ── Statuslinjen ──
+  ui.statusAction.addEventListener('click', () => {
+    change((s) => { s.nye = !s.nye; });
+    ui.status.focus();
+  });
+
+  // ── Filterarket: bundark under 768 px, skuffe fra højre til 1023 px ──
+  const sheetMq = matchMedia('(max-width: 63.99em)');
+  let closeReason = '';
+  let liveTimer = 0;
+  ui.filterBtn.addEventListener('click', () => {
+    if (ui.sheet.open) return;
+    ui.sheetBody.append(panel.root);
+    // Klassisk rullebjælke: dens bredde bliver polstring, mens arket låser scroll (style.css)
+    const root = document.documentElement;
+    root.style.setProperty('--page-sbw', `${Math.max(0, innerWidth - root.clientWidth)}px`);
+    ui.sheet.showModal();
+    fitScrollbar(ui.sheetBody);
+    ui.sheetTitle.focus();
+  });
   ui.sheetClose.addEventListener('click', () => ui.sheet.close());
-  ui.sheetShow.addEventListener('click', () => ui.sheet.close());
-  // Når arket lukkes (knap, Esc, klik udenfor): flyt panelet tilbage og giv fokus til knappen.
+  ui.sheetReset.addEventListener('click', reset);
+  ui.sheetShow.addEventListener('click', () => { closeReason = 'show'; ui.sheet.close(); });
+  // Esc: en åben forslagsliste lukkes først (komponenten stopper selv tasten; dette er reserven)
+  ui.sheet.addEventListener('cancel', (e) => { if (panel.closeSuggestions()) e.preventDefault(); });
+  // Når arket lukkes (×, Esc, klik udenfor, "Vis N indslag"): panelet tilbage i sidepanelet.
   // Lytter både på close og på open-attributten, da close-hændelsen ikke kommer i alle browsere.
   const afterClose = () => {
     if (ui.sheet.open || panel.root.parentElement === ui.slot) return;
+    panel.closeSuggestions();
     ui.slot.append(panel.root);
-    if (mq.matches) ui.filterBtn.focus();
+    fitScrollbar(ui.slot);
+    const reason = closeReason;
+    closeReason = '';
+    if (reason === 'show') toList();
+    else if (reason === 'wide') ui.status.focus({ preventScroll: true });
+    else ui.filterBtn.focus();
   };
   ui.sheet.addEventListener('close', afterClose);
   new MutationObserver(afterClose).observe(ui.sheet, { attributes: true, attributeFilter: ['open'] });
   if (!('closedBy' in HTMLDialogElement.prototype)) {
-    // Light dismiss i browsere uden closedby
-    ui.sheet.addEventListener('click', (e) => {
-      if (e.target !== ui.sheet) return;
+    // Klik på baggrunden lukker i browsere uden closedby, men kun når både pointerdown og klik var på
+    // baggrunden (et træk, der begynder i arket og slutter udenfor, lukker ikke)
+    const onBackdrop = (e) => {
+      if (e.target !== ui.sheet) return false;
       const r = ui.sheet.getBoundingClientRect();
-      const inside = r.top <= e.clientY && e.clientY <= r.bottom && r.left <= e.clientX && e.clientX <= r.right;
-      if (!inside) ui.sheet.close();
+      return !(r.top <= e.clientY && e.clientY <= r.bottom && r.left <= e.clientX && e.clientX <= r.right);
+    };
+    let downOnBackdrop = false;
+    ui.sheet.addEventListener('pointerdown', (e) => { downOnBackdrop = onBackdrop(e); });
+    ui.sheet.addEventListener('click', (e) => {
+      const close = downOnBackdrop && onBackdrop(e);
+      downOnBackdrop = false;
+      if (close) ui.sheet.close();
     });
   }
-  mq.addEventListener('change', () => { if (!mq.matches && ui.sheet.open) ui.sheet.close(); });
-
-  // "/" giver fokus i søgefeltet
-  document.addEventListener('keydown', (e) => {
-    if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey) return;
-    if (e.target.closest?.('input, textarea, select, [contenteditable="true"]')) return;
-    e.preventDefault();
-    if (mq.matches && !ui.sheet.open) openSheet();
-    panel.searchInput.focus();
-    panel.searchInput.select();
-  });
-
-  ui.resetTop.addEventListener('click', () => { change(resetFilters); ui.status.focus(); });
-  ui.statusAction.addEventListener('click', () => {
-    change((s) => { s.nye = !s.nye; });
-    ui.status.focus();
+  sheetMq.addEventListener('change', () => {
+    if (!sheetMq.matches && ui.sheet.open) { closeReason = 'wide'; ui.sheet.close(); }
+    fitScrollbar(ui.slot);
   });
 
   render();
@@ -265,12 +326,23 @@ function setupFeed(feed, state, now, lastVisit) {
   function render() {
     const counts = computeCounts(data, state, now);
     panel.update(state, counts);
-    const lostFocus = renderActive(ui.active, data, state, change);
+    const lostFocus = renderActive(ui.active, data, state, change, reset);
     const n = activeCount(state);
-    ui.resetTop.hidden = n === 0;
-    ui.filterCount.textContent = n ? ` (${n})` : '';
+    const sc = sheetCount(state);
+    // Synligt "Filtrér (2)", til skærmlæser "Filtrér, 2 valgt" (kommaet står inline uden mellemrum før)
+    ui.filterCount.textContent = sc ? ` (${sc})` : '';
+    ui.filterComma.hidden = !sc;
+    ui.filterCountSr.textContent = sc ? ` ${sc} valgt` : '';
+    ui.sheetReset.hidden = n === 0;
+    if (document.activeElement !== ui.q && ui.q.value.trim() !== state.q) { ui.q.value = state.q; showClear(); }
+    for (const input of ui.view.querySelectorAll('input')) input.checked = input.value === state.vis;
     cards = applyFilters(data, state, now);
     ui.sheetShow.textContent = `Vis ${fmtNum(cards.length)} indslag`;
+    if (ui.sheet.open) {
+      // Statuslinjen bag arket er inert; arket har sin egen besked
+      clearTimeout(liveTimer);
+      liveTimer = setTimeout(() => { ui.sheetLive.textContent = `${fmtNum(cards.length)} indslag`; }, 500);
+    }
     renderStatus();
     renderList();
     overview.setFiltersActive(n > 0);
@@ -278,38 +350,61 @@ function setupFeed(feed, state, now, lastVisit) {
     if (lostFocus) ui.status.focus();
   }
 
-  function renderStatus() {
-    const total = cards.length;
-    const shown = Math.min(limit, total);
-    let text = total ? `Viser ${fmtNum(shown)} af ${fmtNum(total)} indslag` : 'Ingen indslag';
-    let newCount = 0;
-    if (lastVisit) {
-      newCount = state.nye ? total : applyFilters(data, { ...state, nye: true }, now).length;
-      if (newCount) text += ` · ${fmtNum(newCount)} nye siden ${fmtWhen(lastVisit, now)}`;
-    }
-    ui.statusText.textContent = text;
-    if (state.nye) { ui.statusAction.textContent = 'Vis alle'; ui.statusAction.hidden = false; }
-    else if (newCount) { ui.statusAction.textContent = 'Vis kun nye'; ui.statusAction.hidden = false; }
-    else ui.statusAction.hidden = true;
+  function totalFor(saml) {
+    if (!totals.has(saml)) totals.set(saml, applyFilters(data, { ...defaultState(), saml }, now).length);
+    return totals.get(saml);
   }
 
-  function groupOf(day) {
-    const diff = todayNum - day.dayNum;
-    if (diff <= 0) return { key: 'i-dag', label: 'I dag' };
-    if (diff === 1) return { key: 'i-gaar', label: 'I går' };
-    if (diff < 7) return { key: `d${day.dayNum}`, label: `${cap(weekdayOf(day))} ${fmtLong(day)}` };
-    const w = isoWeek(day.dayNum);
-    return { key: `w${w.year}-${w.week}`, label: `Uge ${w.week} · ${fmtWeekRange(w.monday)}` };
+  function renderStatus() {
+    const n = cards.length;
+    let action = null;
+    let tail = '';
+    let text;
+    if (state.nye) {
+      text = n === 1 ? '1 nyt indslag' : `${fmtNum(n)} nye indslag`;
+      action = 'Vis alle';
+    } else {
+      text = activeCount(state) ? `${fmtNum(n)} af ${fmtNum(totalFor(state.saml))} indslag` : `${fmtNum(n)} indslag`;
+      if (lastVisit) {
+        // Nye kort er de markerede (card.isNew), så tallet og markeringerne altid stemmer
+        let newCount = 0;
+        for (const c of cards) if (c.isNew) newCount += 1;
+        if (newCount) { action = newCount === 1 ? 'Vis 1 ny' : `Vis ${fmtNum(newCount)} nye`; tail = ` siden ${fmtWhen(lastVisit, now)}`; }
+      }
+    }
+    ui.statusText.textContent = text;
+    ui.statusSep.hidden = !action;
+    ui.statusAction.hidden = !action;
+    // replaceChildren skriver null som teksten "null" ("Vis allenull"); derfor kun de dele, der findes
+    if (action) ui.statusAction.replaceChildren(action, ...(tail ? [hidden(tail)] : []));
+  }
+
+  // Grupper: I dag, I går, ugedage til 6 dage tilbage, derefter uger med kun de dage, gruppen dækker
+  function grouper() {
+    const firstDay = cph(new Date(now.getTime() - state.periode * DAY_MS)).dayNum;
+    return (day) => {
+      const diff = todayNum - day.dayNum;
+      if (diff <= 0) return { key: 'i-dag', label: 'I dag', week: false };
+      if (diff === 1) return { key: 'i-gaar', label: 'I går', week: false };
+      if (diff < 7) return { key: `d${day.dayNum}`, label: `${cap(weekdayOf(day))} ${fmtLong(day)}`, week: false };
+      const w = isoWeek(day.dayNum);
+      const from = Math.max(w.monday, firstDay);
+      const to = Math.min(w.monday + 6, todayNum - 7);
+      return { key: `w${w.year}-${w.week}`, label: `Uge ${w.week} · ${fmtDayRange(from, to)}`, week: true };
+    };
   }
 
   function renderList() {
     ui.more.replaceChildren();
+    ui.more.hidden = true;
+    ui.list.classList.toggle('is-compact', state.vis === 'kompakt');
     if (!data.members.length) {
       ui.list.replaceChildren(el('div', { class: 'empty' }, el('p', { text: 'Der er ingen indslag i feedet endnu.' })));
       return;
     }
     if (!cards.length) { ui.list.replaceChildren(renderEmpty()); return; }
 
+    const groupOf = grouper();
     const groupCount = new Map();
     for (const c of cards) {
       const k = groupOf(c.primary.day).key;
@@ -320,9 +415,8 @@ function setupFeed(feed, state, now, lastVisit) {
 
     // Intet i dag (kun uden filtre)
     if (activeCount(state) === 0 && groupOf(visible[0].primary.day).key !== 'i-dag') {
-      const gen = parseDate(data.feed.generated);
-      out.push(el('section', { class: 'day', 'aria-labelledby': 'day-i-dag' },
-        el('h2', { class: 'day-head', id: 'day-i-dag' }, 'I dag'),
+      out.push(el('div', { class: 'day' },
+        el('h2', { class: 'day-head', id: 'day-i-dag' }, el('span', { text: 'I dag' })),
         el('p', { class: 'day-empty', text: `Intet nyt endnu i dag.${gen ? ` Sidst opdateret ${fmtStamp(gen, now)}.` : ''}` })));
     }
 
@@ -330,27 +424,26 @@ function setupFeed(feed, state, now, lastVisit) {
     let ul = null;
     let dividerDone = !lastVisit || state.nye;
     let seenNew = false;
+    const compact = state.vis === 'kompakt';
     for (const card of visible) {
       const g = groupOf(card.primary.day);
       if (!group || group.key !== g.key) {
         group = g;
-        const count = groupCount.get(g.key) || 0;
         ul = el('ul', { class: 'cards' });
-        out.push(el('section', { class: 'day', 'aria-labelledby': `day-${g.key}` },
+        out.push(el('div', { class: 'day' },
           el('h2', { class: 'day-head', id: `day-${g.key}` },
             el('span', { text: g.label }),
-            el('span', { class: 'n' }, fmtNum(count), hidden(' indslag'))),
+            el('span', { class: 'n' }, fmtNum(groupCount.get(g.key) || 0), hidden(' indslag'))),
           ul));
       }
-      const isNew = card.primary.isNew;
+      const isNew = card.isNew;
       if (!dividerDone && seenNew && !isNew) {
         ul.append(el('li', { class: 'lastvisit' }, `Her slap du sidst · ${fmtWhen(lastVisit, now)}`));
         dividerDone = true;
       }
       if (isNew) seenNew = true;
-      ul.append(el('li', null, state.vis === 'kompakt' ? renderRow(card) : renderCard(card)));
+      ul.append(el('li', null, compact ? renderRow(card, g) : renderCard(card, g)));
     }
-    ui.list.classList.toggle('is-compact', state.vis === 'kompakt');
     ui.list.replaceChildren(...out);
 
     if (cards.length > limit) {
@@ -360,164 +453,202 @@ function setupFeed(feed, state, now, lastVisit) {
         onclick: () => {
           const first = limit;
           limit += PAGE_SIZE;
-          renderStatus();
           renderList();
           ui.list.querySelectorAll('article .title a')[first]?.focus();
         },
       }, `Vis flere (${fmtNum(next)})`));
+      ui.more.hidden = false;
     }
   }
 
-  function timeLabel(m) {
+  // ── Kortet ──
+
+  /** Tid efter datokvalitet. Under en dagsoverskrift kun klokkeslæt; ellers datoen. */
+  function timeEl(m, group, headDay) {
     const c = m.day;
-    const diff = todayNum - c.dayNum;
-    const clock = `kl. ${c.hh}.${c.mm}`;
-    if (m.dateQuality === 'url' || m.dateQuality === 'liste') return diff <= 0 ? 'i dag' : diff === 1 ? 'i går' : fmtShort(c);
-    if (m.dateQuality === 'fundet') return diff <= 1 ? `fundet ${clock}` : `fundet ${fmtShort(c)}`;
-    return diff <= 1 ? clock : fmtShort(c);
+    const dateOnly = m.dateQuality === 'url' || m.dateQuality === 'liste';
+    const pre = m.dateQuality === 'fundet' ? 'fundet ' : '';
+    let text = '';
+    let sr = null;
+    if (!group.week && c.dayNum === headDay) {
+      if (dateOnly) sr = 'uden klokkeslæt';
+      else text = `${pre}${c.hh}.${c.mm}`;
+    } else {
+      text = `${pre}${fmtShort(c)}`;
+    }
+    return el('time', { datetime: new Date(m.time).toISOString() }, text || null, sr ? hidden(sr) : null);
   }
 
-  function timeEl(m) {
-    return el('time', { datetime: new Date(m.time).toISOString() }, timeLabel(m));
-  }
-  function sep() {
-    return el('span', { class: 'sep', 'aria-hidden': 'true', text: '·' });
-  }
   function langAttr(m) {
     return m.lang && m.lang !== 'da' ? m.lang : null;
   }
 
   function titleLink(m) {
     return el('a', { href: m.url, target: '_blank', rel: 'noopener' },
-      el('span', { lang: langAttr(m) }, m.title),
-      el('span', { class: 'ext', 'aria-hidden': 'true', text: ' ↗' }),
-      hidden(' (åbner i nyt vindue)'));
+      el('span', { lang: langAttr(m) }, m.title), hidden(' (åbner i nyt vindue)'));
   }
 
-  function srcButton(src) {
-    return el('button', {
-      type: 'button', class: 'src',
-      onclick: () => { addFilter('kilde', src.id); },
-    }, hidden('Filtrér på kilden '), src.name);
+  /**
+   * Titel i kompakt visning. Titlens sidste ord, låsen og den skjulte tekst står i ét span uden
+   * ombrydning, så låsen aldrig står alene på en linje, og "· Ikke vurderet" aldrig begynder en linje.
+   */
+  function compactTitleLink(m, pay) {
+    const lang = langAttr(m);
+    const t = String(m.title || '').trim();
+    const cut = t.lastIndexOf(' ') + 1;
+    return el('a', { href: m.url, target: '_blank', rel: 'noopener' },
+      cut ? el('span', { lang }, t.slice(0, cut)) : null,
+      el('span', { class: 'nw' }, el('span', { lang }, t.slice(cut)), pay ? icon('laas', 'lock') : null, hidden(' (åbner i nyt vindue)')));
   }
 
-  function renderCard(card) {
+  function paywallText(src) {
+    return src.paywall === 'ja' ? 'Betalingsmur' : src.paywall === 'delvis' ? 'Delvis betalingsmur' : '';
+  }
+
+  /** Genre, men ikke når titlen selv siger den ("Debat: …"). */
+  function genreText(m) {
+    if (!m.isHead || m.genre === 'nyhed') return '';
+    const g = genreName(data, m.genre);
+    const word = g.split(' ')[0].toLowerCase();
+    return m.title.toLowerCase().startsWith(`${word}:`) ? '' : g;
+  }
+
+  /** Afsenderlinjen: ikon, kilde, kategori (", udgivet af X"), genre, betalingsmur, "Ikke vurderet". */
+  function who(m, { genre = true, review = true } = {}) {
+    const parts = [];
+    if (genre) parts.push(genreText(m));
+    parts.push(paywallText(m.source));
+    if (review && !m.reviewed) parts.push('Ikke vurderet');
+    return el('p', { class: 'who' }, icon(m.cat.icon), el('b', { text: m.source.name }),
+      sep(), `${m.cat.short || m.cat.name}${m.source.owner ? `, udgivet af ${m.source.owner}` : ''}`,
+      // Genre, betalingsmur og "Ikke vurderet" brydes aldrig midt i ("Delvis betalingsmur" står samlet)
+      parts.filter(Boolean).map((t) => [sep(), el('span', { class: 'nw', text: t })]));
+  }
+
+  function renderCard(card, group) {
     const m = card.primary;
-    const src = m.source;
     const others = state.saml ? card.others : [];
-    const newOthers = others.filter((o) => o.isNew).length;
     const titleId = `t-${m.id}`;
+    const headDay = m.day.dayNum;
 
-    const badges = [];
-    if (src.paywall === 'ja' || src.paywall === 'delvis') badges.push(el('span', { class: 'badge' }, icon('laas'), 'Betalingsmur'));
-    if (m.lang === 'en' || m.lang === 'sv') {
-      badges.push(el('span', { class: 'badge' }, m.lang.toUpperCase(), hidden(m.lang === 'en' ? ' (på engelsk)' : ' (på svensk)')));
-    }
-    if (!m.reviewed) badges.push(el('span', { class: 'badge badge-warn' }, 'ikke vurderet'));
-    if (newOthers) badges.push(el('span', { class: 'badge badge-new' }, `+${newOthers} ${newOthers === 1 ? 'ny' : 'nye'}`));
-
-    const meta = el('div', { class: 'meta' },
-      el('span', { class: 'dot', 'aria-hidden': 'true' }), icon(m.cat.icon),
-      srcButton(src), sep(), el('span', { text: m.cat.short }),
-      src.owner ? [sep(), el('span', { text: `udgivet af ${src.owner}` })] : null,
-      sep(), timeEl(m),
-      badges.length ? el('span', { class: 'badges' }, badges) : null);
-
-    const genre = m.isHead && m.genre !== 'nyhed' ? data.genres.get(m.genre)?.label : '';
-
-    let body = null;
+    let teaser = null;
     if (m.lang !== 'da' && m.summary) {
-      body = [
-        el('p', { class: 'teaser summary' }, el('span', { class: 'badge badge-auto' }, 'Auto-resumé'), m.summary),
-        m.teaser ? el('details', { class: 'orig' },
-          el('summary', null, `Original tekst (${m.lang === 'sv' ? 'svensk' : 'engelsk'})`),
-          el('p', { lang: m.lang }, truncate(m.teaser, TEASER_MAX))) : null,
-      ];
+      teaser = el('p', { class: 'teaser' }, el('b', { class: 'auto', text: 'Auto-resumé:' }), ' ', m.summary);
     } else if (m.teaser) {
-      body = el('p', { class: 'teaser', lang: langAttr(m) }, truncate(m.teaser, TEASER_MAX));
+      teaser = el('p', { class: 'teaser', lang: langAttr(m) }, truncate(m.teaser, TEASER_MAX));
     }
 
-    const topics = m.topics.slice(0, 2).map((t) => el('button', {
-      type: 'button', class: 'topic', onclick: () => addFilter('tema', t),
-    }, hidden('Filtrér på tema: '), topicName(data, t)));
+    // Fodlinje: sted (de mest præcise, højst to navne og "+N"), temaer og "+N andre kilder"
+    const places = precisePlaces(data, m.places).map((p) => placeName(data, p));
+    const topics = m.topics.slice(0, 2).map((t) => topicName(data, t));
+    const rest = places.length - 2;
+    const placeText = places.length ? [
+      icon('sted', 'pin'), hidden('Sted: '), places.slice(0, 2).join(', '),
+      rest > 0 ? [' ', el('span', { 'aria-hidden': 'true', text: `+${rest}` }), hidden(rest === 1 ? 'og 1 andet sted' : `og ${rest} andre steder`)] : null,
+    ] : null;
+    const topicText = topics.length ? [hidden(topics.length > 1 ? 'Temaer: ' : 'Tema: '), topics.map((t, i) => (i ? [sep(), t] : t))] : null;
+    const facets = placeText || topicText
+      ? el('p', { class: 'facets' }, placeText, placeText && topicText ? sep() : null, topicText)
+      : null;
+    let also = null;
+    if (others.length) {
+      const fresh = others.filter((o) => o.isNew).length;
+      also = el('details', { class: 'also' },
+        el('summary', null,
+          `+${others.length} ${others.length === 1 ? 'anden kilde' : 'andre kilder'}${fresh ? `, ${fresh} ${fresh === 1 ? 'ny' : 'nye'}` : ''}`,
+          icon('pil-ned')),
+        el('ul', null, others.map((o) => el('li', { class: 'cat', style: catStyle(o.cat) },
+          el('div', { class: 'meta' }, who(o, { genre: false, review: false }), timeEl(o, group, headDay)),
+          el('p', { class: 'mtitle' }, o.isNew ? hidden('Ny: ') : null, titleLink(o))))));
+    }
 
-    const also = others.length ? el('details', { class: 'also' },
-      el('summary', null, `+${others.length} ${others.length === 1 ? 'anden kilde' : 'andre kilder'}`, icon('pil-ned')),
-      el('ul', null, others.map((o) => el('li', { class: 'cat', style: catStyle(o.cat) },
-        el('div', { class: 'meta' },
-          el('span', { class: 'dot', 'aria-hidden': 'true' }), icon(o.cat.icon),
-          el('strong', { text: o.source.name }), sep(), el('span', { text: o.cat.short }), sep(), timeEl(o),
-          o.isNew ? el('span', { class: 'badges' }, el('span', { class: 'badge badge-new' }, 'ny')) : null),
-        titleLink(o))))) : null;
-
-    return el('article', { class: `card cat${m.isNew ? ' is-new' : ''}`, style: catStyle(m.cat), 'aria-labelledby': titleId },
-      meta,
-      genre ? el('p', { class: 'genre', text: genre }) : null,
-      el('h3', { class: 'title', id: titleId }, m.isNew ? hidden('Ny: ') : null, titleLink(m)),
-      body,
-      topics.length || also ? el('div', { class: 'foot' }, topics, also) : null);
+    // Kortet er nyt, når et af dets indslag, der passer på filtrene, er nyt (samme regel som "Vis N nye")
+    return el('article', { class: `card cat${card.isNew ? ' is-new' : ''}`, style: catStyle(m.cat), 'aria-labelledby': titleId },
+      el('div', { class: 'meta' }, who(m), timeEl(m, group, headDay)),
+      el('h3', { class: 'title', id: titleId }, card.isNew ? hidden('Ny: ') : null, titleLink(m)),
+      teaser,
+      facets || also ? el('div', { class: 'foot' }, facets, also) : null);
   }
 
-  function renderRow(card) {
+  /** Kompakt: ikon, kilde (fast kolonne), titel og tid. */
+  function renderRow(card, group) {
     const m = card.primary;
     const titleId = `t-${m.id}`;
-    return el('article', { class: `row cat${m.isNew ? ' is-new' : ''}`, style: catStyle(m.cat), 'aria-labelledby': titleId },
-      timeEl(m),
-      el('span', { class: 'dot', 'aria-hidden': 'true' }),
-      srcButton(m.source),
-      el('h3', { class: 'title', id: titleId }, m.isNew ? hidden('Ny: ') : null, titleLink(m)));
+    const pay = paywallText(m.source);
+    return el('article', { class: `row cat${card.isNew ? ' is-new' : ''}`, style: catStyle(m.cat), 'aria-labelledby': titleId },
+      icon(m.cat.icon),
+      el('span', { class: 'src', text: m.source.name, title: m.source.name.length > 18 ? m.source.name : null }),
+      el('div', { class: 'tcell' },
+        el('h3', { class: 'title', id: titleId }, card.isNew ? hidden('Ny: ') : null, compactTitleLink(m, pay)),
+        m.reviewed ? null : el('span', { class: 'nr' }, sep(), 'Ikke vurderet'),
+        pay ? hidden(` (${pay.toLowerCase()})`) : null),
+      timeEl(m, group, m.day.dayNum));
   }
 
-  function addFilter(group, value) {
-    change((s) => { if (!s[group].includes(value)) s[group] = [...s[group], value]; });
-    toList();
-  }
-
-  /** Efter et klik i listen eller overblikket: vis toppen af listen og flyt fokus til statuslinjen. */
+  /** Efter "+N" i overblikket eller "Vis N indslag": listens hoved i syne og fokus på statuslinjen. */
   function toList() {
-    if (ui.toolbar.getBoundingClientRect().top < 0) ui.toolbar.scrollIntoView({ block: 'start' });
+    scrollToHead(true);
     ui.status.focus({ preventScroll: true });
   }
+
+  function scrollToHead(force) {
+    const r = ui.head.getBoundingClientRect();
+    if (!force && r.top >= 0) return;
+    window.scrollTo({ top: window.scrollY + r.top - (narrow.matches ? 0 : 16), behavior: 'auto' });
+  }
+
+  // ── Tom-tilstande ──
 
   function renderEmpty() {
     const box = el('div', { class: 'empty' });
     const actions = el('div', { class: 'actions' });
+    const act = (text, mutate, primary) => el('button', {
+      type: 'button', class: primary ? 'btn btn-primary' : 'btn',
+      onclick: () => { change(mutate); ui.status.focus(); },
+    }, text);
     if (state.nye) {
       box.append(el('p', {
         text: lastVisit
           ? `Intet nyt siden dit sidste besøg ${fmtWhen(lastVisit, now)}.`
           : 'Intet er markeret som nyt, fordi siden ikke kender dit sidste besøg på denne enhed.',
       }));
-      actions.append(el('button', { type: 'button', class: 'btn btn-primary', onclick: () => change((s) => { s.nye = false; }) }, 'Vis alle'));
+      actions.append(act('Vis alle', (s) => { s.nye = false; }, true));
       box.append(actions);
       return box;
     }
-    const filters = activeFilters(data, state);
-    const named = filters.filter((f) => f.key !== 'periode');
+    const chips = activeFilters(data, state);
+    const named = chips.filter((f) => f.key !== 'periode').map((f) => f.label);
     const span = `de seneste ${state.periode} dage`;
     let msg;
-    if (named.length === 1 && named[0].key === 'q') msg = `Intet om "${state.q}" ${span}.`;
-    else if (named.length) msg = `Ingen indslag passer til ${named.map((f) => f.label).join(' + ')} ${span}.`;
+    if (!named.length && state.q) msg = `Intet om "${state.q}" ${span}.`;
+    else if (named.length) msg = `Ingen indslag passer til ${[...named, ...(state.q ? [`"${state.q}"`] : [])].join(' + ')} ${span}.`;
     else msg = `Ingen indslag ${span}.`;
+    if (chips.some((f) => f.key === 'sted')) msg += ' Landsdækkende nyheder vises ikke, når et sted er valgt.';
     box.append(el('p', { text: msg }));
 
-    // Foreslå det filter, der giver flest indslag, når det fjernes
-    let best = null;
-    for (const f of filters) {
+    // Den ene ændring, der giver flest indslag: et filter fjernet, søgningen ryddet eller et sted udvidet
+    // (by → primær kommune → region). Et sted, der kan udvides med indslag til følge, udvides frem for at fjernes.
+    const count = (mutate) => {
       const trial = structuredClone(state);
-      removeFilter(trial, f);
-      const n = applyFilters(data, trial, now).length;
-      if (n > 0 && (!best || n > best.n)) best = { f, n };
+      mutate(trial);
+      return applyFilters(data, trial, now).length;
+    };
+    const widen = (from, to) => (s) => { s.sted = [...new Set(s.sted.map((v) => (v === from ? to : v)))]; };
+    const options = [];
+    for (const f of chips) {
+      const parent = f.key === 'sted' ? placeParents(data, f.value).find((p) => count(widen(f.value, p)) > 0) : null;
+      if (parent) options.push({ text: `Udvid til ${placeName(data, parent)}`, mutate: widen(f.value, parent) });
+      // Historien får den korte tekst; dens mærke kan være 60 tegn langt
+      else options.push({ text: f.key === 'periode' ? 'Udvid til 60 dage' : f.key === 'story' ? 'Fjern historien' : `Fjern ${f.label}`, mutate: (s) => removeFilter(s, f) });
     }
-    if (best) {
-      actions.append(el('button', {
-        type: 'button', class: 'btn btn-primary',
-        onclick: () => { change((s) => removeFilter(s, best.f)); ui.status.focus(); },
-      }, `Fjern ${best.f.label} (viser ${fmtNum(best.n)})`));
+    if (state.q) options.push({ text: 'Ryd søgning', mutate: (s) => { s.q = ''; } });
+    let best = null;
+    for (const o of options) {
+      const n = count(o.mutate);
+      if (n > 0 && (!best || n > best.n)) best = { ...o, n };
     }
-    if (filters.length) {
-      actions.append(el('button', { type: 'button', class: 'btn', onclick: () => { change(resetFilters); ui.status.focus(); } }, 'Nulstil filtre'));
-    }
+    if (best) actions.append(act(`${best.text} (viser ${fmtNum(best.n)})`, best.mutate, true));
+    if (options.length) actions.append(act('Nulstil filtre', resetFilters, false));
     box.append(actions);
     return box;
   }
@@ -541,9 +672,8 @@ function healthBadge(h) {
 async function initKilder() {
   const state = readState(location.search);
   const now = new Date();
-  keepDemo(state.demo);
+  initDemo(state.demo);
   const root = $('kilder-root');
-  const bars = $('bars');
 
   let feed;
   try {
@@ -552,14 +682,10 @@ async function initKilder() {
     console.warn('Kilderne kunne ikke indlæses:', err.message);
     root.replaceChildren(el('div', { class: 'panel', role: 'alert' },
       el('p', { text: 'Kildelisten kunne ikke indlæses. Prøv igen om lidt.' }),
-      el('p', null, el('button', { type: 'button', class: 'btn', onclick: () => location.reload() }, 'Prøv igen'))));
+      el('p', { class: 'actions' }, el('button', { type: 'button', class: 'btn', onclick: () => location.reload() }, 'Prøv igen'))));
     return;
   }
-  if (state.demo) {
-    demoize(feed, now);
-    bars.replaceChildren(demoBar());
-    bars.hidden = false;
-  }
+  if (state.demo) demoize(feed, now);
 
   let status = null;
   if (!state.demo) {
@@ -594,19 +720,24 @@ async function initKilder() {
     el('p', { class: 'facts status-note' },
       gen ? `Feedet er opdateret ${fmtWhen(gen, now)}. ` : '',
       lastJ ? `Claude vurderede sidst indslag ${fmtWhen(lastJ, now)}. ` : '',
-      feed.mode === 'fallback' ? 'Lige nu vises nye indslag ud fra regler og er mærket "ikke vurderet".' : ''),
+      feed.mode === 'fallback' ? 'Lige nu vises nye indslag efter faste regler og er mærket "Ikke vurderet".' : ''),
     el('ul', { class: 'legend', 'aria-label': 'Kildernes sundhed' },
       Object.keys(HEALTH).map((h) => el('li', null, healthBadge(h), ` ${fmtNum(healthCount[h])}`)))));
 
-  // Indholdsfortegnelse
-  out.push(el('nav', { class: 'panel', 'aria-label': 'Kategorier' },
-    el('ul', { class: 'toc' }, cats.map((c) => el('li', { class: 'cat', style: catStyle(c) },
-      el('a', { href: `#kat-${c.id}` }, el('span', { class: 'dot', 'aria-hidden': 'true' }), c.name))))));
+  // Afsendertyperne som rækker; filterpanelets link "Om afsendertyperne" peger hertil
+  out.push(el('nav', { class: 'panel', id: 'typer', 'aria-labelledby': 'h-typer' },
+    el('h2', { id: 'h-typer', text: 'Afsendertyper' }),
+    el('ul', { class: 'types' }, cats.map((c) => {
+      const n = direct.filter((s) => s.category === c.id).length;
+      return el('li', null, el('a', { class: 'trow cat', style: catStyle(c), href: `#kat-${c.id}` },
+        icon(c.icon), el('span', { class: 'name', text: c.name }),
+        el('span', { class: 'n' }, fmtNum(n), hidden(n === 1 ? ' kilde' : ' kilder'))));
+    }))));
 
   for (const c of cats) {
     const list = direct.filter((s) => s.category === c.id).sort((a, b) => a.name.localeCompare(b.name, 'da'));
     out.push(el('section', { class: 'panel cat-section cat', id: `kat-${c.id}`, style: catStyle(c), 'aria-labelledby': `h-${c.id}` },
-      el('h2', { id: `h-${c.id}` }, icon(c.icon), c.name),
+      el('h2', { id: `h-${c.id}` }, icon(c.icon), el('span', { text: c.name })),
       el('p', { class: 'help', text: c.help }),
       list.length
         ? el('ul', { class: 'src-rows' }, list.map((s) => sourceRow(s, now)))
@@ -643,7 +774,7 @@ function sourceRow(s, now, cats = null) {
     if (st.fails) facts.push(`${fmtNum(st.fails)} fejl i træk`);
   }
   return el('li', { class: 'src-row' },
-    el('div', { class: 'who' },
+    el('div', { class: 'src-who' },
       el('a', { href: s.homepage, target: '_blank', rel: 'noopener' }, s.name, hidden(' (åbner i nyt vindue)')),
       facts.length ? el('p', { class: 'facts', text: facts.join(' · ') }) : null,
       st?.last_error && s.health === 'roed' ? el('p', { class: 'facts', text: `Seneste fejl: ${truncate(st.last_error, 120)}` }) : null),

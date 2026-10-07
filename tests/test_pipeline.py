@@ -91,6 +91,11 @@ def test_first_run(env, monkeypatch, caplog):
     assert "<" not in madaffald.teaser and "alert" not in madaffald.teaser
     assert madaffald.teaser.startswith("Fra 1. januar skal alle husstande sortere madaffald")
 
+    # Steder: afsenderens faste geografi (affaldsselskab) og navne i titlen
+    assert madaffald.places == ["k:nyborg"]
+    assert gebyr.places == []
+    assert cands["Nyt genbrugscenter åbner i Aarhus"].places == ["k:aarhus", "b:aarhus"]
+
     # Søgefund krediteres udgiveren; DR-fundet er en dublet af DR's eget feed
     tv2 = cands["Nye affaldsregler får stik modsat effekt"]
     assert tv2.source == "tv2" and tv2.found_via == "search"
@@ -295,6 +300,134 @@ def test_processor_search_uses_strictest_filter(env):
     assert proc.rule_source(bing, "dr").filter == "strict"  # DR er strict, Bing normal
     tv2 = proc.rule_source(bing, "tv2")
     assert tv2.category == "nyhedsmedie" and tv2.filter == "normal" and tv2.id == "tv2"
+
+
+def test_processor_sets_places(env):
+    from affaldsfeed.collect import RawEntry
+    from affaldsfeed.config import load_sources
+
+    sources = load_sources(env.sources)
+    cfg = load_config(env.config)
+    cfg.publishers.append(cfg.publishers[0].model_copy(
+        update={"id": "nfs", "name": "Nyborg Forsyning", "category": "kommunal", "domains": ["nfs.dk"],
+                "basis": "offentlig", "places": ["k:nyborg"]}))
+    now = datetime(2026, 10, 7, 8, tzinfo=UTC)
+    testmedie = next(s for s in sources if s.id == "testmedie")
+    bing = next(s for s in sources if s.id == "bing-news")
+
+    def raw(source_id: str, title: str, teaser: str = "", lang: str = "da", via: str = "feed") -> RawEntry:
+        url = "https://x.dk/" + "".join(ch for ch in title.lower() if ch.isascii() and ch.isalnum())
+        return RawEntry(source_id, url, title, teaser, now - timedelta(hours=2), "kilde", lang, [], None, None, via)
+
+    proc = pipeline.Processor(cfg, sources, now, {}, set())
+    out = proc.process(testmedie, [
+        raw("testmedie", "Ny genbrugsplads i Ullerslev åbner", "Nyborg Kommune står for driften af affaldet."),
+        raw("testmedie", "Aarhus Universitet forsker i affald og plast"),
+        raw("testmedie", "New recycling centre for waste opens in Nyborg", lang="en"),
+    ], first_run=False)
+    by_title = {c.title: c for c in out.new}
+    assert by_title["Ny genbrugsplads i Ullerslev åbner"].places == ["k:nyborg", "b:ullerslev"]
+    assert by_title["Aarhus Universitet forsker i affald og plast"].places == []
+    assert by_title["New recycling centre for waste opens in Nyborg"].places == []
+
+    # Søgefund krediteres udgiveren og får dens faste steder
+    out = proc.process(bing, [raw("nfs", "Ny ordning for haveaffald fra januar", via="search")], first_run=False)
+    assert out.new[0].source == "nfs" and out.new[0].places == ["k:nyborg"]
+
+
+def _old_cand(slug: str, title: str, days_ago: float, source: str = "testmedie", **kw):
+    """En gemt kandidat fra en tidligere kørsel (fx før stedmærkningen fandtes)."""
+    from affaldsfeed.models import Candidate
+
+    t = datetime(2026, 10, 7, 8, 5, tzinfo=UTC) - timedelta(days=days_ago)
+    url = f"https://gammel.dk/{slug}"
+    return Candidate(id=f"{slug:x<12}"[:12], url=url, title=title, source=source, published=t,
+                     date_quality="kilde", first_seen=t, why={"filter": "normal", "score": 4, "decision": "vis"},
+                     **kw)
+
+
+def test_run_refreshes_places_of_old_candidates(env, monkeypatch, caplog):
+    """run genberegner regelmærkerne for danske kandidater i vinduet med den aktuelle geografi."""
+    caplog.set_level(logging.INFO)
+    before = [
+        _old_cand("odense", "Ny genbrugsplads åbner i Odense til foråret", 10),         # fundet før steder
+        _old_cand("forsvundet", "Kommunerne skal sortere mere affald", 12, places=["b:findes-ikke"]),
+        _old_cand("selskab", "Ny ordning for haveaffald", 20, source="affaldsselskab"),  # fast k:nyborg
+        _old_cand("udenfor", "Ny genbrugsplads åbner i Aarhus", 70),                    # uden for vinduet
+        _old_cand("engelsk", "New recycling centre opens in Odense", 5, lang="en"),
+        _old_cand("uaendret", "Affald i Svendborg", 3, places=["k:svendborg", "b:svendborg"]),
+    ]
+    store.save_candidates(before)
+    mtimes = {f.name: f.stat().st_mtime_ns for f in paths.CANDIDATES_DIR.iterdir()}
+
+    # --dry-run beregner, men gemmer intet
+    code, _ = _run(monkeypatch, dry_run=True)
+    assert code == 0
+    assert {c.id: c.places for c in store.load_candidates()} == {c.id: c.places for c in before}
+    assert "danske kandidater i vinduet (60 dage): 3 ændret" in caplog.text  # inkl. nye fra kørslen
+
+    code, _ = _run(monkeypatch)
+    assert code == 0
+    got = {c.title: c.places for c in store.load_candidates()}
+    assert got["Ny genbrugsplads åbner i Odense til foråret"] == ["k:odense", "b:odense"]
+    assert got["Kommunerne skal sortere mere affald"] == []
+    assert got["Ny ordning for haveaffald"] == ["k:nyborg"]
+    assert got["Ny genbrugsplads åbner i Aarhus"] == []  # uden for vinduet: urørt
+    assert got["New recycling centre opens in Odense"] == []  # kun danske tekster
+    assert got["Affald i Svendborg"] == ["k:svendborg", "b:svendborg"]
+    # Måneden uden ændringer (juli) skrives ikke om
+    assert paths.CANDIDATES_DIR.joinpath("2026-07.jsonl").stat().st_mtime_ns == mtimes["2026-07.jsonl"]
+
+    # Næste kørsel: intet at ændre
+    caplog.clear()
+    code, _ = _run(monkeypatch, now=LATER)
+    assert code == 0 and "): 0 ændret" in caplog.text
+
+
+def test_run_does_not_clear_places_without_geography(env, monkeypatch, caplog):
+    store.save_candidates([_old_cand("odense", "Ny genbrugsplads åbner i Odense", 10, places=["k:odense", "b:odense"])])
+    (env.config / "geografi.yaml").write_text("regioner: [ikke gyldig]\n", encoding="utf-8")
+    caplog.set_level(logging.INFO)
+    code, _ = _run(monkeypatch)
+    assert code == 0
+    assert "stedmærkningen er slået fra" in caplog.text
+    assert "Steder genberegnet for 0 danske kandidater" in caplog.text
+    old = next(c for c in store.load_candidates() if c.title == "Ny genbrugsplads åbner i Odense")
+    assert old.places == ["k:odense", "b:odense"]  # en midlertidig fejl i geografien sletter ikke stederne
+
+
+def test_run_ignores_unknown_fixed_places(env, monkeypatch, caplog):
+    text = env.sources.read_text(encoding="utf-8").replace('  places: ["k:nyborg"]\n',
+                                                           '  places: ["k:nyborg", "k:findes-ikke"]\n')
+    env.sources.write_text(text, encoding="utf-8")
+    medier = (env.config / "medier.yaml").read_text(encoding="utf-8")
+    medier = medier.replace("  domains: [tv2.dk]\n", "  domains: [tv2.dk]\n  places: [b:atlantis]\n")
+    (env.config / "medier.yaml").write_text(medier, encoding="utf-8")
+    caplog.set_level(logging.INFO)
+    code, _ = _run(monkeypatch)
+    assert code == 0
+    assert ("sources.yaml: affaldsselskab: places: ukendt sted-id k:findes-ikke (se config/geografi.yaml) "
+            "(check fejler; id'et ignoreres)") in caplog.text
+    assert "medier.yaml: tv2: places: ukendt sted-id b:atlantis" in caplog.text
+    cands = _by_title(_cands())
+    assert cands["Ny ordning for madaffald & plast fra 1. januar"].places == ["k:nyborg"]
+    assert cands["Nye affaldsregler får stik modsat effekt"].places == []  # tv2's ukendte sted er droppet
+
+
+def test_run_keeps_month_file_it_cannot_read(env, monkeypatch, caplog):
+    """Efter en tilbagerulning af koden: run skriver ikke månedsfilen om og logger de nye kandidater som fejl."""
+    path = paths.CANDIDATES_DIR / "2026-10.jsonl"
+    path.parent.mkdir(parents=True)
+    line = _old_cand("fremtid", "Linje fra en nyere version", 1).model_dump(mode="json") | {"nyt_felt": True}
+    text = json.dumps(line, ensure_ascii=False) + "\n"
+    path.write_text(text, encoding="utf-8")
+    caplog.set_level(logging.INFO)
+    code, _ = _run(monkeypatch)
+    assert code == 0
+    assert path.read_text(encoding="utf-8") == text
+    errors = [r.getMessage() for r in caplog.records if r.levelno == logging.ERROR]
+    assert len(errors) == 1 and "candidates/2026-10.jsonl: 1 linjer kan ikke læses" in errors[0]
+    assert "10 nye eller ændrede poster for måneden gemmes ikke" in errors[0]
 
 
 def test_processor_dedupes_same_article_in_two_section_feeds(env):

@@ -6,6 +6,7 @@ import argparse
 import logging
 import time
 from collections import Counter
+from collections.abc import Iterable
 from dataclasses import dataclass, field
 from datetime import UTC, datetime, timedelta
 from typing import get_args
@@ -28,6 +29,7 @@ from affaldsfeed.fetch import Fetcher
 from affaldsfeed.health import is_due, record_result
 from affaldsfeed.models import Candidate, DateQuality, Rejected, Source, SourceState
 from affaldsfeed.normalize import clean_text, item_id, normalize_title
+from affaldsfeed.places import compile_places, rule_places
 from affaldsfeed.relevance import Prefilter
 from affaldsfeed.timeutil import ensure_utc, iso, now_utc, parse_iso
 
@@ -73,9 +75,25 @@ class Processor:
         self.recent_titles = recent_titles
         self.prefilter = Prefilter(config.keywords)
         self.classifier = Classifier(config.topics, config.genres)
+        self.places = compile_places(config.geo, config.settings.places)
+        self.known_places = config.geo.place_ids()
+        # Tidligere id'er (Source.replaces) -> kilden, der har overtaget dem
+        self.replaced_by = {old: s for s in sources for old in s.replaces}
         self.overrides = Overrides(config.overrides)
         self.seen_ids: set[str] = set()
         self._synthetic: dict[str, Source] = {}
+
+    def fixed_places(self, places: Iterable[str]) -> list[str]:
+        """Afsenderens faste steder, der står i geografien. Ukendte id'er ignoreres (check fejler, run advarer)."""
+        return [p for p in places if p in self.known_places]
+
+    def source_places(self, source_id: str) -> list[str]:
+        """Faste steder for en gemt kandidats afsender (kilde, udgiver eller kilden, der har overtaget id'et)."""
+        src = self.sources_by_id.get(source_id) or self.replaced_by.get(source_id)
+        if src is None:
+            pub = self.publishers_by_id.get(source_id)
+            return self.fixed_places(pub.places) if pub is not None else []
+        return self.fixed_places(src.places)
 
     def rule_source(self, collector_source: Source, source_id: str) -> Source:
         """Kilden som regler (forfilter, tema, genre) skal se. Søgefund bruger udgiverens kilde."""
@@ -96,6 +114,7 @@ class Processor:
                 domains=pub.domains,
                 lang=pub.lang,
                 paywall=pub.paywall,
+                places=pub.places,
                 basis=pub.basis,
                 status="aktiv",
                 checked=self.now.date(),
@@ -185,6 +204,7 @@ class Processor:
             genre = self.classifier.genre_for(title, url, e.categories, rsrc)
             topics = list(dict.fromkeys(self.classifier.topics_for(title, teaser, url, rsrc, genre=genre)))[:2]
             lang = e.lang if e.lang in ("da", "en", "sv") else rsrc.lang
+            places = rule_places(title, teaser, lang, self.fixed_places(rsrc.places), self.places)
             cand = Candidate(
                 id=iid,
                 url=url,
@@ -197,6 +217,7 @@ class Processor:
                 lang=lang,
                 genre=genre,
                 topics=topics,
+                places=places,
                 why=why,
                 baseline=first_run and not check_mode,
                 found_via=e.found_via if e.found_via in ("feed", "search", "sweep") else "feed",
@@ -207,6 +228,30 @@ class Processor:
                 self.existing[iid] = cand
                 self.recent_titles.add(title_key)
         return out
+
+
+def refresh_places(proc: Processor, since: datetime) -> tuple[list[Candidate], int]:
+    """Genberegn regelmærkerne for danske kandidater i vinduet med den aktuelle geografi (KONTRAKTER §6.1).
+
+    Så dækker stedfiltret også indslag fundet før en ændring af geografien eller reglerne. Returnerer
+    (kandidater, hvis steder ændrede sig, antal genberegnede); proc.existing opdateres. Uden geografi
+    (filen mangler eller er ugyldig) ændres intet, så en fejl i geografi.yaml ikke sletter stederne.
+    """
+    if not proc.known_places:
+        return [], 0
+    since = ensure_utc(since)
+    changed: list[Candidate] = []
+    n = 0
+    for iid, c in list(proc.existing.items()):
+        if c.lang != "da" or ensure_utc(c.published or c.first_seen) < since:
+            continue
+        n += 1
+        places = rule_places(c.title, c.teaser, c.lang, proc.source_places(c.source), proc.places)
+        if places != c.places:
+            upd = c.model_copy(update={"places": places})
+            proc.existing[iid] = upd
+            changed.append(upd)
+    return changed, n
 
 
 # ── Planlægning ─────────────────────────────────────────────
@@ -296,7 +341,10 @@ def _run(args: argparse.Namespace) -> int:
         log.error("Konfigurationen er ugyldig:\n%s", e)
         return 1
     xerrs, xwarns = cross_check(sources, config)
-    for msg in xerrs + xwarns:
+    for msg in xerrs:  # check fejler på dem; kørslen fortsætter
+        note = "id'et ignoreres" if "ukendt sted-id" in msg else "kørslen fortsætter"
+        log.warning("%s (check fejler; %s)", msg, note)
+    for msg in xwarns:
         log.warning(msg)
     settings = config.settings
 
@@ -408,6 +456,17 @@ def _run(args: argparse.Namespace) -> int:
             ", ".join(postponed),
         )
 
+    # Regelmærkerne for steder følger den aktuelle geografi, også for indslag fundet før en ændring
+    t_places = time.monotonic()
+    refreshed, n_refreshed = refresh_places(proc, now - timedelta(days=settings.window_days))
+    log.info(
+        "Steder genberegnet for %d danske kandidater i vinduet (%d dage): %d ændret (%.0f ms)",
+        n_refreshed,
+        settings.window_days,
+        len(refreshed),
+        (time.monotonic() - t_places) * 1000,
+    )
+
     # Antal indslag de seneste 30 dage pr. kilde
     cut30 = now - timedelta(days=ITEMS_WINDOW_DAYS)
     counts = Counter(c.source for c in proc.existing.values() if (c.published or c.first_seen) >= cut30)
@@ -423,8 +482,9 @@ def _run(args: argparse.Namespace) -> int:
     _log_summary(now, due, ok_count, failed, new_c, upd_c, rejected, kf_added, sources, config, waiting)
 
     if not dry:
-        if new_c or upd_c:
-            store.save_candidates(new_c + upd_c)
+        changed = {c.id: c for c in [*new_c, *upd_c, *refreshed]}  # den seneste udgave vinder
+        if changed:
+            store.save_candidates(list(changed.values()))
         store.save_rejected(rejected, settings.rejected_keep_days, now)
         store.save_source_states(states)
         valid = _valid_cache_urls(sources, config, fetcher.http_cache)

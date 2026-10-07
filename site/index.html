@@ -4,89 +4,84 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <script>
-    // Valgt tema sættes før første maling (undgår blink)
-    try {
-      var t = localStorage.getItem('af.theme');
-      if (t === 'light' || t === 'dark') {
-        document.documentElement.dataset.theme = t;
-        document.querySelector('meta[name="color-scheme"]').content = t;
-      }
-    } catch (e) {}
-  </script>
   <title>Affaldsfeed: nyheder om affald</title>
   <meta name="description" content="Nyheder om affaldsområdet i Danmark fra kommuner, myndigheder, medier, organisationer og forskning. Nyeste øverst, med link til den oprindelige kilde.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='4' width='18' height='2.6' rx='1.3' fill='%230A602D'/%3E%3Crect x='9.5' y='2' width='5' height='2.6' rx='1.1' fill='%230A602D'/%3E%3Cpath d='M4.6 8h14.8l-1.5 12.2A2 2 0 0 1 15.9 22H8.1a2 2 0 0 1-2-1.8z' fill='%230A602D'/%3E%3Cpath d='M8.4 11.6h7.2M8.4 14.9h5.4M8.4 18.2h6.3' stroke='%23fff' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
+  <link rel="preload" href="assets/fonts/open-sans-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/style.css">
   <script type="module" src="assets/app.js"></script>
 </head>
 <body data-page="feed">
   <a class="skip-link visually-hidden" href="#indhold">Gå til feedet</a>
 
+  <aside class="demo-strip" id="demo-strip" aria-label="Demodata" hidden>
+    <div class="inner">
+      <p>Demodata: opdigtede eksempler med links til example.org. Tiderne er rykket frem. <a href="./" id="demo-real">Vis det rigtige feed</a></p>
+    </div>
+  </aside>
+
   <header class="site-header">
     <div class="inner">
+      <!-- Sidens h1 står før sidepanelets h2 (overskriftsrækkefølge) og inden for et landmark -->
+      <h1 class="visually-hidden">Affaldsfeed: nyheder om affald</h1>
       <div class="brand">
-        <a href="./" data-internal>
-          <svg class="logo" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#logo"></use></svg>Affaldsfeed
-        </a>
+        <a href="./" data-internal><svg class="logo" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#logo"></use></svg>Affaldsfeed</a>
         <p class="subtitle" id="subtitle">Nyheder om affald</p>
-      </div>
-      <div class="header-tools">
-        <nav class="site-nav" aria-label="Sider">
-          <ul>
-            <li><a href="./" aria-current="page" data-internal>Feed</a></li>
-            <li><a href="kilder.html" data-internal>Om kilderne</a></li>
-          </ul>
-        </nav>
-        <button type="button" class="theme-btn" id="theme-btn">Tema</button>
       </div>
     </div>
   </header>
 
   <div class="layout">
-    <aside class="sidebar" id="sidebar-slot" aria-label="Filtre"></aside>
+    <div class="sidebar" id="sidebar-slot">
+      <p class="loading-text">Henter filtre …</p>
+    </div>
 
     <main class="main" id="indhold" tabindex="-1">
-      <h1 class="visually-hidden">Affaldsfeed: nyheder om affald</h1>
+      <div class="msgs" id="msgs" hidden></div>
 
-      <div class="bars" id="bars" hidden></div>
+      <section class="panel overview" id="overview" hidden></section>
 
-      <div class="panel intro" id="intro" hidden>
-        <p>Nyheder om affald fra kommuner, myndigheder, medier, organisationer og forskning. Nyeste øverst. Brug filtrene til at vælge afsender, tema eller kilde.</p>
-        <button type="button" class="icon-btn" id="intro-close" aria-label="Luk introduktionen">
-          <svg class="i" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#luk"></use></svg>
-        </button>
-      </div>
+      <div class="list-panel">
+        <div class="list-head" id="list-head">
+          <div class="lh-search">
+            <search aria-label="Søg i feedet">
+              <label for="q" class="visually-hidden">Søg i titler og kilder</label>
+              <div class="q-field">
+                <svg class="i" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#soeg"></use></svg>
+                <input class="field" type="search" id="q" placeholder="Søg i titler og kilder" enterkeyhint="search" autocomplete="off">
+                <button type="button" class="q-clear" id="q-clear" aria-label="Ryd søgning" hidden>
+                  <svg class="i" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#luk"></use></svg>
+                </button>
+              </div>
+            </search>
+            <button type="button" class="btn filter-btn" id="filter-btn" aria-haspopup="dialog" aria-controls="filter-sheet">
+              <svg class="i" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#filter"></use></svg><span>Filtrér<span class="sr-punct" id="filter-comma" hidden>,</span><span id="filter-count" aria-hidden="true"></span><span class="visually-hidden" id="filter-count-sr"></span></span>
+            </button>
+          </div>
 
-      <section class="panel overview" id="overview" aria-label="Overblik" hidden></section>
+          <ul class="active-filters" id="active-filters" aria-label="Aktive filtre" hidden></ul>
 
-      <div class="toolbar" id="toolbar">
-        <div class="toolbar-row">
-          <button type="button" class="btn filter-btn" id="filter-btn" aria-haspopup="dialog" aria-controls="filter-sheet">
-            <svg class="i" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#filter"></use></svg>Filtrér<span id="filter-count"></span>
-          </button>
-          <ul class="active-chips" id="active-filters" aria-label="Aktive filtre" hidden></ul>
-          <button type="button" class="btn-text" id="reset-top" hidden>Nulstil filtre</button>
+          <div class="lh-status">
+            <p class="status" id="status" tabindex="-1"><span class="st-unit"><span id="status-text" aria-live="polite">Henter feedet …</span><span id="status-sep" aria-hidden="true" hidden>&nbsp;·</span></span><button type="button" class="btn-text" id="status-action" hidden></button></p>
+            <fieldset class="seg" id="view-seg">
+              <legend class="visually-hidden">Visning</legend>
+              <label><input type="radio" name="vis" value="" checked><span>Normal</span></label>
+              <label><input type="radio" name="vis" value="kompakt"><span>Kompakt</span></label>
+            </fieldset>
+          </div>
         </div>
-        <div class="status" id="status" tabindex="-1">
-          <span id="status-text" aria-live="polite"></span>
-          <button type="button" class="btn-text" id="status-action" hidden></button>
-        </div>
+
+        <div class="feed" id="feed" aria-busy="true"></div>
       </div>
 
-      <div class="feed" id="feed">
-        <p class="loading">Henter feedet …</p>
-      </div>
-      <div class="more-wrap" id="more-wrap"></div>
+      <div class="more-wrap" id="more-wrap" hidden></div>
     </main>
   </div>
 
   <dialog class="sheet" id="filter-sheet" closedby="any" aria-labelledby="sheet-title">
     <div class="sheet-head">
-      <h2 id="sheet-title">Filtrér</h2>
+      <h2 id="sheet-title" tabindex="-1">Filtre</h2>
+      <button type="button" class="btn-text" id="sheet-reset" hidden>Nulstil</button>
       <button type="button" class="icon-btn" id="sheet-close" aria-label="Luk filtre">
         <svg class="i" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#luk"></use></svg>
       </button>
@@ -95,12 +90,15 @@
     <div class="sheet-foot">
       <button type="button" class="btn btn-primary" id="sheet-show">Vis indslag</button>
     </div>
+    <p class="visually-hidden" role="status" id="sheet-live"></p>
   </dialog>
 
   <footer class="site-footer">
     <div class="inner">
-      <p>Uafhængigt hobbyprojekt. Ikke tilknyttet affaldsviden.info. Alle overskrifter linker til den oprindelige kilde.</p>
-      <p><a href="https://github.com/SimNyborg/affaldsfeed">Koden på GitHub</a></p>
+      <div class="foot-text">
+        <p>Uafhængigt hobbyprojekt. Ikke tilknyttet affaldsviden.info. Alle overskrifter linker til den oprindelige kilde.</p>
+        <p class="foot-links"><a href="kilder.html" data-internal>Om kilderne</a><span class="sep" aria-hidden="true">&nbsp;· </span><a href="https://github.com/SimNyborg/affaldsfeed">Koden på GitHub</a></p>
+      </div>
     </div>
   </footer>
 </body>

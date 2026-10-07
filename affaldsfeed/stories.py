@@ -8,7 +8,7 @@ from collections.abc import Iterable
 from datetime import datetime, timedelta
 from itertools import combinations
 
-from .models import CATEGORY_RANK, AlsoRef, DisplayItem
+from .models import CATEGORY_RANK, AlsoRef, DisplayItem, sort_places
 from .normalize import normalize_title
 from .timeutil import ensure_utc
 
@@ -126,7 +126,11 @@ def build_stories(
     *,
     no_merge: set[str] | None = None,
 ) -> list[DisplayItem]:
-    """Hovedindslag med story og also udfyldt, sorteret efter published (faldende) og id."""
+    """Hovedindslag med story og also udfyldt, sorteret efter published (faldende) og id.
+
+    places bliver foreningen af alle indslagenes steder, så et lokalt indslag i en national
+    historie kan findes med stedfiltret. Foreningen skæres ikke (den kan have flere end 8 steder).
+    """
     out: list[DisplayItem] = []
     for main, *others in group_stories(
         items, source_category, hints, title_window_days, max_age_days, no_merge=no_merge
@@ -134,6 +138,7 @@ def build_stories(
         also = [
             AlsoRef(id=o.id, source=o.source, url=o.url, title=o.title, published=o.published) for o in others
         ]
-        out.append(main.model_copy(update={"story": main.id, "also": also}))
+        places = sort_places((p for it in (main, *others) for p in it.places), limit=None)
+        out.append(main.model_copy(update={"story": main.id, "also": also, "places": places}))
     out.sort(key=lambda it: (-_when(it).timestamp(), it.id))
     return out

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import difflib
 import json
 import logging
 import re
@@ -25,6 +26,7 @@ log = logging.getLogger(__name__)
 
 JUDGMENT_FILE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})\.jsonl$")
 RECENT_APPROVED_HOURS = 72
+PLACES_FORMAT = "r:<region>, k:<kommune>, b:<by>"
 
 
 # ── Indlæsning ──────────────────────────────────────────────
@@ -62,7 +64,10 @@ def format_errors(e: ValidationError) -> list[str]:
             out.append(f"ugyldig JSON ({err['ctx'].get('error', '')})" if err.get("ctx") else "ugyldig JSON")
             continue
         loc = ".".join(str(x) for x in err["loc"]) or "linje"
-        out.append(f"{loc}: {err['msg']}")
+        msg = err["msg"]
+        if err["type"] == "value_error":
+            msg = msg.removeprefix("Value error, ")  # vores egne beskeder er på dansk
+        out.append(f"{loc}: {msg}")
     return out
 
 
@@ -183,6 +188,8 @@ def build_pending(
 ) -> dict[str, Any]:
     info = known_sources(sources, config.publishers)
     pending = pending_candidates(info, candidates, judgments, now, hours)[: max(0, max_items)]
+    # Kun id'er fra geografien, så routinen ikke kopierer et id, som valideringen melder ukendt
+    known_places = config.geo.place_ids()
 
     cutoff = ensure_utc(now) - timedelta(hours=RECENT_APPROVED_HOURS)
     recent: list[dict[str, Any]] = []
@@ -213,6 +220,12 @@ def build_pending(
         "profile": config.profile,
         "topics": [{"id": t.id, "name": t.name, "definition": t.definition} for t in config.topics],
         "genres": [{"id": g.id, "label": g.label} for g in config.genres],
+        # Byer udelades for at holde output lille; routinen slår dem op i config/geografi.yaml
+        "places_help": {
+            "format": PLACES_FORMAT,
+            "regioner": [{"id": r.id, "navn": r.navn} for r in config.geo.regioner],
+            "kommuner": [{"id": m.id, "navn": m.navn} for m in config.geo.kommuner],
+        },
         "pending": [
             {
                 "id": c.id,
@@ -225,6 +238,7 @@ def build_pending(
                 "published": iso(c.published),
                 "rule_topics": list(c.topics),
                 "rule_genre": c.genre,
+                "rule_places": [p for p in c.places if p in known_places],
                 "prefilter": {"decision": c.why.decision, "score": c.why.score, "hits": list(c.why.hits)},
             }
             for c in pending
@@ -234,21 +248,30 @@ def build_pending(
 
 
 def compact_json(obj: Any) -> str:
-    """Kompakt men læsbar JSON til Claude: én linje pr. topnøgle og pr. listeelement."""
+    """Kompakt men læsbar JSON til Claude: én linje pr. topnøgle og pr. listeelement.
+
+    En topnøgle, hvis værdi er et objekt med lister af objekter (fx places_help), foldes også ud,
+    så hver post står på sin egen linje.
+    """
 
     def one(v: Any) -> str:
         return json.dumps(v, ensure_ascii=False, separators=(",", ":"))
 
+    def is_records(v: Any) -> bool:
+        return isinstance(v, list) and bool(v) and isinstance(v[0], dict)
+
+    def entry(k: str, v: Any, pad: str, unfold: bool) -> str:
+        if is_records(v):
+            body = ",\n".join(f"{pad}  {one(x)}" for x in v)
+            return f"{pad}{one(k)}:[\n{body}\n{pad}]"
+        if unfold and isinstance(v, dict) and any(is_records(x) for x in v.values()):
+            body = ",\n".join(entry(k2, v2, pad + "  ", unfold=False) for k2, v2 in v.items())
+            return f"{pad}{one(k)}:{{\n{body}\n{pad}}}"
+        return f"{pad}{one(k)}:{one(v)}"
+
     if not isinstance(obj, dict):
         return one(obj)
-    parts: list[str] = []
-    for k, v in obj.items():
-        if isinstance(v, list) and v and isinstance(v[0], dict):
-            body = ",\n  ".join(one(x) for x in v)
-            parts.append(f"{one(k)}:[\n  {body}\n]")
-        else:
-            parts.append(f"{one(k)}:{one(v)}")
-    return "{\n" + ",\n".join(parts) + "\n}"
+    return "{\n" + ",\n".join(entry(k, v, "", unfold=True) for k, v in obj.items()) + "\n}"
 
 
 def print_json(obj: Any) -> None:
@@ -281,10 +304,16 @@ def validate_lines(
     candidates: list[Candidate],
     info: dict[str, SourceInfo],
     known_ids: set[str],
-) -> tuple[list[str], int]:
-    """Validerer linjerne i `files`. Returnerer (fejl som "fil:linje: besked", antal linjer)."""
+    place_ids: set[str] | None = None,
+) -> tuple[list[str], list[str], int]:
+    """Validerer linjerne i `files`. Returnerer (fejl og advarsler som "fil:linje: besked", antal linjer).
+
+    place_ids: gyldige sted-id'er fra geografien (None = places tjekkes ikke mod geografien). Et ukendt,
+    men velformet sted-id er en advarsel (fx efter en ny geografi), ikke en fejl.
+    """
     cand_by_id = {c.id: c for c in candidates}
     errors: list[str] = []
+    warnings: list[str] = []
     count = 0
     for path in files:
         name = rel(path)
@@ -302,8 +331,26 @@ def validate_lines(
             except ValidationError as e:
                 errors.extend(f"{name}:{n}: {msg}" for msg in format_errors(e))
                 continue
-            errors.extend(f"{name}:{n}: {msg}" for msg in _check(j, cand_by_id, info, known_ids, file_day))
-    return errors, count
+            msgs = _check(j, cand_by_id, info, known_ids, file_day)
+            errors.extend(f"{name}:{n}: {msg}" for msg in msgs)
+            warnings.extend(f"{name}:{n}: {msg}" for msg in unknown_places(j.places, place_ids))
+    return errors, warnings, count
+
+
+def unknown_places(places: list[str] | None, place_ids: set[str] | None) -> list[str]:
+    """Advarsler for velformede sted-id'er, der ikke står i geografien, med et forslag til det nærmeste."""
+    if not places or not place_ids:
+        return []
+    out: list[str] = []
+    for p in places:
+        if p in place_ids:
+            continue
+        # Samme navn med et andet præfiks (fx k:ullerslev → b:ullerslev), ellers det mest lignende id
+        same = [q for q in (f"{x}:{p[2:]}" for x in "rkb") if q in place_ids]
+        best = same or difflib.get_close_matches(p, sorted(place_ids), n=1, cutoff=0.6)
+        hint = f" (mente du '{best[0]}'?)" if best else ""
+        out.append(f"places: ukendt sted-id '{p}'{hint}; brug id'er fra config/geografi.yaml")
+    return out
 
 
 def _check(
@@ -364,13 +411,18 @@ def main_validate(args: argparse.Namespace) -> int:
             files = [Path.cwd() / p]
     else:
         files = judgment_files()
-    errors, count = validate_lines(files, candidates, info, known_ids)
+    # Uden geografi (mangler eller er ugyldig) valideres sted-id'erne ikke
+    place_ids = config.geo.place_ids() or None
+    errors, warnings, count = validate_lines(files, candidates, info, known_ids, place_ids)
+    for w in warnings:
+        print(f"ADVARSEL {w}")
     for e in errors:
         print(e)
+    advarsler = f", {len(warnings)} {'advarsel' if len(warnings) == 1 else 'advarsler'}" if warnings else ""
     if errors:
-        print(f"validate-judgments: {len(errors)} fejl i {count} linjer ({len(files)} filer)")
+        print(f"validate-judgments: {len(errors)} fejl i {count} linjer ({len(files)} filer){advarsler}")
         return 1
-    print(f"validate-judgments: OK, {count} linjer i {len(files)} filer")
+    print(f"validate-judgments: OK, {count} linjer i {len(files)} filer{advarsler}")
     return 0
 
 

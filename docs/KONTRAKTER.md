@@ -12,10 +12,10 @@ Pakken hedder `affaldsfeed`. Alt køres fra repoets rod med `python -m affaldsfe
 | Kommando | Ejer-modul | Hvad den gør | Exit-kode |
 |---|---|---|---|
 | `check [--fetch ID] [--explain]` | `config.py` (+ `collect`) | Validerer `sources.yaml` og `config/*.yaml`. Med `--fetch ID` hentes én kilde live som ved dens første kørsel (tom seen-state), og det udskrives, hvad forfiltret beholder og hvorfor (ingen skrivning til `data/`). `--explain` viser også indsamlerens diagnose (sitemap/html, se 5.6). | 0 ok, 1 fejl |
-| `run [--only ID[,ID]] [--dry-run] [--now ISO]` | `pipeline.py` | Indsamling: plan → hent → normalisér → forfilter → klassificér (regler) → dedupe → gem kandidater, afviste og state. `--dry-run` skriver intet. `--now` overstyrer "nu" (til test). | 0 (også når enkelte kilder fejler), 1 kun ved systemfejl eller > 50 % kildefejl |
+| `run [--only ID[,ID]] [--dry-run] [--now ISO]` | `pipeline.py` | Indsamling: plan → hent → normalisér → forfilter → klassificér (regler) → dedupe → genberegn stedmærker i vinduet (6.1) → gem kandidater, afviste og state. `--dry-run` skriver intet. `--now` overstyrer "nu" (til test). | 0 (også når enkelte kilder fejler), 1 kun ved systemfejl eller > 50 % kildefejl |
 | `export [--out _site] [--now ISO]` | `export.py` | Bygger `_site/` (kopi af `site/` + `data/feed.json` + `data/status.json`). | 0 / 1 ved skemafejl |
 | `pending [--max 200] [--hours 72] [--now ISO]` | `judgments.py` | Udskriver JSON (stdout) med kandidater uden vurdering (se 6.1). | 0 |
-| `validate-judgments [--file PATH]` | `judgments.py` | Validerer alle (eller én) vurderingsfiler. Udskriver fejl pr. linje. | 0 ok, 1 fejl |
+| `validate-judgments [--file PATH]` | `judgments.py` | Validerer alle (eller én) vurderingsfiler. Udskriver fejl og advarsler pr. linje (se 6.2). | 0 ok (også med advarsler), 1 fejl |
 | `heartbeat [--now ISO]` | `judgments.py` | Skriver `data/judgments/_heartbeat.json`. | 0 |
 | `overview-input --period dag\|uge\|maaned\|aar [--now ISO]` | `overview.py` | Udskriver JSON-input til Claudes overblik (se 7.2). | 0 |
 | `validate-overview [--period P] [--archive] [--now ISO]` | `overview.py` | Validerer `data/overview/<P>.json` (alle perioder uden `--period`). Med `--archive` kopieres gyldige filer til arkivet. | 0 ok, 1 fejl |
@@ -43,6 +43,7 @@ affaldsfeed/
   normalize.py       normalize_url(), item_id(), clean_text(), normalize_title(), to_candidate()
   relevance.py       prefilter(raw, source, keywords) -> Why
   classify.py        rule_topics(), rule_genre()
+  places.py          compile_places(geo, settings) -> PlaceMatcher, match_places(), rule_places()  (se 4.1)
   stories.py         build_stories(items, sources, hints) -> list[DisplayItem]  (primærkilde, also)
   store.py           read/write candidates, rejected, state (http, sources, seen), atomisk skrivning
   health.py          opdater kildesundhed, backoff, status-farve
@@ -73,6 +74,7 @@ En YAML-liste. Felter (se `models.Source`):
 | filter | `none`\|`normal`\|`strict` | `normal` | forfiltrets strenghed |
 | topics | list[TopicId] | `[]` | standardtema |
 | genre | GenreId | `nyhed` | standardgenre |
+| places | list[str] | `[]` | faste steder (sted-id'er, se 4.1), højst 8 forskellige. Kun til afsendere med fast geografi, fx et kommunalt affaldsselskab. Nyhedsmedier, også lokalaviser, får ingen `places` (check advarer). Et id, der ikke står i geografien: `check` fejler, `run` advarer og ignorerer id'et |
 | lang | `da`\|`en`\|`sv` | `da` | |
 | paywall | `nej`\|`delvis`\|`ja` | `nej` | |
 | owner | str \| None | None | udgiver hvis ikke afsender selv |
@@ -96,17 +98,34 @@ Søgekilder (`method: search`) har `category: nyhedsmedie` (ignoreres ved visnin
 
 ### 3.3 `config/`-filer
 - `categories.yaml`: liste af `{id, name, short, color, color_dark, icon, help}`.
-- `topics.yaml`: liste af `{id, name, definition, patterns: [..]}`. Mønstre: uden `*` = helt ord; `*` = vilkårlige bogstaver (`\w*`); ingen forskel på store/små bogstaver; mellemrum i mønster = præcis frase.
+- `topics.yaml`: liste af `{id, name, short?, definition, patterns: [..]}`. Mønstre: uden `*` = helt ord; `*` = vilkårlige bogstaver (`\w*`); ingen forskel på store/små bogstaver; mellemrum i mønster = præcis frase. `short` er valgfrit: et kort navn til brugerfladen, når `name` er for langt. Navnet i brugerfladen (`short`, ellers `name`) har højst 26 tegn; `check` advarer (fejler ikke) ved flere.
 - `genres.yaml`: liste af `{id, label, url_patterns: [regex], title_prefixes: [str]}`.
 - `keywords.yaml`: `{strong: {da,en,sv}, names: [..], weak: {da,en}, veto: [..], service: [..]}` (mønster-syntaks som topics).
 - `search.yaml`: `{queries: [str], when: "2d"}` — forespørgsler med `OR`.
-- `medier.yaml`: liste af `{id, name, category, domains: [..], basis, paywall, lang}` — troværdige udgivere, der kun findes via søgning (lokalaviser m.fl.). Id'er må ikke kollidere med `sources.yaml`.
-- `settings.yaml`: se `models.Settings` (UA, takt, tærskler, vinduer, rutinetider, fallback). Blokken `pages` (`models.PagesSettings`) har grænserne for sitemap og html (5.6) og for `state/seen.json` (6).
+- `medier.yaml`: liste af `{id, name, category, domains: [..], basis, paywall, lang, places?}` — troværdige udgivere, der kun findes via søgning (lokalaviser m.fl.). Id'er må ikke kollidere med `sources.yaml`. `places` som i 3.1 (lokalaviser får ingen).
+- `settings.yaml`: se `models.Settings` (UA, takt, tærskler, vinduer, rutinetider, fallback). Blokken `pages` (`models.PagesSettings`) har grænserne for sitemap og html (5.6) og for `state/seen.json` (6). `places.institution_words` (valgfri; uden blokken bruger koden `["Universitet", "Lufthavn"]`, `settings.yaml` sætter den fulde liste) bruges af stedmærkningen (4.1). Blokken erstatter standardlisten.
+- `geografi.yaml`: genereres af `tools/build_geografi.py` fra Danmarks Statistik og rettes aldrig i hånden. `{kilde, regioner: [{id, kode, navn, kort}], landsdele: {navn: region-id}, kommuner: [{id, kode, navn, kort, region, navne, kun_med_kommune}], byer: [{id, navn, navne, kommune, kommuner, indbyggere}]}` → `models.Geo`. `navn` er det officielle navn ("Region Syddanmark", "Nyborg Kommune", "Københavns Kommune", "Bornholms Regionskommune"), `kort` det korte. `byer.kommune` er byens primære kommune (den, byen filtreres under, §9), `byer.kommuner` alle kommuner, byen ligger i. Mangler filen, er geografien tom: ingen stedmærkning og en advarsel i `check`. `check` fejler ved dublet-id'er, når `kommune.region`, `by.kommune` eller `by.kommuner` ikke findes, når `by.kommune` ikke står i `by.kommuner`, og når en landsdel peger på en ukendt region.
+  - **Kun `check` fejler på geografien.** Er filen ugyldig, logger de andre kommandoer (`run`, `pending`, `validate-judgments`, `export`, `heartbeat`, `overview-input` …) fejlen og kører videre med en tom geografi: ingen nye stedmærker, ingen `geo`-blok og intet stedfilter, til filen er rettet (`Config.geo_errors`).
+  - Sted-id'er i `sources.yaml` og `medier.yaml` skal findes i geografien. Det tjekkes i `cross_check`: `check` fejler, mens `run` advarer og ignorerer de ukendte id'er. Uden geografi (filen mangler eller er ugyldig) tjekkes id'erne ikke.
+- `geografi_regler.yaml`: håndregler til `tools/build_geografi.py` (officielle navne, ekstra navne, `kun_med_kommune`, byer der ikke må matche, landsdele). En by, der hedder det samme som en anden kommunes `kort` eller `navne` (byen Frederiksberg i Sorø), udelades automatisk med en note i rapporten, før flertydige bynavne afgøres; et ekstra navn, der er en anden kommunes, bruges ikke. Ret her og kør workflowet "Byg geografi" (se 10).
 - `overrides.yaml`: liste af `{match: {id|url_regex}, action: vis|skjul|tema|genre|split, value}`.
 - `relevansprofil.md`: fritekst til Claude.
 
 ## 4. Mønstermotor (delt)
 `relevance.py` eksporterer `compile_patterns(list[str], proper_nouns=False) -> list[re.Pattern]` og `find_hits(text, patterns) -> list[str]`. Med `proper_nouns=True` (bruges til `keywords.names` i forfiltret) skal første bogstav stå med stort, mens resten matcher uanset store/små bogstaver: "Argo" og "ARGO" giver træf på `ARGO`, men "kredsløb" giver ikke træf på `Kredsløb`. Et mønster `"affald*"` → `(?<!\w)affald\w*(?!\w)`, `"*affald*"` → `\w*affald\w*`, `"pant"` → `(?<!\w)pant(?!\w)`, alt `re.IGNORECASE | re.UNICODE`. Både `classify.py` og `relevance.py` bruger den.
+
+### 4.1 Stedmærkning (`places.py`)
+- **Sted-id'er:** `r:<region>`, `k:<kommune>`, `b:<by>` med id'er fra `geografi.yaml` (fx `r:syddanmark`, `k:nyborg`, `b:ullerslev`): små bogstaver, æ→ae, ø→oe, å→aa. Et `places`-felt er en liste uden dubletter, sorteret: regioner, kommuner, byer, hver alfabetisk efter id (`models.sort_places`). Formatet tjekkes af modellerne, der fjerner dubletter og normaliserer rækkefølgen; fejlbeskeden er på dansk med et forslag ("mente du 'k:odense'?"). Grænsen på 8:
+  - Regelmærkerne (`match_places`, `rule_places`) skæres ved 8 efter sorteringen.
+  - `Source.places`, `Publisher.places`, `Candidate.places` og `Judgment.places` har højst 8 forskellige steder; en liste med flere afvises (dubletter tæller ikke).
+  - `DisplayItem.places` for en historie er foreningen af indslagenes steder og skæres ikke (se 8).
+- `compile_places(geo, settings.places) -> PlaceMatcher` og `match_places(text, matcher) -> list[str]`. `rule_places(title, teaser, lang, fixed, matcher)` giver regelmærkerne: afsenderens faste `places` plus steder nævnt i titel og teaser (matchet hver for sig). Tekster matches kun, når `lang == "da"`.
+- **Matchning:** store og små bogstaver tæller (egennavne). Ordgrænse: intet bogstav eller ciffer lige før eller efter; bindestreg er en grænse ("Aarhus-firma" giver Aarhus). Længste navn vinder ("Ikast-Brande" før "Ikast", "Nykøbing Falster" før landsdelen "Falster"). Ejefald: navn + "s", når navnet ikke ender på s ("Nyborgs", "Københavns").
+  - Kommuner: hvert navn i `navne` → `k:<id>`; desuden "<navn> Kommune(s)" (også med lille k) og det officielle navn ("Københavns Kommune", "Bornholms Regionskommune"). Har kommunen `kun_med_kommune: true` (Vejen), matches den kun med "Kommune"-endelsen.
+  - Byer: hvert navn i `navne` → `b:<id>`. Har byen samme navn som en kommune (Nyborg), giver et træf både `k:` og `b:`; "<navn> Kommune" giver kun `k:`.
+  - Regioner: "Region <kort>" og "Region <kort>s" (også "region") → `r:<id>`. Landsdele ("Fyn", "Sønderjylland") → `r:<region>`.
+  - Ingen implicitte forældre: kun det nævnte gemmes. Hierarkiet (`Geo.expand`: by → primær kommune → region) bruges ved filtrering (§9).
+  - Konservativt, hellere et sted for lidt end et forkert: står et ord fra `settings.places.institution_words` (som præfiks: et ord, der begynder med det) lige efter navnet, adskilt af mellemrum eller bindestreg, tæller navnet ikke ("Aarhus Universitet", "Aalborg University", "Københavns Lufthavn", "Københavns Vestegn", "Gammel Køge Landevej", "Køge Bugt Motorvejen", "Holbæk-motorvejen", "Aarhus-konventionen"). Et rent bynavn lige efter et ord på mindst to bogstaver med stort begyndelsesbogstav, evt. efterfulgt af initialer, tæller ikke, fordi det er et efternavn ("Lars Aagaard" og "Lars C. Aagaard", byen Ågård; "I Ullerslev" tæller); navne, der også er en kommune, en region eller en landsdel, tæller stadig.
 
 ## 5. Indsamling
 
@@ -199,21 +218,30 @@ data/
 ```
 Skrivning er atomisk (skriv `.tmp`, `os.replace`). Filer ændres kun, når indholdet faktisk ændres (så git ikke får tomme commits). `SourceState.last_ok` gemmes kun som dato.
 
+**Ulæselige linjer skrives aldrig væk.** Kan en linje i en månedsfil i `candidates/` eller `rejected/` ikke læses (ugyldig JSON eller et felt, koden ikke kender, fx efter en tilbagerulning af koden), springes den over ved læsning med en advarsel (højst tre enkeltvis pr. fil, derefter et samlet tal). Filen skrives så aldrig om: `run` logger en fejl, lader filen stå og gemmer ikke nye eller ændrede poster for den måned (fejlen nævner antal og eksempler), og en udløbet fil med afviste slettes heller ikke. Derfor fjernes felter aldrig fra `Candidate` og `Rejected`; ret koden fremad.
+
 `state/seen.json` (`store.load_seen`/`save_seen`): datoen er dagen (København), hvor URL'en sidst blev observeret i kildens sitemap eller på dens liste. Den fornyes kun, når den er ældre end `pages.seen_refresh_days` (30), så filen ikke ændres hver time. Poster, der ikke er observeret i `pages.seen_keep_days` (120), og kilder, der ikke længere står i `sources.yaml`, fjernes ved skrivning. Sider med en varig fejl står der også, så de ikke prøves ved hver kørsel (5.6). Nøglerne er sorteret, og filen oprettes først, når der er noget i den. `run` læser og skriver den; `run --dry-run` og `check --fetch` skriver den ikke. Fejler en kilde med en undtagelse, rulles dens poster fra kørslen tilbage.
 
 ### 6.1 `Candidate` (models.Candidate)
-`{id, url, title, teaser, source, published, date_quality: "kilde"|"url"|"liste"|"fundet", first_seen, lang, genre, topics: [≤2], why: Why, baseline: bool, found_via: "feed"|"search", categories: [str]}`
+`{id, url, title, teaser, source, published, date_quality: "kilde"|"url"|"liste"|"fundet", first_seen, lang, genre, topics: [≤2], places: [≤8], why: Why, baseline: bool, found_via: "feed"|"search", categories: [str]}`
 - `title` ≤ 300 tegn, `teaser` ≤ 300 tegn (renset).
-- Samme `id` gemmes aldrig to gange. Ved genfund med ny titel opdateres `title`, men `published`/`first_seen` bevares.
+- `places`: regelmærker (4.1), sat af `run` ved klassificering ud fra titel, teaser og afsenderens `places` (for søgefund udgiverens; kun id'er, der står i geografien). Linjer fra før feltet fandtes, læses som `[]`.
+- **Genberegning:** hver `run` beregner regelmærkerne igen for alle danske kandidater (`lang: da`) med `published` (ellers `first_seen`) inden for `window_days` med den aktuelle geografi, titel og teaser og gemmer dem, der ændrer sig. Så dækker stedfiltret også indslag fundet før en ny geografi eller nye regler. Tiden logges ("Steder genberegnet for N danske kandidater …"). Uden geografi (filen mangler eller er ugyldig) genberegnes intet, så en fejl i `geografi.yaml` ikke sletter stederne. `--dry-run` gemmer intet.
+- Samme `id` gemmes aldrig to gange. Ved genfund med ny titel opdateres `title`, men `published`/`first_seen` bevares (ligesom `topics`; `places` følger den nye titel ved genberegningen).
 
 ### 6.2 `Judgment` (models.Judgment) — én linje i `data/judgments/*.jsonl`
 ```json
-{"id":"3f9a1c0b7e21","relevant":true,"reason":"Nye regler for affaldsgebyrer i kommunerne","topics":["gebyrer","regler"],"genre":"nyhed","summary_da":null,"story_hint":null,"judged_at":"2026-10-07T07:25:41Z","by":"claude-routine","new_item":null}
+{"id":"3f9a1c0b7e21","relevant":true,"reason":"Nye regler for affaldsgebyrer i kommunerne","topics":["gebyrer","regler"],"places":null,"genre":"nyhed","summary_da":null,"story_hint":null,"judged_at":"2026-10-07T07:25:41Z","by":"claude-routine","new_item":null}
 ```
 - `reason` ≤ 200 tegn. `topics` ≤ 2 fra TopicId. `genre` fra GenreId. `summary_da` ≤ 160 tegn, kun når kandidatens `lang` ≠ `da` (ellers null). `story_hint` = id på et andet indslag om samme historie eller null.
-- **Sweep-fund** har `new_item = {url, title, teaser, source, published}` hvor `source` er et kendt id (sources.yaml aktiv eller medier.yaml); `id` = `item_id(url)`; `relevant` skal være true.
+- `places`: `null` eller udeladt = behold regelmærkerne (kandidatens `places`); en liste, også `[]` (landsdækkende), erstatter dem. Gælder ikke kilder med `ai: false`, som kun vurderes af regler. Validering (`validate-judgments`):
+  - Formfejl er fejl (exit 1) med linjenummer og en dansk besked med hint: id'er skrives `r:`/`k:`/`b:` + id med små bogstaver og æ→ae, ø→oe, å→aa, og der foreslås en rettet form, når den kan udledes (`'K:Odense' (mente du 'k:odense'?)`).
+  - Dubletter fjernes, og rækkefølgen normaliseres før længdetjekket: højst 8 forskellige steder (ellers en fejl).
+  - Et velformet id, der ikke står i `geografi.yaml` (fx `k:kobenhavn` eller en by, en ny geografi har fjernet), er en advarsel med forslag til det nærmeste id (samme navn med andet præfiks, ellers `difflib`), ikke en fejl: linjen udskrives som `ADVARSEL fil:linje: places: ukendt sted-id …`, og exit-koden er 0, når der kun er advarsler. Ved visning udelades id'et (se 8).
+  - Uden geografi (filen mangler eller er ugyldig) tjekkes id'erne ikke mod geografien.
+- **Sweep-fund** har `new_item = {url, title, teaser, source, published}` hvor `source` er et kendt id (sources.yaml aktiv eller medier.yaml); `id` = `item_id(url)`; `relevant` skal være true. Uden `places` får fundet regelmærker ud fra `new_item.title`, `teaser` og afsenderens `places`.
 - Den seneste vurdering af et id vinder (filer læses i datoorden, linjer i rækkefølge).
-- `pending` udskriver: `{"now": ISO, "profile": "<relevansprofil.md>", "topics": [{id,name,definition}], "genres": [{id,label}], "pending": [{id,url,title,teaser,source_name,category,lang,published,rule_topics,rule_genre,prefilter:{decision,score,hits}}], "recent_approved": [{id,title,source_name,published}]}`. `pending` = kandidater uden vurdering, `first_seen` inden for `--hours`, ikke fra kilder med `ai: false`, nyeste først, maks `--max`. `recent_approved` = godkendte fra sidste 72 t (til `story_hint`).
+- `pending` udskriver: `{"now": ISO, "profile": "<relevansprofil.md>", "topics": [{id,name,definition}], "genres": [{id,label}], "places_help": {"format": "r:<region>, k:<kommune>, b:<by>", "regioner": [{id,navn}], "kommuner": [{id,navn}]}, "pending": [{id,url,title,teaser,source_name,category,lang,published,rule_topics,rule_genre,rule_places,prefilter:{decision,score,hits}}], "recent_approved": [{id,title,source_name,published}]}`. `pending` = kandidater uden vurdering, `first_seen` inden for `--hours`, ikke fra kilder med `ai: false`, nyeste først, maks `--max`. `rule_places` = kandidatens `places`, kun id'er, der står i geografien. `places_help` har alle regioner og kommuner, men ingen byer (routinen slår byer op i `config/geografi.yaml`). `recent_approved` = godkendte fra sidste 72 t (til `story_hint`). Udskriften er JSON med én linje pr. topnøgle og én post pr. linje i lister af objekter, også i `places_help`.
 
 ### 6.3 Fallback (judgments.py: `display_mode(now, heartbeat, settings) -> "claude"|"fallback"`)
 Rutinen kører kl. `settings.routine.minute` i timerne `settings.routine.hours` (København). En planlagt kørsel regnes først som misset, når `settings.routine.grace_hours` (standard 2) er gået siden dens tidspunkt: `S*` = seneste tidspunkt ≤ `now - grace_hours` på formen HH:MM i vinduet. Tilstand er `fallback`, når heartbeat mangler, eller `last_run < S*`. Ellers `claude`.
@@ -248,28 +276,45 @@ Rutinen kører kl. `settings.routine.minute` i timerne `settings.routine.hours` 
   "mode": "claude|fallback",
   "last_judgment": "ISO|null",
   "categories": [{"id","name","short","color","color_dark","icon","help"}],
-  "topics": [{"id","name","definition"}],
+  "topics": [{"id","name","short","definition"}],
   "genres": [{"id","label"}],
   "sources": [{"id","name","category","homepage","lang","paywall","owner","status","health","via_search": false}],
+  "geo": {"regioner": [{"id","navn","kort"}], "kommuner": [{"id","navn","kort","region"}], "byer": [{"id","navn","kommune","kommuner"}]} | null,
   "overview": {"dag": Overview|null, "uge": …, "maaned": …, "aar": …},
   "items": [DisplayItem]
 }
 ```
 `DisplayItem`:
-`{id, story, url, title, teaser, source, published, date_quality, first_seen, baseline, topics, genre, lang, summary_da, reviewed, reason, also: [{id, source, url, title, published}], why}`
+`{id, story, url, title, teaser, source, published, date_quality, first_seen, baseline, topics, places, genre, lang, summary_da, reviewed, reason, also: [{id, source, url, title, published}], why}`
 - `items` sorteret efter `published` (faldende), derefter `id`. Kun hovedindslag for historier står i `items`; øvrige ligger i `also` (sorteret efter published).
+- `topics[].short`: kort navn til brugerfladen, `null` når temaet ikke har et (brug så `name`).
+- `places`: sted-id'er (4.1), sorteret. Vurderingens `places`, hvis den ikke er `null`, ellers kandidatens regelmærker (højst 8). Id'er, der ikke står i geografien, udelades. For en historie er `places` foreningen af hovedindslagets og also-indslagenes steder, så et lokalt indslag i en national historie kan findes med stedfiltret; foreningen skæres ikke og kan have flere end 8 steder. Indslag i `also` har intet felt og arver hovedindslagets. Tom liste = landsdækkende.
+- `geo`: alle regioner og alle kommuner i `geografi.yaml`s rækkefølge, men kun de byer, der optræder i `items[].places` (som for historier også dækker also-indslagene); byerne sorteres efter id af `export` selv. `navn` er det fulde navn ("Region Syddanmark", "Nyborg Kommune", "Ullerslev"), `kort` det korte; `byer[].kommune` er den primære kommune, som byen filtreres under (§9), `byer[].kommuner` alle kommuner, byen ligger i (kun til information). `null`, når `geografi.yaml` mangler eller er ugyldig.
 - `sources` indeholder alle aktive kilder fra `sources.yaml` (undtagen `method: search`) + `medier.yaml`-udgivere, der optræder i items (`via_search: true`).
 - `health`: `groen`|`gul`|`roed`|`graa`.
+- `feed.json` valideres mod `models.Feed` før skrivning (fejl giver exit 1). `examples/feed.sample.json` følger samme kontrakt (`tests/test_sample.py`).
 - `status.json`: `{generated, sources: [{id, name, category, status, health, last_ok, fails, last_error, items_30d, silent}], counts: {candidates_60d, shown_60d, rejected_30d}}`.
 
 Historier (`stories.py`): niveau 1 = samme id; niveau 2 = samme `normalize_title` inden for ±3 døgn; niveau 3 (fase 3) = rapidfuzz. Desuden forenes `story_hint`-par fra vurderinger. Hovedindslag = laveste kategori-rang, ved lighed tidligst publiceret. `story` = hovedindslagets id. En historie optager ikke indslag mere end 7 døgn efter hovedindslaget.
 
 ## 9. Frontend-kontrakt
 - `site/` er statisk (ingen build). `index.html` og `kilder.html` henter `data/feed.json` (relativt). Med `?demo=1` hentes `../examples/feed.sample.json` lokalt eller `data/feed.sample.json` på Pages (export kopierer eksempelfilen dertil).
-- URL-parametre: `afsender`, `tema`, `kilde`, `genre` (kommaseparerede id'er), `periode` (7|30|60), `sprog=da`, `q`, `nye=1`, `saml=0`, `vis=kompakt`, `story=<id>`, `overblik=dag|uge|maaned|aar`.
-- localStorage-nøgler (alle i try/catch): `af.lastVisit`, `af.theme`, `af.overviewHidden`, `af.introClosed`.
+- URL-parametre: `afsender`, `tema`, `kilde`, `genre` (kommaseparerede id'er), `region`, `kommune`, `by` (kommaseparerede id'er uden præfiks, fx `region=syddanmark&kommune=nyborg&by=ullerslev`), `periode` (7|30|60), `sprog=da`, `q`, `nye=1`, `saml=0`, `vis=kompakt`, `story=<id>`, `overblik=dag|uge|maaned|aar`.
+- Rækkefølge i URL'en: `demo, afsender, tema, kilde, genre, region, kommune, by, periode, sprog, q, nye, saml, vis, story, overblik`. Regioner skrives i `geo`-rækkefølge, kommuner og byer alfabetisk efter id, så samme valg giver samme link.
+- **Stedfiltret** (`region`, `kommune`, `by`): hvert indslag får et udvidet sæt nøgler E ud fra `places` og `geo`:
+
+  | Id i `places` | Tilføjes til E |
+  |---|---|
+  | `r:X` | `r:X` |
+  | `k:Y` | `k:Y` og `r:<region for Y>` |
+  | `b:Z` | `b:Z`, `k:<Z.kommune>` og `r:<region for Z.kommune>` |
+  | id, der ikke findes i `geo` | kun id'et selv |
+
+  En by tæller kun under sin primære kommune (`kommune`) og dennes region, ikke under de andre kommuner i `kommuner` (præcision: Hørsholm vises under Hørsholm Kommune, ikke under Fredensborg eller Rudersdal). Samme hierarki har `models.Geo.expand`. De valgte steder er ét sæt V af præfiksede nøgler (`region=X` → `r:X`, `kommune=Y` → `k:Y`, `by=Z` → `b:Z`). Et indslag passer, når E og V har mindst én nøgle til fælles. Altså: `region=X` viser indslag med `r:X`, en kommune i X eller en by, hvis primære kommune ligger i X; `kommune=Y` viser indslag med `k:Y` eller en by, hvis `kommune` er Y; `by=Z` viser kun indslag med `b:Z`. Et indslag med kun `r:X` vises ikke under en kommune i X. Flere valgte steder kombineres med ELLER inden for stedfiltret og med OG mod de andre filtre. Indslag uden steder (landsdækkende) vises ikke, når et sted er valgt. En historie passer, når ét af dens indslag passer (hovedindslagets `places` er allerede foreningen). Et id i URL'en, der ikke findes i `geo`, beholdes og matcher intet. Er `geo` `null`, filtrerer parametrene ikke, men skrives uændret tilbage.
+- localStorage-nøgler (alle i try/catch): `af.lastVisit`, `af.overviewHidden` (`"0"` = AI-overblikket er udfoldet; alt andet, også en manglende nøgle og den gamle værdi `"1"`, = foldet), `af.introClosed` og `af.theme` (bruges ikke længere; reserveret og må ikke genbruges. Siden følger enhedens farvetema, og en gammel `af.theme` slettes ved indlæsning). Ingen andre nøgler.
 
 ## 10. Workflows
 - `collect.yml`: cron `17 * * * *` + `workflow_run` efter hver kørsel af `publish.yml` ("Udgiv") + `workflow_dispatch`. GitHubs tidsplan kan falde ud, så `workflow_run` sikrer en kørsel, hver gang routinen har pushet vurderinger. `run` → `export` → commit `data/` hvis ændret (`git pull --rebase` før push) → deploy Pages. `concurrency: pages`. `run` starter ikke flere feed-, sitemap- og html-kilder, når `fetch.run_budget_seconds` (900 s) er brugt; de venter til næste kørsel og kommer først i køen, fordi kilderne køres med den længst ventende først. Søgekilder kører altid til sidst. Jobbets `timeout-minutes` er 30.
 - `publish.yml`: `push` til `main` på `data/judgments/**`, `data/overview/**`, `site/**`, `config/**`, `sources.yaml`, `examples/**` + `workflow_dispatch` → `export` → deploy Pages. `concurrency: pages`.
 - `ci.yml`: push/PR → `ruff check`, `pytest`, `python -m affaldsfeed check`. Ingen netværkskald i tests.
+- `geografi.yml` ("Byg geografi"): `push` til `main` på `tools/build_geografi.py` og `config/geografi_regler.yaml` + `workflow_dispatch` → `tools/build_geografi.py --report` → `python -m affaldsfeed check`. Rapporten (`probe/geografi.md`, med check-udskriften) committes altid; `config/geografi.yaml` kun, når check er OK, ellers beholdes den gamle fil, og jobbet fejler. Bot-commits starter ikke CI, så check køres her.
