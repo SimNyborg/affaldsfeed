@@ -1,7 +1,9 @@
-"""Høflig HTTP: ærlig User-Agent, robots.txt (protego), takt pr. vært, conditional GET og ét retry."""
+"""Høflig HTTP: ærlig User-Agent, robots.txt (protego), takt pr. vært, conditional GET, ét retry og loft
+over svarets størrelse."""
 
 from __future__ import annotations
 
+import contextlib
 import logging
 import time
 from dataclasses import dataclass, field
@@ -17,12 +19,16 @@ from affaldsfeed.timeutil import iso, parse_iso
 log = logging.getLogger(__name__)
 
 ROBOTS_MAX_BYTES = 500 * 1024
+CHUNK_BYTES = 64 * 1024
+MB = 1024 * 1024
 RETRY_STATUSES = {500, 502, 504}
 SKIP_STATUSES = {429, 503}
+TRANSIENT_4XX = {408, 425, 429}  # 4xx, der kan gå over af sig selv
 
 # Fejltekster, som indsamlerne genkender i FetchResult.error
 BUDGET_EXHAUSTED = "tidsbudget opbrugt"
 ROBOTS_BLOCKED = "blokeret af robots.txt"
+TOO_LARGE = "svaret er for stort"
 
 
 @dataclass
@@ -39,9 +45,22 @@ class FetchResult:
     def ok(self) -> bool:
         return self.error is None and (self.status == 200 or self.not_modified)
 
+    @property
+    def permanent(self) -> bool:
+        """Fejl, som et nyt forsøg ikke ændrer: 4xx (undtagen 408, 425, 429), robots.txt-forbud, for stort svar."""
+        if self.error is None:
+            return False
+        if self.error == ROBOTS_BLOCKED or self.error.startswith(TOO_LARGE):
+            return True
+        return 400 <= self.status < 500 and self.status not in TRANSIENT_4XX
+
 
 def _netloc(url: str) -> str:
     return urlsplit(url).netloc.lower()
+
+
+def _header(headers: object, name: str) -> str | None:
+    return {str(k).lower(): v for k, v in dict(headers or {}).items()}.get(name)
 
 
 def _robots_url(url: str) -> str:
@@ -71,6 +90,7 @@ class Fetcher:
         self._last_request: dict[str, float] = {}
         self._deadline: float | None = None
         self.requests_made = 0
+        self.max_bytes = int(settings.max_response_mb * MB)
 
     # ── Tidsbudget ──────────────────────────────────────────
 
@@ -111,18 +131,22 @@ class Fetcher:
         status: int | None = None
         err = ""
         self._pace(host, crawl_delay=0.0)  # TimeoutError (budget) løftes til kalderen
+        raw = b""
         try:
             timeout = self.settings.timeout_seconds
             remaining = self._remaining()
             if remaining is not None:
                 timeout = max(1.0, min(timeout, remaining))
-            resp = self.session.get(robots_url, timeout=timeout, allow_redirects=True)
+            resp = self.session.get(robots_url, timeout=timeout, allow_redirects=True, stream=True)
             self.requests_made += 1
-            status = resp.status_code
+            with contextlib.closing(resp):
+                if 200 <= resp.status_code < 300:
+                    raw = self._read(resp, ROBOTS_MAX_BYTES, truncate=True) or b""  # resten ignoreres
+                status = resp.status_code
         except requests.RequestException as e:
             err = type(e).__name__
         if status is not None and 200 <= status < 300:
-            body = resp.content[:ROBOTS_MAX_BYTES].decode("utf-8", errors="replace")
+            body = raw.decode("utf-8", errors="replace")
         elif status is not None and 400 <= status < 500:
             body = ""  # 4xx: alt er tilladt
         else:
@@ -188,7 +212,28 @@ class Fetcher:
     def _fail(self, url: str, status: int, error: str, headers: dict | None = None) -> FetchResult:
         return FetchResult(url=url, status=status, text=None, content=None, not_modified=False, error=error, headers=headers or {})
 
-    def get(self, url: str, conditional: bool = True) -> FetchResult:
+    def _read(self, resp: requests.Response, limit: int, truncate: bool = False) -> bytes | None:
+        """Læs svaret i bidder, så et for stort svar aldrig ligger i hukommelsen.
+
+        gzip og deflate (Content-Encoding) pakkes ud undervejs, så loftet gælder den udpakkede størrelse.
+        Over loftet: None (eller de første limit bytes med truncate). Rejser TimeoutError, når tidsbudgettet
+        er brugt.
+        """
+        length = _header(resp.headers, "content-length")
+        if not truncate and length and length.strip().isdigit() and int(length) > limit:
+            return None
+        buf = bytearray()
+        for chunk in resp.iter_content(chunk_size=CHUNK_BYTES):
+            buf += chunk
+            if len(buf) > limit:
+                return bytes(buf[:limit]) if truncate else None
+            remaining = self._remaining()
+            if remaining is not None and remaining <= 0:
+                raise TimeoutError(BUDGET_EXHAUSTED)
+        return bytes(buf)
+
+    def get(self, url: str, conditional: bool = True, max_bytes: int | None = None) -> FetchResult:
+        """Hent url. max_bytes er loftet over svaret (standard fetch.max_response_mb)."""
         host = _netloc(url)
         if host in self._blocked_hosts:
             return self._fail(url, 0, f"springes over: {self._blocked_hosts[host]}")
@@ -203,13 +248,14 @@ class Fetcher:
 
         headers: dict[str, str] = {}
         cached = self.http_cache.get(url) if conditional else None
-        if cached:
+        if isinstance(cached, dict):
             if cached.get("etag"):
                 headers["If-None-Match"] = cached["etag"]
             if cached.get("last_modified"):
                 headers["If-Modified-Since"] = cached["last_modified"]
 
         delay = self.crawl_delay(url)
+        limit = max_bytes or self.max_bytes
         attempts = 2
         last_error = "ukendt fejl"
         last_status = 0
@@ -222,8 +268,12 @@ class Fetcher:
                 timeout = max(1.0, min(timeout, remaining))
             try:
                 self._pace(host, delay)
-                resp = self.session.get(url, headers=headers, timeout=timeout, allow_redirects=True)
+                resp = self.session.get(url, headers=headers, timeout=timeout, allow_redirects=True, stream=True)
                 self.requests_made += 1
+                with contextlib.closing(resp):
+                    status = resp.status_code
+                    resp_headers = dict(resp.headers)
+                    content = self._read(resp, limit) if 200 <= status < 300 else b""
             except TimeoutError as e:
                 return self._fail(url, last_status, str(e))
             except requests.Timeout:
@@ -235,16 +285,16 @@ class Fetcher:
                     continue
                 return self._fail(url, 0, last_error)
 
-            status = resp.status_code
-            resp_headers = dict(resp.headers)
             if status == 304:
                 return FetchResult(url=url, status=304, text=None, content=None, not_modified=True, error=None, headers=resp_headers)
             if 200 <= status < 300:
+                if content is None:
+                    log.warning("%s: over %.3g MB; hentningen er afbrudt", url, limit / MB)
+                    return self._fail(url, status, f"{TOO_LARGE} (over {limit / MB:.3g} MB)", resp_headers)
                 self._remember(url, resp_headers)
-                content = resp.content
                 try:
-                    text = resp.text
-                except Exception:
+                    text = content.decode(getattr(resp, "encoding", None) or "utf-8", errors="replace")
+                except (LookupError, ValueError):  # ukendt eller ikke-tekst-codec i Content-Type
                     text = content.decode("utf-8", errors="replace")
                 return FetchResult(url=url, status=status, text=text, content=content, not_modified=False, error=None, headers=resp_headers)
             if status in SKIP_STATUSES:

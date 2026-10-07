@@ -3,18 +3,22 @@
 from __future__ import annotations
 
 import base64
+import gzip
 import importlib.util
+import io
 import sys
+import tracemalloc
 from datetime import UTC, datetime
 from pathlib import Path
 
 import pytest
 import requests
+import urllib3
 
 from affaldsfeed.collect import COLLECTORS, CollectContext, match_publisher
 from affaldsfeed.collect.search import bing_target, build_url, decode_google_link
 from affaldsfeed.config import load_config, load_sources, publisher_lookup
-from affaldsfeed.fetch import Fetcher
+from affaldsfeed.fetch import ROBOTS_MAX_BYTES, TOO_LARGE, Fetcher
 from affaldsfeed.models import FetchSettings
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
@@ -291,3 +295,66 @@ def test_fetcher_sets_honest_user_agent():
     f = Fetcher(FetchSettings(user_agent=UA), {}, {}, NOW)
     assert f.session.headers["User-Agent"] == UA
     assert f.ua_token == "Affaldsfeed"
+
+
+# ── Fetcher: loft over svarets størrelse ────────────────────
+
+
+def _endless(chunk: bytes = b"x" * 65536):
+    while True:
+        yield chunk
+
+
+def test_fetcher_stops_reading_a_response_over_the_limit():
+    big = _resp(200, chunks=_endless())
+    f = _real_fetcher({"https://x.dk/robots.txt": [_resp(404)], "https://x.dk/stor.xml": [big]})
+    res = f.get("https://x.dk/stor.xml", max_bytes=1024 * 1024)
+    assert res.content is None and res.error.startswith(TOO_LARGE) and res.permanent
+    assert big.read <= 1024 * 1024 + 65536 and big.closed  # afbrudt lige over loftet, ikke læst færdig
+    assert "https://x.dk/stor.xml" not in f.http_cache
+
+
+def test_fetcher_limit_comes_from_settings_and_content_length_is_checked_first():
+    f = Fetcher(FetchSettings(user_agent=UA, min_interval_seconds=0, max_response_mb=0.5), {}, {}, NOW)
+    huge = _resp(200, b"x", {"Content-Length": str(10**9)})
+    f.session = _fakes().FakeSession(
+        {
+            "https://x.dk/robots.txt": [_resp(404)],
+            "https://x.dk/a": [huge],
+            "https://x.dk/b": [_resp(200, b"x" * 600_000)],
+            "https://x.dk/c": [_resp(200, b"x" * 1000, {"ETag": '"1"'})],
+        }
+    )
+    assert TOO_LARGE in f.get("https://x.dk/a").error and huge.read == 0  # intet læses
+    assert "over 0.5 MB" in f.get("https://x.dk/b").error
+    res = f.get("https://x.dk/c")
+    assert res.ok and res.content == b"x" * 1000 and f.http_cache["https://x.dk/c"] == {"etag": '"1"'}
+
+
+def test_fetcher_stops_a_gzip_bomb_while_unpacking():
+    """Content-Encoding: gzip pakkes ud i bidder, så loftet gælder den udpakkede størrelse."""
+    bomb = gzip.compress(b"\0" * (32 * 1024 * 1024))  # 32 MB nuller fylder ca. 32 kB pakket
+    raw = urllib3.HTTPResponse(
+        body=io.BytesIO(bomb), headers={"Content-Encoding": "gzip"}, status=200, preload_content=False
+    )
+    resp = requests.Response()
+    resp.status_code, resp.raw = 200, raw
+    resp.headers = requests.structures.CaseInsensitiveDict(
+        {"Content-Encoding": "gzip", "Content-Length": str(len(bomb))}
+    )
+    f = _real_fetcher({"https://x.dk/robots.txt": [_resp(404)], "https://x.dk/sitemap.xml": [resp]})
+    tracemalloc.start()
+    try:
+        res = f.get("https://x.dk/sitemap.xml", max_bytes=1024 * 1024)
+        peak = tracemalloc.get_traced_memory()[1]
+    finally:
+        tracemalloc.stop()
+    assert res.error.startswith(TOO_LARGE) and res.content is None
+    assert peak < 16 * 1024 * 1024  # de 32 MB har aldrig ligget i hukommelsen
+
+
+def test_fetcher_reads_only_the_start_of_a_huge_robots_txt():
+    robots = _resp(200, chunks=_endless(b"# kommentar\n" * 4096))
+    f = _real_fetcher({"https://x.dk/robots.txt": [robots], "https://x.dk/rss": [_resp(200, "<rss/>")]})
+    assert f.get("https://x.dk/rss").ok
+    assert len(f.robots_cache["x.dk"]["body"]) == ROBOTS_MAX_BYTES and robots.closed

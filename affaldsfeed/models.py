@@ -206,6 +206,7 @@ class FetchSettings(_Strict):
     source_budget_seconds: float = 60.0
     max_crawl_delay_seconds: float = 30.0
     robots_cache_hours: int = 24
+    max_response_mb: float = Field(default=50.0, gt=0)  # større svar afbrydes (også udpakket gzip)
 
 
 class RoutineSettings(_Strict):
@@ -220,10 +221,11 @@ class PagesSettings(_Strict):
 
     max_pages: int = 15  # nye sider pr. kilde pr. kørsel
     lastmod_days: int = 3  # sitemap: lastmod-vindue
-    first_run_lastmod_days: int = 14  # ved kildens første kørsel
+    first_run_lastmod_days: int = 14  # ved kildens første kørsel (indtil baseline er komplet)
     max_sub_sitemaps: int = 5  # under-sitemaps fra et indeks
     max_sitemap_fetches: int = 6  # sitemap-hentninger pr. kilde pr. kørsel
     max_links: int = 30  # links pr. listeside
+    max_page_mb: float = Field(default=5.0, gt=0)  # loft over en artikelside (sitemaps og lister: fetch)
     seen_refresh_days: int = 30  # seen.json: datoen fornyes, når den er ældre
     seen_keep_days: int = 120  # seen.json: fjernes, når den ikke er set så længe
 

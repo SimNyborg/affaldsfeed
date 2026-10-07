@@ -13,6 +13,7 @@ from typing import get_args
 from affaldsfeed import paths, store
 from affaldsfeed.classify import Classifier, Overrides
 from affaldsfeed.collect import COLLECTORS, CollectContext, RawEntry, match_publisher
+from affaldsfeed.collect.pages import remembered_sitemaps
 from affaldsfeed.collect.search import build_url
 from affaldsfeed.config import (
     Config,
@@ -254,7 +255,7 @@ def plan_sources(
     return due, waiting
 
 
-def _valid_cache_urls(sources: list[Source], config: Config) -> set[str]:
+def _valid_cache_urls(sources: list[Source], config: Config, http_cache: dict) -> set[str]:
     urls: set[str] = set()
     for s in sources:
         if s.status != "aktiv":
@@ -263,6 +264,9 @@ def _valid_cache_urls(sources: list[Source], config: Config) -> set[str]:
             urls.update(build_url(t, q, config.search.when) for t in s.feeds for q in config.search.queries)
         else:
             urls.update(s.feeds)
+        if s.method == "sitemap":
+            # Under-sitemaps fra et indeks hentes også betinget (KONTRAKTER §5.6)
+            urls.update(remembered_sitemaps(http_cache, s.feeds))
     return urls
 
 
@@ -332,17 +336,20 @@ def _run(args: argparse.Namespace) -> int:
         first_run = not state.first_run_done
         ctx.conditional = not first_run
         ctx.first_run = first_run
+        ctx.last_ok = state.last_ok
         fetcher.start_budget(settings.fetch.source_budget_seconds)
         cache_backup = dict(fetcher.http_cache)
         seen_backup = dict(seen.get(s.id, {}))
         t0 = time.monotonic()
         error: str | None = None
         n_entries = 0
+        backlog = False
         out = SourceOutcome()
         try:
             res = COLLECTORS[s.method](s, fetcher, ctx)
             error = res.error
             n_entries = len(res.entries)
+            backlog = res.backlog
             for line in res.diagnostics:
                 log.debug("%s: %s", s.id, line)
             out = proc.process(s, res.entries, first_run)
@@ -357,6 +364,10 @@ def _run(args: argparse.Namespace) -> int:
         upd_c.extend(out.updated)
         rejected.extend(out.rejected)
         states[s.id] = record_result(state, error is None, error, now, settings)
+        if first_run and backlog:
+            # Baseline er ikke komplet (sider eller sitemaps venter): næste kørsel er også en første kørsel,
+            # så restkøen hentes som baseline med 14-dages-vinduet (KONTRAKTER §5.6)
+            states[s.id] = states[s.id].model_copy(update={"first_run_done": False})
         secs = time.monotonic() - t0
         if error:
             failed[s.id] = error
@@ -373,7 +384,7 @@ def _run(args: argparse.Namespace) -> int:
                 len(out.new) - vis,
                 len(out.rejected),
                 len(out.updated),
-                ", baseline" if first_run else "",
+                (", baseline (ikke komplet; fortsætter)" if backlog else ", baseline") if first_run else "",
                 secs,
             )
         if dry:
@@ -400,7 +411,7 @@ def _run(args: argparse.Namespace) -> int:
             store.save_candidates(new_c + upd_c)
         store.save_rejected(rejected, settings.rejected_keep_days, now)
         store.save_source_states(states)
-        valid = _valid_cache_urls(sources, config)
+        valid = _valid_cache_urls(sources, config, fetcher.http_cache)
         store.save_http_cache({u: v for u, v in fetcher.http_cache.items() if u in valid})
         store.save_robots_cache(_prune_robots(fetcher.robots_cache, now))
         store.save_kildeforslag(kildeforslag)
