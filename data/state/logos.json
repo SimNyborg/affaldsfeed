@@ -47,6 +47,12 @@
     "checked": "2026-10-07T22:37:50Z",
     "error": null
   },
+  "amtsavisen-dk": {
+    "file": "amtsavisen-dk.png",
+    "src": "https://amtsavisen.dk/assets/1791279772/kodus/jfm-brands/brands/amtsavisen/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-07T23:35:08Z",
+    "error": null
+  },
   "arc": {
     "file": "arc.png",
     "src": "https://a-r-c.dk/app/themes/arc-theme/favicons/favicon-32x32.png",
@@ -57,6 +63,12 @@
     "file": "argo.png",
     "src": "https://argo.dk/wp-content/themes/brandmonkey-base-theme/assets/image/favicomatic/apple-touch-icon-57x57.png",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "au": {
+    "file": "au.ico",
+    "src": "https://cdn.au.dk/favicon.ico",
+    "checked": "2026-10-07T23:35:08Z",
     "error": null
   },
   "avfall-sverige": {
@@ -71,16 +83,112 @@
     "checked": "2026-10-07T22:37:50Z",
     "error": null
   },
+  "avisen2770-dk": {
+    "file": "avisen2770-dk.png",
+    "src": "https://avisen2770.dk/wp-content/uploads/2025/03/cropped-logo-2-e1740940263597-32x32.png",
+    "checked": "2026-10-07T23:35:08Z",
+    "error": null
+  },
+  "avisendanmark-dk": {
+    "file": "avisendanmark-dk.png",
+    "src": "https://avisendanmark.dk/assets/1791279772/kodus/jfm-brands/brands/danmark/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-07T23:35:08Z",
+    "error": null
+  },
   "berlingske": {
     "file": "berlingske.png",
     "src": "https://www.berlingske.dk/brands/berlingske/icon-32x32.png",
     "checked": "2026-10-07T22:37:50Z",
     "error": null
   },
+  "billundonline-dk": {
+    "file": "billundonline-dk.jpg",
+    "src": "https://billundonline.dk/wp-content/uploads/LOGO_RGB_MAIL-110x110.jpg",
+    "checked": "2026-10-07T23:35:08Z",
+    "error": null
+  },
   "biogas-danmark": {
     "file": "biogas-danmark.ico",
     "src": "https://www.biogas.dk/favicon.ico",
     "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
+  "blokhus-dk": {
+    "file": "blokhus-dk.webp",
+    "src": "https://blokhus.dk/wp-content/uploads/2022/11/cropped-Blokhus-Medier_logo-01-e1653469425962.png-1-32x32.webp",
+    "checked": "2026-10-07T23:35:08Z",
+    "error": null
+  },
+  "bornholm-nu": {
+    "file": "bornholm-nu.ico",
+    "src": "https://bornholm.nu/favicon.ico",
+    "checked": "2026-10-07T23:35:08Z",
+    "error": null
+  },
+  "bornholmnyt-dk": {
+    "file": "bornholmnyt-dk.png",
+    "src": "https://bornholmnyt.dk/wp-content/uploads/2020/06/cropped-Favicon-2-32x32.png",
+    "checked": "2026-10-07T23:35:08Z",
+    "error": null
+  },
+  "borsen": {
+    "file": "borsen.png",
+    "src": "https://borsen.dk/icon/favicon.ico",
+    "checked": "2026-10-07T23:35:08Z",
+    "error": null
+  },
+  "brammingposten-dk": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-07T23:35:08Z",
+    "error": "HTTP 404"
+  },
+  "brandebladet-dk": {
+    "file": "brandebladet-dk.png",
+    "src": "https://www.brandebladet.dk/sites/default/files/favicons/favicon-96x96.png?tlndyh",
+    "checked": "2026-10-07T23:35:08Z",
+    "error": null
+  },
+  "bt-dk": {
+    "file": "bt-dk.png",
+    "src": "https://www.bt.dk/brands/bt/icon-32x32.png",
+    "checked": "2026-10-07T23:35:08Z",
+    "error": null
+  },
+  "building-supply-dk": {
+    "file": "building-supply-dk.ico",
+    "src": "https://f.nordiskemedier.dk/favicon/building.ico",
+    "checked": "2026-10-07T23:35:08Z",
+    "error": null
+  },
+  "byensnyt-dk": {
+    "file": "byensnyt-dk.webp",
+    "src": "https://byensnyt.dk/wp-content/uploads/2026/02/ByensNyt-logo-500x500-1-50x50.png?x30106",
+    "checked": "2026-10-07T23:35:08Z",
+    "error": null
+  },
+  "byggeri-arkitektur-dk": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-07T23:35:08Z",
+    "error": "HTTP 502"
+  },
+  "bygtek-dk": {
+    "file": "bygtek-dk.ico",
+    "src": "https://bygtek.dk/favicon.ico",
+    "checked": "2026-10-07T23:35:08Z",
+    "error": null
+  },
+  "cbs-dk": {
+    "file": "cbs-dk.png",
+    "src": "https://www.cbs.dk/themes/custom/campus/assets/shortcut-icons/favicon-32x32.png?v=2",
+    "checked": "2026-10-07T23:35:08Z",
+    "error": null
+  },
+  "cepos": {
+    "file": "cepos.png",
+    "src": "https://cepos.dk/favicon/favicon-32x32.png",
+    "checked": "2026-10-07T23:35:08Z",
     "error": null
   },
   "cirkulaer": {
@@ -93,6 +201,18 @@
     "file": "cleantech-watch.png",
     "src": "https://ctwatch.dk/favicons/ctwatch.dk/favicon-32x32.png",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "concito": {
+    "file": "concito.ico",
+    "src": "https://concito.dk/files/CONCITO_logo_fingeraftryk.ico",
+    "checked": "2026-10-07T23:35:08Z",
+    "error": null
+  },
+  "dagbladet-holstebro-struer-dk": {
+    "file": "dagbladet-holstebro-struer-dk.png",
+    "src": "https://dagbladet-holstebro-struer.dk/assets/1791279772/kodus/jfm-brands/brands/holstebro_struer/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-07T23:35:08Z",
     "error": null
   },
   "dagens-byggeri": {
