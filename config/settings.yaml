@@ -46,6 +46,7 @@ max_age_days_on_find: 14         # ældre indslag afvises, når de findes
 baseline_days: 60                # første kørsel for en kilde: gem hele vinduet (window_days) som baseline
 teaser_max: 300
 teaser_display_max: 240
+title_prefixes: ["Nyhed:"]       # præfikser uden indhold, der fjernes fra titler i feedet ("Nyhed: X" vises som "X")
 rejected_keep_days: 90
 pending_hours: 72
 stale_feed_hours: 6

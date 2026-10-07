@@ -140,6 +140,7 @@ Søgekilder (`method: search`) har `category: nyhedsmedie` (ignoreres ved visnin
 - `item_id(url) = sha1(normalize_url(url)).hexdigest()[:12]`.
 - `clean_text(s, max_len)`: fjern HTML, afkod entiteter, saml whitespace, afkort ved ord + "…".
 - `normalize_title(t)`: små bogstaver, fjern tegnsætning og kildehaler (`" | Altinget"`, `" - DR"`), saml whitespace. Bruges til historier og dedupe af søgeresultater.
+- `strip_title_prefix(t, prefixes)`: fjern ét præfiks uden indhold først i titlen (fx `"Nyhed:"`), uanset store og små bogstaver. Titlen beholdes, hvis intet ord er tilbage. Bruges kun i visningen (8).
 
 ### 5.3 Søgning (`collect/search.py`)
 - Google News: `https://news.google.com/rss/search?q={q}+when:{when}&hl=da&gl=DK&ceid=DK:da`. Udgiver fra `<source url="…">Navn</source>` (feedparser: `entry.source.href`/`entry.source.title`). Titlen har halen `" - Udgiver"`, som fjernes. Linket er en Google-redirect; prøv base64-afkodning af `/articles/<id>`; ellers beholdes linket.
@@ -325,6 +326,7 @@ De vigtigste begivenheder på affaldsområdet, valgt og skrevet af Claude-routin
 ```
 `DisplayItem`:
 `{id, story, url, title, teaser, source, published, date_quality, first_seen, baseline, topics, places, genre, lang, summary_da, reviewed, reason, also: [{id, source, url, title, published}], why}`
+- `title`: kandidatens (eller sweep-fundets) titel uden præfikserne i `settings.title_prefixes` (fx "Nyhed: X" → "X"). Kandidaten på disk er uændret, og historierne samles på den viste titel.
 - `items` sorteret efter `published` (faldende), derefter `id`. Kun hovedindslag for historier står i `items`; øvrige ligger i `also` (sorteret efter published).
 - `topics[].short`: kort navn til brugerfladen, `null` når temaet ikke har et (brug så `name`).
 - `places`: sted-id'er (4.1), sorteret. Vurderingens `places`, hvis den ikke er `null`, ellers kandidatens regelmærker (højst 8). Id'er, der ikke står i geografien, udelades. For en historie er `places` foreningen af hovedindslagets og also-indslagenes steder, så et lokalt indslag i en national historie kan findes med stedfiltret; foreningen skæres ikke og kan have flere end 8 steder. Indslag i `also` har intet felt og arver hovedindslagets. Tom liste = landsdækkende.

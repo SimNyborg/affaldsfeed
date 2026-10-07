@@ -327,6 +327,7 @@ class Settings(_Strict):
     baseline_days: int = 14
     teaser_max: int = 300
     teaser_display_max: int = 240
+    title_prefixes: list[str] = Field(default_factory=list)  # fjernes fra titler i feedet (fx "Nyhed:")
     rejected_keep_days: int = 90
     pending_hours: int = 72
     stale_feed_hours: int = 6

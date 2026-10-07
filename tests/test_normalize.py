@@ -13,6 +13,7 @@ from affaldsfeed.normalize import (
     normalize_url,
     strip_publisher_suffix,
     strip_site_tail,
+    strip_title_prefix,
 )
 
 # ── normalize_url ──────────────────────────────────────────
@@ -190,3 +191,29 @@ def test_matches_name_is_exact():
 )
 def test_strip_publisher_suffix(title, publisher, expected):
     assert strip_publisher_suffix(title, publisher) == expected
+
+
+# ── strip_title_prefix (visning) ───────────────────────────
+
+
+@pytest.mark.parametrize(
+    ("title", "expected"),
+    [
+        ("Nyhed: Ny emballagebekendtgørelse", "Ny emballagebekendtgørelse"),
+        ("NYHED:Ny emballagebekendtgørelse", "Ny emballagebekendtgørelse"),
+        ("  nyhed:   Ny pant  ", "Ny pant"),
+        ("Nyheder: Ny pant", "Nyheder: Ny pant"),        # andet ord, ikke præfikset
+        ("Nyhed:", "Nyhed:"),                             # intet tilbage: titlen beholdes
+        ("Nyhed: …", "Nyhed: …"),                         # kun tegn, intet ord
+        ("Høring: Ny bekendtgørelse", "Høring: Ny bekendtgørelse"),
+        ("Ny regel om nyhed: pant", "Ny regel om nyhed: pant"),  # kun først i titlen
+    ],
+)
+def test_strip_title_prefix(title, expected):
+    assert strip_title_prefix(title, ["Nyhed:"]) == expected
+
+
+def test_strip_title_prefix_without_prefixes_only_trims():
+    assert strip_title_prefix("  Nyhed: X ", []) == "Nyhed: X"
+    assert strip_title_prefix("Nyhed: X", ["", "  "]) == "Nyhed: X"
+    assert strip_title_prefix("Pressemeddelelse: X", ["Nyhed:", "Pressemeddelelse:"]) == "X"
