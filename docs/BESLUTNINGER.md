@@ -56,7 +56,7 @@ Brugeren ønskede at kunne filtrere på sit område. Indslagene får derfor sted
 
 ## 2026-10-07: Enklere brugerflade
 
-Brugeren bad om en enklere side. Knappen til mørk tilstand er fjernet, så siden følger enhedens farvetema. Headeren har ingen undertitel, "Om kilderne" står kun i footeren, og linket "Om afsendertyperne" er væk. Menuen har foldbare grupper, og alle lister er afkrydset fra start, så et fjernet flueben skjuler. Hver gruppe undtagen Sted har én knap, der skifter mellem "Fravælg alle" og "Vælg alle". AI-overblikket er mindre og kan foldes sammen. Grupperne Sprog, Historier og Periode er fjernet: historier er altid samlet, og perioden vælges over listen, hvor antallet af indslag stod. Perioden er senere afløst af en kalender (se nedenfor). Fravalgt: runde mærker ("piller") i menuerne.
+Brugeren bad om en enklere side. Knappen til mørk tilstand er fjernet, så siden følger enhedens farvetema. Headeren har ingen undertitel, "Om kilderne" står kun i footeren, og linket "Om afsendertyperne" er væk. Menuen har foldbare grupper, og alle lister er afkrydset fra start, så et fjernet flueben skjuler. Hver gruppe undtagen Sted har én knap, der skifter mellem "Fravælg alle" og "Vælg alle". Kortene viser kun kildens navn uden afsendertype, ejer og genre, fx "Folketinget" i stedet for "Folketinget · Myndighed · Folketingssag". AI-overblikket er mindre og kan foldes sammen. Grupperne Sprog, Historier og Periode er fjernet: historier er altid samlet, og perioden vælges over listen, hvor antallet af indslag stod. Perioden er senere afløst af en kalender (se nedenfor). Fravalgt: runde mærker ("piller") i menuerne.
 
 ## 2026-10-07: Ingen Claude i sidens tekster
 

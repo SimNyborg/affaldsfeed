@@ -4,7 +4,7 @@ import {
   el, icon, hidden, sep, catStyle, cap, truncate, cph, fmtNum, fmtShort, fmtLong, fmtWhen, fmtStamp,
   isoWeek, fmtDayRange, weekdayOf, parseDate, load, store, DAY_MS,
   readState, syncUrl, setData, defaultState, activeCount, sheetCount, activeFilters, removeFilter, resetFilters, shownSet, NATIONAL,
-  prepare, applyFilters, computeCounts, computeDayCounts, buildPanel, renderActive, topicName, genreName,
+  prepare, applyFilters, computeCounts, computeDayCounts, buildPanel, renderActive, topicName,
   placeName, placeParents, precisePlaces, rangeOf, setRange, fmtRange,
 } from './filters.js';
 import { createOverview } from './overview.js';
@@ -565,23 +565,15 @@ function setupFeed(feed, state, now, lastVisit) {
     return src.paywall === 'ja' ? 'Betalingsmur' : src.paywall === 'delvis' ? 'Delvis betalingsmur' : '';
   }
 
-  /** Genre, men ikke når titlen selv siger den ("Debat: …"). */
-  function genreText(m) {
-    if (!m.isHead || m.genre === 'nyhed') return '';
-    const g = genreName(data, m.genre);
-    const word = g.split(' ')[0].toLowerCase();
-    return m.title.toLowerCase().startsWith(`${word}:`) ? '' : g;
-  }
-
-  /** Afsenderlinjen: ikon, kilde, kategori (", udgivet af X"), genre, betalingsmur, "Ikke vurderet". */
-  function who(m, { genre = true, review = true } = {}) {
-    const parts = [];
-    if (genre) parts.push(genreText(m));
-    parts.push(paywallText(m.source));
+  /**
+   * Afsenderlinjen: kategoriikon og kilde, eventuelt betalingsmur og "Ikke vurderet". Afsendertype og
+   * genre står ikke på kortet; de findes som filtre i menuen.
+   */
+  function who(m, { review = true } = {}) {
+    const parts = [paywallText(m.source)];
     if (review && !m.reviewed) parts.push('Ikke vurderet');
     return el('p', { class: 'who' }, icon(m.cat.icon), el('b', { text: m.source.name }),
-      sep(), `${m.cat.short || m.cat.name}${m.source.owner ? `, udgivet af ${m.source.owner}` : ''}`,
-      // Genre, betalingsmur og "Ikke vurderet" brydes aldrig midt i ("Delvis betalingsmur" står samlet)
+      // Betalingsmur og "Ikke vurderet" brydes aldrig midt i ("Delvis betalingsmur" står samlet)
       parts.filter(Boolean).map((t) => [sep(), el('span', { class: 'nw', text: t })]));
   }
 
@@ -624,7 +616,7 @@ function setupFeed(feed, state, now, lastVisit) {
           `+${others.length} ${noun}${fresh ? `, ${fresh} ${fresh === 1 ? 'ny' : 'nye'}` : ''}`,
           icon('pil-ned')),
         el('ul', { class: bare ? 'bare' : null }, others.map((o) => el('li', { class: 'cat', style: catStyle(o.cat) },
-          bare ? null : el('div', { class: 'meta' }, who(o, { genre: false, review: false }), timeEl(o, group, headDay)),
+          bare ? null : el('div', { class: 'meta' }, who(o, { review: false }), timeEl(o, group, headDay)),
           el('p', { class: 'mtitle' }, o.isNew ? hidden('Ny: ') : null, titleLink(o))))));
     }
 
