@@ -85,6 +85,39 @@
     robots.txt fravælger AI-agenter. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser
     (ikke en AI-crawler) må hente feedet. Claude vurderer kun titel og RSS-uddrag.
 
+- id: dr-regionale
+  name: DR's regionale redaktioner
+  category: nyhedsmedie
+  homepage: https://www.dr.dk/nyheder/regionale
+  method: rss
+  feeds:
+    - https://www.dr.dk/nyheder/service/feeds/regionale/kbh
+    - https://www.dr.dk/nyheder/service/feeds/regionale/bornholm
+    - https://www.dr.dk/nyheder/service/feeds/regionale/sjaelland
+    - https://www.dr.dk/nyheder/service/feeds/regionale/fyn
+    - https://www.dr.dk/nyheder/service/feeds/regionale/syd
+    - https://www.dr.dk/nyheder/service/feeds/regionale/trekanten
+    - https://www.dr.dk/nyheder/service/feeds/regionale/oestjylland
+    - https://www.dr.dk/nyheder/service/feeds/regionale/vest
+    - https://www.dr.dk/nyheder/service/feeds/regionale/nord
+  filter: strict
+  basis: redaktionelt
+  status: planlagt
+  checked: 2026-10-07
+  note: Ni regionale redaktioner med hvert sit RSS-feed. Lokale nyheder, så kun titler med affaldsord.
+
+- id: videnskab
+  name: Videnskab.dk
+  category: nyhedsmedie
+  homepage: https://videnskab.dk
+  method: rss
+  feeds: https://videnskab.dk/wp-json/rss/v1/feeds
+  filter: strict
+  basis: redaktionelt
+  status: planlagt
+  checked: 2026-10-07
+  note: Uafhængigt videnskabsmedie. Bred dækning, så kun titler med affaldsord.
+
 - id: tv2-regionerne
   name: TV 2-regionerne
   category: nyhedsmedie
@@ -189,12 +222,12 @@
   category: nyhedsmedie
   homepage: https://nyheder.tv2.dk
   method: rss
-  feeds: []
+  feeds: https://feeds.services.tv2.dk/api/feeds/nyheder/rss
   filter: strict
   basis: redaktionelt
-  status: kandidat
+  status: planlagt
   checked: 2026-10-07
-  note: Intet kendt feed (feeds.tv2.dk findes ikke). Fanges via nyhedssøgning (config/medier.yaml).
+  note: Fundet via søgning 2026-10-07 (feeds.services.tv2.dk). Bred dækning, så kun titler med affaldsord.
 
 - id: mandag-morgen
   name: Mandag Morgen
@@ -464,14 +497,37 @@
   name: EnergiWatch
   category: fagmedie
   homepage: https://energiwatch.dk
-  method: rss
-  feeds: []
+  method: sitemap
+  feeds: https://energiwatch.dk/sitemapindex.xml
   filter: strict
   paywall: ja
+  match: '^https://energiwatch\.dk/.+'
+  ai: false
+  owner: Watch Medier
   basis: redaktionelt
-  status: kandidat
+  status: planlagt
   checked: 2026-10-07
-  note: Intet kendt feed. Fanges via nyhedssøgning (config/medier.yaml).
+  note: >-
+    Ingen RSS (/rss er HTML). Samme platform og AI-forbehold som CleanTech Watch, så Claude vurderer ikke
+    kilden (ai: false).
+
+- id: cleantech-watch
+  name: CleanTech Watch
+  category: fagmedie
+  homepage: https://ctwatch.dk
+  method: sitemap
+  feeds: https://ctwatch.dk/sitemapindex.xml
+  match: '^https://ctwatch\.dk/.+'
+  filter: strict
+  paywall: ja
+  owner: Watch Medier
+  ai: false
+  basis: redaktionelt
+  status: planlagt
+  checked: 2026-10-07
+  note: >-
+    Hed cleantechwatch.dk. Ingen RSS. robots.txt spærrer AI-træningsbots, så Claude vurderer ikke kilden
+    (ai: false); indslagene udvælges af reglerne med strengt filter.
 
 - id: building-supply
   name: Building Supply
