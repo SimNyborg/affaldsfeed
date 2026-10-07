@@ -214,11 +214,10 @@ export function load(key) {
 
 // Afkrydsningslister: alt er valgt fra start, og et fjernet flueben skjuler. I URL'en står de valgte
 // (fx tema=gebyrer) eller med "-" foran de fravalgte (fx tema=-arbejdsmiljoe), alt efter hvad der er kortest.
-export const GROUPS = ['afsender', 'tema', 'kilde', 'genre', 'sprog'];
+export const GROUPS = ['afsender', 'tema', 'kilde', 'genre'];
 export const PERIODS = [7, 30, 60];
 export const OV_PERIODS = ['dag', 'uge', 'maaned', 'aar'];
 export const NO_TOPIC = 'uden';
-export const LANGS = ['da', 'en', 'sv'];
 // Steder: ét felt `sted` med præfiksede nøgler internt (r:, k:, b: og l: for landsdækkende), fire
 // parametre i URL'en. Uden `geo` i feed.json læses de og skrives uændret tilbage, men filtrerer ikke.
 export const NATIONAL = 'l:landsdaekkende';
@@ -227,8 +226,8 @@ const MAX_CHIPS = 3; // højst så mange mærker pr. gruppe og retning, ellers �
 
 export function defaultState() {
   return {
-    afsender: [], tema: [], kilde: [], genre: [], sprog: [], sted: [],
-    periode: 60, q: '', nye: false, saml: true, vis: '',
+    afsender: [], tema: [], kilde: [], genre: [], sted: [],
+    periode: 60, q: '', nye: false, vis: '',
     story: [], overblik: 'dag', demo: '',
   };
 }
@@ -248,7 +247,7 @@ export function readState(search) {
   s.periode = PERIODS.includes(per) ? per : 60;
   s.q = (p.get('q') || '').trim();
   s.nye = p.get('nye') === '1';
-  s.saml = p.get('saml') !== '0';
+  // sprog= og saml= fra ældre links ignoreres; historierne er altid samlet
   s.vis = p.get('vis') === 'kompakt' ? 'kompakt' : '';
   s.story = list('story');
   s.overblik = OV_PERIODS.includes(p.get('overblik')) ? p.get('overblik') : 'dag';
@@ -268,7 +267,6 @@ export function setData(data) {
     tema: [...data.topics.keys(), NO_TOPIC],
     kilde: [...data.sources.keys()].sort(),
     genre: [...data.genres.keys()],
-    sprog: LANGS,
     sted: data.geo ? [...data.geo.regioner.map((r) => `r:${r.id}`), NATIONAL] : [],
   };
   ORDER = Object.fromEntries(Object.entries(UNIVERSE).map(([g, ids]) => [g, idx(ids)]));
@@ -335,7 +333,7 @@ export function pickPlace(s, key) {
 
 const enc = (v) => encodeURIComponent(v).replace(/%2C/gi, ',');
 
-/** Rækkefølge: demo, afsender, tema, kilde, genre, region, kommune, by, landsdaekkende, periode, sprog, q, nye, saml, vis, story, overblik. */
+/** Rækkefølge: demo, afsender, tema, kilde, genre, region, kommune, by, landsdaekkende, periode, q, nye, vis, story, overblik. */
 export function writeState(s) {
   const out = [];
   const add = (k, v) => out.push(`${k}=${enc(v)}`);
@@ -352,10 +350,8 @@ export function writeState(s) {
   if (s.sted.includes(NATIONAL)) add('landsdaekkende', '1');
   else if (s.sted.includes(`-${NATIONAL}`)) add('landsdaekkende', '0');
   if (s.periode !== 60) add('periode', s.periode);
-  addList('sprog', canonical(s.sprog, ORDER.sprog));
   if (s.q) add('q', s.q);
   if (s.nye) add('nye', '1');
-  if (!s.saml) add('saml', '0');
   if (s.vis) add('vis', s.vis);
   if (s.story.length) add('story', s.story.join(','));
   if (s.overblik !== 'dag') add('overblik', s.overblik);
@@ -376,7 +372,7 @@ function chipCount(values) {
 }
 const groupsCount = (s) => GROUPS.reduce((n, g) => n + chipCount(s[g]), GEO ? chipCount(s.sted) : 0);
 
-/** Er der noget, der indsnævrer feedet? (saml og vis er visninger og tæller ikke) */
+/** Er der noget, der indsnævrer feedet? (vis er en visning og tæller ikke) */
 export function activeCount(s) {
   let n = groupsCount(s);
   if (s.periode !== 60) n += 1;
@@ -386,12 +382,12 @@ export function activeCount(s) {
   return n;
 }
 
-/** Tallet på "Filtrér (n)": valg inde i arket. Søgning tæller ikke, fordi feltet står ved siden af. */
+/** Tallet på "Filtrér (n)": valg inde i arket. Søgning og periode tæller ikke, fordi de står over listen. */
 export function sheetCount(s) {
-  return groupsCount(s) + Number(s.periode !== 60);
+  return groupsCount(s);
 }
 
-/** Nulstil: beholder saml, vis og overblik (og steder, når feedet ikke har geo). */
+/** Nulstil: beholder vis og overblik (og steder, når feedet ikke har geo). */
 export function resetFilters(s) {
   if (GEO) s.sted = [];
   for (const g of GROUPS) s[g] = [];
@@ -530,7 +526,6 @@ function optionKeys(group, m) {
   if (group === 'afsender') return [m.catId];
   if (group === 'kilde') return [m.sourceId];
   if (group === 'genre') return [m.genre];
-  if (group === 'sprog') return [m.lang];
   return m.topics.length ? m.topics : [NO_TOPIC];
 }
 
@@ -561,42 +556,33 @@ export function makePredicate(s, now, skip = new Set()) {
 
 /**
  * Kort til visning. Filtrene virker på enkelte indslag; samlingen i historier sker bagefter.
- * Med saml slået til vises historien med det første matchende medlem (helst hovedindslaget)
- * øverst og resten under "+N andre kilder". Et kort er nyt (`isNew`), når et af dets indslag,
- * der passer på filtrene, er nyt. Det er samme regel som "Vis N nye", så tal og markeringer stemmer.
+ * Historien vises med det første matchende medlem (helst hovedindslaget) øverst og resten under
+ * "+N andre kilder". Et kort er nyt (`isNew`), når et af dets indslag, der passer på filtrene,
+ * er nyt. Det er samme regel som "Vis N nye", så tal og markeringer stemmer.
  */
 export function applyFilters(data, s, now, skip) {
   const pred = makePredicate(s, now, skip);
   const cards = [];
-  if (s.saml) {
-    for (const u of data.units) {
-      const hits = u.members.filter(pred);
-      if (!hits.length) continue;
-      const primary = hits.includes(u.head) ? u.head : hits[0];
-      cards.push({ primary, others: u.members.filter((m) => m !== primary), unit: u, isNew: hits.some((m) => m.isNew) });
-    }
-  } else {
-    for (const m of data.members) if (pred(m)) cards.push({ primary: m, others: [], unit: m.unit, isNew: m.isNew });
+  for (const u of data.units) {
+    const hits = u.members.filter(pred);
+    if (!hits.length) continue;
+    const primary = hits.includes(u.head) ? u.head : hits[0];
+    cards.push({ primary, others: u.members.filter((m) => m !== primary), unit: u, isNew: hits.some((m) => m.isNew) });
   }
   cards.sort((a, b) => b.primary.sortKey - a.primary.sortKey || (a.primary.id < b.primary.id ? -1 : 1));
   return cards;
 }
 
-/** Tællere pr. valg med de øvrige filtre slået til. Enheden er det, der vises (historie eller indslag). */
+/** Tællere pr. valg med de øvrige filtre slået til. Enheden er det, der vises: historien. */
 export function computeCounts(data, s, now) {
   const out = {};
   for (const g of data.geo ? ['sted', ...GROUPS] : GROUPS) {
     const pred = makePredicate(s, now, new Set([g]));
     const counts = new Map();
-    const bump = (keys) => { for (const k of keys) counts.set(k, (counts.get(k) || 0) + 1); };
-    if (s.saml) {
-      for (const u of data.units) {
-        const keys = new Set();
-        for (const m of u.members) if (pred(m)) for (const k of optionKeys(g, m)) keys.add(k);
-        bump(keys);
-      }
-    } else {
-      for (const m of data.members) if (pred(m)) bump(optionKeys(g, m));
+    for (const u of data.units) {
+      const keys = new Set();
+      for (const m of u.members) if (pred(m)) for (const k of optionKeys(g, m)) keys.add(k);
+      for (const k of keys) counts.set(k, (counts.get(k) || 0) + 1);
     }
     out[g] = counts;
   }
@@ -679,12 +665,10 @@ export function placeParents(data, key) {
 
 // ── Aktive filtre ─────────────────────────────────────────
 
-const LANG_NAMES = { da: 'Dansk', en: 'Engelsk', sv: 'Svensk' };
-export const langName = (id) => LANG_NAMES[id] || id;
 // Navne i mærkerne: ental og flertal
 const NOUNS = {
   sted: ['sted', 'steder'], afsender: ['afsendertype', 'afsendertyper'], tema: ['tema', 'temaer'],
-  kilde: ['kilde', 'kilder'], genre: ['genre', 'genrer'], sprog: ['sprog', 'sprog'],
+  kilde: ['kilde', 'kilder'], genre: ['genre', 'genrer'],
 };
 
 /** Navnet på et valg i en gruppe, som panelet og mærkerne viser det. */
@@ -693,8 +677,7 @@ export function optionName(data, g, key) {
   if (g === 'afsender') return catName(data, key);
   if (g === 'tema') return topicName(data, key);
   if (g === 'kilde') return data.sources.get(key)?.name || key;
-  if (g === 'genre') return genreName(data, key);
-  return langName(key);
+  return genreName(data, key);
 }
 
 /** Mærker for én gruppe: de valgte og de fravalgte, højst 3 af hver, ellers ét samlet mærke. */
@@ -716,8 +699,7 @@ function groupChips(data, s, g) {
 export function activeFilters(data, s) {
   const out = [];
   if (GEO) out.push(...groupChips(data, s, 'sted'));
-  for (const g of ['afsender', 'tema', 'kilde', 'genre', 'sprog']) out.push(...groupChips(data, s, g));
-  if (s.periode !== 60) out.push({ key: 'periode', value: s.periode, label: `Seneste ${s.periode} dage` });
+  for (const g of GROUPS) out.push(...groupChips(data, s, g));
   if (s.story.length) {
     const head = data.units.find((u) => u.id === s.story[0])?.head;
     const more = s.story.length > 1 ? ` +${s.story.length - 1}` : '';
@@ -746,7 +728,7 @@ const MAX_OFF_ROWS = 6; // fravalgte rækker, der bliver stående
  * Filterrække: ægte afkrydsning, evt. ikon, navn på én linje og tallet i en fast kolonne.
  * Skærmlæseren hører fx "Nyborg Kommune, i Region Syddanmark, 12 indslag" (`sr` er den skjulte kontekst).
  */
-function frow({ name, title = null, iconName, style = null, onchange, count = true, sr = '' }) {
+function frow({ name, title = null, iconName, style = null, onchange, sr = '' }) {
   const input = el('input', { type: 'checkbox', onchange });
   const num = document.createTextNode('');
   const withIcon = iconName !== undefined;
@@ -754,13 +736,12 @@ function frow({ name, title = null, iconName, style = null, onchange, count = tr
     input,
     withIcon ? (iconName ? icon(iconName) : el('span', { class: 'i' })) : null,
     // Kommaet står inline lige efter navnet, så navnet bliver "Kommunal, 6 indslag" uden mellemrum før kommaet
-    el('span', { class: 'name' }, name, count ? [srPunct(), sr ? hidden(` ${sr},`) : null] : null),
-    el('span', { class: 'n' }, count ? [num, hidden(' indslag')] : null));
+    el('span', { class: 'name' }, name, srPunct(), sr ? hidden(` ${sr},`) : null),
+    el('span', { class: 'n' }, num, hidden(' indslag')));
   return {
     label, input,
     set(on, n = 0) {
       input.checked = on;
-      if (!count) return;
       num.data = fmtNum(n);
       label.classList.toggle('is-zero', n === 0);
     },
@@ -876,7 +857,7 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
       // Kontekst i forslagets navn: "Ullerslev, by i Nyborg Kommune, 3 indslag"
       describe: (it) => placeContext(data, it.key),
     });
-    const fg = addGroup(foldGroup('Sted', cbx.root, tools('sted'),
+    const fg = addGroup(foldGroup('Sted', cbx.root,
       fset('Sted', picked.box, el('div', { class: 'opts regions' }, regionRows), nationalRow)), statusOf('sted'), (s) => s.sted.length > 0);
     sted = { cbx, picked, fg };
   }
@@ -944,20 +925,9 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
     srcNone.textContent = qs.length && !n ? `Ingen kilde passer til "${srcFind.value.trim()}".` : '';
   }
 
-  // Genre og sprog
+  // Genre
   addGroup(foldGroup('Genre', tools('genre'), fset('Genre', [...data.genres.keys()].map((id) => addRow('genre', id, { name: genreName(data, id) })))),
     statusOf('genre'), (s) => s.genre.length > 0);
-  addGroup(foldGroup('Sprog', tools('sprog'), fset('Sprog', LANGS.map((id) => addRow('sprog', id, { name: langName(id) })))),
-    statusOf('sprog'), (s) => s.sprog.length > 0);
-
-  // Periode og historier
-  const period = segmented({
-    name: 'f-periode', legend: 'Periode', options: PERIODS.map((d) => ({ value: d, label: `${d} dage` })), value: state.periode,
-    onSelect: (d) => onChange((s) => { s.periode = d; }),
-  });
-  addGroup(foldGroup('Periode', period.root), (s) => `${s.periode} dage`, (s) => s.periode !== 60);
-  const samlRow = frow({ name: 'Saml artikler om samme historie', count: false, onchange: (e) => onChange((s) => { s.saml = e.target.checked; }) });
-  addGroup(foldGroup('Historier', samlRow.label), (s) => (s.saml ? 'Samlet' : 'Hver for sig'), (s) => !s.saml);
 
   // Åben ved indlæsning, hvis gruppen har et valg. Brugerens egne fold huskes ikke.
   for (const x of groups) x.fg.root.open = x.active(state);
@@ -973,8 +943,6 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
     counts = c;
     for (const { g, key, row } of rows) row.set(isShown(s, g, key), c[g]?.get(key) || 0);
     for (const x of groups) x.fg.status.textContent = x.text(s);
-    period.set(s.periode);
-    samlRow.set(s.saml);
     resetBtn.hidden = activeCount(s) === 0;
     if (sted) {
       sted.picked.sync(s, c.sted, !s.sted.length);

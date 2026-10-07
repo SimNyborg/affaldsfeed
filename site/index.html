@@ -67,7 +67,13 @@
           <ul class="active-filters" id="active-filters" aria-label="Aktive filtre" hidden></ul>
 
           <div class="lh-status">
-            <p class="status" id="status" tabindex="-1"><span class="st-unit"><span id="status-text" aria-live="polite">Henter feedet …</span><span id="status-sep" aria-hidden="true" hidden>&nbsp;·</span></span><button type="button" class="btn-text" id="status-action" hidden></button></p>
+            <fieldset class="seg" id="period-seg">
+              <legend class="visually-hidden">Periode</legend>
+              <label><input type="radio" name="periode" value="7"><span>7 dage</span></label>
+              <label><input type="radio" name="periode" value="30"><span>30 dage</span></label>
+              <label><input type="radio" name="periode" value="60" checked><span>60 dage</span></label>
+            </fieldset>
+            <p class="status" id="status" tabindex="-1"><span class="st-unit" id="status-unit"><span id="status-text" aria-live="polite">Henter feedet …</span><span id="status-sep" aria-hidden="true" hidden>&nbsp;·</span></span><button type="button" class="btn-text" id="status-action" hidden></button></p>
             <fieldset class="seg" id="view-seg">
               <legend class="visually-hidden">Visning</legend>
               <label><input type="radio" name="vis" value="" checked><span>Normal</span></label>

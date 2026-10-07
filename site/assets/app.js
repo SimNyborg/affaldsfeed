@@ -173,14 +173,13 @@ function setupFeed(feed, state, now, lastVisit) {
     sheetClose: $('sheet-close'), sheetReset: $('sheet-reset'), sheetLive: $('sheet-live'),
     filterBtn: $('filter-btn'), filterCount: $('filter-count'), filterComma: $('filter-comma'), filterCountSr: $('filter-count-sr'),
     head: $('list-head'), q: $('q'), qClear: $('q-clear'), active: $('active-filters'),
-    status: $('status'), statusText: $('status-text'), statusSep: $('status-sep'), statusAction: $('status-action'),
-    view: $('view-seg'), list: $('feed'), more: $('more-wrap'),
+    status: $('status'), statusUnit: $('status-unit'), statusText: $('status-text'), statusSep: $('status-sep'),
+    statusAction: $('status-action'), view: $('view-seg'), period: $('period-seg'), list: $('feed'), more: $('more-wrap'),
   };
   const todayNum = cph(now).dayNum;
-  const totals = new Map(); // antal kort uden filtre, pr. "Saml historier"
+  let total = null; // antal kort uden filtre
   let limit = PAGE_SIZE;
   let cards = [];
-
 
   // Meddelelser: forældet feed og regelvisning
   const msgs = [];
@@ -194,7 +193,7 @@ function setupFeed(feed, state, now, lastVisit) {
     }
   }
   if (feed.mode === 'fallback') {
-    msgs.push(message('msg-info', 'info', 'Claudes vurdering er forsinket. Nye indslag vises efter faste regler og er mærket "Ikke vurderet".'));
+    msgs.push(message('msg-info', 'info', 'Vurderingen af nye indslag er forsinket. De vises efter faste regler og er mærket "Ikke vurderet".'));
   }
   ui.msgs.replaceChildren(...msgs);
   ui.msgs.hidden = !msgs.length;
@@ -252,6 +251,11 @@ function setupFeed(feed, state, now, lastVisit) {
   // ── Visning: Normal | Kompakt ──
   for (const input of ui.view.querySelectorAll('input')) {
     input.addEventListener('change', () => change((s) => { s.vis = input.value; }, { keepLimit: true, scroll: false }));
+  }
+
+  // ── Periode: 7, 30 eller 60 dage over listen ──
+  for (const input of ui.period.querySelectorAll('input')) {
+    input.addEventListener('change', () => change((s) => { s.periode = Number(input.value); }, { scroll: false }));
   }
 
   // ── Statuslinjen ──
@@ -332,6 +336,7 @@ function setupFeed(feed, state, now, lastVisit) {
     ui.sheetReset.hidden = n === 0;
     if (document.activeElement !== ui.q && ui.q.value.trim() !== state.q) { ui.q.value = state.q; showClear(); }
     for (const input of ui.view.querySelectorAll('input')) input.checked = input.value === state.vis;
+    for (const input of ui.period.querySelectorAll('input')) input.checked = Number(input.value) === state.periode;
     cards = applyFilters(data, state, now);
     ui.sheetShow.textContent = `Vis ${fmtNum(cards.length)} indslag`;
     if (ui.sheet.open) {
@@ -346,9 +351,9 @@ function setupFeed(feed, state, now, lastVisit) {
     if (lostFocus) ui.status.focus();
   }
 
-  function totalFor(saml) {
-    if (!totals.has(saml)) totals.set(saml, applyFilters(data, { ...defaultState(), saml }, now).length);
-    return totals.get(saml);
+  function totalAll() {
+    total ??= applyFilters(data, defaultState(), now).length;
+    return total;
   }
 
   function renderStatus() {
@@ -360,7 +365,7 @@ function setupFeed(feed, state, now, lastVisit) {
       text = n === 1 ? '1 nyt indslag' : `${fmtNum(n)} nye indslag`;
       action = 'Vis alle';
     } else {
-      text = activeCount(state) ? `${fmtNum(n)} af ${fmtNum(totalFor(state.saml))} indslag` : `${fmtNum(n)} indslag`;
+      text = activeCount(state) ? `${fmtNum(n)} af ${fmtNum(totalAll())} indslag` : `${fmtNum(n)} indslag`;
       if (lastVisit) {
         // Nye kort er de markerede (card.isNew), så tallet og markeringerne altid stemmer
         let newCount = 0;
@@ -369,6 +374,9 @@ function setupFeed(feed, state, now, lastVisit) {
       }
     }
     ui.statusText.textContent = text;
+    // Antallet står kun synligt i "Kun nye". Ellers står perioden i stedet, og antallet læses op (style.css)
+    ui.statusUnit.classList.toggle('st-quiet', !state.nye);
+    ui.status.classList.toggle('is-empty', !state.nye && !action);
     ui.statusSep.hidden = !action;
     ui.statusAction.hidden = !action;
     // replaceChildren skriver null som teksten "null" ("Vis allenull"); derfor kun de dele, der findes
@@ -523,7 +531,7 @@ function setupFeed(feed, state, now, lastVisit) {
 
   function renderCard(card, group) {
     const m = card.primary;
-    const others = state.saml ? card.others : [];
+    const others = card.others;
     const titleId = `t-${m.id}`;
     const headDay = m.day.dayNum;
 
@@ -613,7 +621,7 @@ function setupFeed(feed, state, now, lastVisit) {
       return box;
     }
     const chips = activeFilters(data, state);
-    const named = chips.filter((f) => f.key !== 'periode').map((f) => f.label);
+    const named = chips.map((f) => f.label);
     const span = `de seneste ${state.periode} dage`;
     let msg;
     if (!named.length && state.q) msg = `Intet om "${state.q}" ${span}.`;
@@ -637,8 +645,10 @@ function setupFeed(feed, state, now, lastVisit) {
       const parent = f.key === 'sted' && /^[kb]:/.test(f.value) ? placeParents(data, f.value).find((p) => count(widen(f.value, p)) > 0) : null;
       if (parent) options.push({ text: `Udvid til ${placeName(data, parent)}`, mutate: widen(f.value, parent) });
       // Historien får den korte tekst; dens mærke kan være 60 tegn langt
-      else options.push({ text: f.undo || (f.key === 'periode' ? 'Udvid til 60 dage' : f.key === 'story' ? 'Fjern historien' : `Fjern ${f.label}`), mutate: (s) => removeFilter(s, f) });
+      else options.push({ text: f.undo || (f.key === 'story' ? 'Fjern historien' : `Fjern ${f.label}`), mutate: (s) => removeFilter(s, f) });
     }
+    // Perioden har intet mærke, fordi den står over listen
+    if (state.periode !== 60) options.push({ text: 'Udvid til 60 dage', mutate: (s) => { s.periode = 60; } });
     if (state.q) options.push({ text: 'Ryd søgning', mutate: (s) => { s.q = ''; } });
     let best = null;
     for (const o of options) {
@@ -716,12 +726,12 @@ async function initKilder() {
       ] : null),
     el('p', { class: 'facts status-note' },
       gen ? `Feedet er opdateret ${fmtWhen(gen, now)}. ` : '',
-      lastJ ? `Claude vurderede sidst indslag ${fmtWhen(lastJ, now)}. ` : '',
+      lastJ ? `Indslagene blev sidst vurderet ${fmtWhen(lastJ, now)}. ` : '',
       feed.mode === 'fallback' ? 'Lige nu vises nye indslag efter faste regler og er mærket "Ikke vurderet".' : ''),
     el('ul', { class: 'legend', 'aria-label': 'Kildernes sundhed' },
       Object.keys(HEALTH).map((h) => el('li', null, healthBadge(h), ` ${fmtNum(healthCount[h])}`)))));
 
-  // Afsendertyperne som rækker; filterpanelets link "Om afsendertyperne" peger hertil
+  // Afsendertyperne som rækker med spring til hver type
   out.push(el('nav', { class: 'panel', id: 'typer', 'aria-labelledby': 'h-typer' },
     el('h2', { id: 'h-typer', text: 'Afsendertyper' }),
     el('ul', { class: 'types' }, cats.map((c) => {

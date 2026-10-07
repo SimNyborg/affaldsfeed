@@ -548,14 +548,37 @@ svg.i { width: 16px; height: 16px; flex: none; }
 .chip-x:hover .x { background: var(--surface); }
 .active-filters .btn-text { margin-left: 4px; }
 
-/* Statuslinje og visning */
-.lh-status { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; align-items: start; }
-.lh-status > .seg { margin-top: calc((var(--h-row) - 24px) / 2); }   /* på linje med statuslinjens første linje */
+/* Periode, statuslinje og visning. Linjens egen bredde styrer rækkerne, så et valg aldrig deles
+   (grænserne i rem, fordi teksterne er i rem; brødteksten er mindre end 1rem):
+   bred: "7 dage 30 dage 60 dage | Vis 7 nye" til venstre og visningen til højre på én linje;
+   mellem: periode og visning øverst, statuslinjen på egen linje under;
+   smal: perioden alene øverst, statuslinjen og visningen under. */
+.lh-status { container: lh / inline-size; display: flex; flex-wrap: wrap; align-items: center; column-gap: 16px; }
+.lh-status > .seg { margin-block: calc((var(--h-row) - 24px) / 2); }
+#view-seg { margin-left: auto; }
+.lh-status > .status { order: 1; flex-basis: 100%; }
+@container lh (width < 20rem) {
+  #period-seg { flex-basis: 100%; }
+  #view-seg { order: 2; }
+  .lh-status > .status { flex-basis: auto; }
+}
+@container lh (width >= 34rem) {
+  .lh-status > .status { order: 0; flex-basis: auto; position: relative; }
+  /* Tynd streg midt i et mellemrum på 2 × 16 px, når linjen viser noget; uden for fokusrammen */
+  .lh-status > .status:is(:not(.is-empty), :focus-visible) { margin-left: 17px; }
+  .lh-status > .status:is(:not(.is-empty), :focus-visible)::before {
+    content: "";
+    position: absolute;
+    left: -17px;
+    top: calc(50% - 0.5rem);
+    height: 1rem;
+    border-left: 1px solid var(--line);
+  }
+}
 .status {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  min-height: var(--h-row);
   color: var(--muted);
   font-size: var(--t-xs);
   line-height: var(--lh-xs);
@@ -564,6 +587,18 @@ svg.i { width: 16px; height: 16px; flex: none; }
 .status:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 2px; }
 .st-unit { white-space: nowrap; }
 .status .btn-text { margin: 0; }
+/* Uden for "Kun nye" er antallet skjult, men læses op. Det vises, når linjen får fokus fra tastaturet,
+   så fokus aldrig står på noget usynligt. Står "Vis 7 nye" først, flugter knapteksten med kanten. */
+.status:not(:focus-visible) > .st-quiet {
+  position: absolute;
+  clip-path: inset(50%);
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  white-space: nowrap;
+}
+.status:not(:focus-visible) > .st-quiet + .btn-text { margin-left: -4px; }
 
 /* Liste og dage */
 .feed[aria-busy="true"] { min-height: 60vh; }
