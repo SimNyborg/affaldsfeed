@@ -197,3 +197,28 @@ def test_build_stories_places_are_not_cut_at_eight():
     assert len(story.places) == 10
     assert story.places == ["r:syddanmark", "k:aabenraa", "k:haderslev", "k:soenderborg", "k:toender",
                             "b:aabenraa", "b:haderslev", "b:soenderborg", "b:toender", "b:vojens"]
+
+
+# ── Dagsbundter (bundle: day) ──────────────────────────────
+
+
+def test_day_bundle_groups_one_source_per_copenhagen_day():
+    ft = [
+        item("q1", "ft", title="Spm. om producentansvar for emballage", hours=1),
+        item("q2", "ft", title="Spm. om asbest på genbrugsstationer", hours=3),
+        item("q3", "ft", title="Svar om affaldsstatistik", hours=13),  # 23.00 dansk sommertid, samme dag
+        item("q4", "ft", title="Spm. om pant på dåser", hours=15),  # 01.00 dansk sommertid, næste dag
+        item("n1", "dr", title="Nyhed om noget helt andet", hours=2),
+    ]
+    gs = groups(ft, bundle_day={"ft"})
+    assert sorted(ids(gs)) == sorted([["q1", "q2", "q3"], ["q4"], ["n1"]])  # hovedindslaget er det tidligste
+    assert ids(groups(ft)) == [[i.id] for i in sorted(ft, key=lambda x: -x.first_seen.timestamp())]  # ellers hver for sig
+
+
+def test_day_bundle_respects_no_merge_and_shows_also():
+    ft = [item("q1", "ft", title="Spm. A om affald", hours=1), item("q2", "ft", title="Spm. B om affald", hours=2),
+          item("q3", "ft", title="Spm. C om affald", hours=3)]
+    assert sorted(ids(groups(ft, bundle_day={"ft"}, no_merge={"q2"}))) == sorted([["q1", "q3"], ["q2"]])
+    heads = build_stories(ft, CATS, [], 3, 7, bundle_day={"ft"})
+    assert len(heads) == 1 and heads[0].id == "q1"
+    assert [a.id for a in heads[0].also] == ["q2", "q3"]

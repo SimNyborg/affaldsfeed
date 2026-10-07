@@ -1,4 +1,4 @@
-"""Samling af indslag om samme historie (KONTRAKTER §8): niveau 1 (id), niveau 2 (titel) og story_hint."""
+"""Samling af indslag om samme historie (KONTRAKTER §8): niveau 1 (id), niveau 2 (titel), story_hint og dagsbundter."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from itertools import combinations
 
 from .models import CATEGORY_RANK, AlsoRef, DisplayItem, sort_places
 from .normalize import normalize_title
-from .timeutil import ensure_utc
+from .timeutil import ensure_utc, to_cph
 
 log = logging.getLogger(__name__)
 
@@ -56,10 +56,12 @@ def group_stories(
     max_age_days: int,
     *,
     no_merge: set[str] | None = None,
+    bundle_day: set[str] | None = None,
 ) -> list[list[DisplayItem]]:
     """Grupper indslag i historier. Hver gruppe har hovedindslaget først, derefter de øvrige efter tid.
 
     no_merge: id'er, der altid står alene (fx override "split").
+    bundle_day: kilder (bundle: day), hvis indslag samles pr. københavnsk dag; kun i feedets visning.
     """
     # Niveau 1: samme id er samme indslag; første forekomst bruges
     unique: dict[str, DisplayItem] = {}
@@ -94,6 +96,17 @@ def group_stories(
         if a in adj and b in adj:
             link(a, b)
 
+    # Dagsbundter: samme kilde og samme dag i København
+    if bundle_day:
+        first_of_day: dict[tuple[str, object], str] = {}
+        for iid, it in unique.items():
+            if it.source in bundle_day:
+                key = (it.source, to_cph(_when(it)).date())
+                if key in first_of_day:
+                    link(first_of_day[key], iid)
+                else:
+                    first_of_day[key] = iid
+
     def rank(it: DisplayItem) -> int:
         return CATEGORY_RANK.get(source_category.get(it.source, ""), _UNKNOWN_RANK)
 
@@ -125,6 +138,7 @@ def build_stories(
     max_age_days: int,
     *,
     no_merge: set[str] | None = None,
+    bundle_day: set[str] | None = None,
 ) -> list[DisplayItem]:
     """Hovedindslag med story og also udfyldt, sorteret efter published (faldende) og id.
 
@@ -133,7 +147,7 @@ def build_stories(
     """
     out: list[DisplayItem] = []
     for main, *others in group_stories(
-        items, source_category, hints, title_window_days, max_age_days, no_merge=no_merge
+        items, source_category, hints, title_window_days, max_age_days, no_merge=no_merge, bundle_day=bundle_day
     ):
         also = [
             AlsoRef(id=o.id, source=o.source, url=o.url, title=o.title, published=o.published) for o in others

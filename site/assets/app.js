@@ -557,9 +557,12 @@ function setupFeed(feed, state, now, lastVisit) {
     let also = null;
     if (others.length) {
       const fresh = others.filter((o) => o.isNew).length;
+      // Fra samme kilde (fx Folketingets dagsbundt): "+4 flere"; ellers "+4 andre kilder"
+      const same = others.every((o) => o.sourceId === m.sourceId);
+      const noun = same ? (others.length === 1 ? 'mere' : 'flere') : (others.length === 1 ? 'anden kilde' : 'andre kilder');
       also = el('details', { class: 'also' },
         el('summary', null,
-          `+${others.length} ${others.length === 1 ? 'anden kilde' : 'andre kilder'}${fresh ? `, ${fresh} ${fresh === 1 ? 'ny' : 'nye'}` : ''}`,
+          `+${others.length} ${noun}${fresh ? `, ${fresh} ${fresh === 1 ? 'ny' : 'nye'}` : ''}`,
           icon('pil-ned')),
         el('ul', null, others.map((o) => el('li', { class: 'cat', style: catStyle(o.cat) },
           el('div', { class: 'meta' }, who(o, { genre: false, review: false }), timeEl(o, group, headDay)),

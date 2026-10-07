@@ -345,7 +345,7 @@ De vigtigste begivenheder på affaldsområdet, valgt og skrevet af Claude-routin
 - `feed.json` valideres mod `models.Feed` før skrivning (fejl giver exit 1). `examples/feed.sample.json` følger samme kontrakt (`tests/test_sample.py`).
 - `status.json`: `{generated, sources: [{id, name, category, status, health, last_ok, fails, last_error, items_30d, silent}], counts: {candidates_60d, shown_60d, rejected_30d}}`.
 
-Historier (`stories.py`): niveau 1 = samme id; niveau 2 = samme `normalize_title` inden for ±3 døgn; niveau 3 (fase 3) = rapidfuzz. Desuden forenes `story_hint`-par fra vurderinger. Hovedindslag = laveste kategori-rang, ved lighed tidligst publiceret. `story` = hovedindslagets id. En historie optager ikke indslag mere end 7 døgn efter hovedindslaget.
+Historier (`stories.py`): niveau 1 = samme id; niveau 2 = samme `normalize_title` inden for ±3 døgn; niveau 3 (fase 3) = rapidfuzz. Desuden forenes `story_hint`-par fra vurderinger. Dagsbundter: i feedet (`export`) samles indslag fra en kilde med `bundle: day` pr. dag i København til én historie; overblik og tidslinje ser dem hver for sig, så et bundt ikke ligner en stor historie. En override `split` gælder også her. Hovedindslag = laveste kategori-rang, ved lighed tidligst publiceret. `story` = hovedindslagets id. En historie optager ikke indslag mere end 7 døgn efter hovedindslaget.
 
 ## 9. Frontend-kontrakt
 - `site/` er statisk (ingen build). `index.html` og `kilder.html` henter `data/feed.json` (relativt), og `tidslinje.html` henter `data/timeline.json` (7.3). Med `?demo=1` hentes `../examples/<navn>.sample.json` lokalt eller `data/<navn>.sample.json` på Pages (export kopierer eksempelfilerne dertil). Demodata rykkes frem: feedet med minutter, tidslinjen med hele dage.

@@ -70,7 +70,7 @@ Leverancer:
 - "Hvorfor med?" og "Rapportér" på kortet. "Rapportér" åbner en issue-skabelon og sender kun indslagets id med.
 - historier på niveau 3 med rapidfuzz, som så bliver en ny afhængighed
 - Via Ritzau, hvor udgiveren matches mod `aliases` i registret
-- dagsbundter for ODA og høringsfrist på indslag fra Høringsportalen
+- dagsbundter for ODA (færdig) og høringsfrist på indslag fra Høringsportalen
 - kompakt visning
 - `tests/cases.yaml` udvidet til 150 cases
 
@@ -117,7 +117,7 @@ Fase 3:
 1. "Hvorfor med?" bygger på feltet `why`, som allerede står i `feed.json`.
 2. "Rapportér" med issue-skabelonerne `fejl-i-feed` og `ny-kilde`, som allerede findes.
 3. Historier på niveau 3 med rapidfuzz. Tærsklen skal være høj, fordi en forkert sammenlægning skjuler en nyhed.
-4. Via Ritzau med `aliases`, dagsbundter for ODA og høringsfrist.
+4. Via Ritzau med `aliases` og høringsfrist.
 5. Flere cases i `tests/cases.yaml`, især de indslag, stikprøverne har fundet forkerte.
 
 Fase 4, når brugerens liste kommer: følg trinnene under fase 4 ovenfor og i `docs/KILDER.md`.

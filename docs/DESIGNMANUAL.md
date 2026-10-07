@@ -211,7 +211,7 @@ Kortet er en `<article>`, titlen en `<h3>` og tiden en `<time datetime>`. Paddin
 1. Afsenderlinjen (13/18, `--muted`): kategoriikon (14 px), kildens navn i 600 og `--text`, det korte kategorinavn, eventuelt ", udgivet af KL", genren (ikke Nyhed, og ikke når titlen selv begynder med den), "Betalingsmur" eller "Delvis betalingsmur" og "Ikke vurderet". Tiden står øverst til højre i en fast kolonne. Genre, betalingsmur og "Ikke vurderet" brydes aldrig midt i ("Delvis betalingsmur" står samlet). Skilletegnet er et skjult komma til skærmlæseren, hårdt mellemrum, "·" og et mellemrum, så en linje aldrig begynder med "·", og skærmlæseren holder en pause ("Fyens Stiftstidende, Nyhedsmedie").
 2. Titlen (17/24, 600) linker til kilden i ny fane med den skjulte tekst "(åbner i nyt vindue)". Hover giver `--link` og understregning. Besøgte titler står i `--muted`. Titler på engelsk og svensk har `lang`.
 3. Teaseren (15/22, `--muted`) er højst to linjer og afkortes ved et ord efter højst 240 tegn. Engelske og svenske indslag viser "Auto-resumé:" i 600 og derefter Claudes danske resumé.
-4. Fodlinjen (13/18, `--muted`) har først stedet med en nål (14 px), derefter højst to temaer med korte navne og yderst til højre "+3 andre kilder" eller "+1 anden kilde". Har historien nye medlemmer, står der fx "+3 andre kilder, 2 nye". Linjen udelades, når den er tom.
+4. Fodlinjen (13/18, `--muted`) har først stedet med en nål (14 px), derefter højst to temaer med korte navne og yderst til højre "+3 andre kilder" eller "+1 anden kilde". Er de øvrige fra samme kilde, som i Folketingets dagsbundt, står der "+3 flere" eller "+1 mere". Har historien nye medlemmer, står der fx "+3 andre kilder, 2 nye". Linjen udelades, når den er tom.
    - Stedet er det mest præcise: en region udelades, når en kommune i den eller en by, hvis primære kommune ligger i den, også står på indslaget, og en kommune udelades, når den er primær kommune for en by på indslaget. `k:nyborg` og `b:ullerslev` viser "Ullerslev". Der står højst to navne og derefter fx "+2". Indslag uden steder viser intet, og steder vises ikke i kompakt visning.
    - To byer med samme navn får kommunens korte navn i parentes, fx "Ejby (Køge)".
 
@@ -291,7 +291,7 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Aktive filtre | Fjern filter: Nyborg Kommune · Landsdækkende · Uden Region Nordjylland · Kommunal · Uden Debat · 4 temaer · Uden 5 kilder · Historie: ... |
 | Statuslinje | Vis 7 nye · Vis 1 ny · 7 nye indslag · 1 nyt indslag · Vis alle · til skærmlæseren og ved fokus: 1.284 indslag · 23 af 1.284 indslag |
 | Visning | Normal · Kompakt |
-| Kort | Betalingsmur · Delvis betalingsmur · Ikke vurderet · Auto-resumé: · udgivet af KL · fundet 09.14 · +3 andre kilder · +1 anden kilde · +3 andre kilder, 2 nye |
+| Kort | Betalingsmur · Delvis betalingsmur · Ikke vurderet · Auto-resumé: · udgivet af KL · fundet 09.14 · +3 andre kilder · +1 anden kilde · +3 andre kilder, 2 nye · +3 flere · +1 mere |
 | Skillelinje | Her slap du sidst · i går kl. 08.14 |
 | Overblik | AI-overblik · I dag · Ugen · Måneden · Året · Vis hele · Vis mindre · fra i går kl. 23.25 · Opdateret kl. 14.24 · bygget på 23 indslag · Skrevet af AI ud fra kilderne. Kan indeholde fejl. |
 | Overblik, kort data | Siden 7. oktober 2026 · opdateret kl. 09.25 |
