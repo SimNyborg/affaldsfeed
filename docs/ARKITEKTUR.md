@@ -53,7 +53,7 @@ En kørsel:
 5. Overblikket opdateres for de perioder, der er på tur (se næste afsnit).
 6. `git pull --rebase` og push. Pushet starter `publish.yml`.
 
-Fallback: `export` bruger heartbeat til at vælge visning. Er seneste kørsel mere end 2 timer forsinket i forhold til den seneste planlagte kørsel, skifter feedet til regelbaseret visning. Godkendte indslag vises stadig, afviste er stadig skjult, og uvurderede kandidater, som forfiltret ville vise, kommer med mærket "Ikke vurderet". Om natten er der ingen planlagte kørsler, så nye indslag venter til kl. 06.25 uden at feedet skifter. Kilder med `ai: false` vurderes altid kun efter regler. Den præcise regel står i KONTRAKTER 6.3.
+Fallback: `export` bruger heartbeat til at vælge visning. Er seneste kørsel mere end 2 timer forsinket i forhold til den seneste planlagte kørsel, skifter feedet til regelbaseret visning. Godkendte indslag vises stadig, afviste er stadig skjult, og uvurderede kandidater, som forfiltret ville vise, kommer med. En besked øverst på siden siger, at vurderingen er forsinket. Om natten er der ingen planlagte kørsler, så nye indslag venter til kl. 06.25 uden at feedet skifter. Kilder med `ai: false` vurderes altid kun efter regler. Den præcise regel står i KONTRAKTER 6.3.
 
 ## AI-overblikket
 

@@ -58,7 +58,7 @@ Feltnavnene er på engelsk, så de passer til koden. Valideringen sker med pydan
 | `topics` | nej | tom | Standardtema, når teksten ikke giver et. |
 | `genre` | nej | `nyhed` | Standardgenre, fx `hoering` for Høringsportalen. |
 | `lang` | nej | `da` | `da`, `en` eller `sv`. |
-| `paywall` | nej | `nej` | `nej`, `delvis` eller `ja`. Giver mærket "Betalingsmur". |
+| `paywall` | nej | `nej` | `nej`, `delvis` eller `ja`. Står på Om kilderne. |
 | `owner` | nej | | Udgiveren, hvis det ikke er afsenderen selv, fx KL. |
 | `aliases` | nej | tom | Andre navneformer, som bruges til Via Ritzau i fase 3. |
 | `every` | nej | efter metode | Timer mellem kørsler. Uden værdi: `rss` 1, `search` 2, `oda` 3, `sitemap` og `html` 6. |

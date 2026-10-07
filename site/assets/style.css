@@ -759,8 +759,6 @@ svg.i { width: 16px; height: 16px; flex: none; }
 .row .tcell { min-width: 0; font-size: var(--t-m); line-height: var(--lh-m); }
 .row .title { display: inline; font-weight: 600; overflow-wrap: anywhere; }
 /* Låsen står i løbende tekst efter titlen */
-.row .lock { width: 12px; height: 12px; margin-left: 4px; vertical-align: -1px; color: var(--muted); }
-.row .nr { color: var(--muted); font-size: var(--t-xs); line-height: var(--lh-xs); white-space: nowrap; }
 .row time {
   padding-top: 2px;
   color: var(--muted);
