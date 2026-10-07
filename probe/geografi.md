@@ -1,4 +1,4 @@
-# Byg geografi 2026-10-07T12:40:20Z
+# Byg geografi 2026-10-07T15:36:13Z
 
 ```text
 5 regioner, 98 kommuner, 471 byer
