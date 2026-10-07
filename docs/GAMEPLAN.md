@@ -108,11 +108,10 @@ Start med at læse `CLAUDE.md`, `docs/KONTRAKTER.md` og denne fil. Tjek så, at 
 
 Brugeren skal rette routinens prompt på claude.ai, så den siger "Du må kun skrive i data/judgments/, data/overview/ og data/timeline/." Indtil da fyldes tidslinjen ikke. Routinen er oprettet via API, så en session kan ikke selv rette den.
 
-Fase 2, resten:
-1. Lokale medier i `config/medier.yaml`: ugeaviserne fra Ugeavispuljen, medlemmerne af Danske Lokalaviser og andre lokale nyhedssider med redaktionelt ansvar. Domæner under et fælles domæne (fx `sn.dk`, `ugeavisen.dk`, `dinavis.dk`) står én gang.
-2. Følg de 19 sitemap- og 10 html-kilder i 7 dage. Fejler en, så ret `match`, `select` eller `filter`, eller sæt den på pause med en note.
-3. Efterprøv sweepet kl. 06.25 og 14.25. Fund skal skrives som vurderinger med `new_item`, og ukendte udgivere skal havne i `data/judgments/kildeforslag-sweep.md`.
-4. Gennemgå `data/state/kildeforslag.md` hver uge. Troværdige udgivere flyttes til `config/medier.yaml` eller `sources.yaml`.
+Fase 2, resten (lokale medier og ODA er færdige):
+1. Følg de 19 sitemap- og 10 html-kilder og ODA i 7 dage. Fejler en, så ret `match`, `select` eller `filter`, eller sæt den på pause med en note.
+2. Efterprøv sweepet kl. 06.25 og 14.25. Fund skal skrives som vurderinger med `new_item`, og ukendte udgivere skal havne i `data/judgments/kildeforslag-sweep.md`.
+3. Gennemgå `data/state/kildeforslag.md` hver uge. Troværdige udgivere flyttes til `config/medier.yaml` eller `sources.yaml`.
 
 Fase 3:
 1. "Hvorfor med?" bygger på feltet `why`, som allerede står i `feed.json`.
