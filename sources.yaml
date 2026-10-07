@@ -1492,6 +1492,7 @@
     - https://www.eea.europa.eu/admin/portal_catalog/sitemap-by-type.xml?type=briefing
   filter: strict
   lang: en
+  match: '^https://www\.eea\.europa\.eu/en/(newsroom/news|analysis/publications)/[^/?#]+$'
   basis: offentlig
   status: aktiv
   checked: 2026-10-07
