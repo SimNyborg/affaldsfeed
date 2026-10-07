@@ -2,7 +2,7 @@
 name = "affaldsfeed"
 version = "0.1.0"
 description = "Nyheder om affaldsområdet fra troværdige danske og europæiske kilder"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 license = { text = "MIT" }
 
 [tool.pytest.ini_options]
@@ -11,7 +11,7 @@ addopts = "-q"
 
 [tool.ruff]
 line-length = 110
-target-version = "py312"
+target-version = "py311"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]

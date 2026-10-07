@@ -9,7 +9,7 @@ import os
 from collections.abc import Callable
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Any
+from typing import Any, TypeVar
 
 from pydantic import BaseModel, ValidationError
 
@@ -44,13 +44,16 @@ def _dumps_line(obj: Any) -> str:
     return json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
 
 
-def read_jsonl[T: BaseModel](path: Path, model: type[T]) -> list[T]:
+_M = TypeVar("_M", bound=BaseModel)
+
+
+def read_jsonl(path: Path, model: type[_M]) -> list[_M]:
     """Læs én model pr. linje. Ugyldige linjer logges og springes over."""
     try:
         text = path.read_text(encoding="utf-8")
     except FileNotFoundError:
         return []
-    out: list[T] = []
+    out: list[_M] = []
     for n, line in enumerate(text.splitlines(), start=1):
         if not line.strip():
             continue

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from typing import get_args
+from typing import TypeVar, get_args
 
 from affaldsfeed.classify import Overrides
 from affaldsfeed.config import Config
@@ -83,7 +83,10 @@ def item_time(x: Candidate | DisplayItem) -> datetime:
     return ensure_utc(x.published or x.first_seen)
 
 
-def sort_newest_first[T: (Candidate, DisplayItem)](items: list[T]) -> list[T]:
+_Item = TypeVar("_Item", Candidate, DisplayItem)
+
+
+def sort_newest_first(items: list[_Item]) -> list[_Item]:
     """Nyeste først, ved lighed efter id (deterministisk)."""
     return sorted(sorted(items, key=lambda x: x.id), key=item_time, reverse=True)
 

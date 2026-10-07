@@ -16,9 +16,11 @@ Du er redaktør på Affaldsfeed, et nyhedsfeed om affaldsområdet i Danmark for 
 ### 1. Klargør
 
 ```bash
-pip install -q -r requirements.txt
+python3 -m venv .venv && .venv/bin/pip install -q -r requirements.txt
 TZ=Europe/Copenhagen date "+%Y-%m-%d %H %u"
 ```
+
+Pakkerne installeres i et virtuelt miljø i `.venv/`, så de ikke støder sammen med systemets pakker. Brug altid `.venv/bin/python` som i kommandoerne nedenfor. `.venv/` er ignoreret af git.
 
 Den sidste kommando giver tre værdier. Notér dem:
 
@@ -31,7 +33,7 @@ Routinens tidsplan står i UTC og dækker derfor en time ekstra omkring skiftet 
 ### 2. Hent uvurderede indslag
 
 ```bash
-python -m affaldsfeed pending --max 200 > /tmp/pending.json
+.venv/bin/python -m affaldsfeed pending --max 200 > /tmp/pending.json
 ```
 
 Læs hele `/tmp/pending.json`. Den indeholder:
@@ -75,7 +77,7 @@ Ret aldrig linjer fra tidligere kørsler. Vil du ændre en tidligere vurdering, 
 ### 4. Validér vurderingerne
 
 ```bash
-python -m affaldsfeed validate-judgments --file data/judgments/DATO.jsonl
+.venv/bin/python -m affaldsfeed validate-judgments --file data/judgments/DATO.jsonl
 ```
 
 Fejl vises som `fil:linje: besked`. Ret de linjer, du selv har skrevet i denne kørsel, og kør kommandoen igen, indtil den slutter med `OK`. Kan en linje ikke rettes efter tre forsøg (fx fordi id'et ikke findes), så slet netop den linje.
@@ -96,7 +98,7 @@ Gør følgende for hver periode `P`, der skal opdateres (`dag`, `uge`, `maaned` 
 1. Hent input:
 
    ```bash
-   python -m affaldsfeed overview-input --period P > /tmp/overview-P.json
+   .venv/bin/python -m affaldsfeed overview-input --period P > /tmp/overview-P.json
    ```
 
 2. Læs `/tmp/overview-P.json`. Er `items` tom, så spring perioden over og lad den gamle fil stå.
@@ -115,7 +117,7 @@ Gør følgende for hver periode `P`, der skal opdateres (`dag`, `uge`, `maaned` 
 4. Validér og arkivér:
 
    ```bash
-   python -m affaldsfeed validate-overview --period P --archive
+   .venv/bin/python -m affaldsfeed validate-overview --period P --archive
    ```
 
    Ret fejlene, og kør igen, indtil der står `OK`. Er filen stadig ugyldig efter tre forsøg, så rul den tilbage med `git checkout -- data/overview/P.json`, eller slet den, hvis den er ny.
@@ -137,7 +139,7 @@ Skriveregler for overblikket:
 3. Find id og afsender for hvert fund (brug artiklens egen URL hos udgiveren, ikke en Google- eller MSN-adresse):
 
    ```bash
-   python -c "import sys;from affaldsfeed.normalize import item_id,host_of;from affaldsfeed.config import load_config,load_sources,publisher_lookup;m=publisher_lookup(load_sources(),load_config().publishers);u=sys.argv[1];p=host_of(u).split('.');print(item_id(u),next((m[h] for h in ('.'.join(p[i:]) for i in range(len(p)-1)) if h in m),'UKENDT'))" "URL"
+   .venv/bin/python -c "import sys;from affaldsfeed.normalize import item_id,host_of;from affaldsfeed.config import load_config,load_sources,publisher_lookup;m=publisher_lookup(load_sources(),load_config().publishers);u=sys.argv[1];p=host_of(u).split('.');print(item_id(u),next((m[h] for h in ('.'.join(p[i:]) for i in range(len(p)-1)) if h in m),'UKENDT'))" "URL"
    ```
 
    Kommandoen udskriver `<id> <afsender-id>`. Tjek derefter, om indslaget allerede findes:
@@ -165,7 +167,7 @@ Skriveregler for overblikket:
 ### 7. Heartbeat
 
 ```bash
-python -m affaldsfeed heartbeat
+.venv/bin/python -m affaldsfeed heartbeat
 ```
 
 Kør altid dette trin, også når der ikke var noget at vurdere. Det fortæller feedet, at du kører.
