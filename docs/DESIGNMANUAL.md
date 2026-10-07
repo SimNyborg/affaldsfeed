@@ -9,7 +9,7 @@ Manualen beskriver, hvordan Affaldsfeed ser ud, og hvad der står på siden. Dat
 3. Farve bærer aldrig information alene. Ikon og tekst følges ad.
 4. Siden er tæt, men der er luft nok til at læse. Der er ingen billeder, og titlerne må gerne stå tæt.
 5. Udtrykket er lånt fra affaldsviden.info: farverne, Open Sans, afrundede hvide paneler på grå baggrund og pilleformede knapper. Logo og navn er ikke lånt, og intet hentes derfra. Farverne står som værdier i `site/assets/style.css`.
-6. Siden er ærlig om data. Anslåede datoer, betalingsmure, forældede data, uvurderede indslag og AI-skrevet tekst vises åbent.
+6. Siden er ærlig om data. Anslåede datoer, forældede data, forsinket vurdering og AI-skrevet tekst vises åbent. Betalingsmure står på Om kilderne.
 7. Alt står skarpt. Rækker har fast højde, navne står på én linje, tal står i samme kolonne, og intet skifter bredde, når man vælger noget.
 
 ## Layout
@@ -91,7 +91,7 @@ Hver kategori har en farve, et ikon og et kort navn. Ikonet står i kategoriens 
 
 Ikonerne er egne inline SVG'er i `site/assets/ikoner.svg`. De bruger `currentColor`, og der er intet ikonbibliotek. `tools/check_colors.py` tjekker paletten: CIEDE2000 på mindst 20 mellem alle par, simulering af deutan og protan og kontrast på mindst 3:1 mod `--surface` i begge tilstande. Ændres en farve, skal tjekket være grønt igen. Den nuværende palet har mindst 22 mellem alle par i begge tilstande. Ved simuleret farveblindhed ligger enkelte par mellem 8,8 og 10, så farven står aldrig alene: ikon og navn følger altid med.
 
-Temaerne har ingen egne farver og står som almindelig tekst på kortet. Panel, kort og aktive filtre bruger temaets korte navn (`topics[].short` i `feed.json`, ellers `name`).
+Temaerne har ingen egne farver og står ikke på kortet. Panel, aktive filtre og tidslinjen bruger temaets korte navn (`topics[].short` i `feed.json`, ellers `name`).
 
 ## Komponenter
 
@@ -213,29 +213,27 @@ Kalenderknappen står først i listens hoved: ikonet `kalender` (16 px) og "Alle
 ### Feed-kortet
 
 ```
-[ikon] Altinget · Delvis betalingsmur                                   09.14
+[ikon] Altinget                                                         09.14
 Kommunerne mangler tid til at indføre de nye regler
 Kildens egen beskrivelse, højst 240 tegn og to linjer ...
-Gebyrer og økonomi · Lovgivning, politik og EU             +2 andre kilder v
+                                                           +2 andre kilder v
 ```
 
 Kortet er en `<article>`, titlen en `<h3>` og tiden en `<time datetime>`. Padding er 16 px 20 px (12 px 16 px under 768 px), og der er en streg på 1 px i `--line` mellem kortene.
 
-1. Afsenderlinjen (13/18, `--muted`): kategoriikon (14 px), kildens navn i 600 og `--text`, "Betalingsmur" eller "Delvis betalingsmur" og "Ikke vurderet". Afsendertype, ejer og genre står ikke på kortet. Typen ses på ikonet, og typer og genrer kan vælges i menuen. Ejeren står på Om kilderne. Tiden står øverst til højre i en fast kolonne. Betalingsmur og "Ikke vurderet" brydes aldrig midt i ("Delvis betalingsmur" står samlet). Skilletegnet er et skjult komma til skærmlæseren, hårdt mellemrum, "·" og et mellemrum, så en linje aldrig begynder med "·", og skærmlæseren holder en pause ("Altinget, Delvis betalingsmur").
+1. Afsenderlinjen (13/18, `--muted`): kategoriikon (14 px) og kildens navn i 600 og `--text`. Der står intet andet. Afsendertype og genre kan vælges i menuen, og betalingsmur og ejer står på Om kilderne. Tiden står øverst til højre i en fast kolonne.
 2. Titlen (17/24, 600) linker til kilden i ny fane med den skjulte tekst "(åbner i nyt vindue)". Hover giver `--link` og understregning. Besøgte titler står i `--muted`. Titler på engelsk og svensk har `lang`.
 3. Teaseren (15/22, `--muted`) er højst to linjer og afkortes ved et ord efter højst 240 tegn. Engelske og svenske indslag viser "Auto-resumé:" i 600 og derefter Claudes danske resumé.
-4. Fodlinjen (13/18, `--muted`) har først stedet med en nål (14 px), derefter højst to temaer med korte navne og yderst til højre "+3 andre kilder" eller "+1 anden kilde", når de øvrige er fra hver sin anden kilde. Ellers står der "+3 flere" eller "+1 mere", som i Folketingets dagsbundt. Har historien nye medlemmer, står der fx "+3 andre kilder, 2 nye". Linjen udelades, når den er tom.
-   - Stedet er det mest præcise: en region udelades, når en kommune i den eller en by, hvis primære kommune ligger i den, også står på indslaget, og en kommune udelades, når den er primær kommune for en by på indslaget. `k:nyborg` og `b:ullerslev` viser "Ullerslev". Der står højst to navne og derefter fx "+2". Indslag uden steder viser intet, og steder vises ikke i kompakt visning.
-   - To byer med samme navn får kommunens korte navn i parentes, fx "Ejby (Køge)".
+4. Fodlinjen (13/18) har kun "+3 andre kilder" eller "+1 anden kilde" yderst til højre, når de øvrige er fra hver sin anden kilde. Ellers står der "+3 flere" eller "+1 mere", som i Folketingets dagsbundt. Har historien nye medlemmer, står der fx "+3 andre kilder, 2 nye". Sted og temaer står ikke på kortet, men kan vælges i menuen. Linjen udelades, når der ikke er andre indslag i historien.
 
-- Kun titlen og "+N andre kilder" kan klikkes. Kildenavn og temaer er tekst. Filtrering sker i panelet.
+- Kun titlen og "+N andre kilder" kan klikkes. Kildenavnet er tekst. Filtrering sker i panelet.
 - "+N andre kilder" folder en liste ud under fodlinjen med en streg på 2 px til venstre. Knappen bliver stående ved højrekanten, når listen åbnes. Hvert medlem har afsenderlinje med tid og titlen som link (15/22, 600), og der er 8 px mellem medlemmerne. Er alle medlemmer fra samme kilde og dag som kortet, som i dagsbundtet, står kun titlerne, og afstanden er 12 px.
 - Nye kort har en indvendig kant på 3 px i `--accent` til venstre og den skjulte tekst "Ny:" før titlen. Et kort er nyt, når et af dets indslag, der passer på filtrene, er nyt. Det er samme regel som "Vis 7 nye", så tallet og markeringerne altid stemmer.
 - Tiden: under en dagsoverskrift kun klokkeslættet ("09.14"), under en ugeoverskrift datoen ("30. sep."). Er datoen anslået, står der "fundet 09.14". Indslag med kun en dato viser intet klokkeslæt under en dagsoverskrift.
 
 ### Kompakt visning
 
-Fra 768 px er der én række pr. indslag i et grid med ikon (16 px), kilde i en fast kolonne på 9rem, titel og tid. Alle titler starter derfor samme sted. Under 768 px står ikon, kilde og tid på første linje og titlen på anden. Der er ingen teaser, fodlinje eller "+N andre kilder". Betalingsmur vises som en lås på 12 px efter titlen, og "Ikke vurderet" står efter titlen. Titlens sidste ord og låsen står i ét span uden ombrydning, så låsen aldrig står alene på en linje, og "· Ikke vurderet" aldrig begynder en linje.
+Fra 768 px er der én række pr. indslag i et grid med ikon (16 px), kilde i en fast kolonne på 9rem, titel og tid. Alle titler starter derfor samme sted. Under 768 px står ikon, kilde og tid på første linje og titlen på anden. Der er ingen teaser, fodlinje eller "+N andre kilder".
 
 ### Dage og listen
 
@@ -270,7 +268,8 @@ Footeren har baggrund `--footer` og hvid tekst i 13/18: teksten om projektet og 
 
 - Øverst står "Tidslinje" (`h1`), linjen "De vigtigste begivenheder på affaldsområdet, udvalgt af AI ud fra nyhederne i feedet. Kan indeholde fejl." og tekstvalget "Alle · Kun milepæle" (`niveau=milepael` i URL'en). Til højre står "Spring til 2026 · 2025", når begivenhederne spænder over mere end ét år. Antallet meldes til skærmlæsere, når niveauet skiftes.
 - Begivenhederne står i ét panel grupperet efter måned. Månedsoverskriften er sticky som feedets dagsoverskrifter, i 17/24 med antallet til højre, og har et anker (`#2026-10`), så man kan linke til en måned.
-- Hver begivenhed har datoen i en fast kolonne til venstre ("7. okt."), en markør på en lodret streg i `--line` og teksten til højre: "Milepæl" (13/18, 600, `--link`) ved milepæle, titlen (17/24, 600), resuméet (15/22, `--muted`), fodlinjen med steder og temaer som på kortet og "Læs 3 nyheder" (eller "Læs nyheden"). Markøren er en udfyldt cirkel på 12 px i `--link` ved milepæle og en ring ved de andre. Den er dekorativ (`aria-hidden`), fordi "Milepæl" står som tekst.
+- Hver begivenhed har datoen i en fast kolonne til venstre ("7. okt."), en markør på en lodret streg i `--line` og teksten til højre: "Milepæl" (13/18, 600, `--link`) ved milepæle, titlen (17/24, 600), resuméet (15/22, `--muted`), fodlinjen med steder og temaer og "Læs 3 nyheder" (eller "Læs nyheden"). Markøren er en udfyldt cirkel på 12 px i `--link` ved milepæle og en ring ved de andre. Den er dekorativ (`aria-hidden`), fordi "Milepæl" står som tekst.
+- Stedet i fodlinjen er det mest præcise: en region udelades, når en kommune i den eller en by, hvis primære kommune ligger i den, også står på begivenheden, og en kommune udelades, når den er primær kommune for en by på begivenheden. `k:nyborg` og `b:ullerslev` viser "Ullerslev". Der står højst to navne og derefter fx "+2". To byer med samme navn får kommunens korte navn i parentes, fx "Ejby (Køge)".
 - "Læs 3 nyheder" folder indslagene ud med kilde (600), dato og titlen som link i ny fane. Er historien stadig i feedet, står "Vis i feedet" nederst og linker til `index.html?story=<id>`.
 - Siden viser de 12 nyeste måneder med begivenheder. "Vis ældre" henter 12 måneder mere og giver fokus til den første nye måneds overskrift. "Spring til" og et anker i URL'en henter ældre måneder efter behov.
 - Under 480 px står datoen over titlen, og stregen følger markøren i venstre side.
@@ -304,7 +303,7 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Aktive filtre | Fjern filter: Nyborg Kommune · Landsdækkende · Uden Region Nordjylland · Kommunal · Uden Debat · 4 temaer · Uden 5 kilder · Historie: ... |
 | Statuslinje | Vis 7 nye · Vis 1 ny · 7 nye indslag · 1 nyt indslag · Vis alle · til skærmlæseren og ved fokus: 1.284 indslag · 23 af 1.284 indslag |
 | Visning | Normal · Kompakt |
-| Kort | Betalingsmur · Delvis betalingsmur · Ikke vurderet · Auto-resumé: · fundet 09.14 · +3 andre kilder · +1 anden kilde · +3 andre kilder, 2 nye · +3 flere · +1 mere |
+| Kort | Auto-resumé: · fundet 09.14 · +3 andre kilder · +1 anden kilde · +3 andre kilder, 2 nye · +3 flere · +1 mere |
 | Skillelinje | Her slap du sidst · i går kl. 08.14 |
 | Overblik | AI-overblik · I dag · Ugen · Måneden · Året · Vis hele · Vis mindre · fra i går kl. 23.25 · Opdateret kl. 14.24 · bygget på 23 indslag · Skrevet af AI ud fra kilderne. Kan indeholde fejl. |
 | Overblik, kort data | Siden 7. oktober 2026 · opdateret kl. 09.25 |
@@ -317,7 +316,7 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Intet i dag | Intet nyt endnu i dag. Sidst opdateret kl. 09.17. |
 | feed.json fejler (også data uden for kontrakten) | Feedet kunne ikke indlæses. Prøv igen om lidt. · Prøv igen |
 | Forældet feed | Feedet blev sidst opdateret for 9 timer siden. Indsamlingen kører måske ikke. · Se kildernes status |
-| Regelvisning | Vurderingen af nye indslag er forsinket. De vises efter faste regler og er mærket "Ikke vurderet". |
+| Regelvisning | Vurderingen af nye indslag er forsinket, så de vises efter faste regler indtil videre. |
 | Om kilderne, status | Feedet er opdateret i dag kl. 09.17. · Indslagene blev sidst vurderet i dag kl. 09.25. |
 | Demo | Demodata: opdigtede eksempler med links til example.org. Tiderne er rykket frem. · Vis det rigtige feed |
 | Footer | Uafhængigt hobbyprojekt. Ikke tilknyttet affaldsviden.info. Alle overskrifter linker til den oprindelige kilde. · Om kilderne · Koden på GitHub |

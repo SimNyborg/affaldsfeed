@@ -1,11 +1,11 @@
 // Affaldsfeed: forsiden (feed), Tidslinje og "Om kilderne". Ingen build, ingen afhængigheder.
 
 import {
-  el, icon, hidden, sep, catStyle, cap, truncate, cph, fmtNum, fmtShort, fmtLong, fmtWhen, fmtStamp,
+  el, icon, hidden, catStyle, cap, truncate, cph, fmtNum, fmtShort, fmtLong, fmtWhen, fmtStamp,
   isoWeek, fmtDayRange, weekdayOf, parseDate, load, store, DAY_MS,
   readState, syncUrl, setData, defaultState, activeCount, sheetCount, activeFilters, removeFilter, resetFilters, shownSet, NATIONAL,
-  prepare, applyFilters, computeCounts, computeDayCounts, buildPanel, renderActive, topicName,
-  placeName, placeParents, precisePlaces, rangeOf, setRange, fmtRange,
+  prepare, applyFilters, computeCounts, computeDayCounts, buildPanel, renderActive,
+  placeName, placeParents, rangeOf, setRange, fmtRange,
 } from './filters.js';
 import { createOverview } from './overview.js';
 import { createTimeline, demoizeTimeline } from './tidslinje.js';
@@ -203,7 +203,7 @@ function setupFeed(feed, state, now, lastVisit) {
     }
   }
   if (feed.mode === 'fallback') {
-    msgs.push(message('msg-info', 'info', 'Vurderingen af nye indslag er forsinket. De vises efter faste regler og er mærket "Ikke vurderet".'));
+    msgs.push(message('msg-info', 'info', 'Vurderingen af nye indslag er forsinket, så de vises efter faste regler indtil videre.'));
   }
   ui.msgs.replaceChildren(...msgs);
   ui.msgs.hidden = !msgs.length;
@@ -549,32 +549,11 @@ function setupFeed(feed, state, now, lastVisit) {
   }
 
   /**
-   * Titel i kompakt visning. Titlens sidste ord, låsen og den skjulte tekst står i ét span uden
-   * ombrydning, så låsen aldrig står alene på en linje, og "· Ikke vurderet" aldrig begynder en linje.
+   * Afsenderlinjen: kategoriikon og kildens navn, intet andet. Afsendertype og genre kan vælges i menuen,
+   * og betalingsmur og ejer står på Om kilderne.
    */
-  function compactTitleLink(m, pay) {
-    const lang = langAttr(m);
-    const t = String(m.title || '').trim();
-    const cut = t.lastIndexOf(' ') + 1;
-    return el('a', { href: m.url, target: '_blank', rel: 'noopener' },
-      cut ? el('span', { lang }, t.slice(0, cut)) : null,
-      el('span', { class: 'nw' }, el('span', { lang }, t.slice(cut)), pay ? icon('laas', 'lock') : null, hidden(' (åbner i nyt vindue)')));
-  }
-
-  function paywallText(src) {
-    return src.paywall === 'ja' ? 'Betalingsmur' : src.paywall === 'delvis' ? 'Delvis betalingsmur' : '';
-  }
-
-  /**
-   * Afsenderlinjen: kategoriikon og kilde, eventuelt betalingsmur og "Ikke vurderet". Afsendertype og
-   * genre står ikke på kortet; de findes som filtre i menuen.
-   */
-  function who(m, { review = true } = {}) {
-    const parts = [paywallText(m.source)];
-    if (review && !m.reviewed) parts.push('Ikke vurderet');
-    return el('p', { class: 'who' }, icon(m.cat.icon), el('b', { text: m.source.name }),
-      // Betalingsmur og "Ikke vurderet" brydes aldrig midt i ("Delvis betalingsmur" står samlet)
-      parts.filter(Boolean).map((t) => [sep(), el('span', { class: 'nw', text: t })]));
+  function who(m) {
+    return el('p', { class: 'who' }, icon(m.cat.icon), el('b', { text: m.source.name }));
   }
 
   function renderCard(card, group) {
@@ -590,18 +569,7 @@ function setupFeed(feed, state, now, lastVisit) {
       teaser = el('p', { class: 'teaser', lang: langAttr(m) }, truncate(m.teaser, TEASER_MAX));
     }
 
-    // Fodlinje: sted (de mest præcise, højst to navne og "+N"), temaer og "+N andre kilder"
-    const places = precisePlaces(data, m.places).map((p) => placeName(data, p));
-    const topics = m.topics.slice(0, 2).map((t) => topicName(data, t));
-    const rest = places.length - 2;
-    const placeText = places.length ? [
-      icon('sted', 'pin'), hidden('Sted: '), places.slice(0, 2).join(', '),
-      rest > 0 ? [' ', el('span', { 'aria-hidden': 'true', text: `+${rest}` }), hidden(rest === 1 ? 'og 1 andet sted' : `og ${rest} andre steder`)] : null,
-    ] : null;
-    const topicText = topics.length ? [hidden(topics.length > 1 ? 'Temaer: ' : 'Tema: '), topics.map((t, i) => (i ? [sep(), t] : t))] : null;
-    const facets = placeText || topicText
-      ? el('p', { class: 'facets' }, placeText, placeText && topicText ? sep() : null, topicText)
-      : null;
+    // Fodlinjen har kun "+N andre kilder"; sted og temaer står ikke på kortet (de kan vælges i menuen)
     let also = null;
     if (others.length) {
       const fresh = others.filter((o) => o.isNew).length;
@@ -616,7 +584,7 @@ function setupFeed(feed, state, now, lastVisit) {
           `+${others.length} ${noun}${fresh ? `, ${fresh} ${fresh === 1 ? 'ny' : 'nye'}` : ''}`,
           icon('pil-ned')),
         el('ul', { class: bare ? 'bare' : null }, others.map((o) => el('li', { class: 'cat', style: catStyle(o.cat) },
-          bare ? null : el('div', { class: 'meta' }, who(o, { review: false }), timeEl(o, group, headDay)),
+          bare ? null : el('div', { class: 'meta' }, who(o), timeEl(o, group, headDay)),
           el('p', { class: 'mtitle' }, o.isNew ? hidden('Ny: ') : null, titleLink(o))))));
     }
 
@@ -625,21 +593,18 @@ function setupFeed(feed, state, now, lastVisit) {
       el('div', { class: 'meta' }, who(m), timeEl(m, group, headDay)),
       el('h3', { class: 'title', id: titleId }, card.isNew ? hidden('Ny: ') : null, titleLink(m)),
       teaser,
-      facets || also ? el('div', { class: 'foot' }, facets, also) : null);
+      also ? el('div', { class: 'foot' }, also) : null);
   }
 
   /** Kompakt: ikon, kilde (fast kolonne), titel og tid. */
   function renderRow(card, group) {
     const m = card.primary;
     const titleId = `t-${m.id}`;
-    const pay = paywallText(m.source);
     return el('article', { class: `row cat${card.isNew ? ' is-new' : ''}`, style: catStyle(m.cat), 'aria-labelledby': titleId },
       icon(m.cat.icon),
       el('span', { class: 'src', text: m.source.name, title: m.source.name.length > 18 ? m.source.name : null }),
       el('div', { class: 'tcell' },
-        el('h3', { class: 'title', id: titleId }, card.isNew ? hidden('Ny: ') : null, compactTitleLink(m, pay)),
-        m.reviewed ? null : el('span', { class: 'nr' }, sep(), 'Ikke vurderet'),
-        pay ? hidden(` (${pay.toLowerCase()})`) : null),
+        el('h3', { class: 'title', id: titleId }, card.isNew ? hidden('Ny: ') : null, titleLink(m))),
       timeEl(m, group, m.day.dayNum));
   }
 
@@ -784,7 +749,7 @@ async function initKilder() {
     el('p', { class: 'facts status-note' },
       gen ? `Feedet er opdateret ${fmtWhen(gen, now)}. ` : '',
       lastJ ? `Indslagene blev sidst vurderet ${fmtWhen(lastJ, now)}. ` : '',
-      feed.mode === 'fallback' ? 'Lige nu vises nye indslag efter faste regler og er mærket "Ikke vurderet".' : ''),
+      feed.mode === 'fallback' ? 'Lige nu vises nye indslag efter faste regler.' : ''),
     el('ul', { class: 'legend', 'aria-label': 'Kildernes sundhed' },
       Object.keys(HEALTH).map((h) => el('li', null, healthBadge(h), ` ${fmtNum(healthCount[h])}`)))));
 
