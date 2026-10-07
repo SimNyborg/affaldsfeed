@@ -1,3 +1,4 @@
-# CleanTech Watch: hele robots.txt og ai.txt
-url https://ctwatch.dk/robots.txt 14
-url https://ctwatch.dk/ai.txt 6
+# Nyheds-sitemaps til Dansk Producentansvar og EEA
+url https://producentansvar.dk/dpa_news-sitemap.xml 6
+url https://producentansvar.dk/news_category-sitemap.xml 3
+url https://www.eea.europa.eu/sitemap-index.xml 12
