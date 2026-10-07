@@ -4,6 +4,7 @@ fetch:
   min_interval_seconds: 2.0      # mindst 2 sek. mellem kald til samme vært
   timeout_seconds: 20.0
   source_budget_seconds: 60.0    # maks tid pr. kilde pr. kørsel
+  run_budget_seconds: 900.0      # samlet tid for feeds, sitemaps og lister i én kørsel; resten venter til næste
   max_crawl_delay_seconds: 30.0  # længere Crawl-delay => kilden hentes kun én gang i døgnet
   robots_cache_hours: 24
   max_response_mb: 50            # større svar afbrydes under download (også udpakket gzip)

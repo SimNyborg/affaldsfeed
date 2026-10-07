@@ -391,10 +391,10 @@
   method: sitemap
   feeds: https://danskekommuner.dk/sitemapxml
   match: '/artikler/(nyheder|magasinet)/'
-  filter: normal
+  filter: strict
   owner: KL
   basis: redaktionelt
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: KL's magasin. Ingen RSS. Sitemap med lastmod (ca. 14.000 URL'er).
 
@@ -408,8 +408,9 @@
   paywall: delvis
   owner: DK Medier
   ai: false
+  match: '^https://www\.dkteknikogmiljoe\.dk/.+'
   basis: redaktionelt
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Ingen RSS. Artiklerne har TDM-forbehold (ophavsretslovens § 11 b), så Claude vurderer ikke kilden.
 
@@ -562,7 +563,7 @@
   match: '/(nyheder|publikationer)/\d{4}/'
   filter: normal
   basis: offentlig
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Ingen RSS, og listerne er JavaScript. Sitemappet har nyheder og publikationer med dato i stien.
 
@@ -585,11 +586,11 @@
   homepage: https://forsyningstilsynet.dk/nyheder
   method: sitemap
   feeds: https://forsyningstilsynet.dk/Handlers/Sitemap.ashx
-  match: '/nyheder/'
+  match: '/nyheder/\d{4}/[a-z]{3}/[^/?#]+$'
   filter: normal
   topics: [gebyrer]
   basis: offentlig
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Ingen RSS, og /sitemap.xml giver 404. Affaldsgebyrer, benchmarking og prisregulering af forbrænding.
 
@@ -790,7 +791,7 @@
   match: '/nyheder/nyhedsoverblik/'
   filter: normal
   basis: offentlig
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Ingen RSS. Mange fjernvarmenyheder, så der filtreres.
 
@@ -804,9 +805,11 @@
   filter: normal
   genre: pressemeddelelse
   basis: offentlig
-  status: planlagt
+  status: kandidat
   checked: 2026-10-07
-  note: Aarhus' forsyningsselskab (også fjernvarme og vand). Datoen står i stien.
+  note: >-
+    fejlede ved verifikation 2026-10-07: sitemap.xml og robots.txt svarer 403 (botbeskyttelse), og den omgås ikke.
+    Aarhus' forsyningsselskab (også fjernvarme og vand).
 
 - id: odense-renovation
   name: Odense Renovation
@@ -1062,7 +1065,7 @@
   filter: none
   aliases: [Dansk Affaldsforening, Cirkulær]
   basis: organisation
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Hed tidligere Dansk Affaldsforening. Ingen RSS. Sitemap med lastmod.
 
@@ -1075,7 +1078,7 @@
   match: '/nyhed/'
   filter: none
   basis: organisation
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Listen er JavaScript. TYPO3-sitemap med CDATA i loc. Titel og dato hentes fra artikelsiden.
 
@@ -1089,7 +1092,7 @@
   filter: strict
   aliases: [Kommunernes Landsforening]
   basis: organisation
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Ingen RSS, og listerne er JavaScript. Sitemappet har nyheder og høringssvar.
 
@@ -1098,13 +1101,16 @@
   category: organisation
   homepage: https://producentansvar.dk
   method: sitemap
-  feeds: https://producentansvar.dk/sitemap_index.xml
+  feeds: https://producentansvar.dk/dpa_news-sitemap.xml
   filter: none
   topics: [producentansvar]
+  match: '/nyheder/[^/?#]+/?$'
   basis: organisation
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
-  note: /feed/ er tomt. Nyheder ligger som sider, så sitemappets lastmod overvåges. Match-mønster fastlægges i fase 2.
+  note: >-
+    /feed/ er tomt. Nyheder og afgørelser ligger i et eget sitemap (dpa_news-sitemap.xml); resten af
+    sitemapindekset er faste sider.
 
 - id: vana
   name: VANA (Dansk Emballageansvar)
@@ -1234,8 +1240,9 @@
   method: html
   feeds: https://concito.dk/nyheder
   filter: normal
+  match: '^https://concito\.dk/nyheder/[a-z0-9-]+$'
   basis: organisation
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Grøn tænketank. Ingen RSS. HTML-listen har datoer.
 
@@ -1273,7 +1280,7 @@
   match: '/nyheder/20'
   filter: strict
   basis: organisation
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Grøn NGO. Ingen RSS, og sitemappet svarer 404. HTML-listen har datoer.
 
@@ -1362,8 +1369,9 @@
   method: html
   feeds: https://www.teknologisk.dk/ydelser/nyheder/22786
   filter: strict
+  match: '^https://www\.teknologisk\.dk/ydelser/\d+$'
   basis: forskning
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: rss.xml er død (seneste 2018). Nyhedslisten har datoer.
 
@@ -1387,8 +1395,9 @@
   method: html
   feeds: https://www.sdu.dk/da/nyheder
   filter: strict
+  match: '^https://www\.sdu\.dk/da/(nyheder|om-sdu/fakulteterne)/.+'
   basis: forskning
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Ingen RSS. Nyhedslisten har datoer.
 
@@ -1477,18 +1486,18 @@
   name: Det Europæiske Miljøagentur (EEA)
   category: eu_norden
   homepage: https://www.eea.europa.eu/en/newsroom
-  method: rss
+  method: sitemap
   feeds:
-    - https://www.eea.europa.eu/en/newsroom/rss-feeds/eeas-press-releases-rss/rss.xml
-    - https://www.eea.europa.eu/en/newsroom/rss-feeds/publications-rss/rss.xml
-  filter: normal
+    - https://www.eea.europa.eu/admin/portal_catalog/sitemap-by-type.xml?type=News%20Item
+    - https://www.eea.europa.eu/admin/portal_catalog/sitemap-by-type.xml?type=briefing
+  filter: strict
   lang: en
   basis: offentlig
-  status: kandidat
+  status: planlagt
   checked: 2026-10-07
   note: >-
-    fejlede ved verifikation 2026-10-07: robots.txt forbyder /*/rss.xml for alle brugeragenter (*).
-    Pressemeddelelser og publikationer. Sitemap-index.xml er tilladt og kan prøves i fase 2.
+    robots.txt forbyder /*/rss.xml for alle brugeragenter, så kilden hentes via de typeopdelte sitemaps
+    (nyheder og briefings) fra sitemap-index.xml. Afprøves før aktivering.
 
 - id: ep-envi
   name: Europa-Parlamentet, ENVI-udvalget
@@ -1626,7 +1635,7 @@
   filter: none
   lang: sv
   basis: organisation
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Svensk søsterorganisation til Cirkulær. Ingen RSS.
 

@@ -7,7 +7,7 @@ import logging
 import time
 from collections import Counter
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta
+from datetime import UTC, datetime, timedelta
 from typing import get_args
 
 from affaldsfeed import paths, store
@@ -250,8 +250,10 @@ def plan_sources(
             eff = s.model_copy(update={"every": max(s.every_hours, SLOW_EVERY_HOURS)})
         if is_due(eff, states.get(s.id) or SourceState(), now):
             due.append(s)
-    # Feeds først, så søgefund kan dedupes mod dem
-    due.sort(key=lambda s: (s.method == "search", s.id))
+    # Feeds først, så søgefund kan dedupes mod dem. Blandt feeds går de længst ventende først, så et brugt
+    # tidsbudget for kørslen ikke rammer de samme kilder hver gang.
+    never = datetime.min.replace(tzinfo=UTC)
+    due.sort(key=lambda s: (s.method == "search", (states.get(s.id) or SourceState()).last_attempt or never, s.id))
     return due, waiting
 
 
@@ -329,8 +331,15 @@ def _run(args: argparse.Namespace) -> int:
     unknown: list[tuple[str, str, str]] = []
     failed: dict[str, str] = {}
     ok_count = 0
+    run_t0 = time.monotonic()
+    postponed: list[str] = []
 
     for s in due:
+        # Kørslens tidsbudget: resten venter til næste kørsel. Søgekilder kører altid (de er hurtige, og
+        # lokalmedier findes kun via søgning).
+        if s.method != "search" and time.monotonic() - run_t0 > settings.fetch.run_budget_seconds:
+            postponed.append(s.id)
+            continue
         state = states.get(s.id) or SourceState()
         # Første kørsel: kilden har aldrig haft en vellykket kørsel (ingen state eller first_run_done false)
         first_run = not state.first_run_done
@@ -391,6 +400,13 @@ def _run(args: argparse.Namespace) -> int:
             for c in out.new:
                 log.info("  + [%s %d] %s: %s", c.why.decision, c.why.score, c.source, c.title)
     fetcher.start_budget(None)
+    if postponed:
+        log.warning(
+            "Kørslens tidsbudget (%.0f s) er brugt: %d kilder venter til næste kørsel: %s",
+            settings.fetch.run_budget_seconds,
+            len(postponed),
+            ", ".join(postponed),
+        )
 
     # Antal indslag de seneste 30 dage pr. kilde
     cut30 = now - timedelta(days=ITEMS_WINDOW_DAYS)

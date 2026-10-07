@@ -269,6 +269,6 @@ Historier (`stories.py`): niveau 1 = samme id; niveau 2 = samme `normalize_title
 - localStorage-nøgler (alle i try/catch): `af.lastVisit`, `af.theme`, `af.overviewHidden`, `af.introClosed`.
 
 ## 10. Workflows
-- `collect.yml`: cron `5 * * * *` + `workflow_dispatch`. `run` → `export` → commit `data/` hvis ændret (`git pull --rebase` før push) → deploy Pages. `concurrency: pages`.
+- `collect.yml`: cron `5 * * * *` + `workflow_dispatch`. `run` → `export` → commit `data/` hvis ændret (`git pull --rebase` før push) → deploy Pages. `concurrency: pages`. `run` starter ikke flere feed-, sitemap- og html-kilder, når `fetch.run_budget_seconds` (900 s) er brugt; de venter til næste kørsel og kommer først i køen, fordi kilderne køres med den længst ventende først. Søgekilder kører altid til sidst. Jobbets `timeout-minutes` er 30.
 - `publish.yml`: `push` til `main` på `data/judgments/**`, `data/overview/**`, `site/**`, `config/**`, `sources.yaml`, `examples/**` + `workflow_dispatch` → `export` → deploy Pages. `concurrency: pages`.
 - `ci.yml`: push/PR → `ruff check`, `pytest`, `python -m affaldsfeed check`. Ingen netværkskald i tests.

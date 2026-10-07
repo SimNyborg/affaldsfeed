@@ -204,6 +204,7 @@ class FetchSettings(_Strict):
     min_interval_seconds: float = 2.0
     timeout_seconds: float = 20.0
     source_budget_seconds: float = 60.0
+    run_budget_seconds: float = Field(default=900.0, gt=0)  # samlet for feeds i én kørsel; resten venter
     max_crawl_delay_seconds: float = 30.0
     robots_cache_hours: int = 24
     max_response_mb: float = Field(default=50.0, gt=0)  # større svar afbrydes (også udpakket gzip)

@@ -13,7 +13,7 @@ from pathlib import Path
 import pytest
 
 from affaldsfeed import paths, pipeline, store
-from affaldsfeed.config import load_config
+from affaldsfeed.config import load_config, load_sources
 from affaldsfeed.health import is_due, record_result, silent
 from affaldsfeed.models import SourceState
 
@@ -203,6 +203,37 @@ def test_only_forces_source_even_if_not_due(env, monkeypatch):
     assert _run(monkeypatch, only=["bing-news"])[0] == 0
     code, fake = _run(monkeypatch, only=["bing-news"], now=LATER)
     assert code == 0 and fake.calls
+
+
+def test_run_budget_postpones_feeds_but_not_search(env, monkeypatch, caplog):
+    """Er kørslens tidsbudget brugt, venter feeds til næste kørsel; søgekilderne kører stadig."""
+    caplog.set_level(logging.WARNING)
+    clock = iter(range(0, 10**6, 1000))  # hvert kald er 1000 s senere end det forrige
+    monkeypatch.setattr(pipeline, "time", argparse.Namespace(monotonic=lambda: float(next(clock))))
+    code, fake = _run(monkeypatch)
+    assert code == 0
+    states = store.load_source_states()
+    assert "bing-news" in states and states["bing-news"].last_attempt is not None
+    for sid in ("testmedie", "dr", "testorg", "affaldsselskab", "udateret"):
+        assert sid not in states  # ikke forsøgt; den er stadig på tur næste gang
+    assert "venter til næste kørsel" in caplog.text
+
+
+def test_longest_waiting_feeds_run_first(env):
+    config = load_config()
+    sources = load_sources()
+    now = datetime(2026, 10, 7, 8, 5, tzinfo=UTC)
+    states = {
+        "dr": SourceState(last_attempt=now - timedelta(hours=2)),
+        "testmedie": SourceState(last_attempt=now - timedelta(hours=5)),
+    }
+    fetcher = _fakes().make_fetcher_class(None)(config.settings.fetch, {}, {}, now)
+    due, _ = pipeline.plan_sources(sources, states, now, None, fetcher, 30.0)
+    ids = [s.id for s in due]
+    # Aldrig forsøgte først, så den ældste, så den nyeste; søgning altid til sidst
+    assert ids.index("testmedie") < ids.index("dr")
+    assert all(ids.index(x) < ids.index("testmedie") for x in ("testorg", "affaldsselskab", "udateret"))
+    assert ids[-2:] == ["bing-news", "google-news"]
 
 
 def test_failing_source_is_isolated(env, monkeypatch):
