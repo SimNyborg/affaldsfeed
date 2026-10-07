@@ -39,6 +39,7 @@ RULES = {
     "ekstra_navne": {"751": ["Århus"]},
     "kun_med_kommune": ["Vejen"],
     "ignorer_byer": ["Brande"],
+    "byer_ekstra_navne": {"Ullerslev": ["Ullerslev By"], "Findesikke": ["X"]},
     "landsdele": {"Fyn": "syddanmark"},
 }
 
@@ -149,7 +150,10 @@ def test_byer():
     byer = {t["id"]: t for t in data["byer"]}
     # Hovedstadsområdet, landdistrikter og små byer kommer ikke med; Brande er ignoreret
     assert set(byer) == {"nyborg", "ullerslev", "odense", "ejby", "delby"}
-    assert byer["ullerslev"] == {"id": "ullerslev", "navn": "Ullerslev", "kommune": "nyborg", "kommuner": ["nyborg"], "indbyggere": 2900}
+    assert byer["ullerslev"] == {
+        "id": "ullerslev", "navn": "Ullerslev", "navne": ["Ullerslev", "Ullerslev By"],
+        "kommune": "nyborg", "kommuner": ["nyborg"], "indbyggere": 2900,
+    }
     # By i flere kommuner: hovedkommunen er den største del
     assert byer["delby"]["kommune"] == "aarhus" and byer["delby"]["kommuner"] == ["aarhus", "nyborg"]
     assert byer["delby"]["indbyggere"] == 4500
@@ -157,6 +161,7 @@ def test_byer():
     assert byer["ejby"]["kommune"] == "aarhus"
     assert any("Højby" in n and "udeladt" in n for n in notes)
     assert any("Brande" in n for n in notes)
+    assert any("ADVARSEL" in n and "Findesikke" in n for n in notes)
     # Forespørgslen beder om folketal for nyeste år
     body = calls[0]
     assert {"code": "Tid", "values": ["2026"]} in body["variables"]
@@ -188,6 +193,13 @@ def test_ukendte_koder_i_regler_stopper():
     rules = {**RULES, "ekstra_navne": {"999": ["Ingen"]}}
     with pytest.raises(geo.GeoError, match="999"):
         geo.parse_areas(folk1a(), rules)
+
+
+def test_stavevarianter():
+    assert geo.spelling_variants("Grenaa") == ["Grenå"]
+    assert geo.spelling_variants("Årslev") == ["Aarslev"]
+    assert geo.spelling_variants("Nyborg") == []
+    assert geo.with_variants(["Aarhus", "Århus"]) == ["Aarhus", "Århus"]
 
 
 def test_slug():

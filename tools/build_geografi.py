@@ -64,6 +64,25 @@ def slug(text: str) -> str:
     return s
 
 
+def spelling_variants(name: str) -> list[str]:
+    """Aa og å skrives begge dele: 'Grenaa' → ['Grenå'], 'Årslev' → ['Aarslev']."""
+    out: list[str] = []
+    if "aa" in name.lower():
+        out.append(name.replace("Aa", "Å").replace("aa", "å"))
+    if "å" in name.lower():
+        out.append(name.replace("Å", "Aa").replace("å", "aa"))
+    return [v for v in out if v != name]
+
+
+def with_variants(names: list[str]) -> list[str]:
+    out: list[str] = []
+    for n in names:
+        for v in (n, *spelling_variants(n)):
+            if v not in out:
+                out.append(v)
+    return out
+
+
 def _variable(info: dict, pred: Callable[[dict], bool], what: str) -> dict:
     for var in info.get("variables") or []:
         if pred(var):
@@ -117,7 +136,7 @@ def parse_areas(info: dict, rules: dict) -> tuple[list[dict], list[dict]]:
     out: list[dict] = []
     for m in municipalities:
         kort = m["kort"]
-        names = [kort, *[n for n in extra.get(m["kode"], []) if n != kort]]
+        names = with_variants([kort, *extra.get(m["kode"], [])])
         out.append(
             {
                 "id": slug(kort),
@@ -187,6 +206,7 @@ def parse_towns(info: dict, population: dict[str, int], municipalities: list[dic
     by_code = {m["kode"]: m for m in municipalities}
     min_pop = int(rules.get("min_indbyggere", 1000))
     ignore = set(rules.get("ignorer_byer") or [])
+    extra = rules.get("byer_ekstra_navne") or {}
     notes: list[str] = []
 
     # Saml dele af samme by (en by kan ligge i flere kommuner)
@@ -246,8 +266,18 @@ def parse_towns(info: dict, population: dict[str, int], municipalities: list[dic
         seen.add(tid)
         t["id"] = tid
     out.sort(key=lambda t: t["id"])
+    names_kept = {t["navn"] for t in out}
+    for name in sorted(set(extra) - names_kept):
+        notes.append(f"ADVARSEL: byer_ekstra_navne nævner en by, der ikke er med: {name}")
     return [
-        {"id": t["id"], "navn": t["navn"], "kommune": t["kommune"], "kommuner": t["kommuner"], "indbyggere": t["indbyggere"]}
+        {
+            "id": t["id"],
+            "navn": t["navn"],
+            "navne": with_variants([t["navn"], *extra.get(t["navn"], [])]),
+            "kommune": t["kommune"],
+            "kommuner": t["kommuner"],
+            "indbyggere": t["indbyggere"],
+        }
         for t in out
     ], notes
 

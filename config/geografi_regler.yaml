@@ -32,8 +32,52 @@ ekstra_navne:
 # Kommunenavne, der også er almindelige ord. De matches kun som "<navn> Kommune".
 kun_med_kommune: [Vejen]
 
-# Bynavne, der også er almindelige ord eller efternavne. De matches aldrig.
-ignorer_byer: [Brande]
+# Bynavne, der aldrig matches. Kommunen findes stadig via sit eget navn og de andre byer.
+ignorer_byer:
+  # almindelige ord
+  - Brande
+  - Elev
+  - Gram
+  - Hals
+  - Hov
+  - Lem
+  - Mørke
+  - Ringe
+  - Skibet
+  - Vejen   # byen; kommunen matches kun som "Vejen Kommune"
+  - Vig
+  # firmaer, efternavne og fornavne
+  - Borup
+  - Dalby
+  - Elling
+  - Frederiks
+  - Kås
+  - Lund
+  - Nordby
+  - Ørsted
+  - Ørum
+  # flertydige (samme navn bruges om et andet sted)
+  - Hasle
+  - Højby
+  - Nordbyen
+  - Sundby
+  - Viby
+
+# Ekstra navne for byer. Stavevarianter med aa og å tilføjes automatisk.
+byer_ekstra_navne:
+  Nykøbing F: [Nykøbing Falster, Nykøbing F.]
+  Nykøbing M: [Nykøbing Mors, Nykøbing M.]
+  Nykøbing S: [Nykøbing Sjælland, Nykøbing Sj., Nykøbing S.]
+  Ølstykke-Stenløse: [Ølstykke, Stenløse]
+  Hornbæk-Dronningmølle: [Hornbæk, Dronningmølle]
+  Allinge-Sandvig: [Allinge, Sandvig]
+  Beder-Malling: [Beder, Malling]
+  Sejs-Svejbæk: [Sejs, Svejbæk]
+  Thurø By: [Thurø]
+  Annisse Nord: [Annisse]
+  Højslev Stationsby: [Højslev]
+  Fårevejle Stationsby: [Fårevejle]
+  Solrød Strand: [Solrød]
 
 # Landsdele, der ligger i én region. Landsdele på tværs af regioner (Jylland, Sjælland,
 # Vestjylland, Østjylland) er bevidst udeladt.
