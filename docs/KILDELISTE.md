@@ -9,7 +9,7 @@ Kilderne står i [`sources.yaml`](../sources.yaml). MVP-kilderne har `status: ak
 - RSS: kildens eget nyhedsfeed.
 - Sitemap: kildens sitemap, hvor nye artikler findes ud fra adressen.
 - Nyhedsside: kildens liste over nyheder, læst med en fast selektor.
-- Søgning: Google News og Bing News på danske affaldsord.
+- Søgning: Bing News på danske affaldsord. Google News kan ikke bruges, fordi Googles robots.txt forbyder automatisk hentning. Claude-routinens daglige søgning efter oversete nyheder dækker en del af hullet.
 
 Kilder, der kun kan hentes via sitemap eller nyhedsside, kræver indsamleren `collect/pages.py`. Den bliver derfor en del af MVP'en i stedet for fase 2, fordi flere af de vigtigste kilder ikke har RSS.
 
@@ -99,11 +99,11 @@ Senere: DTU (nyhederne vises med JavaScript og kræver en anden løsning), DCE, 
 | Kilde | Hvorfor med | Hentes via |
 |---|---|---|
 | EU-Kommissionen, DG ENV | Nye EU-regler og forslag om affald, emballage og cirkulær økonomi | RSS (strengt filter) |
-| Det Europæiske Miljøagentur (EEA) | Analyser og tal for affald i Europa | RSS |
-| Europa-Parlamentets miljøudvalg (ENVI) | Behandlingen af EU-lovgivning om affald | RSS (strengt filter) |
+| Det Europæiske Miljøagentur (EEA) | Analyser og tal for affald i Europa | Sitemap (agenturets robots.txt forbyder RSS-feedsene) |
+| Nordisk Ministerråd | Nordisk samarbejde om affald og cirkulær økonomi | RSS (strengt filter) |
 | Avfall Sverige | Den svenske pendant til de kommunale affaldsselskabers forening | Nyhedsside |
 
-Senere: Nordisk Ministerråd, Zero Waste Europe, ISWA, EEB, CEWEP, EXPRA, ACR+ og Municipal Waste Europe.
+Senere: Europa-Parlamentets miljøudvalg (ENVI, blokerer i dag automatisk hentning), Zero Waste Europe, ISWA, EEB, CEWEP, EXPRA, ACR+ og Municipal Waste Europe.
 
 ## Sådan ændrer du listen
 

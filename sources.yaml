@@ -55,6 +55,7 @@
   checked: 2026-10-07
   note: Bringer Ritzaus telegrammer og er den eneste åbne vej til Ritzau-wiren. Kort feed, så det hentes hver time.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: berlingske
   name: Berlingske
   category: nyhedsmedie
@@ -64,7 +65,7 @@
   filter: strict
   paywall: delvis
   basis: redaktionelt
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: Feedet viser kun de 10 nyeste artikler på tværs af sektioner, så det hentes hver time.
 
@@ -125,6 +126,7 @@
     robots.txt fravælger AI-agenter. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser
     (ikke en AI-crawler) må hente feedet. Claude vurderer kun titel og RSS-uddrag.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: politiken
   name: Politiken
   category: nyhedsmedie
@@ -134,12 +136,13 @@
   filter: strict
   paywall: ja
   basis: redaktionelt
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: >-
     robots.txt fravælger AI-agenter, og ai.txt har TDM-forbehold. Brugeren besluttede 2026-10-07, at
     feedets egen RSS-læser (ikke en AI-crawler) må hente feedet. Claude vurderer kun titel og RSS-uddrag.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: borsen
   name: Børsen
   category: nyhedsmedie
@@ -149,7 +152,7 @@
   filter: strict
   paywall: ja
   basis: redaktionelt
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: >-
     robots.txt fravælger AI-agenter. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser
@@ -325,6 +328,7 @@
     Artiklerne har TDM-forbehold (ophavsretslovens § 11 b), så Claude vurderer ikke kilden. Den vurderes
     kun af regler. Feedet omdirigerer til admin.kommunen.dk/feed/.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: dagens-byggeri
   name: Dagens Byggeri
   category: fagmedie
@@ -334,7 +338,7 @@
   filter: normal
   topics: [byg_farligt]
   basis: redaktionelt
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: WordPress-søgefeed på "affald" (byggeaffald, selektiv nedrivning).
 
@@ -351,6 +355,7 @@
   checked: 2026-10-07
   note: Fagblad om emballage og producentansvar.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: tekniskfokus
   name: TekniskFOKUS
   category: fagmedie
@@ -359,10 +364,11 @@
   feeds: https://www.tekniskfokus.dk/feed/
   filter: strict
   basis: redaktionelt
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: Bredt teknisk fagblad, så filtret er strengt.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: energy-supply
   name: Energy Supply
   category: fagmedie
@@ -372,7 +378,7 @@
   filter: strict
   paywall: delvis
   basis: redaktionelt
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: >-
     robots.txt fravælger AI-agenter. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser
@@ -519,6 +525,7 @@
   checked: 2026-10-07
   note: Atom-feed med høringer fra alle myndigheder, så der filtreres på affaldsord. Nye affaldsregler dukker ofte op her først.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: klimaraadet
   name: Klimarådet
   category: myndighed
@@ -527,7 +534,7 @@
   feeds: https://klimaraadet.dk/da/rss.xml
   filter: normal
   basis: offentlig
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: RSS har kun få indslag (statusrapporter). Analyser og høringssvar fra /da/analyse/ tilføjes som html i fase 2.
 
@@ -735,6 +742,7 @@
   checked: 2026-10-07
   note: Kommunalt ejet affaldsselskab i Skanderborg og Odder.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: refa
   name: REFA
   category: kommunal
@@ -743,10 +751,11 @@
   feeds: https://www.refa.dk/feed/
   filter: none
   basis: offentlig
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: Mest servicebeskeder, som veto- og serviceordene sorterer fra.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: sonfor
   name: SONFOR (Sønderborg Forsyning)
   category: kommunal
@@ -755,10 +764,11 @@
   feeds: https://sonfor.dk/feed/
   filter: normal
   basis: offentlig
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: Multiforsyning (vand, spildevand og affald), så der filtreres på affaldsord.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: hofor
   name: HOFOR
   category: kommunal
@@ -767,7 +777,7 @@
   feeds: https://www.hofor.dk/feed/
   filter: strict
   basis: offentlig
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: Mest vand og varme, så filtret er strengt. Feedet har relative links (/nyhed/...), som skal løses mod https://www.hofor.dk/.
 
@@ -972,6 +982,7 @@
   checked: 2026-10-07
   note: Pantsystemet for drikkevareemballager.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: plastindustrien
   name: Plastindustrien
   category: organisation
@@ -980,10 +991,11 @@
   feeds: https://plast.dk/feed/
   filter: normal
   basis: organisation
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: Brancheforening. Blandet branchestof, så der filtreres.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: dansk-fjernvarme
   name: Dansk Fjernvarme
   category: organisation
@@ -994,12 +1006,13 @@
   paywall: delvis
   every: 3
   basis: organisation
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: >-
     Feedet indeholder hele arkivet (ca. 3.400 indslag, 3,4 MB) uden ETag og Last-Modified, så det hentes
     hver 3. time. Kun indslag fra de sidste 14 dage gemmes. Affald kun via affaldsvarme, forbrænding og CO2-afgift.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: biogas-danmark
   name: Biogas Danmark
   category: organisation
@@ -1009,10 +1022,11 @@
   filter: normal
   topics: [bioaffald]
   basis: organisation
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: Brancheforening. Relevant for bioaffald og madaffald.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: gate-21
   name: Gate 21
   category: organisation
@@ -1021,10 +1035,11 @@
   feeds: https://gate21.dk/feed/
   filter: normal
   basis: organisation
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: Partnerskab mellem kommuner, regioner, virksomheder og forskning.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: danske-regioner
   name: Danske Regioner
   category: organisation
@@ -1033,7 +1048,7 @@
   feeds: https://www.regioner.dk/services/nyheder/?rss=1
   filter: strict
   basis: organisation
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: Mest sundhed. Affald kun via jordforurening og råstoffer, så filtret er strengt.
 
@@ -1199,6 +1214,7 @@
   checked: 2026-10-07
   note: Grøn NGO. Affald og cirkulær økonomi er et af flere temaer.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: kraka
   name: Kraka
   category: taenketank
@@ -1207,7 +1223,7 @@
   feeds: https://kraka.dk/feed/
   filter: strict
   basis: organisation
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: Økonomisk tænketank. Skriver sjældent om affald, så filtret er strengt.
 
@@ -1501,6 +1517,7 @@
   checked: 2026-10-07
   note: Blandet feed (også karriere og formandskab), så filtret er strengt.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: zero-waste-europe
   name: Zero Waste Europe
   category: eu_norden
@@ -1510,10 +1527,11 @@
   filter: none
   lang: en
   basis: organisation
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: Europæisk NGO for affaldsforebyggelse.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: iswa
   name: ISWA
   category: eu_norden
@@ -1524,10 +1542,11 @@
   lang: en
   paywall: delvis
   basis: organisation
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: International Solid Waste Association. Noget indhold er kun for medlemmer.
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: eeb
   name: European Environmental Bureau (EEB)
   category: eu_norden
@@ -1537,10 +1556,11 @@
   filter: normal
   lang: en
   basis: organisation
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: Europæisk miljø-NGO (kemi, landbrug, cirkulær økonomi).
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: cewep
   name: CEWEP
   category: eu_norden
@@ -1551,10 +1571,11 @@
   topics: [forbraending]
   lang: en
   basis: organisation
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: Europæisk brancheorganisation for affaldsforbrændingsanlæg (CO2-fangst, ETS).
 
+# Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: expra
   name: EXPRA
   category: eu_norden
@@ -1565,7 +1586,7 @@
   topics: [producentansvar]
   lang: en
   basis: organisation
-  status: aktiv
+  status: planlagt
   checked: 2026-10-07
   note: Europæisk alliance af producentansvarsorganisationer (EPR og emballage).
 
