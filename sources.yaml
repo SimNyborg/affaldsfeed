@@ -631,7 +631,7 @@
   note: >-
     Folketingets åbne data: dokumenter med affaldsord i titlen (settings.oda), så intet ekstra filter ud over
     veto. Linket er dokumentets PDF på ft.dk. Afprøvet live 2026-10-07 - 20 dokumenter på 14 dage, 14 beholdt.
-    Dagsbundter (bundle - day) kommer i fase 3.
+    bundle day samler dagens dokumenter på ét kort i feedet.
 
 - id: miljoestyrelsen
   name: Miljøstyrelsen

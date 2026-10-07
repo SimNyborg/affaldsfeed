@@ -103,6 +103,8 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
         settings.story_title_window_days,
         settings.story_max_age_days,
         no_merge=split_ids(config, shown),
+        # Dagsbundter kun i feedet; overblik og tidslinje ser dokumenterne hver for sig
+        bundle_day={s.id for s in sources if s.bundle == "day"},
     )
     heads = _sort_items(heads)
 
