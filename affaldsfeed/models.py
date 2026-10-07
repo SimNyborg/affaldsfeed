@@ -115,6 +115,18 @@ class Source(_Strict):
             raise ValueError("homepage skal starte med http:// eller https://")
         return v
 
+    @field_validator("select")
+    @classmethod
+    def _css(cls, v: str | None) -> str | None:
+        if v:
+            from cssselect import HTMLTranslator, SelectorError
+
+            try:
+                HTMLTranslator().css_to_xpath(v)  # samme oversætter som collect/pages.py
+            except SelectorError as e:
+                raise ValueError(f"ugyldig CSS-selektor: {e}") from e
+        return v
+
     @model_validator(mode="after")
     def _active_requirements(self) -> Source:
         if self.status == "aktiv":
@@ -203,9 +215,23 @@ class RoutineSettings(_Strict):
     timezone: str = "Europe/Copenhagen"
 
 
+class PagesSettings(_Strict):
+    """Sitemap- og html-kilder (KONTRAKTER §5.6)."""
+
+    max_pages: int = 15  # nye sider pr. kilde pr. kørsel
+    lastmod_days: int = 3  # sitemap: lastmod-vindue
+    first_run_lastmod_days: int = 14  # ved kildens første kørsel
+    max_sub_sitemaps: int = 5  # under-sitemaps fra et indeks
+    max_sitemap_fetches: int = 6  # sitemap-hentninger pr. kilde pr. kørsel
+    max_links: int = 30  # links pr. listeside
+    seen_refresh_days: int = 30  # seen.json: datoen fornyes, når den er ældre
+    seen_keep_days: int = 120  # seen.json: fjernes, når den ikke er set så længe
+
+
 class Settings(_Strict):
     fetch: FetchSettings
     routine: RoutineSettings
+    pages: PagesSettings = Field(default_factory=PagesSettings)
     window_days: int = 60
     max_age_days_on_find: int = 14
     baseline_days: int = 14

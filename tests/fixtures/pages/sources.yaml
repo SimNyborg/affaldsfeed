@@ -1,0 +1,25 @@
+# Kilderegister til integrationstesten af sitemap og html gennem run.
+- id: kilde-sitemap
+  name: Kildeforeningen
+  category: organisation
+  homepage: https://www.kilde.dk
+  method: sitemap
+  feeds: https://www.kilde.dk/sitemap.xml
+  match: "/nyheder/"
+  filter: normal
+  basis: organisation
+  status: aktiv
+  checked: 2026-10-07
+
+- id: testkommune
+  name: Testkommune
+  category: kommunal
+  homepage: https://www.testkommune.dk
+  method: html
+  feeds: https://www.testkommune.dk/nyheder
+  select: ".nyhedsliste article"
+  match: "/nyheder/"
+  filter: normal
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-07

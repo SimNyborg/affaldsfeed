@@ -6,7 +6,8 @@ import contextlib
 import json
 import logging
 import os
-from collections.abc import Callable
+import re
+from collections.abc import Callable, Iterable
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, TypeVar
@@ -234,6 +235,43 @@ def load_robots_cache() -> dict:
 
 def save_robots_cache(d: dict) -> bool:
     return _save_dict("robots.json", d)
+
+
+_DAY_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+
+def load_seen() -> dict[str, dict[str, str]]:
+    """state/seen.json: {kilde-id: {item-id: "ÅÅÅÅ-MM-DD"}} med dagen (København), URL'en sidst blev set."""
+    out: dict[str, dict[str, str]] = {}
+    for sid, entries in _load_dict("seen.json").items():
+        if not isinstance(entries, dict):
+            log.warning("state/seen.json: %s er ugyldig og nulstilles", sid)
+            continue
+        out[sid] = {k: v for k, v in entries.items() if isinstance(v, str) and _DAY_RE.match(v)}
+    return out
+
+
+def save_seen(
+    seen: dict[str, dict[str, str]], now: datetime, source_ids: Iterable[str], keep_days: int
+) -> bool:
+    """Gem seen-state med sorterede nøgler. True hvis filen blev ændret.
+
+    Poster, der ikke er observeret i keep_days, og kilder, der ikke længere står i sources.yaml, fjernes.
+    Filen oprettes ikke, før der er noget at gemme.
+    """
+    cut = (to_cph(now).date() - timedelta(days=keep_days)).isoformat()
+    known = set(source_ids)
+    obj: dict[str, dict[str, str]] = {}
+    for sid in sorted(seen):
+        if sid not in known:
+            continue
+        kept = {iid: seen[sid][iid] for iid in sorted(seen[sid]) if seen[sid][iid] >= cut}
+        if kept:
+            obj[sid] = kept
+    path = paths.STATE_DIR / "seen.json"
+    if not obj and not path.exists():
+        return False
+    return write_json(path, obj)
 
 
 def load_kildeforslag() -> dict:

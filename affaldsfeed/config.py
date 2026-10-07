@@ -415,12 +415,15 @@ def _check_fetch(source_id: str, sources: list[Source], cfg: Config, explain: bo
     now = now_utc()
     fetcher = Fetcher(cfg.settings.fetch, {}, store.load_robots_cache(), now)
     fetcher.start_budget(max(cfg.settings.fetch.source_budget_seconds, 120.0))
+    # Som kildens første kørsel med tom seen-state; intet gemmes
     ctx = CollectContext(
         config=cfg,
         sources=sources,
         now=now,
         publisher_lookup=publisher_lookup(sources, cfg.publishers),
         conditional=False,
+        first_run=True,
+        seen={},
     )
     _print(f"\nHenter {source.id} ({source.name}, {source.category}, metode {source.method}, filter {source.filter}) …")
     result = collector(source, fetcher, ctx)
@@ -454,4 +457,9 @@ def _check_fetch(source_id: str, sources: list[Source], cfg: Config, explain: bo
         _print("\nUKENDTE UDGIVERE (ville blive kildeforslag)")
         for domain, name, url in result.unknown_publishers:
             _print(f"  {domain} ({name}): {url}")
+    if explain and result.diagnostics:
+        # Til sidst, så den står med, når en probe kun gemmer halen af udskriften
+        _print("\nDIAGNOSE")
+        for line in result.diagnostics:
+            _print(f"  {line}")
     return 1 if result.error and not result.entries else 0

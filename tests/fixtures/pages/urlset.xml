@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- urlset med eget navnerumspræfiks, CDATA og whitespace i loc, URL'er uden for vinduet, andre værter og en dublet. -->
+<sm:urlset xmlns:sm="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sm:url>
+    <sm:loc>
+      <![CDATA[ https://www.kilde.dk/nyheder/ny-genbrugsplads-aabner ]]>
+    </sm:loc>
+    <sm:lastmod>2026-10-07T06:00:00+00:00</sm:lastmod>
+  </sm:url>
+  <sm:url>
+    <sm:loc>https://www.kilde.dk/nyheder/affaldsgebyr-stiger</sm:loc>
+    <sm:lastmod> 2026-10-05 </sm:lastmod>
+  </sm:url>
+  <sm:url>
+    <sm:loc>https://www.kilde.dk/nyheder/gammel-nyhed-om-deponi</sm:loc>
+    <sm:lastmod>2026-09-28T12:00:00+02:00</sm:lastmod>
+  </sm:url>
+  <sm:url>
+    <sm:loc>https://www.kilde.dk/nyheder/meget-gammel</sm:loc>
+    <sm:lastmod>2026-08-01</sm:lastmod>
+  </sm:url>
+  <sm:url>
+    <sm:loc>https://www.kilde.dk/om-os</sm:loc>
+    <sm:lastmod>2026-10-07</sm:lastmod>
+  </sm:url>
+  <sm:url>
+    <sm:loc>https://andet-domaene.dk/nyheder/fremmed-artikel</sm:loc>
+    <sm:lastmod>2026-10-07</sm:lastmod>
+  </sm:url>
+  <sm:url>
+    <sm:loc>https://www.kilde.dk/nyheder/tekstilaffald-uden-lastmod</sm:loc>
+  </sm:url>
+  <sm:url>
+    <sm:loc>https://www.kilde.dk/nyheder/ny-genbrugsplads-aabner</sm:loc>
+    <sm:lastmod>2026-10-07</sm:lastmod>
+  </sm:url>
+</sm:urlset>

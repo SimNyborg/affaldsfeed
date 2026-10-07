@@ -297,6 +297,7 @@ def _run(args: argparse.Namespace) -> int:
     states = store.load_source_states()
     fetcher = Fetcher(settings.fetch, store.load_http_cache(), store.load_robots_cache(), now)
     kildeforslag = store.load_kildeforslag()
+    seen = store.load_seen()
     all_candidates = store.load_candidates()
     existing = {c.id: c for c in all_candidates}
     recent_cut = now - timedelta(days=SEARCH_DEDUPE_DAYS)
@@ -315,6 +316,7 @@ def _run(args: argparse.Namespace) -> int:
         sources=sources,
         now=now,
         publisher_lookup=publisher_lookup(sources, config.publishers),
+        seen=seen,
     )
     proc = Processor(config, sources, now, existing, recent_titles)
     new_c: list[Candidate] = []
@@ -326,10 +328,13 @@ def _run(args: argparse.Namespace) -> int:
 
     for s in due:
         state = states.get(s.id) or SourceState()
+        # Første kørsel: kilden har aldrig haft en vellykket kørsel (ingen state eller first_run_done false)
         first_run = not state.first_run_done
         ctx.conditional = not first_run
+        ctx.first_run = first_run
         fetcher.start_budget(settings.fetch.source_budget_seconds)
         cache_backup = dict(fetcher.http_cache)
+        seen_backup = dict(seen.get(s.id, {}))
         t0 = time.monotonic()
         error: str | None = None
         n_entries = 0
@@ -338,6 +343,8 @@ def _run(args: argparse.Namespace) -> int:
             res = COLLECTORS[s.method](s, fetcher, ctx)
             error = res.error
             n_entries = len(res.entries)
+            for line in res.diagnostics:
+                log.debug("%s: %s", s.id, line)
             out = proc.process(s, res.entries, first_run)
             unknown.extend(res.unknown_publishers)
         except Exception as e:  # hver kilde er isoleret
@@ -345,6 +352,7 @@ def _run(args: argparse.Namespace) -> int:
             error = f"{type(e).__name__}: {e}"[:300]
             fetcher.http_cache.clear()
             fetcher.http_cache.update(cache_backup)
+            seen[s.id] = seen_backup  # sider markeret før fejlen er ikke behandlet
         new_c.extend(out.new)
         upd_c.extend(out.updated)
         rejected.extend(out.rejected)
@@ -396,6 +404,7 @@ def _run(args: argparse.Namespace) -> int:
         store.save_http_cache({u: v for u, v in fetcher.http_cache.items() if u in valid})
         store.save_robots_cache(_prune_robots(fetcher.robots_cache, now))
         store.save_kildeforslag(kildeforslag)
+        store.save_seen(seen, now, {s.id for s in sources}, settings.pages.seen_keep_days)
     else:
         log.info("Dry-run: intet er skrevet")
 

@@ -20,6 +20,10 @@ ROBOTS_MAX_BYTES = 500 * 1024
 RETRY_STATUSES = {500, 502, 504}
 SKIP_STATUSES = {429, 503}
 
+# Fejltekster, som indsamlerne genkender i FetchResult.error
+BUDGET_EXHAUSTED = "tidsbudget opbrugt"
+ROBOTS_BLOCKED = "blokeret af robots.txt"
+
 
 @dataclass
 class FetchResult:
@@ -175,7 +179,7 @@ class Fetcher:
             if wait > 0:
                 remaining = self._remaining()
                 if remaining is not None and wait > remaining:
-                    raise TimeoutError("tidsbudget opbrugt")
+                    raise TimeoutError(BUDGET_EXHAUSTED)
                 time.sleep(wait)
         self._last_request[host] = time.monotonic()
 
@@ -195,7 +199,7 @@ class Fetcher:
         if not allowed:
             if host in self._blocked_hosts:
                 return self._fail(url, 0, f"springes over: {self._blocked_hosts[host]}")
-            return self._fail(url, 0, "blokeret af robots.txt")
+            return self._fail(url, 0, ROBOTS_BLOCKED)
 
         headers: dict[str, str] = {}
         cached = self.http_cache.get(url) if conditional else None
@@ -212,7 +216,7 @@ class Fetcher:
         for attempt in range(attempts):
             remaining = self._remaining()
             if remaining is not None and remaining <= 0:
-                return self._fail(url, last_status, "tidsbudget opbrugt")
+                return self._fail(url, last_status, BUDGET_EXHAUSTED)
             timeout = self.settings.timeout_seconds
             if remaining is not None:
                 timeout = max(1.0, min(timeout, remaining))

