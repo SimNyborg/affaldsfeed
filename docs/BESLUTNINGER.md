@@ -49,3 +49,19 @@ Siden er statisk og offentlig. Filtrene ligger i URL'en, så et delt link viser 
 ## 2026-10-07: Bred relevansprofil i MVP
 
 Profilen i `config/relevansprofil.md` tager alt om affaldsområdet i Danmark med, som er relevant for kommuner. Udeladt er sager om industri- eller jordaffald uden kommunal vinkel, som Nordic Waste-sagen, samt atomaffald. Profilen skærpes, når stikprøverne viser, hvor der er støj.
+
+## 2026-10-07: Stedfilter og tidslinje
+
+Brugeren ønskede at kunne filtrere på sit område. Indslagene får derfor stedmærker for regioner, kommuner og byer ud fra geografien i `config/`, og "Landsdækkende" dækker indslag uden steder. Brugeren ønskede også en tidslinje over de vigtigste begivenheder. Den skrives af routinen kl. 22 ud fra godkendte indslag og ligger i `data/timeline/`, som routinen nu også må skrive i. Filerne er append-only, så en begivenhed kan rettes eller slettes med en ny linje.
+
+## 2026-10-07: Enklere brugerflade
+
+Brugeren bad om en enklere side. Knappen til mørk tilstand er fjernet, så siden følger enhedens farvetema. Headeren har ingen undertitel, "Om kilderne" står kun i footeren, og linket "Om afsendertyperne" er væk. Menuen har foldbare grupper, og alle lister er afkrydset fra start, så et fjernet flueben skjuler. AI-overblikket er mindre og kan foldes sammen. Grupperne Sprog, Historier og Periode er fjernet: historier er altid samlet, og perioden vælges over listen, hvor antallet af indslag stod. Fravalgt: runde mærker ("piller") i menuerne.
+
+## 2026-10-07: Ingen Claude i sidens tekster
+
+Sidens synlige tekster nævner ikke Claude. Overblik og tidslinje er mærket "AI" og "Kan indeholde fejl", så læserne ved, at teksten er skrevet af en maskine. Kode, docs og routinens instruks nævner stadig Claude, fordi de beskriver, hvordan systemet virker.
+
+## 2026-10-07: Indsamlingen kører efter hvert byg
+
+GitHubs tidsplan for `collect.yml` er ikke kommet i gang. Indsamlingen kører i stedet efter hvert byg af sitet (`workflow_run`), altså hver time i dagtimerne, når routinen har pushet. Det er accepteret, fordi intet alligevel vurderes om natten. Står routinen, står indsamlingen dog også, og så viser feedet advarslen om forældede data.
