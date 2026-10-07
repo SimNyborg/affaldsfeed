@@ -1,14 +1,50 @@
 {
+  "a4medier-dk": {
+    "file": "a4medier-dk.ico",
+    "src": "https://www.a4medier.dk/favicon.ico",
+    "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
+  "aars-dk": {
+    "file": "aars-dk.png",
+    "src": "https://www.aars.dk/sites/default/files/favicon-32x32.png",
+    "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
+  "aau-dk": {
+    "file": "aau-dk.png",
+    "src": "https://www.aau.dk/apple-touch-icon.png",
+    "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
   "affaldplus": {
     "file": "affaldplus.png",
     "src": "https://affaldplus.dk/sites/default/files/favicon.png",
     "checked": "2026-10-07T22:34:55Z",
     "error": null
   },
+  "albertslundnyt-dk": {
+    "file": "albertslundnyt-dk.ico",
+    "src": "https://albertslundnyt.dk/favicon.ico",
+    "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
   "altinget": {
     "file": "altinget.png",
     "src": "https://www.altinget.dk/altinget_icons/favicon-48x48.png",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "altomfuresoe-dk": {
+    "file": "altomfuresoe-dk.png",
+    "src": "https://altomfuresoe.dk/wp-content/uploads/2023/10/Alt-om-Furesoe-favicon.png",
+    "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
+  "amagerliv-dk": {
+    "file": "amagerliv-dk.png",
+    "src": "https://amagerliv.dk/assets/1791279772/kodus/jfm-brands/brands/amagerliv/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-07T22:37:50Z",
     "error": null
   },
   "arc": {
@@ -27,6 +63,24 @@
     "file": "avfall-sverige.png",
     "src": "https://www.avfallsverige.se/favicons/favicon-32x32.png",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "avisen": {
+    "file": "avisen.ico",
+    "src": "https://www.avisen.dk/favicon.ico",
+    "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
+  "berlingske": {
+    "file": "berlingske.png",
+    "src": "https://www.berlingske.dk/brands/berlingske/icon-32x32.png",
+    "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
+  "biogas-danmark": {
+    "file": "biogas-danmark.ico",
+    "src": "https://www.biogas.dk/favicon.ico",
+    "checked": "2026-10-07T22:37:50Z",
     "error": null
   },
   "cirkulaer": {
@@ -59,6 +113,12 @@
     "checked": "2026-10-07T22:34:55Z",
     "error": null
   },
+  "dansk-retursystem": {
+    "file": "dansk-retursystem.webp",
+    "src": "https://danskretursystem.dk/app/uploads/2019/09/cropped-favicon-32x32.png",
+    "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
   "dg-env": {
     "file": "dg-env.ico",
     "src": "https://environment.ec.europa.eu/themes/contrib/oe_theme/images/favicons/ec/favicon.ico",
@@ -77,10 +137,64 @@
     "checked": "2026-10-07T22:34:55Z",
     "error": "HTTP 404"
   },
+  "gate-21": {
+    "file": "gate-21.webp",
+    "src": "https://b3185014.assetcdn.net/2.0/3185014/wp-content/uploads/2023/06/cropped-icon-32x32.png?lossy=2&strip=1&webp=1",
+    "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
+  "genvindingsindustrien": {
+    "file": "genvindingsindustrien.png",
+    "src": "https://www.genvindingsindustrien.dk/media/1271/gi_flavacon_32x32.png",
+    "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
+  "hofor": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-07T22:37:50Z",
+    "error": "blokeret af robots.txt"
+  },
+  "ingenioeren": {
+    "file": "ingenioeren.ico",
+    "src": "https://ing.dk/favicon.ico",
+    "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
   "jv-dk": {
     "file": "jv-dk.png",
     "src": "https://jv.dk/assets/1791279772/kodus/jfm-brands/brands/jv/favicons/apple-icon-57x57.png",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "kefm": {
+    "file": "kefm.webp",
+    "src": "https://www.kefm.dk/Media/638736568521615844/Favicon_KEFM.png?width=32&height=32",
+    "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
+  "klar-forsyning": {
+    "file": "klar-forsyning.png",
+    "src": "https://klarforsyning.dk/sites/klarforsyning.dk/themes/octo/img/icons/favicon-32x32.png",
+    "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
+  "kristeligt-dagblad-dk": {
+    "file": "kristeligt-dagblad-dk.png",
+    "src": "https://www.kristeligt-dagblad.dk/themes/custom/k921/src/favicons/favicon-32x32.png",
+    "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
+  "miljoeministeriet": {
+    "file": "miljoeministeriet.png",
+    "src": "https://mim.dk/media/5hghltsf/favicon.png",
+    "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
+  "miljoestyrelsen": {
+    "file": "miljoestyrelsen.png",
+    "src": "https://mst.dk/media/5hghltsf/favicon.png",
+    "checked": "2026-10-07T22:37:50Z",
     "error": null
   },
   "plastindustrien": {
@@ -93,6 +207,12 @@
     "file": "renosyd.png",
     "src": "https://renosyd.dk/wp-content/uploads/2024/02/cropped-favicon-32x32.png",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "rgo": {
+    "file": "rgo.png",
+    "src": "https://rgo.dk/wp-content/uploads/cropped-rgo1-e1692691340963-32x32.png",
+    "checked": "2026-10-07T22:37:50Z",
     "error": null
   },
   "sonfor": {
