@@ -1,10 +1,15 @@
-# Indsamling hver time (:05 UTC): run → commit af data/ → export → deploy til GitHub Pages.
-# Se docs/KONTRAKTER.md §10. Commits fra GITHUB_TOKEN starter ikke andre workflows.
+# Indsamling: run → commit af data/ → export → deploy til GitHub Pages. Se docs/KONTRAKTER.md §10.
+# Starter hver time (:17 UTC, væk fra spidsbelastningen ved hel time) og efter hver kørsel af "Udgiv",
+# fordi GitHubs tidsplan kan falde ud. Commits fra GITHUB_TOKEN starter ikke andre workflows, så
+# indsamlingens egne commits giver ingen løkke.
 name: Indsamling
 
 on:
   schedule:
-    - cron: "5 * * * *"
+    - cron: "17 * * * *"
+  workflow_run:
+    workflows: ["Udgiv"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
