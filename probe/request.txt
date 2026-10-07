@@ -1,8 +1,4 @@
-# Kilder med nye match-mønstre og EEA via sitemap
-forsyningstilsynet
-concito
-teknologisk-institut
-sdu
-dansk-producentansvar
-danske-kommuner
-eea
+# Sitemaps til kildeudvidelsen
+url https://ctwatch.dk/sitemapindex.xml 8
+url https://energiwatch.dk/robots.txt 3
+url https://energiwatch.dk/sitemapindex.xml 8
