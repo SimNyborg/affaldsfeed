@@ -3,7 +3,7 @@
 when: 2d
 queries:
   - affald OR affaldet OR affaldssortering OR affaldsordning
-  - skrald OR skraldebil OR skraldemand OR renovation OR storskrald
+  - skrald OR skraldebil OR skraldemand OR dagrenovation OR renovationsordning OR storskrald
   - genbrugsplads OR genbrugspladser OR "direkte genbrug" OR genbrugsstation
   - affaldsgebyr OR affaldsgebyrer OR "gebyr for affald"
   - producentansvar OR emballageaffald OR pantsystem OR "Dansk Retursystem"
