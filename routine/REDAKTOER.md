@@ -26,6 +26,8 @@ Den sidste kommando giver tre værdier. Notér dem:
 - `TIME`: timen i dansk tid (06-23).
 - `UGEDAG`: 1 er mandag, 7 er søndag.
 
+Routinens tidsplan står i UTC og dækker derfor en time ekstra omkring skiftet mellem sommer- og vintertid. Er `TIME` 00-05, så stop med det samme. Gør intet, skriv intet og commit intet. Slut med linjen `Uden for vinduet kl. 06-23, intet gjort`.
+
 ### 2. Hent uvurderede indslag
 
 ```bash
