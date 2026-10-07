@@ -13,12 +13,14 @@ Pakken hedder `affaldsfeed`. Alt køres fra repoets rod med `python -m affaldsfe
 |---|---|---|---|
 | `check [--fetch ID] [--explain]` | `config.py` (+ `collect`) | Validerer `sources.yaml` og `config/*.yaml`. Med `--fetch ID` hentes én kilde live som ved dens første kørsel (tom seen-state), og det udskrives, hvad forfiltret beholder og hvorfor (ingen skrivning til `data/`). `--explain` viser også indsamlerens diagnose (sitemap/html, se 5.6). | 0 ok, 1 fejl |
 | `run [--only ID[,ID]] [--dry-run] [--now ISO]` | `pipeline.py` | Indsamling: plan → hent → normalisér → forfilter → klassificér (regler) → dedupe → genberegn stedmærker i vinduet (6.1) → gem kandidater, afviste og state. `--dry-run` skriver intet. `--now` overstyrer "nu" (til test). | 0 (også når enkelte kilder fejler), 1 kun ved systemfejl eller > 50 % kildefejl |
-| `export [--out _site] [--now ISO]` | `export.py` | Bygger `_site/` (kopi af `site/` + `data/feed.json` + `data/status.json`). | 0 / 1 ved skemafejl |
+| `export [--out _site] [--now ISO]` | `export.py` | Bygger `_site/` (kopi af `site/` + `data/feed.json` + `data/status.json` + `data/timeline.json`). | 0 / 1 ved skemafejl |
 | `pending [--max 200] [--hours 72] [--now ISO]` | `judgments.py` | Udskriver JSON (stdout) med kandidater uden vurdering (se 6.1). | 0 |
 | `validate-judgments [--file PATH]` | `judgments.py` | Validerer alle (eller én) vurderingsfiler. Udskriver fejl og advarsler pr. linje (se 6.2). | 0 ok (også med advarsler), 1 fejl |
 | `heartbeat [--now ISO]` | `judgments.py` | Skriver `data/judgments/_heartbeat.json`. | 0 |
 | `overview-input --period dag\|uge\|maaned\|aar [--now ISO]` | `overview.py` | Udskriver JSON-input til Claudes overblik (se 7.2). | 0 |
 | `validate-overview [--period P] [--archive] [--now ISO]` | `overview.py` | Validerer `data/overview/<P>.json` (alle perioder uden `--period`). Med `--archive` kopieres gyldige filer til arkivet. | 0 ok, 1 fejl |
+| `timeline-input [--days N] [--now ISO]` | `timeline.py` | Udskriver JSON-input til Claudes tidslinje (se 7.3). | 0 |
+| `validate-timeline [--file PATH] [--now ISO]` | `timeline.py` | Validerer alle (eller én) tidslinjefiler. Udskriver fejl og advarsler pr. linje (se 7.3). | 0 ok (også med advarsler), 1 fejl |
 | `import FILE.csv [--replace]` | `tools/import_csv.py` via CLI | Brugerens kildeliste → nye poster med `status: kandidat` (fase 4). | 0 / 1 |
 | `find-feed URL` | `tools/find_feed.py` via CLI | Finder RSS/Atom/sitemap for en hjemmeside (fase 4). | 0 / 1 |
 
@@ -50,7 +52,8 @@ affaldsfeed/
   pipeline.py        run-kommandoen (orkestrerer ovenstående)
   judgments.py       pending, validate-judgments, heartbeat, load_judgments(), fallback-logik
   overview.py        overview-input, validate-overview, load_overviews()
-  export.py          export-kommandoen, bygger feed.json + status.json + _site/
+  timeline.py        timeline-input, validate-timeline, load_events(), export_timeline()
+  export.py          export-kommandoen, bygger feed.json + status.json + timeline.json + _site/
 ```
 
 Reglen er: ingen kildespecifik kode. En kilde hentes med en generisk metode styret af `sources.yaml`.
@@ -103,7 +106,7 @@ Søgekilder (`method: search`) har `category: nyhedsmedie` (ignoreres ved visnin
 - `keywords.yaml`: `{strong: {da,en,sv}, names: [..], weak: {da,en}, veto: [..], service: [..]}` (mønster-syntaks som topics).
 - `search.yaml`: `{queries: [str], when: "2d"}` — forespørgsler med `OR`.
 - `medier.yaml`: liste af `{id, name, category, domains: [..], basis, paywall, lang, places?}` — troværdige udgivere, der kun findes via søgning (lokalaviser m.fl.). Id'er må ikke kollidere med `sources.yaml`. `places` som i 3.1 (lokalaviser får ingen).
-- `settings.yaml`: se `models.Settings` (UA, takt, tærskler, vinduer, rutinetider, fallback). Blokken `pages` (`models.PagesSettings`) har grænserne for sitemap og html (5.6) og for `state/seen.json` (6). `places.institution_words` (valgfri; uden blokken bruger koden `["Universitet", "Lufthavn"]`, `settings.yaml` sætter den fulde liste) bruges af stedmærkningen (4.1). Blokken erstatter standardlisten.
+- `settings.yaml`: se `models.Settings` (UA, takt, tærskler, vinduer, rutinetider, fallback). Blokken `pages` (`models.PagesSettings`) har grænserne for sitemap og html (5.6) og for `state/seen.json` (6). `places.institution_words` (valgfri; uden blokken bruger koden `["Universitet", "Lufthavn"]`, `settings.yaml` sætter den fulde liste) bruges af stedmærkningen (4.1). Blokken erstatter standardlisten. Blokken `timeline` (`models.TimelineSettings`) har tidslinjens vinduer og ugeloft (7.3).
 - `geografi.yaml`: genereres af `tools/build_geografi.py` fra Danmarks Statistik og rettes aldrig i hånden. `{kilde, regioner: [{id, kode, navn, kort}], landsdele: {navn: region-id}, kommuner: [{id, kode, navn, kort, region, navne, kun_med_kommune}], byer: [{id, navn, navne, kommune, kommuner, indbyggere}]}` → `models.Geo`. `navn` er det officielle navn ("Region Syddanmark", "Nyborg Kommune", "Københavns Kommune", "Bornholms Regionskommune"), `kort` det korte. `byer.kommune` er byens primære kommune (den, byen filtreres under, §9), `byer.kommuner` alle kommuner, byen ligger i. Mangler filen, er geografien tom: ingen stedmærkning og en advarsel i `check`. `check` fejler ved dublet-id'er, når `kommune.region`, `by.kommune` eller `by.kommuner` ikke findes, når `by.kommune` ikke står i `by.kommuner`, og når en landsdel peger på en ukendt region.
   - **Kun `check` fejler på geografien.** Er filen ugyldig, logger de andre kommandoer (`run`, `pending`, `validate-judgments`, `export`, `heartbeat`, `overview-input` …) fejlen og kører videre med en tom geografi: ingen nye stedmærker, ingen `geo`-blok og intet stedfilter, til filen er rettet (`Config.geo_errors`).
   - Sted-id'er i `sources.yaml` og `medier.yaml` skal findes i geografien. Det tjekkes i `cross_check`: `check` fejler, mens `run` advarer og ignorerer de ukendte id'er. Uden geografi (filen mangler eller er ugyldig) tjekkes id'erne ikke.
@@ -209,6 +212,7 @@ data/
   judgments/kildeforslag-sweep.md   ukendte udgivere fundet ved sweep (Claude)
   overview/{dag,uge,maaned,aar}.json   aktuelt Overview pr. periode. Skrives KUN af Claude-routinen.
   overview/archive/<periode>-ÅÅÅÅ-MM-DD.json   arkiv (validate-overview --archive)
+  timeline/ÅÅÅÅ-MM.jsonl       TimelineEvent eller sletning pr. linje (måned = updated i København), rækkefølge som skrevet. Skrives KUN af Claude-routinen (7.3).
   state/http.json              {url: {etag, last_modified, sitemaps?}}  sitemaps: de under-sitemaps, et indeks pegede på sidst (5.6)
   state/sources.json           {source_id: SourceState}
   state/robots.json            {host: {fetched: ISO, body: str}}  (24 t cache)
@@ -267,6 +271,41 @@ Rutinen kører kl. `settings.routine.minute` i timerne `settings.routine.hours` 
 - `maaned`: `lower_overviews` = arkiverede `uge`-overblik fra vinduet (højst ét pr. dag, nyeste pr. dag) + top 40 historier efter story_size.
 - `aar`: `lower_overviews` = arkiverede `maaned`-overblik (nyeste pr. kalendermåned) + top 40 historier.
 
+### 7.3 Tidslinje (`timeline.py`) — `data/timeline/ÅÅÅÅ-MM.jsonl`
+De vigtigste begivenheder på affaldsområdet, valgt og skrevet af Claude-routinen kl. 22 (og ved første kørsel, når tidslinjen er tom). Koden vælger ikke begivenheder. Hver begivenhed peger på mindst ét godkendt indslag og gemmer et øjebliksbillede af det, så tidslinjen også kan vise begivenheder, der er ældre end feedets vindue.
+
+`TimelineEvent` (models.TimelineEvent), én pr. linje:
+```json
+{"id":"2026-10-07-faelles-model-for-affaldsgebyrer","date":"2026-10-07","level":"milepael","title":"Bred aftale om fælles model for affaldsgebyrer","summary":"Regeringen og et flertal i Folketinget aftaler en fælles model for affaldsgebyrer fra 2028.","topics":["gebyrer","regler"],"places":[],"items":[{"id":"3f9a1c0b7e21","title":"Bred aftale om ny model for affaldsgebyrer i kommunerne","url":"https://…","source":"kefm","source_name":"Klima-, Energi- og Forsyningsministeriet","published":"2026-10-07T07:14:00Z"}],"updated":"2026-10-07T20:25:41Z","by":"claude-routine","deleted":false}
+```
+- `id`: `ÅÅÅÅ-MM-DD-<slug>` (små bogstaver, tal og enkelte bindestreger, højst 80 tegn; datoen skal være gyldig). Ændres aldrig, heller ikke når `date` rettes.
+- `date`: dagen, begivenheden skete eller blev offentliggjort (København). `level`: `milepael` (ændrer rammerne for hele området) eller `vigtig` (stor beslutning, afgørelse, rapport eller hændelse med betydning ud over én kommune).
+- `title` højst 12 ord, `summary` højst 40 ord (ord = mellemrumsadskilte dele). `topics` højst 2 (TopicId). `places` som i 4.1 (højst 8); tom liste = national.
+- `items` (`TimelineRef`: `{id, title, url, source, source_name, published}`): 1-8 forskellige indslag. Felterne kopieres fra `timeline-input`; `published` er indslagets tid (published, ellers first_seen).
+- Filen er kun til tilføjelser. Filer læses i datoorden og linjer i rækkefølge; den seneste linje for et id vinder. En opdatering er en hel ny linje med samme `id`. En sletning er `{"id","deleted":true,"updated","by"}` (models.TimelineDeletion) og fjerner begivenheden. `parse_timeline_line` vælger model efter `deleted`.
+- `load_events()` giver de nuværende begivenheder; ugyldige linjer springes over med en advarsel.
+
+`timeline-input` udskriver `{"now","first_fill","window":{start,end},"rules","weeks","stories","events"}`:
+- `stories`: godkendte indslag (som i 7.2) med tid i vinduet, samlet i historier og sorteret efter kategori-rang, story_size (faldende) og tid (nyeste først). Hver: `{id,title,url,source,source_name,published,teaser_or_summary,category,genre,topics,places,story_size,also:[TimelineRef…],in_events:[event-id…]}`. `places` er foreningen af historiens steder; `in_events` er nuværende begivenheder med et af historiens indslag.
+- Vinduet er `timeline.input_days` (3) dage, eller `timeline.first_fill_days` (60), når tidslinjen er tom (`first_fill: true`). `--days` overstyrer.
+- `events`: nuværende begivenheder med `date` inden for `timeline.events_days` (60) dage, uden `by` og `deleted`, nyeste først.
+- `rules`: `{title_max_words, summary_max_words, topics_max, items_min, items_max, max_per_week, levels, include, exclude}`. `weeks`: `[{week, monday, events}]` for ugerne i vinduet (antal nuværende begivenheder med `date` i ugen).
+
+`validate-timeline` (exit 1 ved fejl, fejl som `fil:linje: besked`, advarsler som `ADVARSEL fil:linje: …`):
+- Alle linjer: skema (ugyldig JSON, ukendte felter), filnavn `ÅÅÅÅ-MM.jsonl`, `updated` i filens måned (København) og ikke i fremtiden (10 minutters slæk), `date` ikke efter i dag, ordgrænserne. En sletning skal ramme en begivenhed, der findes på det tidspunkt.
+- Linjer med `updated` inden for `timeline.recent_hours` (48 t): indslag, der ikke stod i begivenhedens forrige version, skal være godkendte indslag, og `url`, `title`, `source`, `source_name` og `published` skal passe præcist. Uger med en ny linje må højst have `timeline.max_per_week` (3) nuværende begivenheder (efter `date`, mandag-søndag).
+- Ukendte, velformede sted-id'er er advarsler som i 6.2.
+- Med `--file` valideres kun den fil, men alle filer læses, så tidligere versioner og sletninger kendes.
+
+`export` skriver `_site/data/timeline.json` (models.TimelineFeed), valideret før skrivning:
+```json
+{"version":1,"generated":"ISO","topics":[{"id","name","short","definition"}],"places":[{"id":"k:nyborg","navn":"Nyborg Kommune","kort":"Nyborg"}],"events":[{…TimelineEvent uden by og deleted…,"story":"<id>|null"}]}
+```
+- `events`: alle nuværende begivenheder (ikke kun 60 dage), nyeste `date` først, derefter `id`. `items` ældste først (uden tid sidst). Steder, der ikke står i geografien, udelades.
+- `story`: id på historien i `feed.json`, der indeholder et af begivenhedens indslag (første i `items`-rækkefølge), ellers `null`. Siden linker til `index.html?story=<story>`.
+- `places`: navne på de steder, begivenhederne bruger (`navn` og `kort` fra geografien; for byer er begge byens navn). `topics`: alle temaer som i `feed.json`.
+- Mangler `data/timeline/`, er `events` tom. `examples/timeline.sample.json` følger samme kontrakt (`tests/test_timeline.py`), og export kopierer den til `_site/data/timeline.sample.json`.
+
 ## 8. `feed.json` (export → `_site/data/feed.json`)
 ```json
 {
@@ -316,6 +355,6 @@ Historier (`stories.py`): niveau 1 = samme id; niveau 2 = samme `normalize_title
 
 ## 10. Workflows
 - `collect.yml`: cron `17 * * * *` + `workflow_run` efter hver kørsel af `publish.yml` ("Udgiv") + `workflow_dispatch`. GitHubs tidsplan kan falde ud, så `workflow_run` sikrer en kørsel, hver gang routinen har pushet vurderinger. `run` → `export` → commit `data/` hvis ændret (`git pull --rebase` før push) → deploy Pages. `concurrency: pages`. `run` starter ikke flere feed-, sitemap- og html-kilder, når `fetch.run_budget_seconds` (900 s) er brugt; de venter til næste kørsel og kommer først i køen, fordi kilderne køres med den længst ventende først. Søgekilder kører altid til sidst. Jobbets `timeout-minutes` er 30.
-- `publish.yml`: `push` til `main` på `data/judgments/**`, `data/overview/**`, `site/**`, `config/**`, `sources.yaml`, `examples/**` + `workflow_dispatch` → `export` → deploy Pages. `concurrency: pages`.
+- `publish.yml`: `push` til `main` på `data/judgments/**`, `data/overview/**`, `data/timeline/**`, `site/**`, `config/**`, `sources.yaml`, `examples/**` + `workflow_dispatch` → `export` → deploy Pages. `concurrency: pages`.
 - `ci.yml`: push/PR → `ruff check`, `pytest`, `python -m affaldsfeed check`. Ingen netværkskald i tests.
 - `geografi.yml` ("Byg geografi"): `push` til `main` på `tools/build_geografi.py` og `config/geografi_regler.yaml` + `workflow_dispatch` → `tools/build_geografi.py --report` → `python -m affaldsfeed check`. Rapporten (`probe/geografi.md`, med check-udskriften) committes altid; `config/geografi.yaml` kun, når check er OK, ellers beholdes den gamle fil, og jobbet fejler. Bot-commits starter ikke CI, så check køres her.
