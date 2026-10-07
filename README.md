@@ -1,14 +1,14 @@
 # Affaldsfeed
 
-Affaldsfeed samler nyheder om affaldsområdet i Danmark på én side. Indslagene kommer fra nyhedsmedier, fagmedier, myndigheder og Folketinget, kommuner og affaldsselskaber, organisationer, tænketanke, forskning og EU og Norden. Det nyeste står øverst, og hver titel linker til den oprindelige artikel.
+Affaldsfeed samler nyheder om affaldsområdet i Danmark på én side. Indslagene kommer fra nyhedsmedier, fagmedier, myndigheder, kommuner og affaldsselskaber, organisationer, tænketanke, forskning og EU og Norden. Det nyeste står øverst, og hver titel linker til den oprindelige artikel.
 
-Feedet er skrevet til folk, der arbejder med affald i kommunerne og de kommunale affaldsselskaber. Man kan filtrere på afsender, tema og kilde. Øverst ligger et kort AI-overblik med fanerne I dag, Ugen, Måneden og Året. Claude skriver det ud fra de indslag, der er godkendt til feedet, og hvert punkt linker til de artikler, det bygger på.
+Feedet er skrevet til folk, der arbejder med affald i kommunerne og de kommunale affaldsselskaber. Man kan filtrere på sted, afsender, tema, kilde og genre og vælge, om listen går 7, 30 eller 60 dage tilbage. Øverst ligger et kort AI-overblik med fanerne I dag, Ugen, Måneden og Året. Claude skriver det ud fra de indslag, der er godkendt til feedet, og hvert punkt linker til de artikler, det bygger på. Fanen Tidslinje samler de vigtigste begivenheder på området.
 
 Live: https://simnyborg.github.io/affaldsfeed/
 
 ## Sådan virker det
 
-1. GitHub Actions kører indsamlingen hver time, fem minutter over hel. Den henter fra kilderne i `sources.yaml`, sorterer det åbenlyst irrelevante fra med et løst forfilter og foreslår tema og genre ud fra faste regler. Kandidaterne gemmes i `data/candidates/`, og sitet bygges og lægges på GitHub Pages.
+1. GitHub Actions kører indsamlingen hver time i dagtimerne, lige efter at sitet er bygget. Den henter fra kilderne i `sources.yaml`, sorterer det åbenlyst irrelevante fra med et løst forfilter og foreslår tema og genre ud fra faste regler. Kandidaterne gemmes i `data/candidates/`, og sitet bygges og lægges på GitHub Pages.
 2. En Claude-routine kører 25 minutter over hel fra kl. 06 til 23 dansk tid på projektejerens Claude-abonnement. Den læser instruksen i `routine/REDAKTOER.md`, vurderer de nye kandidater mod `config/relevansprofil.md` og skriver vurderingerne i `data/judgments/`. Derefter opdaterer den AI-overblikket i `data/overview/` og pusher.
 3. Pushet starter et nyt byg, og GitHub Pages viser de godkendte indslag og det nye overblik.
 

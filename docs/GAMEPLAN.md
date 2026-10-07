@@ -6,14 +6,16 @@ Affaldsfeed bygges i seks faser. Fase 0 og 1 laves i den første lokale session 
 
 | Fase | Indhold | Status |
 |---|---|---|
-| 0 | Fundament: config, kilderegister, `check`, CI og docs | I gang, færdig ved første push |
-| 1 | Første live version: pipeline for RSS og søgning, site, workflows og Claude-routinen | I gang, færdig ved første push |
-| 2 | Kilder uden RSS, Folketingets ODA og Claudes sweep | Næste (cloud) |
-| 3 | Kvalitet: "Hvorfor med?", bedre historier, kompakt visning | Venter (cloud) |
+| 0 | Fundament: config, kilderegister, `check`, CI og docs | Færdig |
+| 1 | Første live version: pipeline for RSS og søgning, site, workflows og Claude-routinen | Færdig, live 7. oktober 2026 |
+| 2 | Kilder uden RSS, Folketingets ODA og Claudes sweep | I gang: sitemap og html virker, og 71 kilder er aktive. ODA mangler, og sweepet er ikke efterprøvet |
+| 3 | Kvalitet: "Hvorfor med?", bedre historier, kompakt visning | I gang: kompakt visning er færdig |
 | 4 | Brugerens kildeliste | Venter på listen |
 | 5 | Udvidelser | Kun ved konkret savn |
 
 Opdatér tabellen, når en fase er færdig.
+
+Ud over planen er der bygget et stedfilter (regioner, kommuner og byer ud fra `geo`), fanen Tidslinje med de vigtigste begivenheder (routinens trin 7 kl. 22) og en enklere brugerflade efter brugerens ønsker: et AI-overblik, der kan foldes sammen, foldbare grupper i menuen med alt afkrydset fra start og periodevalget over listen.
 
 ## Fase 0: Fundament
 
@@ -102,20 +104,22 @@ Færdig, når alle kilder på listen er aktive eller fravalgt med en begrundelse
 
 ## Næste skridt for cloud-sessionen
 
-Start med at læse `CLAUDE.md`, `docs/KONTRAKTER.md` og denne fil. Tjek så, at driften kører: `gh run list` skal vise grønne `collect.yml`-kørsler, og `data/judgments/_heartbeat.json` skal være fra seneste kørsel i dagtimerne.
+Start med at læse `CLAUDE.md`, `docs/KONTRAKTER.md` og denne fil. Tjek så, at driften kører: `gh run list` skal vise grønne kørsler af "Udgiv" og "Indsamling", og `data/judgments/_heartbeat.json` skal være fra seneste kørsel i dagtimerne. GitHubs tidsplan for `collect.yml` var ikke kommet i gang pr. 7. oktober 2026. Indsamlingen kører i stedet efter hvert byg (`workflow_run`), altså når routinen har pushet. Står routinen, står indsamlingen derfor også.
 
-Fase 2:
-1. Byg `collect/pages.py`. Sitemaps skal kunne være indeks, gzip og have CDATA i `loc`. Html-lister bruger `match` og `select`. Sideudtrækket tager titel, dato og teaser med lxml. Sitemappets lastmod bruges kun til at opdage nye sider, aldrig som dato. Registrér metoderne i `COLLECTORS` og skriv tests mod fixtures.
-2. Byg `collect/oda.py`. Søg på affaldsordene i `config/keywords.yaml`, giv indslagene genren `folketing` og brug `bundle: day`.
-3. Slå de planlagte kilder til én ad gangen. For hver kilde: kør `check --fetch <id> --explain`, justér `match`, `select` og `filter`, sæt `status: aktiv` med `basis` og `checked`, og commit. Følg kildens sundhed i de næste kørsler, før den næste slås til.
-4. Sæt sweepet i drift. Kl. 06.25 og 14.25 søger routinen med WebSearch efter vigtige danske affaldsnyheder fra de sidste 12-24 timer, som ikke er blandt kandidaterne. Kontrollér, at fund skrives som vurderinger med `new_item`, og at ukendte udgivere havner i `data/judgments/kildeforslag-sweep.md`.
+Brugeren skal rette routinens prompt på claude.ai, så den siger "Du må kun skrive i data/judgments/, data/overview/ og data/timeline/." Indtil da fyldes tidslinjen ikke. Routinen er oprettet via API, så en session kan ikke selv rette den.
+
+Fase 2, resten:
+1. Lokale medier i `config/medier.yaml`: ugeaviserne fra Ugeavispuljen, medlemmerne af Danske Lokalaviser og andre lokale nyhedssider med redaktionelt ansvar. Domæner under et fælles domæne (fx `sn.dk`, `ugeavisen.dk`, `dinavis.dk`) står én gang.
+2. Følg de 19 sitemap- og 10 html-kilder i 7 dage. Fejler en, så ret `match`, `select` eller `filter`, eller sæt den på pause med en note.
+3. Byg `collect/oda.py`. Søg på affaldsordene i `config/keywords.yaml`, giv indslagene genren `folketing` og brug `bundle: day`.
+4. Efterprøv sweepet kl. 06.25 og 14.25. Fund skal skrives som vurderinger med `new_item`, og ukendte udgivere skal havne i `data/judgments/kildeforslag-sweep.md`.
 5. Gennemgå `data/state/kildeforslag.md` hver uge. Troværdige udgivere flyttes til `config/medier.yaml` eller `sources.yaml`.
 
 Fase 3:
 1. "Hvorfor med?" bygger på feltet `why`, som allerede står i `feed.json`.
-2. "Rapportér" og issue-skabelonerne `fejl-i-feed` og `ny-kilde`.
+2. "Rapportér" med issue-skabelonerne `fejl-i-feed` og `ny-kilde`, som allerede findes.
 3. Historier på niveau 3 med rapidfuzz. Tærsklen skal være høj, fordi en forkert sammenlægning skjuler en nyhed.
-4. Via Ritzau med `aliases`, dagsbundter for ODA, høringsfrist og kompakt visning.
+4. Via Ritzau med `aliases`, dagsbundter for ODA og høringsfrist.
 5. Flere cases i `tests/cases.yaml`, især de indslag, stikprøverne har fundet forkerte.
 
 Fase 4, når brugerens liste kommer: følg trinnene under fase 4 ovenfor og i `docs/KILDER.md`.

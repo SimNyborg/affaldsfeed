@@ -53,8 +53,17 @@ python -m affaldsfeed check
 
 ## Fase-status
 
-- Fase 0 (fundament) og fase 1 (første live version): færdige ved første push.
-- Næste: fase 2 (sitemap, html og ODA, planlagte kilder, sweep i drift), fase 3 (kvalitet) og fase 4 (brugerens kildeliste). Se "Næste skridt for cloud-sessionen" i `docs/GAMEPLAN.md`.
+- Fase 0 og 1 er færdige, og feedet har været live siden 7. oktober 2026.
+- Fase 2 er i gang: sitemap og html virker, og 71 kilder er aktive. Lokale medier i `config/medier.yaml`, ODA og efterprøvning af sweepet mangler.
+- Fase 3 er i gang (kompakt visning er færdig). Fase 4 venter på brugerens kildeliste.
+- Se "Næste skridt for cloud-sessionen" i `docs/GAMEPLAN.md`.
+
+## Arbejdsgang i cloud-sessionen
+
+- Cloud-miljøet må ikke selv hente nyhedssider. Afprøv kilder fra GitHub Actions med `probe.yml`: skriv kilde-id'er eller `url <URL> [kB]` i `probe/request.txt` og push, så kommer svaret i `probe/result.md`.
+- `gh pr create` fejler, fordi GraphQL er spærret. Opret pull requests med REST: `gh api repos/SimNyborg/affaldsfeed/pulls -f title=... -f head=<gren> -f base=main -F draft=true -F body=@fil.md`. Flet med `gh api -X PUT repos/SimNyborg/affaldsfeed/pulls/<nr>/merge -f merge_method=squash`, når CI er grøn.
+- github.io kan ikke hentes herfra. Tjek udgivelsen med `gh api "repos/SimNyborg/affaldsfeed/deployments?environment=github-pages"` og status på den nyeste deployment.
+- Frontenden testes lokalt med Playwright og den forudinstallerede Chromium mod `python -m http.server` og `?demo=1`: flere bredder (320, 375, 1280), tastatur og axe.
 
 ## Claude-routinen
 
