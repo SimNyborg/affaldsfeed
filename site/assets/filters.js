@@ -867,7 +867,7 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
     const name = c.short || c.name;
     return addRow('afsender', c.id, { name, title: c.name !== name ? c.name : null, iconName: c.icon, style: catStyle(c) });
   });
-  addGroup(foldGroup('Afsender', tools('afsender'), fset('Afsender', catRows)), statusOf('afsender'), (s) => s.afsender.length > 0);
+  addGroup(foldGroup('Afsender', fset('Afsender', catRows)), statusOf('afsender'), (s) => s.afsender.length > 0);
 
   // Tema: `short` hvis feedet har det; title, når navnet afviger eller kan blive afkortet
   const topicRow = (id) => {
