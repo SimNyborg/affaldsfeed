@@ -317,6 +317,12 @@ export function setAllShown(s, g, on) {
   s[g] = on ? [] : (UNIVERSE[g] || []).map((k) => `-${k}`);
 }
 
+/** Er alt i gruppen valgt? Så hedder gruppens knap "Fravælg alle", ellers "Vælg alle". */
+export function allShown(s, g) {
+  const set = shownSet(s, g);
+  return !set || (UNIVERSE[g] || []).every((k) => set.has(k));
+}
+
 /**
  * En kommune eller by fra Steds søgefelt viser kun de valgte steder: det første sted erstatter
  * regionerne og "Landsdækkende", de næste lægges til, og et valgt sted fravælges. Regionerne og
@@ -812,9 +818,13 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
     rows.push({ g, key, row });
     return row.label;
   };
-  const tools = (g) => el('p', { class: 'fg-tools' },
-    el('button', { type: 'button', class: 'btn-text', onclick: () => onChange((s) => setAllShown(s, g, true)) }, 'Vælg alle'),
-    el('button', { type: 'button', class: 'btn-text', onclick: () => onChange((s) => setAllShown(s, g, false)) }, 'Fravælg alle'));
+  // Én knap pr. gruppe: "Fravælg alle", når alt er valgt, ellers "Vælg alle". update() sætter teksten.
+  const toggles = []; // { g, btn }
+  const tools = (g) => {
+    const btn = el('button', { type: 'button', class: 'btn-text', onclick: () => onChange((s) => setAllShown(s, g, !allShown(s, g))) }, 'Fravælg alle');
+    toggles.push({ g, btn });
+    return el('p', { class: 'fg-tools' }, btn);
+  };
   /** "Alle", "Ingen", op til to navne eller "5 af 8" ("3 steder", når kommuner eller byer er valgt). */
   const statusOf = (g) => (s) => {
     const set = shownSet(s, g);
@@ -867,7 +877,7 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
     const name = c.short || c.name;
     return addRow('afsender', c.id, { name, title: c.name !== name ? c.name : null, iconName: c.icon, style: catStyle(c) });
   });
-  addGroup(foldGroup('Afsender', fset('Afsender', catRows)), statusOf('afsender'), (s) => s.afsender.length > 0);
+  addGroup(foldGroup('Afsender', tools('afsender'), fset('Afsender', catRows)), statusOf('afsender'), (s) => s.afsender.length > 0);
 
   // Tema: `short` hvis feedet har det; title, når navnet afviger eller kan blive afkortet
   const topicRow = (id) => {
@@ -943,6 +953,7 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
     counts = c;
     for (const { g, key, row } of rows) row.set(isShown(s, g, key), c[g]?.get(key) || 0);
     for (const x of groups) x.fg.status.textContent = x.text(s);
+    for (const { g, btn } of toggles) btn.textContent = allShown(s, g) ? 'Fravælg alle' : 'Vælg alle';
     resetBtn.hidden = activeCount(s) === 0;
     if (sted) {
       sted.picked.sync(s, c.sted, !s.sted.length);
