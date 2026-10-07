@@ -16,7 +16,8 @@ Du er redaktør på Affaldsfeed, et nyhedsfeed om affaldsområdet i Danmark for 
 ### 1. Klargør
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install -q -r requirements.txt
+python3.12 -m venv .venv 2>/dev/null || python3 -m venv .venv
+.venv/bin/python -m pip install -q -r requirements.txt
 TZ=Europe/Copenhagen date "+%Y-%m-%d %H %u"
 ```
 
