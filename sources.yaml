@@ -65,7 +65,7 @@
   filter: strict
   paywall: delvis
   basis: redaktionelt
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Feedet viser kun de 10 nyeste artikler på tværs af sektioner, så det hentes hver time.
 
@@ -158,7 +158,7 @@
   filter: strict
   paywall: ja
   basis: redaktionelt
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: >-
     robots.txt fravælger AI-agenter, og ai.txt har TDM-forbehold. Brugeren besluttede 2026-10-07, at
@@ -174,7 +174,7 @@
   filter: strict
   paywall: ja
   basis: redaktionelt
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: >-
     robots.txt fravælger AI-agenter. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser
@@ -315,6 +315,33 @@
   checked: 2026-10-07
   note: Intet kendt åbent feed. Højt lokalt affaldsvolumen. Fanges via nyhedssøgning (config/medier.yaml).
 
+# Tilføjet 2026-10-07 (kildeudvidelse)
+- id: danwatch
+  name: Danwatch
+  category: nyhedsmedie
+  homepage: https://danwatch.dk
+  feeds: https://danwatch.dk/feed/
+  filter: strict
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-07
+  note: Undersøgende medie. Skriver om affald og plast i globale forsyningskæder, så filtret er strengt.
+
+- id: nordschleswiger
+  name: Der Nordschleswiger
+  category: nyhedsmedie
+  homepage: https://www.nordschleswiger.dk
+  method: sitemap
+  feeds: https://www.nordschleswiger.dk/?lab_viewport=newssitemap
+  filter: strict
+  ai: false
+  basis: redaktionelt
+  status: kandidat
+  checked: 2026-10-07
+  note: >-
+    Det tyske mindretals avis i Sønderjylland. Har et nyhedssitemap, men skriver på tysk, som feedet endnu
+    ikke understøtter (lang: da, en, sv). robots.txt spærrer AI-agenter, så kilden skal have ai: false.
+
 # ── Fagmedier ─────────────────────────────────────────────────
 - id: altinget
   name: Altinget
@@ -362,7 +389,7 @@
   filter: normal
   topics: [byg_farligt]
   basis: redaktionelt
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: WordPress-søgefeed på "affald" (byggeaffald, selektiv nedrivning).
 
@@ -388,7 +415,7 @@
   feeds: https://www.tekniskfokus.dk/feed/
   filter: strict
   basis: redaktionelt
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Bredt teknisk fagblad, så filtret er strengt.
 
@@ -402,7 +429,7 @@
   filter: strict
   paywall: delvis
   basis: redaktionelt
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: >-
     robots.txt fravælger AI-agenter. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser
@@ -451,9 +478,9 @@
   filter: normal
   topics: [byg_farligt]
   basis: redaktionelt
-  status: planlagt
+  status: kandidat
   checked: 2026-10-07
-  note: Ingen RSS, og sitemappet mangler lastmod. Nye artikler findes via emnelisterne om nedrivning og miljøgifte.
+  note: 'Emnelisterne om nedrivning og miljøgifte giver HTTP 404 (afprøvet 2026-10-07). Find nye listesider, før kilden slås til.'
 
 - id: wastetech
   name: WasteTech (Ingeniøren PRO)
@@ -584,7 +611,7 @@
   feeds: https://klimaraadet.dk/da/rss.xml
   filter: normal
   basis: offentlig
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: RSS har kun få indslag (statusrapporter). Analyser og høringssvar fra /da/analyse/ tilføjes som html i fase 2.
 
@@ -625,7 +652,7 @@
   match: '/nyheder/'
   filter: normal
   basis: offentlig
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Ingen RSS. Sitemap med lastmod.
 
@@ -653,7 +680,7 @@
   basis: offentlig
   status: planlagt
   checked: 2026-10-07
-  note: ens.dk/rss.xml er tom, og sitemappet mangler lastmod. HTML-listen virker. CCS og forbrændingskapacitet.
+  note: 'ens.dk/rss.xml er tom, og sitemappet mangler lastmod. HTML-listen virker, men match-mønstret for nyheder mangler (afprøvet 2026-10-07). CCS og forbrændingskapacitet.'
 
 - id: kfst
   name: Konkurrence- og Forbrugerstyrelsen
@@ -664,7 +691,7 @@
   match: '/(pressemeddelelser|nyheder/notifikationer)/'
   filter: strict
   basis: offentlig
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Fusioner i affaldsbranchen. robots.txt har Crawl-delay 10.
 
@@ -688,8 +715,9 @@
   method: sitemap
   feeds: https://regeringen.dk/sitemap.xml
   filter: strict
+  match: '/aktuelt/nyheder/20\d\d/'
   basis: offentlig
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Udspil og aftaletekster.
 
@@ -700,8 +728,9 @@
   method: sitemap
   feeds: https://www.rigsrevisionen.dk/sitemap.xml
   filter: strict
+  match: '/revisionssager-arkiv/20\d\d/[a-z]+/beretning-om-'
   basis: offentlig
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Sjældne, men tunge beretninger.
 
@@ -801,7 +830,7 @@
   feeds: https://www.refa.dk/feed/
   filter: none
   basis: offentlig
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Mest servicebeskeder, som veto- og serviceordene sorterer fra.
 
@@ -814,7 +843,7 @@
   feeds: https://sonfor.dk/feed/
   filter: normal
   basis: offentlig
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Multiforsyning (vand, spildevand og affald), så der filtreres på affaldsord.
 
@@ -827,7 +856,7 @@
   feeds: https://www.hofor.dk/feed/
   filter: strict
   basis: offentlig
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Mest vand og varme, så filtret er strengt. Feedet har relative links (/nyhed/...), som skal løses mod https://www.hofor.dk/.
 
@@ -867,9 +896,9 @@
   method: sitemap
   feeds: https://www.odenserenovation.dk/sitemap.xml
   match: '/om-odense-renovation/nyheder/'
-  filter: none
+  filter: normal
   basis: offentlig
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Ingen RSS. Sitemap med lastmod.
 
@@ -880,9 +909,9 @@
   method: sitemap
   feeds: https://nordvaerk.dk/sitemap.xml
   match: 'nyhed'
-  filter: none
+  filter: normal
   basis: offentlig
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Tidligere Reno-Nord og AVV. Servicesider skal sorteres fra.
 
@@ -895,9 +924,9 @@
   match: '/nyheder/'
   filter: none
   basis: offentlig
-  status: planlagt
+  status: kandidat
   checked: 2026-10-07
-  note: Ingen RSS eller sitemap. Tagget affald giver rene affaldsnyheder.
+  note: 'Sideudtrækket giver titlen "Nyheder fra Fors" for alle artikler (afprøvet 2026-10-07). Kræver en bedre kilde til titlen, før kilden slås til.'
 
 - id: klar-forsyning
   name: KLAR Forsyning
@@ -908,7 +937,7 @@
   match: '/nyheder/'
   filter: normal
   basis: offentlig
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Multiforsyning (vand og affald).
 
@@ -1043,7 +1072,7 @@
   feeds: https://plast.dk/feed/
   filter: normal
   basis: organisation
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Brancheforening. Blandet branchestof, så der filtreres.
 
@@ -1058,7 +1087,7 @@
   paywall: delvis
   every: 3
   basis: organisation
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: >-
     Feedet indeholder hele arkivet (ca. 3.400 indslag, 3,4 MB) uden ETag og Last-Modified, så det hentes
@@ -1074,7 +1103,7 @@
   filter: normal
   topics: [bioaffald]
   basis: organisation
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Brancheforening. Relevant for bioaffald og madaffald.
 
@@ -1087,7 +1116,7 @@
   feeds: https://gate21.dk/feed/
   filter: normal
   basis: organisation
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Partnerskab mellem kommuner, regioner, virksomheder og forskning.
 
@@ -1100,7 +1129,7 @@
   feeds: https://www.regioner.dk/services/nyheder/?rss=1
   filter: strict
   basis: organisation
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Mest sundhed. Affald kun via jordforurening og råstoffer, så filtret er strengt.
 
@@ -1171,7 +1200,7 @@
   filter: none
   topics: [producentansvar]
   basis: organisation
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Producentansvarsorganisation for emballage. Dato fra meta publication-date.
 
@@ -1185,7 +1214,7 @@
   filter: none
   owner: Dansk Erhverv
   basis: organisation
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Den private genvindingsbranche under Dansk Erhverv. Ingen RSS eller sitemap.
 
@@ -1199,9 +1228,9 @@
   filter: none
   owner: Dansk Industri
   basis: organisation
-  status: planlagt
+  status: kandidat
   checked: 2026-10-07
-  note: Lav aktivitet (seneste nyhed juni 2025). Links står i et format, der kræver en præcis selektor.
+  note: 'Ingen links matcher /ari/nyheder/ på listesiden (afprøvet 2026-10-07). Lav aktivitet; seneste nyhed juni 2025.'
 
 - id: dansk-erhverv
   name: Dansk Erhverv
@@ -1212,7 +1241,7 @@
   match: '/presse-og-nyheder/nyheder/20'
   filter: strict
   basis: organisation
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Bredt erhvervsstof, så filtret er strengt.
 
@@ -1256,6 +1285,31 @@
     Kanal for pressemeddelelser, ikke en afsender. Fase 3: indslag tages kun med, når udgiveren matcher
     aliases på en kilde i registret, og krediteres den kilde.
 
+# Tilføjet 2026-10-07 (kildeudvidelse)
+- id: landbrug-og-foedevarer
+  name: Landbrug & Fødevarer
+  category: organisation
+  homepage: https://lf.dk
+  method: sitemap
+  feeds: https://lf.dk/sitemap
+  filter: strict
+  basis: organisation
+  status: kandidat
+  checked: 2026-10-07
+  note: Ingen RSS. Sitemap med lastmod (ca. 4.100 URL'er); match-mønster for nyheder mangler. Madspild og bioaffald.
+
+- id: dansk-industri
+  name: Dansk Industri
+  category: organisation
+  homepage: https://www.danskindustri.dk
+  method: sitemap
+  feeds: https://www.danskindustri.dk/sitemap.xml
+  filter: strict
+  basis: organisation
+  status: kandidat
+  checked: 2026-10-07
+  note: Ingen RSS. Sitemap med ca. 27.600 URL'er; match-mønster for nyheder mangler. Affaldsbranchen dækkes af ARI (di-ari).
+
 # ── Tænketank og NGO ──────────────────────────────────────────
 - id: rgo
   name: Rådet for Grøn Omstilling
@@ -1278,7 +1332,7 @@
   feeds: https://kraka.dk/feed/
   filter: strict
   basis: organisation
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Økonomisk tænketank. Skriver sjældent om affald, så filtret er strengt.
 
@@ -1370,6 +1424,62 @@
   checked: 2026-10-07
   note: Feedet er tomt (0 indslag).
 
+# Tilføjet 2026-10-07 (kildeudvidelse)
+- id: taenk
+  name: Forbrugerrådet Tænk
+  category: taenketank
+  homepage: https://taenk.dk
+  feeds: https://taenk.dk/rss.xml
+  filter: strict
+  basis: organisation
+  status: aktiv
+  checked: 2026-10-07
+  note: Forbrugerorganisation. Plast, emballage og kemi i produkter; mange andre emner, så filtret er strengt.
+
+- id: noah
+  name: NOAH
+  category: taenketank
+  homepage: https://noah.dk
+  feeds: https://noah.dk/rss.xml
+  filter: normal
+  basis: organisation
+  status: aktiv
+  checked: 2026-10-07
+  note: Miljøorganisation (Friends of the Earth Danmark). Skriver jævnligt om affald, plast og ressourcer.
+
+- id: greenpeace-danmark
+  name: Greenpeace Danmark
+  category: taenketank
+  homepage: https://www.greenpeace.org/denmark/
+  feeds: https://www.greenpeace.org/denmark/feed/
+  filter: strict
+  basis: organisation
+  status: aktiv
+  checked: 2026-10-07
+  note: Miljøorganisation. Affald og plast er et af flere temaer, så filtret er strengt.
+
+- id: wwf-danmark
+  name: WWF Verdensnaturfonden
+  category: taenketank
+  homepage: https://wwf.dk
+  method: sitemap
+  feeds: https://wwf.dk/sitemap_index.xml
+  filter: strict
+  basis: organisation
+  status: kandidat
+  checked: 2026-10-07
+  note: Ingen RSS. Sitemapindeks med lastmod; match-mønster for nyheder mangler.
+
+- id: hold-danmark-rent
+  name: Hold Danmark Rent
+  category: taenketank
+  homepage: https://holddanmarkrent.dk
+  feeds: https://holddanmarkrent.dk
+  basis: organisation
+  status: kandidat
+  checked: 2026-10-07
+  note: Ingen RSS og intet sitemap fundet (2026-10-07). Kampagner om affald i naturen.
+
 # ── Forskning og universitet ──────────────────────────────────
 - id: ku
   name: Københavns Universitet
@@ -1433,7 +1543,7 @@
   match: '/nyheder/'
   filter: strict
   basis: forskning
-  status: planlagt
+  status: aktiv
   checked: 2026-10-07
   note: Ingen RSS. Sitemap med lastmod.
 
@@ -1516,6 +1626,44 @@
   status: kandidat
   checked: 2026-10-07
   note: Søge-API over danske forskningspublikationer. Kræver en API-adapter, og testkaldet gav 0 hits.
+
+# Tilføjet 2026-10-07 (kildeudvidelse). Universiteterne findes også via nyhedssøgning (config/medier.yaml).
+- id: aau
+  name: Aalborg Universitet
+  category: forskning
+  homepage: https://www.aau.dk
+  method: sitemap
+  feeds: https://www.aau.dk/sitemap.xml
+  filter: strict
+  basis: forskning
+  status: kandidat
+  checked: 2026-10-07
+  note: >-
+    Ingen RSS. Sitemappet har lastmod, men ingen nyhedsartikler; nyhederne udsendes via Ritzau
+    (via.ritzau.dk/nyhedsrum/aalborg-universitet).
+
+- id: cbs
+  name: CBS (Copenhagen Business School)
+  category: forskning
+  homepage: https://www.cbs.dk
+  method: sitemap
+  feeds: https://www.cbs.dk/sitemap.xml
+  filter: strict
+  basis: forskning
+  status: kandidat
+  checked: 2026-10-07
+  note: cbs.dk/rss.xml er tomt. Sitemappet har lastmod, men match-mønster for nyheder mangler.
+
+- id: itu
+  name: IT-Universitetet
+  category: forskning
+  homepage: https://itu.dk
+  feeds: https://itu.dk
+  filter: strict
+  basis: forskning
+  status: kandidat
+  checked: 2026-10-07
+  note: Intet feed eller sitemap, og forsiden har ingen nyhedslinks (afprøvet 2026-10-07).
 
 # ── EU og Norden ──────────────────────────────────────────────
 - id: dg-env

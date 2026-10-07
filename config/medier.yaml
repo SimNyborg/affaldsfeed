@@ -9,7 +9,8 @@
 #   id'erne aldrig med sources.yaml, hvor samme medie kan stå som kandidat (fx bt og bt-dk).
 # - Et domæne må ikke stå her, hvis det er homepage eller domains på en aktiv kilde i sources.yaml.
 #   Når en kandidat eller planlagt kilde aktiveres, fjernes dens domæner herfra.
-# - Alle har redaktionelt ansvar (basis: redaktionelt). Tjekket 2026-10-07.
+# - Medierne har redaktionelt ansvar (basis: redaktionelt). Universiteter uden et feed, Affaldsfeed kan
+#   hente, står her med basis: forskning, så deres nyheder fra søgningen krediteres dem. Tjekket 2026-10-07.
 
 # ── Landsdækkende nyhedsmedier ────────────────────────────────
 - id: jyllands-posten-dk
@@ -294,3 +295,28 @@
   domains: [fagbladet3f.dk]
   basis: redaktionelt
   paywall: nej
+
+# ── Universiteter uden brugbart feed (kandidater i sources.yaml) ──
+- id: aau-dk
+  name: Aalborg Universitet
+  category: forskning
+  domains: [aau.dk]
+  basis: forskning
+
+- id: cbs-dk
+  name: CBS (Copenhagen Business School)
+  category: forskning
+  domains: [cbs.dk]
+  basis: forskning
+
+- id: itu-dk
+  name: IT-Universitetet
+  category: forskning
+  domains: [itu.dk]
+  basis: forskning
+
+- id: dtu-dk
+  name: DTU
+  category: forskning
+  domains: [dtu.dk]
+  basis: forskning
