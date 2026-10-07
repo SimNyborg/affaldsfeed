@@ -25,6 +25,7 @@ from affaldsfeed.display import (
 )
 from affaldsfeed.health import silent
 from affaldsfeed.judgments import display_mode, load_all_candidates, load_heartbeat, load_judgment_list
+from affaldsfeed.logos import logo_dir, logo_files
 from affaldsfeed.models import DisplayItem, Feed, Geo
 from affaldsfeed.overview import PERIODS, load_overviews
 from affaldsfeed.stories import build_stories
@@ -116,6 +117,7 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
         last_judgment = None
 
     states = store.load_source_states()
+    logos = logo_files()
     info = known_sources(sources, config.publishers)
     used = {d.source for d in heads} | {a.source for d in heads for a in d.also}
     feed_sources = []
@@ -137,6 +139,7 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
                 "status": si.status,
                 "health": health,
                 "via_search": si.via_search,
+                "logo": f"logos/{logos[si.id]}" if si.id in logos else None,
             }
         )
 
@@ -218,6 +221,12 @@ def main_export(args: argparse.Namespace) -> int:
             shutil.copytree(paths.SITE_DIR, out, dirs_exist_ok=True)
         else:
             log.warning("site/ findes ikke; kun data skrives")
+        # Logoerne fra data/state/logos/ (KONTRAKTER §6.4) ved siden af sitet; kun dem, feedet nævner
+        used_logos = {s["logo"].removeprefix("logos/") for s in feed["sources"] if s.get("logo")}
+        if used_logos:
+            (out / "logos").mkdir(parents=True, exist_ok=True)
+            for name in sorted(used_logos):
+                shutil.copyfile(logo_dir() / name, out / "logos" / name)
         _write_text(out / "data" / "feed.json", dumps(feed))
         _write_text(out / "data" / "status.json", dumps(status))
         _write_text(out / "data" / "timeline.json", dumps(timeline))

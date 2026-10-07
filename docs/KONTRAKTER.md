@@ -36,7 +36,7 @@ affaldsfeed/
   models.py          pydantic v2-modeller (denne kontrakt i kode) — DELT
   config.py          load_sources(), load_config() -> Config, validering, check-kommando
   timeutil.py        now_utc(override), to_cph(dt), cph_day_bounds(dt), iso(dt), parse_iso(s)
-  fetch.py           Fetcher: UA, robots (protego), takt pr. vært, conditional GET, retry, backoff, loft over svarstørrelse
+  fetch.py           Fetcher: UA, robots (protego), takt pr. vært, conditional GET, retry, backoff, loft over svarstørrelse; FetchResult.final_url er adressen efter omdirigeringer
   collect/__init__.py   COLLECTORS = {"rss": rss.collect, "search": search.collect, …}
   collect/rss.py     collect(source, fetcher, ctx) -> list[RawEntry]
   collect/search.py  collect(source, fetcher, ctx) -> list[RawEntry]   (Google News + Bing News)
@@ -49,6 +49,7 @@ affaldsfeed/
   stories.py         build_stories(items, sources, hints) -> list[DisplayItem]  (primærkilde, also)
   store.py           read/write candidates, rejected, state (http, sources, seen), atomisk skrivning
   health.py          opdater kildesundhed, backoff, status-farve
+  logos.py           refresh_logos(), logo_files(): kildernes logoer (favicons), se 6.4
   pipeline.py        run-kommandoen (orkestrerer ovenstående)
   judgments.py       pending, validate-judgments, heartbeat, load_judgments(), fallback-logik
   overview.py        overview-input, validate-overview, load_overviews()
@@ -106,7 +107,7 @@ Søgekilder (`method: search`) har `category: nyhedsmedie` (ignoreres ved visnin
 - `keywords.yaml`: `{strong: {da,en,sv}, names: [..], weak: {da,en}, veto: [..], service: [..]}` (mønster-syntaks som topics).
 - `search.yaml`: `{queries: [str], when: "2d"}` — forespørgsler med `OR`.
 - `medier.yaml`: liste af `{id, name, category, domains: [..], basis, paywall, lang, places?}` — troværdige udgivere, der kun findes via søgning (lokalaviser m.fl.). Id'er må ikke kollidere med `sources.yaml`. `places` som i 3.1 (lokalaviser får ingen).
-- `settings.yaml`: se `models.Settings` (UA, takt, tærskler, vinduer, rutinetider, fallback). Blokken `pages` (`models.PagesSettings`) har grænserne for sitemap og html (5.6) og for `state/seen.json` (6). `places.institution_words` (valgfri; uden blokken bruger koden `["Universitet", "Lufthavn"]`, `settings.yaml` sætter den fulde liste) bruges af stedmærkningen (4.1). Blokken erstatter standardlisten. Blokken `timeline` (`models.TimelineSettings`) har tidslinjens vinduer og ugeloft (7.3). Blokken `oda` (`models.OdaSettings`) styrer Folketingets åbne data (5.7).
+- `settings.yaml`: se `models.Settings` (UA, takt, tærskler, vinduer, rutinetider, fallback). Blokken `pages` (`models.PagesSettings`) har grænserne for sitemap og html (5.6) og for `state/seen.json` (6). `places.institution_words` (valgfri; uden blokken bruger koden `["Universitet", "Lufthavn"]`, `settings.yaml` sætter den fulde liste) bruges af stedmærkningen (4.1). Blokken erstatter standardlisten. Blokken `timeline` (`models.TimelineSettings`) har tidslinjens vinduer og ugeloft (7.3). Blokken `oda` (`models.OdaSettings`) styrer Folketingets åbne data (5.7). Blokken `logos` (`models.LogoSettings`) styrer hentningen af kildernes logoer (6.4).
 - `geografi.yaml`: genereres af `tools/build_geografi.py` fra Danmarks Statistik og rettes aldrig i hånden. `{kilde, regioner: [{id, kode, navn, kort}], landsdele: {navn: region-id}, kommuner: [{id, kode, navn, kort, region, navne, kun_med_kommune}], byer: [{id, navn, navne, kommune, kommuner, indbyggere}]}` → `models.Geo`. `navn` er det officielle navn ("Region Syddanmark", "Nyborg Kommune", "Københavns Kommune", "Bornholms Regionskommune"), `kort` det korte. `byer.kommune` er byens primære kommune (den, byen filtreres under, §9), `byer.kommuner` alle kommuner, byen ligger i. Mangler filen, er geografien tom: ingen stedmærkning og en advarsel i `check`. `check` fejler ved dublet-id'er, når `kommune.region`, `by.kommune` eller `by.kommuner` ikke findes, når `by.kommune` ikke står i `by.kommuner`, og når en landsdel peger på en ukendt region.
   - **Kun `check` fejler på geografien.** Er filen ugyldig, logger de andre kommandoer (`run`, `pending`, `validate-judgments`, `export`, `heartbeat`, `overview-input` …) fejlen og kører videre med en tom geografi: ingen nye stedmærker, ingen `geo`-blok og intet stedfilter, til filen er rettet (`Config.geo_errors`).
   - Sted-id'er i `sources.yaml` og `medier.yaml` skal findes i geografien. Det tjekkes i `cross_check`: `check` fejler, mens `run` advarer og ignorerer de ukendte id'er. Uden geografi (filen mangler eller er ugyldig) tjekkes id'erne ikke.
@@ -229,6 +230,8 @@ data/
   state/kildeforslag.json      se 5.3
   state/kildeforslag.md        genereret
   state/seen.json              {source_id: {item_id(url): "ÅÅÅÅ-MM-DD"}}  sitemap/html: kendte artikel-URL'er (5.6)
+  state/logos.json             {source_id: {file, src, checked, error}}  kildernes logoer (6.4)
+  state/logos/<id>.<ext>       logoet (png, ico, gif, jpg eller webp)
 ```
 Skrivning er atomisk (skriv `.tmp`, `os.replace`). Filer ændres kun, når indholdet faktisk ændres (så git ikke får tomme commits). `SourceState.last_ok` gemmes kun som dato.
 
@@ -262,6 +265,15 @@ Rutinen kører kl. `settings.routine.minute` i timerne `settings.routine.hours` 
 - `claude`: vis kandidater med `relevant: true`-vurdering; skjul `relevant: false`; uvurderede vises ikke (venter).
 - `fallback`: som `claude`, men uvurderede kandidater med `why.decision == "vis"` vises også med `reviewed: false`.
 - Kilder med `ai: false` vurderes altid af regler: vises når `why.decision == "vis"`, `reviewed: false`.
+
+### 6.4 Logoer (`logos.py`) — `state/logos.json` og `state/logos/`
+Kildernes egne små logoer (favicons) vises foran navnet på kortene (9). `run` henter dem efter kilderne, men kun når kildernes tidsbudget ikke er brugt op, og aldrig med `--dry-run`.
+- **Hvem:** alle kendte afsendere med en forside (`display.known_sources`: aktive kilder, der ikke er søgekilder, og medierne i `medier.yaml`). Kilder med indslag i vinduet kommer først (flest først), derefter efter id. Højst `logos.max_per_run` (20) pr. kørsel inden for `logos.budget_seconds` (120). Med `--only` hentes de valgte kilders logoer uanset tidspunkt og kun dem.
+- **Hvornår:** en kilde uden post hentes ved første lejlighed. Et hentet logo tjekkes igen efter `logos.refresh_days` (30), og et mislykket forsøg uden logo prøves igen efter `logos.retry_days` (7). Et mislykket forsøg beholder et tidligere logo.
+- **Hvordan:** al hentning går gennem `Fetcher.get` (UA, robots.txt, takt) uden conditional GET. Forsiden (højst 3 MB) giver kandidaterne i `<link rel="icon">`, `rel="shortcut icon"` og `apple-touch-icon`, opløst mod `<base href>` og forsidens endelige adresse efter omdirigeringer. Bedst er 32 til 96 px, og PNG går forud for ICO ved samme størrelse. `mask-icon` og SVG udelades. Til sidst prøves `/favicon.ico` på forsidens vært. Højst 3 billeder prøves pr. kilde; en `data:`-URI læses uden kald.
+- **Hvad gemmes:** kun rasterbilleder, genkendt på de første bytes: PNG, ICO, GIF, JPEG og WebP, højst `logos.max_kb` (200) og mindst 16 px (når størrelsen kan aflæses). SVG gemmes aldrig, fordi en SVG kan indeholde scripts, der ville køre på sitets domæne, hvis filen åbnes direkte. Filen hedder `<id>.<ext>`; filer med andre endelser for samme id fjernes.
+- `state/logos.json`: `{source_id: {file: "<id>.<ext>"|null, src: url|"data:"|null, checked: ISO, error: str|null}}`, sorteret. Poster for afsendere, der ikke længere findes, og filer uden post fjernes ved skrivning.
+- `export` sætter `sources[].logo` (8) for de afsendere i `feed.json`, hvis fil findes, og kopierer netop de filer til `_site/logos/`.
 
 ## 7. Overblik
 
@@ -327,7 +339,7 @@ De vigtigste begivenheder på affaldsområdet, valgt og skrevet af Claude-routin
   "categories": [{"id","name","short","color","color_dark","icon","help"}],
   "topics": [{"id","name","short","definition"}],
   "genres": [{"id","label"}],
-  "sources": [{"id","name","category","homepage","lang","paywall","owner","status","health","via_search": false}],
+  "sources": [{"id","name","category","homepage","lang","paywall","owner","status","health","via_search": false,"logo": "logos/<id>.<ext>"|null}],
   "geo": {"regioner": [{"id","navn","kort"}], "kommuner": [{"id","navn","kort","region"}], "byer": [{"id","navn","kommune","kommuner"}]} | null,
   "overview": {"dag": Overview|null, "uge": …, "maaned": …, "aar": …},
   "items": [DisplayItem]
@@ -342,6 +354,7 @@ De vigtigste begivenheder på affaldsområdet, valgt og skrevet af Claude-routin
 - `geo`: alle regioner og alle kommuner i `geografi.yaml`s rækkefølge, men kun de byer, der optræder i `items[].places` (som for historier også dækker also-indslagene); byerne sorteres efter id af `export` selv. `navn` er det fulde navn ("Region Syddanmark", "Nyborg Kommune", "Ullerslev"), `kort` det korte; `byer[].kommune` er den primære kommune, som byen filtreres under (§9), `byer[].kommuner` alle kommuner, byen ligger i (kun til information). `null`, når `geografi.yaml` mangler eller er ugyldig.
 - `sources` indeholder alle aktive kilder fra `sources.yaml` (undtagen `method: search`) + `medier.yaml`-udgivere, der optræder i items (`via_search: true`).
 - `health`: `groen`|`gul`|`roed`|`graa`.
+- `logo`: stien til kildens logo relativt til sitet (`logos/<id>.<ext>`, se 6.4) eller `null`. Siden viser det i 16 px foran kildens navn og ellers afsendertypens ikon.
 - `feed.json` valideres mod `models.Feed` før skrivning (fejl giver exit 1). `examples/feed.sample.json` følger samme kontrakt (`tests/test_sample.py`).
 - `status.json`: `{generated, sources: [{id, name, category, status, health, last_ok, fails, last_error, items_30d, silent}], counts: {candidates_60d, shown_60d, rejected_30d}}`.
 

@@ -76,7 +76,7 @@ Mørk tilstand følger kun enhedens indstilling (`prefers-color-scheme: dark`). 
 
 ## Afsenderkategorier
 
-Hver kategori har en farve, et ikon og et kort navn. Ikonet står i kategoriens farve og er 16 px i filterpanelet og forslagene, 14 px i kortets afsenderlinje og 20 px i overskrifterne på Om kilderne. Der er ingen prik. Panel, kort og aktive filtre bruger det korte navn. Det fulde navn står i filterrækkens `title` og på Om kilderne.
+Hver kategori har en farve, et ikon og et kort navn. Ikonet står i kategoriens farve og er 16 px i filterpanelet og forslagene, 14 px i kortets afsenderlinje og 20 px i overskrifterne på Om kilderne. På kortene står kildens eget logo i stedet, når kilden har et (se Feed-kortet). Der er ingen prik. Panel, kort og aktive filtre bruger det korte navn. Det fulde navn står i filterrækkens `title` og på Om kilderne.
 
 | Kategori | Kort navn | Lys | Mørk | Ikon-id | Motiv |
 |---|---|---|---|---|---|
@@ -221,7 +221,7 @@ Kildens egen beskrivelse, højst 240 tegn og to linjer ...
 
 Kortet er en `<article>`, titlen en `<h3>` og tiden en `<time datetime>`. Padding er 16 px 20 px (12 px 16 px under 768 px), og der er en streg på 1 px i `--line` mellem kortene.
 
-1. Afsenderlinjen (13/18, `--muted`): kategoriikon (14 px) og kildens navn i 600 og `--text`. Der står intet andet. Afsendertype og genre kan vælges i menuen, og betalingsmur og ejer står på Om kilderne. Tiden står øverst til højre i en fast kolonne.
+1. Afsenderlinjen (13/18, `--muted`): kildens logo og navnet i 600 og `--text`. Der står intet andet. Logoet er kildens favicon i 16 px på en hvid flade med radius 3 px, så mørke logoer også ses i mørk tilstand (KONTRAKTER 6.4). Det er pynt (`alt=""`) og indlæses først, når kortet nærmer sig skærmen. Uden logo, eller når billedet ikke kan vises, står kategoriikonet (14 px) i stedet. Afsendertype og genre kan vælges i menuen, og betalingsmur og ejer står på Om kilderne. Tiden står øverst til højre i en fast kolonne.
 2. Titlen (17/24, 600) linker til kilden i ny fane med den skjulte tekst "(åbner i nyt vindue)". Hover giver `--link` og understregning. Besøgte titler står i `--muted`. Titler på engelsk og svensk har `lang`.
 3. Teaseren (15/22, `--muted`) er højst to linjer og afkortes ved et ord efter højst 240 tegn. Engelske og svenske indslag viser "Auto-resumé:" i 600 og derefter Claudes danske resumé.
 4. Fodlinjen (13/18) har kun "+3 andre kilder" eller "+1 anden kilde" yderst til højre, når de øvrige er fra hver sin anden kilde. Ellers står der "+3 flere" eller "+1 mere", som i Folketingets dagsbundt. Har historien nye medlemmer, står der fx "+3 andre kilder, 2 nye". Sted og temaer står ikke på kortet, men kan vælges i menuen. Linjen udelades, når der ikke er andre indslag i historien.
@@ -233,7 +233,7 @@ Kortet er en `<article>`, titlen en `<h3>` og tiden en `<time datetime>`. Paddin
 
 ### Kompakt visning
 
-Fra 768 px er der én række pr. indslag i et grid med ikon (16 px), kilde i en fast kolonne på 9rem, titel og tid. Alle titler starter derfor samme sted. Under 768 px står ikon, kilde og tid på første linje og titlen på anden. Der er ingen teaser, fodlinje eller "+N andre kilder".
+Fra 768 px er der én række pr. indslag i et grid med logo eller ikon (16 px), kilde i en fast kolonne på 9rem, titel og tid. Alle titler starter derfor samme sted. Under 768 px står ikon, kilde og tid på første linje og titlen på anden. Der er ingen teaser, fodlinje eller "+N andre kilder".
 
 ### Dage og listen
 
@@ -277,7 +277,7 @@ Footeren har baggrund `--footer` og hvid tekst i 13/18: teksten om projektet og 
 
 ### Om kilderne
 
-Siden bruger samme demo-strimmel, header og footer og en læsekolonne på højst 720 px uden sidepanel. Fra 1024 px står læsekolonnen ved containerens venstrekant og flugter med logoet; under 1024 px står den som listepanelet på forsiden. Afsendertyperne står som rækker med ikon, det fulde navn og antal kilder (`id="typer"`), i to kolonner fra 560 px med 48 px imellem. Hver kategori har sin egen sektion med ikonet (20 px) i overskriften, kategoriens forklaring og kildelisten. Statusmærket står altid øverst til højre i kildens række. Tallene i "Status lige nu" står i 20/28 og vægt 600.
+Siden bruger samme demo-strimmel, header og footer og en læsekolonne på højst 720 px uden sidepanel. Fra 1024 px står læsekolonnen ved containerens venstrekant og flugter med logoet; under 1024 px står den som listepanelet på forsiden. Afsendertyperne står som rækker med ikon, det fulde navn og antal kilder (`id="typer"`), i to kolonner fra 560 px med 48 px imellem. Hver kategori har sin egen sektion med ikonet (20 px) i overskriften, kategoriens forklaring og kildelisten. Statusmærket står altid øverst til højre i kildens række. Har kilden et logo, står det i 16 px foran navnet, 8 px fra det. Tallene i "Status lige nu" står i 20/28 og vægt 600.
 
 ## Tone og mikrotekster
 

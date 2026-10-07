@@ -85,7 +85,7 @@ Hver mappe i `data/` har én skribent. Actions og routinen rører aldrig de samm
 |---|---|---|
 | `data/candidates/` | `collect.yml` | kandidater, én fil pr. fundmåned |
 | `data/rejected/` | `collect.yml` | afviste indslag med begrundelse, gemt i 90 dage |
-| `data/state/` | `collect.yml` | ETag, kildesundhed, robots-cache og kildeforslag fra søgninger |
+| `data/state/` | `collect.yml` | ETag, kildesundhed, robots-cache, kildeforslag fra søgninger og kildernes logoer |
 | `data/judgments/` | Claude-routinen | vurderinger pr. dag, heartbeat og kildeforslag fra sweepet |
 | `data/overview/` | Claude-routinen | aktuelle overblik pr. periode og arkivet |
 | `_site/` | `export` | det byggede site, ikke i git |

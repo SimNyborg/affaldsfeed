@@ -41,6 +41,15 @@ oda:
   max_pages: 5                   # højst så mange sider à top dokumenter pr. kørsel
   top: 100                       # dokumenter pr. side (ODA giver højst 100)
 
+# Kildernes logoer (favicons) til kortene. Se KONTRAKTER §6.4. Hentes efter kilderne i hver kørsel, men
+# kun når kildernes tidsbudget ikke er brugt op. Kilder med indslag i feedet kommer først.
+logos:
+  max_per_run: 20                # kilder pr. kørsel (0 slår hentningen fra)
+  refresh_days: 30               # et hentet logo tjekkes igen efter så mange dage
+  retry_days: 7                  # et mislykket forsøg prøves igen efter så mange dage
+  max_kb: 200                    # større billeder afvises
+  budget_seconds: 120            # samlet tid til logoer i én kørsel
+
 # Stedmærkning (KONTRAKTER §4.1). Står et af ordene (som præfiks, også efter bindestreg) lige efter et
 # stednavn, er navnet en del af noget andet: "Aarhus Universitet", "Københavns Vestegn", "Holbæk-motorvejen".
 places:

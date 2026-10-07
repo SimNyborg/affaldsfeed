@@ -40,6 +40,7 @@ class FetchResult:
     not_modified: bool
     error: str | None
     headers: dict = field(default_factory=dict)
+    final_url: str | None = None  # adressen efter omdirigeringer (kun ved 200)
 
     @property
     def ok(self) -> bool:
@@ -278,6 +279,7 @@ class Fetcher:
                 with contextlib.closing(resp):
                     status = resp.status_code
                     resp_headers = dict(resp.headers)
+                    final_url = getattr(resp, "url", None) or url
                     content = self._read(resp, limit) if 200 <= status < 300 else b""
             except TimeoutError as e:
                 return self._fail(url, last_status, str(e))
@@ -301,7 +303,10 @@ class Fetcher:
                     text = content.decode(getattr(resp, "encoding", None) or "utf-8", errors="replace")
                 except (LookupError, ValueError):  # ukendt eller ikke-tekst-codec i Content-Type
                     text = content.decode("utf-8", errors="replace")
-                return FetchResult(url=url, status=status, text=text, content=content, not_modified=False, error=None, headers=resp_headers)
+                return FetchResult(
+                    url=url, status=status, text=text, content=content, not_modified=False, error=None,
+                    headers=resp_headers, final_url=final_url,
+                )
             if status in SKIP_STATUSES:
                 retry_after = resp_headers.get("Retry-After") or resp_headers.get("retry-after")
                 note = f" (Retry-After: {retry_after})" if retry_after else ""

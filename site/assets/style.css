@@ -680,6 +680,10 @@ svg.i { width: 16px; height: 16px; flex: none; }
 .who { min-width: 0; overflow-wrap: anywhere; }
 /* Ikonet står i løbende tekst, der må brydes; derfor vertical-align her */
 .who .i { width: 14px; height: 14px; margin-right: 6px; vertical-align: -2px; color: var(--cat); }
+/* Kildens logo (favicon, KONTRAKTER §6.4) i stedet for afsenderikonet. Den hvide flade gør mørke logoer
+   synlige i mørk tilstand; i lys tilstand ses den ikke. */
+img.logo { display: inline-block; width: 16px; height: 16px; border-radius: 3px; background: #fff; object-fit: contain; }
+.who img.logo { margin-right: 6px; vertical-align: -3px; }
 .who b { font-weight: 600; color: var(--text); }
 .card .title {
   margin-top: 4px;
@@ -745,6 +749,7 @@ svg.i { width: 16px; height: 16px; flex: none; }
   padding: 8px var(--pad-x);
 }
 .row > .i { margin-top: 3px; color: var(--cat); }
+.row > img.logo { margin-top: 1px; }
 .row .src {
   min-width: 0;
   padding-top: 2px;
@@ -1259,6 +1264,7 @@ dialog.sheet::backdrop { background: var(--backdrop); }
 }
 .src-who { min-width: 0; }
 .src-who a { font-weight: 600; }
+.src-who img.logo { margin-right: 8px; vertical-align: -3px; }
 .facts { color: var(--muted); font-size: var(--t-xs); line-height: var(--lh-xs); }
 .src-row .facts { margin-top: 2px; }
 .status-note { margin-top: 12px; }
