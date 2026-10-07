@@ -3,7 +3,7 @@
 import {
   el, icon, hidden, sep, catStyle, cap, truncate, cph, fmtNum, fmtShort, fmtLong, fmtWhen, fmtStamp,
   isoWeek, fmtDayRange, weekdayOf, parseDate, load, store, DAY_MS,
-  readState, syncUrl, setData, defaultState, activeCount, sheetCount, activeFilters, removeFilter, resetFilters,
+  readState, syncUrl, setData, defaultState, activeCount, sheetCount, activeFilters, removeFilter, resetFilters, shownSet, NATIONAL,
   prepare, applyFilters, computeCounts, buildPanel, renderActive, topicName, genreName,
   placeName, placeParents, precisePlaces,
 } from './filters.js';
@@ -219,7 +219,7 @@ function setupFeed(feed, state, now, lastVisit) {
   }
 
   // Filterpanelet (flyttes ind i arket under 1024 px)
-  const panel = buildPanel(data, state, change, { typesHref: withDemo('kilder.html#typer', state.demo), onReset: reset });
+  const panel = buildPanel(data, state, change, { onReset: reset });
   ui.slot.replaceChildren(panel.root);
   fitScrollbar(ui.slot);
   addEventListener('resize', () => fitScrollbar(ui.slot));
@@ -619,7 +619,8 @@ function setupFeed(feed, state, now, lastVisit) {
     if (!named.length && state.q) msg = `Intet om "${state.q}" ${span}.`;
     else if (named.length) msg = `Ingen indslag passer til ${[...named, ...(state.q ? [`"${state.q}"`] : [])].join(' + ')} ${span}.`;
     else msg = `Ingen indslag ${span}.`;
-    if (chips.some((f) => f.key === 'sted')) msg += ' Landsdækkende nyheder vises ikke, når et sted er valgt.';
+    const places = data.geo ? shownSet(state, 'sted') : null;
+    if (places && !places.has(NATIONAL)) msg += ' Landsdækkende nyheder er ikke valgt under Sted.';
     box.append(el('p', { text: msg }));
 
     // Den ene ændring, der giver flest indslag: et filter fjernet, søgningen ryddet eller et sted udvidet
@@ -632,7 +633,8 @@ function setupFeed(feed, state, now, lastVisit) {
     const widen = (from, to) => (s) => { s.sted = [...new Set(s.sted.map((v) => (v === from ? to : v)))]; };
     const options = [];
     for (const f of chips) {
-      const parent = f.key === 'sted' ? placeParents(data, f.value).find((p) => count(widen(f.value, p)) > 0) : null;
+      // Kun et valgt sted kan udvides (by → kommune → region); regioner og fravalg fjernes
+      const parent = f.key === 'sted' && /^[kb]:/.test(f.value) ? placeParents(data, f.value).find((p) => count(widen(f.value, p)) > 0) : null;
       if (parent) options.push({ text: `Udvid til ${placeName(data, parent)}`, mutate: widen(f.value, parent) });
       // Historien får den korte tekst; dens mærke kan være 60 tegn langt
       else options.push({ text: f.undo || (f.key === 'periode' ? 'Udvid til 60 dage' : f.key === 'story' ? 'Fjern historien' : `Fjern ${f.label}`), mutate: (s) => removeFilter(s, f) });
