@@ -68,7 +68,7 @@ export function createTimeline(root, tl, { feedHref }) {
   root.replaceChildren(
     el('section', { class: 'panel tl-head', 'aria-labelledby': 'h-tl' },
       el('h1', { id: 'h-tl', text: 'Tidslinje' }),
-      el('p', { class: 'lead', text: 'De vigtigste begivenheder på affaldsområdet, udvalgt af Claude ud fra nyhederne i feedet. Kan indeholde fejl.' }),
+      el('p', { class: 'lead', text: 'De vigtigste begivenheder på affaldsområdet, udvalgt af AI ud fra nyhederne i feedet. Kan indeholde fejl.' }),
       el('div', { class: 'tl-controls' }, choice.root, years),
       status),
     list, more);
@@ -102,7 +102,7 @@ export function createTimeline(root, tl, { feedHref }) {
 
     if (!events.length) {
       list.replaceChildren(el('section', { class: 'panel tl-empty' },
-        el('p', { text: 'Tidslinjen er tom endnu. Claude tilføjer de vigtigste begivenheder, efterhånden som nyhederne kommer.' }),
+        el('p', { text: 'Tidslinjen er tom endnu. De vigtigste begivenheder bliver tilføjet, efterhånden som nyhederne kommer.' }),
         el('p', null, el('a', { href: feedHref(null) }, 'Gå til feedet'))));
       years.replaceChildren();
       more.hidden = true;

@@ -9,7 +9,7 @@ Manualen beskriver, hvordan Affaldsfeed ser ud, og hvad der står på siden. Dat
 3. Farve bærer aldrig information alene. Ikon og tekst følges ad.
 4. Siden er tæt, men der er luft nok til at læse. Der er ingen billeder, og titlerne må gerne stå tæt.
 5. Udtrykket er lånt fra affaldsviden.info: farverne, Open Sans, afrundede hvide paneler på grå baggrund og pilleformede knapper. Logo og navn er ikke lånt, og intet hentes derfra. Farverne står som værdier i `site/assets/style.css`.
-6. Siden er ærlig om data. Anslåede datoer, betalingsmure, forældede data, uvurderede indslag og tekst skrevet af Claude vises åbent.
+6. Siden er ærlig om data. Anslåede datoer, betalingsmure, forældede data, uvurderede indslag og AI-skrevet tekst vises åbent.
 7. Alt står skarpt. Rækker har fast højde, navne står på én linje, tal står i samme kolonne, og intet skifter bredde, når man vælger noget.
 
 ## Layout
@@ -106,14 +106,12 @@ Panelet er et `<search>` med overskriften "Filtre" og tekstknappen "Nulstil" til
 | Tema | 13 rækker, en streg og "Uden tema" |
 | Kilde | feltet "Find kilde" og alle kilder grupperet efter afsendertype |
 | Genre | 6 rækker |
-| Sprog | Dansk, Engelsk og Svensk |
-| Periode | tekstvalget 7 dage · 30 dage · 60 dage |
-| Historier | rækken "Saml artikler om samme historie" |
 
-- Hver gruppe er en foldbar `<details>`. Overskriften er én række på 36 px (44 px ved berøring) med navnet (14/20, 600) til venstre og status og en pil til højre. Status er 13/18 i `--muted`: "Alle", "Ingen", op til to navne ("Nyborg Kommune, Landsdækkende"), "7 af 8" eller "3 steder", for Periode fx "60 dage" og for Historier "Samlet" eller "Hver for sig". Der er en streg i `--line` mellem grupperne.
+- Hver gruppe er en foldbar `<details>`. Overskriften er én række på 36 px (44 px ved berøring) med navnet (14/20, 600) til venstre og status og en pil til højre. Status er 13/18 i `--muted`: "Alle", "Ingen", op til to navne ("Nyborg Kommune, Landsdækkende"), "7 af 8" eller "3 steder". Der er en streg i `--line` mellem grupperne.
 - Grupperne er foldet sammen fra start, så panelet er kort. En gruppe er foldet ud ved indlæsning, hvis den har et valg. Brugerens egne fold huskes ikke.
 - Alle lister følger samme regel: alt er afkrydset fra start, og fjernes et flueben, skjules det. Valg inden for en gruppe kombineres med ELLER, og grupperne kombineres med OG.
-- Grupper med lister har tekstknapperne "Vælg alle" og "Fravælg alle" øverst til højre (13/18). "Fravælg alle" efterfulgt af ét flueben er den hurtige vej til "kun dette".
+- Afsender, Tema, Kilde og Genre har tekstknapperne "Vælg alle" og "Fravælg alle" øverst til højre (13/18). "Fravælg alle" efterfulgt af ét flueben er den hurtige vej til "kun dette". Sted har dem ikke, fordi et sted valgt i søgefeltet allerede viser kun det.
+- Periode står over listen (se Listens hoved). Historier er altid samlet, og der er intet valg for sprog.
 - I URL'en står de valgte (fx `tema=gebyrer`), eller med "-" foran de fravalgte (fx `tema=-arbejdsmiljoe`), alt efter hvad der er kortest. Alt valgt giver ingen parameter.
 - Mærkerne over listen siger fx "Kommunal" for et valgt og "Uden Debat" for et fravalgt, højst 3 af hver pr. gruppe, ellers ét samlet mærke: "4 temaer" eller "Uden 5 kilder". "Filtrér (n)" tæller mærkerne. Giver valgene 0 indslag, kan tom-tilstanden foreslå fx "Vis Avisen.dk igen" eller "Vis alle kilder".
 - Sted vises kun, når `feed.json` har `geo`. Uden `geo` læses stedparametrene fra URL'en og skrives uændret tilbage, men de filtrerer ikke.
@@ -182,16 +180,18 @@ Under 1024 px åbner "Filtrér" en modal `<dialog>`, og panelet flyttes ind i de
 
 Øverst i listepanelet står tre rækker med 12 px imellem:
 
-1. Søgefeltet "Søg i titler og kilder" med lup og en ryd-knap (×), som kun vises, når der er tekst. Under 1024 px står "Filtrér (2)" ved siden af. Tallet tæller valg inde i arket, men ikke søgningen.
+1. Søgefeltet "Søg i titler og kilder" med lup og en ryd-knap (×), som kun vises, når der er tekst. Under 1024 px står "Filtrér (2)" ved siden af. Tallet tæller valg inde i arket, men ikke søgningen og perioden.
 2. De aktive filtre som mærker med × og til sidst "Nulstil". Rækken vises kun, når der er aktive filtre.
-3. Statuslinjen til venstre og visningen "Normal | Kompakt" til højre.
+3. Perioden "7 dage · 30 dage · 60 dage" og statuslinjen til venstre og visningen "Normal | Kompakt" til højre.
 
 - Søgningen slår igennem 180 ms efter sidste tast og straks ved Enter. Esc tømmer feltet. Klikker man på et filter, før de 180 ms er gået, anvendes søgningen først, så teksten ikke overskrives.
 - Søgningen folder som forslagene: accenter fjernes, og å, æ og ø kan skrives som aa, ae og oe eller a, ae og o. "århus" finder "Aarhus".
 - Mærket er 28 px højt med kant i `--link`, baggrund `--tag-bg` og teksten i 13/18. Et langt navn afkortes med "…" (højst 260 px fra 768 px). Mærker brydes mellem hinanden, aldrig inde i et mærke. Rækkefølgen er panelets.
-- Statuslinjen siger "1.284 indslag" eller "23 af 1.284 indslag". Kendes sidste besøg, og er der nye indslag, følger tekstknappen "Vis 7 nye" ("Vis 1 ny"). Med `nye=1` står der "7 nye indslag · Vis alle" ("1 nyt indslag"). Skilletegnet hænger på teksten før det, så en linje aldrig begynder med "·".
+- Perioden står i stedet for antallet. Den tæller ikke i "Filtrér (n)" og har intet mærke, fordi den står synligt over listen. Giver den 0 indslag, foreslår tom-tilstanden "Udvid til 60 dage".
+- Antallet ("1.284 indslag" eller "23 af 1.284 indslag") står kun til skærmlæseren i statuslinjens live-region. Det vises, når statuslinjen får fokus fra tastaturet, så fokus aldrig står på noget usynligt. Kendes sidste besøg, og er der nye indslag, står tekstknappen "Vis 7 nye" ("Vis 1 ny"). Med `nye=1` står der synligt "7 nye indslag · Vis alle" ("1 nyt indslag"). Skilletegnet hænger på teksten før det, så en linje aldrig begynder med "·".
+- Rækkerne følger rækkens egen bredde (container query med grænser i rem), så et tekstvalg aldrig deles. Fra 34rem står alt på én linje, og en tynd lodret streg i `--line` midt i et mellemrum på 2 × 16 px skiller perioden fra statuslinjen, når den viser noget. Fra 20rem står perioden og visningen øverst og statuslinjen på egen linje under. Under 20rem står perioden alene øverst og statuslinjen og visningen under. Står "Vis 7 nye" først på en linje, flugter knapteksten med kanten.
 - Med valg siger "Filtrér (2)" "Filtrér, 2 valgt" til skærmlæseren.
-- "Nulstil" nulstiller filtre, søgning, `nye` og `story`, men beholder "Saml historier", visningen og overblikkets periode. Fokus går derefter til statuslinjen.
+- "Nulstil" nulstiller filtre, periode, søgning, `nye` og `story`, men beholder visningen og overblikkets periode. Fokus går derefter til statuslinjen.
 
 ### Tekstvalg
 
@@ -236,7 +236,7 @@ Fra 768 px er der én række pr. indslag i et grid med ikon (16 px), kilde i en 
 Overblikket ligger i et hvidt panel øverst i læsekolonnen over søgning og filtre, fordi det altid dækker hele feedet.
 
 - Foldet (standard): første linje er "AI-overblik · I dag" i 13/18 og `--muted` med tekstknappen "Vis hele" til højre. Anden linje er hovedlinjen med "Kort sagt:" i 600, højst to linjer ved alle bredder. Panelet har 12 px lodret polstring, så det fylder 90 px.
-- Udfoldet: knappen hedder "Vis mindre", og første linje er kun "AI-overblik", fordi fanerne viser perioden. 8 px under den står fanerne I dag, Ugen, Måneden og Året som tekstvalg, derefter "Opdateret kl. 14.24 · bygget på 23 indslag", hovedlinjen i 17/24, punkterne med kildelinks og bunden "Skrevet af Claude ud fra kilderne. Kan indeholde fejl."
+- Udfoldet: knappen hedder "Vis mindre", og første linje er kun "AI-overblik", fordi fanerne viser perioden. 8 px under den står fanerne I dag, Ugen, Måneden og Året som tekstvalg, derefter "Opdateret kl. 14.24 · bygget på 23 indslag", hovedlinjen i 17/24, punkterne med kildelinks og bunden "Skrevet af AI ud fra kilderne. Kan indeholde fejl."
 - Fanerne er `role="tablist"`. Piletaster, Home og End skifter fane, og kun den aktive fane er i tabulatorrækkefølgen. Den valgte periode står i URL'en som `overblik=dag|uge|maaned|aar`.
 - Under hvert punkt står kildelinks i 13/18, fx "Altinget, KEFM +2". Kildenavnene linker til artiklerne i ny fane og er 24 px høje mål (3 px polstring over og under, linjen bliver ikke højere). Den skjulte titel efter kildenavnet har `lang` på engelske og svenske titler. "+2" er en tekstknap på grundlinjen, der filtrerer feedet til historien med `story=<id>`; et usynligt `::before` giver den en klikflade på 24 × 24 px.
 - Er overblikket forældet, står fx "· fra i går kl. 23.25" i første linje, og den udfoldede visning har en note på `--warn-bg`. Er der aktive filtre, står "Overblikket dækker hele feedet, ikke kun dine filtre." nederst.
@@ -255,13 +255,13 @@ Footeren har baggrund `--footer` og hvid tekst i 13/18: teksten om projektet og 
 
 `tidslinje.html` viser de vigtigste begivenheder på affaldsområdet, valgt af Claude (KONTRAKTER 7.3). Siden har samme demo-strimmel, header, footer og læsekolonne som Om kilderne.
 
-- Øverst står "Tidslinje" (`h1`), linjen "De vigtigste begivenheder på affaldsområdet, udvalgt af Claude ud fra nyhederne i feedet. Kan indeholde fejl." og tekstvalget "Alle · Kun milepæle" (`niveau=milepael` i URL'en). Til højre står "Spring til 2026 · 2025", når begivenhederne spænder over mere end ét år. Antallet meldes til skærmlæsere, når niveauet skiftes.
+- Øverst står "Tidslinje" (`h1`), linjen "De vigtigste begivenheder på affaldsområdet, udvalgt af AI ud fra nyhederne i feedet. Kan indeholde fejl." og tekstvalget "Alle · Kun milepæle" (`niveau=milepael` i URL'en). Til højre står "Spring til 2026 · 2025", når begivenhederne spænder over mere end ét år. Antallet meldes til skærmlæsere, når niveauet skiftes.
 - Begivenhederne står i ét panel grupperet efter måned. Månedsoverskriften er sticky som feedets dagsoverskrifter, i 17/24 med antallet til højre, og har et anker (`#2026-10`), så man kan linke til en måned.
 - Hver begivenhed har datoen i en fast kolonne til venstre ("7. okt."), en markør på en lodret streg i `--line` og teksten til højre: "Milepæl" (13/18, 600, `--link`) ved milepæle, titlen (17/24, 600), resuméet (15/22, `--muted`), fodlinjen med steder og temaer som på kortet og "Læs 3 nyheder" (eller "Læs nyheden"). Markøren er en udfyldt cirkel på 12 px i `--link` ved milepæle og en ring ved de andre. Den er dekorativ (`aria-hidden`), fordi "Milepæl" står som tekst.
 - "Læs 3 nyheder" folder indslagene ud med kilde (600), dato og titlen som link i ny fane. Er historien stadig i feedet, står "Vis i feedet" nederst og linker til `index.html?story=<id>`.
 - Siden viser de 12 nyeste måneder med begivenheder. "Vis ældre" henter 12 måneder mere og giver fokus til den første nye måneds overskrift. "Spring til" og et anker i URL'en henter ældre måneder efter behov.
 - Under 480 px står datoen over titlen, og stregen følger markøren i venstre side.
-- Tom tidslinje: "Tidslinjen er tom endnu. Claude tilføjer de vigtigste begivenheder, efterhånden som nyhederne kommer." og linket "Gå til feedet". Ingen milepæle: "Der er ingen milepæle på tidslinjen endnu." og "Vis alle begivenheder".
+- Tom tidslinje: "Tidslinjen er tom endnu. De vigtigste begivenheder bliver tilføjet, efterhånden som nyhederne kommer." og linket "Gå til feedet". Ingen milepæle: "Der er ingen milepæle på tidslinjen endnu." og "Vis alle begivenheder".
 
 ### Om kilderne
 
@@ -271,7 +271,7 @@ Siden bruger samme demo-strimmel, header og footer og en læsekolonne på højst
 
 Teksten er kort, saglig og dansk. Der er ingen udråbstegn og intet salgssprog. Tal har punktum som tusindtalsskilletegn (1.284). Klokkeslæt skrives "kl. 09.14", datoer "7. okt." eller "mandag 5. oktober". Under en dagsoverskrift står kun klokkeslættet uden "kl.".
 
-Overblikket følger samme tone. Claude skriver neutralt og markerer, når en afsender varetager interesser ("ifølge Dansk Affaldsforening ...").
+Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsender varetager interesser ("ifølge Dansk Affaldsforening ...").
 
 | Sted | Tekst |
 |---|---|
@@ -280,20 +280,20 @@ Overblikket følger samme tone. Claude skriver neutralt og markerer, når en afs
 | Søgefelt | Søg i titler og kilder · Ryd søgning |
 | Filtrér-knap | Filtrér (2) |
 | Panel og ark | Filtre · Nulstil · Luk filtre · Vis 23 indslag |
-| Grupper | Sted · Afsender · Tema · Kilde · Genre · Sprog · Periode · Historier |
-| Status i grupperne | Alle · Ingen · 7 af 8 · 3 steder · 60 dage · Samlet · Hver for sig |
+| Grupper | Sted · Afsender · Tema · Kilde · Genre |
+| Status i grupperne | Alle · Ingen · 7 af 8 · 3 steder |
 | Værktøjer | Vælg alle · Fravælg alle |
 | Sted | Kommune eller by · Find kommune eller by · Flest indslag lige nu · Ingen steder har indslag lige nu. · by i Nyborg · Landsdækkende |
 | Kilde | Find kilde · Ingen kilde passer til "x". · Uden Avisen.dk · Uden 5 kilder · 13 kilder · Vis Avisen.dk igen · Vis alle kilder |
 | Forslag | Viser 8 af 23. Skriv mere for at indsnævre. · Ingen kommune eller by passer til "xyz". Byer kommer med, når de er nævnt i et indslag. · Ingen kilde passer til "xyz". · Nyborg Kommune er valgt. · Nyborg Kommune er fravalgt. |
-| Rækker | Uden tema · Dansk · Engelsk · Svensk · Saml artikler om samme historie |
+| Rækker | Uden tema |
 | Periode | 7 dage · 30 dage · 60 dage |
-| Aktive filtre | Fjern filter: Nyborg Kommune · Landsdækkende · Uden Region Nordjylland · Kommunal · Uden Debat · 4 temaer · Uden 5 kilder · Dansk · Seneste 7 dage · Historie: ... |
-| Statuslinje | 1.284 indslag · 23 af 1.284 indslag · Vis 7 nye · Vis 1 ny · 7 nye indslag · 1 nyt indslag · Vis alle |
+| Aktive filtre | Fjern filter: Nyborg Kommune · Landsdækkende · Uden Region Nordjylland · Kommunal · Uden Debat · 4 temaer · Uden 5 kilder · Historie: ... |
+| Statuslinje | Vis 7 nye · Vis 1 ny · 7 nye indslag · 1 nyt indslag · Vis alle · til skærmlæseren og ved fokus: 1.284 indslag · 23 af 1.284 indslag |
 | Visning | Normal · Kompakt |
 | Kort | Betalingsmur · Delvis betalingsmur · Ikke vurderet · Auto-resumé: · udgivet af KL · fundet 09.14 · +3 andre kilder · +1 anden kilde · +3 andre kilder, 2 nye |
 | Skillelinje | Her slap du sidst · i går kl. 08.14 |
-| Overblik | AI-overblik · I dag · Ugen · Måneden · Året · Vis hele · Vis mindre · fra i går kl. 23.25 · Opdateret kl. 14.24 · bygget på 23 indslag · Skrevet af Claude ud fra kilderne. Kan indeholde fejl. |
+| Overblik | AI-overblik · I dag · Ugen · Måneden · Året · Vis hele · Vis mindre · fra i går kl. 23.25 · Opdateret kl. 14.24 · bygget på 23 indslag · Skrevet af AI ud fra kilderne. Kan indeholde fejl. |
 | Overblik, kort data | Siden 7. oktober 2026 · opdateret kl. 09.25 |
 | Overblik, før første kørsel | Dagens overblik kommer efter kl. 06.25. |
 | Overblik, filternote | Overblikket dækker hele feedet, ikke kun dine filtre. |
@@ -303,7 +303,8 @@ Overblikket følger samme tone. Claude skriver neutralt og markerer, når en afs
 | Intet i dag | Intet nyt endnu i dag. Sidst opdateret kl. 09.17. |
 | feed.json fejler (også data uden for kontrakten) | Feedet kunne ikke indlæses. Prøv igen om lidt. · Prøv igen |
 | Forældet feed | Feedet blev sidst opdateret for 9 timer siden. Indsamlingen kører måske ikke. · Se kildernes status |
-| Regelvisning | Claudes vurdering er forsinket. Nye indslag vises efter faste regler og er mærket "Ikke vurderet". |
+| Regelvisning | Vurderingen af nye indslag er forsinket. De vises efter faste regler og er mærket "Ikke vurderet". |
+| Om kilderne, status | Feedet er opdateret i dag kl. 09.17. · Indslagene blev sidst vurderet i dag kl. 09.25. |
 | Demo | Demodata: opdigtede eksempler med links til example.org. Tiderne er rykket frem. · Vis det rigtige feed |
 | Footer | Uafhængigt hobbyprojekt. Ikke tilknyttet affaldsviden.info. Alle overskrifter linker til den oprindelige kilde. · Om kilderne · Koden på GitHub |
 
@@ -317,7 +318,7 @@ Overblikket følger samme tone. Claude skriver neutralt og markerer, når en afs
 - Skærmlæser: tal i rækker og forslag læses med "indslag", mærker læses "Fjern filter: Kommunal", og valg i forslagslisten meldes ("Altinget er valgt."). Statuslinjen er en live-region, og arket har sin egen, fordi siden bag det er inert.
 - Struktur: h1 til h3, `<main>`, `<nav>`, `<search>` og `<article>`. Forsidens skjulte h1 står i headeren, før sidepanelets h2 "Filtre". Links, der åbner i nyt vindue, har den skjulte tekst "(åbner i nyt vindue)".
 - Sprog: `lang="en"` eller `lang="sv"` på titler og teasere på engelsk og svensk, også i overblikkets skjulte kildetekst.
-- 1.4.4, 1.4.10 og 1.4.12: størrelser i rem og brudpunkter i em. Siden kan vises ved 320 px, og med grundskrift 20 eller 32 px eller med tekstafstand vokser rækkerne, og navnene brydes i stedet for at blive afkortet (se Filterrækken).
+- 1.4.4, 1.4.10 og 1.4.12: størrelser i rem, brudpunkter i em og container queries i rem eller lh. Siden kan vises ved 320 px, og med grundskrift 20 eller 32 px eller med tekstafstand vokser rækkerne, og navnene brydes i stedet for at blive afkortet (se Filterrækken).
 - Bevægelse: ark og skuffe glider ind på 200 ms. `prefers-reduced-motion` slår alle animationer fra.
 - Tvungne farver: det aktive forslag får en ring i `Highlight`, valgte forslag kendes på fluebenet, nye kort får en kant i `CanvasText`, og arket har en kant, så det skiller sig fra siden bag det.
 - Alle tidspunkter står i `<time datetime>`.

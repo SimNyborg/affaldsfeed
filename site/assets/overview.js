@@ -151,7 +151,7 @@ export function createOverview(root, { data, now, getState, onPeriod, onStory })
 
   function foot(written) {
     return el('div', { class: 'ov-foot' },
-      written ? el('p', { text: 'Skrevet af Claude ud fra kilderne. Kan indeholde fejl.' }) : null,
+      written ? el('p', { text: 'Skrevet af AI ud fra kilderne. Kan indeholde fejl.' }) : null,
       filtersActive ? filterNote() : null);
   }
 
