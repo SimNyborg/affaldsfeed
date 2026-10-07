@@ -8,7 +8,7 @@ Affaldsfeed bygges i seks faser. Fase 0 og 1 laves i den første lokale session 
 |---|---|---|
 | 0 | Fundament: config, kilderegister, `check`, CI og docs | Færdig |
 | 1 | Første live version: pipeline for RSS og søgning, site, workflows og Claude-routinen | Færdig, live 7. oktober 2026 |
-| 2 | Kilder uden RSS, Folketingets ODA og Claudes sweep | I gang: sitemap og html virker, og 71 kilder er aktive. ODA mangler, og sweepet er ikke efterprøvet |
+| 2 | Kilder uden RSS, Folketingets ODA og Claudes sweep | I gang: sitemap, html og ODA virker, og 72 kilder er aktive. Sweepet er ikke efterprøvet |
 | 3 | Kvalitet: "Hvorfor med?", bedre historier, kompakt visning | I gang: kompakt visning er færdig |
 | 4 | Brugerens kildeliste | Venter på listen |
 | 5 | Udvidelser | Kun ved konkret savn |
@@ -108,12 +108,10 @@ Start med at læse `CLAUDE.md`, `docs/KONTRAKTER.md` og denne fil. Tjek så, at 
 
 Brugeren skal rette routinens prompt på claude.ai, så den siger "Du må kun skrive i data/judgments/, data/overview/ og data/timeline/." Indtil da fyldes tidslinjen ikke. Routinen er oprettet via API, så en session kan ikke selv rette den.
 
-Fase 2, resten:
-1. Lokale medier i `config/medier.yaml`: ugeaviserne fra Ugeavispuljen, medlemmerne af Danske Lokalaviser og andre lokale nyhedssider med redaktionelt ansvar. Domæner under et fælles domæne (fx `sn.dk`, `ugeavisen.dk`, `dinavis.dk`) står én gang.
-2. Følg de 19 sitemap- og 10 html-kilder i 7 dage. Fejler en, så ret `match`, `select` eller `filter`, eller sæt den på pause med en note.
-3. Byg `collect/oda.py`. Søg på affaldsordene i `config/keywords.yaml`, giv indslagene genren `folketing` og brug `bundle: day`.
-4. Efterprøv sweepet kl. 06.25 og 14.25. Fund skal skrives som vurderinger med `new_item`, og ukendte udgivere skal havne i `data/judgments/kildeforslag-sweep.md`.
-5. Gennemgå `data/state/kildeforslag.md` hver uge. Troværdige udgivere flyttes til `config/medier.yaml` eller `sources.yaml`.
+Fase 2, resten (lokale medier og ODA er færdige):
+1. Følg de 19 sitemap- og 10 html-kilder og ODA i 7 dage. Fejler en, så ret `match`, `select` eller `filter`, eller sæt den på pause med en note.
+2. Efterprøv sweepet kl. 06.25 og 14.25. Fund skal skrives som vurderinger med `new_item`, og ukendte udgivere skal havne i `data/judgments/kildeforslag-sweep.md`.
+3. Gennemgå `data/state/kildeforslag.md` hver uge. Troværdige udgivere flyttes til `config/medier.yaml` eller `sources.yaml`.
 
 Fase 3:
 1. "Hvorfor med?" bygger på feltet `why`, som allerede står i `feed.json`.

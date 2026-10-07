@@ -1,0 +1,164 @@
+{
+ "odata.metadata": "https://oda.ft.dk/api/$metadata#Dokument",
+ "value": [
+  {
+   "Dokumenttype": {
+    "id": 13,
+    "type": "Spørgsmål",
+    "opdateringsdato": "2015-05-26T14:37:05.147"
+   },
+   "Fil": [
+    {
+     "id": 1,
+     "dokumentid": 1233120,
+     "titel": "Udvalgsspørgsmål.docx",
+     "versionsdato": "2026-10-05T12:28:23",
+     "filurl": "https://www.ft.dk/samling/20252/almdel/beu/spm/240/3195008.docx",
+     "opdateringsdato": "2026-10-05T12:28:44.707",
+     "variantkode": "O",
+     "format": "DOCX"
+    },
+    {
+     "id": 12331200,
+     "dokumentid": 1233120,
+     "titel": "Dokument.pdf",
+     "versionsdato": "2026-10-02T10:59:40",
+     "filurl": "https://www.ft.dk/samling/20252/almdel/beu/spm/240/3195008.pdf",
+     "opdateringsdato": "2026-10-02T10:59:40",
+     "variantkode": "P",
+     "format": "PDF"
+    }
+   ],
+   "id": 1233120,
+   "typeid": 13,
+   "kategoriid": 36,
+   "statusid": 1,
+   "offentlighedskode": "O",
+   "titel": "Spm. om, i hvor mange af landets 98 kommuner en privat boligejer i dag lovligt kan aflevere forsvarligt indpakket asbestaffald på en kommunal genbrugsstation",
+   "dato": "2026-10-02T00:00:00",
+   "modtagelsesdato": "2026-10-02T00:00:00",
+   "frigivelsesdato": "2026-10-02T10:59:40",
+   "paragraf": "",
+   "paragrafnummer": "",
+   "spørgsmålsordlyd": null,
+   "spørgsmålstitel": null,
+   "spørgsmålsid": null,
+   "procedurenummer": "",
+   "grundnotatstatus": "",
+   "dagsordenudgavenummer": null,
+   "opdateringsdato": "2026-10-02T10:59:40"
+  },
+  {
+   "Dokumenttype": {
+    "id": 13,
+    "type": "Spørgsmål",
+    "opdateringsdato": "2015-05-26T14:37:05.147"
+   },
+   "Fil": [
+    {
+     "id": 12326350,
+     "dokumentid": 1232635,
+     "titel": "Dokument.pdf",
+     "versionsdato": "2026-09-30T15:38:50",
+     "filurl": "https://www.ft.dk/samling/20252/almdel/mof/spm/476/3193672.pdf",
+     "opdateringsdato": "2026-09-30T15:38:50",
+     "variantkode": "P",
+     "format": "PDF"
+    }
+   ],
+   "id": 1232635,
+   "typeid": 13,
+   "kategoriid": 36,
+   "statusid": 1,
+   "offentlighedskode": "O",
+   "titel": "MFU spm. om, hvor stor en andel af de 4.000 ton indsamlede mad- og drikkekartoner, jf. Energistyrelsens affaldsstatistik fra 2024,\n   blev efter sortering og behandling faktisk materialegenanvendt",
+   "dato": "2026-09-30T00:00:00",
+   "modtagelsesdato": "2026-09-30T00:00:00",
+   "frigivelsesdato": "2026-09-30T15:38:50",
+   "paragraf": "",
+   "paragrafnummer": "",
+   "spørgsmålsordlyd": "Vil ministeren oplyse, hvor stor en andel af kartonerne der blev genanvendt?",
+   "spørgsmålstitel": null,
+   "spørgsmålsid": null,
+   "procedurenummer": "",
+   "grundnotatstatus": "",
+   "dagsordenudgavenummer": null,
+   "opdateringsdato": "2026-09-30T15:38:50"
+  },
+  {
+   "Dokumenttype": {
+    "id": 22,
+    "type": "Dagsorden",
+    "opdateringsdato": "2015-05-26T14:37:05.147"
+   },
+   "Fil": [
+    {
+     "id": 9000010,
+     "dokumentid": 900001,
+     "titel": "Dokument.pdf",
+     "versionsdato": "2026-10-01T09:00:00",
+     "filurl": "https://www.ft.dk/samling/20252/almdel/mof/dagsorden/1.pdf",
+     "opdateringsdato": "2026-10-01T09:00:00",
+     "variantkode": "P",
+     "format": "PDF"
+    }
+   ],
+   "id": 900001,
+   "typeid": 22,
+   "kategoriid": 36,
+   "statusid": 1,
+   "offentlighedskode": "O",
+   "titel": "Dagsorden for møde om affald og genanvendelse",
+   "dato": "2026-10-01T00:00:00",
+   "modtagelsesdato": "2026-10-01T00:00:00",
+   "frigivelsesdato": "2026-10-01T09:00:00",
+   "paragraf": "",
+   "paragrafnummer": "",
+   "spørgsmålsordlyd": null,
+   "spørgsmålstitel": null,
+   "spørgsmålsid": null,
+   "procedurenummer": "",
+   "grundnotatstatus": "",
+   "dagsordenudgavenummer": null,
+   "opdateringsdato": "2026-10-01T09:00:00"
+  },
+  {
+   "Dokumenttype": {
+    "id": 10,
+    "type": "Notat",
+    "opdateringsdato": "2015-05-26T14:37:05.147"
+   },
+   "Fil": [
+    {
+     "id": 9000020,
+     "dokumentid": 900002,
+     "titel": "Dokument.pdf",
+     "versionsdato": "2026-10-01T09:00:00",
+     "filurl": "https://www.ft.dk/samling/20252/almdel/mof/bilag/9/1.pdf",
+     "opdateringsdato": "2026-10-01T09:00:00",
+     "variantkode": "P",
+     "format": "PDF"
+    }
+   ],
+   "id": 900002,
+   "typeid": 10,
+   "kategoriid": 36,
+   "statusid": 1,
+   "offentlighedskode": "F",
+   "titel": "Fortroligt notat om affaldsforbrænding",
+   "dato": "2026-10-01T00:00:00",
+   "modtagelsesdato": "2026-10-01T00:00:00",
+   "frigivelsesdato": "2026-10-01T09:00:00",
+   "paragraf": "",
+   "paragrafnummer": "",
+   "spørgsmålsordlyd": null,
+   "spørgsmålstitel": null,
+   "spørgsmålsid": null,
+   "procedurenummer": "",
+   "grundnotatstatus": "",
+   "dagsordenudgavenummer": null,
+   "opdateringsdato": "2026-10-01T09:00:00"
+  }
+ ],
+ "odata.nextLink": "https://oda.ft.dk/api/Dokument?$skiptoken=100"
+}

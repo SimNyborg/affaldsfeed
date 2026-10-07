@@ -54,7 +54,7 @@ python -m affaldsfeed check
 ## Fase-status
 
 - Fase 0 og 1 er færdige, og feedet har været live siden 7. oktober 2026.
-- Fase 2 er i gang: sitemap og html virker, og 71 kilder er aktive. Lokale medier i `config/medier.yaml`, ODA og efterprøvning af sweepet mangler.
+- Fase 2 er i gang: sitemap, html og ODA virker, og 72 kilder er aktive. Lokale medier står i `config/medier.yaml`. Efterprøvning af sweepet og 7 dages overvågning af sitemap og html mangler.
 - Fase 3 er i gang (kompakt visning er færdig). Fase 4 venter på brugerens kildeliste.
 - Se "Næste skridt for cloud-sessionen" i `docs/GAMEPLAN.md`.
 

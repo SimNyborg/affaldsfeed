@@ -28,6 +28,19 @@ pages:
   seen_refresh_days: 30          # state/seen.json: datoen fornyes kun, når den er ældre
   seen_keep_days: 120            # ... og posten fjernes, når URL'en ikke er set så længe
 
+# Folketingets åbne data (method oda). Se KONTRAKTER §5.7.
+oda:
+  # Dokumenter, hvis titel indeholder et af ordene (serverfilter; store og små bogstaver er ligegyldige)
+  words: [affald, genanvend, genbrug, emballage, producentansvar, deponi, forbrændingsanlæg, pantsystem,
+          pantordning, retursystem, renovation, skrald, cirkulær økonomi, cirkulære økonomi]
+  # Dokumenttyper uden indhold om sagen
+  exclude_types: [Stedfortræderbrev, Formandsmeddelelse, Dagsorden, Orlovsansøgning, Ugeplan, Referat,
+                  Indstilling til EB, Godkendelsesindstilling]
+  days: 3                        # opdateringsvindue ved de almindelige kørsler (overlap fjernes som dubletter)
+  first_run_days: 14             # ... ved kildens første kørsel
+  max_pages: 5                   # højst så mange sider à top dokumenter pr. kørsel
+  top: 100                       # dokumenter pr. side (ODA giver højst 100)
+
 # Stedmærkning (KONTRAKTER §4.1). Står et af ordene (som præfiks, også efter bindestreg) lige efter et
 # stednavn, er navnet en del af noget andet: "Aarhus Universitet", "Københavns Vestegn", "Holbæk-motorvejen".
 places:

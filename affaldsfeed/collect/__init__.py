@@ -117,11 +117,12 @@ def combine_errors(errors: list[str], ok_count: int) -> str | None:
 
 Collector = Callable[[Source, "Fetcher", CollectContext], CollectResult]
 
-from affaldsfeed.collect import pages, rss, search  # noqa: E402
+from affaldsfeed.collect import oda, pages, rss, search  # noqa: E402
 
 COLLECTORS: dict[str, Collector] = {
     "rss": rss.collect,
     "search": search.collect,
     "sitemap": pages.collect_sitemap,
     "html": pages.collect_html,
+    "oda": oda.collect,
 }

@@ -1,0 +1,142 @@
+{
+ "odata.metadata": "https://oda.ft.dk/api/$metadata#Dokument",
+ "value": [
+  {
+   "Dokumenttype": {
+    "id": 17,
+    "type": "Svar",
+    "opdateringsdato": "2015-05-26T14:37:05.147"
+   },
+   "Fil": [
+    {
+     "id": 12300010,
+     "dokumentid": 1230001,
+     "titel": "Dokument.pdf",
+     "versionsdato": "2026-08-31T00:00:00",
+     "filurl": "https://www.ft.dk/samling/20252/almdel/mof/spm/141/svar/2160001/3180001.pdf",
+     "opdateringsdato": "2026-08-31T00:00:00",
+     "variantkode": "P",
+     "format": "PDF"
+    }
+   ],
+   "id": 1230001,
+   "typeid": 17,
+   "kategoriid": 36,
+   "statusid": 1,
+   "offentlighedskode": "O",
+   "titel": "MOF alm. del - svar på MFU spm. 141 om hvornår Miljøstyrelsens affaldsstatistik for henholdsvis 2024 og 2025 forventes offentliggjort",
+   "dato": "2026-08-31T00:00:00",
+   "modtagelsesdato": "2026-08-31T00:00:00",
+   "frigivelsesdato": null,
+   "paragraf": "",
+   "paragrafnummer": "",
+   "spørgsmålsordlyd": null,
+   "spørgsmålstitel": null,
+   "spørgsmålsid": null,
+   "procedurenummer": "",
+   "grundnotatstatus": "",
+   "dagsordenudgavenummer": null,
+   "opdateringsdato": "2026-08-31T00:00:00"
+  },
+  {
+   "Dokumenttype": {
+    "id": 13,
+    "type": "Spørgsmål",
+    "opdateringsdato": "2015-05-26T14:37:05.147"
+   },
+   "Fil": [],
+   "id": 1230002,
+   "typeid": 13,
+   "kategoriid": 36,
+   "statusid": 1,
+   "offentlighedskode": "O",
+   "titel": "Spm. om genbrugspladsernes åbningstider",
+   "dato": "2026-09-01T00:00:00",
+   "modtagelsesdato": "2026-09-01T00:00:00",
+   "frigivelsesdato": "2026-09-01T10:00:00",
+   "paragraf": "",
+   "paragrafnummer": "",
+   "spørgsmålsordlyd": null,
+   "spørgsmålstitel": null,
+   "spørgsmålsid": null,
+   "procedurenummer": "",
+   "grundnotatstatus": "",
+   "dagsordenudgavenummer": null,
+   "opdateringsdato": "2026-09-01T10:00:00"
+  },
+  {
+   "Dokumenttype": {
+    "id": 13,
+    "type": "Spørgsmål",
+    "opdateringsdato": "2015-05-26T14:37:05.147"
+   },
+   "Fil": [
+    {
+     "id": 12331210,
+     "dokumentid": 1233121,
+     "titel": "Dokument.pdf",
+     "versionsdato": "2026-10-02T11:00:00",
+     "filurl": "https://www.ft.dk/samling/20252/almdel/beu/spm/240/3195008.pdf",
+     "opdateringsdato": "2026-10-02T11:00:00",
+     "variantkode": "P",
+     "format": "PDF"
+    }
+   ],
+   "id": 1233121,
+   "typeid": 13,
+   "kategoriid": 36,
+   "statusid": 1,
+   "offentlighedskode": "O",
+   "titel": "Spm. om asbestaffald (samme fil som før)",
+   "dato": "2026-10-02T00:00:00",
+   "modtagelsesdato": "2026-10-02T00:00:00",
+   "frigivelsesdato": "2026-10-02T11:00:00",
+   "paragraf": "",
+   "paragrafnummer": "",
+   "spørgsmålsordlyd": null,
+   "spørgsmålstitel": null,
+   "spørgsmålsid": null,
+   "procedurenummer": "",
+   "grundnotatstatus": "",
+   "dagsordenudgavenummer": null,
+   "opdateringsdato": "2026-10-02T11:00:00"
+  },
+  {
+   "Dokumenttype": {
+    "id": 18,
+    "type": "Kommissionsforslag",
+    "opdateringsdato": "2015-05-26T14:37:05.147"
+   },
+   "Fil": [
+    {
+     "id": 12322270,
+     "dokumentid": 1232227,
+     "titel": "Dokument.pdf",
+     "versionsdato": "2026-09-29T14:27:31",
+     "filurl": "https://www.ft.dk/samling/20261/kommissionsforslag/kom(2026)0512/forslag/2233740/3192716.pdf",
+     "opdateringsdato": "2026-09-29T14:27:31",
+     "variantkode": "P",
+     "format": "PDF"
+    }
+   ],
+   "id": 1232227,
+   "typeid": 18,
+   "kategoriid": 36,
+   "statusid": 1,
+   "offentlighedskode": "O",
+   "titel": "RAPPORT FRA KOMMISSIONEN TIL RÅDET OG EUROPA-PARLAMENTET om forløbet af gennemførelsen af Rådets direktiv 2011/70/Euratom og en opgørelse over radioaktivt affald",
+   "dato": "2026-09-29T00:00:00",
+   "modtagelsesdato": "2026-09-29T00:00:00",
+   "frigivelsesdato": "2026-09-29T14:27:31",
+   "paragraf": "",
+   "paragrafnummer": "",
+   "spørgsmålsordlyd": null,
+   "spørgsmålstitel": null,
+   "spørgsmålsid": null,
+   "procedurenummer": "",
+   "grundnotatstatus": "",
+   "dagsordenudgavenummer": null,
+   "opdateringsdato": "2026-09-29T14:27:31"
+  }
+ ]
+}

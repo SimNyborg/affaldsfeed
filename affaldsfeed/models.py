@@ -298,6 +298,18 @@ class PagesSettings(_Strict):
     seen_keep_days: int = 120  # seen.json: fjernes, når den ikke er set så længe
 
 
+class OdaSettings(_Strict):
+    """Folketingets åbne data (KONTRAKTER §5.7)."""
+
+    # Serverfilter: dokumenter, hvis titel indeholder et af ordene (store og små bogstaver er ligegyldige)
+    words: list[str] = Field(default_factory=lambda: ["affald"])
+    exclude_types: list[str] = Field(default_factory=list)  # dokumenttyper, der springes over (fx "Dagsorden")
+    days: int = Field(default=3, gt=0)  # opdateringsvindue ved de almindelige kørsler
+    first_run_days: int = Field(default=14, gt=0)  # ... ved kildens første kørsel
+    max_pages: int = Field(default=5, gt=0)  # højst så mange sider à `top` dokumenter pr. kørsel
+    top: int = Field(default=100, gt=0, le=100)  # dokumenter pr. side (ODA giver højst 100)
+
+
 class PlaceSettings(_Strict):
     """Stedmærkning (places.py). Standarden passer til danske nyheder; kan overstyres i settings.yaml."""
 
@@ -320,6 +332,7 @@ class Settings(_Strict):
     fetch: FetchSettings
     routine: RoutineSettings
     pages: PagesSettings = Field(default_factory=PagesSettings)
+    oda: OdaSettings = Field(default_factory=OdaSettings)
     places: PlaceSettings = Field(default_factory=PlaceSettings)
     timeline: TimelineSettings = Field(default_factory=TimelineSettings)
     window_days: int = 60
