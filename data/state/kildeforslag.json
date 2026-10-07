@@ -10,6 +10,17 @@
       "89a0b12eb936"
     ]
   },
+  "cardinalpine.com": {
+    "name": "Cardinal & Pine",
+    "count": 1,
+    "last_seen": "2026-10-07T20:11:40Z",
+    "examples": [
+      "https://cardinalpine.com/local/wilmington-ritzy-plans-thalian-hall-remake/"
+    ],
+    "ids": [
+      "431aa96367be"
+    ]
+  },
   "fla.de": {
     "name": "fla",
     "count": 1,
@@ -19,6 +30,28 @@
     ],
     "ids": [
       "4ab24a639891"
+    ]
+  },
+  "idahostatejournal.com": {
+    "name": "Idaho State Journal",
+    "count": 1,
+    "last_seen": "2026-10-07T20:11:40Z",
+    "examples": [
+      "https://www.idahostatejournal.com/news/local/dedicate-explores-the-salt-lake-temple-renovation-through-the-eyes-of-young-adults/article_05c0f18e-3ced-53f6-accb-fc7897dea527.html"
+    ],
+    "ids": [
+      "945a8b74f7bc"
+    ]
+  },
+  "inc.com": {
+    "name": "Inc.com",
+    "count": 1,
+    "last_seen": "2026-10-07T20:11:40Z",
+    "examples": [
+      "https://www.inc.com/sarah-bregel/baltimore-orioles-announced-600-million-dollar-renovation-laid-off-employee-behind-mascot/91416095"
+    ],
+    "ids": [
+      "c0c8dcced625"
     ]
   },
   "kalb.com": {
@@ -80,13 +113,15 @@
   },
   "yahoo.com": {
     "name": "Yahoo",
-    "count": 1,
-    "last_seen": "2026-10-07T18:30:53Z",
+    "count": 2,
+    "last_seen": "2026-10-07T20:11:40Z",
     "examples": [
+      "https://www.yahoo.com/entertainment/tv/articles/charlie-kawas-details-filming-botched-192742838.html",
       "https://www.yahoo.com/entertainment/tv/articles/hgtv-fans-react-rock-block-174922811.html"
     ],
     "ids": [
-      "066e659eaee1"
+      "066e659eaee1",
+      "994e08ec81f4"
     ]
   },
   "zawya.com": {
