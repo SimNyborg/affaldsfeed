@@ -8,12 +8,39 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "albertslundnyt": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "altinget": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T10:27:07Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "altomfuresoe": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "amagerliv": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
     "first_run_done": true,
     "health": "groen"
   },
@@ -80,6 +107,15 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "billundonline": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "bing-news": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T10:27:07Z",
@@ -98,6 +134,24 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "bornholm-nu": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "bornholmnyt": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "bornholms-tidende": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T10:27:07Z",
@@ -110,6 +164,33 @@
   "borsen": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T10:27:07Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "brammingposten": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "brandebladet": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "byensnyt": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -269,6 +350,69 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "dinavis": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "ditikast-brande": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "ditkarup": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "ditkjellerup": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "ditry": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "ditsalling": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "ditvinderup": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "dn": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T10:27:07Z",
@@ -285,6 +429,15 @@
     "last_error": null,
     "items_30d": 3,
     "first_run_done": true,
+    "health": "groen"
+  },
+  "dragoernyt": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": false,
     "health": "groen"
   },
   "eea": {
@@ -350,6 +503,42 @@
     "first_run_done": false,
     "health": "gul"
   },
+  "faellesavisen": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "farsoeavis": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "folkebladet-aarup": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "folkebladet-rebild": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "folkebladetlemvig": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T09:11:01Z",
@@ -395,6 +584,15 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "frederiksbergliv": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "fyens": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T09:11:01Z",
@@ -402,6 +600,15 @@
     "last_error": null,
     "items_30d": 0,
     "first_run_done": false,
+    "health": "groen"
+  },
+  "galtenfolkeblad": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
+    "first_run_done": true,
     "health": "groen"
   },
   "gate-21": {
@@ -422,9 +629,36 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "gladsaxenetnyt": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "greenpeace-danmark": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T10:27:07Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "hasserisavis": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "heleherlev": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -449,6 +683,15 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "hjertingposten": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "hoeringsportalen": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T10:27:07Z",
@@ -467,9 +710,36 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "hornsherredlokalavis": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "hsfo": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "hvidovreavis": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "hvidovrenyt": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -494,12 +764,30 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "jammerbugtposten": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "jv": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "kanalfrederikshavn": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
     "first_run_done": true,
     "health": "groen"
   },
@@ -548,6 +836,15 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "kobenhavnliv": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "kommunen": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T10:27:07Z",
@@ -575,9 +872,108 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "lejremagasinet": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "ligeher": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "mariagerfjordposten": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "midtfynsposten": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "midtjyllandsavis": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "midtvendsysselavis": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "migogaalborg": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "migogaarhus": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "migogesbjerg": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "migogkbh": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "migogodense": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "migogvejen": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -602,12 +998,57 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "neravisen": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "netavisen-gribskov": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "netavisen-sjaelland": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "nibeavis": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "noah": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T10:27:07Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "nordhavn-avis": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
     "first_run_done": true,
     "health": "groen"
   },
@@ -629,6 +1070,15 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "nordsoeposten": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "nordvaerk": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T10:27:07Z",
@@ -641,6 +1091,33 @@
   "odense-renovation": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T10:27:07Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "oestvendsysselfolkeblad": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "orestad-avis": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "pingvinnyt": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -719,6 +1196,15 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "samsoposten": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "sdu": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T10:27:07Z",
@@ -740,6 +1226,15 @@
   "skivefolkeblad": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "sonderborgnyt": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -800,6 +1295,15 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "tjekfredensborg": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "tv2-nyheder": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T10:27:07Z",
@@ -817,6 +1321,15 @@
     "items_30d": 8,
     "first_run_done": true,
     "health": "gul"
+  },
+  "ugeavisen": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
+    "first_run_done": false,
+    "health": "groen"
   },
   "vafo": {
     "last_ok": "2026-10-08",
@@ -845,6 +1358,15 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "vesthimmerlandsavis": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "viborg-folkeblad": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T09:11:01Z",
@@ -854,9 +1376,36 @@
     "first_run_done": false,
     "health": "groen"
   },
+  "viborher": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "videnskab": {
     "last_ok": "2026-10-08",
     "last_attempt": "2026-10-08T10:27:07Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "vodskovavis": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "voreslokalavis": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T10:34:51Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
