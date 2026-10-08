@@ -631,6 +631,56 @@ def test_choose_sub_sitemaps_with_equal_lastmod_takes_the_last_ones():
     ]
 
 
+def test_choose_sub_sitemaps_by_date_in_url_without_lastmod():
+    # Jysk Fynske Medier: indekset har ingen lastmod, sider uden dato først og de nyeste dage øverst
+    jfm = [pages.SitemapEntry(f"https://jv.dk/{p}") for p in ("opgrader-til-fri", "fri", "sitemap/sections")]
+    jfm += [pages.SitemapEntry(f"https://jv.dk/sitemap/2026-10-0{d}") for d in (8, 7, 6, 5, 4, 3, 2, 1)]
+    jfm += [pages.SitemapEntry(f"https://jv.dk/sitemap/{d}") for d in ("2025-05-14", "2003-03-19")]
+    assert [e.loc.rsplit("/", 1)[1] for e in pages.choose_sub_sitemaps(jfm, 5)] == [
+        "2026-10-08", "2026-10-07", "2026-10-06", "2026-10-05", "2026-10-04"]
+    # Nordjyske: ugesitemaps; den seneste dato i URL'en tæller
+    weeks = [pages.SitemapEntry(f"https://nordjyske.dk/sitemaps/2026/{a}/{b}.xml")
+             for a, b in (("2026-09-21", "2026-09-27"), ("2026-10-05", "2026-10-11"), ("2026-09-28", "2026-10-04"))]
+    assert [e.loc[-14:] for e in pages.choose_sub_sitemaps(weeks, 2)] == ["2026-10-11.xml", "2026-10-04.xml"]
+    # Månedssitemaps (2026.10) og samme lastmod for alle: datoen i URL'en afgør
+    same = datetime(2026, 10, 7, 6, 0, tzinfo=UTC)
+    months = [pages.SitemapEntry(f"https://x.dk/Post.Sitemap.{m}.0.xml", same) for m in ("2026.09", "2026.10", "2025.12")]
+    assert [e.loc for e in pages.choose_sub_sitemaps(months, 1)] == ["https://x.dk/Post.Sitemap.2026.10.0.xml"]
+
+
+def test_percent_encoded_loc_is_decoded():
+    # Nordjyske koder hele URL'en i <loc>
+    xml = (f'<urlset xmlns="{SM_NS}"><url><loc>https%3A%2F%2Fnordjyske.dk%2Fnyheder%2Faalborg%2Fny-genbrugsplads'
+           "%2F6202492</loc><lastmod>2026-10-07</lastmod></url></urlset>").encode()
+    sm = pages.parse_sitemap(xml, "https://nordjyske.dk/sitemaps/2026/2026-10-05/2026-10-11.xml")
+    assert [e.loc for e in sm.entries] == ["https://nordjyske.dk/nyheder/aalborg/ny-genbrugsplads/6202492"]
+
+
+def test_expand_dates_gives_today_and_yesterday_in_copenhagen():
+    late = datetime(2026, 10, 7, 22, 30, tzinfo=UTC)  # kl. 00.30 den 8. oktober i København
+    assert pages.expand_dates(["https://jv.dk/sitemap/{dato}", SITEMAP], late) == [
+        "https://jv.dk/sitemap/2026-10-08", "https://jv.dk/sitemap/2026-10-07", SITEMAP]
+    assert pages.expand_dates([SITEMAP, SITEMAP], late) == [SITEMAP]
+
+
+def test_date_template_reads_todays_and_yesterdays_news_sitemaps(cfg):
+    news = '<news:news><news:publication_date>{d}</news:publication_date><news:title>{t}</news:title></news:news>'
+    def day(d: str, slug: str, title: str) -> bytes:
+        return (f'<urlset xmlns="{SM_NS}" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"><url>'
+                f'<loc>https://www.kilde.dk/nyheder/{slug}</loc><lastmod>{d}</lastmod>'
+                + news.format(d=d, t=title) + "</url></urlset>").encode()
+    table = {
+        "https://www.kilde.dk/sitemap/2026-10-07": (day("2026-10-07", "ny-ordning", "Ny affaldsordning i Vejle"), XML),
+        "https://www.kilde.dk/sitemap/2026-10-06": (day("2026-10-06", "genbrugsplads", "Genbrugspladsen udvides"), XML),
+    }
+    f = fetcher(table)
+    res = COLLECTORS["sitemap"](src(feeds=["https://www.kilde.dk/sitemap/{dato}"]), f, ctx(cfg))
+    assert res.error is None
+    assert urls_called(f, 0) == ["https://www.kilde.dk/sitemap/2026-10-07", "https://www.kilde.dk/sitemap/2026-10-06"]
+    assert sorted(e.title for e in res.entries) == ["Genbrugspladsen udvides", "Ny affaldsordning i Vejle"]
+    assert all(e.date_quality == "liste" for e in res.entries)  # dato uden klokkeslæt
+
+
 def test_bare_ampersand_in_loc_is_kept():
     xml = (
         f'<urlset xmlns="{SM_NS}">'

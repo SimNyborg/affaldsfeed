@@ -538,3 +538,15 @@ def test_run_fetches_a_logo_for_each_other_site_of_a_source(env, monkeypatch):
     assert all(urlsplit(u).hostname != "nyheder.testmedie.dk" for u in urls)  # samme site som forsiden
     state = json.loads((paths.STATE_DIR / "logos.json").read_text(encoding="utf-8"))
     assert state["testmedie--testmedie-syd-dk"]["error"] == "HTTP 404"
+
+
+def test_http_cache_keeps_the_expanded_daily_sitemaps(env):
+    """{dato} giver dagens og gårsdagens sitemap; deres ETags er gyldige, gamle dages fjernes (KONTRAKTER §5.6)."""
+    config = load_config(paths.CONFIG_DIR)
+    sources = [s.model_copy(update={"method": "sitemap", "feeds": ["https://www.testmedie.dk/sitemap/{dato}"]})
+               if s.id == "testmedie" else s for s in load_sources(paths.SOURCES_FILE)]
+    valid = pipeline._valid_cache_urls(sources, config, {}, datetime(2026, 10, 7, 22, 30, tzinfo=UTC))
+    assert {"https://www.testmedie.dk/sitemap/2026-10-08", "https://www.testmedie.dk/sitemap/2026-10-07"} <= valid
+    assert "https://www.testmedie.dk/sitemap/2026-10-06" not in valid
+    assert "https://www.testmedie.dk/sitemap/{dato}" not in valid
+

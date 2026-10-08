@@ -91,94 +91,10 @@
   paywall: delvis
 
 # ── Regionale dagblade: Jysk Fynske Medier ────────────────────
-- id: jv-dk
-  name: JydskeVestkysten
-  category: nyhedsmedie
-  domains: [jv.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: fyens-dk
-  name: Fyens Stiftstidende
-  category: nyhedsmedie
-  domains: [fyens.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: faa-dk
-  name: Fyns Amts Avis
-  category: nyhedsmedie
-  domains: [faa.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: vafo-dk
-  name: Vejle Amts Folkeblad
-  category: nyhedsmedie
-  domains: [vafo.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: hsfo-dk
-  name: Horsens Folkeblad
-  category: nyhedsmedie
-  domains: [hsfo.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: frdb-dk
-  name: Fredericia Dagblad
-  category: nyhedsmedie
-  domains: [frdb.dk, fredericiadagblad.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: stiften-dk
-  name: Århus Stiftstidende
-  category: nyhedsmedie
-  domains: [stiften.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: amtsavisen-dk
-  name: Randers Amtsavis
-  category: nyhedsmedie
-  domains: [amtsavisen.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: viborg-folkeblad-dk
-  name: Viborg Folkeblad
-  category: nyhedsmedie
-  domains: [viborg-folkeblad.dk]
-  basis: redaktionelt
-  paywall: delvis
-
 - id: herningfolkeblad-dk
   name: Herning Folkeblad
   category: nyhedsmedie
   domains: [herningfolkeblad.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: dagbladet-holstebro-struer-dk
-  name: Dagbladet Holstebro-Struer
-  category: nyhedsmedie
-  domains: [dagbladet-holstebro-struer.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: dbrs-dk
-  name: Dagbladet Ringkøbing-Skjern
-  category: nyhedsmedie
-  domains: [dbrs.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: folkebladetlemvig-dk
-  name: Folkebladet Lemvig
-  category: nyhedsmedie
-  domains: [folkebladetlemvig.dk, lemvigfolkeblad.dk]
   basis: redaktionelt
   paywall: delvis
 
@@ -193,13 +109,6 @@
   name: Skive Folkeblad
   category: nyhedsmedie
   domains: [skivefolkeblad.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: helsingordagblad-dk
-  name: Helsingør Dagblad
-  category: nyhedsmedie
-  domains: [helsingordagblad.dk]
   basis: redaktionelt
   paywall: delvis
 
