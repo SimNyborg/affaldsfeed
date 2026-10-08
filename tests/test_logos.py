@@ -6,6 +6,7 @@ import base64
 import struct
 import zlib
 from datetime import timedelta
+from types import SimpleNamespace
 
 import pytest
 
@@ -54,6 +55,40 @@ def fetcher(routes: dict):
     cls = make_fetcher_class(routes)
     cls.calls = []
     return cls, cls(None, {}, {}, NOW)
+
+
+# ── Hvilke logoer ───────────────────────────────────────────
+
+
+def test_site_domains_are_other_sites_than_the_homepage():
+    assert logos.site_domains("https://www.tv2nord.dk", ["tvsyd.dk", "www.tv2fyn.dk", "TVSYD.dk", " "]) == [
+        "tvsyd.dk", "tv2fyn.dk"]
+    assert logos.site_domains("https://nyheder.tv2.dk", ["tv2.dk"]) == []  # overdomæne: samme site
+    assert logos.site_domains("https://www.ft.dk", ["oda.ft.dk"]) == []  # underdomæne: samme site
+    assert logos.site_domains(None, ["a.dk"]) == ["a.dk"]
+    assert logos.domain_key("tv2-regionerne", "tvsyd.dk") == "tv2-regionerne--tvsyd-dk"
+
+
+def test_logo_targets_cover_each_sender_once_and_the_other_sites_of_sources():
+    def info(sid, homepage, via_search=False):
+        return SimpleNamespace(id=sid, homepage=homepage, via_search=via_search)
+
+    tv2 = info("tv2-regionerne", "https://www.tv2nord.dk")
+    known = {"tv2-regionerne": tv2, "tv2-gammel": tv2, "folketinget": info("folketinget", "https://www.ft.dk"),
+             "jv-dk": info("jv-dk", "https://jv.dk", True)}
+    sources = [
+        SimpleNamespace(id="tv2-regionerne", homepage="https://www.tv2nord.dk", domains=["tvsyd.dk"],
+                        feeds=["https://www.tv2nord.dk/rss", "https://www.tvsyd.dk/rss"]),
+        SimpleNamespace(id="folketinget", homepage="https://www.ft.dk", domains=["oda.ft.dk"],
+                        feeds=["https://oda.ft.dk/api/Sag", "https://www.mynewsdesk.com/dk/ft/rss"]),
+        SimpleNamespace(id="planlagt", homepage="https://p.dk", domains=["q.dk"], feeds=["https://p.dk/rss"]),
+    ]
+    assert logos.logo_targets(known, sources) == [
+        ("tv2-regionerne", "tv2-regionerne", "https://www.tv2nord.dk", ("https://www.tv2nord.dk/rss",)),
+        ("tv2-regionerne--tvsyd-dk", "tv2-regionerne", "https://tvsyd.dk/", ()),
+        ("folketinget", "folketinget", "https://www.ft.dk", ("https://oda.ft.dk/api/Sag",)),  # ikke tredjepart
+        ("jv-dk", "jv-dk", "https://jv.dk", ()),
+    ]
 
 
 # ── Billeder ────────────────────────────────────────────────
@@ -157,6 +192,47 @@ def test_fetch_logo_reads_data_uri_without_request():
     assert res.ext == "png" and res.src == "data:" and [u for u, _ in cls.calls] == ["https://www.example.dk/"]
 
 
+def test_fetch_logo_skips_icons_robots_txt_forbids_without_using_tries():
+    """Som HOFOR: alle ikoner ligger i en mappe, robots.txt forbyder, men /favicon.ico er tilladt."""
+    page = b"".join(
+        f'<link rel="icon" href="/wp-content/uploads/ikon-{s}.png" sizes="{s}x{s}">'.encode() for s in (32, 48, 180, 192)
+    )
+    cls, f = fetcher({
+        "https://www.example.dk/forside": (page, HTML),  # ruterne matcher også på præfiks
+        "https://www.example.dk/wp-content/uploads/": "robots",
+        "https://www.example.dk/favicon.ico": (ico(16, 32), "image/x-icon"),
+    })
+    res = logos.fetch_logo(f, "https://www.example.dk/forside", 200_000)
+    assert res.ext == "ico" and res.src == "https://www.example.dk/favicon.ico"
+    assert len(cls.calls) == 1 + 4 + 1  # forsiden, fire forbudte ikoner og /favicon.ico
+
+
+def test_fetch_logo_tries_at_most_three_images():
+    page = b"".join(f'<link rel="icon" href="/ikon-{s}.png" sizes="{s}x{s}">'.encode() for s in (32, 48, 64, 96))
+    cls, f = fetcher({"https://www.example.dk/forside": (page, HTML)})  # alt andet svarer 404
+    res = logos.fetch_logo(f, "https://www.example.dk/forside", 200_000)
+    assert res.data is None and res.error == "HTTP 404"
+    assert len(cls.calls) == 1 + logos.MAX_TRIES  # forsiden og tre billeder, ikke /favicon.ico
+
+
+def test_fetch_logo_tries_the_feed_hosts_favicon_last(state_dir):
+    """Som Folketinget: forsiden svarer 403 (Cloudflare, som aldrig omgås), men feedets vært har et ikon."""
+    routes = {
+        "https://www.example.dk/": 403,
+        "https://www.example.dk/favicon.ico": 404,
+        "https://data.example.dk/favicon.ico": (ico(16, 32), "image/x-icon"),
+    }
+    _, f = fetcher(routes)
+    res = logos.fetch_logo(f, "https://www.example.dk/", 200_000, also=["https://data.example.dk/api/sag"])
+    assert res.ext == "ico" and res.src == "https://data.example.dk/favicon.ico"
+    assert logos.fetch_logo(f, "https://www.example.dk/", 200_000).error == "HTTP 404"
+
+    _, f = fetcher(routes)
+    logos.refresh_logos([("ft", "https://www.example.dk/")], f, NOW, LogoSettings(),
+                        also={"ft": ["https://data.example.dk/api/sag"]})
+    assert logos.logo_files() == {"ft": "ft.ico"}
+
+
 def test_fetch_logo_stops_on_budget():
     _, f = fetcher({"https://www.example.dk/": "budget"})
     assert logos.fetch_logo(f, "https://www.example.dk/", 200_000).budget
@@ -188,6 +264,14 @@ def test_refresh_saves_logo_and_waits_until_due(state_dir):
     assert cls.calls == []  # ikke på tur før refresh_days
     logos.refresh_logos([("tv2", "https://www.tv2.dk/")], f, NOW + timedelta(days=30), settings)
     assert cls.calls  # nu igen
+
+
+def test_refresh_saves_a_logo_for_another_site_under_its_own_id(state_dir):
+    _, f = fetcher(site("tvsyd", png(32, 32)))
+    key = logos.domain_key("tv2-regionerne", "tvsyd.dk")
+    logos.refresh_logos([(key, "https://www.tvsyd.dk/")], f, NOW, LogoSettings())
+    assert logos.logo_files() == {key: f"{key}.png"}
+    assert (state_dir / "logos" / "tv2-regionerne--tvsyd-dk.png").read_bytes() == png(32, 32)
 
 
 def test_refresh_failure_keeps_old_logo_and_retries_after_retry_days(state_dir):

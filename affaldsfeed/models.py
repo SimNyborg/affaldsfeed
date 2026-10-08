@@ -713,6 +713,7 @@ class FeedSource(_Strict):
     health: Health
     via_search: bool = False
     logo: str | None = None  # "logos/<id>.<ext>" relativt til sitet, når kilden har et logo (§6.4)
+    domain_logos: dict[str, str] = Field(default_factory=dict)  # domæne -> logo for kildens andre sites (§6.4)
 
 
 class FeedGeoRegion(_Strict):

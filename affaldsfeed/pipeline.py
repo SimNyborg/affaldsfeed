@@ -28,7 +28,7 @@ from affaldsfeed.config import (
 from affaldsfeed.display import known_sources
 from affaldsfeed.fetch import Fetcher
 from affaldsfeed.health import is_due, record_result
-from affaldsfeed.logos import refresh_logos
+from affaldsfeed.logos import logo_targets, refresh_logos
 from affaldsfeed.models import Candidate, DateQuality, Rejected, Source, SourceState
 from affaldsfeed.normalize import clean_text, item_id, normalize_title
 from affaldsfeed.places import compile_places, rule_places
@@ -464,9 +464,15 @@ def _run(args: argparse.Namespace) -> int:
         fetcher.start_budget(settings.logos.budget_seconds)
         cut = now - timedelta(days=settings.window_days)
         in_feed = Counter(c.source for c in proc.existing.values() if (c.published or c.first_seen) >= cut)
-        info = known_sources(sources, config.publishers)
+        targets = logo_targets(known_sources(sources, config.publishers), sources)
         n = refresh_logos(
-            [(si.id, si.homepage) for si in info.values()], fetcher, now, settings.logos, priority=in_feed, force=only
+            [(t.key, t.homepage) for t in targets],
+            fetcher,
+            now,
+            settings.logos,
+            priority={t.key: in_feed[t.source] for t in targets},
+            force={t.key for t in targets if t.source in only} if only else None,
+            also={t.key: t.also for t in targets if t.also},
         )
         fetcher.start_budget(None)
         log.info(

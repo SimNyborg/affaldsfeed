@@ -521,3 +521,20 @@ def test_run_fetches_logos_after_sources_but_not_in_dry_run(env, monkeypatch):
     state = json.loads((paths.STATE_DIR / "logos.json").read_text(encoding="utf-8"))
     assert state["testmedie"]["file"] == "testmedie.png"
     assert (paths.STATE_DIR / "logos" / "testmedie.png").read_bytes() == png
+
+
+def test_run_fetches_a_logo_for_each_other_site_of_a_source(env, monkeypatch):
+    """En kilde med domains på et andet site end forsiden får også et logo for det site (KONTRAKTER §6.4)."""
+    text = env.sources.read_text(encoding="utf-8")
+    env.sources.write_text(
+        text.replace("  homepage: https://www.testmedie.dk\n",
+                     "  homepage: https://www.testmedie.dk\n  domains: [testmedie-syd.dk, nyheder.testmedie.dk]\n", 1),
+        encoding="utf-8",
+    )
+    code, fake = _run(monkeypatch)
+    assert code == 0
+    urls = [u for u, _ in fake.calls]
+    assert "https://testmedie-syd.dk/" in urls  # et andet site
+    assert all(urlsplit(u).hostname != "nyheder.testmedie.dk" for u in urls)  # samme site som forsiden
+    state = json.loads((paths.STATE_DIR / "logos.json").read_text(encoding="utf-8"))
+    assert state["testmedie--testmedie-syd-dk"]["error"] == "HTTP 404"

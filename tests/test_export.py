@@ -193,7 +193,7 @@ def test_export_builds_site(repo, scenario, tmp_path):
     assert sources["altinget"] == {"id": "altinget", "name": "Altinget", "category": "fagmedie",
                                    "homepage": "https://altinget.dk", "lang": "da", "paywall": "delvis",
                                    "owner": None, "status": "aktiv", "health": "gul", "via_search": False,
-                                   "logo": None}
+                                   "logo": None, "domain_logos": {}}
     assert [x["id"] for x in feed["sources"]] == sorted(sources)
 
 
@@ -364,3 +364,38 @@ def test_export_includes_logos_for_sources_in_feed(repo, scenario, tmp_path):
     assert logos == {"altinget": "logos/altinget.png", "fyens": None, "kefm": None}
     assert (out / "logos" / "altinget.png").read_bytes() == png
     assert sorted(p.name for p in (out / "logos").iterdir()) == ["altinget.png"]
+
+
+def test_export_lists_each_source_once_with_logos_for_its_other_sites(repo, tmp_path):
+    """domains på andre sites giver domain_logos (KONTRAKTER §6.4), og et tidligere id (replaces) giver ingen dublet."""
+    (repo / "sources.yaml").write_text(
+        """
+- {id: tv2-regioner, name: TV 2-regionerne, category: nyhedsmedie, homepage: "https://www.tv2nord.dk",
+   feeds: ["https://www.tv2nord.dk/rss", "https://www.tvsyd.dk/rss"], domains: [tvsyd.dk, tv2fyn.dk],
+   basis: redaktionelt, checked: 2026-10-01}
+- {id: kefm, name: KEFM, category: myndighed, homepage: "https://kefm.dk", feeds: "https://kefm.dk/rss",
+   domains: [kefm.dk], replaces: [kefm-gammel], basis: offentlig, checked: 2026-10-01}
+""",
+        encoding="utf-8",
+    )
+    folder = paths.STATE_DIR / "logos"
+    folder.mkdir(parents=True)
+    png = b"\x89PNG\r\n\x1a\n" + b"\x00" * 80
+    (folder / "tv2-regioner.ico").write_bytes(b"\x00\x00\x01\x00" + b"\x00" * 80)
+    (folder / "tv2-regioner--tvsyd-dk.png").write_bytes(png)
+    checked = "2026-10-07T06:00:00Z"
+    store.write_json(paths.STATE_DIR / "logos.json", {
+        "tv2-regioner": {"file": "tv2-regioner.ico", "src": "https://www.tv2nord.dk/favicon.ico", "checked": checked},
+        "tv2-regioner--tvsyd-dk": {"file": "tv2-regioner--tvsyd-dk.png", "src": None, "checked": checked},
+        "tv2-regioner--tv2fyn-dk": {"file": None, "src": None, "checked": checked, "error": "HTTP 404"},
+    })
+    out = tmp_path / "_site"
+    assert export_to(out) == 0
+    _, feed = read(out, "feed.json")
+    assert [s["id"] for s in feed["sources"]] == ["kefm", "tv2-regioner"]
+    by_id = {s["id"]: s for s in feed["sources"]}
+    assert by_id["tv2-regioner"]["logo"] == "logos/tv2-regioner.ico"
+    assert by_id["tv2-regioner"]["domain_logos"] == {"tvsyd.dk": "logos/tv2-regioner--tvsyd-dk.png"}
+    assert by_id["kefm"]["domain_logos"] == {}  # kefm.dk er forsidens eget site
+    assert sorted(p.name for p in (out / "logos").iterdir()) == ["tv2-regioner--tvsyd-dk.png", "tv2-regioner.ico"]
+

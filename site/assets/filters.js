@@ -506,6 +506,7 @@ export function prepare(feed, lastVisit) {
 
   const finish = (m) => {
     m.cat = cats.get(m.source.category) || UNKNOWN_CAT;
+    m.logo = logoOf(m.source, m.url);
     m.catId = m.cat.id;
     m.time = (m.published || m.firstSeen || new Date(0)).getTime();
     m.text = [m.title, m.teaser, m.summary, m.source.name, m.source.owner].filter(Boolean).join(' ').toLowerCase();
@@ -544,6 +545,24 @@ export function prepare(feed, lastVisit) {
     units.push(unit);
   }
   return { feed, cats, sources, topics, genres, geo, units, members, byId };
+}
+
+/**
+ * Logoet til et indslag (KONTRAKTER §6.4): logoet for artiklens site, når kilden har flere sites
+ * (domain_logos, fx de regionale TV 2-stationer), ellers kildens eget. null uden logo.
+ */
+export function logoOf(src, url) {
+  const byDomain = src.domain_logos || {};
+  let host = '';
+  try {
+    host = new URL(url).hostname.toLowerCase().replace(/^www\./, '');
+  } catch {
+    host = '';
+  }
+  for (const [domain, logo] of Object.entries(byDomain)) {
+    if (host && (host === domain || host.endsWith(`.${domain}`))) return logo;
+  }
+  return src.logo || null;
 }
 
 function isNewMember(m, lastVisit) {

@@ -8,7 +8,7 @@ import logging
 import time
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
-from urllib.parse import urlsplit
+from urllib.parse import urljoin, urlsplit
 
 import requests
 from protego import Protego
@@ -24,6 +24,8 @@ MB = 1024 * 1024
 RETRY_STATUSES = {500, 502, 504}
 SKIP_STATUSES = {429, 503}
 TRANSIENT_4XX = {408, 425, 429}  # 4xx, der kan gå over af sig selv
+REDIRECT_STATUSES = {301, 302, 303, 307, 308}
+MAX_REDIRECTS = 5
 
 # Fejltekster, som indsamlerne genkender i FetchResult.error
 BUDGET_EXHAUSTED = "tidsbudget opbrugt"
@@ -54,6 +56,17 @@ class FetchResult:
         if self.error == ROBOTS_BLOCKED or self.error.startswith(TOO_LARGE):
             return True
         return 400 <= self.status < 500 and self.status not in TRANSIENT_4XX
+
+
+@dataclass
+class _Answer:
+    """Svaret efter sidste omdirigering (Fetcher._follow)."""
+
+    status: int
+    headers: dict
+    content: bytes | None  # None: over loftet
+    encoding: str | None
+    url: str
 
 
 def _netloc(url: str) -> str:
@@ -233,24 +246,70 @@ class Fetcher:
                 raise TimeoutError(BUDGET_EXHAUSTED)
         return bytes(buf)
 
+    def _refusal(self, url: str, target: str) -> FetchResult | None:
+        """Fejlen, hvis target ikke må hentes (værten springes over, eller robots.txt forbyder det), ellers None.
+
+        url er adressen, kalderen bad om (FetchResult.url), og target er det hop, der tjekkes.
+        """
+        host = _netloc(target)
+        if host not in self._blocked_hosts:
+            try:
+                if self.allowed(target):
+                    return None
+            except TimeoutError as e:
+                return self._fail(url, 0, str(e))
+        if host in self._blocked_hosts:
+            return self._fail(url, 0, f"springes over: {self._blocked_hosts[host]}")
+        return self._fail(url, 0, ROBOTS_BLOCKED)
+
+    def _timeout(self) -> float:
+        """Timeout for næste forespørgsel inden for tidsbudgettet. Rejser TimeoutError, når budgettet er brugt."""
+        timeout = self.settings.timeout_seconds
+        remaining = self._remaining()
+        if remaining is not None:
+            if remaining <= 0:
+                raise TimeoutError(BUDGET_EXHAUSTED)
+            timeout = max(1.0, min(timeout, remaining))
+        return timeout
+
+    def _follow(self, url: str, headers: dict, limit: int) -> _Answer | FetchResult:
+        """GET url og følg omdirigeringer selv, så hvert hop tjekkes mod robots.txt og får sin egen takt.
+
+        Svaret efter sidste hop, eller en FetchResult-fejl, hvis et hop ikke må hentes. Netværksfejl og
+        TimeoutError (tidsbudget) rejses til kalderen.
+        """
+        hop = url
+        for _ in range(MAX_REDIRECTS + 1):
+            self._pace(_netloc(hop), self.crawl_delay(hop))
+            resp = self.session.get(hop, headers=headers, timeout=self._timeout(), allow_redirects=False, stream=True)
+            self.requests_made += 1
+            with contextlib.closing(resp):
+                status = resp.status_code
+                resp_headers = dict(resp.headers)
+                location = _header(resp_headers, "location") if status in REDIRECT_STATUSES else None
+                if not location:
+                    content = self._read(resp, limit) if 200 <= status < 300 else b""
+                    return _Answer(status, resp_headers, content, getattr(resp, "encoding", None), hop)
+            target = urljoin(hop, location.strip())
+            if urlsplit(target).scheme not in ("http", "https"):
+                return self._fail(url, status, f"HTTP {status} til en adresse, der ikke er http(s)", resp_headers)
+            refused = self._refusal(url, target)
+            if refused:
+                return refused
+            hop = target
+        return self._fail(url, status, f"for mange omdirigeringer (over {MAX_REDIRECTS})", resp_headers)
+
     def get(
         self, url: str, conditional: bool = True, max_bytes: int | None = None, accept: str | None = None
     ) -> FetchResult:
         """Hent url. max_bytes er loftet over svaret (standard fetch.max_response_mb).
 
         accept erstatter sessionens Accept-header (feeds først), fx "application/json" til ODA.
+        Omdirigeringer følges, når målet også må hentes ifølge robots.txt (højst MAX_REDIRECTS hop).
         """
-        host = _netloc(url)
-        if host in self._blocked_hosts:
-            return self._fail(url, 0, f"springes over: {self._blocked_hosts[host]}")
-        try:
-            allowed = self.allowed(url)
-        except TimeoutError as e:
-            return self._fail(url, 0, str(e))
-        if not allowed:
-            if host in self._blocked_hosts:
-                return self._fail(url, 0, f"springes over: {self._blocked_hosts[host]}")
-            return self._fail(url, 0, ROBOTS_BLOCKED)
+        refused = self._refusal(url, url)
+        if refused:
+            return refused
 
         headers: dict[str, str] = {"Accept": accept} if accept else {}
         cached = self.http_cache.get(url) if conditional else None
@@ -260,7 +319,6 @@ class Fetcher:
             if cached.get("last_modified"):
                 headers["If-Modified-Since"] = cached["last_modified"]
 
-        delay = self.crawl_delay(url)
         limit = max_bytes or self.max_bytes
         attempts = 2
         last_error = "ukendt fejl"
@@ -269,18 +327,8 @@ class Fetcher:
             remaining = self._remaining()
             if remaining is not None and remaining <= 0:
                 return self._fail(url, last_status, BUDGET_EXHAUSTED)
-            timeout = self.settings.timeout_seconds
-            if remaining is not None:
-                timeout = max(1.0, min(timeout, remaining))
             try:
-                self._pace(host, delay)
-                resp = self.session.get(url, headers=headers, timeout=timeout, allow_redirects=True, stream=True)
-                self.requests_made += 1
-                with contextlib.closing(resp):
-                    status = resp.status_code
-                    resp_headers = dict(resp.headers)
-                    final_url = getattr(resp, "url", None) or url
-                    content = self._read(resp, limit) if 200 <= status < 300 else b""
+                answer = self._follow(url, headers, limit)
             except TimeoutError as e:
                 return self._fail(url, last_status, str(e))
             except requests.Timeout:
@@ -291,7 +339,10 @@ class Fetcher:
                 if isinstance(e, requests.ConnectionError) and attempt == 0:
                     continue
                 return self._fail(url, 0, last_error)
+            if isinstance(answer, FetchResult):
+                return answer
 
+            status, resp_headers, content = answer.status, answer.headers, answer.content
             if status == 304:
                 return FetchResult(url=url, status=304, text=None, content=None, not_modified=True, error=None, headers=resp_headers)
             if 200 <= status < 300:
@@ -300,17 +351,17 @@ class Fetcher:
                     return self._fail(url, status, f"{TOO_LARGE} (over {limit / MB:.3g} MB)", resp_headers)
                 self._remember(url, resp_headers)
                 try:
-                    text = content.decode(getattr(resp, "encoding", None) or "utf-8", errors="replace")
+                    text = content.decode(answer.encoding or "utf-8", errors="replace")
                 except (LookupError, ValueError):  # ukendt eller ikke-tekst-codec i Content-Type
                     text = content.decode("utf-8", errors="replace")
                 return FetchResult(
                     url=url, status=status, text=text, content=content, not_modified=False, error=None,
-                    headers=resp_headers, final_url=final_url,
+                    headers=resp_headers, final_url=answer.url,
                 )
             if status in SKIP_STATUSES:
                 retry_after = resp_headers.get("Retry-After") or resp_headers.get("retry-after")
                 note = f" (Retry-After: {retry_after})" if retry_after else ""
-                self._blocked_hosts[host] = f"HTTP {status}{note}"
+                self._blocked_hosts[_netloc(answer.url)] = f"HTTP {status}{note}"
                 return self._fail(url, status, f"HTTP {status}{note}; springes over i denne kørsel", resp_headers)
             if status in RETRY_STATUSES:
                 last_error, last_status = f"HTTP {status}", status

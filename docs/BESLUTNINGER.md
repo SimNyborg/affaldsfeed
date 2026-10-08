@@ -81,3 +81,9 @@ Brugeren ville ikke have tidsvalget 7, 30 og 60 dage over listen. Tidsvalg høre
 ## 2026-10-08: Kildernes logoer på kortene
 
 Brugeren ville have mediernes egne små logoer på artiklerne, fx TV 2's. Indsamlingen henter hver kildes favicon efter kilderne i hver kørsel (højst 20 ad gangen) og tjekker dem igen hver 30. dag. Logoerne ligger i `data/state/logos/`, hvor indsamlingen i forvejen må skrive, og vises fra sitets eget domæne. Læserne sender derfor ingen forespørgsler til medierne. Kun rasterbilleder gemmes, aldrig SVG, fordi en SVG kan indeholde scripts. Har en kilde intet brugbart logo, står afsendertypens ikon som før. Fravalgt: at hente logoerne direkte fra medierne i læserens browser (sporing og ustabilt) og tjenester som Googles favicon-API (afhængighed og sporing).
+
+Efter de første kørsler manglede Folketingets og HOFOR's logoer, og TV 2-regionernes var forkert. TV 2-regionerne samler otte stationer, så alle kortene viste TV2 Nords ikon. Nu får en kilde med `domains` på andre sites end forsiden et logo pr. site, og kortet vælger efter artiklens domæne. Folketingets forside er bag en Cloudflare-udfordring, som aldrig omgås. Logohenteren prøver derfor til sidst `/favicon.ico` på værterne for kildens egne feeds, her `oda.ft.dk`, hvor data i forvejen hentes. HOFOR's robots.txt forbyder mappen med deres ikoner, og de forbudte ikoner brugte alle tre forsøg, så `/favicon.ico` aldrig blev prøvet. Et forbudt ikon tæller nu ikke som forsøg.
+
+## 2026-10-08: Omdirigeringer tjekkes mod robots.txt
+
+Hentningen fulgte omdirigeringer uden at tjekke målet mod robots.txt. Et link til en tilladt adresse kunne derfor ende på en side, robots.txt forbyder, fx når `/favicon.ico` sender videre til en forbudt mappe. Nu følger hentningen selv højst fem omdirigeringer, og hvert skridt skal være tilladt i sin værts robots.txt og overholde værtens takt. Er robots.txt på målet utilgængelig, springes værten over i kørslen, ligesom når den hentes direkte.
