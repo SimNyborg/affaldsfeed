@@ -585,6 +585,25 @@
   checked: 2026-10-08
   note: RSS med de 36 nyeste. robots.txt fravælger kun GPTBot.
 
+- id: folketidende
+  name: Lolland-Falsters Folketidende
+  category: nyhedsmedie
+  homepage: https://www.folketidende.dk
+  method: sitemap
+  feeds: https://www.folketidende.dk/sitemap.xml
+  match: /nyheder/
+  filter: strict
+  every: 2
+  paywall: delvis
+  replaces: [folketidende-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Lolland og Guldborgsund. Ét sitemap med de 10.000 nyeste artikler (ca. 400 kB pakket, uden ETag og titler),
+    så det hentes hver anden time, og kun artikler med et affaldsord i URL'en hentes. robots.txt fravælger
+    AI-træning; indsamleren er ikke en AI-crawler (samme princip som DR og TV 2).
+
 # Tilføjet 2026-10-07 (kildeudvidelse)
 - id: danwatch
   name: Danwatch
@@ -611,6 +630,68 @@
   note: >-
     Det tyske mindretals avis i Sønderjylland. Har et nyhedssitemap, men skriver på tysk, som feedet endnu
     ikke understøtter (lang: da, en, sv). robots.txt spærrer AI-agenter, så kilden skal have ai: false.
+
+
+# ── Midtjyske Medier (forsiden som liste) ──────────────────────
+- id: herningfolkeblad
+  name: Herning Folkeblad
+  category: nyhedsmedie
+  homepage: https://herningfolkeblad.dk
+  method: html
+  feeds: https://herningfolkeblad.dk/
+  match: /artikel/
+  filter: strict
+  every: 4
+  paywall: delvis
+  replaces: [herningfolkeblad-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Midtjyske Medier. Intet feed, og sitemappet har kun sektioner. Artikel-URL'erne har intet titelord
+    (/artikel/<uuid>), så linkteksten på forsiden afgør, om artiklen hentes. Forsiden er tung (ca. 900 kB),
+    så den hentes hver fjerde time. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler
+    (samme princip som DR og TV 2).
+
+- id: midtjyllandsavis
+  name: Midtjyllands Avis
+  category: nyhedsmedie
+  homepage: https://midtjyllandsavis.dk
+  method: html
+  feeds: https://midtjyllandsavis.dk/
+  match: /artikel/
+  filter: strict
+  every: 4
+  paywall: delvis
+  replaces: [midtjyllandsavis-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Midtjyske Medier. Intet feed, og sitemappet har kun sektioner. Artikel-URL'erne har intet titelord
+    (/artikel/<uuid>), så linkteksten på forsiden afgør, om artiklen hentes. Forsiden er tung (ca. 900 kB),
+    så den hentes hver fjerde time. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler
+    (samme princip som DR og TV 2).
+
+- id: skivefolkeblad
+  name: Skive Folkeblad
+  category: nyhedsmedie
+  homepage: https://skivefolkeblad.dk
+  method: html
+  feeds: https://skivefolkeblad.dk/
+  match: /artikel/
+  filter: strict
+  every: 4
+  paywall: delvis
+  replaces: [skivefolkeblad-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Midtjyske Medier. Intet feed, og sitemappet har kun sektioner. Artikel-URL'erne har intet titelord
+    (/artikel/<uuid>), så linkteksten på forsiden afgør, om artiklen hentes. Forsiden er tung (ca. 900 kB),
+    så den hentes hver fjerde time. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler
+    (samme princip som DR og TV 2).
 
 # ── Fagmedier ─────────────────────────────────────────────────
 - id: altinget

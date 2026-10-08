@@ -91,27 +91,6 @@
   paywall: delvis
 
 # ── Regionale dagblade: Jysk Fynske Medier ────────────────────
-- id: herningfolkeblad-dk
-  name: Herning Folkeblad
-  category: nyhedsmedie
-  domains: [herningfolkeblad.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: midtjyllandsavis-dk
-  name: Midtjyllands Avis
-  category: nyhedsmedie
-  domains: [midtjyllandsavis.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: skivefolkeblad-dk
-  name: Skive Folkeblad
-  category: nyhedsmedie
-  domains: [skivefolkeblad.dk]
-  basis: redaktionelt
-  paywall: delvis
-
 - id: ugeavisen-dk
   name: Ugeaviserne (Jysk Fynske Medier)
   category: nyhedsmedie
@@ -124,13 +103,6 @@
   name: Frederiksborg Amts Avis
   category: nyhedsmedie
   domains: [frederiksborgamtsavis.dk, frederiksborgamtsavis.sjnyheder.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: folketidende-dk
-  name: Lolland-Falsters Folketidende
-  category: nyhedsmedie
-  domains: [folketidende.dk]
   basis: redaktionelt
   paywall: delvis
 
