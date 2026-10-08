@@ -127,3 +127,7 @@ Probe-workflowet tabte et resultat, fordi to kørsler skrev `probe/result.md` sa
 Med de mange nye lokalaviser rummede afsendertypen Nyhedsmedie over 90 kilder, og brugeren bad om at få nationale medier og lokalmedier delt op. Nyhedsmedie hedder nu Nationalt medie (landsdækkende medier og Ritzau), og den nye type Lokalmedie samler regionale dagblade, TV 2-regionerne, ugeaviser og lokale netaviser. Menuen, kildelisten og Om kilderne deler sig af sig selv, fordi de grupperer efter afsendertype.
 
 Id'et `nyhedsmedie` er beholdt, så gemte filtre og data ikke skal flyttes. DR er et nationalt medie, selvom det har regionale redaktioner. De to typer deler farve, fordi en niende farve med mindst 20 i farveafstand til alle de andre kun findes som neongul eller næsten sort. Lokalmedie har i stedet sit eget ikon, en avis med kortnål, og `tools/check_colors.py` måler søskende med samme farve som én farve. De to typer har samme rang, når en historie har flere kilder.
+
+## 2026-10-08: En kilde er først tavs efter 30 dage
+
+Om kilderne viste "tavs i lang tid" ved de 61 lokalmedier, der kom til samme dag, fordi reglen kun så på, om en kilde havde haft indslag de seneste 30 dage. Kilden får nu en startdato (`since`) ved sin første vellykkede kørsel og kan først kaldes tavs, når den er fulgt i 30 dage. Feedet har kun kørt siden 7. oktober, så etiketten forsvinder også fra de ældre kilder og kommer først igen fra november.

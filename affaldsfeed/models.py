@@ -415,6 +415,7 @@ class SourceState(_Strict):
     items_30d: int = 0
     first_run_done: bool = False
     health: Health = "graa"
+    since: date | None = None  # første vellykkede kørsel (dato i København); None = ikke kendt endnu
 
 
 # ── Claude-routinen ─────────────────────────────────────────

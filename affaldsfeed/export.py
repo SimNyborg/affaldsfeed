@@ -30,7 +30,7 @@ from affaldsfeed.models import DisplayItem, Feed, Geo
 from affaldsfeed.overview import PERIODS, load_overviews
 from affaldsfeed.stories import build_stories
 from affaldsfeed.timeline import export_timeline
-from affaldsfeed.timeutil import ensure_utc, iso, now_utc
+from affaldsfeed.timeutil import ensure_utc, iso, now_utc, to_cph
 
 log = logging.getLogger(__name__)
 
@@ -170,6 +170,7 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
     Feed.model_validate(feed)  # kontrakten (KONTRAKTER §8); ValidationError giver exit 1
 
     status_sources = []
+    today = to_cph(now).date()
     for s in sorted(sources, key=lambda s: s.id):
         st = states.get(s.id)
         status_sources.append(
@@ -183,7 +184,7 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
                 "fails": st.fails if st else 0,
                 "last_error": st.last_error if st else None,
                 "items_30d": st.items_30d if st else 0,
-                "silent": bool(silent(st)) if st else False,
+                "silent": silent(st, today) if st else False,
             }
         )
     status = {
