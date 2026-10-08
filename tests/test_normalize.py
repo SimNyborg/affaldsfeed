@@ -28,6 +28,8 @@ from affaldsfeed.normalize import (
         ("https://arc.dk/nyheder/", "https://arc.dk/nyheder"),
         ("https://arc.dk/nyheder//", "https://arc.dk/nyheder"),
         ("https://x.dk/a?fbclid=1&gclid=2&ref=rss&mc_cid=3&mc_eid=4&UTM_Medium=e", "https://x.dk/a"),
+        # Berlingskes RSS-links: samme id som artiklen fundet via søgning
+        ("https://www.berlingske.dk/politik/ny-aftale?referrer=RSS", "https://berlingske.dk/politik/ny-aftale"),
         ("https://x.dk/a?side=2&id=7", "https://x.dk/a?id=7&side=2"),
         ("https://x.dk:443/a", "https://x.dk/a"),
         ("http://x.dk:8080/a", "https://x.dk:8080/a"),

@@ -104,14 +104,15 @@ Færdig, når alle kilder på listen er aktive eller fravalgt med en begrundelse
 
 ## Næste skridt for cloud-sessionen
 
-Start med at læse `CLAUDE.md`, `docs/KONTRAKTER.md` og denne fil. Tjek så, at driften kører: `gh run list` skal vise grønne kørsler af "Udgiv" og "Indsamling", og `data/judgments/_heartbeat.json` skal være fra seneste kørsel i dagtimerne. GitHubs tidsplan for `collect.yml` var ikke kommet i gang pr. 7. oktober 2026. Indsamlingen kører i stedet efter hvert byg (`workflow_run`), altså når routinen har pushet. Står routinen, står indsamlingen derfor også.
+Start med at læse `CLAUDE.md`, `docs/KONTRAKTER.md` og denne fil. Tjek så, at driften kører: `gh run list` skal vise grønne kørsler af "Udgiv" og "Indsamling", og `data/judgments/_heartbeat.json` skal være fra seneste kørsel i dagtimerne. GitHubs tidsplan for `collect.yml` kører kun sporadisk: natten til 8. oktober 2026 kom 2 af omkring 8 planlagte kørsler. Indsamlingen kører derfor mest efter hvert byg (`workflow_run`), altså når routinen har pushet. Står routinen, står indsamlingen næsten også, og om natten går der op til fire timer mellem kørslerne.
 
 Brugeren skal rette routinens prompt på claude.ai, så den siger "Du må kun skrive i data/judgments/, data/overview/ og data/timeline/." Indtil da fyldes tidslinjen ikke. Routinen er oprettet via API, så en session kan ikke selv rette den.
 
 Fase 2, resten (lokale medier og ODA er færdige):
 1. Følg de 19 sitemap- og 10 html-kilder og ODA i 7 dage. Fejler en, så ret `match`, `select` eller `filter`, eller sæt den på pause med en note.
-2. Efterprøv sweepet kl. 06.25 og 14.25. Fund skal skrives som vurderinger med `new_item`, og ukendte udgivere skal havne i `data/judgments/kildeforslag-sweep.md`.
-3. Gennemgå `data/state/kildeforslag.md` hver uge. Troværdige udgivere flyttes til `config/medier.yaml` eller `sources.yaml`.
+2. Efterprøv sweepet kl. 06.25 og 14.25. Fund skal skrives som vurderinger med `new_item`, og ukendte udgivere skal havne i `data/judgments/kildeforslag-sweep.md`. Sweepet kl. 06.25 den 8. oktober gav ingen fund. Læs routinens session (`get_trigger` giver `last_run.session_id`, `list_events` viser forløbet) for at se, om det søgte, og hvad det fandt.
+3. TV 2: afventer brugerens svar på, om indsamlingen må læse TV 2's sektionssider (HTML) for at få næsten fuld dækning (se BESLUTNINGER 2026-10-08, Dækningen af affaldsnyheder).
+4. Gennemgå `data/state/kildeforslag.md` hver uge. Troværdige udgivere flyttes til `config/medier.yaml` eller `sources.yaml`.
 
 Fase 3:
 1. "Hvorfor med?" bygger på feltet `why`, som allerede står i `feed.json`.
