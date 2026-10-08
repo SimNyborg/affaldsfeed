@@ -234,7 +234,7 @@ data/
   state/logos.json             {logo_id: {file, src, checked, error}}  kildernes logoer (6.4)
   state/logos/<logo_id>.<ext>  logoet (png, ico, gif, jpg eller webp)
 ```
-Skrivning er atomisk (skriv `.tmp`, `os.replace`). Filer ændres kun, når indholdet faktisk ændres (så git ikke får tomme commits). `SourceState.last_ok` gemmes kun som dato.
+Skrivning er atomisk (skriv `.tmp`, `os.replace`). Filer ændres kun, når indholdet faktisk ændres (så git ikke får tomme commits). `SourceState.last_ok` gemmes kun som dato. `SourceState.since` er datoen (København) for kildens første vellykkede kørsel og ændres ikke siden. Kilder fra før feltet fandtes, får datoen ved deres næste vellykkede kørsel.
 
 **Ulæselige linjer skrives aldrig væk.** Kan en linje i en månedsfil i `candidates/` eller `rejected/` ikke læses (ugyldig JSON eller et felt, koden ikke kender, fx efter en tilbagerulning af koden), springes den over ved læsning med en advarsel (højst tre enkeltvis pr. fil, derefter et samlet tal). Filen skrives så aldrig om: `run` logger en fejl, lader filen stå og gemmer ikke nye eller ændrede poster for den måned (fejlen nævner antal og eksempler), og en udløbet fil med afviste slettes heller ikke. Derfor fjernes felter aldrig fra `Candidate` og `Rejected`; ret koden fremad.
 
@@ -358,7 +358,7 @@ De vigtigste begivenheder på affaldsområdet, valgt og skrevet af Claude-routin
 - `logo`: stien til kildens logo relativt til sitet (`logos/<id>.<ext>`, se 6.4) eller `null`. Siden viser det i 16 px foran kildens navn og ellers afsendertypens ikon.
 - `domain_logos`: logoerne for kildens andre sites (6.4), domæne → sti; tom for de fleste kilder. Siden bruger logoet for artiklens domæne, når værtsnavnet (uden `www.`) er domænet eller et underdomæne af det, og ellers `logo`.
 - `feed.json` valideres mod `models.Feed` før skrivning (fejl giver exit 1). `examples/feed.sample.json` følger samme kontrakt (`tests/test_sample.py`).
-- `status.json`: `{generated, sources: [{id, name, category, status, health, last_ok, fails, last_error, items_30d, silent}], counts: {candidates_60d, shown_60d, rejected_30d}}`.
+- `status.json`: `{generated, sources: [{id, name, category, status, health, last_ok, fails, last_error, items_30d, silent}], counts: {candidates_60d, shown_60d, rejected_30d}}`. `silent` ("tavs i lang tid") er sand, når kilden er fulgt i mindst 30 dage (`since`), svarer (0 fejl i træk) og har 0 indslag de seneste 30 dage.
 
 Historier (`stories.py`): niveau 1 = samme id; niveau 2 = samme `normalize_title` inden for ±3 døgn; niveau 3 (fase 3) = rapidfuzz. Desuden forenes `story_hint`-par fra vurderinger. Dagsbundter: i feedet (`export`) samles indslag fra en kilde med `bundle: day` pr. dag i København til én historie; overblik og tidslinje ser dem hver for sig, så et bundt ikke ligner en stor historie. En override `split` gælder også her. Hovedindslag = laveste kategori-rang, ved lighed tidligst publiceret. `story` = hovedindslagets id. En historie optager ikke indslag mere end 7 døgn efter hovedindslaget.
 

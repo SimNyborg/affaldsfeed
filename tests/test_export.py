@@ -127,7 +127,8 @@ def scenario(repo):
     store.save_source_states({
         "kefm": SourceState(last_ok=date(2026, 10, 7), health="groen", items_30d=4, first_run_done=True),
         "altinget": SourceState(fails=2, last_error="HTTP 503", health="gul", items_30d=9, first_run_done=True),
-        "gnews": SourceState(health="groen", items_30d=0, first_run_done=True),
+        "gnews": SourceState(health="groen", items_30d=0, first_run_done=True, since=date(2026, 8, 1)),
+        "dakofa": SourceState(health="groen", items_30d=0, first_run_done=True, since=date(2026, 10, 1)),
     })
     store.save_rejected(
         [Rejected(id="r1", url="https://x.dk/1", title="X", source="altinget", first_seen=NOW - timedelta(days=2),
@@ -210,6 +211,7 @@ def test_status_json(repo, scenario, tmp_path):
     assert by_id["kefm"]["last_ok"] == "2026-10-07"
     assert by_id["gnews"]["silent"] is True
     assert by_id["dakofa"]["health"] == "graa"
+    assert by_id["dakofa"]["silent"] is False  # fulgt i under 30 dage
     assert status["counts"] == {"candidates_60d": 5, "shown_60d": 4, "rejected_30d": 1}
 
 

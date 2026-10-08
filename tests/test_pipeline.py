@@ -491,17 +491,24 @@ def test_record_result_and_silent(env):
     now = datetime(2026, 10, 6, 22, 30, tzinfo=UTC)  # 00:30 dansk tid den 7.
     st = record_result(SourceState(), True, None, now, s)
     assert st.health == "groen" and st.last_ok == date(2026, 10, 7) and st.first_run_done
-    assert st.last_attempt == now
-    assert silent(st)  # svarer, men ingen indslag
-    assert not silent(st.model_copy(update={"items_30d": 2}))
+    assert st.last_attempt == now and st.since == date(2026, 10, 7)
+    # Svarer, men ingen indslag: tavs først, når kilden er fulgt i 30 dage
+    assert not silent(st, date(2026, 10, 7))
+    assert not silent(st, date(2026, 11, 5))
+    assert silent(st, date(2026, 11, 6))
+    assert not silent(st.model_copy(update={"items_30d": 2}), date(2026, 11, 6))
+    assert not silent(st.model_copy(update={"since": None}), date(2026, 11, 6))  # ukendt start: aldrig tavs
+    later = record_result(st, True, None, now + timedelta(days=40), s)
+    assert later.since == date(2026, 10, 7)  # startdatoen flytter sig ikke
+    st = st.model_copy(update={"since": date(2026, 9, 1)})
     for i in range(1, 6):
         st = record_result(st, False, "HTTP 500", now, s)
         assert st.fails == i
         assert st.health == ("roed" if i >= 5 else "gul")
     assert st.last_ok == date(2026, 10, 7) and st.last_error == "HTTP 500"
-    assert not silent(st)
+    assert not silent(st, date(2026, 11, 6))
     st = record_result(st, True, None, now, s)
-    assert st.fails == 0 and st.last_error is None and st.health == "groen"
+    assert st.fails == 0 and st.last_error is None and st.health == "groen" and st.since == date(2026, 9, 1)
 
 
 def test_run_fetches_logos_after_sources_but_not_in_dry_run(env, monkeypatch):
