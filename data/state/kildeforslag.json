@@ -115,15 +115,17 @@
   },
   "sydkusten.es": {
     "name": "Sydkusten",
-    "count": 2,
-    "last_seen": "2026-10-08T08:27:16Z",
+    "count": 3,
+    "last_seen": "2026-10-08T18:27:40Z",
     "examples": [
+      "https://www.sydkusten.es/sk/23/a/46892/svensk-18-aring-gripen-for-mordet-pa-kand-plastikkirurg/",
       "https://www.sydkusten.es/sk/23/a/46884/mordade-plastikkirurgen-en-av-de-mest-framstaende-i-branschen/",
       "https://www.sydkusten.es/sk/23/a/46882/plastikkirurg-skjuten-till-dods-pa-klinik/"
     ],
     "ids": [
       "eee08a92848c",
-      "9af3d74184d4"
+      "9af3d74184d4",
+      "276d7e9af5b8"
     ]
   },
   "tv4.se": {

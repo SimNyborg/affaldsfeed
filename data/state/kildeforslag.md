@@ -8,7 +8,7 @@ Genereres automatisk af `python -m affaldsfeed run`. Viser top 50 efter antal ar
 | Domæne | Navn | Artikler | Senest set | Eksempler |
 |---|---|---:|---|---|
 | msn.com | Top Santé on MSN | 3 | 2026-10-08 | [1](https://www.msn.com/fr-fr/divertissement/g%C3%A9n%C3%A9ral/la-vache-qui-rit-voici-pourquoi-elle-a-cess%C3%A9-de-sourire-sur-certains-emballages-vous-aurez-du-mal-%C3%A0-y-croire/ar-AA2dObRz) [2](https://www.msn.com/da-dk/nyheder/other/affald-skulle-blive-billigere-nu-risikerer-danskerne-at-betale-mere/ar-AA2dIQNq) [3](https://www.msn.com/da-dk/sundhed/generelt/affaldsselskab-sl%C3%A5r-alarm-popul%C3%A6r-v%C3%A6gttabsmedicin-skaber-uventet-fare/ar-AA2dKg75) |
-| sydkusten.es | Sydkusten | 2 | 2026-10-08 | [1](https://www.sydkusten.es/sk/23/a/46884/mordade-plastikkirurgen-en-av-de-mest-framstaende-i-branschen/) [2](https://www.sydkusten.es/sk/23/a/46882/plastikkirurg-skjuten-till-dods-pa-klinik/) |
+| sydkusten.es | Sydkusten | 3 | 2026-10-08 | [1](https://www.sydkusten.es/sk/23/a/46892/svensk-18-aring-gripen-for-mordet-pa-kand-plastikkirurg/) [2](https://www.sydkusten.es/sk/23/a/46884/mordade-plastikkirurgen-en-av-de-mest-framstaende-i-branschen/) [3](https://www.sydkusten.es/sk/23/a/46882/plastikkirurg-skjuten-till-dods-pa-klinik/) |
 | yahoo.com | Yahoo | 2 | 2026-10-07 | [1](https://www.yahoo.com/entertainment/tv/articles/charlie-kawas-details-filming-botched-192742838.html) [2](https://www.yahoo.com/entertainment/tv/articles/hgtv-fans-react-rock-block-174922811.html) |
 | bornholm.nu | Bornholm.nu | 1 | 2026-10-07 | [1](https://bornholm.nu/nyheder/ikke-alt-maa-klunses-hos-bofa/141859) |
 | cardinalpine.com | Cardinal & Pine | 1 | 2026-10-07 | [1](https://cardinalpine.com/local/wilmington-ritzy-plans-thalian-hall-remake/) |
