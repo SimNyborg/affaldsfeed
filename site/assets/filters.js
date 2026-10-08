@@ -352,7 +352,7 @@ export function toggleShown(s, g, key) {
   s[g] = encodeShown(g, cur);
 }
 
-/** "Vælg alle" og "Fravælg alle". */
+/** "Vælg alle" og "Fravælg alle". Under Sted fjerner begge også de valgte kommuner og byer. */
 export function setAllShown(s, g, on) {
   s[g] = on ? [] : (UNIVERSE[g] || []).map((k) => `-${k}`);
 }
@@ -917,7 +917,7 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
   };
   const addGroup = (fg, text, active) => { groups.push({ fg, text, active }); return fg; };
 
-  // Sted (kun når feedet har geo): søgefelt, valgte kommuner og byer, regionerne og "Landsdækkende"
+  // Sted (kun når feedet har geo): søgefelt, knappen, valgte kommuner og byer, regionerne og "Landsdækkende"
   let sted = null;
   if (data.geo) {
     const geo = data.geo;
@@ -946,7 +946,7 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
       // Kontekst i forslagets navn: "Ullerslev, by i Nyborg Kommune, 3 indslag"
       describe: (it) => placeContext(data, it.key),
     });
-    const fg = addGroup(foldGroup('Sted', cbx.root,
+    const fg = addGroup(foldGroup('Sted', cbx.root, tools('sted'),
       fset('Sted', picked.box, el('div', { class: 'opts regions' }, regionRows), nationalRow)), statusOf('sted'), (s) => s.sted.length > 0);
     sted = { cbx, picked, fg };
   }
