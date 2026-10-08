@@ -112,7 +112,7 @@
 
 - id: tv2-regionerne
   name: TV 2-regionerne
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.tv2nord.dk
   method: rss
   feeds:
@@ -285,7 +285,7 @@
 
 - id: jysk-fynske-medier
   name: Jysk Fynske Medier (regionale dagblade)
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://fyens.dk
   method: rss
   feeds: []
@@ -297,10 +297,21 @@
   note: >-
     Erstattet 2026-10-08 af de enkelte aviser nedenfor, som hentes via deres dagssitemaps.
 
-# ── Regionale dagblade: Jysk Fynske Medier (dagssitemaps) ─────
+- id: danwatch
+  name: Danwatch
+  category: nyhedsmedie
+  homepage: https://danwatch.dk
+  feeds: https://danwatch.dk/feed/
+  filter: strict
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-07
+  note: Undersøgende medie. Skriver om affald og plast i globale forsyningskæder, så filtret er strengt.
+
+# ── Regionale dagblade ────────────────────────────────────────
 - id: jv
   name: JydskeVestkysten
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://jv.dk
   method: sitemap
   feeds: https://jv.dk/sitemap/{dato}
@@ -318,7 +329,7 @@
 
 - id: fyens
   name: Fyens Stiftstidende
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://fyens.dk
   method: sitemap
   feeds: https://fyens.dk/sitemap/{dato}
@@ -336,7 +347,7 @@
 
 - id: faa
   name: Fyns Amts Avis
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://faa.dk
   method: sitemap
   feeds: https://faa.dk/sitemap/{dato}
@@ -354,7 +365,7 @@
 
 - id: vafo
   name: Vejle Amts Folkeblad
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://vafo.dk
   method: sitemap
   feeds: https://vafo.dk/sitemap/{dato}
@@ -372,7 +383,7 @@
 
 - id: hsfo
   name: Horsens Folkeblad
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://hsfo.dk
   method: sitemap
   feeds: https://hsfo.dk/sitemap/{dato}
@@ -390,7 +401,7 @@
 
 - id: frdb
   name: Fredericia Dagblad
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://frdb.dk
   method: sitemap
   feeds: https://frdb.dk/sitemap/{dato}
@@ -409,7 +420,7 @@
 
 - id: stiften
   name: Århus Stiftstidende
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://stiften.dk
   method: sitemap
   feeds: https://stiften.dk/sitemap/{dato}
@@ -427,7 +438,7 @@
 
 - id: amtsavisen
   name: Randers Amtsavis
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://amtsavisen.dk
   method: sitemap
   feeds: https://amtsavisen.dk/sitemap/{dato}
@@ -445,7 +456,7 @@
 
 - id: viborg-folkeblad
   name: Viborg Folkeblad
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://viborg-folkeblad.dk
   method: sitemap
   feeds: https://viborg-folkeblad.dk/sitemap/{dato}
@@ -463,7 +474,7 @@
 
 - id: dagbladet-holstebro-struer
   name: Dagbladet Holstebro-Struer
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://dagbladet-holstebro-struer.dk
   method: sitemap
   feeds: https://dagbladet-holstebro-struer.dk/sitemap/{dato}
@@ -481,7 +492,7 @@
 
 - id: dbrs
   name: Dagbladet Ringkøbing-Skjern
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://dbrs.dk
   method: sitemap
   feeds: https://dbrs.dk/sitemap/{dato}
@@ -499,7 +510,7 @@
 
 - id: folkebladetlemvig
   name: Folkebladet Lemvig
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://folkebladetlemvig.dk
   method: sitemap
   feeds: https://folkebladetlemvig.dk/sitemap/{dato}
@@ -518,7 +529,7 @@
 
 - id: helsingordagblad
   name: Helsingør Dagblad
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://helsingordagblad.dk
   method: sitemap
   feeds: https://helsingordagblad.dk/sitemap/{dato}
@@ -536,7 +547,7 @@
 
 - id: nordjyske
   name: Nordjyske
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://nordjyske.dk
   method: sitemap
   feeds: https://nordjyske.dk/sitemap.xml
@@ -554,7 +565,7 @@
 
 - id: sjaellandske-medier
   name: Sjællandske Medier
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.sn.dk
   method: sitemap
   feeds: https://www.sn.dk/SitemapIndex.0.xml
@@ -573,7 +584,7 @@
 
 - id: bornholms-tidende
   name: Bornholms Tidende
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://tidende.dk
   method: rss
   feeds: https://tidende.dk/rssfeed.aspx
@@ -587,7 +598,7 @@
 
 - id: folketidende
   name: Lolland-Falsters Folketidende
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.folketidende.dk
   method: sitemap
   feeds: https://www.folketidende.dk/sitemap.xml
@@ -605,20 +616,9 @@
     AI-træning; indsamleren er ikke en AI-crawler (samme princip som DR og TV 2).
 
 # Tilføjet 2026-10-07 (kildeudvidelse)
-- id: danwatch
-  name: Danwatch
-  category: nyhedsmedie
-  homepage: https://danwatch.dk
-  feeds: https://danwatch.dk/feed/
-  filter: strict
-  basis: redaktionelt
-  status: aktiv
-  checked: 2026-10-07
-  note: Undersøgende medie. Skriver om affald og plast i globale forsyningskæder, så filtret er strengt.
-
 - id: nordschleswiger
   name: Der Nordschleswiger
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.nordschleswiger.dk
   method: sitemap
   feeds: https://www.nordschleswiger.dk/?lab_viewport=newssitemap
@@ -635,7 +635,7 @@
 # ── Midtjyske Medier (forsiden som liste) ──────────────────────
 - id: herningfolkeblad
   name: Herning Folkeblad
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://herningfolkeblad.dk
   method: html
   feeds: https://herningfolkeblad.dk/
@@ -655,7 +655,7 @@
 
 - id: midtjyllandsavis
   name: Midtjyllands Avis
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://midtjyllandsavis.dk
   method: html
   feeds: https://midtjyllandsavis.dk/
@@ -675,7 +675,7 @@
 
 - id: skivefolkeblad
   name: Skive Folkeblad
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://skivefolkeblad.dk
   method: html
   feeds: https://skivefolkeblad.dk/
@@ -698,7 +698,7 @@
 # Kortlagt 2026-10-08 for alle kommuner. Oversigten pr. kommune står i docs/LOKALMEDIER.md.
 - id: orestad-avis
   name: Ørestad Avis
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.orestad-avis.dk
   method: rss
   feeds: https://www.orestad-avis.dk/feed/
@@ -712,7 +712,7 @@
 
 - id: nordhavn-avis
   name: Nordhavn Avis
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.nordhavn-avis.dk
   method: rss
   feeds: https://www.nordhavn-avis.dk/feed/
@@ -726,7 +726,7 @@
 
 - id: hornsherredlokalavis
   name: Hornsherred Lokalavis
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.hornsherredlokalavis.dk
   method: rss
   feeds: https://www.hornsherredlokalavis.dk/feed/
@@ -740,7 +740,7 @@
 
 - id: tjekfredensborg
   name: TjekFredensborg
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://tjekfredensborg.dk
   method: rss
   feeds: https://tjekfredensborg.dk/feed/
@@ -754,7 +754,7 @@
 
 - id: migogkbh
   name: MigogKBH
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://migogkbh.dk
   method: rss
   feeds: https://migogkbh.dk/feed/
@@ -768,7 +768,7 @@
 
 - id: netavisen-sjaelland
   name: Netavisen Sjælland
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://netavisen-sjaelland.dk
   method: rss
   feeds: https://netavisen-sjaelland.dk/feed/
@@ -783,7 +783,7 @@
 
 - id: lejremagasinet
   name: LejreMagasinet
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.mitlejre.dk
   method: rss
   feeds: https://www.mitlejre.dk/feed/
@@ -797,7 +797,7 @@
 
 - id: folkebladet-aarup
   name: Folkebladet (Aarup og Assens Kommune)
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://folkebladet.net
   method: rss
   feeds: https://folkebladet.net/feed/
@@ -811,7 +811,7 @@
 
 - id: migogodense
   name: MigogOdense
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://migogodense.dk
   method: rss
   feeds: https://migogodense.dk/feed/
@@ -825,7 +825,7 @@
 
 - id: brammingposten
   name: Bramming Posten
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://brammingposten.dk
   method: rss
   feeds: https://brammingposten.dk/feed/
@@ -839,7 +839,7 @@
 
 - id: hjertingposten
   name: Hjerting Posten
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://hjertingposten.dk
   method: rss
   feeds: https://hjertingposten.dk/feed/
@@ -853,7 +853,7 @@
 
 - id: migogesbjerg
   name: MigogEsbjerg
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://migogesbjerg.dk
   method: rss
   feeds: https://migogesbjerg.dk/feed/
@@ -868,7 +868,7 @@
 
 - id: billundonline
   name: BillundOnline
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://billundonline.dk
   method: rss
   feeds: https://billundonline.dk/feed/
@@ -882,7 +882,7 @@
 
 - id: faellesavisen
   name: Fællesavisen (Christiansfeld, Vamdrup og Lunderskov)
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://faellesavisen.dk
   method: rss
   feeds: https://faellesavisen.dk/feed/
@@ -896,7 +896,7 @@
 
 - id: sonderborgnyt
   name: SønderborgNYT
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.sonderborgnyt.dk
   method: rss
   feeds: https://www.sonderborgnyt.dk/feed/
@@ -910,7 +910,7 @@
 
 - id: neravisen
   name: Østjysk Næravis
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://neravisen.dk
   method: rss
   feeds: https://neravisen.dk/rss.xml
@@ -924,7 +924,7 @@
 
 - id: migogaarhus
   name: MigogAarhus
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://migogaarhus.dk
   method: rss
   feeds: https://migogaarhus.dk/feed/
@@ -938,7 +938,7 @@
 
 - id: byensnyt
   name: Byens Nyt
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://byensnyt.dk
   method: rss
   feeds: https://byensnyt.dk/feed/
@@ -954,7 +954,7 @@
 
 - id: farsoeavis
   name: Farsø Avis
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://farsoeavis.dk
   method: rss
   feeds: https://farsoeavis.dk/feed/
@@ -968,7 +968,7 @@
 
 - id: nibeavis
   name: Nibe Avis
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://nibeavis.dk
   method: rss
   feeds: "https://nibeavis.dk/?format=feed&type=rss"
@@ -982,7 +982,7 @@
 
 - id: vesthimmerlandsavis
   name: Vesthimmerlands Avis
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://vesthimmerlandsavis.dk
   method: rss
   feeds: https://vesthimmerlandsavis.dk/feed/
@@ -996,7 +996,7 @@
 
 - id: hasserisavis
   name: Hasseris Avis
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://hasserisavis.dk
   method: rss
   feeds: https://hasserisavis.dk/feed/
@@ -1010,7 +1010,7 @@
 
 - id: jammerbugtposten
   name: Jammerbugtposten
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://jammerbugtposten.dk
   method: rss
   feeds: https://jammerbugtposten.dk/feed/
@@ -1024,7 +1024,7 @@
 
 - id: mariagerfjordposten
   name: Mariagerfjordposten
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://mariagerfjordposten.dk
   method: rss
   feeds: https://mariagerfjordposten.dk/feed/
@@ -1038,7 +1038,7 @@
 
 - id: midtvendsysselavis
   name: Midtvendsyssel Avis
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://midtvendsysselavis.dk
   method: rss
   feeds: https://midtvendsysselavis.dk/feed/
@@ -1052,7 +1052,7 @@
 
 - id: oestvendsysselfolkeblad
   name: Østvendsyssel Folkeblad
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://xn--stvendsysselfolkeblad-pfc.dk
   method: rss
   feeds: https://xn--stvendsysselfolkeblad-pfc.dk/feed/
@@ -1066,7 +1066,7 @@
 
 - id: migogaalborg
   name: MigogAalborg
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://migogaalborg.dk
   method: rss
   feeds: https://migogaalborg.dk/feed/
@@ -1080,7 +1080,7 @@
 
 - id: nordsoeposten
   name: NordsøPosten
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://nordsoeposten.dk
   method: rss
   feeds: https://nordsoeposten.dk/feed/
@@ -1096,7 +1096,7 @@
 
 - id: ligeher
   name: LigeHer.nu (Nordjyskes lokalaviser)
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://ligeher.nu
   method: sitemap
   feeds: https://ligeher.nu/sitemap.xml
@@ -1115,7 +1115,7 @@
 
 - id: galtenfolkeblad
   name: Galten Folkeblad
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.galtenfolkeblad.dk
   method: sitemap
   feeds: https://www.galtenfolkeblad.dk/sitemap.xml
@@ -1134,7 +1134,7 @@
 
 - id: voreslokalavis
   name: Vores Lokalavis (Give)
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.voreslokalavis.dk
   method: sitemap
   feeds: https://www.voreslokalavis.dk/sitemap.xml
@@ -1152,7 +1152,7 @@
 
 - id: vodskovavis
   name: Lokalavisen Vodskov-Vestbjerg-Vadum
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://vodskovavis.dk
   method: sitemap
   feeds: https://vodskovavis.dk/sitemap.xml
@@ -1171,7 +1171,7 @@
 
 - id: pingvinnyt
   name: PingvinNyt
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://pingvinnyt.dk
   method: rss
   feeds: https://pingvinnyt.dk/feed/
@@ -1186,7 +1186,7 @@
 
 - id: thisted-dagblad
   name: Thisted Dagblad (thisted-dagblad.dk)
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://thisted-dagblad.dk
   method: rss
   feeds: []
@@ -1201,7 +1201,7 @@
 
 - id: aars
   name: Aars.dk
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.aars.dk
   method: rss
   feeds: []
@@ -1216,7 +1216,7 @@
 
 - id: ugeavisen
   name: Ugeaviserne (Jysk Fynske Medier)
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://ugeavisen.dk
   method: sitemap
   feeds: "https://ugeavisen.dk/sitemap/{dato}"
@@ -1235,7 +1235,7 @@
 
 - id: kobenhavnliv
   name: KøbenhavnLIV
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://kobenhavnliv.dk
   domains: [osterbroliv.dk]
   method: sitemap
@@ -1255,7 +1255,7 @@
 
 - id: frederiksbergliv
   name: FrederiksbergLIV
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://frederiksbergliv.dk
   domains: [frederiksbergbladet.dk]
   method: sitemap
@@ -1275,7 +1275,7 @@
 
 - id: midtfynsposten
   name: MidtfynsPosten
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://midtfynsposten.dk
   method: sitemap
   feeds: "https://midtfynsposten.dk/sitemap/{dato}"
@@ -1294,7 +1294,7 @@
 
 - id: dragoernyt
   name: Dragør Nyt
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://dragoernyt.dk
   method: sitemap
   feeds: https://dragoernyt.dk/sitemap.xml
@@ -1313,7 +1313,7 @@
 
 - id: brandebladet
   name: Brande Bladet
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.brandebladet.dk
   method: rss
   feeds: https://www.brandebladet.dk/rss.xml
@@ -1329,7 +1329,7 @@
 
 - id: dinavis
   name: Din Avis (lokalaviser)
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://dinavis.dk
   domains: [lokalavisen.dk, djurslandsposten.dk]
   method: rss
@@ -1348,7 +1348,7 @@
 
 - id: heleherlev
   name: Herlev Bladet
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://heleherlev.dk
   domains: [herlevbladet.dk]
   method: rss
@@ -1365,7 +1365,7 @@
 
 - id: samsoposten
   name: Samsø Posten
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.samsoposten.dk
   method: html
   feeds: https://www.samsoposten.dk/da/pages/45-forside
@@ -1384,7 +1384,7 @@
 
 - id: hvidovreavis
   name: Hvidovre Avis
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://hvidovreavis.dk
   method: html
   feeds: https://hvidovreavis.dk/
@@ -1403,7 +1403,7 @@
 
 - id: hvidovrenyt
   name: HvidovreNyt
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://hvidovrenyt.dk
   method: html
   feeds: https://hvidovrenyt.dk/
@@ -1422,7 +1422,7 @@
 
 - id: folkebladet-rebild
   name: Folkebladet Rebild
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://folkebladet.info
   method: html
   feeds: https://folkebladet.info/
@@ -1441,7 +1441,7 @@
 
 - id: kanalfrederikshavn
   name: Kanal Frederikshavn
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.kanalfrederikshavn.dk
   method: html
   feeds: https://www.kanalfrederikshavn.dk/
@@ -1460,7 +1460,7 @@
 
 - id: ditsalling
   name: Dit Salling (Salling-Mors Avis)
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://ditsalling.dk
   method: html
   feeds: https://ditsalling.dk/
@@ -1480,7 +1480,7 @@
 
 - id: ditry
   name: Dit Ry (Ry Ugeavis)
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://ditry.dk
   method: html
   feeds: https://ditry.dk/
@@ -1500,7 +1500,7 @@
 
 - id: ditkarup
   name: Dit Karup (Karup-Frederiks Ugeavis)
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://ditkarup.dk
   domains: [karupugeavis.dk]
   method: html
@@ -1521,7 +1521,7 @@
 
 - id: ditkjellerup
   name: Dit Kjellerup (Kjellerup Tidende)
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://ditkjellerup.dk
   domains: [kjelleruptidende.dk]
   method: html
@@ -1542,7 +1542,7 @@
 
 - id: ditvinderup
   name: Dit Vinderup (Vinderup-Spøttrup Nyt)
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://ditvinderup.dk
   method: html
   feeds: https://ditvinderup.dk/
@@ -1562,7 +1562,7 @@
 
 - id: ditikast-brande
   name: Dit Ikast-Brande (Ikast Avis)
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://ditikast-brande.dk
   domains: [ditbrande.dk]
   method: html
@@ -1583,7 +1583,7 @@
 
 - id: amagerliv
   name: AmagerLIV
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://amagerliv.dk
   method: sitemap
   feeds: "https://amagerliv.dk/sitemap/{dato}"
@@ -1602,7 +1602,7 @@
 
 - id: netavisen-gribskov
   name: Netavisen Gribskov
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.netavisen.nu
   domains: [netavisengribskov.dk]
   method: rss
@@ -1617,7 +1617,7 @@
 
 - id: altomfuresoe
   name: Alt om Furesø
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://altomfuresoe.dk
   method: rss
   feeds: https://altomfuresoe.dk/feed/
@@ -1631,7 +1631,7 @@
 
 - id: bornholmnyt
   name: Bornholmnyt
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://bornholmnyt.dk
   method: rss
   feeds: https://bornholmnyt.dk/feed/
@@ -1645,7 +1645,7 @@
 
 - id: viborher
   name: Viborher (Solrød)
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://www.viborher.dk
   method: rss
   feeds: https://www.viborher.dk/feed/
@@ -1659,7 +1659,7 @@
 
 - id: bornholm-nu
   name: Bornholm.nu
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://bornholm.nu
   method: html
   feeds: https://bornholm.nu/
@@ -1677,7 +1677,7 @@
 
 - id: gladsaxenetnyt
   name: GladsaxeNetNyt
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://gladsaxenetnyt.dk
   method: html
   feeds: https://gladsaxenetnyt.dk/
@@ -1696,7 +1696,7 @@
 
 - id: albertslundnyt
   name: AlbertslundNYT
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://albertslundnyt.dk
   method: html
   feeds: https://albertslundnyt.dk/
@@ -1715,7 +1715,7 @@
 
 - id: migogvejen
   name: Migogvejen
-  category: nyhedsmedie
+  category: lokalmedie
   homepage: https://migogvejen.dk
   method: html
   feeds: https://migogvejen.dk/

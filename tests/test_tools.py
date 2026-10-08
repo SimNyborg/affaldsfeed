@@ -142,6 +142,29 @@ def test_check_colors_strict(tmp_path):
     assert check_colors.main(["--file", str(close), "--strict"]) == 1
 
 
+def test_check_colors_siblings_share_a_color(tmp_path, capsys):
+    """Kategorier med samme farve i begge tilstande måles som én farve og nævnes i rapporten."""
+    path = _write_categories(
+        tmp_path / "siblings.yaml",
+        [("nyhedsmedie", "#1F5FA8", "#6FA8E8"), ("lokalmedie", "#1F5FA8", "#6FA8E8"),
+         ("organisation", "#B35C00", "#F0A048")],
+    )
+    result = check_colors.check_palette(check_colors.load_palette(path))
+    assert result["siblings"] == [("nyhedsmedie", "lokalmedie")]
+    assert [(a, b) for a, b, _ in result["delta_e"]["lys"]] == [("nyhedsmedie", "organisation")]
+    assert result["delta_e_low"] == {"lys": [], "mørk": []}
+    assert check_colors.main(["--file", str(path)]) == 0
+    assert "Søskende med samme farve, skilt ad af ikonet: nyhedsmedie/lokalmedie" in capsys.readouterr().out
+    # Kun samme farve i begge tilstande gør dem til søskende
+    half = _write_categories(
+        tmp_path / "half.yaml",
+        [("nyhedsmedie", "#1F5FA8", "#6FA8E8"), ("lokalmedie", "#1F5FA8", "#F0A048")],
+    )
+    result = check_colors.check_palette(check_colors.load_palette(half))
+    assert result["siblings"] == []
+    assert [(a, b) for a, b, _ in result["delta_e_low"]["lys"]] == [("nyhedsmedie", "lokalmedie")]
+
+
 # ── import_csv: slug ────────────────────────────────────────
 
 
@@ -186,6 +209,11 @@ def test_resolve_category():
     assert import_csv.resolve_category("Tænketank/NGO", table) == "taenketank"
     assert import_csv.resolve_category("eu_norden", table) == "eu_norden"
     assert import_csv.resolve_category("Kommune", table) == "kommunal"
+    assert import_csv.resolve_category("Nationalt medie", table) == "nyhedsmedie"
+    assert import_csv.resolve_category("Avis", table) == "nyhedsmedie"
+    assert import_csv.resolve_category("Lokalmedie", table) == "lokalmedie"
+    assert import_csv.resolve_category("Ugeavis", table) == "lokalmedie"
+    assert import_csv.resolve_category("Lokalavis", table) == "lokalmedie"
     assert import_csv.resolve_category("noget helt andet", table) is None
     assert import_csv.resolve_category("", table) is None
 

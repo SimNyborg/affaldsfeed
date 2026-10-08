@@ -1,6 +1,6 @@
 # Kildeliste for MVP
 
-MVP'en bruger kun de mest relevante kilder i hver af de 8 afsenderkategorier. Det giver et feed med mindre støj og færre kilder at holde øje med, mens vi ser, hvordan relevansvurderingen fungerer. Listen udvides eller ændres senere, og brugerens egen kildeliste kan erstatte den helt (se [KILDER.md](KILDER.md) om import).
+MVP'en bruger kun de mest relevante kilder i hver afsenderkategori. Det giver et feed med mindre støj og færre kilder at holde øje med, mens vi ser, hvordan relevansvurderingen fungerer. Listen udvides eller ændres senere, og brugerens egen kildeliste kan erstatte den helt (se [KILDER.md](KILDER.md) om import).
 
 Kilderne står i [`sources.yaml`](../sources.yaml). MVP-kilderne har `status: aktiv`. Kilderne under "Senere" står med `status: planlagt` eller `kandidat` og kan slås til med én linje.
 
@@ -13,18 +13,23 @@ Kilderne står i [`sources.yaml`](../sources.yaml). MVP-kilderne har `status: ak
 
 Kilder, der kun kan hentes via sitemap eller nyhedsside, kræver indsamleren `collect/pages.py`. Den bliver derfor en del af MVP'en i stedet for fase 2, fordi flere af de vigtigste kilder ikke har RSS.
 
-## Nyhedsmedie
+## Nationalt medie
 
 | Kilde | Hvorfor med | Hentes via |
 |---|---|---|
 | DR Nyheder | Landsdækkende historier om affald, gebyrer og kommunale ordninger | RSS (strengt filter) |
-| TV 2-regionerne | Lokale historier fra de 8 regionale stationer, fx nye ordninger, genbrugspladser og skraldebiler | RSS (strengt filter) |
 | Avisen.dk (Ritzau) | Ritzau-telegrammer, som mange medier bygger på | RSS |
 | Ingeniøren | Teknik bag forbrænding, CO2-fangst og genanvendelse | RSS (strengt filter) |
-| Regionale og lokale aviser | 81 dagblade, ugeaviser og netaviser, der dækker alle kommuner med et lokalmedie. Se [LOKALMEDIER.md](LOKALMEDIER.md) | RSS, sitemap eller forside (strengt filter) |
-| Øvrige lokalmedier | Lokalmedier, der ikke kan hentes direkte, fanges via nyhedssøgningen, når de skriver om affald | Søgning |
 
 Senere: Politiken, Berlingske, Børsen, Jyllands-Posten, Information, B.T. og Mandag Morgen.
+
+## Lokalmedie
+
+| Kilde | Hvorfor med | Hentes via |
+|---|---|---|
+| TV 2-regionerne | Lokale historier fra de 8 regionale stationer, fx nye ordninger, genbrugspladser og skraldebiler | RSS (strengt filter) |
+| Regionale og lokale aviser | 81 dagblade, ugeaviser og netaviser, der dækker alle kommuner med et lokalmedie. Se [LOKALMEDIER.md](LOKALMEDIER.md) | RSS, sitemap eller forside (strengt filter) |
+| Øvrige lokalmedier | Lokalmedier, der ikke kan hentes direkte, fanges via nyhedssøgningen, når de skriver om affald | Søgning |
 
 ## Fagmedie
 

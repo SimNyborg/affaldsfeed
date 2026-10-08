@@ -268,7 +268,7 @@ def _load_config(config_dir: Path) -> tuple[Config | None, list[str], list[str]]
     return cfg, errors, warnings
 
 
-_NEWS_PLACES = "places bruges kun til afsendere med fast geografi, ikke til nyhedsmedier"
+_NEWS_PLACES = "places bruges kun til afsendere med fast geografi, ikke til nationale medier og lokalmedier"
 
 
 def _unknown_places(fname: str, ident: str, places: list[str], known: set[str]) -> list[str]:
@@ -449,7 +449,7 @@ def cross_check(sources: list[Source], config: Config, today: date | None = None
         for x in senders:
             if known_places:
                 errors.extend(_unknown_places(fname, x.id, x.places, known_places))
-            if x.places and x.category == "nyhedsmedie":
+            if x.places and x.category in ("nyhedsmedie", "lokalmedie"):
                 warnings.append(f"{fname}: {x.id}: {_NEWS_PLACES}")
     return errors, warnings
 

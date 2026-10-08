@@ -99,7 +99,7 @@
 # Frederiksborg Amts Avis udkommer på sn.dk (Sjællandske Medier); de gamle domæner krediteres stadig avisen
 - id: frederiksborgamtsavis-dk
   name: Frederiksborg Amts Avis
-  category: nyhedsmedie
+  category: lokalmedie
   domains: [frederiksborgamtsavis.dk, frederiksborgamtsavis.sjnyheder.dk]
   basis: redaktionelt
   paywall: delvis
@@ -107,21 +107,21 @@
 # Hovedstaden
 - id: bryggebladet-dk
   name: Bryggebladet (Islands Brygge)
-  category: nyhedsmedie
+  category: lokalmedie
   domains: [bryggebladet.dk]
   basis: redaktionelt
   paywall: nej
 
 - id: avisen2770-dk
   name: Avisen 2770 (Tårnby)
-  category: nyhedsmedie
+  category: lokalmedie
   domains: [avisen2770.dk]
   basis: redaktionelt
   paywall: nej
 
 - id: magasinetkbh-dk
   name: Magasinet KBH
-  category: nyhedsmedie
+  category: lokalmedie
   domains: [magasinetkbh.dk]
   basis: redaktionelt
   paywall: nej
@@ -129,21 +129,21 @@
 # Syddanmark
 - id: fanoeposten-dk
   name: Fanø Posten
-  category: nyhedsmedie
+  category: lokalmedie
   domains: [fanoeposten.dk, xn--fanposten-n8a.dk, fanøposten.dk]
   basis: redaktionelt
   paywall: nej
 
 - id: netavisengrindsted-dk
   name: Netavisen Grindsted
-  category: nyhedsmedie
+  category: lokalmedie
   domains: [netavisengrindsted.dk]
   basis: redaktionelt
   paywall: nej
 
 - id: graastenavis-dk
   name: Gråsten Avis
-  category: nyhedsmedie
+  category: lokalmedie
   domains: [graastenavis.dk]
   basis: redaktionelt
   paywall: nej
@@ -151,14 +151,14 @@
 # Midtjylland
 - id: skjerntarm-ugeblad-dk
   name: Skjern-Tarm Ugeblad
-  category: nyhedsmedie
+  category: lokalmedie
   domains: [skjerntarm-ugeblad.dk]
   basis: redaktionelt
   paywall: nej
 
 - id: randersugeavis-dk
   name: Randers Ugeavis
-  category: nyhedsmedie
+  category: lokalmedie
   domains: [randersugeavis.dk]
   basis: redaktionelt
   paywall: nej
@@ -166,14 +166,14 @@
 # Nordjylland
 - id: kunmedierne-dk
   name: KunMedierne (Mors og Thy)
-  category: nyhedsmedie
+  category: lokalmedie
   domains: [kunmedierne.dk, kunmors.dk, kunthy.dk]
   basis: redaktionelt
   paywall: nej
 
 - id: blokhus-dk
   name: Blokhus Avis
-  category: nyhedsmedie
+  category: lokalmedie
   domains: [blokhus.dk]
   basis: redaktionelt
   paywall: nej

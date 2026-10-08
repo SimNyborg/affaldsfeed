@@ -112,7 +112,7 @@ def test_load_sources_yaml_error(tmp_path):
 def test_load_config(env):
     cfg = load_config(env.config)
     assert len(cfg.topics) == 13
-    assert len(cfg.categories) == 8
+    assert len(cfg.categories) == 9
     assert {g.id for g in cfg.genres} >= {"nyhed", "debat", "hoering"}
     assert [p.id for p in cfg.publishers] == ["tv2", "tv2-ostjylland"]
     assert cfg.search.queries and cfg.search.when == "2d"
@@ -365,6 +365,17 @@ def test_places_on_sources_and_medier(env, capsys):
     assert "FEJL sources.yaml: affaldsselskab: places: ukendt sted-id b:atlantis" in out
     assert "k:odense" not in out
     assert "ADVARSEL sources.yaml: testmedie: places bruges kun til afsendere med fast geografi" in out
+
+
+def test_places_on_local_media_warn(env):
+    """Lokalmedier får som nationale medier ingen faste steder (de dækker flere kommuner)."""
+    with (env.config / "medier.yaml").open("a", encoding="utf-8") as f:
+        f.write("\n- id: lokalavisen-dk\n  name: Lokalavisen\n  category: lokalmedie\n  domains: [lokalavisen.dk]\n"
+                "  basis: redaktionelt\n  places: [k:odense]\n")
+    errors, warnings = cfgmod.cross_check(load_sources(env.sources), load_config(env.config))
+    assert errors == []
+    assert ("medier.yaml: lokalavisen-dk: places bruges kun til afsendere med fast geografi, ikke til nationale "
+            "medier og lokalmedier") in warnings
 
 
 def test_places_format_is_validated(tmp_path):
