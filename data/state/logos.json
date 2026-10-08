@@ -971,10 +971,64 @@
     "checked": "2026-10-08T07:28:04Z",
     "error": null
   },
+  "sonderborgnyt-dk": {
+    "file": "sonderborgnyt-dk.png",
+    "src": "https://www.sonderborgnyt.dk/wp-content/uploads/fbrfg/favicon-32x32.png",
+    "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
   "sonfor": {
     "file": "sonfor.png",
     "src": "https://sonfor.dk/wp-content/themes/generaxion-axio-2024-marts-15/dist/favicon/favicon-32x32.png",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "stiften-dk": {
+    "file": "stiften-dk.png",
+    "src": "https://stiften.dk/assets/1791279772/kodus/jfm-brands/brands/stiften/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "taenk": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-08T07:48:34Z",
+    "error": "blokeret af robots.txt"
+  },
+  "teknik-og-miljoe": {
+    "file": "teknik-og-miljoe.png",
+    "src": "https://www.dkteknikogmiljoe.dk/apple-icon.png?apple-icon.2pv6x52p651-j.png",
+    "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "tekniskfokus": {
+    "file": "tekniskfokus.png",
+    "src": "https://www.tekniskfokus.dk/wp-content/uploads/sites/6/cropped-cropped-Logo_Teknisk-380x90-1-50x50.png",
+    "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "teknologisk-institut": {
+    "file": "teknologisk-institut.png",
+    "src": "https://www.teknologisk.dk/_/images/131/logos/touch-icon-72x72.png",
+    "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "thisted-dagblad-dk": {
+    "file": "thisted-dagblad-dk.png",
+    "src": "https://thisted-dagblad.dk/wp-content/uploads/2026/08/Favicon-td-150x150.png",
+    "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "tidende-dk": {
+    "file": "tidende-dk.png",
+    "src": "https://tidende.dk/dist/favicon-32x32.png",
+    "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "tjekfredensborg-dk": {
+    "file": "tjekfredensborg-dk.png",
+    "src": "https://tjekfredensborg.dk/wp-content/uploads/2025/06/cropped-Logo-site-ikon-lytter-3-32x32.png",
+    "checked": "2026-10-08T07:48:34Z",
     "error": null
   },
   "tv2-nyheder": {
@@ -1031,10 +1085,76 @@
     "checked": "2026-10-08T00:05:14Z",
     "error": null
   },
+  "ugeavisen-dk": {
+    "file": "ugeavisen-dk.png",
+    "src": "https://ugeavisen.dk/assets/1787312580/kodus/jfm-brands/brands/ugeavisen/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "vafo-dk": {
+    "file": "vafo-dk.png",
+    "src": "https://vafo.dk/assets/1791279772/kodus/jfm-brands/brands/vafo/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
   "vana": {
     "file": "vana.ico",
     "src": "https://www.vana.dk/favicon.ico",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "vestforbraending": {
+    "file": "vestforbraending.ico",
+    "src": "https://vestfor.dk/favicon.ico",
+    "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "vesthimmerlandsavis-dk": {
+    "file": "vesthimmerlandsavis-dk.jpg",
+    "src": "https://vesthimmerlandsavis.dk/wp-content/uploads/2023/02/cropped-icon-1-32x32.jpg",
+    "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "viborg-folkeblad-dk": {
+    "file": "viborg-folkeblad-dk.png",
+    "src": "https://viborg-folkeblad.dk/assets/1791279772/kodus/jfm-brands/brands/viborg/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "viborher-dk": {
+    "file": "viborher-dk.png",
+    "src": "https://www.viborher.dk/favicon.ico",
+    "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "videnskab": {
+    "file": "videnskab.webp",
+    "src": "https://videnskab.dk/wp-content/uploads/2023/03/cropped-favicon-orange-32x32.png.webp",
+    "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "vodskovavis-dk": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-08T07:48:34Z",
+    "error": "HTTP 410"
+  },
+  "voreslokalavis-dk": {
+    "file": "voreslokalavis-dk.ico",
+    "src": "https://www.voreslokalavis.dk/uploads/grafik/favicon.ico",
+    "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "weekendavisen-dk": {
+    "file": "weekendavisen-dk.png",
+    "src": "https://www.weekendavisen.dk/brands/weekendavisen/icon-32x32.png",
+    "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "zetland-dk": {
+    "file": "zetland-dk.png",
+    "src": "https://www.zetland.dk/fav/zetland/touch-icon-ipad.png",
+    "checked": "2026-10-08T07:48:34Z",
     "error": null
   }
 }
