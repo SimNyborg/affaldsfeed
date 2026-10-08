@@ -648,6 +648,19 @@ def test_choose_sub_sitemaps_by_date_in_url_without_lastmod():
     assert [e.loc for e in pages.choose_sub_sitemaps(months, 1)] == ["https://x.dk/Post.Sitemap.2026.10.0.xml"]
 
 
+def test_index_skips_dated_sub_sitemaps_before_the_window(cfg):
+    # Ugesitemaps uden lastmod (Nordjyske): kun uger, der rækker ind i vinduet på 3 dage (fra 4. oktober), hentes
+    weeks = [f"https://www.kilde.dk/sitemaps/2026/{a}/{b}.xml"
+             for a, b in (("2026-10-05", "2026-10-11"), ("2026-09-28", "2026-10-04"), ("2026-09-21", "2026-09-27"))]
+    xml = (f'<sitemapindex xmlns="{SM_NS}">' + "".join(f"<sitemap><loc>{u}</loc></sitemap>" for u in weeks)
+           + "</sitemapindex>").encode()
+    empty = urlset([])
+    f = fetcher({SITEMAP: (xml, XML), weeks[0]: (empty, XML), weeks[1]: (empty, XML), weeks[2]: (empty, XML)})
+    res = COLLECTORS["sitemap"](src(), f, ctx(cfg))
+    assert urls_called(f, 0) == [SITEMAP, weeks[0], weeks[1]]
+    assert "1 under-sitemaps for perioder før 2026-10-04 springes over" in diag(res)
+
+
 def test_percent_encoded_loc_is_decoded():
     # Nordjyske koder hele URL'en i <loc>
     xml = (f'<urlset xmlns="{SM_NS}"><url><loc>https%3A%2F%2Fnordjyske.dk%2Fnyheder%2Faalborg%2Fny-genbrugsplads'

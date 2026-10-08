@@ -120,20 +120,6 @@
   paywall: nej
 
 # ── Øvrige regionale og lokale medier ─────────────────────────
-- id: nordjyske-dk
-  name: Nordjyske
-  category: nyhedsmedie
-  domains: [nordjyske.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: sn-dk
-  name: Sjællandske Medier
-  category: nyhedsmedie
-  domains: [sn.dk, sjnyheder.dk]
-  basis: redaktionelt
-  paywall: delvis
-
 - id: frederiksborgamtsavis-dk
   name: Frederiksborg Amts Avis
   category: nyhedsmedie
@@ -145,13 +131,6 @@
   name: Lolland-Falsters Folketidende
   category: nyhedsmedie
   domains: [folketidende.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: tidende-dk
-  name: Bornholms Tidende
-  category: nyhedsmedie
-  domains: [tidende.dk]
   basis: redaktionelt
   paywall: delvis
 

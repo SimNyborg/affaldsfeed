@@ -538,27 +538,52 @@
   name: Nordjyske
   category: nyhedsmedie
   homepage: https://nordjyske.dk
-  method: rss
-  feeds: []
+  method: sitemap
+  feeds: https://nordjyske.dk/sitemap.xml
+  match: /nyheder/
   filter: strict
   paywall: delvis
+  replaces: [nordjyske-dk]
   basis: redaktionelt
-  status: kandidat
-  checked: 2026-10-07
-  note: Intet kendt åbent feed. Fanges via nyhedssøgning (config/medier.yaml).
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Hele Nordjylland. Indekset har ugesitemaps uden lastmod (de nyeste øverst) og procentkodede URL'er; ugerne
+    har titel og tidspunkt (Google News), så artiklerne hentes ikke. robots.txt og ai.txt fravælger AI-træning;
+    indsamleren er ikke en AI-crawler, og Claude ser kun titlen (samme princip som DR og TV 2).
 
 - id: sjaellandske-medier
   name: Sjællandske Medier
   category: nyhedsmedie
   homepage: https://www.sn.dk
-  method: rss
-  feeds: []
+  method: sitemap
+  feeds: https://www.sn.dk/SitemapIndex.0.xml
+  match: /art\d+/
+  domains: [sjnyheder.dk]
   filter: strict
   paywall: delvis
+  replaces: [sn-dk]
   basis: redaktionelt
-  status: kandidat
-  checked: 2026-10-07
-  note: Intet kendt åbent feed. Højt lokalt affaldsvolumen. Fanges via nyhedssøgning (config/medier.yaml).
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Dagblade og ugeaviser på Sjælland under sn.dk (fx Dagbladet Køge, Holbæk, Næstved og Sjællands Tidende).
+    Månedssitemaps med lastmod og ETag, men uden titler, så kun artikler med et affaldsord i URL'en hentes.
+    robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme princip som DR og TV 2).
+
+- id: bornholms-tidende
+  name: Bornholms Tidende
+  category: nyhedsmedie
+  homepage: https://tidende.dk
+  method: rss
+  feeds: https://tidende.dk/rssfeed.aspx
+  filter: strict
+  paywall: delvis
+  replaces: [tidende-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: RSS med de 36 nyeste. robots.txt fravælger kun GPTBot.
 
 # Tilføjet 2026-10-07 (kildeudvidelse)
 - id: danwatch

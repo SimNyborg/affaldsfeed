@@ -1103,7 +1103,13 @@ def _read_sitemaps(job: _Job) -> list[Sitemap] | None:
                 continue
             # Kun under-sitemaps på kildens egne værter (et indeks må ikke sende os til fremmede værter)
             own = [e for e in sm.entries if job.on_host(e.loc)]
-            chosen = choose_sub_sitemaps(own, cfg.max_sub_sitemaps)
+            # En periode, der slutter før vinduet (fx en uge eller måned i URL'en), kan ikke rumme nye artikler
+            first = to_cph(job.now).date() - timedelta(days=_window_days(job))
+            start = (first.year, first.month, first.day)
+            current = [e for e in own if (_sitemap_date(e.loc) or start) >= start]
+            if len(current) < len(own):
+                job.diag(f"indeks {url}: {len(own) - len(current)} under-sitemaps for perioder før {first} springes over")
+            chosen = choose_sub_sitemaps(current, cfg.max_sub_sitemaps)
             job.remember_subs(url, [e.loc for e in chosen])
             foreign = len(sm.entries) - len(own)
             note = f" ({foreign} på fremmede værter springes over)" if foreign else ""
