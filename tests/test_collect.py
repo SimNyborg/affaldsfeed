@@ -18,7 +18,14 @@ import urllib3
 from affaldsfeed.collect import COLLECTORS, CollectContext, match_publisher
 from affaldsfeed.collect.search import bing_target, build_url, decode_google_link
 from affaldsfeed.config import load_config, load_sources, publisher_lookup
-from affaldsfeed.fetch import ROBOTS_MAX_BYTES, TOO_LARGE, Fetcher
+from affaldsfeed.fetch import (
+    BUDGET_EXHAUSTED,
+    MAX_REDIRECTS,
+    ROBOTS_BLOCKED,
+    ROBOTS_MAX_BYTES,
+    TOO_LARGE,
+    Fetcher,
+)
 from affaldsfeed.models import FetchSettings
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
@@ -297,6 +304,120 @@ def test_fetcher_429_skips_host_for_rest_of_run():
     assert "springes over" in res2.error
     assert [c[0] for c in f.session.calls].count("https://x.dk/a") == 1
     assert all(c[0] != "https://x.dk/b" for c in f.session.calls)
+
+
+# ── Fetcher: omdirigeringer ─────────────────────────────────
+
+
+def test_fetcher_follows_redirects_itself_and_reports_the_final_url():
+    hop = _resp(301, "", {"Location": "/ny/rss"})
+    f = _real_fetcher(
+        {
+            "https://x.dk/robots.txt": [_resp(404)],
+            "https://x.dk/rss": [hop],
+            "https://x.dk/ny/rss": [_resp(200, "<rss/>", {"ETag": '"1"'})],
+        }
+    )
+    res = f.get("https://x.dk/rss")
+    assert res.ok and res.url == "https://x.dk/rss" and res.final_url == "https://x.dk/ny/rss"
+    assert [c[0] for c in f.session.calls] == ["https://x.dk/robots.txt", "https://x.dk/rss", "https://x.dk/ny/rss"]
+    assert [a for u, a in f.session.follow if not u.endswith("/robots.txt")] == [False, False]  # requests følger aldrig selv
+    assert hop.closed
+    assert f.http_cache == {"https://x.dk/rss": {"etag": '"1"'}}  # gemt under den adresse, der blev bedt om
+
+
+def test_fetcher_never_follows_a_redirect_into_a_path_robots_txt_forbids():
+    robots = "User-agent: *\nDisallow: /wp-content/uploads/\n"
+    f = _real_fetcher(
+        {
+            "https://x.dk/robots.txt": [_resp(200, robots)],
+            "https://x.dk/favicon.ico": [_resp(302, "", {"Location": "https://x.dk/wp-content/uploads/ikon.png"})],
+        }
+    )
+    res = f.get("https://x.dk/favicon.ico")
+    assert res.error == ROBOTS_BLOCKED and res.permanent and res.url == "https://x.dk/favicon.ico"
+    assert all("/wp-content/" not in c[0] for c in f.session.calls)
+
+
+def test_fetcher_checks_robots_txt_on_the_host_it_is_redirected_to():
+    f = _real_fetcher(
+        {
+            "https://x.dk/robots.txt": [_resp(404)],
+            "https://x.dk/rss": [_resp(308, "", {"Location": "https://www.y.dk/rss"})],
+            "https://www.y.dk/robots.txt": [_resp(200, "User-agent: *\nDisallow: /\n")],
+        }
+    )
+    assert f.get("https://x.dk/rss").error == ROBOTS_BLOCKED
+    assert [c[0] for c in f.session.calls] == ["https://x.dk/robots.txt", "https://x.dk/rss", "https://www.y.dk/robots.txt"]
+
+    # Svarer målets robots.txt ikke, springes værten over, ligesom når den hentes direkte
+    f = _real_fetcher(
+        {
+            "https://x.dk/robots.txt": [_resp(404)],
+            "https://x.dk/rss": [_resp(301, "", {"Location": "https://z.dk/rss"})],
+            "https://z.dk/robots.txt": [_resp(503)],
+        }
+    )
+    assert f.get("https://x.dk/rss").error.startswith("springes over: robots.txt utilgængelig")
+    assert all(c[0] != "https://z.dk/rss" for c in f.session.calls)
+
+
+def test_fetcher_stops_redirect_loops_and_odd_redirects():
+    f = _real_fetcher(
+        {
+            "https://x.dk/robots.txt": [_resp(404)],
+            "https://x.dk/a": [_resp(302, "", {"Location": "/b"})],
+            "https://x.dk/b": [_resp(302, "", {"Location": "/a"})],
+        }
+    )
+    res = f.get("https://x.dk/a")
+    assert res.error == f"for mange omdirigeringer (over {MAX_REDIRECTS})"
+    assert len(f.session.calls) == 1 + MAX_REDIRECTS + 1  # robots.txt og højst MAX_REDIRECTS + 1 hop
+
+    f = _real_fetcher(
+        {
+            "https://x.dk/robots.txt": [_resp(404)],
+            "https://x.dk/a": [_resp(301, "", {"Location": "ftp://x.dk/a"})],
+            "https://x.dk/c": [_resp(301)],
+        }
+    )
+    assert "ikke er http(s)" in f.get("https://x.dk/a").error
+    assert f.get("https://x.dk/c").error == "HTTP 301"  # uden Location
+
+
+def test_fetcher_429_after_a_redirect_skips_the_host_that_answered():
+    f = _real_fetcher(
+        {
+            "https://x.dk/robots.txt": [_resp(404)],
+            "https://y.dk/robots.txt": [_resp(404)],
+            "https://x.dk/a": [_resp(301, "", {"Location": "https://y.dk/a"})],
+            "https://y.dk/a": [_resp(429)],
+            "https://x.dk/b": [_resp(200, "ok")],
+        }
+    )
+    assert f.get("https://x.dk/a").status == 429
+    assert f.get("https://x.dk/b").ok  # x.dk svarede ikke 429
+    assert "springes over" in f.get("https://y.dk/c").error
+
+
+def test_fetcher_budget_ends_a_redirect_chain(monkeypatch):
+    clock = [100.0]
+    monkeypatch.setattr("affaldsfeed.fetch.time.monotonic", lambda: clock[0])
+    f = _real_fetcher(
+        {"https://x.dk/a": [_resp(301, "", {"Location": "/b"})], "https://x.dk/b": [_resp(200, "ok")]},
+        robots_cache={"x.dk": {"fetched": "2026-10-07T08:00:00Z", "body": ""}},
+    )
+    session_get = f.session.get
+
+    def slow_get(url, **kw):
+        clock[0] += 10  # hvert kald tager 10 sek.
+        return session_get(url, **kw)
+
+    f.session.get = slow_get
+    f.start_budget(5)
+    res = f.get("https://x.dk/a")
+    assert res.error == BUDGET_EXHAUSTED and res.url == "https://x.dk/a"
+    assert [c[0] for c in f.session.calls] == ["https://x.dk/a"]
 
 
 def test_fetcher_sets_honest_user_agent():

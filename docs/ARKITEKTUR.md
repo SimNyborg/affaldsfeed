@@ -7,7 +7,7 @@ Denne fil forklarer, hvordan data kommer fra kilderne ud på siden, og hvem der 
 ```
 sources.yaml + config/*.yaml               (valideres med pydantic)
    │
-   ├─ :05 hver time, døgnet rundt: GitHub Actions collect.yml
+   ├─ :17 hver time, døgnet rundt: GitHub Actions collect.yml
    │     python -m affaldsfeed run
    │       plan → hent (rss | search, fra fase 2 også sitemap | html | oda)
    │       → normalisér → løst forfilter → tema og genre efter regler → dedupe
@@ -94,8 +94,8 @@ Filerne skrives atomisk og kun, når indholdet faktisk ændrer sig, så git ikke
 
 ## Workflows
 
-- `collect.yml` kører hver time på minut 5 og kan startes med `workflow_dispatch`. Den kører `run` og `export`, committer `data/`, hvis noget er ændret, og deployer til Pages. Commits lavet med `GITHUB_TOKEN` starter ikke andre workflows, så `collect.yml` deployer selv.
-- `publish.yml` starter ved push til `main` på `data/judgments/**`, `data/overview/**`, `site/**`, `config/**`, `sources.yaml` og `examples/**`, og kan også startes manuelt. Den kører `export` og deployer.
+- `collect.yml` kører hver time på minut 17 og efter hver kørsel af `publish.yml`. Den kan også startes med `workflow_dispatch`, hvor feltet `only` begrænser kørslen til bestemte kilder og henter deres logoer med det samme. Den kører `run` og `export`, committer `data/`, hvis noget er ændret, og deployer til Pages. Commits lavet med `GITHUB_TOKEN` starter ikke andre workflows, så `collect.yml` deployer selv.
+- `publish.yml` starter ved push til `main` på `data/judgments/**`, `data/overview/**`, `data/timeline/**`, `site/**`, `config/**`, `sources.yaml` og `examples/**`, og kan også startes manuelt. Den kører `export` og deployer.
 - `ci.yml` kører ruff, pytest og `python -m affaldsfeed check` ved push og pull request. Testene laver ingen netværkskald.
 
 `collect.yml` og `publish.yml` deler `concurrency: pages`, så to deploys ikke kører samtidig.

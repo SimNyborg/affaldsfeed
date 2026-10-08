@@ -25,7 +25,7 @@ from affaldsfeed.display import (
 )
 from affaldsfeed.health import silent
 from affaldsfeed.judgments import display_mode, load_all_candidates, load_heartbeat, load_judgment_list
-from affaldsfeed.logos import logo_dir, logo_files
+from affaldsfeed.logos import domain_key, logo_dir, logo_files, site_domains
 from affaldsfeed.models import DisplayItem, Feed, Geo
 from affaldsfeed.overview import PERIODS, load_overviews
 from affaldsfeed.stories import build_stories
@@ -119,12 +119,18 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
     states = store.load_source_states()
     logos = logo_files()
     info = known_sources(sources, config.publishers)
+    by_id = {s.id: s for s in sources}
     used = {d.source for d in heads} | {a.source for d in heads for a in d.also}
     feed_sources = []
     for sid in sorted(info):
         si = info[sid]
-        if si.via_search and sid not in used:
-            continue
+        if sid != si.id or (si.via_search and sid not in used):
+            continue  # et tidligere id (replaces) peger på kilden, der har overtaget det
+        src = None if si.via_search else by_id.get(sid)
+        domain_logos = {}
+        for d in site_domains(src.homepage, src.domains) if src else []:
+            if domain_key(sid, d) in logos:
+                domain_logos[d] = f"logos/{logos[domain_key(sid, d)]}"
         st = states.get(sid)
         health = "groen" if si.via_search else (st.health if st else "graa")
         feed_sources.append(
@@ -140,6 +146,7 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
                 "health": health,
                 "via_search": si.via_search,
                 "logo": f"logos/{logos[si.id]}" if si.id in logos else None,
+                "domain_logos": domain_logos,
             }
         )
 
@@ -222,7 +229,12 @@ def main_export(args: argparse.Namespace) -> int:
         else:
             log.warning("site/ findes ikke; kun data skrives")
         # Logoerne fra data/state/logos/ (KONTRAKTER §6.4) ved siden af sitet; kun dem, feedet nævner
-        used_logos = {s["logo"].removeprefix("logos/") for s in feed["sources"] if s.get("logo")}
+        used_logos = {
+            path.removeprefix("logos/")
+            for s in feed["sources"]
+            for path in [s.get("logo"), *(s.get("domain_logos") or {}).values()]
+            if path
+        }
         if used_logos:
             (out / "logos").mkdir(parents=True, exist_ok=True)
             for name in sorted(used_logos):

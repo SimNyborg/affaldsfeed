@@ -11,6 +11,11 @@ on:
     workflows: ["Udgiv"]
     types: [completed]
   workflow_dispatch:
+    inputs:
+      only:
+        description: "Kun disse kilder, kommasepareret (fx hofor,folketinget-oda), og deres logoer uanset tidspunkt. Tom = alle."
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -41,7 +46,9 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Indsaml
-        run: python -m affaldsfeed run
+        env:
+          ONLY: ${{ github.event.inputs.only }}  # tom ved tidsplan og workflow_run
+        run: python -m affaldsfeed run ${ONLY:+--only "$ONLY"}
 
       - name: Commit data
         shell: bash

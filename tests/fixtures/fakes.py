@@ -142,10 +142,12 @@ class FakeSession:
     def __init__(self, responses: dict[str, list]):
         self.responses = {k: list(v) for k, v in responses.items()}
         self.calls: list[tuple[str, dict]] = []
+        self.follow: list[tuple[str, bool]] = []  # (url, allow_redirects) pr. kald
         self.headers: dict = {}
 
     def get(self, url, headers=None, timeout=None, allow_redirects=True, stream=False):
         self.calls.append((url, dict(headers or {})))
+        self.follow.append((url, allow_redirects))
         queue = self.responses.get(url)
         if not queue:
             return FakeResponse(404)

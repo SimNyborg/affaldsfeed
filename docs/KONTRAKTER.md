@@ -36,7 +36,7 @@ affaldsfeed/
   models.py          pydantic v2-modeller (denne kontrakt i kode) — DELT
   config.py          load_sources(), load_config() -> Config, validering, check-kommando
   timeutil.py        now_utc(override), to_cph(dt), cph_day_bounds(dt), iso(dt), parse_iso(s)
-  fetch.py           Fetcher: UA, robots (protego), takt pr. vært, conditional GET, retry, backoff, loft over svarstørrelse; FetchResult.final_url er adressen efter omdirigeringer
+  fetch.py           Fetcher: UA, robots (protego), takt pr. vært, conditional GET, retry, backoff, loft over svarstørrelse; omdirigeringer følges af Fetcher selv (højst 5 hop), og hvert hop skal være tilladt i sin værts robots.txt og får værtens takt; FetchResult.final_url er adressen efter omdirigeringer
   collect/__init__.py   COLLECTORS = {"rss": rss.collect, "search": search.collect, …}
   collect/rss.py     collect(source, fetcher, ctx) -> list[RawEntry]
   collect/search.py  collect(source, fetcher, ctx) -> list[RawEntry]   (Google News + Bing News)
@@ -49,7 +49,7 @@ affaldsfeed/
   stories.py         build_stories(items, sources, hints) -> list[DisplayItem]  (primærkilde, also)
   store.py           read/write candidates, rejected, state (http, sources, seen), atomisk skrivning
   health.py          opdater kildesundhed, backoff, status-farve
-  logos.py           refresh_logos(), logo_files(): kildernes logoer (favicons), se 6.4
+  logos.py           logo_targets(), refresh_logos(), logo_files(): kildernes logoer (favicons), se 6.4
   pipeline.py        run-kommandoen (orkestrerer ovenstående)
   judgments.py       pending, validate-judgments, heartbeat, load_judgments(), fallback-logik
   overview.py        overview-input, validate-overview, load_overviews()
@@ -230,8 +230,8 @@ data/
   state/kildeforslag.json      se 5.3
   state/kildeforslag.md        genereret
   state/seen.json              {source_id: {item_id(url): "ÅÅÅÅ-MM-DD"}}  sitemap/html: kendte artikel-URL'er (5.6)
-  state/logos.json             {source_id: {file, src, checked, error}}  kildernes logoer (6.4)
-  state/logos/<id>.<ext>       logoet (png, ico, gif, jpg eller webp)
+  state/logos.json             {logo_id: {file, src, checked, error}}  kildernes logoer (6.4)
+  state/logos/<logo_id>.<ext>  logoet (png, ico, gif, jpg eller webp)
 ```
 Skrivning er atomisk (skriv `.tmp`, `os.replace`). Filer ændres kun, når indholdet faktisk ændres (så git ikke får tomme commits). `SourceState.last_ok` gemmes kun som dato.
 
@@ -268,12 +268,12 @@ Rutinen kører kl. `settings.routine.minute` i timerne `settings.routine.hours` 
 
 ### 6.4 Logoer (`logos.py`) — `state/logos.json` og `state/logos/`
 Kildernes egne små logoer (favicons) vises foran navnet på kortene (9). `run` henter dem efter kilderne, men kun når kildernes tidsbudget ikke er brugt op, og aldrig med `--dry-run`.
-- **Hvem:** alle kendte afsendere med en forside (`display.known_sources`: aktive kilder, der ikke er søgekilder, og medierne i `medier.yaml`). Kilder med indslag i vinduet kommer først (flest først), derefter efter id. Højst `logos.max_per_run` (20) pr. kørsel inden for `logos.budget_seconds` (120). Med `--only` hentes de valgte kilders logoer uanset tidspunkt og kun dem.
+- **Hvem** (`logo_targets`): alle kendte afsendere med en forside, én gang hver (`display.known_sources`: aktive kilder, der ikke er søgekilder, og medierne i `medier.yaml`). Logo-id'et er afsenderens id. En aktiv kilde med `domains` på andre sites end forsiden (fx de regionale TV 2-stationer under `tv2-regionerne`) får desuden et logo pr. site med id'et `<id>--<domæne med bindestreger>` (fx `tv2-regionerne--tvsyd-dk`) fra `https://<domæne>/`. Over- og underdomæner af forsiden (`tv2.dk` og `nyheder.tv2.dk`, `oda.ft.dk` og `www.ft.dk`) er samme site; `www.` tæller ikke. Medierne i `medier.yaml` får ingen logoer pr. domæne, fordi deres `domains` er samme medie under flere navne. Kilder med indslag i vinduet kommer først (flest først, et sites logo arver kildens plads), derefter efter id. Højst `logos.max_per_run` (20) pr. kørsel inden for `logos.budget_seconds` (120). Med `--only` hentes de valgte kilders logoer (også deres sites) uanset tidspunkt og kun dem.
 - **Hvornår:** en kilde uden post hentes ved første lejlighed. Et hentet logo tjekkes igen efter `logos.refresh_days` (30), og et mislykket forsøg uden logo prøves igen efter `logos.retry_days` (7). Et mislykket forsøg beholder et tidligere logo.
-- **Hvordan:** al hentning går gennem `Fetcher.get` (UA, robots.txt, takt) uden conditional GET. Forsiden (højst 3 MB) giver kandidaterne i `<link rel="icon">`, `rel="shortcut icon"` og `apple-touch-icon`, opløst mod `<base href>` og forsidens endelige adresse efter omdirigeringer. Bedst er 32 til 96 px, og PNG går forud for ICO ved samme størrelse. `mask-icon` og SVG udelades. Til sidst prøves `/favicon.ico` på forsidens vært. Højst 3 billeder prøves pr. kilde; en `data:`-URI læses uden kald.
+- **Hvordan:** al hentning går gennem `Fetcher.get` (UA, robots.txt, takt) uden conditional GET. Forsiden (højst 3 MB) giver kandidaterne i `<link rel="icon">`, `rel="shortcut icon"` og `apple-touch-icon`, opløst mod `<base href>` og forsidens endelige adresse efter omdirigeringer. Bedst er 32 til 96 px, og PNG går forud for ICO ved samme størrelse. `mask-icon` og SVG udelades. Til sidst prøves `/favicon.ico` på forsidens vært og på værterne for kildens feeds på eget site (forsidens vært og de `domains`, der ikke er andre sites), fx `oda.ft.dk`, når Folketingets forside er bag en Cloudflare-udfordring, som aldrig omgås. Feeds hos tredjepart (fx en pressetjeneste) giver aldrig kildens logo. Højst 3 billeder prøves pr. logo; et billede, robots.txt forbyder, tæller ikke med, og højst 12 kandidater ses på. En `data:`-URI læses uden kald.
 - **Hvad gemmes:** kun rasterbilleder, genkendt på de første bytes: PNG, ICO, GIF, JPEG og WebP, højst `logos.max_kb` (200) og mindst 16 px (når størrelsen kan aflæses). SVG gemmes aldrig, fordi en SVG kan indeholde scripts, der ville køre på sitets domæne, hvis filen åbnes direkte. Filen hedder `<id>.<ext>`; filer med andre endelser for samme id fjernes.
-- `state/logos.json`: `{source_id: {file: "<id>.<ext>"|null, src: url|"data:"|null, checked: ISO, error: str|null}}`, sorteret. Poster for afsendere, der ikke længere findes, og filer uden post fjernes ved skrivning.
-- `export` sætter `sources[].logo` (8) for de afsendere i `feed.json`, hvis fil findes, og kopierer netop de filer til `_site/logos/`.
+- `state/logos.json`: `{logo_id: {file: "<logo_id>.<ext>"|null, src: url|"data:"|null, checked: ISO, error: str|null}}`, sorteret. Poster for logo-id'er, der ikke længere findes, og filer uden post fjernes ved skrivning.
+- `export` sætter `sources[].logo` og `sources[].domain_logos` (8) for de afsendere i `feed.json`, hvis filer findes, og kopierer netop de filer til `_site/logos/`.
 
 ## 7. Overblik
 
@@ -339,7 +339,7 @@ De vigtigste begivenheder på affaldsområdet, valgt og skrevet af Claude-routin
   "categories": [{"id","name","short","color","color_dark","icon","help"}],
   "topics": [{"id","name","short","definition"}],
   "genres": [{"id","label"}],
-  "sources": [{"id","name","category","homepage","lang","paywall","owner","status","health","via_search": false,"logo": "logos/<id>.<ext>"|null}],
+  "sources": [{"id","name","category","homepage","lang","paywall","owner","status","health","via_search": false,"logo": "logos/<id>.<ext>"|null,"domain_logos": {"<domæne>": "logos/<id>--<domæne>.<ext>"}}],
   "geo": {"regioner": [{"id","navn","kort"}], "kommuner": [{"id","navn","kort","region"}], "byer": [{"id","navn","kommune","kommuner"}]} | null,
   "overview": {"dag": Overview|null, "uge": …, "maaned": …, "aar": …},
   "items": [DisplayItem]
@@ -352,9 +352,10 @@ De vigtigste begivenheder på affaldsområdet, valgt og skrevet af Claude-routin
 - `topics[].short`: kort navn til brugerfladen, `null` når temaet ikke har et (brug så `name`).
 - `places`: sted-id'er (4.1), sorteret. Vurderingens `places`, hvis den ikke er `null`, ellers kandidatens regelmærker (højst 8). Id'er, der ikke står i geografien, udelades. For en historie er `places` foreningen af hovedindslagets og also-indslagenes steder, så et lokalt indslag i en national historie kan findes med stedfiltret; foreningen skæres ikke og kan have flere end 8 steder. Indslag i `also` har intet felt og arver hovedindslagets. Tom liste = landsdækkende.
 - `geo`: alle regioner og alle kommuner i `geografi.yaml`s rækkefølge, men kun de byer, der optræder i `items[].places` (som for historier også dækker also-indslagene); byerne sorteres efter id af `export` selv. `navn` er det fulde navn ("Region Syddanmark", "Nyborg Kommune", "Ullerslev"), `kort` det korte; `byer[].kommune` er den primære kommune, som byen filtreres under (§9), `byer[].kommuner` alle kommuner, byen ligger i (kun til information). `null`, når `geografi.yaml` mangler eller er ugyldig.
-- `sources` indeholder alle aktive kilder fra `sources.yaml` (undtagen `method: search`) + `medier.yaml`-udgivere, der optræder i items (`via_search: true`).
+- `sources` indeholder alle aktive kilder fra `sources.yaml` (undtagen `method: search`) + `medier.yaml`-udgivere, der optræder i items (`via_search: true`). Hver afsender står én gang; et tidligere id (`replaces`) får ingen egen post, fordi indslagene står under kilden, der har overtaget det.
 - `health`: `groen`|`gul`|`roed`|`graa`.
 - `logo`: stien til kildens logo relativt til sitet (`logos/<id>.<ext>`, se 6.4) eller `null`. Siden viser det i 16 px foran kildens navn og ellers afsendertypens ikon.
+- `domain_logos`: logoerne for kildens andre sites (6.4), domæne → sti; tom for de fleste kilder. Siden bruger logoet for artiklens domæne, når værtsnavnet (uden `www.`) er domænet eller et underdomæne af det, og ellers `logo`.
 - `feed.json` valideres mod `models.Feed` før skrivning (fejl giver exit 1). `examples/feed.sample.json` følger samme kontrakt (`tests/test_sample.py`).
 - `status.json`: `{generated, sources: [{id, name, category, status, health, last_ok, fails, last_error, items_30d, silent}], counts: {candidates_60d, shown_60d, rejected_30d}}`.
 
@@ -380,7 +381,7 @@ Historier (`stories.py`): niveau 1 = samme id; niveau 2 = samme `normalize_title
 - localStorage-nøgler (alle i try/catch): `af.lastVisit`, `af.overviewHidden` (`"0"` = AI-overblikket er udfoldet; alt andet, også en manglende nøgle og den gamle værdi `"1"`, = foldet), `af.introClosed` og `af.theme` (bruges ikke længere; reserveret og må ikke genbruges. Siden følger enhedens farvetema, og en gammel `af.theme` slettes ved indlæsning). Ingen andre nøgler.
 
 ## 10. Workflows
-- `collect.yml`: cron `17 * * * *` + `workflow_run` efter hver kørsel af `publish.yml` ("Udgiv") + `workflow_dispatch`. GitHubs tidsplan kan falde ud, så `workflow_run` sikrer en kørsel, hver gang routinen har pushet vurderinger. `run` → `export` → commit `data/` hvis ændret (`git pull --rebase` før push) → deploy Pages. `concurrency: pages`. `run` starter ikke flere feed-, sitemap- og html-kilder, når `fetch.run_budget_seconds` (900 s) er brugt; de venter til næste kørsel og kommer først i køen, fordi kilderne køres med den længst ventende først. Søgekilder kører altid til sidst. Jobbets `timeout-minutes` er 30.
+- `collect.yml`: cron `17 * * * *` + `workflow_run` efter hver kørsel af `publish.yml` ("Udgiv") + `workflow_dispatch` med det valgfri input `only` (kommasepareret, giver `run --only`; tom = alle). GitHubs tidsplan kan falde ud, så `workflow_run` sikrer en kørsel, hver gang routinen har pushet vurderinger. `run` → `export` → commit `data/` hvis ændret (`git pull --rebase` før push) → deploy Pages. `concurrency: pages`. `run` starter ikke flere feed-, sitemap- og html-kilder, når `fetch.run_budget_seconds` (900 s) er brugt; de venter til næste kørsel og kommer først i køen, fordi kilderne køres med den længst ventende først. Søgekilder kører altid til sidst. Jobbets `timeout-minutes` er 30.
 - `publish.yml`: `push` til `main` på `data/judgments/**`, `data/overview/**`, `data/timeline/**`, `site/**`, `config/**`, `sources.yaml`, `examples/**` + `workflow_dispatch` → `export` → deploy Pages. `concurrency: pages`.
 - `ci.yml`: push/PR → `ruff check`, `pytest`, `python -m affaldsfeed check`. Ingen netværkskald i tests.
 - `geografi.yml` ("Byg geografi"): `push` til `main` på `tools/build_geografi.py` og `config/geografi_regler.yaml` + `workflow_dispatch` → `tools/build_geografi.py --report` → `python -m affaldsfeed check`. Rapporten (`probe/geografi.md`, med check-udskriften) committes altid; `config/geografi.yaml` kun, når check er OK, ellers beholdes den gamle fil, og jobbet fejler. Bot-commits starter ikke CI, så check køres her.

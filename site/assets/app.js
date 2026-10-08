@@ -167,10 +167,10 @@ function initFeed() {
  * Kildens eget logo (16 px, KONTRAKTER §6.4), ellers afsendertypens ikon (cat) eller intet. Logoet er pynt
  * (alt=""), fordi navnet står lige efter det. Kan billedet ikke vises, står ikonet i stedet.
  */
-function srcIcon(src, cat) {
-  if (!src?.logo) return cat ? icon(cat.icon) : null;
+function srcIcon(logo, cat) {
+  if (!logo) return cat ? icon(cat.icon) : null;
   return el('img', {
-    class: 'logo', src: src.logo, alt: '', width: 16, height: 16, loading: 'lazy', decoding: 'async',
+    class: 'logo', src: logo, alt: '', width: 16, height: 16, loading: 'lazy', decoding: 'async',
     onerror: (e) => { if (cat) e.currentTarget.replaceWith(icon(cat.icon)); else e.currentTarget.remove(); },
   });
 }
@@ -565,7 +565,7 @@ function setupFeed(feed, state, now, lastVisit) {
    * og betalingsmur og ejer står på Om kilderne.
    */
   function who(m) {
-    return el('p', { class: 'who' }, srcIcon(m.source, m.cat), el('b', { text: m.source.name }));
+    return el('p', { class: 'who' }, srcIcon(m.logo, m.cat), el('b', { text: m.source.name }));
   }
 
   function renderCard(card, group) {
@@ -613,7 +613,7 @@ function setupFeed(feed, state, now, lastVisit) {
     const m = card.primary;
     const titleId = `t-${m.id}`;
     return el('article', { class: `row cat${card.isNew ? ' is-new' : ''}`, style: catStyle(m.cat), 'aria-labelledby': titleId },
-      srcIcon(m.source, m.cat),
+      srcIcon(m.logo, m.cat),
       el('span', { class: 'src', text: m.source.name, title: m.source.name.length > 18 ? m.source.name : null }),
       el('div', { class: 'tcell' },
         el('h3', { class: 'title', id: titleId }, card.isNew ? hidden('Ny: ') : null, titleLink(m))),
@@ -816,7 +816,7 @@ function sourceRow(s, now, cats = null) {
   }
   return el('li', { class: 'src-row' },
     el('div', { class: 'src-who' },
-      el('a', { href: s.homepage, target: '_blank', rel: 'noopener' }, srcIcon(s, null), s.name, hidden(' (åbner i nyt vindue)')),
+      el('a', { href: s.homepage, target: '_blank', rel: 'noopener' }, srcIcon(s.logo, null), s.name, hidden(' (åbner i nyt vindue)')),
       facts.length ? el('p', { class: 'facts', text: facts.join(' · ') }) : null,
       st?.last_error && s.health === 'roed' ? el('p', { class: 'facts', text: `Seneste fejl: ${truncate(st.last_error, 120)}` }) : null),
     healthBadge(s.health));
