@@ -90,15 +90,13 @@
   basis: redaktionelt
   paywall: delvis
 
-# ── Regionale dagblade: Jysk Fynske Medier ────────────────────
-- id: ugeavisen-dk
-  name: Ugeaviserne (Jysk Fynske Medier)
-  category: nyhedsmedie
-  domains: [ugeavisen.dk]
-  basis: redaktionelt
-  paywall: nej
+# ── Regionale og lokale medier ────────────────────────────────
+# Grundlag (tjekket 2026-10-07): Ugeavispuljen 2024-25 og Innovationspuljen (Slots- og Kulturstyrelsen),
+# medlemmer af Danske Lokalaviser eller en navngiven redaktør eller Pressenævnet på siden. De fleste
+# regionale og lokale aviser hentes direkte fra 2026-10-08 (sources.yaml). Her står kun dem, der ikke kan
+# hentes på en høflig og generisk måde. Grundene står i docs/LOKALMEDIER.md.
 
-# ── Øvrige regionale og lokale medier ─────────────────────────
+# Frederiksborg Amts Avis udkommer på sn.dk (Sjællandske Medier); de gamle domæner krediteres stadig avisen
 - id: frederiksborgamtsavis-dk
   name: Frederiksborg Amts Avis
   category: nyhedsmedie
@@ -106,59 +104,11 @@
   basis: redaktionelt
   paywall: delvis
 
-- id: dinavis-dk
-  name: Din Avis (lokalaviser, tidl. Lokalavisen.dk)
+# Hovedstaden
+- id: bryggebladet-dk
+  name: Bryggebladet (Islands Brygge)
   category: nyhedsmedie
-  domains: [dinavis.dk, lokalavisen.dk]
-  basis: redaktionelt
-  paywall: nej
-
-# ── Lokale medier ─────────────────────────────────────────────
-# Grundlag (tjekket 2026-10-07): Ugeavispuljen 2024-25 og Innovationspuljen (Slots- og Kulturstyrelsen),
-# medlemmer af Danske Lokalaviser eller en navngiven redaktør eller Pressenævnet på siden. Ugeaviser under
-# et fælles domæne (ugeavisen.dk, dinavis.dk) står ovenfor. sn.dk, nordjyske.dk, folketidende.dk og de
-# regionale dagblade fra Jysk Fynske Medier og Midtjyske Medier hentes direkte (sources.yaml, 2026-10-08).
-
-# Hovedstaden og Bornholm
-- id: kobenhavnliv-dk
-  name: KøbenhavnLIV
-  category: nyhedsmedie
-  domains: [kobenhavnliv.dk, osterbroliv.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: amagerliv-dk
-  name: AmagerLIV
-  category: nyhedsmedie
-  domains: [amagerliv.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: frederiksbergliv-dk
-  name: FrederiksbergLIV
-  category: nyhedsmedie
-  domains: [frederiksbergliv.dk, frederiksbergbladet.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: orestad-avis-dk
-  name: Ørestad Avis
-  category: nyhedsmedie
-  domains: [orestad-avis.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: nordhavn-avis-dk
-  name: Nordhavn Avis
-  category: nyhedsmedie
-  domains: [nordhavn-avis.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: dragoernyt-dk
-  name: Dragør Nyt
-  category: nyhedsmedie
-  domains: [dragoernyt.dk]
+  domains: [bryggebladet.dk]
   basis: redaktionelt
   paywall: nej
 
@@ -169,76 +119,6 @@
   basis: redaktionelt
   paywall: nej
 
-- id: hvidovreavis-dk
-  name: Hvidovre Avis
-  category: nyhedsmedie
-  domains: [hvidovreavis.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: hvidovrenyt-dk
-  name: HvidovreNyt
-  category: nyhedsmedie
-  domains: [hvidovrenyt.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: heleherlev-dk
-  name: Herlev Bladet
-  category: nyhedsmedie
-  domains: [heleherlev.dk, herlevbladet.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: albertslundnyt-dk
-  name: AlbertslundNYT
-  category: nyhedsmedie
-  domains: [albertslundnyt.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: netavisen-nu
-  name: Netavisen (Gribskov)
-  category: nyhedsmedie
-  domains: [netavisen.nu, netavisengribskov.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: gladsaxenetnyt-dk
-  name: GladsaxeNetNyt
-  category: nyhedsmedie
-  domains: [gladsaxenetnyt.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: hornsherredlokalavis-dk
-  name: Hornsherred Lokalavis
-  category: nyhedsmedie
-  domains: [hornsherredlokalavis.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: altomfuresoe-dk
-  name: Alt om Furesø
-  category: nyhedsmedie
-  domains: [altomfuresoe.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: tjekfredensborg-dk
-  name: TjekFredensborg
-  category: nyhedsmedie
-  domains: [tjekfredensborg.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: migogkbh-dk
-  name: MigogKBH
-  category: nyhedsmedie
-  domains: [migogkbh.dk]
-  basis: redaktionelt
-  paywall: nej
-
 - id: magasinetkbh-dk
   name: Magasinet KBH
   category: nyhedsmedie
@@ -246,107 +126,11 @@
   basis: redaktionelt
   paywall: nej
 
-- id: bornholm-nu
-  name: Bornholm.nu
-  category: nyhedsmedie
-  domains: [bornholm.nu]
-  basis: redaktionelt
-  paywall: nej
-
-- id: bornholmnyt-dk
-  name: Bornholmnyt
-  category: nyhedsmedie
-  domains: [bornholmnyt.dk]
-  basis: redaktionelt
-  paywall: nej
-
-
-# Sjælland
-- id: netavisen-sjaelland-dk
-  name: Netavisen Sjælland
-  category: nyhedsmedie
-  domains: [netavisen-sjaelland.dk, frederikssundposten.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: viborher-dk
-  name: Viborher (Solrød)
-  category: nyhedsmedie
-  domains: [viborher.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: mitlejre-dk
-  name: LejreMagasinet
-  category: nyhedsmedie
-  domains: [mitlejre.dk]
-  basis: redaktionelt
-  paywall: nej
-
-
-# Fyn
-- id: midtfynsposten-dk
-  name: MidtfynsPosten
-  category: nyhedsmedie
-  domains: [midtfynsposten.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: folkebladet-net
-  name: Folkebladet (Aarup og Assens Kommune)
-  category: nyhedsmedie
-  domains: [folkebladet.net]
-  basis: redaktionelt
-  paywall: nej
-
-- id: migogodense-dk
-  name: MigogOdense
-  category: nyhedsmedie
-  domains: [migogodense.dk]
-  basis: redaktionelt
-  paywall: nej
-
-
-# Sydjylland
-- id: brammingposten-dk
-  name: Bramming Posten
-  category: nyhedsmedie
-  domains: [brammingposten.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: hjertingposten-dk
-  name: Hjerting Posten
-  category: nyhedsmedie
-  domains: [hjertingposten.dk]
-  basis: redaktionelt
-  paywall: nej
-
+# Syddanmark
 - id: fanoeposten-dk
   name: Fanø Posten
   category: nyhedsmedie
   domains: [fanoeposten.dk, xn--fanposten-n8a.dk, fanøposten.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: migogesbjerg-dk
-  name: MigogEsbjerg
-  category: nyhedsmedie
-  domains: [migogesbjerg.dk, esbjergliv.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: migogvejen-dk
-  name: Migogvejen
-  category: nyhedsmedie
-  domains: [migogvejen.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: billundonline-dk
-  name: BillundOnline
-  category: nyhedsmedie
-  domains: [billundonline.dk]
   basis: redaktionelt
   paywall: nej
 
@@ -357,13 +141,6 @@
   basis: redaktionelt
   paywall: nej
 
-- id: faellesavisen-dk
-  name: "Fællesavisen (Christiansfeld, Vamdrup og Lunderskov)"
-  category: nyhedsmedie
-  domains: [faellesavisen.dk]
-  basis: redaktionelt
-  paywall: nej
-
 - id: graastenavis-dk
   name: Gråsten Avis
   category: nyhedsmedie
@@ -371,89 +148,11 @@
   basis: redaktionelt
   paywall: nej
 
-- id: sonderborgnyt-dk
-  name: SønderborgNYT
-  category: nyhedsmedie
-  domains: [sonderborgnyt.dk]
-  basis: redaktionelt
-  paywall: nej
-
-
 # Midtjylland
-- id: ditikast-brande-dk
-  name: Dit Ikast-Brande (Ikast Avis)
-  category: nyhedsmedie
-  domains: [ditikast-brande.dk, ditbrande.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: brandebladet-dk
-  name: Brande Bladet
-  category: nyhedsmedie
-  domains: [brandebladet.dk]
-  basis: redaktionelt
-  paywall: nej
-
 - id: skjerntarm-ugeblad-dk
   name: Skjern-Tarm Ugeblad
   category: nyhedsmedie
   domains: [skjerntarm-ugeblad.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: ditsalling-dk
-  name: Dit Salling (Salling-Mors Avis)
-  category: nyhedsmedie
-  domains: [ditsalling.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: ditkarup-dk
-  name: Dit Karup (Karup-Frederiks Ugeavis)
-  category: nyhedsmedie
-  domains: [ditkarup.dk, karupugeavis.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: ditkjellerup-dk
-  name: Dit Kjellerup (Kjellerup Tidende)
-  category: nyhedsmedie
-  domains: [ditkjellerup.dk, kjelleruptidende.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: ditry-dk
-  name: Dit Ry (Ry Ugeavis)
-  category: nyhedsmedie
-  domains: [ditry.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: ditvinderup-dk
-  name: Dit Vinderup (Vinderup-Spøttrup Nyt)
-  category: nyhedsmedie
-  domains: [ditvinderup.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: galtenfolkeblad-dk
-  name: Galten Folkeblad
-  category: nyhedsmedie
-  domains: [galtenfolkeblad.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: voreslokalavis-dk
-  name: Vores Lokalavis (Give)
-  category: nyhedsmedie
-  domains: [voreslokalavis.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: neravisen-dk
-  name: Østjysk Næravis
-  category: nyhedsmedie
-  domains: [neravisen.dk]
   basis: redaktionelt
   paywall: nej
 
@@ -464,43 +163,7 @@
   basis: redaktionelt
   paywall: nej
 
-- id: migogaarhus-dk
-  name: MigogAarhus
-  category: nyhedsmedie
-  domains: [migogaarhus.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: samsoposten-dk
-  name: Samsø Posten
-  category: nyhedsmedie
-  domains: [samsoposten.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: byensnyt-dk
-  name: Byens Nyt
-  category: nyhedsmedie
-  domains: [byensnyt.dk]
-  basis: redaktionelt
-  paywall: nej
-
-
 # Nordjylland
-- id: ligeher-nu
-  name: LigeHer.nu (Nordjyske lokalaviser)
-  category: nyhedsmedie
-  domains: [ligeher.nu]
-  basis: redaktionelt
-  paywall: nej
-
-- id: thisted-dagblad-dk
-  name: Thisted Dagblad
-  category: nyhedsmedie
-  domains: [thisted-dagblad.dk]
-  basis: redaktionelt
-  paywall: delvis
-
 - id: kunmedierne-dk
   name: KunMedierne (Mors og Thy)
   category: nyhedsmedie
@@ -508,101 +171,10 @@
   basis: redaktionelt
   paywall: nej
 
-- id: aars-dk
-  name: Aars Avis
-  category: nyhedsmedie
-  domains: [aars.dk]
-  basis: redaktionelt
-  paywall: nej
-
 - id: blokhus-dk
   name: Blokhus Avis
   category: nyhedsmedie
   domains: [blokhus.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: farsoeavis-dk
-  name: Farsø Avis
-  category: nyhedsmedie
-  domains: [farsoeavis.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: folkebladet-info
-  name: Folkebladet Rebild (Midthimmerlands Folkeblad)
-  category: nyhedsmedie
-  domains: [folkebladet.info]
-  basis: redaktionelt
-  paywall: nej
-
-- id: nibeavis-dk
-  name: Nibe Avis
-  category: nyhedsmedie
-  domains: [nibeavis.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: vesthimmerlandsavis-dk
-  name: Vesthimmerlands Avis
-  category: nyhedsmedie
-  domains: [vesthimmerlandsavis.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: hasserisavis-dk
-  name: Hasseris Avis
-  category: nyhedsmedie
-  domains: [hasserisavis.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: jammerbugtposten-dk
-  name: Jammerbugtposten
-  category: nyhedsmedie
-  domains: [jammerbugtposten.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: mariagerfjordposten-dk
-  name: Mariagerfjordposten
-  category: nyhedsmedie
-  domains: [mariagerfjordposten.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: midtvendsysselavis-dk
-  name: Midtvendsyssel Avis
-  category: nyhedsmedie
-  domains: [midtvendsysselavis.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: vodskovavis-dk
-  name: Lokalavisen Vodskov-Vestbjerg-Vadum
-  category: nyhedsmedie
-  domains: [vodskovavis.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: oestvendsysselfolkeblad-dk
-  name: Østvendsyssel Folkeblad
-  category: nyhedsmedie
-  domains: [østvendsysselfolkeblad.dk, xn--stvendsysselfolkeblad-pfc.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: kanalfrederikshavn-dk
-  name: Kanal Frederikshavn
-  category: nyhedsmedie
-  domains: [kanalfrederikshavn.dk]
-  basis: redaktionelt
-  paywall: nej
-
-- id: migogaalborg-dk
-  name: MigogAalborg
-  category: nyhedsmedie
-  domains: [migogaalborg.dk]
   basis: redaktionelt
   paywall: nej
 

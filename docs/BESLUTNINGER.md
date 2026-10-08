@@ -108,4 +108,16 @@ Nu hentes 20 regionale og lokale aviser direkte: 13 dagblade fra Jysk Fynske Med
 
 Indsamleren er udvidet generelt: `{dato}` i en sitemap-URL henter dagens og gårsdagens sitemap, et indeks uden lastmod sorteres efter datoen i URL'en, perioder før vinduet springes over, og procentkodede URL'er afkodes. De fleste aviser fravælger AI-træning i robots.txt, men ikke almindelige læsere, så samme princip som for DR og TV 2 gælder: Indsamleren er ikke en AI-crawler, og Claude ser kun titel og uddrag. Aviserne får ingen faste steder, fordi de dækker flere kommuner. Stederne kommer fra titlen og Claudes vurdering.
 
-Endnu ikke dækket direkte: Jysk Fynske Medier's ugeaviser på `ugeavisen.dk` og Din Avis (`dinavis.dk`) har hverken feed eller brugbart sitemap. De findes stadig via søgningen.
+Endnu ikke dækket direkte: Jysk Fynske Mediers ugeaviser på `ugeavisen.dk` og Din Avis (`dinavis.dk`) har hverken feed eller brugbart sitemap. De findes stadig via søgningen. (Løst samme dag, se næste afsnit.)
+
+## 2026-10-08: Ugeaviser og netaviser hentes direkte
+
+Efter dagbladene blev ugeaviser og netaviser kortlagt for alle 98 kommuner. Kortlægningen fandt 184 lokale og regionale medier, og alle med et kendt domæne blev afprøvet fra GitHub Actions med `find-feed`, sitemap og forside. Før i dag blev ingen af de 184 hentet direkte, og efter dagbladene var det 56. Nu er det 157. Ti findes stadig kun via søgningen, og 17 dækkes ikke. Oversigten pr. kommune og grundene står i `docs/LOKALMEDIER.md`.
+
+Der er 61 nye kilder: 36 via RSS, 10 via sitemaps og 15 via forsiden. To fund dækker mange titler på én gang. Jysk Fynske Mediers ugeaviser ligger alle på `ugeavisen.dk`, som har samme dagssitemap som dagbladene, og Din Avis har ét RSS-feed for alle sine lokalaviser. LIV-aviserne i København har annoncørbetalt indhold i sitemappet, så deres `match` udelukker `/annoncorbetaltindhold/`. Dagbladenes sitemaps havde intet af den slags i stikprøven.
+
+Troværdighedskravene gælder stadig. Netaviser, hvor kortlægningen ikke kunne finde en navngiven redaktør eller en henvisning til Pressenævnet, er ikke med, og det gælder også et net af syv netaviser, der ser ud til at dele indhold. To poster i `medier.yaml` var ikke aviser: thisted-dagblad.dk samler annoncørbetalte indlæg, og aars.dk er en foreningsside. De er fravalgt med en note.
+
+Kortlægningen er ikke komplet. Loftet på 200 websøgninger pr. tur blev nået, så i 65 kommuner er der kun søgt efter de store mediehuses titler. Uafhængige netaviser kan mangle der.
+
+Probe-workflowet tabte et resultat, fordi to kørsler skrev `probe/result.md` samtidig og fik en konflikt ved `git pull --rebase`. Commit-trinnet lægger nu resultatet oven på grenens nyeste udgave i stedet.

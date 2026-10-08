@@ -8,7 +8,7 @@ Affaldsfeed bygges i seks faser. Fase 0 og 1 laves i den første lokale session 
 |---|---|---|
 | 0 | Fundament: config, kilderegister, `check`, CI og docs | Færdig |
 | 1 | Første live version: pipeline for RSS og søgning, site, workflows og Claude-routinen | Færdig, live 7. oktober 2026 |
-| 2 | Kilder uden RSS, Folketingets ODA og Claudes sweep | I gang: sitemap, html og ODA virker, og 72 kilder er aktive. Sweepet er ikke efterprøvet |
+| 2 | Kilder uden RSS, Folketingets ODA og Claudes sweep | I gang: sitemap, html og ODA virker, og 153 kilder er aktive. Sweepet er ikke efterprøvet |
 | 3 | Kvalitet: "Hvorfor med?", bedre historier, kompakt visning | I gang: kompakt visning, dagsbundter og 150 testcases er færdige; niveau 3 og Via Ritzau er udskudt (se BESLUTNINGER) |
 | 4 | Brugerens kildeliste | Venter på listen |
 | 5 | Udvidelser | Kun ved konkret savn |
@@ -109,11 +109,11 @@ Start med at læse `CLAUDE.md`, `docs/KONTRAKTER.md` og denne fil. Tjek så, at 
 Brugeren skal rette routinens prompt på claude.ai, så den siger "Du må kun skrive i data/judgments/, data/overview/ og data/timeline/." Indtil da fyldes tidslinjen ikke. Routinen er oprettet via API, så en session kan ikke selv rette den.
 
 Fase 2, resten (lokale medier og ODA er færdige):
-1. Følg de 19 sitemap- og 10 html-kilder og ODA i 7 dage. Fejler en, så ret `match`, `select` eller `filter`, eller sæt den på pause med en note.
+1. Følg de 45 sitemap- og 28 html-kilder og ODA i 7 dage. Fejler en, så ret `match`, `select` eller `filter`, eller sæt den på pause med en note.
 2. Efterprøv sweepet kl. 06.25 og 14.25. Fund skal skrives som vurderinger med `new_item`, og ukendte udgivere skal havne i `data/judgments/kildeforslag-sweep.md`. Sweepet kl. 06.25 den 8. oktober gav ingen fund. Læs routinens session (`get_trigger` giver `last_run.session_id`, `list_events` viser forløbet) for at se, om det søgte, og hvad det fandt.
 3. TV 2: afventer brugerens svar på, om indsamlingen må læse TV 2's sektionssider (HTML) for at få næsten fuld dækning (se BESLUTNINGER 2026-10-08, Dækningen af affaldsnyheder).
-4. Følg de 20 regionale og lokale aviser, der kom til 2026-10-08 (BESLUTNINGER: Lokalaviserne hentes direkte), i 7 dage. Tjek især dagssitemaps lige efter midnat, Sjællandske Medier's månedsskifte og Midtjyske Medier's forsider.
-5. Ugeaviser og netaviser i alle 98 kommuner: kortlægningen er i gang og lander i en senere ændring som flere kilder eller poster i `medier.yaml`.
+4. Følg de 81 regionale og lokale aviser, der kom til 2026-10-08 (BESLUTNINGER: Lokalaviserne hentes direkte og Ugeaviser og netaviser hentes direkte), i 7 dage. Tjek især dagssitemaps lige efter midnat, Sjællandske Mediers månedsskifte, forsiderne og de små RSS-feeds.
+5. Lokalmedier: kortlægningen mangler målrettede søgninger i 65 kommuner (se `docs/LOKALMEDIER.md`, Huller i kortlægningen). Søg dem igennem i en ny tur, når søgebudgettet tillader det, og afprøv nye fund med `find-feed` via `probe.yml`. Ret tabellerne i `docs/LOKALMEDIER.md`, når en kilde kommer til eller falder fra.
 6. Gennemgå `data/state/kildeforslag.md` hver uge. Troværdige udgivere flyttes til `config/medier.yaml` eller `sources.yaml`.
 
 Fase 3:
