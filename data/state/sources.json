@@ -1,7 +1,7 @@
 {
   "affaldplus": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -10,16 +10,25 @@
   },
   "altinget": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen"
   },
+  "amtsavisen": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "arc": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -28,7 +37,7 @@
   },
   "argo": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 5,
@@ -37,7 +46,7 @@
   },
   "au": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -55,16 +64,16 @@
   },
   "avisen": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
-    "fails": 1,
-    "last_error": "https://www.avisen.dk/rss.aspx: timeout",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
-    "health": "gul"
+    "health": "groen"
   },
   "berlingske": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -82,16 +91,25 @@
   },
   "biogas-danmark": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen"
   },
+  "bornholms-tidende": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "borsen": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -143,9 +161,18 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "dagbladet-holstebro-struer": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "dagens-byggeri": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 9,
@@ -190,7 +217,7 @@
   },
   "dansk-retursystem": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -208,7 +235,7 @@
   },
   "danske-regioner": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -217,16 +244,25 @@
   },
   "danwatch": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen"
   },
+  "dbrs": {
+    "last_ok": null,
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 1,
+    "last_error": "https://dbrs.dk/sitemap/2026-10-08: HTTP 503; springes over i denne kørsel; https://dbrs.dk/sitemap/2026-10-07: springes over: HTTP 503",
+    "items_30d": 0,
+    "first_run_done": false,
+    "health": "gul"
+  },
   "dg-env": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
@@ -244,7 +280,7 @@
   },
   "dr-nyheder": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
@@ -271,7 +307,7 @@
   },
   "emballagefokus": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 4,
@@ -289,7 +325,7 @@
   },
   "energy-supply": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -302,6 +338,33 @@
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "faa": {
+    "last_ok": null,
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 1,
+    "last_error": "https://faa.dk/sitemap/2026-10-08: HTTP 503; springes over i denne kørsel; https://faa.dk/sitemap/2026-10-07: springes over: HTTP 503",
+    "items_30d": 0,
+    "first_run_done": false,
+    "health": "gul"
+  },
+  "folkebladetlemvig": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "folketidende": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 4,
     "first_run_done": true,
     "health": "groen"
   },
@@ -323,9 +386,27 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "frdb": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "fyens": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": false,
+    "health": "groen"
+  },
   "gate-21": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -343,7 +424,25 @@
   },
   "greenpeace-danmark": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "helsingordagblad": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "herningfolkeblad": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -352,7 +451,7 @@
   },
   "hoeringsportalen": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -361,16 +460,25 @@
   },
   "hofor": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen"
   },
+  "hsfo": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "ingenioeren": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -386,9 +494,18 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "jv": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "kefm": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -424,7 +541,7 @@
   },
   "klimaraadet": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -433,7 +550,7 @@
   },
   "kommunen": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -442,7 +559,7 @@
   },
   "kraka": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -451,7 +568,16 @@
   },
   "ku": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "midtjyllandsavis": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -478,7 +604,7 @@
   },
   "noah": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -487,10 +613,19 @@
   },
   "nordisk-ministerraad": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "nordjyske": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
     "first_run_done": true,
     "health": "groen"
   },
@@ -514,7 +649,7 @@
   },
   "plastindustrien": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 5,
@@ -523,7 +658,7 @@
   },
   "politiken": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -532,7 +667,7 @@
   },
   "refa": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -550,7 +685,7 @@
   },
   "renosyd": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
@@ -559,7 +694,7 @@
   },
   "rgo": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -593,18 +728,45 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "sjaellandske-medier": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 10,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "skivefolkeblad": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "sonfor": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
     "first_run_done": true,
     "health": "groen"
   },
+  "stiften": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen"
+  },
   "taenk": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -622,7 +784,7 @@
   },
   "tekniskfokus": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -640,7 +802,7 @@
   },
   "tv2-nyheder": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
@@ -649,10 +811,19 @@
   },
   "tv2-regionerne": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 8,
+    "first_run_done": true,
+    "health": "groen"
+  },
+  "vafo": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
     "first_run_done": true,
     "health": "groen"
   },
@@ -674,9 +845,18 @@
     "first_run_done": true,
     "health": "groen"
   },
+  "viborg-folkeblad": {
+    "last_ok": "2026-10-08",
+    "last_attempt": "2026-10-08T09:11:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": false,
+    "health": "groen"
+  },
   "videnskab": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T08:27:16Z",
+    "last_attempt": "2026-10-08T09:11:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,

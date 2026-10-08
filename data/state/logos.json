@@ -47,10 +47,10 @@
     "checked": "2026-10-07T22:37:50Z",
     "error": null
   },
-  "amtsavisen-dk": {
-    "file": "amtsavisen-dk.png",
+  "amtsavisen": {
+    "file": "amtsavisen.png",
     "src": "https://amtsavisen.dk/assets/1791279772/kodus/jfm-brands/brands/amtsavisen/favicons/apple-icon-57x57.png",
-    "checked": "2026-10-07T23:35:08Z",
+    "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
   "arc": {
@@ -131,6 +131,12 @@
     "checked": "2026-10-07T23:35:08Z",
     "error": null
   },
+  "bornholms-tidende": {
+    "file": "bornholms-tidende.png",
+    "src": "https://tidende.dk/dist/favicon-32x32.png",
+    "checked": "2026-10-08T09:11:01Z",
+    "error": null
+  },
   "borsen": {
     "file": "borsen.png",
     "src": "https://borsen.dk/icon/favicon.ico",
@@ -209,10 +215,10 @@
     "checked": "2026-10-07T23:35:08Z",
     "error": null
   },
-  "dagbladet-holstebro-struer-dk": {
-    "file": "dagbladet-holstebro-struer-dk.png",
+  "dagbladet-holstebro-struer": {
+    "file": "dagbladet-holstebro-struer.png",
     "src": "https://dagbladet-holstebro-struer.dk/assets/1791279772/kodus/jfm-brands/brands/holstebro_struer/favicons/apple-icon-57x57.png",
-    "checked": "2026-10-07T23:35:08Z",
+    "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
   "dagens-byggeri": {
@@ -269,11 +275,11 @@
     "checked": "2026-10-08T00:05:14Z",
     "error": null
   },
-  "dbrs-dk": {
-    "file": "dbrs-dk.png",
-    "src": "https://dbrs.dk/assets/1791279772/kodus/jfm-brands/brands/dbrs/favicons/apple-icon-57x57.png",
-    "checked": "2026-10-08T00:05:14Z",
-    "error": null
+  "dbrs": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-08T09:11:01Z",
+    "error": "springes over: HTTP 503"
   },
   "dg-env": {
     "file": "dg-env.ico",
@@ -377,11 +383,11 @@
     "checked": "2026-10-08T04:31:35Z",
     "error": null
   },
-  "faa-dk": {
-    "file": "faa-dk.png",
-    "src": "https://faa.dk/assets/1791279772/kodus/jfm-brands/brands/faa/favicons/apple-icon-57x57.png",
-    "checked": "2026-10-08T04:31:35Z",
-    "error": null
+  "faa": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-08T09:11:01Z",
+    "error": "springes over: HTTP 503"
   },
   "faellesavisen-dk": {
     "file": "faellesavisen-dk.webp",
@@ -425,16 +431,22 @@
     "checked": "2026-10-08T04:31:35Z",
     "error": null
   },
-  "folkebladetlemvig-dk": {
-    "file": "folkebladetlemvig-dk.png",
+  "folkebladetlemvig": {
+    "file": "folkebladetlemvig.png",
     "src": "https://folkebladetlemvig.dk/assets/1791279772/kodus/jfm-brands/brands/lemvig/favicons/apple-icon-57x57.png",
-    "checked": "2026-10-08T04:31:35Z",
+    "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
-  "folketidende-dk": {
-    "file": "folketidende-dk.ico",
-    "src": "https://www.folketidende.dk/favicon.ico",
-    "checked": "2026-10-08T04:31:35Z",
+  "folkebladetlemvig--lemvigfolkeblad-dk": {
+    "file": "folkebladetlemvig--lemvigfolkeblad-dk.png",
+    "src": "https://folkebladetlemvig.dk/assets/1791279772/kodus/jfm-brands/brands/lemvig/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T09:11:01Z",
+    "error": null
+  },
+  "folketidende": {
+    "file": "folketidende.png",
+    "src": "https://www.folketidende.dk/view-resources/dachser2/public/folketidende/favicon-32x32.png",
+    "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
   "folketinget-oda": {
@@ -449,10 +461,16 @@
     "checked": "2026-10-08T04:31:35Z",
     "error": null
   },
-  "frdb-dk": {
-    "file": "frdb-dk.png",
+  "frdb": {
+    "file": "frdb.png",
     "src": "https://frdb.dk/assets/1791279772/kodus/jfm-brands/brands/frdb/favicons/apple-icon-57x57.png",
-    "checked": "2026-10-08T04:31:35Z",
+    "checked": "2026-10-08T09:11:01Z",
+    "error": null
+  },
+  "frdb--fredericiadagblad-dk": {
+    "file": "frdb--fredericiadagblad-dk.png",
+    "src": "https://frdb.dk/assets/1791279772/kodus/jfm-brands/brands/frdb/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
   "frederiksbergliv-dk": {
@@ -467,10 +485,10 @@
     "checked": "2026-10-08T05:27:31Z",
     "error": "blokeret af robots.txt"
   },
-  "fyens-dk": {
-    "file": "fyens-dk.png",
+  "fyens": {
+    "file": "fyens.png",
     "src": "https://fyens.dk/assets/1791279772/kodus/jfm-brands/brands/fyens/favicons/apple-icon-57x57.png",
-    "checked": "2026-10-08T05:27:31Z",
+    "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
   "galtenfolkeblad-dk": {
@@ -521,16 +539,16 @@
     "checked": "2026-10-08T05:27:31Z",
     "error": null
   },
-  "helsingordagblad-dk": {
-    "file": "helsingordagblad-dk.png",
+  "helsingordagblad": {
+    "file": "helsingordagblad.png",
     "src": "https://helsingordagblad.dk/assets/1791279772/kodus/jfm-brands/brands/helsingor/favicons/apple-icon-57x57.png",
-    "checked": "2026-10-08T05:27:31Z",
+    "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
-  "herningfolkeblad-dk": {
-    "file": "herningfolkeblad-dk.png",
+  "herningfolkeblad": {
+    "file": "herningfolkeblad.png",
     "src": "https://herningfolkeblad.dk/images/favicons/apple-icon-57x57.png",
-    "checked": "2026-10-08T05:27:31Z",
+    "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
   "hjertingposten-dk": {
@@ -557,10 +575,10 @@
     "checked": "2026-10-08T05:27:31Z",
     "error": null
   },
-  "hsfo-dk": {
-    "file": "hsfo-dk.png",
+  "hsfo": {
+    "file": "hsfo.png",
     "src": "https://hsfo.dk/assets/1791279772/kodus/jfm-brands/brands/hsfo/favicons/apple-icon-57x57.png",
-    "checked": "2026-10-08T05:27:31Z",
+    "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
   "hvidovreavis-dk": {
@@ -599,10 +617,10 @@
     "checked": "2026-10-08T05:27:31Z",
     "error": null
   },
-  "jv-dk": {
-    "file": "jv-dk.png",
+  "jv": {
+    "file": "jv.png",
     "src": "https://jv.dk/assets/1791279772/kodus/jfm-brands/brands/jv/favicons/apple-icon-57x57.png",
-    "checked": "2026-10-07T22:34:55Z",
+    "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
   "jyllands-posten-dk": {
@@ -731,10 +749,10 @@
     "checked": "2026-10-08T06:01:09Z",
     "error": null
   },
-  "midtjyllandsavis-dk": {
-    "file": "midtjyllandsavis-dk.png",
+  "midtjyllandsavis": {
+    "file": "midtjyllandsavis.png",
     "src": "https://midtjyllandsavis.dk/images/favicons/apple-icon-57x57.png",
-    "checked": "2026-10-08T06:01:09Z",
+    "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
   "midtvendsysselavis-dk": {
@@ -851,10 +869,10 @@
     "checked": "2026-10-08T07:28:04Z",
     "error": "HTTP 404"
   },
-  "nordjyske-dk": {
-    "file": "nordjyske-dk.png",
+  "nordjyske": {
+    "file": "nordjyske.png",
     "src": "https://nordjyske.dk/favicon.ico",
-    "checked": "2026-10-08T07:28:04Z",
+    "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
   "nordvaerk": {
@@ -953,21 +971,27 @@
     "checked": "2026-10-08T07:28:04Z",
     "error": null
   },
-  "skivefolkeblad-dk": {
-    "file": "skivefolkeblad-dk.png",
+  "sjaellandske-medier": {
+    "file": "sjaellandske-medier.png",
+    "src": "https://www.sn.dk/wp-content/themes/sn/assets/dist/img/favicon.png",
+    "checked": "2026-10-08T09:11:01Z",
+    "error": null
+  },
+  "sjaellandske-medier--sjnyheder-dk": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-08T09:11:01Z",
+    "error": "blokeret af robots.txt"
+  },
+  "skivefolkeblad": {
+    "file": "skivefolkeblad.png",
     "src": "https://skivefolkeblad.dk/images/favicons/apple-icon-57x57.png",
-    "checked": "2026-10-08T07:28:04Z",
+    "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
   "skjerntarm-ugeblad-dk": {
     "file": "skjerntarm-ugeblad-dk.ico",
     "src": "https://skjerntarm-ugeblad.dk/img/favicon.ico",
-    "checked": "2026-10-08T07:28:04Z",
-    "error": null
-  },
-  "sn-dk": {
-    "file": "sn-dk.png",
-    "src": "https://www.sn.dk/wp-content/themes/sn/assets/dist/img/favicon.png",
     "checked": "2026-10-08T07:28:04Z",
     "error": null
   },
@@ -981,12 +1005,6 @@
     "file": "sonfor.png",
     "src": "https://sonfor.dk/wp-content/themes/generaxion-axio-2024-marts-15/dist/favicon/favicon-32x32.png",
     "checked": "2026-10-07T22:34:55Z",
-    "error": null
-  },
-  "stiften-dk": {
-    "file": "stiften-dk.png",
-    "src": "https://stiften.dk/assets/1791279772/kodus/jfm-brands/brands/stiften/favicons/apple-icon-57x57.png",
-    "checked": "2026-10-08T07:48:34Z",
     "error": null
   },
   "taenk": {
@@ -1016,12 +1034,6 @@
   "thisted-dagblad-dk": {
     "file": "thisted-dagblad-dk.png",
     "src": "https://thisted-dagblad.dk/wp-content/uploads/2026/08/Favicon-td-150x150.png",
-    "checked": "2026-10-08T07:48:34Z",
-    "error": null
-  },
-  "tidende-dk": {
-    "file": "tidende-dk.png",
-    "src": "https://tidende.dk/dist/favicon-32x32.png",
     "checked": "2026-10-08T07:48:34Z",
     "error": null
   },
@@ -1091,12 +1103,6 @@
     "checked": "2026-10-08T07:48:34Z",
     "error": null
   },
-  "vafo-dk": {
-    "file": "vafo-dk.png",
-    "src": "https://vafo.dk/assets/1791279772/kodus/jfm-brands/brands/vafo/favicons/apple-icon-57x57.png",
-    "checked": "2026-10-08T07:48:34Z",
-    "error": null
-  },
   "vana": {
     "file": "vana.ico",
     "src": "https://www.vana.dk/favicon.ico",
@@ -1112,12 +1118,6 @@
   "vesthimmerlandsavis-dk": {
     "file": "vesthimmerlandsavis-dk.jpg",
     "src": "https://vesthimmerlandsavis.dk/wp-content/uploads/2023/02/cropped-icon-1-32x32.jpg",
-    "checked": "2026-10-08T07:48:34Z",
-    "error": null
-  },
-  "viborg-folkeblad-dk": {
-    "file": "viborg-folkeblad-dk.png",
-    "src": "https://viborg-folkeblad.dk/assets/1791279772/kodus/jfm-brands/brands/viborg/favicons/apple-icon-57x57.png",
     "checked": "2026-10-08T07:48:34Z",
     "error": null
   },
