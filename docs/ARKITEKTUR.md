@@ -14,7 +14,7 @@ sources.yaml + config/*.yaml               (valideres med pydantic)
    │       → data/candidates/, data/rejected/, data/state/
    │     python -m affaldsfeed export → commit af data/ → deploy til Pages
    │
-   ├─ :25 hver time kl. 06-23 dansk tid: Claude-routinen (abonnement)
+   ├─ :25 hver fjerde time (kl. 06, 10, 14, 18, 22 dansk tid): Claude-routinen (abonnement)
    │     følger routine/REDAKTOER.md
    │       pending → Claude vurderer → data/judgments/ÅÅÅÅ-MM-DD.jsonl
    │       → validate-judgments → heartbeat
@@ -43,7 +43,7 @@ Indsamleren er høflig: ærlig User-Agent, robots.txt, mindst 2 sekunder mellem 
 
 Routinen er en Claude cloud-routine på projektejerens eget abonnement. Den bruger ingen API-nøgle, og koden har ingen anthropic-SDK. Routinen arbejder i en klon af repoet og følger instruksen i `routine/REDAKTOER.md`, som er versioneret her. Netværket i cloud-miljøet er ikke ændret: routinen skal kun bruge GitHub og PyPI, som er på standardlisten, og WebSearch, som er Claudes eget værktøj.
 
-Tider: minut 25 i timerne 6 til 23 dansk tid, som står i `config/settings.yaml` under `routine`. Cron er `25 6-23 * * *`, hvis routinen kan køre i dansk tid. Kan den kun køre i UTC, bruges `25 4-22 * * *`, som dækker kl. 06-23 både sommer og vinter og giver en ekstra kørsel uden for vinduet.
+Tider: minut 25 i timerne 6, 10, 14, 18 og 22 dansk tid, som står i `config/settings.yaml` under `routine`. Cron er `25 6,10,14,18,22 * * *`, hvis routinen kan køre i dansk tid. Kan den kun køre i UTC, passer `25 4,8,12,16,20 * * *` om sommeren, men om vinteren falder kørslerne en time for tidligt (kl. 05 er uden for vinduet og springes over), så dansk tid er at foretrække.
 
 En kørsel:
 1. `python -m affaldsfeed pending` udskriver kandidater uden vurdering, relevansprofilen, temaer, genrer og nyligt godkendte indslag.
@@ -103,7 +103,7 @@ Filerne skrives atomisk og kun, når indholdet faktisk ændrer sig, så git ikke
 ## Drift og omkostning
 
 - GitHub Actions og GitHub Pages er gratis for offentlige repos.
-- Claude-routinen bruger 18 kørsler i døgnet af abonnementet (19, hvis cron skal stå i UTC). Forbruget følges på claude.ai/settings/usage. Bliver kvoten for stram, sættes `routine.hours` i `config/settings.yaml` og routinens cron ned, fx til hver anden time. Fallback dækker hullerne.
+- Claude-routinen bruger 5 kørsler i døgnet af abonnementet. Forbruget følges på claude.ai/settings/usage. Bliver kvoten for stram, sættes `routine.hours` i `config/settings.yaml` og routinens cron ned, fx til hver anden time. Fallback dækker hullerne.
 - Feedet rækker 60 dage tilbage.
 - GitHub slår planlagte workflows fra efter 60 dage uden aktivitet i et offentligt repo. Datacommits holder repoet aktivt. Sker det alligevel, viser siden bjælken om forældet feed efter 6 timer.
 - Driften kan følges i kildesundheden på "Om kilderne", i `data/judgments/_heartbeat.json` og i kørselsloggen i GitHub Actions.
