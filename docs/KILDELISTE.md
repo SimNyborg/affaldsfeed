@@ -21,7 +21,8 @@ Kilder, der kun kan hentes via sitemap eller nyhedsside, kræver indsamleren `co
 | TV 2-regionerne | Lokale historier fra de 8 regionale stationer, fx nye ordninger, genbrugspladser og skraldebiler | RSS (strengt filter) |
 | Avisen.dk (Ritzau) | Ritzau-telegrammer, som mange medier bygger på | RSS |
 | Ingeniøren | Teknik bag forbrænding, CO2-fangst og genanvendelse | RSS (strengt filter) |
-| Lokale og regionale aviser | Lokalaviser, som ikke har egne feeds i registret, fanges via nyhedssøgningen, når de skriver om affald | Søgning |
+| Regionale og lokale aviser | 81 dagblade, ugeaviser og netaviser, der dækker alle kommuner med et lokalmedie. Se [LOKALMEDIER.md](LOKALMEDIER.md) | RSS, sitemap eller forside (strengt filter) |
+| Øvrige lokalmedier | Lokalmedier, der ikke kan hentes direkte, fanges via nyhedssøgningen, når de skriver om affald | Søgning |
 
 Senere: Politiken, Berlingske, Børsen, Jyllands-Posten, Information, B.T. og Mandag Morgen.
 

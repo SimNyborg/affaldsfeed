@@ -94,8 +94,15 @@ jobs:
         run: |
           git config user.name "affaldsfeed-bot"
           git config user.email "affaldsfeed-bot@users.noreply.github.com"
-          git add probe/result.md
-          git diff --cached --quiet && exit 0
-          git commit -m "Afprøvning af kilder $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          # Lægges oven på grenens nyeste udgave, så en anden kørsels resultat aldrig giver konflikt
+          cp probe/result.md /tmp/result.md
+          msg="Afprøvning af kilder $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          for i in 1 2 3; do
+            git fetch -q origin "$GITHUB_REF_NAME" && git reset -q --hard FETCH_HEAD
+            cp /tmp/result.md probe/result.md
+            git add probe/result.md
+            git diff --cached --quiet && exit 0
+            git commit -q -m "$msg" && git push -q origin HEAD:"$GITHUB_REF_NAME" && exit 0
+            sleep 5
+          done
           exit 1
