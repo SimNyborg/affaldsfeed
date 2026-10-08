@@ -29,7 +29,7 @@
   --line: #DAE0E0;
   --link: #0A602D;
   --link-hover: #67952E;
-  --accent: #6E9612;           /* nye indslag og "Her slap du sidst" (3,5:1 mod hvid) */
+  --accent: #6E9612;           /* nye indslag (3,5:1 mod hvid) */
   --tag-bg: #E6F4EA;
   --warn-bg: #FFF4CC;
   --footer: #54595F;
@@ -661,7 +661,6 @@ svg.i { width: 16px; height: 16px; flex: none; }
 .day-empty { padding: 16px var(--pad-x); color: var(--muted); }
 .cards { list-style: none; }
 .cards > li + li { border-top: 1px solid var(--line); }
-.cards > li.lastvisit, .cards > li.lastvisit + li { border-top: 0; }
 .list-panel .day:last-child .cards > li:last-child > * { border-radius: 0 0 var(--r-panel) var(--r-panel); }
 
 /* Kortet */
@@ -772,18 +771,6 @@ img.logo { display: inline-block; width: 16px; height: 16px; border-radius: 3px;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-
-.lastvisit {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px var(--pad-x);
-  color: var(--muted);
-  font-size: var(--t-xs);
-  line-height: var(--lh-xs);
-  font-weight: 600;
-}
-.lastvisit::before, .lastvisit::after { content: ""; flex: 1; height: 1px; background: var(--accent); }
 
 .more-wrap { display: flex; justify-content: center; }
 

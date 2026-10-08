@@ -64,7 +64,7 @@ Farverne er CSS-variabler på `:root`.
 | `--line` | #DAE0E0 | #2C3531 | skillelinjer |
 | `--link` | #0A602D | #7ED69B | links, afkrydsninger, valgt del i tekstvalg, primærknapper og fokusringe (7,71:1 på hvid) |
 | `--link-hover` | #67952E | #A5E3B8 | hover på flader og kanter, aldrig som tekst (3,55:1) |
-| `--accent` | #6E9612 | #95C41F | kun kanten på 3 px ved nye indslag og linjerne i "Her slap du sidst", aldrig tekst (3,5:1 på hvid og 8,0:1 på mørk flade; markeringen er en tilstand og skal have mindst 3:1) |
+| `--accent` | #6E9612 | #95C41F | kun kanten på 3 px ved nye indslag, aldrig tekst (3,5:1 på hvid og 8,0:1 på mørk flade; markeringen er en tilstand og skal have mindst 3:1) |
 | `--tag-bg` | #E6F4EA | #1F3326 | kun aktive filtre (#0A602D på den giver 6,79:1) |
 | `--warn-bg` | #FFF4CC | #3A3214 | meddelelsen om forældet feed og forældet overblik |
 | `--footer` | #54595F | #0B0F0D | footer med hvid tekst |
@@ -239,7 +239,7 @@ Fra 768 px er der én række pr. indslag i et grid med logo eller ikon (16 px), 
 
 - Overskrifterne er "I dag", "I går", "Mandag 5. oktober" for 2 til 6 dage siden og derefter uger som "Uge 40 · 28.–30. september". En ugegruppe nævner kun de dage, den faktisk dækker.
 - Dagsoverskriften er en sticky `<h2>` på 40 px i 14/20 og 600 med streg over og under. Antallet står yderst til højre på samme højrekant som kortenes tider.
-- "Her slap du sidst · i går kl. 08.14" står mellem nye og gamle indslag med linjer i `--accent`.
+- Der er ingen skillelinje mellem nye og gamle indslag. Nye indslag ses på kanten i `--accent` og i statuslinjen.
 - Der er ingen "Vis flere". De første 50 kort bygges med det samme og de næste, når listens ende er 1.500 px fra skærmen. I ledige stunder bygges op til 300 kort i forvejen, så en normal liste kort efter står helt i siden, og søgning i siden og footeren virker. Et meget langt feed bygges videre, når man scroller, så hvert filterklik forbliver hurtigt.
 
 ### AI-overblikket
@@ -304,7 +304,6 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Statuslinje | Vis 7 nye · Vis 1 ny · 7 nye indslag · 1 nyt indslag · Vis alle · til skærmlæseren og ved fokus: 1.284 indslag · 23 af 1.284 indslag |
 | Visning | Normal · Kompakt |
 | Kort | Auto-resumé: · fundet 09.14 · +3 andre kilder · +1 anden kilde · +3 andre kilder, 2 nye · +3 flere · +1 mere |
-| Skillelinje | Her slap du sidst · i går kl. 08.14 |
 | Overblik | AI-overblik · I dag · Ugen · Måneden · Året · Vis hele · Vis mindre · fra i går kl. 23.25 · Opdateret kl. 14.24 · bygget på 23 indslag · Skrevet af AI ud fra kilderne. Kan indeholde fejl. |
 | Overblik, kort data | Siden 7. oktober 2026 · opdateret kl. 09.25 |
 | Overblik, før første kørsel | Dagens overblik kommer efter kl. 06.25. |

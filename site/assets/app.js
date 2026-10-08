@@ -470,16 +470,13 @@ function setupFeed(feed, state, now, lastVisit) {
         el('p', { class: 'day-empty', text: `Intet nyt endnu i dag.${gen ? ` Sidst opdateret ${fmtStamp(gen, now)}.` : ''}` })));
     }
     ui.list.replaceChildren(...out);
-    fill = {
-      id: fillId, i: 0, group: null, ul: null, groupOf, groupCount,
-      dividerDone: !lastVisit || state.nye, seenNew: false, compact: state.vis === 'kompakt',
-    };
+    fill = { id: fillId, i: 0, group: null, ul: null, groupOf, groupCount, compact: state.vis === 'kompakt' };
     appendCards(CHUNK);
     pump();
     idleFill();
   }
 
-  /** De næste n kort i rækkefølge, med dagsoverskrifter og "Her slap du sidst". */
+  /** De næste n kort i rækkefølge, med dagsoverskrifter. */
   function appendCards(n) {
     const f = fill;
     const end = Math.min(cards.length, f.i + n);
@@ -495,11 +492,6 @@ function setupFeed(feed, state, now, lastVisit) {
             el('span', { class: 'n' }, fmtNum(f.groupCount.get(g.key) || 0), hidden(' indslag'))),
           f.ul));
       }
-      if (!f.dividerDone && f.seenNew && !card.isNew) {
-        f.ul.append(el('li', { class: 'lastvisit' }, `Her slap du sidst · ${fmtWhen(lastVisit, now)}`));
-        f.dividerDone = true;
-      }
-      if (card.isNew) f.seenNew = true;
       f.ul.append(el('li', null, f.compact ? renderRow(card, g) : renderCard(card, g)));
     }
   }
