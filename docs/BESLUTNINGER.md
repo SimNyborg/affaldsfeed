@@ -135,3 +135,9 @@ Om kilderne viste "tavs i lang tid" ved de 61 lokalmedier, der kom til samme dag
 ## 2026-10-08: Vælg alle under Sted
 
 Brugeren ville også have knappen "Vælg alle"/"Fravælg alle" under Sted. Den virker som i de andre grupper: "Fravælg alle" fjerner fluebenene ved regionerne og "Landsdækkende", og ét flueben viser derefter kun den region. "Vælg alle" viser alle steder igen og fjerner også de kommuner og byer, der er valgt i søgefeltet. Før havde Sted ingen knap, fordi et sted valgt i søgefeltet allerede viser kun det sted. Det gjorde Sted anderledes end de andre grupper.
+
+## 2026-10-08: Kildernes afsendertyper er foldet sammen, og "Alle" er væk fra menuen
+
+Med 153 aktive kilder var listen under Kilde lang. Brugeren bad om, at afsendertyperne starter foldet sammen, så man har overblik og selv folder dem ud. Søger man i "Find kilde", foldes de typer ud, der har et træf.
+
+Brugeren bad også om at fjerne "Alle" fra gruppernes overskrifter, fordi pilen er nok til at vise, at man kan folde ud. En status står nu kun, når en gruppe eller en afsendertype er filtreret, fx "Ingen" eller "5 af 17". Så kan man stadig se et filter i en gruppe, der er foldet sammen.

@@ -105,10 +105,10 @@ Panelet er et `<search>` med overskriften "Filtre" og tekstknappen "Nulstil" til
 | Sted | søgefeltet "Kommune eller by", de valgte kommuner og byer, regionerne og "Landsdækkende" |
 | Afsender | 9 rækker med kategoriikon |
 | Tema | 13 rækker, en streg og "Uden tema" |
-| Kilde | feltet "Find kilde" og alle kilder grupperet efter afsendertype |
+| Kilde | feltet "Find kilde" og et foldbart afsnit pr. afsendertype med typens kilder |
 | Genre | 6 rækker |
 
-- Hver gruppe er en foldbar `<details>`. Overskriften er én række på 36 px (44 px ved berøring) med navnet (14/20, 600) til venstre og status og en pil til højre. Status er 13/18 i `--muted`: "Alle", "Ingen", op til to navne ("Nyborg Kommune, Landsdækkende"), "7 af 8" eller "3 steder". Der er en streg i `--line` mellem grupperne.
+- Hver gruppe er en foldbar `<details>`. Overskriften er én række på 36 px (44 px ved berøring) med navnet (14/20, 600) til venstre og en pil til højre. Er gruppen filtreret, står en status i 13/18 og `--muted` foran pilen: "Ingen", op til to navne ("Nyborg Kommune, Landsdækkende"), "7 af 8" eller "3 steder". Når alt er valgt, er der ingen status, fordi pilen er nok til at vise, at gruppen kan foldes ud. Der er en streg i `--line` mellem grupperne.
 - Grupperne er foldet sammen fra start, så panelet er kort. En gruppe er foldet ud ved indlæsning, hvis den har et valg. Brugerens egne fold huskes ikke.
 - Alle lister følger samme regel: alt er afkrydset fra start, og fjernes et flueben, skjules det. Valg inden for en gruppe kombineres med ELLER, og grupperne kombineres med OG.
 - Hver gruppe har én tekstknap til højre (13/18). Den står øverst i gruppen, i Sted og Kilde lige under søgefeltet. Den hedder "Fravælg alle", når alt i gruppen er valgt, og ellers "Vælg alle". "Fravælg alle" efterfulgt af ét flueben er den hurtige vej til "kun dette". I Sted fjerner knappen også de valgte kommuner og byer, så "Vælg alle" viser alle steder igen.
@@ -133,8 +133,8 @@ Sted står øverst i panelet, fordi man typisk vælger sit område én gang og g
 
 Kilde viser alle kilder i `feed.json` som rækker med flueben, så man kan fravælge de kilder, man ikke vil se.
 
-- Øverst er feltet "Find kilde" med lup. Det indsnævrer listen, mens man skriver, med samme foldning som søgningen (accenter, å/aa, æ/ae og ø/oe). Esc tømmer feltet. Passer ingen, står "Ingen kilde passer til "x"." (13/18, `--muted`) som status.
-- Kilderne står i grupper efter afsendertype i konfigurationens rækkefølge. Hver gruppe har en lille overskrift med kategoriikonet (16 px) og det korte navn i 13/18, 600 og `--muted`. Inden for gruppen står kilderne alfabetisk. Overskriften er kun visuel (`aria-hidden`), fordi rækkens navn er nok.
+- Øverst er feltet "Find kilde" med lup. Det indsnævrer listen, mens man skriver, med samme foldning som søgningen (accenter, å/aa, æ/ae og ø/oe). Esc tømmer feltet. Passer ingen, står "Ingen kilde passer til "x"." (13/18, `--muted`) som status. Mens man skriver, er de afsendertyper foldet ud, der har et træf, og de andre er skjult. Tømmes feltet, er typerne foldet som før.
+- Kilderne står i et afsnit pr. afsendertype i konfigurationens rækkefølge. Afsnittene er foldet sammen fra start, så man først ser typerne. Overskriften er en `<summary>` på én række (`--h-row`) med kategoriikonet (16 px) over fluebenene, det korte navn i 13/18 og 600 og en pil til højre. Er nogle af typens kilder fravalgt, står "5 af 17" eller "Ingen" foran pilen. Inden for afsnittet står kilderne alfabetisk. Brugerens fold huskes ikke.
 - Rækkerne er filterrækker uden ikon. Tallet er antallet af kort, kilden giver med de andre filtre, også når kilden er fravalgt, så man kan se, hvad man går glip af.
 
 ### Filterrækken
@@ -294,7 +294,7 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Filtrér-knap | Filtrér (2) |
 | Panel og ark | Filtre · Nulstil · Luk filtre · Vis 23 indslag |
 | Grupper | Sted · Afsender · Tema · Kilde · Genre |
-| Status i grupperne | Alle · Ingen · 7 af 8 · 3 steder |
+| Status i grupperne | Ingen · 7 af 8 · 3 steder |
 | Værktøjer | Vælg alle · Fravælg alle |
 | Sted | Kommune eller by · Find kommune eller by · Flest indslag lige nu · Ingen steder har indslag lige nu. · by i Nyborg · Landsdækkende |
 | Kilde | Find kilde · Ingen kilde passer til "x". · Uden Avisen.dk · Uden 5 kilder · 13 kilder · Vis Avisen.dk igen · Vis alle kilder |

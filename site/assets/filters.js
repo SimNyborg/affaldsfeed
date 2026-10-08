@@ -904,10 +904,13 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
     toggles.push({ g, btn });
     return el('p', { class: 'fg-tools' }, btn);
   };
-  /** "Alle", "Ingen", op til to navne eller "5 af 8" ("3 steder", når kommuner eller byer er valgt). */
+  /**
+   * Intet, når alt er valgt (pilen viser, at gruppen kan foldes ud), ellers "Ingen", op til to navne eller
+   * "5 af 8" ("3 steder", når kommuner eller byer er valgt).
+   */
   const statusOf = (g) => (s) => {
+    if (allShown(s, g)) return '';
     const set = shownSet(s, g);
-    if (!set) return 'Alle';
     const all = UNIVERSE[g];
     const extra = [...set].filter((k) => !all.includes(k));
     const on = [...extra, ...all.filter((k) => set.has(k))];
@@ -967,7 +970,7 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
   addGroup(foldGroup('Tema', tools('tema'), fset('Tema', [...data.topics.keys()].map(topicRow),
     el('div', { class: 'fsep', 'aria-hidden': 'true' }), topicRow(NO_TOPIC))), statusOf('tema'), (s) => s.tema.length > 0);
 
-  // Kilde: alle kilder grupperet efter afsendertype; feltet øverst indsnævrer listen
+  // Kilde: alle kilder i et afsnit pr. afsendertype, foldet sammen fra start; feltet øverst indsnævrer listen
   const srcIds = [...data.sources.keys()];
   const srcRows = new Map();
   const srcSections = [...data.cats.values()].map((c) => {
@@ -980,8 +983,11 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
       srcRows.set(id, { label, keys: foldKeys(src.name) });
       return label;
     });
-    const sub = el('p', { class: 'fsub cat', style: catStyle(c), 'aria-hidden': 'true' }, icon(c.icon), c.short || c.name);
-    return { el: el('div', { class: 'fsrc-cat' }, sub, el('div', { class: 'opts' }, list)), ids };
+    const status = el('span', { class: 'fg-state' });
+    const root = el('details', { class: 'fsrc-cat cat', style: catStyle(c) },
+      el('summary', null, icon(c.icon), el('span', { class: 'fsrc-name' }, c.short || c.name, srPunct()), status, icon('pil-ned', 'chev')),
+      el('div', { class: 'opts' }, list));
+    return { el: root, ids, status, wasOpen: false };
   }).filter(Boolean);
   const srcFind = el('input', {
     id: 'f-kilde', class: 'field', type: 'search', autocomplete: 'off', spellcheck: 'false', placeholder: 'Find kilde',
@@ -996,9 +1002,14 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
     tools('kilde'),
     fset('Kilde', srcSections.map((x) => x.el)), srcNone), statusOf('kilde'), (s) => s.kilde.length > 0);
 
-  /** Feltet skjuler kilder, der ikke passer, og typer uden kilder tilbage. */
+  /**
+   * Feltet skjuler kilder, der ikke passer, og typer uden kilder tilbage. Typer med træf foldes ud, mens
+   * der søges, og når feltet tømmes, er de foldet som før søgningen.
+   */
+  let searching = false;
   function filterSrc() {
     const qs = foldKeys(srcFind.value).filter(Boolean);
+    if (qs.length && !searching) for (const sec of srcSections) sec.wasOpen = sec.el.open;
     let n = 0;
     for (const sec of srcSections) {
       let any = false;
@@ -1010,7 +1021,10 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
         if (hit) { any = true; n += 1; }
       }
       sec.el.hidden = !any;
+      if (qs.length) sec.el.open = any;
+      else if (searching) sec.el.open = sec.wasOpen;
     }
+    searching = qs.length > 0;
     srcNone.textContent = qs.length && !n ? `Ingen kilde passer til "${srcFind.value.trim()}".` : '';
   }
 
@@ -1033,6 +1047,13 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
     for (const { g, key, row } of rows) row.set(isShown(s, g, key), c[g]?.get(key) || 0);
     for (const x of groups) x.fg.status.textContent = x.text(s);
     for (const { g, btn } of toggles) btn.textContent = allShown(s, g) ? 'Fravælg alle' : 'Vælg alle';
+    // Afsendertyperne under Kilde: intet, når alle typens kilder er valgt, ellers "5 af 17" eller "Ingen"
+    const srcShown = shownSet(s, 'kilde');
+    for (const sec of srcSections) {
+      const on = srcShown ? sec.ids.filter((id) => srcShown.has(id)).length : sec.ids.length;
+      const all = sec.ids.length;
+      sec.status.textContent = on === all ? '' : on ? `${fmtNum(on)} af ${fmtNum(all)}` : 'Ingen';
+    }
     resetBtn.hidden = activeCount(s) === 0;
     if (sted) {
       sted.picked.sync(s, c.sted, !s.sted.length);
