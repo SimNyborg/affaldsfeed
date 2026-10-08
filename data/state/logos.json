@@ -323,10 +323,118 @@
     "checked": "2026-10-08T00:05:14Z",
     "error": null
   },
+  "dn": {
+    "file": "dn.png",
+    "src": "https://www.dn.dk/favicon-32x32.png",
+    "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "dr-nyheder": {
+    "file": "dr-nyheder.ico",
+    "src": "https://www.dr.dk/favicon.ico",
+    "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "dragoernyt-dk": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-08T04:31:35Z",
+    "error": "HTTP 404"
+  },
+  "dtu-dk": {
+    "file": "dtu-dk.ico",
+    "src": "https://dtu.dk/favicon.ico",
+    "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "eea": {
+    "file": "eea.png",
+    "src": "https://www.eea.europa.eu/apple-touch-icon.png",
+    "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "ekstrabladet-dk": {
+    "file": "ekstrabladet-dk.png",
+    "src": "https://ekstrabladet.dk/favicon.png",
+    "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
   "emballagefokus": {
     "file": "emballagefokus.png",
     "src": "https://www.emballagefokus.dk/wp-content/themes/magazine-pro-purple/images/favicon.ico",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "energiwatch": {
+    "file": "energiwatch.png",
+    "src": "https://energiwatch.dk/favicons/energiwatch.dk/favicon-32x32.png",
+    "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "energy-supply": {
+    "file": "energy-supply.ico",
+    "src": "https://f.nordiskemedier.dk/favicon/energy.ico",
+    "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "faa-dk": {
+    "file": "faa-dk.png",
+    "src": "https://faa.dk/assets/1791279772/kodus/jfm-brands/brands/faa/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "faellesavisen-dk": {
+    "file": "faellesavisen-dk.webp",
+    "src": "https://faellesavisen.dk/wp-content/uploads/2023/09/cropped-ikon-32x32.png",
+    "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "fagbladet3f-dk": {
+    "file": "fagbladet3f-dk.webp",
+    "src": "https://fagbladet3f.dk/wp-content/uploads/2024/05/cropped-favicon-32x32.png",
+    "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "fanoeposten-dk": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-08T04:31:35Z",
+    "error": "HTTP 404"
+  },
+  "farsoeavis-dk": {
+    "file": "farsoeavis-dk.png",
+    "src": "https://farsoeavis.dk/wp-content/uploads/2021/11/favicon.png",
+    "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "finans-dk": {
+    "file": "finans-dk.png",
+    "src": "https://finans.dk/static/finans.dk/favicon/favicon-32x32.png",
+    "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "folkebladet-info": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-08T04:31:35Z",
+    "error": "HTTP 404"
+  },
+  "folkebladet-net": {
+    "file": "folkebladet-net.png",
+    "src": "https://folkebladet.net/wp-content/uploads/2021/03/folkebladet-favicon-64.png",
+    "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "folkebladetlemvig-dk": {
+    "file": "folkebladetlemvig-dk.png",
+    "src": "https://folkebladetlemvig.dk/assets/1791279772/kodus/jfm-brands/brands/lemvig/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "folketidende-dk": {
+    "file": "folketidende-dk.ico",
+    "src": "https://www.folketidende.dk/favicon.ico",
+    "checked": "2026-10-08T04:31:35Z",
     "error": null
   },
   "folketinget-oda": {
@@ -334,6 +442,18 @@
     "src": null,
     "checked": "2026-10-08T00:14:05Z",
     "error": "HTTP 404"
+  },
+  "forsyningstilsynet": {
+    "file": "forsyningstilsynet.ico",
+    "src": "https://forsyningstilsynet.dk/Media/638193024633613905/favicon.ico?width=32&height=32",
+    "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "frdb-dk": {
+    "file": "frdb-dk.png",
+    "src": "https://frdb.dk/assets/1791279772/kodus/jfm-brands/brands/frdb/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T04:31:35Z",
+    "error": null
   },
   "gate-21": {
     "file": "gate-21.webp",
