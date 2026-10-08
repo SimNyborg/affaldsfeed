@@ -116,7 +116,8 @@
 # ── Lokale medier ─────────────────────────────────────────────
 # Grundlag (tjekket 2026-10-07): Ugeavispuljen 2024-25 og Innovationspuljen (Slots- og Kulturstyrelsen),
 # medlemmer af Danske Lokalaviser eller en navngiven redaktør eller Pressenævnet på siden. Ugeaviser under
-# et fælles domæne (ugeavisen.dk, sn.dk, dinavis.dk, nordjyske.dk, folketidende.dk) står ovenfor.
+# et fælles domæne (ugeavisen.dk, dinavis.dk) står ovenfor. sn.dk, nordjyske.dk, folketidende.dk og de
+# regionale dagblade fra Jysk Fynske Medier og Midtjyske Medier hentes direkte (sources.yaml, 2026-10-08).
 
 # Hovedstaden og Bornholm
 - id: kobenhavnliv-dk

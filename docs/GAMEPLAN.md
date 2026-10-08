@@ -112,7 +112,9 @@ Fase 2, resten (lokale medier og ODA er færdige):
 1. Følg de 19 sitemap- og 10 html-kilder og ODA i 7 dage. Fejler en, så ret `match`, `select` eller `filter`, eller sæt den på pause med en note.
 2. Efterprøv sweepet kl. 06.25 og 14.25. Fund skal skrives som vurderinger med `new_item`, og ukendte udgivere skal havne i `data/judgments/kildeforslag-sweep.md`. Sweepet kl. 06.25 den 8. oktober gav ingen fund. Læs routinens session (`get_trigger` giver `last_run.session_id`, `list_events` viser forløbet) for at se, om det søgte, og hvad det fandt.
 3. TV 2: afventer brugerens svar på, om indsamlingen må læse TV 2's sektionssider (HTML) for at få næsten fuld dækning (se BESLUTNINGER 2026-10-08, Dækningen af affaldsnyheder).
-4. Gennemgå `data/state/kildeforslag.md` hver uge. Troværdige udgivere flyttes til `config/medier.yaml` eller `sources.yaml`.
+4. Følg de 20 regionale og lokale aviser, der kom til 2026-10-08 (BESLUTNINGER: Lokalaviserne hentes direkte), i 7 dage. Tjek især dagssitemaps lige efter midnat, Sjællandske Medier's månedsskifte og Midtjyske Medier's forsider.
+5. Ugeaviser og netaviser i alle 98 kommuner: kortlægningen er i gang og lander i en senere ændring som flere kilder eller poster i `medier.yaml`.
+6. Gennemgå `data/state/kildeforslag.md` hver uge. Troværdige udgivere flyttes til `config/medier.yaml` eller `sources.yaml`.
 
 Fase 3:
 1. "Hvorfor med?" bygger på feltet `why`, som allerede står i `feed.json`.

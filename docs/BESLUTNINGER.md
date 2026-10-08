@@ -99,3 +99,13 @@ TV 2's feeds er udvalgte lister med 50 artikler fra op til en uge, ikke alt, hva
 DR's, TV 2-regionernes og Berlingskes feeds dækker det meste: hvert feed har de nyeste artikler, og kørslerne når dem, før de ryger ud af feedet. Af de 40 nyeste i TV 2 Fyns og Berlingskes nyhedssitemaps kendte indsamlingen 33 og 37. De manglende var for nye, sport eller forbrugerstof. DR's Viden- og Politik-feeds er tilføjet.
 
 Nyhedssøgningen er tynd. Google News er spærret af sin robots.txt, og Bing giver omkring 25 resultater pr. runde for alle søgninger tilsammen, hvoraf hvert fjerde handler om affald. Bing fandt dog seks TV 2-artikler, som TV 2's egne feeds ikke havde. To nye søgninger dækker ordene, der manglede. Berlingskes RSS-links har `?referrer=RSS`, så samme artikel fik to id'er alt efter, om den kom fra feedet eller søgningen. Parameteren fjernes nu i `normalize_url`.
+
+## 2026-10-08: Lokalaviserne hentes direkte
+
+Brugeren savnede lokalmedier som Vejle Amts Folkeblad og Horsens Folkeblad og bad om en gennemgang af alle kommuner. Aviserne stod i `config/medier.yaml`, men blev kun fundet via Bing-søgningen, som giver omkring 25 resultater pr. runde for hele landet. Derfor kom deres artikler næsten aldrig med.
+
+Nu hentes 20 regionale og lokale aviser direkte: 13 dagblade fra Jysk Fynske Medier via deres dagssitemaps, Nordjyske via ugesitemaps, Sjællandske Medier (sn.dk) og Lolland-Falsters Folketidende via deres sitemaps, Bornholms Tidende via RSS og Herning Folkeblad, Midtjyllands Avis og Skive Folkeblad via forsiden. En prøvekørsel fandt straks 15 artikler med affaldsord fra de seneste to uger, som feedet ikke havde, fx "14.000 skraldespande fik for mange bank" (Sjællandske Medier), fire om Refa og skraldebiler (Folketidende) og en om Nordværk (Nordjyske). Claude vurderer dem som alle andre.
+
+Indsamleren er udvidet generelt: `{dato}` i en sitemap-URL henter dagens og gårsdagens sitemap, et indeks uden lastmod sorteres efter datoen i URL'en, perioder før vinduet springes over, og procentkodede URL'er afkodes. De fleste aviser fravælger AI-træning i robots.txt, men ikke almindelige læsere, så samme princip som for DR og TV 2 gælder: Indsamleren er ikke en AI-crawler, og Claude ser kun titel og uddrag. Aviserne får ingen faste steder, fordi de dækker flere kommuner. Stederne kommer fra titlen og Claudes vurdering.
+
+Endnu ikke dækket direkte: Jysk Fynske Medier's ugeaviser på `ugeavisen.dk` og Din Avis (`dinavis.dk`) har hverken feed eller brugbart sitemap. De findes stadig via søgningen.
