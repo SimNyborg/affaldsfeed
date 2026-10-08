@@ -472,7 +472,6 @@ def _run(args: argparse.Namespace) -> int:
             settings.logos,
             priority={t.key: in_feed[t.source] for t in targets},
             force={t.key for t in targets if t.source in only} if only else None,
-            also={t.key: t.also for t in targets if t.also},
         )
         fetcher.start_budget(None)
         log.info(
