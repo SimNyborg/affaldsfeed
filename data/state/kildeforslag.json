@@ -65,6 +65,17 @@
       "0f4f3ace97c2"
     ]
   },
+  "kolding-netavis.dk": {
+    "name": "kolding-netavis",
+    "count": 1,
+    "last_seen": "2026-10-08T00:05:14Z",
+    "examples": [
+      "https://www.kolding-netavis.dk/genbrugsplads/"
+    ],
+    "ids": [
+      "05c2f3b8811f"
+    ]
+  },
   "msn.com": {
     "name": "Nyheder24 on MSN",
     "count": 2,
@@ -98,6 +109,17 @@
     ],
     "ids": [
       "eee08a92848c"
+    ]
+  },
+  "tv4.se": {
+    "name": "TV4",
+    "count": 1,
+    "last_seen": "2026-10-08T00:05:14Z",
+    "examples": [
+      "https://www.tv4.se/artikel/3qTbtd9tMSwLcDc3Izr1Lk/agerar-efter-pantkaoset-och-goer-som-sverige-stor-omstaellning"
+    ],
+    "ids": [
+      "f8be827a36f5"
     ]
   },
   "wspa.com": {

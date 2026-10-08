@@ -227,10 +227,22 @@
     "checked": "2026-10-07T22:34:55Z",
     "error": null
   },
+  "dansk-erhverv": {
+    "file": "dansk-erhverv.webp",
+    "src": "https://www.danskerhverv.dk/favicon-32x32.png",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
   "dansk-fjernvarme": {
     "file": "dansk-fjernvarme.png",
     "src": "https://danskfjernvarme.dk/media/1cbhtgga/favicondfj.png?width=57&height=57&format=noformat&v=1d9032c4ce487b0",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "dansk-producentansvar": {
+    "file": "dansk-producentansvar.png",
+    "src": "https://producentansvar.dk/wp-content/themes/dpa/assets/favicons/favicon-32x32.png",
+    "checked": "2026-10-08T00:05:14Z",
     "error": null
   },
   "dansk-retursystem": {
@@ -239,10 +251,76 @@
     "checked": "2026-10-07T22:37:50Z",
     "error": null
   },
+  "danske-kommuner": {
+    "file": "danske-kommuner.png",
+    "src": "https://danskekommuner.dk/media/ppcmm5r3/favicon-dk-resize.png?width=57&height=57&format=noformat&v=1da4a104bb97b30",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
+  "danske-regioner": {
+    "file": "danske-regioner.png",
+    "src": "https://www.regioner.dk/media/qjep5ump/favicon-57x57.png",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
+  "danwatch": {
+    "file": "danwatch.png",
+    "src": "https://danwatch.dk/wp-content/uploads/2026/05/cropped-DW_fav-1-32x32.png",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
+  "dbrs-dk": {
+    "file": "dbrs-dk.png",
+    "src": "https://dbrs.dk/assets/1791279772/kodus/jfm-brands/brands/dbrs/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
   "dg-env": {
     "file": "dg-env.ico",
     "src": "https://environment.ec.europa.eu/themes/contrib/oe_theme/images/favicons/ec/favicon.ico",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "dinavis-dk": {
+    "file": "dinavis-dk.png",
+    "src": "https://dinavis.dk/static/dinavis.dk/favicon/favicon-32x32.png",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
+  "ditikast-brande-dk": {
+    "file": "ditikast-brande-dk.png",
+    "src": "https://ditikast-brande.dk/images/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
+  "ditkarup-dk": {
+    "file": "ditkarup-dk.png",
+    "src": "https://ditkarup.dk/images/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
+  "ditkjellerup-dk": {
+    "file": "ditkjellerup-dk.png",
+    "src": "https://ditkjellerup.dk/images/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
+  "ditry-dk": {
+    "file": "ditry-dk.png",
+    "src": "https://ditry.dk/images/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
+  "ditsalling-dk": {
+    "file": "ditsalling-dk.png",
+    "src": "https://ditsalling.dk/images/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
+  "ditvinderup-dk": {
+    "file": "ditvinderup-dk.png",
+    "src": "https://ditvinderup.dk/images/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T00:05:14Z",
     "error": null
   },
   "emballagefokus": {
@@ -351,6 +429,48 @@
     "file": "tv2-regionerne.ico",
     "src": "https://www.tv2nord.dk/favicon.ico",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "tv2-regionerne--tv2bornholm-dk": {
+    "file": "tv2-regionerne--tv2bornholm-dk.ico",
+    "src": "https://www.tv2bornholm.dk/favicon.ico",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
+  "tv2-regionerne--tv2east-dk": {
+    "file": "tv2-regionerne--tv2east-dk.png",
+    "src": "https://www.tv2east.dk/favicon-96x96.png",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
+  "tv2-regionerne--tv2fyn-dk": {
+    "file": "tv2-regionerne--tv2fyn-dk.ico",
+    "src": "https://www.tv2fyn.dk/favicon.ico",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
+  "tv2-regionerne--tv2kosmopol-dk": {
+    "file": "tv2-regionerne--tv2kosmopol-dk.png",
+    "src": "https://www.tv2kosmopol.dk/apple-touch-icon-180x180.png",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
+  "tv2-regionerne--tv2ostjylland-dk": {
+    "file": "tv2-regionerne--tv2ostjylland-dk.ico",
+    "src": "https://www.tv2ostjylland.dk/favicon.ico",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
+  "tv2-regionerne--tvmidtvest-dk": {
+    "file": "tv2-regionerne--tvmidtvest-dk.png",
+    "src": "https://www.tvmidtvest.dk/favicon-32x32.png",
+    "checked": "2026-10-08T00:05:14Z",
+    "error": null
+  },
+  "tv2-regionerne--tvsyd-dk": {
+    "file": "tv2-regionerne--tvsyd-dk.png",
+    "src": "https://www.tvsyd.dk/apple-touch-icon-60x60.png",
+    "checked": "2026-10-08T00:05:14Z",
     "error": null
   },
   "vana": {
