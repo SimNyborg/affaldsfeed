@@ -62,7 +62,7 @@ Leverancer:
 - de planlagte kilder i `sources.yaml` slået til én ad gangen
 - Claudes sweep kl. 06.25 og 14.25 i drift
 
-Færdig, når mindst 60 kilder kører, alle 8 afsenderkategorier har mindst 3 aktive kilder, og ingen sitemap- eller html-kilde har fejlet i 7 dage.
+Færdig, når mindst 60 kilder kører, alle afsenderkategorier har mindst 3 aktive kilder, og ingen sitemap- eller html-kilde har fejlet i 7 dage.
 
 ## Fase 3: Kvalitet (cloud)
 
@@ -96,7 +96,7 @@ Færdig, når alle kilder på listen er aktive eller fravalgt med en begrundelse
 
 ## Succeskriterier
 
-- Efter fase 2 kører mindst 60 kilder, og alle 8 kategorier har mindst 3.
+- Efter fase 2 kører mindst 60 kilder, og alle kategorier har mindst 3.
 - Mindst 45 af 50 indslag i en stikprøve er relevante for en kommunal affaldsmedarbejder.
 - Et nyt RSS-indslag står i feedet senest 2 timer efter udgivelse i dagtimerne.
 - Feedet kører 30 dage i træk uden manuel indgriben.

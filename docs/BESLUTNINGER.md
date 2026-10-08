@@ -121,3 +121,9 @@ Troværdighedskravene gælder stadig. Netaviser, hvor kortlægningen ikke kunne 
 Kortlægningen er ikke komplet. Loftet på 200 websøgninger pr. tur blev nået, så i 65 kommuner er der kun søgt efter de store mediehuses titler. Uafhængige netaviser kan mangle der.
 
 Probe-workflowet tabte et resultat, fordi to kørsler skrev `probe/result.md` samtidig og fik en konflikt ved `git pull --rebase`. Commit-trinnet lægger nu resultatet oven på grenens nyeste udgave i stedet.
+
+## 2026-10-08: Nationale medier og lokalmedier er to afsendertyper
+
+Med de mange nye lokalaviser rummede afsendertypen Nyhedsmedie over 90 kilder, og brugeren bad om at få nationale medier og lokalmedier delt op. Nyhedsmedie hedder nu Nationalt medie (landsdækkende medier og Ritzau), og den nye type Lokalmedie samler regionale dagblade, TV 2-regionerne, ugeaviser og lokale netaviser. Menuen, kildelisten og Om kilderne deler sig af sig selv, fordi de grupperer efter afsendertype.
+
+Id'et `nyhedsmedie` er beholdt, så gemte filtre og data ikke skal flyttes. DR er et nationalt medie, selvom det har regionale redaktioner. De to typer deler farve, fordi en niende farve med mindst 20 i farveafstand til alle de andre kun findes som neongul eller næsten sort. Lokalmedie har i stedet sit eget ikon, en avis med kortnål, og `tools/check_colors.py` måler søskende med samme farve som én farve. De to typer har samme rang, når en historie har flere kilder.

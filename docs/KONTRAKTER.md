@@ -78,7 +78,7 @@ En YAML-liste. Felter (se `models.Source`):
 | filter | `none`\|`normal`\|`strict` | `normal` | forfiltrets strenghed |
 | topics | list[TopicId] | `[]` | standardtema |
 | genre | GenreId | `nyhed` | standardgenre |
-| places | list[str] | `[]` | faste steder (sted-id'er, se 4.1), højst 8 forskellige. Kun til afsendere med fast geografi, fx et kommunalt affaldsselskab. Nyhedsmedier, også lokalaviser, får ingen `places` (check advarer). Et id, der ikke står i geografien: `check` fejler, `run` advarer og ignorerer id'et |
+| places | list[str] | `[]` | faste steder (sted-id'er, se 4.1), højst 8 forskellige. Kun til afsendere med fast geografi, fx et kommunalt affaldsselskab. Nationale medier og lokalmedier (`nyhedsmedie`, `lokalmedie`) får ingen `places` (check advarer). Et id, der ikke står i geografien: `check` fejler, `run` advarer og ignorerer id'et |
 | lang | `da`\|`en`\|`sv` | `da` | |
 | paywall | `nej`\|`delvis`\|`ja` | `nej` | |
 | owner | str \| None | None | udgiver hvis ikke afsender selv |
@@ -95,13 +95,13 @@ En YAML-liste. Felter (se `models.Source`):
 Søgekilder (`method: search`) har `category: nyhedsmedie` (ignoreres ved visning), `feeds` = URL-skabeloner med `{q}`, og vises aldrig selv som afsender. Deres indslag krediteres udgiveren (se 5.3).
 
 ### 3.2 Faste id'er
-- **CategoryId**: `nyhedsmedie`, `fagmedie`, `myndighed`, `kommunal`, `organisation`, `taenketank`, `forskning`, `eu_norden`.
+- **CategoryId**: `nyhedsmedie`, `lokalmedie`, `fagmedie`, `myndighed`, `kommunal`, `organisation`, `taenketank`, `forskning`, `eu_norden`. `nyhedsmedie` er landsdækkende nyhedsmedier og Ritzau; `lokalmedie` er regionale dagblade, TV 2-regionerne, ugeaviser og lokale netaviser.
 - **TopicId**: `sortering`, `genbrugspladser`, `gebyrer`, `udbud`, `forbraending`, `klima`, `genanvendelse`, `producentansvar`, `bioaffald`, `tekstiler`, `byg_farligt`, `arbejdsmiljoe`, `regler`. ("Uden tema" = tom liste.)
 - **GenreId**: `nyhed`, `debat`, `pressemeddelelse`, `analyse`, `hoering`, `folketing`.
-- **Rang for primærkilde** (lav = først): `myndighed`=0; `kommunal`,`organisation`,`taenketank`,`forskning`,`eu_norden`=1; `fagmedie`=2; `nyhedsmedie`=3.
+- **Rang for primærkilde** (lav = først): `myndighed`=0; `kommunal`,`organisation`,`taenketank`,`forskning`,`eu_norden`=1; `fagmedie`=2; `nyhedsmedie`,`lokalmedie`=3.
 
 ### 3.3 `config/`-filer
-- `categories.yaml`: liste af `{id, name, short, color, color_dark, icon, help}`.
+- `categories.yaml`: liste af `{id, name, short, color, color_dark, icon, help}`. To kategorier må dele farve i begge tilstande, når de er søskende (`nyhedsmedie` og `lokalmedie`). Ikonet skiller dem ad, og `tools/check_colors.py` måler dem som én farve.
 - `topics.yaml`: liste af `{id, name, short?, definition, patterns: [..]}`. Mønstre: uden `*` = helt ord; `*` = vilkårlige bogstaver (`\w*`); ingen forskel på store/små bogstaver; mellemrum i mønster = præcis frase. `short` er valgfrit: et kort navn til brugerfladen, når `name` er for langt. Navnet i brugerfladen (`short`, ellers `name`) har højst 26 tegn; `check` advarer (fejler ikke) ved flere.
 - `genres.yaml`: liste af `{id, label, url_patterns: [regex], title_prefixes: [str]}`.
 - `keywords.yaml`: `{strong: {da,en,sv}, names: [..], weak: {da,en}, veto: [..], service: [..]}` (mønster-syntaks som topics).

@@ -80,7 +80,8 @@ Hver kategori har en farve, et ikon og et kort navn. Ikonet står i kategoriens 
 
 | Kategori | Kort navn | Lys | Mørk | Ikon-id | Motiv |
 |---|---|---|---|---|---|
-| Nyhedsmedie | Nyhedsmedie | #1862B5 | #68AAFE | `avis` | avis |
+| Nationalt medie | Nationalt medie | #1862B5 | #68AAFE | `avis` | avis |
+| Lokalmedie | Lokalmedie | #1862B5 | #68AAFE | `lokalavis` | avis med kortnål |
 | Fagmedie | Fagmedie | #107C86 | #2CC4CB | `tidsskrift` | tidsskrift |
 | Myndighed og Folketing | Myndighed | #5A3584 | #9B86C6 | `soejle` | søjlebygning |
 | Kommune og affaldsselskab | Kommunal | #065F35 | #5EC587 | `raadhus` | rådhus |
@@ -89,7 +90,7 @@ Hver kategori har en farve, et ikon og et kort navn. Ikonet står i kategoriens 
 | Forskning og universitet | Forskning | #7A5C0D | #AE9417 | `kolbe` | kolbe |
 | EU og Norden | EU/Norden | #84241B | #DD7161 | `stjerner` | stjernekreds |
 
-Ikonerne er egne inline SVG'er i `site/assets/ikoner.svg`. De bruger `currentColor`, og der er intet ikonbibliotek. `tools/check_colors.py` tjekker paletten: CIEDE2000 på mindst 20 mellem alle par, simulering af deutan og protan og kontrast på mindst 3:1 mod `--surface` i begge tilstande. Ændres en farve, skal tjekket være grønt igen. Den nuværende palet har mindst 22 mellem alle par i begge tilstande. Ved simuleret farveblindhed ligger enkelte par mellem 8,8 og 10, så farven står aldrig alene: ikon og navn følger altid med.
+Ikonerne er egne inline SVG'er i `site/assets/ikoner.svg`. De bruger `currentColor`, og der er intet ikonbibliotek. `tools/check_colors.py` tjekker paletten: CIEDE2000 på mindst 20 mellem alle par, simulering af deutan og protan og kontrast på mindst 3:1 mod `--surface` i begge tilstande. Ændres en farve, skal tjekket være grønt igen. Nationalt medie og Lokalmedie er begge nyhedsmedier og deler bevidst farve. Ikonet skiller dem ad, og tjekket måler dem som én farve. En niende farve med mindst 20 til alle de andre findes kun som neongul eller næsten sort. Den nuværende palet har mindst 22 mellem alle par i begge tilstande. Ved simuleret farveblindhed ligger enkelte par mellem 8,8 og 10, så farven står aldrig alene: ikon og navn følger altid med.
 
 Temaerne har ingen egne farver og står ikke på kortet. Panel, aktive filtre og tidslinjen bruger temaets korte navn (`topics[].short` i `feed.json`, ellers `name`).
 
@@ -102,7 +103,7 @@ Panelet er et `<search>` med overskriften "Filtre" og tekstknappen "Nulstil" til
 | Gruppe | Indhold |
 |---|---|
 | Sted | søgefeltet "Kommune eller by", de valgte kommuner og byer, regionerne og "Landsdækkende" |
-| Afsender | 8 rækker med kategoriikon |
+| Afsender | 9 rækker med kategoriikon |
 | Tema | 13 rækker, en streg og "Uden tema" |
 | Kilde | feltet "Find kilde" og alle kilder grupperet efter afsendertype |
 | Genre | 6 rækker |

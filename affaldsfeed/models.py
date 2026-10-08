@@ -20,6 +20,7 @@ from pydantic import (
 
 CategoryId = Literal[
     "nyhedsmedie",
+    "lokalmedie",
     "fagmedie",
     "myndighed",
     "kommunal",
@@ -65,6 +66,7 @@ CATEGORY_RANK: dict[str, int] = {
     "eu_norden": 1,
     "fagmedie": 2,
     "nyhedsmedie": 3,
+    "lokalmedie": 3,
 }
 
 DEFAULT_EVERY: dict[str, int] = {"rss": 1, "search": 2, "oda": 3, "sitemap": 6, "html": 6}

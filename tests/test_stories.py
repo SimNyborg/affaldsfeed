@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 from datetime import UTC, datetime, timedelta
+from typing import get_args
 
-from affaldsfeed.models import DisplayItem
+from affaldsfeed.models import CATEGORY_RANK, CategoryId, DisplayItem
 from affaldsfeed.stories import build_stories, group_stories
 
 T0 = datetime(2026, 10, 1, 8, 0, tzinfo=UTC)
@@ -222,3 +223,9 @@ def test_day_bundle_respects_no_merge_and_shows_also():
     heads = build_stories(ft, CATS, [], 3, 7, bundle_day={"ft"})
     assert len(heads) == 1 and heads[0].id == "q1"
     assert [a.id for a in heads[0].also] == ["q2", "q3"]
+
+
+def test_every_category_has_a_rank():
+    assert set(CATEGORY_RANK) == set(get_args(CategoryId))
+    assert CATEGORY_RANK["lokalmedie"] == CATEGORY_RANK["nyhedsmedie"]
+

@@ -4,6 +4,8 @@
 - CIEDE2000 mindst 20 mellem alle par i hver tilstand.
 - Simuleret deuteranopi og protanopi (Machado, Oliveira & Fernandes 2009, grad 1,0):
   par under 10 rapporteres.
+- Kategorier med samme farve i begge tilstande er bevidste søskende (fx nationale medier og
+  lokalmedier). Ikonet skiller dem ad, så de måles som én farve.
 
 Brug: python tools/check_colors.py [--file STI] [--strict]
 Exit 1 ved kontrastfejl (med --strict også ved for små farveafstande).
@@ -214,12 +216,25 @@ def pair_distances(colors: dict[str, str]) -> list[tuple[str, str, float]]:
 
 
 def check_palette(palette: list[dict]) -> dict:
-    """Kør alle tjek og returnér et resultat-dict (bruges af main og tests)."""
+    """Kør alle tjek og returnér et resultat-dict (bruges af main og tests).
+
+    Søskende med samme farve i begge tilstande måles som én farve (den første i paletten).
+    """
+    unique: dict[tuple[str, str], dict] = {}
+    siblings: list[tuple[str, str]] = []
+    for p in palette:
+        key = (p["color"].upper(), p["color_dark"].upper())
+        if key in unique:
+            siblings.append((unique[key]["id"], p["id"]))
+        else:
+            unique[key] = p
     modes = {
-        "lys": ({p["id"]: p["color"] for p in palette}, LIGHT_BG),
-        "mørk": ({p["id"]: p["color_dark"] for p in palette}, DARK_BG),
+        "lys": ({p["id"]: p["color"] for p in unique.values()}, LIGHT_BG),
+        "mørk": ({p["id"]: p["color_dark"] for p in unique.values()}, DARK_BG),
     }
-    result: dict = {"contrast": [], "contrast_fail": [], "delta_e": {}, "delta_e_low": {}, "cvd_low": {}}
+    result: dict = {
+        "contrast": [], "contrast_fail": [], "delta_e": {}, "delta_e_low": {}, "cvd_low": {}, "siblings": siblings,
+    }
     for mode, (colors, bg) in modes.items():
         for cid, color in colors.items():
             ratio = contrast_ratio(color, bg)
@@ -244,6 +259,10 @@ def _fmt_pairs(pairs: list[tuple[str, str, float]]) -> str:
 def print_report(result: dict, path: Path) -> None:
     print(f"Kategorifarver fra {path}")
     print()
+    if result["siblings"]:
+        names = ", ".join(f"{a}/{b}" for a, b in result["siblings"])
+        print(f"Søskende med samme farve, skilt ad af ikonet: {names}")
+        print()
     print(f"Kontrast (mindst {MIN_CONTRAST:.0f}:1)")
     for mode, cid, color, bg, ratio in result["contrast"]:
         status = "ok" if ratio >= MIN_CONTRAST else "FEJL"

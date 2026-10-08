@@ -7,12 +7,21 @@
  "categories": [
   {
    "id": "nyhedsmedie",
-   "name": "Nyhedsmedie",
-   "short": "Nyhedsmedie",
+   "name": "Nationalt medie",
+   "short": "Nationalt medie",
    "color": "#1862B5",
    "color_dark": "#68AAFE",
    "icon": "avis",
-   "help": "Lands-, regional- og lokalmedier samt Ritzau-telegrammer med redaktionelt ansvar."
+   "help": "Landsdækkende nyhedsmedier og Ritzau-telegrammer med redaktionelt ansvar."
+  },
+  {
+   "id": "lokalmedie",
+   "name": "Lokalmedie",
+   "short": "Lokalmedie",
+   "color": "#1862B5",
+   "color_dark": "#68AAFE",
+   "icon": "lokalavis",
+   "help": "Regionale dagblade, TV 2-regionerne, ugeaviser og lokale netaviser med redaktionelt ansvar."
   },
   {
    "id": "fagmedie",
@@ -224,7 +233,7 @@
   {
    "id": "tv2-regionerne",
    "name": "TV 2-regionerne",
-   "category": "nyhedsmedie",
+   "category": "lokalmedie",
    "homepage": "https://www.tv2nord.dk",
    "lang": "da",
    "paywall": "nej",
@@ -752,7 +761,7 @@
   {
    "id": "fyens",
    "name": "Fyens Stiftstidende",
-   "category": "nyhedsmedie",
+   "category": "lokalmedie",
    "homepage": "https://fyens.dk",
    "lang": "da",
    "paywall": "ja",
@@ -764,7 +773,7 @@
   {
    "id": "jv",
    "name": "JydskeVestkysten",
-   "category": "nyhedsmedie",
+   "category": "lokalmedie",
    "homepage": "https://jv.dk",
    "lang": "da",
    "paywall": "ja",
