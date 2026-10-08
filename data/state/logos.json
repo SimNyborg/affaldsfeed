@@ -605,10 +605,34 @@
     "checked": "2026-10-07T22:34:55Z",
     "error": null
   },
+  "jyllands-posten-dk": {
+    "file": "jyllands-posten-dk.png",
+    "src": "https://jyllands-posten.dk/static/jyllands-posten.dk/favicon/favicon-32x32.png",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
+  "kanalfrederikshavn-dk": {
+    "file": "kanalfrederikshavn-dk.ico",
+    "src": "https://www.kanalfrederikshavn.dk/typo3conf/ext/kanal_frederikshavn/Resources/Public/Icons/favicon.ico",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
   "kefm": {
     "file": "kefm.webp",
     "src": "https://www.kefm.dk/Media/638736568521615844/Favicon_KEFM.png?width=32&height=32",
     "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
+  "kfst": {
+    "file": "kfst.png",
+    "src": "https://kfst.dk/Assets/favicon-32x32.png",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
+  "kl": {
+    "file": "kl.png",
+    "src": "https://www.kl.dk/media/dlrehepm/kl-favicon.png?width=57&height=57&format=noformat&v=1dc1679039320e0",
+    "checked": "2026-10-08T06:01:09Z",
     "error": null
   },
   "klar-forsyning": {
@@ -617,10 +641,106 @@
     "checked": "2026-10-07T22:37:50Z",
     "error": null
   },
+  "klimaraadet": {
+    "file": "klimaraadet.png",
+    "src": "https://klimaraadet.dk/sites/default/files/favicons/favicon-32x32.png",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
+  "kobenhavnliv-dk": {
+    "file": "kobenhavnliv-dk.png",
+    "src": "https://kobenhavnliv.dk/assets/1791279772/kodus/jfm-brands/brands/kobenhavnliv/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
+  "kommunen": {
+    "file": "kommunen.ico",
+    "src": "https://www.kommunen.dk/favicon.ico?favicon.17e39vbkpkbn4.ico",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
+  "kraka": {
+    "file": "kraka.png",
+    "src": "https://kraka.dk/wp-content/uploads/favicon-1.png",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
   "kristeligt-dagblad-dk": {
     "file": "kristeligt-dagblad-dk.png",
     "src": "https://www.kristeligt-dagblad.dk/themes/custom/k921/src/favicons/favicon-32x32.png",
     "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
+  "ku": {
+    "file": "ku.ico",
+    "src": "https://cdn.jsdelivr.net/gh/ku-kom/bootstrap@294f7fa35a686a0c662e08655a7319ee8ca836ae/docs/images/favicons/favicon_fa.ico",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
+  "ku--food-ku-dk": {
+    "file": "ku--food-ku-dk.ico",
+    "src": "https://cdn.jsdelivr.net/gh/ku-kom/bootstrap@294f7fa35a686a0c662e08655a7319ee8ca836ae/docs/images/favicons/favicon_fa.ico",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
+  "ku--ign-ku-dk": {
+    "file": "ku--ign-ku-dk.ico",
+    "src": "https://cdn.jsdelivr.net/gh/ku-kom/bootstrap@294f7fa35a686a0c662e08655a7319ee8ca836ae/docs/images/favicons/favicon_fa.ico",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
+  "ku--science-ku-dk": {
+    "file": "ku--science-ku-dk.ico",
+    "src": "https://cdn.jsdelivr.net/gh/ku-kom/bootstrap@294f7fa35a686a0c662e08655a7319ee8ca836ae/docs/images/favicons/favicon_fa.ico",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
+  "kunmedierne-dk": {
+    "file": "kunmedierne-dk.png",
+    "src": "https://kunmedierne.dk/wp-content/uploads/sites/3/2025/03/cropped-cropped-fav-1-32x32.png",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
+  "licitationen-dk": {
+    "file": "licitationen-dk.ico",
+    "src": "https://f.nordiskemedier.dk/favicon/dfm.ico",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
+  "ligeher-nu": {
+    "file": "ligeher-nu.png",
+    "src": "https://ligeher.nu/content/images/logos/favicon-32x32.png",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
+  "magasinetkbh-dk": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-08T06:01:09Z",
+    "error": "HTTP 404"
+  },
+  "mariagerfjordposten-dk": {
+    "file": "mariagerfjordposten-dk.png",
+    "src": "https://mariagerfjordposten.dk/wp-content/uploads/2022/10/favicon_.png",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
+  "midtfynsposten-dk": {
+    "file": "midtfynsposten-dk.png",
+    "src": "https://midtfynsposten.dk/assets/1791368999/kodus/jfm-brands/brands/midtfynsposten/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
+  "midtjyllandsavis-dk": {
+    "file": "midtjyllandsavis-dk.png",
+    "src": "https://midtjyllandsavis.dk/images/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T06:01:09Z",
+    "error": null
+  },
+  "midtvendsysselavis-dk": {
+    "file": "midtvendsysselavis-dk.png",
+    "src": "https://midtvendsysselavis.dk/wp-content/uploads/2023/10/cropped-Midtvendsyssel-Avis-App-logo-32x32.png",
+    "checked": "2026-10-08T06:01:09Z",
     "error": null
   },
   "miljoeministeriet": {
