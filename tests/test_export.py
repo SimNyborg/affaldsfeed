@@ -216,7 +216,7 @@ def test_status_json(repo, scenario, tmp_path):
 
 
 def test_fallback_mode_shows_unreviewed(repo, scenario, tmp_path):
-    heartbeat("2026-10-07T05:00:00Z")  # over 2 t forsinket kl. 12
+    heartbeat("2026-10-07T03:00:00Z")  # forsinket kl. 12: seneste planlagte kørsel var kl. 06.25
     out = tmp_path / "_site"
     export_to(out)
     _, feed = read(out, "feed.json")
