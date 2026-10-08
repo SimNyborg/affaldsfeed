@@ -893,11 +893,29 @@
     "checked": "2026-10-08T12:29:21Z",
     "error": null
   },
+  "netavisen-sjaelland": {
+    "file": "netavisen-sjaelland.png",
+    "src": "https://netavisen-sjaelland.dk/side/wp-content/uploads/netavisen-sjaelland-icon-512x512-150x150.png",
+    "checked": "2026-10-08T13:07:35Z",
+    "error": null
+  },
+  "netavisen-sjaelland--frederikssundposten-dk": {
+    "file": "netavisen-sjaelland--frederikssundposten-dk.png",
+    "src": "https://netavisen-sjaelland.dk/side/wp-content/uploads/netavisen-sjaelland-icon-512x512-150x150.png",
+    "checked": "2026-10-08T13:07:35Z",
+    "error": null
+  },
   "netavisengrindsted-dk": {
     "file": "netavisengrindsted-dk.ico",
     "src": "https://netavisengrindsted.dk/favicon.ico",
     "checked": "2026-10-08T06:27:28Z",
     "error": null
+  },
+  "nibeavis": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-08T13:07:35Z",
+    "error": "HTTP 404"
   },
   "noah": {
     "file": "noah.ico",
@@ -923,6 +941,12 @@
     "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
+  "nordsoeposten": {
+    "file": "nordsoeposten.png",
+    "src": "https://nordsoeposten.dk/wp-content/uploads/2023/05/favicon-75x75.png",
+    "checked": "2026-10-08T13:07:35Z",
+    "error": null
+  },
   "nordvaerk": {
     "file": "nordvaerk.png",
     "src": "https://nordvaerk.dk/media/nsjjjq1f/graf.png",
@@ -933,6 +957,24 @@
     "file": "odense-renovation.png",
     "src": "https://www.odenserenovation.dk/favicon-32x32.png",
     "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "oestvendsysselfolkeblad": {
+    "file": "oestvendsysselfolkeblad.png",
+    "src": "https://xn--stvendsysselfolkeblad-pfc.dk/wp-content/uploads/2021/03/cropped-Oestvendsyssel-Folkeblad-32x32.png",
+    "checked": "2026-10-08T13:07:35Z",
+    "error": null
+  },
+  "orestad-avis": {
+    "file": "orestad-avis.jpg",
+    "src": "https://www.orestad-avis.dk/wp-content/uploads/2023/03/ora_favicon_180x180px-80x80.jpg",
+    "checked": "2026-10-08T13:07:35Z",
+    "error": null
+  },
+  "pingvinnyt": {
+    "file": "pingvinnyt.png",
+    "src": "https://pingvinnyt.dk/wp-content/uploads/2025/10/cropped-android-chrome-512x512-1-32x32.png",
+    "checked": "2026-10-08T13:07:35Z",
     "error": null
   },
   "plastindustrien": {
@@ -995,6 +1037,12 @@
     "checked": "2026-10-08T07:28:04Z",
     "error": null
   },
+  "samsoposten": {
+    "file": "samsoposten.png",
+    "src": "https://www.samsoposten.dk/icon.png",
+    "checked": "2026-10-08T13:07:35Z",
+    "error": null
+  },
   "sdu": {
     "file": "sdu.png",
     "src": "https://www.sdu.dk/resources/images/sdu/icon57.png",
@@ -1023,6 +1071,12 @@
     "file": "skjerntarm-ugeblad-dk.ico",
     "src": "https://skjerntarm-ugeblad.dk/img/favicon.ico",
     "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "sonderborgnyt": {
+    "file": "sonderborgnyt.png",
+    "src": "https://www.sonderborgnyt.dk/wp-content/uploads/fbrfg/favicon-32x32.png",
+    "checked": "2026-10-08T13:07:35Z",
     "error": null
   },
   "sonfor": {
@@ -1059,6 +1113,12 @@
     "file": "teknologisk-institut.png",
     "src": "https://www.teknologisk.dk/_/images/131/logos/touch-icon-72x72.png",
     "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "tjekfredensborg": {
+    "file": "tjekfredensborg.png",
+    "src": "https://tjekfredensborg.dk/wp-content/uploads/2025/06/cropped-Logo-site-ikon-lytter-3-32x32.png",
+    "checked": "2026-10-08T13:07:35Z",
     "error": null
   },
   "tv2-nyheder": {
@@ -1139,16 +1199,40 @@
     "checked": "2026-10-08T07:48:34Z",
     "error": null
   },
+  "vesthimmerlandsavis": {
+    "file": "vesthimmerlandsavis.jpg",
+    "src": "https://vesthimmerlandsavis.dk/wp-content/uploads/2023/02/cropped-icon-1-32x32.jpg",
+    "checked": "2026-10-08T13:07:35Z",
+    "error": null
+  },
   "viborg-folkeblad": {
     "file": "viborg-folkeblad.png",
     "src": "https://viborg-folkeblad.dk/assets/1791279772/kodus/jfm-brands/brands/viborg/favicons/apple-icon-57x57.png",
     "checked": "2026-10-08T09:27:44Z",
     "error": null
   },
+  "viborher": {
+    "file": "viborher.png",
+    "src": "https://www.viborher.dk/favicon.ico",
+    "checked": "2026-10-08T13:07:35Z",
+    "error": null
+  },
   "videnskab": {
     "file": "videnskab.webp",
     "src": "https://videnskab.dk/wp-content/uploads/2023/03/cropped-favicon-orange-32x32.png.webp",
     "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "vodskovavis": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-08T13:07:35Z",
+    "error": "HTTP 410"
+  },
+  "voreslokalavis": {
+    "file": "voreslokalavis.ico",
+    "src": "https://www.voreslokalavis.dk/uploads/grafik/favicon.ico",
+    "checked": "2026-10-08T13:07:35Z",
     "error": null
   },
   "weekendavisen-dk": {
