@@ -16,7 +16,7 @@ import logging
 import math
 import re
 import struct
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -80,16 +80,13 @@ class LogoTarget(NamedTuple):
     key: str  # logo-id: kildens id eller <kilde-id>--<domæne>
     source: str  # kildens id (til prioritet og --only)
     homepage: str | None
-    also: tuple[str, ...] = ()  # adresser, hvis /favicon.ico prøves sidst (kildens feeds på eget site)
 
 
 def logo_targets(info: Mapping, sources: Iterable) -> list[LogoTarget]:
     """Hver kendt afsender én gang og hvert andet site under en aktiv kilde.
 
     info er display.known_sources (tidligere id'er peger på kilden, der har overtaget dem), sources er
-    kilderne fra sources.yaml (domains og feeds). Feeds på kildens eget site (forsidens vært og domains, der
-    ikke er andre sites) giver ekstra bud på /favicon.ico, fx oda.ft.dk for Folketinget, hvis forside ikke
-    kan hentes. Feeds hos tredjepart (fx en pressetjeneste) giver aldrig kildens logo.
+    kilderne fra sources.yaml (for domains).
     """
     by_id = {s.id: s for s in sources}
     out: list[LogoTarget] = []
@@ -98,16 +95,10 @@ def logo_targets(info: Mapping, sources: Iterable) -> list[LogoTarget]:
         if si.id in seen:
             continue
         seen.add(si.id)
+        out.append(LogoTarget(si.id, si.id, si.homepage))
         src = None if si.via_search else by_id.get(si.id)
-        if src is None:
-            out.append(LogoTarget(si.id, si.id, si.homepage))
-            continue
-        others = site_domains(src.homepage, src.domains)
-        own = [urlsplit(src.homepage or "").hostname or ""]
-        own += [d for d in src.domains if d.strip().lower().removeprefix("www.") not in others]
-        also = tuple(u for u in src.feeds if any(_same_site(urlsplit(u).hostname or "", d) for d in own))
-        out.append(LogoTarget(si.id, si.id, si.homepage, also))
-        out += [LogoTarget(domain_key(si.id, d), si.id, f"https://{d}/") for d in others]
+        if src is not None:
+            out += [LogoTarget(domain_key(si.id, d), si.id, f"https://{d}/") for d in site_domains(src.homepage, src.domains)]
     return out
 
 
@@ -262,21 +253,20 @@ class LogoResult:
     src: str | None
     error: str | None
     budget: bool = False  # tidsbudgettet er brugt; resten venter
+    permanent: bool = False  # fejlen er varig: kun 4xx, robots.txt-forbud eller intet brugbart billede
 
 
-def fetch_logo(fetcher, homepage: str, max_bytes: int, also: Sequence[str] = ()) -> LogoResult:
-    """Find og hent kildens logo: forsidens ikoner (bedste først), derefter /favicon.ico.
-
-    also: andre adresser (fx kildens feeds), hvis værters /favicon.ico prøves til sidst.
-    """
+def fetch_logo(fetcher, homepage: str, max_bytes: int) -> LogoResult:
+    """Find og hent kildens logo: forsidens ikoner (bedste først), derefter /favicon.ico."""
     page = fetcher.get(homepage, conditional=False, max_bytes=HOMEPAGE_MAX_BYTES, accept=ACCEPT_HTML)
     if page.error == BUDGET_EXHAUSTED:
         return LogoResult(None, None, None, page.error, budget=True)
+    transient = page.error is not None and not page.permanent  # 5xx, timeout, netværk eller vært sprunget over
     final = page.final_url or homepage
     ctype = {str(k).lower(): v for k, v in (page.headers or {}).items()}.get("content-type")
     links = icon_links(page.content or b"", final, ctype) if page.ok and page.content else []
     urls = [link.url for link in links]
-    urls += [u for u in favicon_urls(final, homepage, *also) if u not in urls]
+    urls += [u for u in favicon_urls(final, homepage) if u not in urls]
     errors: list[str] = []  # den første fejl (det bedste ikon) er den mest sigende
     tries = 0
     for url in urls[:MAX_CANDIDATES]:
@@ -295,12 +285,14 @@ def fetch_logo(fetcher, homepage: str, max_bytes: int, also: Sequence[str] = ())
             tries += 1
         if not res.ok:
             errors.append(res.error or f"HTTP {res.status}")
+            transient = transient or not res.permanent
             continue
         ext = acceptable(res.content, max_bytes)
         if ext:
             return LogoResult(res.content, ext, url, None)
         errors.append("ikke et brugbart billede (kun PNG, ICO, GIF, JPEG og WebP på mindst 16 px)")
-    return LogoResult(None, None, None, errors[0] if errors else page.error or "intet brugbart ikon")
+    error = errors[0] if errors else page.error or "intet brugbart ikon"
+    return LogoResult(None, None, None, error, permanent=not transient)
 
 
 # ── State ───────────────────────────────────────────────────
@@ -350,13 +342,12 @@ def refresh_logos(
     settings: LogoSettings,
     priority: Mapping[str, int] | None = None,
     force: set[str] | None = None,
-    also: Mapping[str, Sequence[str]] | None = None,
 ) -> dict[str, int]:
     """Hent logoer for de kilder, der er på tur (højst max_per_run). Gemmer filer og state.
 
     targets: (logo-id, forside), se logo_targets. Logoer med høj priority (kilder med indslag i feedet)
-    kommer først. force: logo-id'er, der hentes uanset tidspunkt (fx --only). also: logo-id → ekstra
-    adresser til /favicon.ico (LogoTarget.also). Et mislykket forsøg beholder et tidligere logo.
+    kommer først. force: logo-id'er, der hentes uanset tidspunkt (fx --only). Et forsøg, der fejler
+    forbigående, beholder et tidligere logo. En varig fejl fjerner det.
     """
     state = load_state()
     priority = priority or {}
@@ -373,7 +364,7 @@ def refresh_logos(
     max_bytes = settings.max_kb * 1024
     batch = due[: settings.max_per_run]
     for i, (sid, homepage) in enumerate(batch):
-        res = fetch_logo(fetcher, homepage, max_bytes, (also or {}).get(sid, ()))
+        res = fetch_logo(fetcher, homepage, max_bytes)
         if res.budget:
             counts["venter"] += len(batch) - i
             log.info("Logoer: tidsbudgettet er brugt; %d venter til næste kørsel", len(batch) - i)
@@ -385,8 +376,11 @@ def refresh_logos(
             counts["hentet"] += 1
             log.info("Logo: %s ← %s", sid, res.src)
         else:
-            # Et tidligere logo bevares; fejlen noteres, og et nyt forsøg kommer efter retry_days
-            keep = old.get("file") if old.get("file") and (logo_dir() / old["file"]).is_file() else None
+            # Ved en forbigående fejl (5xx, timeout, netværk) bevares et tidligere logo. En varig fejl (4xx,
+            # robots.txt, intet brugbart billede) fjerner det, så et logo, der ikke længere kan findes, ikke hænger
+            # ved. Fejlen noteres, og et nyt forsøg kommer efter retry_days.
+            old_file = old.get("file") if old.get("file") and (logo_dir() / old["file"]).is_file() else None
+            keep = None if res.permanent else old_file
             state[sid] = {"file": keep, "src": old.get("src") if keep else None, "checked": iso(now), "error": res.error}
             counts["fejl"] += 1
             log.info("Logo: %s mangler (%s)", sid, res.error)
