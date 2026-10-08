@@ -892,20 +892,29 @@ dialog.sheet .fg:first-child { border-top: 0; }
 .opts:not(:empty) + .regions { margin-top: 8px; }
 .fnote { margin-top: 4px; color: var(--muted); font-size: var(--t-xs); line-height: var(--lh-xs); }
 
-/* Kilde: alle kilder med flueben, grupperet efter afsendertype (filters.js) */
-.fsub {
-  display: flex;
+/* Kilde: et afsnit pr. afsendertype, foldet sammen fra start. Ikonet står over fluebenene, så typens
+   navn flugter med kildernes navne (filters.js) */
+.fsrc-cat > summary {
+  display: grid;
+  grid-template-columns: var(--cb) auto minmax(0, 1fr) 16px;
   align-items: center;
-  gap: 8px;
-  margin-top: 12px;
-  color: var(--muted);
+  column-gap: 8px;
+  min-height: var(--h-row);
+  margin: 0 -8px;
+  padding: 0 8px;
+  border-radius: var(--r-ctl);
+  cursor: pointer;
+  list-style: none;
   font-size: var(--t-xs);
   line-height: var(--lh-xs);
-  font-weight: 600;
 }
-.fsub .i { width: 16px; height: 16px; color: var(--cat); }
-.fsrc-cat:first-child .fsub { margin-top: 4px; }
-.fsrc-cat .opts { margin-top: 2px; }
+.fsrc-cat > summary::-webkit-details-marker { display: none; }
+.fsrc-cat > summary:focus-visible { outline-offset: -2px; }
+.fsrc-cat > summary .i { justify-self: center; width: 16px; height: 16px; color: var(--cat); }
+.fsrc-cat > summary .chev { color: var(--muted); transition: transform 0.15s ease; }
+.fsrc-cat[open] > summary .chev { transform: rotate(180deg); }
+.fsrc-name { font-weight: 600; }
+.fsrc-cat .opts { margin-top: 0; padding-bottom: 8px; }
 
 /* Søgefelt med forslag (combobox.js) */
 .cbx { scroll-margin-top: 40px; } /* gruppens overskrift bliver stående over feltet */
@@ -1346,7 +1355,7 @@ dialog.sheet::backdrop { background: var(--backdrop); }
 
 /* Hover-flader kun med mus, så et tryk ikke efterlader noget, der ligner et valg */
 @media (hover: hover) {
-  .frow:hover, .cbx-opt:hover, .fg > summary:hover, .trow:hover { background: var(--hover-bg); }
+  .frow:hover, .cbx-opt:hover, .fg > summary:hover, .fsrc-cat > summary:hover, .trow:hover { background: var(--hover-bg); }
   .seg > label:not(:has(input:checked)):hover, .seg > [role="tab"]:not([aria-selected="true"]):hover { color: var(--text); }
   .date-btn:not(.is-set):hover { color: var(--text); }
   .date-clear:hover { background: var(--hover-bg); color: var(--text); }
