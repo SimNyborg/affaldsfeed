@@ -459,13 +459,61 @@
     "fetched": "2026-10-08T06:01:09Z",
     "body": ""
   },
+  "migogaalborg.dk": {
+    "fetched": "2026-10-08T06:27:28Z",
+    "body": "﻿User-agent: *\nDisallow: /kateogri/\nDisallow: /author\nDisallow: /author*\nDisallow: /author/\nDisallow: /author/*\nDisallow: /?attachment_id=\nDisallow: /wp-admin/\nDisallow: /aabent-hus-i-weekenden/2018/04//\nDisallow: /gemt/\n\n\nUser-Agent: Googlebot\nAllow: /.js\nAllow: /.css\n\nSitemap: https://migogaalborg.dk/sitemap.xml\n\n\n"
+  },
+  "migogaarhus.dk": {
+    "fetched": "2026-10-08T06:27:28Z",
+    "body": "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://migogaarhus.dk/sitemap_index.xml\n"
+  },
+  "migogesbjerg.dk": {
+    "fetched": "2026-10-08T06:27:28Z",
+    "body": "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://migogesbjerg.dk/sitemap_index.xml\n"
+  },
+  "migogkbh.dk": {
+    "fetched": "2026-10-08T06:27:28Z",
+    "body": ""
+  },
+  "migogodense.dk": {
+    "fetched": "2026-10-08T06:27:28Z",
+    "body": "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://migogodense.dk/sitemap_index.xml\n"
+  },
+  "migogvejen.dk": {
+    "fetched": "2026-10-08T06:27:28Z",
+    "body": "# If the Joomla site is installed within a folder such as at\n# e.g. www.example.com/joomla/ the robots.txt file MUST be\n# moved to the site root at e.g. www.example.com/robots.txt\n# AND the joomla folder name MUST be prefixed to the disallowed\n# path, e.g. the Disallow rule for the /administrator/ folder\n# MUST be changed to read Disallow: /joomla/administrator/\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/orig.html\n#\n# For syntax checking, see:\n# http://tool.motoricerca.info/robots-checker.phtml\n\nUser-agent: *\nDisallow: /administrator/\nDisallow: /bin/\nDisallow: /cache/\nDisallow: /cli/\nDisallow: /components/\nDisallow: /includes/\nDisallow: /installation/\nDisallow: /language/\nDisallow: /layouts/\nDisallow: /libraries/\nDisallow: /logs/\nDisallow: /modules/\nDisallow: /plugins/\nDisallow: /tmp/\n\n"
+  },
   "mim.dk": {
     "fetched": "2026-10-07T19:48:44Z",
     "body": "User-agent: *\r\nAllow: /"
   },
+  "mitlejre.dk": {
+    "fetched": "2026-10-08T06:27:28Z",
+    "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://www.mitlejre.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
+  },
+  "mm.dk": {
+    "fetched": "2026-10-08T06:27:28Z",
+    "body": "# Search engines\nUser-agent: *\nAllow: /\n\n# Allow Twitterbot\nUser-agent: Twitterbot\nAllow: /\n\n# AI bots - commercial content blocked, all other pages open\nUser-agent: CCBot\nUser-agent: GPTBot\nUser-agent: ChatGPT-User\nUser-agent: OAI-SearchBot\nUser-agent: Claude-Web\nUser-agent: ClaudeBot\nUser-agent: anthropic-ai\nUser-agent: Google-Extended\nUser-agent: PerplexityBot\nUser-agent: Applebot-Extended\nUser-agent: Bytespider\nUser-agent: Amazonbot\nUser-agent: meta-externalagent\nAllow: /\n# Articles (dk, se / no)\nDisallow: /artikel\nDisallow: /*/artikel\nDisallow: /artikkel\nDisallow: /*/artikkel\n# Names news (dk / no / se)\nDisallow: /navnenyt\nDisallow: /*/navnenyt\nDisallow: /nytt-om-navn\nDisallow: /*/nytt-om-navn\nDisallow: /namn\nDisallow: /*/namn\n# Debate (dk / no, se)\nDisallow: /debat\nDisallow: /*/debat\nDisallow: /debatt\nDisallow: /*/debatt\n# Calendar\nDisallow: /kalender\nDisallow: /*/kalender\n# Ministers answers (dk / no)\nDisallow: /ministersvar\nDisallow: /*/ministersvar\nDisallow: /statsradensvarer\nDisallow: /*/statsradensvarer\n# Podcast (dk, se / no)\nDisallow: /podcast\nDisallow: /*/podcast\nDisallow: /podkast\nDisallow: /*/podkast\n# Subject (dk, no / se)\nDisallow: /emne\nDisallow: /*/emne\nDisallow: /amne\nDisallow: /*/amne\n# Person\nDisallow: /person\nDisallow: /*/person\n# Decision chain (dk, se / no)\nDisallow: /decisionchain\nDisallow: /*/decisionchain\nDisallow: /lovforslag\nDisallow: /*/lovforslag\n"
+  },
   "mst.dk": {
     "fetched": "2026-10-07T15:53:30Z",
     "body": "User-agent: *\r\nAllow: /"
+  },
+  "neravisen.dk": {
+    "fetched": "2026-10-08T06:27:28Z",
+    "body": "#\n# robots.txt\n#\n# This file is to prevent the crawling and indexing of certain parts\n# of your site by web crawlers and spiders run by sites like Yahoo!\n# and Google. By telling these \"robots\" where not to go on your site,\n# you save bandwidth and server resources.\n#\n# This file will be ignored unless it is at the root of your host:\n# Used:    http://example.com/robots.txt\n# Ignored: http://example.com/site/robots.txt\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/robotstxt.html\n\nUser-agent: *\n# CSS, JS, Images\nAllow: /core/*.css$\nAllow: /core/*.css?\nAllow: /core/*.js$\nAllow: /core/*.js?\nAllow: /core/*.avif\nAllow: /core/*.gif\nAllow: /core/*.jpg\nAllow: /core/*.jpeg\nAllow: /core/*.png\nAllow: /core/*.svg\nAllow: /core/*.webp\nAllow: /profiles/*.css$\nAllow: /profiles/*.css?\nAllow: /profiles/*.js$\nAllow: /profiles/*.js?\nAllow: /profiles/*.avif\nAllow: /profiles/*.gif\nAllow: /profiles/*.jpg\nAllow: /profiles/*.jpeg\nAllow: /profiles/*.png\nAllow: /profiles/*.svg\nAllow: /profiles/*.webp\n# Directories\nDisallow: /core/\nDisallow: /profiles/\n# Files\nDisallow: /README.md\nDisallow: /composer/Metapackage/README.txt\nDisallow: /composer/Plugin/ProjectMessage/README.md\nDisallow: /composer/Plugin/Scaffold/README.md\nDisallow: /composer/Plugin/VendorHardening/README.txt\nDisallow: /composer/Template/README.txt\nDisallow: /modules/README.txt\nDisallow: /sites/README.txt\nDisallow: /themes/README.txt\n# Paths (clean URLs)\nDisallow: /admin/\nDisallow: /comment/reply/\nDisallow: /filter/tips\nDisallow: /node/add/\nDisallow: /search/\nDisallow: /search?\nDisallow: /user/register\nDisallow: /user/password\nDisallow: /user/login\nDisallow: /user/logout\nDisallow: /media/oembed\nDisallow: /*/media/oembed\n# Paths (no clean URLs)\nDisallow: /index.php/admin/\nDisallow: /index.php/comment/reply/\nDisallow: /index.php/filter/tips\nDisallow: /index.php/node/add/\nDisallow: /index.php/search/\nDisallow: /index.php/search?\nDisallow: /index.php/user/password\nDisallow: /index.php/user/register\nDisallow: /index.php/user/login\nDisallow: /index.php/user/logout\nDisallow: /index.php/media/oembed\nDisallow: /index.php/*/media/oembed\n"
+  },
+  "netavisen.nu": {
+    "fetched": "2026-10-08T06:27:28Z",
+    "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://www.netavisen.nu/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
+  },
+  "netavisengrindsted.dk": {
+    "fetched": "2026-10-08T06:27:28Z",
+    "body": "User-agent: *\nCrawl-delay: 10"
+  },
+  "nibeavis.dk": {
+    "fetched": "2026-10-08T06:27:28Z",
+    "body": "# If the Joomla site is installed within a folder such as at\n# e.g. www.example.com/joomla/ the robots.txt file MUST be\n# moved to the site root at e.g. www.example.com/robots.txt\n# AND the joomla folder name MUST be prefixed to the disallowed\n# path, e.g. the Disallow rule for the /administrator/ folder\n# MUST be changed to read Disallow: /joomla/administrator/\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/orig.html\n#\n# For syntax checking, see:\n# http://tool.motoricerca.info/robots-checker.phtml\n\nUser-agent: *\nDisallow: /administrator/\nDisallow: /cache/\nDisallow: /cli/\n#Disallow: /components/\n#Disallow: /images/\nDisallow: /includes/\nDisallow: /installation/\nDisallow: /language/\nDisallow: /libraries/\nDisallow: /logs/\n##Disallow: /modules/\n#Disallow: /plugins/\n#Disallow: /tmp/\n\n"
   },
   "noah.dk": {
     "fetched": "2026-10-07T19:48:44Z",
@@ -722,6 +770,18 @@
   "www.magasinetkbh.dk": {
     "fetched": "2026-10-08T06:01:09Z",
     "body": "#\n# robots.txt\n#\n# This file is to prevent the crawling and indexing of certain parts\n# of your site by web crawlers and spiders run by sites like Yahoo!\n# and Google. By telling these \"robots\" where not to go on your site,\n# you save bandwidth and server resources.\n#\n# This file will be ignored unless it is at the root of your host:\n# Used:    http://example.com/robots.txt\n# Ignored: http://example.com/site/robots.txt\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/robotstxt.html\n\nUser-agent: *\nCrawl-delay: 10\n# CSS, JS, Images\nAllow: /misc/*.css$\nAllow: /misc/*.css?\nAllow: /misc/*.js$\nAllow: /misc/*.js?\nAllow: /misc/*.gif\nAllow: /misc/*.jpg\nAllow: /misc/*.jpeg\nAllow: /misc/*.png\nAllow: /modules/*.css$\nAllow: /modules/*.css?\nAllow: /modules/*.js$\nAllow: /modules/*.js?\nAllow: /modules/*.gif\nAllow: /modules/*.jpg\nAllow: /modules/*.jpeg\nAllow: /modules/*.png\nAllow: /profiles/*.css$\nAllow: /profiles/*.css?\nAllow: /profiles/*.js$\nAllow: /profiles/*.js?\nAllow: /profiles/*.gif\nAllow: /profiles/*.jpg\nAllow: /profiles/*.jpeg\nAllow: /profiles/*.png\nAllow: /themes/*.css$\nAllow: /themes/*.css?\nAllow: /themes/*.js$\nAllow: /themes/*.js?\nAllow: /themes/*.gif\nAllow: /themes/*.jpg\nAllow: /themes/*.jpeg\nAllow: /themes/*.png\n# Directories\nDisallow: /includes/\nDisallow: /misc/\nDisallow: /modules/\nDisallow: /profiles/\nDisallow: /scripts/\nDisallow: /themes/\n# Files\nDisallow: /CHANGELOG.txt\nDisallow: /cron.php\nDisallow: /INSTALL.mysql.txt\nDisallow: /INSTALL.pgsql.txt\nDisallow: /INSTALL.sqlite.txt\nDisallow: /install.php\nDisallow: /INSTALL.txt\nDisallow: /LICENSE.txt\nDisallow: /MAINTAINERS.txt\nDisallow: /update.php\nDisallow: /UPGRADE.txt\nDisallow: /xmlrpc.php\n# Paths (clean URLs)\nDisallow: /admin/\nDisallow: /comment/reply/\nDisallow: /filter/tips/\nDisallow: /node/add/\nDisallow: /search/\nDisallow: /user/register/\nDisallow: /user/password/\nDisallow: /user/login/\nDisallow: /user/logout/\n# Paths (no clean URLs)\nDisallow: /?q=admin/\nDisallow: /?q=comment/reply/\nDisallow: /?q=filter/tips/\nDisallow: /?q=node/add/\nDisallow: /?q=search/\nDisallow: /?q=user/password/\nDisallow: /?q=user/register/\nDisallow: /?q=user/login/\nDisallow: /?q=user/logout/\n"
+  },
+  "www.mitlejre.dk": {
+    "fetched": "2026-10-08T06:27:28Z",
+    "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://www.mitlejre.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
+  },
+  "www.mm.dk": {
+    "fetched": "2026-10-08T06:27:28Z",
+    "body": "# Search engines\nUser-agent: *\nAllow: /\n\n# Allow Twitterbot\nUser-agent: Twitterbot\nAllow: /\n\n# AI bots - commercial content blocked, all other pages open\nUser-agent: CCBot\nUser-agent: GPTBot\nUser-agent: ChatGPT-User\nUser-agent: OAI-SearchBot\nUser-agent: Claude-Web\nUser-agent: ClaudeBot\nUser-agent: anthropic-ai\nUser-agent: Google-Extended\nUser-agent: PerplexityBot\nUser-agent: Applebot-Extended\nUser-agent: Bytespider\nUser-agent: Amazonbot\nUser-agent: meta-externalagent\nAllow: /\n# Articles (dk, se / no)\nDisallow: /artikel\nDisallow: /*/artikel\nDisallow: /artikkel\nDisallow: /*/artikkel\n# Names news (dk / no / se)\nDisallow: /navnenyt\nDisallow: /*/navnenyt\nDisallow: /nytt-om-navn\nDisallow: /*/nytt-om-navn\nDisallow: /namn\nDisallow: /*/namn\n# Debate (dk / no, se)\nDisallow: /debat\nDisallow: /*/debat\nDisallow: /debatt\nDisallow: /*/debatt\n# Calendar\nDisallow: /kalender\nDisallow: /*/kalender\n# Ministers answers (dk / no)\nDisallow: /ministersvar\nDisallow: /*/ministersvar\nDisallow: /statsradensvarer\nDisallow: /*/statsradensvarer\n# Podcast (dk, se / no)\nDisallow: /podcast\nDisallow: /*/podcast\nDisallow: /podkast\nDisallow: /*/podkast\n# Subject (dk, no / se)\nDisallow: /emne\nDisallow: /*/emne\nDisallow: /amne\nDisallow: /*/amne\n# Person\nDisallow: /person\nDisallow: /*/person\n# Decision chain (dk, se / no)\nDisallow: /decisionchain\nDisallow: /*/decisionchain\nDisallow: /lovforslag\nDisallow: /*/lovforslag\n"
+  },
+  "www.netavisen.nu": {
+    "fetched": "2026-10-08T06:27:28Z",
+    "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://www.netavisen.nu/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "www.norden.org": {
     "fetched": "2026-10-07T11:39:46Z",

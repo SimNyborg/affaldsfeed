@@ -743,6 +743,42 @@
     "checked": "2026-10-08T06:01:09Z",
     "error": null
   },
+  "migogaalborg-dk": {
+    "file": "migogaalborg-dk.png",
+    "src": "https://migogaalborg.dk/wp-content/uploads/2025/02/cropped-favicon-32x32.png",
+    "checked": "2026-10-08T06:27:28Z",
+    "error": null
+  },
+  "migogaarhus-dk": {
+    "file": "migogaarhus-dk.png",
+    "src": "https://migogaarhus.dk/wp-content/uploads/2025/02/cropped-favicon-32x32.png",
+    "checked": "2026-10-08T06:27:28Z",
+    "error": null
+  },
+  "migogesbjerg-dk": {
+    "file": "migogesbjerg-dk.png",
+    "src": "https://migogesbjerg.dk/wp-content/uploads/2025/02/cropped-favicon-32x32.png",
+    "checked": "2026-10-08T06:27:28Z",
+    "error": null
+  },
+  "migogkbh-dk": {
+    "file": "migogkbh-dk.png",
+    "src": "https://migogkbh.dk/wp-content/uploads/2025/02/cropped-favicon-32x32.png",
+    "checked": "2026-10-08T06:27:28Z",
+    "error": null
+  },
+  "migogodense-dk": {
+    "file": "migogodense-dk.png",
+    "src": "https://migogodense.dk/wp-content/uploads/2025/02/cropped-favicon-32x32.png",
+    "checked": "2026-10-08T06:27:28Z",
+    "error": null
+  },
+  "migogvejen-dk": {
+    "file": "migogvejen-dk.png",
+    "src": "https://migogvejen.dk/images/nyhedsbrev/favicon-96x96.png",
+    "checked": "2026-10-08T06:27:28Z",
+    "error": null
+  },
   "miljoeministeriet": {
     "file": "miljoeministeriet.png",
     "src": "https://mim.dk/media/5hghltsf/favicon.png",
@@ -754,6 +790,48 @@
     "src": "https://mst.dk/media/5hghltsf/favicon.png",
     "checked": "2026-10-07T22:37:50Z",
     "error": null
+  },
+  "mitlejre-dk": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-08T06:27:28Z",
+    "error": "HTTP 404"
+  },
+  "mm-dk": {
+    "file": "mm-dk.png",
+    "src": "https://www.mm.dk/mm_icons/favicon-48x48.png",
+    "checked": "2026-10-08T06:27:28Z",
+    "error": null
+  },
+  "neravisen-dk": {
+    "file": "neravisen-dk.png",
+    "src": "https://neravisen.dk/themes/custom/oestjysk_naeravis/favicons//favicon-32x32.png",
+    "checked": "2026-10-08T06:27:28Z",
+    "error": null
+  },
+  "netavisen-nu": {
+    "file": "netavisen-nu.webp",
+    "src": "https://www.netavisen.nu/wp-content/uploads/2024/11/Netavisen-Gribskov-nyt-favicon-150x150.png",
+    "checked": "2026-10-08T06:27:28Z",
+    "error": null
+  },
+  "netavisen-sjaelland-dk": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-08T06:27:28Z",
+    "error": "springes over: robots.txt utilgængelig (ConnectionError)"
+  },
+  "netavisengrindsted-dk": {
+    "file": "netavisengrindsted-dk.ico",
+    "src": "https://netavisengrindsted.dk/favicon.ico",
+    "checked": "2026-10-08T06:27:28Z",
+    "error": null
+  },
+  "nibeavis-dk": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-08T06:27:28Z",
+    "error": "HTTP 404"
   },
   "plastindustrien": {
     "file": "plastindustrien.png",
