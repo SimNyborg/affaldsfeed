@@ -10,7 +10,7 @@ from collections.abc import Iterable
 from urllib.parse import parse_qsl, quote, urlencode, urlsplit, urlunsplit
 
 # Sporingsparametre, der fjernes fra URL'er
-_TRACKING_KEYS = {"fbclid", "gclid", "ref", "mc_cid", "mc_eid"}
+_TRACKING_KEYS = {"fbclid", "gclid", "ref", "referrer", "mc_cid", "mc_eid"}
 
 # æøå som i URL-slugs ("affaldsloesning")
 TRANSLIT = str.maketrans({"æ": "ae", "ø": "oe", "å": "aa", "Æ": "AE", "Ø": "OE", "Å": "AA"})

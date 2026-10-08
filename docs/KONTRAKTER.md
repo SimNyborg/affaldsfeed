@@ -137,7 +137,7 @@ Søgekilder (`method: search`) har `category: nyhedsmedie` (ignoreres ved visnin
 `{source_id, url, title, teaser, published: datetime|None, date_quality, lang, categories: list[str], publisher_name: str|None, publisher_domain: str|None, found_via: "feed"|"search"}`
 
 ### 5.2 Normalisering (`normalize.py`)
-- `normalize_url(u)`: https, fjern `www.`, fragment, afsluttende `/` (ikke på rod), `utm_*`, `fbclid`, `gclid`, `ref`, `mc_cid`, `mc_eid`; sorter øvrige query-parametre.
+- `normalize_url(u)`: https, fjern `www.`, fragment, afsluttende `/` (ikke på rod), `utm_*`, `fbclid`, `gclid`, `ref`, `referrer`, `mc_cid`, `mc_eid`; sorter øvrige query-parametre. Et nyt sporingsparameter ændrer id'et for de indslag, der havde det; de hentes igen én gang som nye, mens de står i feedet.
 - `item_id(url) = sha1(normalize_url(url)).hexdigest()[:12]`.
 - `clean_text(s, max_len)`: fjern HTML, afkod entiteter, saml whitespace, afkort ved ord + "…".
 - `normalize_title(t)`: små bogstaver, fjern tegnsætning og kildehaler (`" | Altinget"`, `" - DR"`), saml whitespace. Bruges til historier og dedupe af søgeresultater.

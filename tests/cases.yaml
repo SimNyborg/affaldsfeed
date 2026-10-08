@@ -194,9 +194,9 @@
   lang: en
   expect: {none: vis, normal: afvist, strict: afvist}
 
-- id: ordgraense-skraldespand-er-ikke-skrald
+- id: skrald-praefiks-skraldespand
   title: Ny skraldespand designet til haveejere
-  expect: {none: vis, normal: afvist, strict: afvist, topics: [sortering]}
+  expect: {none: vis, normal: vis, strict: vis, topics: [sortering]}
 
 # ── Engelske og svenske kilder ───────────────────────────────
 
@@ -502,8 +502,8 @@
   source_topics: [producentansvar]
   expect:
     none: vis
-    normal: graa
-    strict: afvist
+    normal: vis
+    strict: vis
     topics: [producentansvar]
 - id: drift-nyhed-ny-national-handlingsplan-for
   title: 'Nyhed: Ny national handlingsplan for tekstiler'
@@ -867,3 +867,40 @@
   category: myndighed
   source_genre: folketing
   expect: {none: vis, normal: vis, strict: vis, genre: folketing}
+
+# ── Fra drift: dækningstjek 8. oktober 2026 ────────────────────────────────
+# Relevante artikler, som forfiltret afviste, fordi ordlisten kun kendte "skrald" som helt ord, "genanvend*"
+# ikke ramte sammensatte ord, og navne på renovationsfirmaer manglede. Plus opdigtede titler for de nye ord.
+- id: drift-skraldespande-skiftes-ud
+  title: Nu skal over 14.000 skraldespande skiftes ud
+  expect: {none: vis, normal: vis, strict: vis}
+- id: drift-voksne-skal-fjerne-skraldet
+  title: "Børn hjælper miljøet: 'De voksne skal fjerne skraldet'"
+  expect: {none: vis, normal: vis, strict: vis}
+- id: drift-madrasgenanvendelse
+  title: 'Anlæg til madrasgenanvendelse skulle have stået klar i sensommeren: "Vi er i den afsluttende fase"'
+  category: fagmedie
+  expect: {none: vis, normal: vis, strict: vis}
+- id: drift-marius-pedersen-strejker
+  title: 'Marius Pedersen-topchef efter tre strejker på et år: "Det er noget skidt på alle måder"'
+  category: fagmedie
+  expect: {none: vis, normal: vis, strict: vis}
+- id: losseplads-laekker
+  title: Gammel losseplads lækker kemikalier til åen
+  expect: {none: vis, normal: vis, strict: vis}
+- id: renovatoerer-tunge-loeft
+  title: Renovatører får nye regler for tunge løft
+  expect: {none: vis, normal: vis, strict: vis}
+- id: klunsning-lovligt
+  title: Klunsning bliver lovligt i Aarhus
+  category: kommunal
+  expect: {none: vis, normal: vis, strict: vis}
+- id: flaskepant-stiger
+  title: Flaskepanten stiger for første gang i ti år
+  expect: {none: vis, normal: vis, strict: vis}
+- id: skrotter-er-ikke-affald
+  title: Regeringen skrotter forslaget om nye fartbøder
+  expect: {none: vis, normal: afvist, strict: afvist}
+- id: kompost-svagt-i-titel
+  title: Sådan laver du kompost i haven
+  expect: {none: vis, normal: graa, strict: afvist}

@@ -87,3 +87,15 @@ Efter de første kørsler manglede Folketingets og HOFOR's logoer, og TV 2-regio
 ## 2026-10-08: Omdirigeringer tjekkes mod robots.txt
 
 Hentningen fulgte omdirigeringer uden at tjekke målet mod robots.txt. Et link til en tilladt adresse kunne derfor ende på en side, robots.txt forbyder, fx når `/favicon.ico` sender videre til en forbudt mappe. Nu følger hentningen selv højst fem omdirigeringer, og hvert skridt skal være tilladt i sin værts robots.txt og overholde værtens takt. Er robots.txt på målet utilgængelig, springes værten over i kørslen, ligesom når den hentes direkte.
+
+## 2026-10-08: Dækningen af affaldsnyheder
+
+Brugeren spurgte, om feedet får alle relevante affaldsnyheder med, også fra brede medier som TV 2. Svaret var nej, og målingen viste fire huller.
+
+Forfiltret afviste fem relevante artikler på et døgn, fx "Nu skal over 14.000 skraldespande skiftes ud" fra TV2 ØST og to artikler om strejker hos Marius Pedersen. Ordlisten kendte kun "skrald" som helt ord, og "genanvend*" ramte ikke sammensatte ord som "madrasgenanvendelse". Nu matcher `skrald*` og `*genanvend*`, og losseplads, renovatør, kluns, pantflasker, emballageforordningen og tøjindsamling er kommet på listen sammen med Marius Pedersen og Meldgaard. En simulering på alle afviste artikler fik de fem med uden at tage nye irrelevante med, og ingen kandidater faldt fra.
+
+TV 2's feeds er udvalgte lister med 50 artikler fra op til en uge, ikke alt, hvad TV 2 udgiver. Der findes intet sitemap, og feeds for samfund, politik og krimi svarer 500. Business-feedet er tilføjet, fordi en artikel om affaldsgebyrer kun stod der. TV 2's sektionssider viser omkring 30 nye artikler hver og kunne give næsten fuld dækning, men TV 2's robots.txt spærrer for AI-robotter, så det afventer brugerens beslutning. Indtil da fanger nyhedssøgningen og sweepet resten.
+
+DR's, TV 2-regionernes og Berlingskes feeds dækker det meste: hvert feed har de nyeste artikler, og kørslerne når dem, før de ryger ud af feedet. Af de 40 nyeste i TV 2 Fyns og Berlingskes nyhedssitemaps kendte indsamlingen 33 og 37. De manglende var for nye, sport eller forbrugerstof. DR's Viden- og Politik-feeds er tilføjet.
+
+Nyhedssøgningen er tynd. Google News er spærret af sin robots.txt, og Bing giver omkring 25 resultater pr. runde for alle søgninger tilsammen, hvoraf hvert fjerde handler om affald. Bing fandt dog seks TV 2-artikler, som TV 2's egne feeds ikke havde. To nye søgninger dækker ordene, der manglede. Berlingskes RSS-links har `?referrer=RSS`, så samme artikel fik to id'er alt efter, om den kom fra feedet eller søgningen. Parameteren fjernes nu i `normalize_url`.
