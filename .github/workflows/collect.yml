@@ -35,6 +35,11 @@ jobs:
       - name: Hent repo
         uses: actions/checkout@v4
 
+      # En kørsel, der har ventet i køen bag en anden, skal bygge på de data, den forrige skubbede.
+      # Ellers giver commit-trinnet konflikt i data/state og taber kørslen.
+      - name: Hent nyeste udgave af grenen
+        run: git fetch -q origin "$GITHUB_REF_NAME" && git reset -q --hard FETCH_HEAD
+
       - name: Opsæt Python
         uses: actions/setup-python@v5
         with:

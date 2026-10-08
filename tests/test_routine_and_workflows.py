@@ -79,3 +79,16 @@ def test_publish_runs_on_timeline():
     assert "data/timeline/**" in on["push"]["paths"]
     claude_md = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
     assert "Claude-routinen skriver kun i `data/judgments/`, `data/overview/` og `data/timeline/`." in claude_md
+
+
+def test_collect_starts_from_latest_branch_and_probe_commits_on_top():
+    """En kørsel i kø bygger på den forriges data, og probe-resultatet lægges oven på grenens nyeste udgave."""
+    wf = yaml.safe_load((ROOT / ".github" / "workflows" / "collect.yml").read_text(encoding="utf-8"))
+    runs = [s.get("run", "") for s in wf["jobs"]["collect"]["steps"]]
+    sync = next(i for i, r in enumerate(runs) if "git reset -q --hard FETCH_HEAD" in r)
+    assert 'git fetch -q origin "$GITHUB_REF_NAME"' in runs[sync]
+    assert sync < next(i for i, r in enumerate(runs) if "affaldsfeed run" in r)
+    probe = yaml.safe_load((ROOT / ".github" / "workflows" / "probe.yml").read_text(encoding="utf-8"))
+    commit = probe["jobs"]["probe"]["steps"][-1]["run"]
+    assert "git pull --rebase" not in commit
+    assert commit.index("git reset -q --hard FETCH_HEAD") < commit.index("cp /tmp/result.md probe/result.md")
