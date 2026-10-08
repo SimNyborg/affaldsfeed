@@ -211,6 +211,13 @@ def test_main_check_search_template_needs_q(env, capsys):
     assert "bing-news: søgeskabelonen mangler {q}" in capsys.readouterr().out
 
 
+def test_main_check_date_template_only_for_sitemaps(env, capsys):
+    text = env.sources.read_text(encoding="utf-8").replace("https://www.testmedie.dk/rss", "https://www.testmedie.dk/rss/{dato}")
+    _write(env.sources, text)
+    assert main_check(argparse.Namespace(fetch=None, explain=False)) == 1
+    assert "testmedie: {dato} virker kun med method: sitemap" in capsys.readouterr().out
+
+
 def test_main_check_fetch_prints_decisions_and_writes_nothing(env, monkeypatch, capsys):
     fake = _fakes().make_fetcher_class()
     monkeypatch.setattr(fetchmod, "Fetcher", fake)

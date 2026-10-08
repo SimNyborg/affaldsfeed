@@ -435,6 +435,10 @@ def cross_check(sources: list[Source], config: Config, today: date | None = None
             for f in s.feeds:
                 if "{q}" not in f:
                     errors.append(f"sources.yaml: {s.id}: søgeskabelonen mangler {{q}}: {f}")
+        if s.method != "sitemap":
+            for f in s.feeds:
+                if "{dato}" in f:
+                    errors.append(f"sources.yaml: {s.id}: {{dato}} virker kun med method: sitemap: {f}")
         if s.status == "aktiv" and s.checked and today and s.checked < today - timedelta(days=365):
             warnings.append(f"sources.yaml: {s.id}: checked er over 12 måneder gammel ({s.checked})")
 

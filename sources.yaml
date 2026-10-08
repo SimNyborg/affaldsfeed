@@ -292,37 +292,317 @@
   filter: strict
   paywall: delvis
   basis: redaktionelt
-  status: kandidat
-  checked: 2026-10-07
+  status: fravalgt
+  checked: 2026-10-08
   note: >-
-    Fyens Stiftstidende, JydskeVestkysten, Århus Stiftstidende m.fl. Intet kendt åbent feed. Højt lokalt
-    affaldsvolumen. De enkelte aviser fanges via nyhedssøgning (config/medier.yaml).
+    Erstattet 2026-10-08 af de enkelte aviser nedenfor, som hentes via deres dagssitemaps.
+
+# ── Regionale dagblade: Jysk Fynske Medier (dagssitemaps) ─────
+- id: jv
+  name: JydskeVestkysten
+  category: nyhedsmedie
+  homepage: https://jv.dk
+  method: sitemap
+  feeds: https://jv.dk/sitemap/{dato}
+  match: "."  # dagssitemappet rummer kun artikler
+  filter: strict
+  paywall: delvis
+  replaces: [jv-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Jysk Fynske Medier. Dagssitemap (Google News) med titel og dato, så artiklerne hentes ikke, og
+    Claude ser kun titlen. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme
+    princip som DR og TV 2, BESLUTNINGER 2026-10-07). Fanget via søgning (medier.yaml) indtil 2026-10-08.
+
+- id: fyens
+  name: Fyens Stiftstidende
+  category: nyhedsmedie
+  homepage: https://fyens.dk
+  method: sitemap
+  feeds: https://fyens.dk/sitemap/{dato}
+  match: "."  # dagssitemappet rummer kun artikler
+  filter: strict
+  paywall: delvis
+  replaces: [fyens-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Jysk Fynske Medier. Dagssitemap (Google News) med titel og dato, så artiklerne hentes ikke, og
+    Claude ser kun titlen. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme
+    princip som DR og TV 2, BESLUTNINGER 2026-10-07). Fanget via søgning (medier.yaml) indtil 2026-10-08.
+
+- id: faa
+  name: Fyns Amts Avis
+  category: nyhedsmedie
+  homepage: https://faa.dk
+  method: sitemap
+  feeds: https://faa.dk/sitemap/{dato}
+  match: "."  # dagssitemappet rummer kun artikler
+  filter: strict
+  paywall: delvis
+  replaces: [faa-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Jysk Fynske Medier. Dagssitemap (Google News) med titel og dato, så artiklerne hentes ikke, og
+    Claude ser kun titlen. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme
+    princip som DR og TV 2, BESLUTNINGER 2026-10-07). Fanget via søgning (medier.yaml) indtil 2026-10-08.
+
+- id: vafo
+  name: Vejle Amts Folkeblad
+  category: nyhedsmedie
+  homepage: https://vafo.dk
+  method: sitemap
+  feeds: https://vafo.dk/sitemap/{dato}
+  match: "."  # dagssitemappet rummer kun artikler
+  filter: strict
+  paywall: delvis
+  replaces: [vafo-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Jysk Fynske Medier. Dagssitemap (Google News) med titel og dato, så artiklerne hentes ikke, og
+    Claude ser kun titlen. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme
+    princip som DR og TV 2, BESLUTNINGER 2026-10-07). Fanget via søgning (medier.yaml) indtil 2026-10-08.
+
+- id: hsfo
+  name: Horsens Folkeblad
+  category: nyhedsmedie
+  homepage: https://hsfo.dk
+  method: sitemap
+  feeds: https://hsfo.dk/sitemap/{dato}
+  match: "."  # dagssitemappet rummer kun artikler
+  filter: strict
+  paywall: delvis
+  replaces: [hsfo-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Jysk Fynske Medier. Dagssitemap (Google News) med titel og dato, så artiklerne hentes ikke, og
+    Claude ser kun titlen. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme
+    princip som DR og TV 2, BESLUTNINGER 2026-10-07). Fanget via søgning (medier.yaml) indtil 2026-10-08.
+
+- id: frdb
+  name: Fredericia Dagblad
+  category: nyhedsmedie
+  homepage: https://frdb.dk
+  method: sitemap
+  feeds: https://frdb.dk/sitemap/{dato}
+  match: "."  # dagssitemappet rummer kun artikler
+  domains: [fredericiadagblad.dk]
+  filter: strict
+  paywall: delvis
+  replaces: [frdb-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Jysk Fynske Medier. Dagssitemap (Google News) med titel og dato, så artiklerne hentes ikke, og
+    Claude ser kun titlen. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme
+    princip som DR og TV 2, BESLUTNINGER 2026-10-07). Fanget via søgning (medier.yaml) indtil 2026-10-08.
+
+- id: stiften
+  name: Århus Stiftstidende
+  category: nyhedsmedie
+  homepage: https://stiften.dk
+  method: sitemap
+  feeds: https://stiften.dk/sitemap/{dato}
+  match: "."  # dagssitemappet rummer kun artikler
+  filter: strict
+  paywall: delvis
+  replaces: [stiften-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Jysk Fynske Medier. Dagssitemap (Google News) med titel og dato, så artiklerne hentes ikke, og
+    Claude ser kun titlen. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme
+    princip som DR og TV 2, BESLUTNINGER 2026-10-07). Fanget via søgning (medier.yaml) indtil 2026-10-08.
+
+- id: amtsavisen
+  name: Randers Amtsavis
+  category: nyhedsmedie
+  homepage: https://amtsavisen.dk
+  method: sitemap
+  feeds: https://amtsavisen.dk/sitemap/{dato}
+  match: "."  # dagssitemappet rummer kun artikler
+  filter: strict
+  paywall: delvis
+  replaces: [amtsavisen-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Jysk Fynske Medier. Dagssitemap (Google News) med titel og dato, så artiklerne hentes ikke, og
+    Claude ser kun titlen. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme
+    princip som DR og TV 2, BESLUTNINGER 2026-10-07). Fanget via søgning (medier.yaml) indtil 2026-10-08.
+
+- id: viborg-folkeblad
+  name: Viborg Folkeblad
+  category: nyhedsmedie
+  homepage: https://viborg-folkeblad.dk
+  method: sitemap
+  feeds: https://viborg-folkeblad.dk/sitemap/{dato}
+  match: "."  # dagssitemappet rummer kun artikler
+  filter: strict
+  paywall: delvis
+  replaces: [viborg-folkeblad-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Jysk Fynske Medier. Dagssitemap (Google News) med titel og dato, så artiklerne hentes ikke, og
+    Claude ser kun titlen. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme
+    princip som DR og TV 2, BESLUTNINGER 2026-10-07). Fanget via søgning (medier.yaml) indtil 2026-10-08.
+
+- id: dagbladet-holstebro-struer
+  name: Dagbladet Holstebro-Struer
+  category: nyhedsmedie
+  homepage: https://dagbladet-holstebro-struer.dk
+  method: sitemap
+  feeds: https://dagbladet-holstebro-struer.dk/sitemap/{dato}
+  match: "."  # dagssitemappet rummer kun artikler
+  filter: strict
+  paywall: delvis
+  replaces: [dagbladet-holstebro-struer-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Jysk Fynske Medier. Dagssitemap (Google News) med titel og dato, så artiklerne hentes ikke, og
+    Claude ser kun titlen. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme
+    princip som DR og TV 2, BESLUTNINGER 2026-10-07). Fanget via søgning (medier.yaml) indtil 2026-10-08.
+
+- id: dbrs
+  name: Dagbladet Ringkøbing-Skjern
+  category: nyhedsmedie
+  homepage: https://dbrs.dk
+  method: sitemap
+  feeds: https://dbrs.dk/sitemap/{dato}
+  match: "."  # dagssitemappet rummer kun artikler
+  filter: strict
+  paywall: delvis
+  replaces: [dbrs-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Jysk Fynske Medier. Dagssitemap (Google News) med titel og dato, så artiklerne hentes ikke, og
+    Claude ser kun titlen. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme
+    princip som DR og TV 2, BESLUTNINGER 2026-10-07). Fanget via søgning (medier.yaml) indtil 2026-10-08.
+
+- id: folkebladetlemvig
+  name: Folkebladet Lemvig
+  category: nyhedsmedie
+  homepage: https://folkebladetlemvig.dk
+  method: sitemap
+  feeds: https://folkebladetlemvig.dk/sitemap/{dato}
+  match: "."  # dagssitemappet rummer kun artikler
+  domains: [lemvigfolkeblad.dk]
+  filter: strict
+  paywall: delvis
+  replaces: [folkebladetlemvig-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Jysk Fynske Medier. Dagssitemap (Google News) med titel og dato, så artiklerne hentes ikke, og
+    Claude ser kun titlen. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme
+    princip som DR og TV 2, BESLUTNINGER 2026-10-07). Fanget via søgning (medier.yaml) indtil 2026-10-08.
+
+- id: helsingordagblad
+  name: Helsingør Dagblad
+  category: nyhedsmedie
+  homepage: https://helsingordagblad.dk
+  method: sitemap
+  feeds: https://helsingordagblad.dk/sitemap/{dato}
+  match: "."  # dagssitemappet rummer kun artikler
+  filter: strict
+  paywall: delvis
+  replaces: [helsingordagblad-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Jysk Fynske Medier. Dagssitemap (Google News) med titel og dato, så artiklerne hentes ikke, og
+    Claude ser kun titlen. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme
+    princip som DR og TV 2, BESLUTNINGER 2026-10-07). Fanget via søgning (medier.yaml) indtil 2026-10-08.
 
 - id: nordjyske
   name: Nordjyske
   category: nyhedsmedie
   homepage: https://nordjyske.dk
-  method: rss
-  feeds: []
+  method: sitemap
+  feeds: https://nordjyske.dk/sitemap.xml
+  match: /nyheder/
   filter: strict
   paywall: delvis
+  replaces: [nordjyske-dk]
   basis: redaktionelt
-  status: kandidat
-  checked: 2026-10-07
-  note: Intet kendt åbent feed. Fanges via nyhedssøgning (config/medier.yaml).
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Hele Nordjylland. Indekset har ugesitemaps uden lastmod (de nyeste øverst) og procentkodede URL'er; ugerne
+    har titel og tidspunkt (Google News), så artiklerne hentes ikke. robots.txt og ai.txt fravælger AI-træning;
+    indsamleren er ikke en AI-crawler, og Claude ser kun titlen (samme princip som DR og TV 2).
 
 - id: sjaellandske-medier
   name: Sjællandske Medier
   category: nyhedsmedie
   homepage: https://www.sn.dk
-  method: rss
-  feeds: []
+  method: sitemap
+  feeds: https://www.sn.dk/SitemapIndex.0.xml
+  match: /art\d+/
+  domains: [sjnyheder.dk]
   filter: strict
   paywall: delvis
+  replaces: [sn-dk]
   basis: redaktionelt
-  status: kandidat
-  checked: 2026-10-07
-  note: Intet kendt åbent feed. Højt lokalt affaldsvolumen. Fanges via nyhedssøgning (config/medier.yaml).
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Dagblade og ugeaviser på Sjælland under sn.dk (fx Dagbladet Køge, Holbæk, Næstved og Sjællands Tidende).
+    Månedssitemaps med lastmod og ETag, men uden titler, så kun artikler med et affaldsord i URL'en hentes.
+    robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme princip som DR og TV 2).
+
+- id: bornholms-tidende
+  name: Bornholms Tidende
+  category: nyhedsmedie
+  homepage: https://tidende.dk
+  method: rss
+  feeds: https://tidende.dk/rssfeed.aspx
+  filter: strict
+  paywall: delvis
+  replaces: [tidende-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: RSS med de 36 nyeste. robots.txt fravælger kun GPTBot.
+
+- id: folketidende
+  name: Lolland-Falsters Folketidende
+  category: nyhedsmedie
+  homepage: https://www.folketidende.dk
+  method: sitemap
+  feeds: https://www.folketidende.dk/sitemap.xml
+  match: /nyheder/
+  filter: strict
+  every: 2
+  paywall: delvis
+  replaces: [folketidende-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Lolland og Guldborgsund. Ét sitemap med de 10.000 nyeste artikler (ca. 400 kB pakket, uden ETag og titler),
+    så det hentes hver anden time, og kun artikler med et affaldsord i URL'en hentes. robots.txt fravælger
+    AI-træning; indsamleren er ikke en AI-crawler (samme princip som DR og TV 2).
 
 # Tilføjet 2026-10-07 (kildeudvidelse)
 - id: danwatch
@@ -350,6 +630,68 @@
   note: >-
     Det tyske mindretals avis i Sønderjylland. Har et nyhedssitemap, men skriver på tysk, som feedet endnu
     ikke understøtter (lang: da, en, sv). robots.txt spærrer AI-agenter, så kilden skal have ai: false.
+
+
+# ── Midtjyske Medier (forsiden som liste) ──────────────────────
+- id: herningfolkeblad
+  name: Herning Folkeblad
+  category: nyhedsmedie
+  homepage: https://herningfolkeblad.dk
+  method: html
+  feeds: https://herningfolkeblad.dk/
+  match: /artikel/
+  filter: strict
+  every: 4
+  paywall: delvis
+  replaces: [herningfolkeblad-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Midtjyske Medier. Intet feed, og sitemappet har kun sektioner. Artikel-URL'erne har intet titelord
+    (/artikel/<uuid>), så linkteksten på forsiden afgør, om artiklen hentes. Forsiden er tung (ca. 900 kB),
+    så den hentes hver fjerde time. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler
+    (samme princip som DR og TV 2).
+
+- id: midtjyllandsavis
+  name: Midtjyllands Avis
+  category: nyhedsmedie
+  homepage: https://midtjyllandsavis.dk
+  method: html
+  feeds: https://midtjyllandsavis.dk/
+  match: /artikel/
+  filter: strict
+  every: 4
+  paywall: delvis
+  replaces: [midtjyllandsavis-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Midtjyske Medier. Intet feed, og sitemappet har kun sektioner. Artikel-URL'erne har intet titelord
+    (/artikel/<uuid>), så linkteksten på forsiden afgør, om artiklen hentes. Forsiden er tung (ca. 900 kB),
+    så den hentes hver fjerde time. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler
+    (samme princip som DR og TV 2).
+
+- id: skivefolkeblad
+  name: Skive Folkeblad
+  category: nyhedsmedie
+  homepage: https://skivefolkeblad.dk
+  method: html
+  feeds: https://skivefolkeblad.dk/
+  match: /artikel/
+  filter: strict
+  every: 4
+  paywall: delvis
+  replaces: [skivefolkeblad-dk]
+  basis: redaktionelt
+  status: aktiv
+  checked: 2026-10-08
+  note: >-
+    Midtjyske Medier. Intet feed, og sitemappet har kun sektioner. Artikel-URL'erne har intet titelord
+    (/artikel/<uuid>), så linkteksten på forsiden afgør, om artiklen hentes. Forsiden er tung (ca. 900 kB),
+    så den hentes hver fjerde time. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler
+    (samme princip som DR og TV 2).
 
 # ── Fagmedier ─────────────────────────────────────────────────
 - id: altinget

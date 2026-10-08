@@ -14,7 +14,7 @@ from typing import get_args
 from affaldsfeed import paths, store
 from affaldsfeed.classify import Classifier, Overrides
 from affaldsfeed.collect import COLLECTORS, CollectContext, RawEntry, match_publisher
-from affaldsfeed.collect.pages import remembered_sitemaps
+from affaldsfeed.collect.pages import expand_dates, remembered_sitemaps
 from affaldsfeed.collect.search import build_url
 from affaldsfeed.config import (
     Config,
@@ -304,18 +304,20 @@ def plan_sources(
     return due, waiting
 
 
-def _valid_cache_urls(sources: list[Source], config: Config, http_cache: dict) -> set[str]:
+def _valid_cache_urls(sources: list[Source], config: Config, http_cache: dict, now: datetime) -> set[str]:
     urls: set[str] = set()
     for s in sources:
         if s.status != "aktiv":
             continue
         if s.method == "search":
             urls.update(build_url(t, q, config.search.when) for t in s.feeds for q in config.search.queries)
+        elif s.method == "sitemap":
+            # {dato} giver dagens og gårsdagens sitemap; under-sitemaps fra et indeks hentes også betinget (§5.6)
+            feeds = expand_dates(s.feeds, now)
+            urls.update(feeds)
+            urls.update(remembered_sitemaps(http_cache, feeds))
         else:
             urls.update(s.feeds)
-        if s.method == "sitemap":
-            # Under-sitemaps fra et indeks hentes også betinget (KONTRAKTER §5.6)
-            urls.update(remembered_sitemaps(http_cache, s.feeds))
     return urls
 
 
@@ -510,7 +512,7 @@ def _run(args: argparse.Namespace) -> int:
             store.save_candidates(list(changed.values()))
         store.save_rejected(rejected, settings.rejected_keep_days, now)
         store.save_source_states(states)
-        valid = _valid_cache_urls(sources, config, fetcher.http_cache)
+        valid = _valid_cache_urls(sources, config, fetcher.http_cache, now)
         store.save_http_cache({u: v for u, v in fetcher.http_cache.items() if u in valid})
         store.save_robots_cache(_prune_robots(fetcher.robots_cache, now))
         store.save_kildeforslag(kildeforslag)

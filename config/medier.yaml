@@ -91,118 +91,6 @@
   paywall: delvis
 
 # ── Regionale dagblade: Jysk Fynske Medier ────────────────────
-- id: jv-dk
-  name: JydskeVestkysten
-  category: nyhedsmedie
-  domains: [jv.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: fyens-dk
-  name: Fyens Stiftstidende
-  category: nyhedsmedie
-  domains: [fyens.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: faa-dk
-  name: Fyns Amts Avis
-  category: nyhedsmedie
-  domains: [faa.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: vafo-dk
-  name: Vejle Amts Folkeblad
-  category: nyhedsmedie
-  domains: [vafo.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: hsfo-dk
-  name: Horsens Folkeblad
-  category: nyhedsmedie
-  domains: [hsfo.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: frdb-dk
-  name: Fredericia Dagblad
-  category: nyhedsmedie
-  domains: [frdb.dk, fredericiadagblad.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: stiften-dk
-  name: Århus Stiftstidende
-  category: nyhedsmedie
-  domains: [stiften.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: amtsavisen-dk
-  name: Randers Amtsavis
-  category: nyhedsmedie
-  domains: [amtsavisen.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: viborg-folkeblad-dk
-  name: Viborg Folkeblad
-  category: nyhedsmedie
-  domains: [viborg-folkeblad.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: herningfolkeblad-dk
-  name: Herning Folkeblad
-  category: nyhedsmedie
-  domains: [herningfolkeblad.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: dagbladet-holstebro-struer-dk
-  name: Dagbladet Holstebro-Struer
-  category: nyhedsmedie
-  domains: [dagbladet-holstebro-struer.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: dbrs-dk
-  name: Dagbladet Ringkøbing-Skjern
-  category: nyhedsmedie
-  domains: [dbrs.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: folkebladetlemvig-dk
-  name: Folkebladet Lemvig
-  category: nyhedsmedie
-  domains: [folkebladetlemvig.dk, lemvigfolkeblad.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: midtjyllandsavis-dk
-  name: Midtjyllands Avis
-  category: nyhedsmedie
-  domains: [midtjyllandsavis.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: skivefolkeblad-dk
-  name: Skive Folkeblad
-  category: nyhedsmedie
-  domains: [skivefolkeblad.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: helsingordagblad-dk
-  name: Helsingør Dagblad
-  category: nyhedsmedie
-  domains: [helsingordagblad.dk]
-  basis: redaktionelt
-  paywall: delvis
-
 - id: ugeavisen-dk
   name: Ugeaviserne (Jysk Fynske Medier)
   category: nyhedsmedie
@@ -211,38 +99,10 @@
   paywall: nej
 
 # ── Øvrige regionale og lokale medier ─────────────────────────
-- id: nordjyske-dk
-  name: Nordjyske
-  category: nyhedsmedie
-  domains: [nordjyske.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: sn-dk
-  name: Sjællandske Medier
-  category: nyhedsmedie
-  domains: [sn.dk, sjnyheder.dk]
-  basis: redaktionelt
-  paywall: delvis
-
 - id: frederiksborgamtsavis-dk
   name: Frederiksborg Amts Avis
   category: nyhedsmedie
   domains: [frederiksborgamtsavis.dk, frederiksborgamtsavis.sjnyheder.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: folketidende-dk
-  name: Lolland-Falsters Folketidende
-  category: nyhedsmedie
-  domains: [folketidende.dk]
-  basis: redaktionelt
-  paywall: delvis
-
-- id: tidende-dk
-  name: Bornholms Tidende
-  category: nyhedsmedie
-  domains: [tidende.dk]
   basis: redaktionelt
   paywall: delvis
 
@@ -256,7 +116,8 @@
 # ── Lokale medier ─────────────────────────────────────────────
 # Grundlag (tjekket 2026-10-07): Ugeavispuljen 2024-25 og Innovationspuljen (Slots- og Kulturstyrelsen),
 # medlemmer af Danske Lokalaviser eller en navngiven redaktør eller Pressenævnet på siden. Ugeaviser under
-# et fælles domæne (ugeavisen.dk, sn.dk, dinavis.dk, nordjyske.dk, folketidende.dk) står ovenfor.
+# et fælles domæne (ugeavisen.dk, dinavis.dk) står ovenfor. sn.dk, nordjyske.dk, folketidende.dk og de
+# regionale dagblade fra Jysk Fynske Medier og Midtjyske Medier hentes direkte (sources.yaml, 2026-10-08).
 
 # Hovedstaden og Bornholm
 - id: kobenhavnliv-dk

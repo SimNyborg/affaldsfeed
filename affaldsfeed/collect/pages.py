@@ -641,9 +641,18 @@ def _escape_amp(data: bytes) -> bytes:
     return _BARE_AMP_RE.sub(lambda m: m.group(0) if m.group(0).startswith(b"<") else b"&amp;", data)
 
 
+_ENCODED_URL_RE = re.compile(r"^https?%3a%2f%2f", re.IGNORECASE)
+
+
 def _loc(text: str, base: str) -> str:
-    """URL fra <loc>: whitespace i enderne fjernes og kodes inde i URL'en; relative URL'er gøres absolutte."""
-    loc = re.sub(r"\s+", "%20", text.strip())
+    """URL fra <loc>: whitespace i enderne fjernes og kodes inde i URL'en; relative URL'er gøres absolutte.
+
+    En hel URL, der er procentkodet ("https%3A%2F%2Fnordjyske.dk%2F..."), afkodes først.
+    """
+    text = text.strip()
+    if _ENCODED_URL_RE.match(text):
+        text = unquote(text)
+    loc = re.sub(r"\s+", "%20", text)
     if loc and base:
         loc = urljoin(base, loc)
     return loc if loc.startswith(("http://", "https://")) else ""
@@ -693,21 +702,61 @@ def parse_sitemap(content: bytes, url: str = "", max_bytes: int = MAX_XML_BYTES)
     return Sitemap(kind, entries, is_news)
 
 
-def choose_sub_sitemaps(entries: list[SitemapEntry], n: int) -> list[SitemapEntry]:
-    """De n under-sitemaps med nyeste lastmod. Uden lastmod de sidste n i dokumentet (det sidste først).
+# En dato i en sitemap-URL: 2026-10-08, 2026/10/08, 2026.10 (måned) o.l. Dagen er valgfri.
+_URL_DATE_RE = re.compile(r"(?<!\d)(20\d\d)[-/._](0?[1-9]|1[0-2])(?:[-/._](0?[1-9]|[12]\d|3[01]))?(?!\d)")
 
-    Ved samme lastmod (typisk genereringstidspunktet for dem alle) vinder det sidste i dokumentet, som uden
-    lastmod.
+
+def _sitemap_date(url: str) -> tuple[int, int, int] | None:
+    """Den seneste dato i en sitemap-URL's sti som (år, måned, dag). En måned uden dag tæller som dens slutning."""
+    try:
+        path = urlsplit(url or "").path
+    except ValueError:
+        return None
+    found = [(int(y), int(m), int(d) if d else 31) for y, m, d in _URL_DATE_RE.findall(path)]
+    return max(found) if found else None
+
+
+def choose_sub_sitemaps(entries: list[SitemapEntry], n: int) -> list[SitemapEntry]:
+    """De n under-sitemaps med nyeste lastmod, ellers nyeste dato i URL'en, ellers de sidste i dokumentet.
+
+    Ved samme lastmod (typisk genereringstidspunktet for dem alle) afgør datoen i URL'en og derefter
+    placeringen: det sidste i dokumentet vinder. Uden lastmod vælges efter datoen i URL'en (fx dags- og
+    ugesitemaps hos aviser, hvor de nyeste står øverst), og under-sitemaps uden dato kommer sidst.
     """
     if n <= 0:
         return []
-    if any(e.lastmod for e in entries):
+    dates = [_sitemap_date(e.loc) for e in entries]
+    if any(e.lastmod for e in entries) or any(dates):
         order = sorted(
             range(len(entries)),
-            key=lambda i: (entries[i].lastmod is None, -(entries[i].lastmod or OLDEST).timestamp(), -i),
+            key=lambda i: (
+                entries[i].lastmod is None,
+                -(entries[i].lastmod or OLDEST).timestamp(),
+                dates[i] is None,
+                tuple(-x for x in dates[i] or (0, 0, 0)),
+                -i,
+            ),
         )
         return [entries[i] for i in order[:n]]
     return list(reversed(entries[-n:]))
+
+
+DATE_PLACEHOLDER = "{dato}"
+
+
+def expand_dates(feeds: Iterable[str], now: datetime) -> list[str]:
+    """Sitemap-URL'er med {dato} giver dagens og gårsdagens sitemap (dansk tid, ÅÅÅÅ-MM-DD), dagens først.
+
+    Til aviser med ét sitemap pr. dag, hvor indekset er for stort til at hente hver time. Gårsdagens tages med,
+    så artikler fra lige før midnat ikke tabes.
+    """
+    today = to_cph(now).date()
+    out: list[str] = []
+    for url in feeds:
+        urls = [url.replace(DATE_PLACEHOLDER, d.isoformat()) for d in (today, today - timedelta(days=1))] \
+            if DATE_PLACEHOLDER in url else [url]
+        out += [u for u in urls if u not in out]
+    return out
 
 
 # ── Fælles for sitemap og html ──────────────────────────────
@@ -993,7 +1042,7 @@ def _read_sitemaps(job: _Job) -> list[Sitemap] | None:
     cfg = job.cfg
     max_bytes = int(job.ctx.config.settings.fetch.max_response_mb * MB)
     # (url, dybde, topniveau)
-    queue: deque[tuple[str, int, bool]] = deque((url, 0, True) for url in job.source.feeds)
+    queue: deque[tuple[str, int, bool]] = deque((url, 0, True) for url in expand_dates(job.source.feeds, job.now))
     done: set[str] = set()  # samme sitemap hentes kun én gang pr. kørsel
     urlsets: list[Sitemap] = []
     top_errors: list[str] = []
@@ -1054,7 +1103,13 @@ def _read_sitemaps(job: _Job) -> list[Sitemap] | None:
                 continue
             # Kun under-sitemaps på kildens egne værter (et indeks må ikke sende os til fremmede værter)
             own = [e for e in sm.entries if job.on_host(e.loc)]
-            chosen = choose_sub_sitemaps(own, cfg.max_sub_sitemaps)
+            # En periode, der slutter før vinduet (fx en uge eller måned i URL'en), kan ikke rumme nye artikler
+            first = to_cph(job.now).date() - timedelta(days=_window_days(job))
+            start = (first.year, first.month, first.day)
+            current = [e for e in own if (_sitemap_date(e.loc) or start) >= start]
+            if len(current) < len(own):
+                job.diag(f"indeks {url}: {len(own) - len(current)} under-sitemaps for perioder før {first} springes over")
+            chosen = choose_sub_sitemaps(current, cfg.max_sub_sitemaps)
             job.remember_subs(url, [e.loc for e in chosen])
             foreign = len(sm.entries) - len(own)
             note = f" ({foreign} på fremmede værter springes over)" if foreign else ""
