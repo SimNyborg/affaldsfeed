@@ -330,10 +330,10 @@
     "error": null
   },
   "folketinget-oda": {
-    "file": null,
-    "src": null,
-    "checked": "2026-10-07T22:34:55Z",
-    "error": "HTTP 404"
+    "file": "folketinget-oda.ico",
+    "src": "https://oda.ft.dk/favicon.ico",
+    "checked": "2026-10-08T00:08:49Z",
+    "error": null
   },
   "gate-21": {
     "file": "gate-21.webp",
@@ -348,10 +348,10 @@
     "error": null
   },
   "hofor": {
-    "file": null,
-    "src": null,
-    "checked": "2026-10-07T22:37:50Z",
-    "error": "blokeret af robots.txt"
+    "file": "hofor.ico",
+    "src": "https://www.hofor.dk/favicon.ico",
+    "checked": "2026-10-08T00:08:49Z",
+    "error": null
   },
   "ingenioeren": {
     "file": "ingenioeren.ico",

@@ -307,7 +307,7 @@
   },
   "folketinget-oda": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-07T23:35:08Z",
+    "last_attempt": "2026-10-08T00:08:49Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 15,
@@ -361,7 +361,7 @@
   },
   "hofor": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-08T00:05:14Z",
+    "last_attempt": "2026-10-08T00:08:49Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
