@@ -253,6 +253,23 @@ def test_validate_errors(repo, capsys, change, message):
     assert not (paths.OVERVIEW_ARCHIVE_DIR / "dag-2026-10-07.json").exists()
 
 
+def test_validate_fails_when_source_is_no_longer_active(repo, capsys):
+    """Et gyldigt overblik bliver ugyldigt, når en kilde det henviser til, ikke længere er aktiv."""
+    a, z = cand("a", hours_ago=1), cand("z", source="zwe", hours_ago=2)
+    store.save_candidates([a, z])
+    approve(a, z)
+    write_overview("dag", ov("dag", [a.id, z.id], start="2026-10-06T22:00:00Z", n=2))
+    assert validate() == 0
+    paused = SOURCES_YAML.replace("basis: organisation,", "basis: organisation, status: planlagt,")
+    assert paused != SOURCES_YAML
+    paths.SOURCES_FILE.write_text(paused, encoding="utf-8")
+    capsys.readouterr()
+    assert validate() == 1
+    assert f"data/overview/dag.json: punkt 1: item_id '{z.id}' er ikke et godkendt indslag i vinduet" in (
+        capsys.readouterr().out
+    )
+
+
 def test_validate_schema_error_and_missing(repo, capsys):
     (paths.OVERVIEW_DIR / "uge.json").write_text('{"period":"uge"}', encoding="utf-8")
     assert validate() == 1
