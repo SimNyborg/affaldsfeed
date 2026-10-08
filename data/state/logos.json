@@ -833,10 +833,88 @@
     "checked": "2026-10-08T06:27:28Z",
     "error": "HTTP 404"
   },
+  "noah": {
+    "file": "noah.ico",
+    "src": "https://noah.dk/themes/noah/favicons/favicon.ico",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "nordhavn-avis-dk": {
+    "file": "nordhavn-avis-dk.png",
+    "src": "https://www.nordhavn-avis.dk/wp-content/uploads/2023/03/mstile-150x150-3-80x80.png",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "nordisk-ministerraad": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-08T07:28:04Z",
+    "error": "HTTP 404"
+  },
+  "nordjyske-dk": {
+    "file": "nordjyske-dk.png",
+    "src": "https://nordjyske.dk/favicon.ico",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "nordvaerk": {
+    "file": "nordvaerk.png",
+    "src": "https://nordvaerk.dk/media/nsjjjq1f/graf.png",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "odense-renovation": {
+    "file": "odense-renovation.png",
+    "src": "https://www.odenserenovation.dk/favicon-32x32.png",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "oestvendsysselfolkeblad-dk": {
+    "file": "oestvendsysselfolkeblad-dk.png",
+    "src": "https://xn--stvendsysselfolkeblad-pfc.dk/wp-content/uploads/2021/03/cropped-Oestvendsyssel-Folkeblad-32x32.png",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "orestad-avis-dk": {
+    "file": "orestad-avis-dk.jpg",
+    "src": "https://www.orestad-avis.dk/wp-content/uploads/2023/03/ora_favicon_180x180px-80x80.jpg",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
   "plastindustrien": {
     "file": "plastindustrien.png",
     "src": "https://plast.dk/wp-content/uploads/2024/11/favicon-32x32-1.png",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "politiken": {
+    "file": "politiken.png",
+    "src": "https://politiken.dk/assets/icons/favicons/favicon-16x16.png",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "pro-ing-dk": {
+    "file": "pro-ing-dk.ico",
+    "src": "https://pro.ing.dk/favicon.ico",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "randersugeavis-dk": {
+    "file": "randersugeavis-dk.png",
+    "src": "https://randersugeavis.dk/wp-content/uploads/2025/03/cropped-Ugeavis-logo-1-32x32.png",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "refa": {
+    "file": "refa.png",
+    "src": "https://www.refa.dk/wp-content/uploads/2020/08/favicon-32x32-1.png",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "regeringen": {
+    "file": "regeringen.png",
+    "src": "https://regeringen.dk/media/kwkldl3h/favicon-32x32.png?rmode=pad&width=32&height=32&format=png&bgcolor=transparent&v=1db9e3463f9e0d0",
+    "checked": "2026-10-08T07:28:04Z",
     "error": null
   },
   "renosyd": {
@@ -849,6 +927,48 @@
     "file": "rgo.png",
     "src": "https://rgo.dk/wp-content/uploads/cropped-rgo1-e1692691340963-32x32.png",
     "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
+  "rigsrevisionen": {
+    "file": "rigsrevisionen.webp",
+    "src": "https://cdn.rigsrevisionen.dk/rigsrevisionen/Media/F/5/favicon.png?width=32&height=32",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "ruc": {
+    "file": "ruc.png",
+    "src": "https://ruc.dk/profiles/ruc_profile/themes/school/assets/shortcut-icons/apple-touch-icon-76x76.png",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "samsoposten-dk": {
+    "file": "samsoposten-dk.png",
+    "src": "https://www.samsoposten.dk/icon.png",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "sdu": {
+    "file": "sdu.png",
+    "src": "https://www.sdu.dk/resources/images/sdu/icon57.png",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "skivefolkeblad-dk": {
+    "file": "skivefolkeblad-dk.png",
+    "src": "https://skivefolkeblad.dk/images/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "skjerntarm-ugeblad-dk": {
+    "file": "skjerntarm-ugeblad-dk.ico",
+    "src": "https://skjerntarm-ugeblad.dk/img/favicon.ico",
+    "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "sn-dk": {
+    "file": "sn-dk.png",
+    "src": "https://www.sn.dk/wp-content/themes/sn/assets/dist/img/favicon.png",
+    "checked": "2026-10-08T07:28:04Z",
     "error": null
   },
   "sonfor": {
