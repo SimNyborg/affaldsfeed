@@ -77,16 +77,18 @@
     ]
   },
   "msn.com": {
-    "name": "Nyheder24 on MSN",
-    "count": 2,
-    "last_seen": "2026-10-07T11:39:46Z",
+    "name": "Top Santé on MSN",
+    "count": 3,
+    "last_seen": "2026-10-08T08:27:16Z",
     "examples": [
+      "https://www.msn.com/fr-fr/divertissement/g%C3%A9n%C3%A9ral/la-vache-qui-rit-voici-pourquoi-elle-a-cess%C3%A9-de-sourire-sur-certains-emballages-vous-aurez-du-mal-%C3%A0-y-croire/ar-AA2dObRz",
       "https://www.msn.com/da-dk/nyheder/other/affald-skulle-blive-billigere-nu-risikerer-danskerne-at-betale-mere/ar-AA2dIQNq",
       "https://www.msn.com/da-dk/sundhed/generelt/affaldsselskab-sl%C3%A5r-alarm-popul%C3%A6r-v%C3%A6gttabsmedicin-skaber-uventet-fare/ar-AA2dKg75"
     ],
     "ids": [
       "2d282b2738cc",
-      "b1c4a705b374"
+      "b1c4a705b374",
+      "ca27c3b6aa8b"
     ]
   },
   "nytimes.com": {
@@ -102,13 +104,15 @@
   },
   "sydkusten.es": {
     "name": "Sydkusten",
-    "count": 1,
-    "last_seen": "2026-10-07T18:30:53Z",
+    "count": 2,
+    "last_seen": "2026-10-08T08:27:16Z",
     "examples": [
+      "https://www.sydkusten.es/sk/23/a/46884/mordade-plastikkirurgen-en-av-de-mest-framstaende-i-branschen/",
       "https://www.sydkusten.es/sk/23/a/46882/plastikkirurg-skjuten-till-dods-pa-klinik/"
     ],
     "ids": [
-      "eee08a92848c"
+      "eee08a92848c",
+      "9af3d74184d4"
     ]
   },
   "tv4.se": {
