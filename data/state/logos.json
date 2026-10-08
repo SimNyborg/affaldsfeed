@@ -299,6 +299,12 @@
     "checked": "2026-10-08T10:34:51Z",
     "error": null
   },
+  "dinavis--lokalavisen-dk": {
+    "file": "dinavis--lokalavisen-dk.png",
+    "src": "https://dinavis.dk/static/dinavis.dk/favicon/favicon-32x32.png",
+    "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
   "ditikast-brande": {
     "file": "ditikast-brande.png",
     "src": "https://ditikast-brande.dk/images/favicons/apple-icon-57x57.png",
@@ -321,6 +327,36 @@
     "file": "ditkarup--karupugeavis-dk.png",
     "src": "https://ditkarup.dk/images/favicons/apple-icon-57x57.png",
     "checked": "2026-10-08T10:34:51Z",
+    "error": null
+  },
+  "ditkjellerup": {
+    "file": "ditkjellerup.png",
+    "src": "https://ditkjellerup.dk/images/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
+  "ditkjellerup--kjelleruptidende-dk": {
+    "file": "ditkjellerup--kjelleruptidende-dk.png",
+    "src": "https://ditkjellerup.dk/images/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
+  "ditry": {
+    "file": "ditry.png",
+    "src": "https://ditry.dk/images/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
+  "ditsalling": {
+    "file": "ditsalling.png",
+    "src": "https://ditsalling.dk/images/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
+  "ditvinderup": {
+    "file": "ditvinderup.png",
+    "src": "https://ditvinderup.dk/images/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T11:28:26Z",
     "error": null
   },
   "dn": {
@@ -401,11 +437,29 @@
     "checked": "2026-10-08T04:31:35Z",
     "error": "HTTP 404"
   },
+  "farsoeavis": {
+    "file": "farsoeavis.png",
+    "src": "https://farsoeavis.dk/wp-content/uploads/2021/11/favicon.png",
+    "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
   "finans-dk": {
     "file": "finans-dk.png",
     "src": "https://finans.dk/static/finans.dk/favicon/favicon-32x32.png",
     "checked": "2026-10-08T04:31:35Z",
     "error": null
+  },
+  "folkebladet-aarup": {
+    "file": "folkebladet-aarup.png",
+    "src": "https://folkebladet.net/wp-content/uploads/2021/03/folkebladet-favicon-64.png",
+    "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
+  "folkebladet-rebild": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-08T11:28:26Z",
+    "error": "HTTP 404"
   },
   "folkebladetlemvig": {
     "file": "folkebladetlemvig.png",
@@ -449,6 +503,18 @@
     "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
+  "frederiksbergliv": {
+    "file": "frederiksbergliv.png",
+    "src": "https://frederiksbergliv.dk/assets/1791279772/kodus/jfm-brands/brands/frederiksbergliv/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
+  "frederiksbergliv--frederiksbergbladet-dk": {
+    "file": "frederiksbergliv--frederiksbergbladet-dk.png",
+    "src": "https://frederiksbergliv.dk/assets/1791279772/kodus/jfm-brands/brands/frederiksbergliv/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
   "frederiksborgamtsavis-dk": {
     "file": null,
     "src": null,
@@ -479,6 +545,12 @@
     "checked": "2026-10-07T22:37:50Z",
     "error": null
   },
+  "gladsaxenetnyt": {
+    "file": "gladsaxenetnyt.png",
+    "src": "https://gladsaxenetnyt.dk/static/favicon.png",
+    "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
   "graastenavis-dk": {
     "file": "graastenavis-dk.png",
     "src": "https://graastenavis.dk/wp-content/uploads/2016/04/graasten-aeble.png",
@@ -489,6 +561,24 @@
     "file": "greenpeace-danmark.png",
     "src": "https://www.greenpeace.org/denmark/wp-content/themes/planet4-master-theme/images/favicon-32x32.png",
     "checked": "2026-10-08T05:27:31Z",
+    "error": null
+  },
+  "hasserisavis": {
+    "file": "hasserisavis.webp",
+    "src": "https://i0.wp.com/hasserisavis.dk/wp-content/uploads/2022/03/cropped-favicon-1.png?fit=32%2C32&ssl=1",
+    "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
+  "heleherlev": {
+    "file": "heleherlev.png",
+    "src": "https://heleherlev.dk/wp-content/uploads/2017/10/72x72.png",
+    "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
+  "heleherlev--herlevbladet-dk": {
+    "file": "heleherlev--herlevbladet-dk.png",
+    "src": "https://heleherlev.dk/wp-content/uploads/2017/10/72x72.png",
+    "checked": "2026-10-08T11:28:26Z",
     "error": null
   },
   "helsingordagblad": {
@@ -503,6 +593,12 @@
     "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
+  "hjertingposten": {
+    "file": "hjertingposten.ico",
+    "src": "https://hjertingposten.dk/wp-content/uploads/favicon.ico",
+    "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
   "hoeringsportalen": {
     "file": "hoeringsportalen.ico",
     "src": "https://hoeringsportalen.dk/favicon.ico",
@@ -515,10 +611,28 @@
     "checked": "2026-10-08T00:08:49Z",
     "error": null
   },
+  "hornsherredlokalavis": {
+    "file": "hornsherredlokalavis.png",
+    "src": "https://www.hornsherredlokalavis.dk/wp-content/uploads/2018/11/cropped-Favicon-1-32x32.png",
+    "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
   "hsfo": {
     "file": "hsfo.png",
     "src": "https://hsfo.dk/assets/1791279772/kodus/jfm-brands/brands/hsfo/favicons/apple-icon-57x57.png",
     "checked": "2026-10-08T09:11:01Z",
+    "error": null
+  },
+  "hvidovreavis": {
+    "file": "hvidovreavis.png",
+    "src": "https://hvidovreavis.dk/wp-content/uploads/2026/07/cropped-ha-logo-ikon-32x32.png",
+    "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
+  "hvidovrenyt": {
+    "file": "hvidovrenyt.webp",
+    "src": "https://hvidovrenyt.dk/wp-content/uploads/2024/02/Favacon-Hvidovrenyt-150x150.webp",
+    "checked": "2026-10-08T11:28:26Z",
     "error": null
   },
   "information-dk": {
@@ -537,6 +651,12 @@
     "file": "itu-dk.ico",
     "src": "https://itu.dk/favicon.ico",
     "checked": "2026-10-08T05:27:31Z",
+    "error": null
+  },
+  "jammerbugtposten": {
+    "file": "jammerbugtposten.png",
+    "src": "https://www-static.jammerbugtposten.dk/wp-content/uploads/2019/02/Favicon.png",
+    "checked": "2026-10-08T11:28:26Z",
     "error": null
   },
   "jv": {
