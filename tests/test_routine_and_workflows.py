@@ -73,6 +73,16 @@ def test_routine_timeline_step():
     TimelineEvent.model_validate_json(line)
 
 
+def test_routine_rewrites_invalid_overview():
+    """Et overblik, der er blevet ugyldigt efter skrivningen, skrives forfra i næste kørsel."""
+    step = REDAKTOER.split("### 5. Opdatér overblikket", 1)[1].split("### 6.", 1)[0]
+    text = " ".join(step.split())
+    assert "En periode skal opdateres, når tabellen siger det, eller når dens fil er ugyldig." in text
+    # Tjekket gælder alle filer, så det skal køres uden --period og før skrivningen
+    assert "\n.venv/bin/python -m affaldsfeed validate-overview\n" in step
+    assert step.index("validate-overview\n") < step.index("overview-input --period P")
+
+
 def test_publish_runs_on_timeline():
     wf = yaml.safe_load((ROOT / ".github" / "workflows" / "publish.yml").read_text(encoding="utf-8"))
     on = wf.get("on", wf.get(True))

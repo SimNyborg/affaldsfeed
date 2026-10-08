@@ -98,7 +98,7 @@ Fejl vises som `fil:linje: besked`. Ret kun fejl i linjer, du selv har skrevet i
 
 ### 5. Opdatér overblikket
 
-Afgør først, hvilke perioder der skal opdateres i denne kørsel:
+Afgør først, hvilke perioder der skal opdateres i denne kørsel. En periode skal opdateres, når tabellen siger det, eller når dens fil er ugyldig.
 
 | Periode | Opdateres når |
 |---|---|
@@ -106,6 +106,14 @@ Afgør først, hvilke perioder der skal opdateres i denne kørsel:
 | `uge` | `TIME` er 06 eller 14, eller filen mangler, eller `generated` er over 12 timer gammel |
 | `maaned` | `TIME` er 06, eller filen mangler, eller `generated` er over 24 timer gammel |
 | `aar` | `UGEDAG` er 1 og `TIME` er 06, eller filen mangler, eller `generated` er over 8 dage gammel |
+
+Denne kommando viser, om filerne er gyldige. Den skriver `OK` eller en fejl for hver fil:
+
+```bash
+.venv/bin/python -m affaldsfeed validate-overview
+```
+
+En fil kan blive ugyldig, efter du har skrevet den, fx når et indslag, den henviser til, forsvinder fra feedet, fordi kilden ikke længere er aktiv.
 
 Gør følgende for hver periode `P`, der skal opdateres (`dag`, `uge`, `maaned` eller `aar`):
 
