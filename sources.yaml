@@ -2367,7 +2367,7 @@
   homepage: https://nomi4s.dk
   method: html
   feeds: https://nomi4s.dk/alle-nyheder
-  match: "/alle-nyheder/[^/]+$"
+  match: "/alle-nyheder/nyhed/[^/?]+"
   filter: none
   places: [k:holstebro, k:lemvig, k:skive, k:struer]
   basis: offentlig
@@ -2815,13 +2815,45 @@
   homepage: https://www.favrskovforsyning.dk
   method: html
   feeds: https://www.favrskovforsyning.dk/nyheder
-  match: "/nyheder/[^/]+$"
+  match: "favrskovforsyning\\.dk/[a-z0-9]+(-[a-z0-9]+){2,}$"
   filter: normal
   places: [k:favrskov]
   basis: offentlig
   status: aktiv
   checked: 2026-10-09
-  note: Forsyning i Favrskov Kommune (affald, vand og spildevand). Nyhedslisten.
+  note: >-
+    Forsyning i Favrskov Kommune (affald, vand og spildevand). Nyhedslisten, hvor nyhederne ligger
+    direkte under roden.
+
+- id: kerteminde-forsyning
+  name: Kerteminde Forsyning
+  category: kommunal
+  homepage: https://www.kertemindeforsyning.dk
+  method: html
+  feeds: https://www.kertemindeforsyning.dk/nyheder
+  match: "kertemindeforsyning\\.dk/[a-z0-9]+(-[a-z0-9]+){2,}$"
+  filter: normal
+  places: [k:kerteminde]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Forsyning i Kerteminde Kommune (affald, vand, spildevand og fjernvarme). Nyhedslisten, hvor
+    nyhederne ligger direkte under roden.
+
+- id: langeland-forsyning
+  name: Langeland Forsyning
+  category: kommunal
+  homepage: https://www.langeland-forsyning.dk
+  method: html
+  feeds: https://www.langeland-forsyning.dk/
+  match: "/nyheder/"
+  filter: normal
+  places: [k:langeland]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Afprøves.
 
 # Kommunernes egne nyheder. Kortlagt 2026-10-09 for alle 98 kommuner, se docs/KOMMUNER.md.
 - id: koebenhavn-kommune

@@ -1,36 +1,7 @@
-# Runde A5: de kommunale affaldsselskaber hentet med check --fetch --explain, og de sidste nyhedsruter
-links https://www.kertemindeforsyning.dk/ . 80
-sitemap https://www.forsyningen.dk/sitemap.xml (?i)nyhed|aktuel|presse|artikel 30
-robots https://www.langeland-forsyning.dk/ https://www.kredslob.dk/
-afld
-arwos
-nyborg-forsyning
-toender-forsyning
-energnist
-silkeborg-forsyning
-din-forsyning
-assens-forsyning
-fors
-faxe-forsyning
-ffv
-forsyning-helsingoer
-fredensborg-forsyning
-glostrup-forsyning
-gribskov-forsyning
-halsnaes-forsyning
-hilleroed-forsyning
-ltf
-middelfart-affald
-provas
-thy-forsyning
-vand-og-affald
-ren-forsyning-mariagerfjord
-revas
-vesthimmerlands-forsyning
-htk-forsyning
-fjernvarme-fyn
-maabjerg-energy-center
-aeroe-forsyning
+# Runde A6: rettede mønstre for Favrskov og Nomi4s, Kerteminde og Langeland, Forsyningen
+url https://www.langeland-forsyning.dk/robots.txt 3
+links https://www.forsyningen.dk/ (?i)nyhed|aktuel|presse 30
 favrskov-forsyning
 nomi4s
-norfors
+kerteminde-forsyning
+langeland-forsyning
