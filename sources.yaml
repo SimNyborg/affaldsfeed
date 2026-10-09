@@ -2334,54 +2334,6 @@
   checked: 2026-10-07
   note: Multiforsyning (vand og affald).
 
-- id: frederikssund-kommune
-  name: Frederikssund Kommune
-  category: kommunal
-  homepage: https://www.frederikssund.dk
-  method: rss
-  feeds: https://www.frederikssund.dk/rss/nyheder
-  filter: strict
-  basis: offentlig
-  status: kandidat
-  checked: 2026-10-07
-  note: Kommunalt nyhedsfeed. Ikke verificeret endnu.
-
-- id: varde-kommune
-  name: Varde Kommune
-  category: kommunal
-  homepage: https://www.vardekommune.dk
-  method: rss
-  feeds: []
-  filter: strict
-  basis: offentlig
-  status: kandidat
-  checked: 2026-10-07
-  note: Kommunen har efter sigende et RSS-feed. URL'en skal findes (find-feed).
-
-- id: taarnby-kommune
-  name: Tårnby Kommune
-  category: kommunal
-  homepage: https://www.taarnby.dk
-  method: rss
-  feeds: []
-  filter: strict
-  basis: offentlig
-  status: kandidat
-  checked: 2026-10-07
-  note: Kommunen har efter sigende et RSS-feed. URL'en skal findes (find-feed).
-
-- id: skive-kommune
-  name: Skive Kommune
-  category: kommunal
-  homepage: https://www.skive.dk
-  method: rss
-  feeds: []
-  filter: strict
-  basis: offentlig
-  status: kandidat
-  checked: 2026-10-07
-  note: Kommunen har efter sigende et RSS-feed. URL'en skal findes (find-feed).
-
 - id: norfors
   name: Norfors
   category: kommunal
@@ -2441,6 +2393,1464 @@
   status: fravalgt
   checked: 2026-10-07
   note: Feedet er ikke opdateret siden 2023.
+
+# Kommunernes egne nyheder. Kortlagt 2026-10-09 for alle 98 kommuner, se docs/KOMMUNER.md.
+- id: koebenhavn-kommune
+  name: Københavns Kommune
+  category: kommunal
+  homepage: https://www.kk.dk
+  method: sitemap
+  feeds:
+    - https://www.kk.dk/sitemap.xml?page=1
+    - https://www.kk.dk/sitemap.xml?page=2
+  match: "/nyheder/[^/]+$"
+  filter: strict
+  places: [k:koebenhavn]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Sitemap-indekset peger på localhost, så de to under-sitemaps hentes direkte. Strengt filter.
+
+- id: frederiksberg-kommune
+  name: Frederiksberg Kommune
+  category: kommunal
+  homepage: https://www.frederiksberg.dk
+  method: sitemap
+  feeds: https://www.frederiksberg.dk/sitemap.xml
+  match: "/kommunen/nyheder/[^/]+$"
+  filter: strict
+  places: [k:frederiksberg]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: dragoer-kommune
+  name: Dragør Kommune
+  category: kommunal
+  homepage: https://www.dragoer.dk
+  method: sitemap
+  feeds: https://www.dragoer.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/(?!nyhed$)[^/]+$"
+  filter: strict
+  places: [k:dragoer]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: taarnby-kommune
+  name: Tårnby Kommune
+  category: kommunal
+  homepage: https://www.taarnby.dk
+  method: sitemap
+  feeds: https://www.taarnby.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/[^/]+/?$"
+  filter: strict
+  places: [k:taarnby]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: albertslund-kommune
+  name: Albertslund Kommune
+  category: kommunal
+  homepage: https://albertslund.dk
+  method: sitemap
+  feeds: https://albertslund.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}-[0-9]{2}/[^/]+$"
+  filter: strict
+  places: [k:albertslund]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: broendby-kommune
+  name: Brøndby Kommune
+  category: kommunal
+  homepage: https://www.brondby.dk
+  method: sitemap
+  feeds: https://www.brondby.dk/sitemap.xml
+  match: "/om-kommunen/nyheder/20[0-9]{2}/[0-9]{2}/[^/]+$"
+  filter: strict
+  places: [k:broendby]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: gladsaxe-kommune
+  name: Gladsaxe Kommune
+  category: kommunal
+  homepage: https://www.gladsaxe.dk
+  method: sitemap
+  feeds: https://www.gladsaxe.dk/sitemap.xml
+  match: "/(nyhedsarkiv|nyheder-om-[^/]+|nyheder-til-virksomheder)/[^/]+$"
+  filter: strict
+  places: [k:gladsaxe]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: glostrup-kommune
+  name: Glostrup Kommune
+  category: kommunal
+  homepage: https://www.glostrup.dk
+  method: sitemap
+  feeds: https://www.glostrup.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/[a-z]{3}/[^/]+$"
+  filter: strict
+  places: [k:glostrup]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: hvidovre-kommune
+  name: Hvidovre Kommune
+  category: kommunal
+  homepage: https://www.hvidovre.dk
+  method: sitemap
+  feeds: https://www.hvidovre.dk/sitemap.xml
+  match: "/om-kommunen/(nyheder|presse/pressemeddelelser)/20[0-9]{2}/[a-z]{3}/[^/]+$"
+  filter: strict
+  places: [k:hvidovre]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: hoeje-taastrup-kommune
+  name: Høje-Taastrup Kommune
+  category: kommunal
+  homepage: https://www.htk.dk
+  method: sitemap
+  feeds: https://www.htk.dk/sitemap.xml
+  match: "/om-kommunen/presserum/nyheder/[^/]+$"
+  filter: strict
+  places: [k:hoeje-taastrup]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: ishoej-kommune
+  name: Ishøj Kommune
+  category: kommunal
+  homepage: https://ishoj.dk
+  method: sitemap
+  feeds: https://ishoj.dk/sitemap.xml
+  match: "/aktuelt/nyheder/[^/]+/?$"
+  filter: strict
+  places: [k:ishoej]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: lyngby-taarbaek-kommune
+  name: Lyngby-Taarbæk Kommune
+  category: kommunal
+  homepage: https://www.ltk.dk
+  method: sitemap
+  feeds: https://www.ltk.dk/sitemap.xml
+  match: "/om-kommunen/nyheder/20[0-9]{2}/[^/]+$"
+  filter: strict
+  places: [k:lyngby-taarbaek]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: roedovre-kommune
+  name: Rødovre Kommune
+  category: kommunal
+  homepage: https://www.rk.dk
+  method: sitemap
+  feeds: https://www.rk.dk/sitemap.xml
+  match: "/service-og-pressemeddelelser-20[0-9]{2}/[^/]+$"
+  filter: strict
+  places: [k:roedovre]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: vallensbaek-kommune
+  name: Vallensbæk Kommune
+  category: kommunal
+  homepage: https://www.vallensbaek.dk
+  method: sitemap
+  feeds: https://www.vallensbaek.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/[a-z]{3}/[^/]+$"
+  filter: strict
+  places: [k:vallensbaek]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: egedal-kommune
+  name: Egedal Kommune
+  category: kommunal
+  homepage: https://www.egedalkommune.dk
+  method: sitemap
+  feeds: https://www.egedalkommune.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: strict
+  places: [k:egedal]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: fredensborg-kommune
+  name: Fredensborg Kommune
+  category: kommunal
+  homepage: https://www.fredensborg.dk
+  method: sitemap
+  feeds: https://www.fredensborg.dk/sitemap.xml
+  match: "/borgerinformation/nyheder/[^/]+$"
+  filter: strict
+  places: [k:fredensborg]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: frederikssund-kommune
+  name: Frederikssund Kommune
+  category: kommunal
+  homepage: https://www.frederikssund.dk
+  method: rss
+  feeds: https://www.frederikssund.dk/rss/nyheder
+  filter: strict
+  places: [k:frederikssund]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Kommunens nyhedsfeed. Strengt filter.
+
+- id: furesoe-kommune
+  name: Furesø Kommune
+  category: kommunal
+  homepage: https://www.furesoe.dk
+  method: sitemap
+  feeds: https://www.furesoe.dk/sitemap.xml
+  match: "/nyheder-samlet/[^/]+/[^/]+$"
+  filter: strict
+  places: [k:furesoe]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: gribskov-kommune
+  name: Gribskov Kommune
+  category: kommunal
+  homepage: https://www.gribskov.dk
+  method: sitemap
+  feeds: https://www.gribskov.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/[a-z]+/(?!newspage$)[^/]+$"
+  filter: strict
+  places: [k:gribskov]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: halsnaes-kommune
+  name: Halsnæs Kommune
+  category: kommunal
+  homepage: https://www.halsnaes.dk
+  method: sitemap
+  feeds: https://www.halsnaes.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/[a-z]{3}/[^/]+$"
+  filter: strict
+  places: [k:halsnaes]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Sitemappet er langsomt og har givet timeout. Strengt filter.
+
+- id: helsingoer-kommune
+  name: Helsingør Kommune
+  category: kommunal
+  homepage: https://www.helsingor.dk
+  method: sitemap
+  feeds: https://www.helsingor.dk/sitemap.xml
+  match: "/nyheder-og-presse/nyheder/20[0-9]{2}/[a-z]+/[^/]+$"
+  filter: strict
+  places: [k:helsingoer]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: hilleroed-kommune
+  name: Hillerød Kommune
+  category: kommunal
+  homepage: https://www.hillerod.dk
+  method: html
+  feeds: https://www.hillerod.dk/
+  match: "/nyheder-og-fakta/nyheder/20[0-9]{2}/[^/]+/?$"
+  filter: strict
+  places: [k:hilleroed]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Nyhedslisten hentes med JavaScript, så forsidens seneste nyheder bruges. Strengt filter.
+
+- id: hoersholm-kommune
+  name: Hørsholm Kommune
+  category: kommunal
+  homepage: https://www.horsholm.dk
+  method: sitemap
+  feeds: https://www.horsholm.dk/sitemap.xml
+  match: "/nyhed/[^/]+$"
+  filter: strict
+  places: [k:hoersholm]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: rudersdal-kommune
+  name: Rudersdal Kommune
+  category: kommunal
+  homepage: https://www.rudersdal.dk
+  method: sitemap
+  feeds: https://www.rudersdal.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: strict
+  places: [k:rudersdal]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: bornholm-kommune
+  name: Bornholms Regionskommune
+  category: kommunal
+  homepage: https://bornholm.dk
+  method: sitemap
+  feeds: https://bornholm.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/[a-z]{3}/[^/]+$"
+  filter: strict
+  places: [k:bornholm]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: greve-kommune
+  name: Greve Kommune
+  category: kommunal
+  homepage: https://greve.dk
+  method: sitemap
+  feeds: https://greve.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/[^/]+$"
+  filter: strict
+  places: [k:greve]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: koege-kommune
+  name: Køge Kommune
+  category: kommunal
+  homepage: https://www.koege.dk
+  method: sitemap
+  feeds: https://www.koege.dk/sitemap.xml
+  match: "/nyheder-og-aktuelt/nyheder/[^/]+$"
+  filter: strict
+  places: [k:koege]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: lejre-kommune
+  name: Lejre Kommune
+  category: kommunal
+  homepage: https://www.lejre.dk
+  method: sitemap
+  feeds: https://www.lejre.dk/sitemap.xml
+  match: "/alle-nyheder/20[0-9]{2}/[a-z]{3}/[^/]+$"
+  filter: strict
+  places: [k:lejre]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: roskilde-kommune
+  name: Roskilde Kommune
+  category: kommunal
+  homepage: https://www.roskilde.dk
+  method: sitemap
+  feeds: https://www.roskilde.dk/sitemap.xml
+  match: "/da-dk/nyheder/[^/]+/?$"
+  filter: strict
+  places: [k:roskilde]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: solroed-kommune
+  name: Solrød Kommune
+  category: kommunal
+  homepage: https://www.solrod.dk
+  method: sitemap
+  feeds: https://www.solrod.dk/sitemap.xml
+  match: "/aktuelt/nyheder/20[0-9]{2}/[a-z]{3}/[^/]+$"
+  filter: strict
+  places: [k:solroed]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Sitemappet er langsomt og har givet timeout. Strengt filter.
+
+- id: faxe-kommune
+  name: Faxe Kommune
+  category: kommunal
+  homepage: https://www.faxekommune.dk
+  method: sitemap
+  feeds: https://www.faxekommune.dk/sitemap.xml
+  match: "/da/nyheder/[^/]+$"
+  filter: strict
+  places: [k:faxe]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: guldborgsund-kommune
+  name: Guldborgsund Kommune
+  category: kommunal
+  homepage: https://www.guldborgsund.dk
+  method: sitemap
+  feeds: https://www.guldborgsund.dk/sitemap.xml
+  match: "/nyheder-og-pressemeddelelser/(20[0-9]{2}|ritzau)/[^/]+$"
+  filter: strict
+  places: [k:guldborgsund]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: holbaek-kommune
+  name: Holbæk Kommune
+  category: kommunal
+  homepage: https://holbaek.dk
+  method: sitemap
+  feeds: https://holbaek.dk/sitemap.xml
+  match: "/nyheder-og-presse/nyheder/20[0-9]{2}/[a-z]{3}/[^/]+$"
+  filter: strict
+  places: [k:holbaek]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: kalundborg-kommune
+  name: Kalundborg Kommune
+  category: kommunal
+  homepage: https://www.kalundborg.dk
+  method: sitemap
+  feeds: https://www.kalundborg.dk/sitemap.xml
+  match: "/nyheder-og-pressemeddelelser/20[0-9]{2}/[a-z]{3}/[^/]+$"
+  filter: strict
+  places: [k:kalundborg]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: lolland-kommune
+  name: Lolland Kommune
+  category: kommunal
+  homepage: https://www.lolland.dk
+  method: sitemap
+  feeds: https://www.lolland.dk/sitemap.xml
+  match: "/presse-og-kommunikation/nyheder/[^/]+$"
+  filter: strict
+  places: [k:lolland]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: naestved-kommune
+  name: Næstved Kommune
+  category: kommunal
+  homepage: https://www.naestved.dk
+  method: sitemap
+  feeds: https://www.naestved.dk/sitemap.xml
+  match: "/nyheder/nyheder-20[0-9]{2}/[^/]+$"
+  filter: strict
+  places: [k:naestved]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: odsherred-kommune
+  name: Odsherred Kommune
+  category: kommunal
+  homepage: https://www.odsherred.dk
+  method: sitemap
+  feeds: https://www.odsherred.dk/sitemap.xml
+  match: "/da/nyheder/[^/]+/?$"
+  filter: strict
+  places: [k:odsherred]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: soroe-kommune
+  name: Sorø Kommune
+  category: kommunal
+  homepage: https://www.soroe.dk
+  method: sitemap
+  feeds: https://www.soroe.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/[a-z]{3}/[^/]+$"
+  filter: strict
+  places: [k:soroe]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: stevns-kommune
+  name: Stevns Kommune
+  category: kommunal
+  homepage: https://www.stevns.dk
+  method: sitemap
+  feeds: https://www.stevns.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/[a-z]+/[^/]+$"
+  filter: strict
+  places: [k:stevns]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: vordingborg-kommune
+  name: Vordingborg Kommune
+  category: kommunal
+  homepage: https://www.vordingborg.dk
+  method: sitemap
+  feeds: https://www.vordingborg.dk/sitemap.xml
+  match: "/kommunen/nyheder/20[0-9]{2}/[a-z]{3}/[^/]+$"
+  filter: strict
+  places: [k:vordingborg]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: assens-kommune
+  name: Assens Kommune
+  category: kommunal
+  homepage: https://www.assens.dk
+  method: sitemap
+  feeds: https://www.assens.dk/sitemap.xml
+  match: "/nyheder-og-pressemeddelelser/[^/]+$"
+  filter: strict
+  places: [k:assens]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: faaborg-midtfyn-kommune
+  name: Faaborg-Midtfyn Kommune
+  category: kommunal
+  homepage: https://www.fmk.dk
+  method: sitemap
+  feeds: https://www.fmk.dk/sitemap.xml
+  match: "/se-alle-nyheder/[^/]+/?$"
+  filter: strict
+  places: [k:faaborg-midtfyn]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: kerteminde-kommune
+  name: Kerteminde Kommune
+  category: kommunal
+  homepage: https://www.kerteminde.dk
+  method: sitemap
+  feeds: https://www.kerteminde.dk/sitemap.xml
+  match: "/kommunen/nyheder/[^/]+$"
+  filter: strict
+  places: [k:kerteminde]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: langeland-kommune
+  name: Langeland Kommune
+  category: kommunal
+  homepage: https://www.langelandkommune.dk
+  method: sitemap
+  feeds: https://www.langelandkommune.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: strict
+  places: [k:langeland]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: middelfart-kommune
+  name: Middelfart Kommune
+  category: kommunal
+  homepage: https://middelfart.dk
+  method: sitemap
+  feeds: https://www.middelfart.dk/Handlers/Sitemap.ashx
+  match: "/nyheder/20[0-9]{2}/[a-z]{3}/[^/]+$"
+  filter: strict
+  places: [k:middelfart]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: nordfyns-kommune
+  name: Nordfyns Kommune
+  category: kommunal
+  homepage: https://www.nordfynskommune.dk
+  method: sitemap
+  feeds: https://www.nordfynskommune.dk/sitemap.xml
+  match: "/nyheder/[^/]+/?$"
+  filter: strict
+  places: [k:nordfyns]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: nyborg-kommune
+  name: Nyborg Kommune
+  category: kommunal
+  homepage: https://www.nyborg.dk
+  method: sitemap
+  feeds: https://www.nyborg.dk/sitemap.xml
+  match: "/da/nyheder/[^/]+/?$"
+  filter: strict
+  places: [k:nyborg]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: odense-kommune
+  name: Odense Kommune
+  category: kommunal
+  homepage: https://www.odense.dk
+  method: sitemap
+  feeds: https://www.odense.dk/sitemap.xml
+  match: "/presse/pressemeddelelser/pressemeddelelser-20[0-9]{2}/[^/]+$"
+  filter: strict
+  places: [k:odense]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: svendborg-kommune
+  name: Svendborg Kommune
+  category: kommunal
+  homepage: https://www.svendborg.dk
+  method: sitemap
+  feeds: https://www.svendborg.dk/sitemap.xml
+  match: "/nyheder/[^/]+/?$"
+  filter: strict
+  places: [k:svendborg]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: aeroe-kommune
+  name: Ærø Kommune
+  category: kommunal
+  homepage: https://www.aeroekommune.dk
+  method: sitemap
+  feeds: https://www.aeroekommune.dk/sitemap.xml
+  match: "/kommunikation-og-presse/nyheder/[^/]+$"
+  filter: strict
+  places: [k:aeroe]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: billund-kommune
+  name: Billund Kommune
+  category: kommunal
+  homepage: https://www.billund.dk
+  method: sitemap
+  feeds: https://www.billund.dk/sitemap.xml
+  match: "(/nyheder/senest-nyt-om-grindsted-forureningerne/[^/]+|/nyheder-om-klima/(seneste-nyheder-om-klima|arkiv-over-klimanyheder))/[^/]+$"
+  filter: strict
+  places: [k:billund]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Nyheder om Grindsted-forureningerne og klima fra sitemappet. De øvrige nyheder står ikke i
+    sitemappet.
+
+- id: esbjerg-kommune
+  name: Esbjerg Kommune
+  category: kommunal
+  homepage: https://www.esbjerg.dk
+  method: rss
+  feeds: https://via.ritzau.dk/rss/releases/latest?publisherId=13560064
+  filter: strict
+  places: [k:esbjerg]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Pressemeddelelser via Ritzau (via.ritzau.dk), fordi hjemmesiden svarer 403 til vores UA. Strengt
+    filter.
+
+- id: fanoe-kommune
+  name: Fanø Kommune
+  category: kommunal
+  homepage: https://www.fanoe.dk
+  method: sitemap
+  feeds: https://www.fanoe.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: strict
+  places: [k:fanoe]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: fredericia-kommune
+  name: Fredericia Kommune
+  category: kommunal
+  homepage: https://www.fredericia.dk
+  method: sitemap
+  feeds: https://www.fredericia.dk/sitemap.xml
+  match: "/da/nyheder/[^/]+$"
+  filter: strict
+  places: [k:fredericia]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: haderslev-kommune
+  name: Haderslev Kommune
+  category: kommunal
+  homepage: https://www.haderslev.dk
+  method: sitemap
+  feeds: https://www.haderslev.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: strict
+  places: [k:haderslev]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: kolding-kommune
+  name: Kolding Kommune
+  category: kommunal
+  homepage: https://www.kolding.dk
+  method: sitemap
+  feeds: https://www.kolding.dk/sitemap.xml
+  match: "/om-kommunen/nyhedsarkiv/[^/]+$"
+  filter: strict
+  places: [k:kolding]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: toender-kommune
+  name: Tønder Kommune
+  category: kommunal
+  homepage: https://www.toender.dk
+  method: sitemap
+  feeds: https://www.toender.dk/sitemap.xml
+  match: "/nyheder-og-pressemeddelelser/[^/]+/?$"
+  filter: strict
+  places: [k:toender]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: varde-kommune
+  name: Varde Kommune
+  category: kommunal
+  homepage: https://vardekommune.dk
+  method: rss
+  feeds: https://vardekommune.dk/feed/
+  filter: strict
+  places: [k:varde]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Kommunens nyhedsfeed. Strengt filter.
+
+- id: vejen-kommune
+  name: Vejen Kommune
+  category: kommunal
+  homepage: https://www.vejen.dk
+  method: sitemap
+  feeds: https://www.vejen.dk/sitemap.xml
+  match: "/presserum/pressemeddelelser-og-nyheder/[^/]+$"
+  filter: strict
+  places: [k:vejen]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: vejle-kommune
+  name: Vejle Kommune
+  category: kommunal
+  homepage: https://www.vejle.dk
+  method: sitemap
+  feeds: https://www.vejle.dk/sitemap.xml
+  match: "/da/nyheder/[^/]+/?$"
+  filter: strict
+  places: [k:vejle]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: aabenraa-kommune
+  name: Aabenraa Kommune
+  category: kommunal
+  homepage: https://aabenraa.dk
+  method: sitemap
+  feeds: https://aabenraa.dk/sitemap.xml
+  match: "/om-kommunen/nyheder/nyheder/(ritzau/)?[^/]+$"
+  filter: strict
+  places: [k:aabenraa]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: favrskov-kommune
+  name: Favrskov Kommune
+  category: kommunal
+  homepage: https://www.favrskov.dk
+  method: sitemap
+  feeds: https://www.favrskov.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: strict
+  places: [k:favrskov]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: hedensted-kommune
+  name: Hedensted Kommune
+  category: kommunal
+  homepage: https://www.hedensted.dk
+  method: sitemap
+  feeds: https://www.hedensted.dk/sitemap.xml
+  match: "/om-kommunen/nyheder-og-presse/(pressemeddelelser|nyheder)/[^/]+$"
+  filter: strict
+  places: [k:hedensted]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: horsens-kommune
+  name: Horsens Kommune
+  category: kommunal
+  homepage: https://www.horsens.dk
+  method: sitemap
+  feeds: https://www.horsens.dk/sitemap.xml
+  match: "/presse/pressemeddelelser/[^/]+$"
+  filter: strict
+  places: [k:horsens]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: norddjurs-kommune
+  name: Norddjurs Kommune
+  category: kommunal
+  homepage: https://www.norddjurs.dk
+  method: sitemap
+  feeds: https://www.norddjurs.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/[a-z]+/[^/]+$"
+  filter: strict
+  places: [k:norddjurs]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: odder-kommune
+  name: Odder Kommune
+  category: kommunal
+  homepage: https://www.odder.dk
+  method: sitemap
+  feeds: https://www.odder.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/[a-z]{3}/[^/]+$"
+  filter: strict
+  places: [k:odder]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: randers-kommune
+  name: Randers Kommune
+  category: kommunal
+  homepage: https://www.randers.dk
+  method: sitemap
+  feeds: https://www.randers.dk/sitemap.xml
+  match: "/nyheder/[^/]+/?$"
+  filter: strict
+  places: [k:randers]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: samsoe-kommune
+  name: Samsø Kommune
+  category: kommunal
+  homepage: https://www.samsoe.dk
+  method: sitemap
+  feeds: https://www.samsoe.dk/sitemap.xml
+  match: "/nyheder-og-presse/nyheder/[^/]+$"
+  filter: strict
+  places: [k:samsoe]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: silkeborg-kommune
+  name: Silkeborg Kommune
+  category: kommunal
+  homepage: https://www.silkeborg.dk
+  method: sitemap
+  feeds: https://www.silkeborg.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: strict
+  places: [k:silkeborg]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: skanderborg-kommune
+  name: Skanderborg Kommune
+  category: kommunal
+  homepage: https://www.skanderborg.dk
+  method: html
+  feeds: https://www.skanderborg.dk/nyheder
+  match: "/nyheder/[^/]+$"
+  filter: strict
+  places: [k:skanderborg]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: "Kommunens nyhedsliste. Strengt filter: kun links med et affaldsord hentes."
+
+- id: syddjurs-kommune
+  name: Syddjurs Kommune
+  category: kommunal
+  homepage: https://www.syddjurs.dk
+  method: sitemap
+  feeds: https://www.syddjurs.dk/sitemap.xml
+  match: "/nyheder/(nyheder|pressemeddelelser)/[^/]+$"
+  filter: strict
+  places: [k:syddjurs]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: aarhus-kommune
+  name: Aarhus Kommune
+  category: kommunal
+  homepage: https://aarhus.dk
+  method: sitemap
+  feeds: https://aarhus.dk/sitemap.xml
+  match: "/nyt/[^/]+/(20[0-9]{2}/[^/]+/)?[^/]+$"
+  filter: strict
+  places: [k:aarhus]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: herning-kommune
+  name: Herning Kommune
+  category: kommunal
+  homepage: https://www.herning.dk
+  method: sitemap
+  feeds: https://www.herning.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/[^/]+$"
+  filter: strict
+  places: [k:herning]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: holstebro-kommune
+  name: Holstebro Kommune
+  category: kommunal
+  homepage: https://www.holstebro.dk
+  method: html
+  feeds: https://www.holstebro.dk/nyheder
+  match: "/nyheder/nyhed/[^/?]+[?]PID="
+  filter: strict
+  places: [k:holstebro]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: "Kommunens nyhedsliste. Strengt filter: kun links med et affaldsord hentes."
+
+- id: ikast-brande-kommune
+  name: Ikast-Brande Kommune
+  category: kommunal
+  homepage: https://ikast-brande.dk
+  method: html
+  feeds: https://ikast-brande.dk/aktuelt-og-presse/nyheder
+  match: "/aktuelt-og-presse/nyheder/20[0-9]{2}/[^/]+$"
+  filter: strict
+  places: [k:ikast-brande]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: "Kommunens nyhedsliste. Strengt filter: kun links med et affaldsord hentes."
+
+- id: lemvig-kommune
+  name: Lemvig Kommune
+  category: kommunal
+  homepage: https://www.lemvig.dk
+  method: sitemap
+  feeds: https://www.lemvig.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/[a-z]{3}/[^/]+$"
+  filter: strict
+  places: [k:lemvig]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: ringkoebing-skjern-kommune
+  name: Ringkøbing-Skjern Kommune
+  category: kommunal
+  homepage: https://www.rksk.dk
+  method: html
+  feeds: https://www.rksk.dk/nyheder
+  match: "/nyheder/kommunen/20[0-9]{2}/[a-z]+/[^/]+$"
+  filter: strict
+  places: [k:ringkoebing-skjern]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: "Kommunens nyhedsliste. Strengt filter: kun links med et affaldsord hentes."
+
+- id: skive-kommune
+  name: Skive Kommune
+  category: kommunal
+  homepage: https://www.skive.dk
+  method: sitemap
+  feeds: https://www.skive.dk/sitemap.xml
+  match: "/news/[^/]+/[^/]+/?$"
+  filter: strict
+  places: [k:skive]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: struer-kommune
+  name: Struer Kommune
+  category: kommunal
+  homepage: https://www.struer.dk
+  method: sitemap
+  feeds: https://www.struer.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/[a-z]+/[^/]+$"
+  filter: strict
+  places: [k:struer]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: viborg-kommune
+  name: Viborg Kommune
+  category: kommunal
+  homepage: https://viborg.dk
+  method: sitemap
+  feeds: https://viborg.dk/sitemap.xml
+  match: "/nyheder-og-presse/nyheder/[^/]+/?$"
+  filter: strict
+  places: [k:viborg]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: aalborg-kommune
+  name: Aalborg Kommune
+  category: kommunal
+  homepage: https://www.aalborg.dk
+  method: sitemap
+  feeds: https://www.aalborg.dk/sitemap.xml
+  match: "/se-alt-nyt/[^/]+/?$"
+  filter: strict
+  places: [k:aalborg]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: broenderslev-kommune
+  name: Brønderslev Kommune
+  category: kommunal
+  homepage: https://www.bronderslev.dk
+  method: sitemap
+  feeds: https://www.bronderslev.dk/sitemap.xml
+  match: "/om-kommunen/nyheder/nyheder/[^/]+$"
+  filter: strict
+  places: [k:broenderslev]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: frederikshavn-kommune
+  name: Frederikshavn Kommune
+  category: kommunal
+  homepage: https://frederikshavn.dk
+  method: sitemap
+  feeds: https://frederikshavn.dk/sitemap.xml
+  match: "/nyheder-og-pressemeddelelser/[^/]+/?$"
+  filter: strict
+  places: [k:frederikshavn]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: hjoerring-kommune
+  name: Hjørring Kommune
+  category: kommunal
+  homepage: https://www.hjoerring.dk
+  method: sitemap
+  feeds: https://www.hjoerring.dk/sitemap.xml
+  match: "/nyt-og-presse/nyheder/20[0-9]{2}/[a-z]{3}/[^/]+$"
+  filter: strict
+  places: [k:hjoerring]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: jammerbugt-kommune
+  name: Jammerbugt Kommune
+  category: kommunal
+  homepage: https://www.jammerbugt.dk
+  method: sitemap
+  feeds: https://www.jammerbugt.dk/sitemap.xml
+  match: "/nyheder/[^/]+/?$"
+  filter: strict
+  places: [k:jammerbugt]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: laesoe-kommune
+  name: Læsø Kommune
+  category: kommunal
+  homepage: https://www.laesoe.dk
+  method: sitemap
+  feeds: https://www.laesoe.dk/sitemap.xml
+  match: "/kommunen/nyhedsarkiv/[^/]+$"
+  filter: strict
+  places: [k:laesoe]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: mariagerfjord-kommune
+  name: Mariagerfjord Kommune
+  category: kommunal
+  homepage: https://www.mariagerfjord.dk
+  method: sitemap
+  feeds: https://www.mariagerfjord.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/[^/]+$"
+  filter: strict
+  places: [k:mariagerfjord]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: thisted-kommune
+  name: Thisted Kommune
+  category: kommunal
+  homepage: https://www.thisted.dk
+  method: sitemap
+  feeds: https://www.thisted.dk/Handlers/Sitemap.ashx
+  match: "/nyheder/20[0-9]{2}/[a-z]+/[^/]+$"
+  filter: strict
+  places: [k:thisted]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: vesthimmerlands-kommune
+  name: Vesthimmerlands Kommune
+  category: kommunal
+  homepage: https://vesthimmerland.dk
+  method: sitemap
+  feeds: https://vesthimmerland.dk/sitemap.xml
+  match: "/nyheder/20[0-9]{2}/[a-z]{3}/[^/]+$"
+  filter: strict
+  places: [k:vesthimmerlands]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+
+- id: gentofte-kommune
+  name: Gentofte Kommune
+  category: kommunal
+  homepage: https://gentofte.dk
+  method: html
+  feeds: []
+  filter: strict
+  places: [k:gentofte]
+  basis: offentlig
+  status: kandidat
+  checked: 2026-10-09
+  note: >-
+    Hjemmesiden svarer 403 til vores UA (botbeskyttelse), og den omgås ikke. Intet nyhedsrum hos Ritzau.
+
+- id: herlev-kommune
+  name: Herlev Kommune
+  category: kommunal
+  homepage: https://www.herlev.dk
+  method: html
+  feeds: []
+  filter: strict
+  places: [k:herlev]
+  basis: offentlig
+  status: kandidat
+  checked: 2026-10-09
+  note: >-
+    Hjemmesiden og sitemappet svarer 403 til vores UA (botbeskyttelse), og den omgås ikke. Intet
+    nyhedsrum hos Ritzau.
+
+- id: slagelse-kommune
+  name: Slagelse Kommune
+  category: kommunal
+  homepage: https://www.slagelse.dk
+  method: html
+  feeds: []
+  filter: strict
+  places: [k:slagelse]
+  basis: offentlig
+  status: kandidat
+  checked: 2026-10-09
+  note: >-
+    Hjemmesiden svarer 403 til vores UA (botbeskyttelse), og den omgås ikke. Intet nyhedsrum hos Ritzau.
+
+- id: ringsted-kommune
+  name: Ringsted Kommune
+  category: kommunal
+  homepage: https://www.ringsted.dk
+  method: html
+  feeds: []
+  filter: strict
+  places: [k:ringsted]
+  basis: offentlig
+  status: kandidat
+  checked: 2026-10-09
+  note: >-
+    Hjemmesiden svarer ikke fra GitHub Actions (forbindelsen timer ud). Intet nyhedsrum hos Ritzau.
+
+- id: morsoe-kommune
+  name: Morsø Kommune
+  category: kommunal
+  homepage: https://www.morsoe.dk
+  method: html
+  feeds: []
+  filter: strict
+  places: [k:morsoe]
+  basis: offentlig
+  status: kandidat
+  checked: 2026-10-09
+  note: >-
+    Hjemmesiden svarer ikke fra GitHub Actions (forbindelsen timer ud). Intet nyhedsrum hos Ritzau.
+
+- id: rebild-kommune
+  name: Rebild Kommune
+  category: kommunal
+  homepage: https://rebild.dk
+  method: html
+  feeds: []
+  filter: strict
+  places: [k:rebild]
+  basis: offentlig
+  status: kandidat
+  checked: 2026-10-09
+  note: Fandt ingen nyhedsliste og ingen nyheder i sitemappet. rss.xml viser kun ændrede sider.
+
+- id: alleroed-kommune
+  name: Allerød Kommune
+  category: kommunal
+  homepage: https://alleroed.dk
+  method: html
+  feeds: []
+  filter: strict
+  places: [k:alleroed]
+  basis: offentlig
+  status: kandidat
+  checked: 2026-10-09
+  note: >-
+    Nyhedslisten hentes med JavaScript, og sitemappet har kun de ugentlige samlesider "Nyt fra Allerød
+    Kommune".
+
+- id: ballerup-kommune
+  name: Ballerup Kommune
+  category: kommunal
+  homepage: https://ballerup.dk
+  method: html
+  feeds: []
+  filter: strict
+  places: [k:ballerup]
+  basis: offentlig
+  status: kandidat
+  checked: 2026-10-09
+  note: >-
+    Nyhedslisten hentes med JavaScript, rss.xml viser kun gamle sider, og der er intet sitemap.
+
+- id: soenderborg-kommune
+  name: Sønderborg Kommune
+  category: kommunal
+  homepage: https://sonderborgkommune.dk
+  method: html
+  feeds: []
+  filter: strict
+  places: [k:soenderborg]
+  basis: offentlig
+  status: kandidat
+  checked: 2026-10-09
+  note: >-
+    Nyhedslisten hentes med JavaScript, og rss.xml har kun offentliggørelser (lokalplaner og
+    tilladelser). SONFOR dækker affaldsnyhederne.
 
 # ── Organisation og branche ───────────────────────────────────
 - id: dansk-retursystem
@@ -2982,18 +4392,19 @@
   note: Uafhængigt universitetsmedie med mest universitetspolitik.
 
 - id: dtu
-  name: DTU
+  name: DTU (Danmarks Tekniske Universitet)
   category: forskning
   homepage: https://www.dtu.dk
   method: rss
-  feeds: https://orbit.dtu.dk/en/clippings/?search=waste&format=rss
+  feeds: https://via.ritzau.dk/rss/releases/latest?publisherId=13561337
   filter: strict
+  replaces: [dtu-dk]
   basis: forskning
-  status: kandidat
-  checked: 2026-10-07
+  status: aktiv
+  checked: 2026-10-09
   note: >-
-    Kun Orbit-clippings (medieomtaler) har RSS. Nyhedssiden er JavaScript, og robots.txt spærrer dele
-    af sitet for AI-agenter med lang Crawl-delay.
+    Pressemeddelelser via Ritzau (via.ritzau.dk). DTU's egen nyhedsliste hentes med JavaScript, og
+    sitemappet er et indeks over 460 undersites uden datoer.
 
 - id: mudp
   name: MUDP (Miljøteknologisk Udviklings- og Demonstrationsprogram)
@@ -3025,15 +4436,14 @@
   name: Aalborg Universitet
   category: forskning
   homepage: https://www.aau.dk
-  method: sitemap
-  feeds: https://www.aau.dk/sitemap.xml
+  method: rss
+  feeds: https://via.ritzau.dk/rss/releases/latest?publisherId=8155951
   filter: strict
+  replaces: [aau-dk]
   basis: forskning
-  status: kandidat
-  checked: 2026-10-07
-  note: >-
-    Ingen RSS. Sitemappet har lastmod, men ingen nyhedsartikler; nyhederne udsendes via Ritzau
-    (via.ritzau.dk/nyhedsrum/aalborg-universitet).
+  status: aktiv
+  checked: 2026-10-09
+  note: Pressemeddelelser via Ritzau (via.ritzau.dk). Sitemappet har ingen nyheder.
 
 - id: cbs
   name: CBS (Copenhagen Business School)
@@ -3041,22 +4451,27 @@
   homepage: https://www.cbs.dk
   method: sitemap
   feeds: https://www.cbs.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  lang: en
   filter: strict
+  replaces: [cbs-dk]
   basis: forskning
-  status: kandidat
-  checked: 2026-10-07
-  note: cbs.dk/rss.xml er tomt. Sitemappet har lastmod, men match-mønster for nyheder mangler.
+  status: aktiv
+  checked: 2026-10-09
+  note: Nyheder fra sitemappet, mest på engelsk. Strengt filter, så kun sider med et affaldsord i adressen hentes.
 
 - id: itu
-  name: IT-Universitetet
+  name: IT-Universitetet i København
   category: forskning
   homepage: https://itu.dk
-  feeds: https://itu.dk
+  method: rss
+  feeds: https://via.ritzau.dk/rss/releases/latest?publisherId=13560183
   filter: strict
+  replaces: [itu-dk]
   basis: forskning
-  status: kandidat
-  checked: 2026-10-07
-  note: Intet feed eller sitemap, og forsiden har ingen nyhedslinks (afprøvet 2026-10-07).
+  status: aktiv
+  checked: 2026-10-09
+  note: Pressemeddelelser via Ritzau (via.ritzau.dk). Forsiden har ingen nyhedslinks. Udgiver få pressemeddelelser.
 
 # ── EU og Norden ──────────────────────────────────────────────
 - id: dg-env

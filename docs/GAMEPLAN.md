@@ -8,7 +8,7 @@ Affaldsfeed bygges i seks faser. Fase 0 og 1 laves i den første lokale session 
 |---|---|---|
 | 0 | Fundament: config, kilderegister, `check`, CI og docs | Færdig |
 | 1 | Første live version: pipeline for RSS og søgning, site, workflows og Claude-routinen | Færdig, live 7. oktober 2026 |
-| 2 | Kilder uden RSS, Folketingets ODA og Claudes sweep | I gang: sitemap, html og ODA virker, og 153 kilder er aktive. Sweepet er ikke efterprøvet |
+| 2 | Kilder uden RSS, Folketingets ODA og Claudes sweep | I gang: sitemap, html og ODA virker, og 246 kilder er aktive, heraf 89 kommuner. Sweepet er ikke efterprøvet |
 | 3 | Kvalitet: "Hvorfor med?", bedre historier, kompakt visning | I gang: kompakt visning, dagsbundter og 150 testcases er færdige; niveau 3 og Via Ritzau er udskudt (se BESLUTNINGER) |
 | 4 | Brugerens kildeliste | Venter på listen |
 | 5 | Udvidelser | Kun ved konkret savn |
