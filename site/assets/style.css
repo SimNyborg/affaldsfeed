@@ -855,6 +855,11 @@ dialog.sheet .fg:first-child { border-top: 0; }
   white-space: nowrap;
 }
 .frow.is-zero .name { color: var(--muted); }
+/* En afsendertype, der afventer: låst afkrydsning, grå tekst og "Afventer", hvor tallet ellers står */
+.frow.is-pending { grid-template-columns: var(--cb) 16px minmax(0, 1fr) auto; cursor: default; }
+.frow.is-pending input { cursor: default; }
+.frow.is-pending .name { color: var(--muted); }
+.cat.is-pending .i { color: var(--muted); }
 .frow input:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
 @supports selector(:has(*)) {
   .frow input:focus-visible { outline: none; }
@@ -915,6 +920,18 @@ dialog.sheet .fg:first-child { border-top: 0; }
 .fsrc-cat[open] > summary .chev { transform: rotate(180deg); }
 .fsrc-name { font-weight: 600; }
 .fsrc-cat .opts { margin-top: 0; padding-bottom: 8px; }
+/* En type, der afventer, står som afsnittenes overskrift, men uden pil, og kan ikke foldes ud */
+.fsrc-pending {
+  display: grid;
+  grid-template-columns: var(--cb) auto minmax(0, 1fr) 16px;
+  align-items: center;
+  column-gap: 8px;
+  min-height: var(--h-row);
+  font-size: var(--t-xs);
+  line-height: var(--lh-xs);
+}
+.fsrc-pending .i { justify-self: center; width: 16px; height: 16px; }
+.fsrc-pending .fsrc-name { color: var(--muted); }
 
 /* Søgefelt med forslag (combobox.js) */
 .cbx { scroll-margin-top: 40px; } /* gruppens overskrift bliver stående over feltet */
@@ -1356,6 +1373,7 @@ dialog.sheet::backdrop { background: var(--backdrop); }
 /* Hover-flader kun med mus, så et tryk ikke efterlader noget, der ligner et valg */
 @media (hover: hover) {
   .frow:hover, .cbx-opt:hover, .fg > summary:hover, .fsrc-cat > summary:hover, .trow:hover { background: var(--hover-bg); }
+  .frow.is-pending:hover { background: none; }
   .seg > label:not(:has(input:checked)):hover, .seg > [role="tab"]:not([aria-selected="true"]):hover { color: var(--text); }
   .date-btn:not(.is-set):hover { color: var(--text); }
   .date-clear:hover { background: var(--hover-bg); color: var(--text); }

@@ -303,7 +303,8 @@ let GEO = false;
 export function setData(data) {
   const idx = (ids) => new Map(ids.map((id, i) => [id, i]));
   UNIVERSE = {
-    afsender: [...data.cats.keys()],
+    // En afsendertype, der afventer, kan ikke vælges og er derfor ikke et valg
+    afsender: [...data.cats.values()].filter((c) => !c.pending).map((c) => c.id),
     tema: [...data.topics.keys(), NO_TOPIC],
     kilde: [...data.sources.keys()].sort(),
     genre: [...data.genres.keys()],
@@ -812,17 +813,18 @@ const MAX_OFF_ROWS = 6; // fravalgte rækker, der bliver stående
 /**
  * Filterrække: ægte afkrydsning, evt. ikon, navn på én linje og tallet i en fast kolonne.
  * Skærmlæseren hører fx "Nyborg Kommune, i Region Syddanmark, 12 indslag" (`sr` er den skjulte kontekst).
+ * En række, der afventer (`pending`), har en låst afkrydsning og "Afventer" i stedet for tallet.
  */
-function frow({ name, title = null, iconName, style = null, onchange, sr = '' }) {
-  const input = el('input', { type: 'checkbox', onchange });
-  const num = document.createTextNode('');
+function frow({ name, title = null, iconName, style = null, onchange, sr = '', pending = false }) {
+  const input = el('input', { type: 'checkbox', onchange, disabled: pending });
+  const num = document.createTextNode(pending ? 'Afventer' : '');
   const withIcon = iconName !== undefined;
-  const label = el('label', { class: `frow${withIcon ? ' has-icon' : ''}${style ? ' cat' : ''}`, style, title },
+  const label = el('label', { class: `frow${withIcon ? ' has-icon' : ''}${style ? ' cat' : ''}${pending ? ' is-pending' : ''}`, style, title },
     input,
     withIcon ? (iconName ? icon(iconName) : el('span', { class: 'i' })) : null,
     // Kommaet står inline lige efter navnet, så navnet bliver "Kommunal, 6 indslag" uden mellemrum før kommaet
     el('span', { class: 'name' }, name, srPunct(), sr ? hidden(` ${sr},`) : null),
-    el('span', { class: 'n' }, num, hidden(' indslag')));
+    el('span', { class: 'n' }, num, pending ? null : hidden(' indslag')));
   return {
     label, input,
     set(on, n = 0) {
@@ -954,10 +956,11 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
     sted = { cbx, picked, fg };
   }
 
-  // Afsender: korte navne, fuldt navn i title
+  // Afsender: korte navne, fuldt navn i title. En type, der afventer, kan ikke vælges og opdateres ikke.
   const catRows = [...data.cats.values()].map((c) => {
     const name = c.short || c.name;
-    return addRow('afsender', c.id, { name, title: c.name !== name ? c.name : null, iconName: c.icon, style: catStyle(c) });
+    const opts = { name, title: c.name !== name ? c.name : null, iconName: c.icon, style: catStyle(c) };
+    return c.pending ? frow({ ...opts, pending: true }).label : addRow('afsender', c.id, opts);
   });
   addGroup(foldGroup('Afsender', tools('afsender'), fset('Afsender', catRows)), statusOf('afsender'), (s) => s.afsender.length > 0);
 
@@ -974,6 +977,12 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
   const srcIds = [...data.sources.keys()];
   const srcRows = new Map();
   const srcSections = [...data.cats.values()].map((c) => {
+    // En type, der afventer, er en række uden kilder, som ikke kan foldes ud
+    if (c.pending) {
+      const row = el('div', { class: 'fsrc-pending cat is-pending', style: catStyle(c) },
+        icon(c.icon), el('span', { class: 'fsrc-name' }, c.short || c.name, srPunct()), el('span', { class: 'fg-state', text: 'Afventer' }));
+      return { el: row, ids: [], pending: true };
+    }
     const ids = srcIds.filter((id) => data.sources.get(id).category === c.id)
       .sort((a, b) => data.sources.get(a).name.localeCompare(data.sources.get(b).name, 'da'));
     if (!ids.length) return null;
@@ -1004,7 +1013,7 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
 
   /**
    * Feltet skjuler kilder, der ikke passer, og typer uden kilder tilbage. Typer med træf foldes ud, mens
-   * der søges, og når feltet tømmes, er de foldet som før søgningen.
+   * der søges, og når feltet tømmes, er de foldet som før søgningen. Typer, der afventer, er skjult under søgning.
    */
   let searching = false;
   function filterSrc() {
@@ -1012,6 +1021,10 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
     if (qs.length && !searching) for (const sec of srcSections) sec.wasOpen = sec.el.open;
     let n = 0;
     for (const sec of srcSections) {
+      if (sec.pending) {
+        sec.el.hidden = qs.length > 0;
+        continue;
+      }
       let any = false;
       for (const id of sec.ids) {
         const { label, keys } = srcRows.get(id);
@@ -1050,6 +1063,7 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
     // Afsendertyperne under Kilde: intet, når alle typens kilder er valgt, ellers "5 af 17" eller "Ingen"
     const srcShown = shownSet(s, 'kilde');
     for (const sec of srcSections) {
+      if (sec.pending) continue;
       const on = srcShown ? sec.ids.filter((id) => srcShown.has(id)).length : sec.ids.length;
       const all = sec.ids.length;
       sec.status.textContent = on === all ? '' : on ? `${fmtNum(on)} af ${fmtNum(all)}` : 'Ingen';

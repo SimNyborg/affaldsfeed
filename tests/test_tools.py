@@ -142,6 +142,33 @@ def test_check_colors_strict(tmp_path):
     assert check_colors.main(["--file", str(close), "--strict"]) == 1
 
 
+def test_check_colors_skips_pending(tmp_path, capsys):
+    """En kategori, der afventer, vises gråt i menuen, så hverken kontrast eller afstand tjekkes."""
+    path = _write_categories(
+        tmp_path / "pending.yaml",
+        [("nyhedsmedie", "#1F5FA8", "#6FA8E8"), ("organisation", "#B35C00", "#F0A048"),
+         ("sociale_medier", "#FFFF00", "#1F5FA8")],
+    )
+    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    data[2]["pending"] = True
+    path.write_text(yaml.safe_dump(data), encoding="utf-8")
+    result = check_colors.check_palette(check_colors.load_palette(path))
+    assert result["pending"] == ["sociale_medier"]
+    assert {cid for _, cid, *_ in result["contrast"]} == {"nyhedsmedie", "organisation"}
+    assert check_colors.main(["--file", str(path), "--strict"]) == 0
+    assert "Afventer og vises gråt, så farven tjekkes ikke: sociale_medier" in capsys.readouterr().out
+    # Mindst to kategorier, der ikke afventer
+    data[1]["pending"] = True
+    path.write_text(yaml.safe_dump(data), encoding="utf-8")
+    assert check_colors.main(["--file", str(path)]) == 1
+
+
+def test_check_colors_real_palette_has_contrast(capsys):
+    """Paletten i config/categories.yaml klarer kontrastkravet (par under 20 er tilladt uden --strict)."""
+    assert check_colors.main([]) == 0
+    assert "Resultat: 0 kontrastfejl" in capsys.readouterr().out
+
+
 def test_check_colors_siblings_share_a_color(tmp_path, capsys):
     """Kategorier med samme farve i begge tilstande måles som én farve og nævnes i rapporten."""
     path = _write_categories(

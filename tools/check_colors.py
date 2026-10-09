@@ -6,6 +6,7 @@
   par under 10 rapporteres.
 - Kategorier med samme farve i begge tilstande er bevidste søskende (fx nationale medier og
   lokalmedier). Ikonet skiller dem ad, så de måles som én farve.
+- Kategorier, der afventer (`pending: true`), vises gråt i menuen og tjekkes ikke.
 
 Brug: python tools/check_colors.py [--file STI] [--strict]
 Exit 1 ved kontrastfejl (med --strict også ved for små farveafstande).
@@ -203,9 +204,10 @@ def load_palette(path: Path) -> list[dict]:
             raise ValueError(f"{path.name}: hver kategori skal have id, color og color_dark")
         hex_to_rgb(str(row["color"]))
         hex_to_rgb(str(row["color_dark"]))
-        palette.append(
-            {"id": str(row["id"]), "color": str(row["color"]), "color_dark": str(row["color_dark"])}
-        )
+        palette.append({
+            "id": str(row["id"]), "color": str(row["color"]), "color_dark": str(row["color_dark"]),
+            "pending": row.get("pending") is True,
+        })
     return palette
 
 
@@ -219,10 +221,13 @@ def check_palette(palette: list[dict]) -> dict:
     """Kør alle tjek og returnér et resultat-dict (bruges af main og tests).
 
     Søskende med samme farve i begge tilstande måles som én farve (den første i paletten).
+    Kategorier, der afventer, springes over.
     """
     unique: dict[tuple[str, str], dict] = {}
     siblings: list[tuple[str, str]] = []
     for p in palette:
+        if p.get("pending"):
+            continue
         key = (p["color"].upper(), p["color_dark"].upper())
         if key in unique:
             siblings.append((unique[key]["id"], p["id"]))
@@ -234,6 +239,7 @@ def check_palette(palette: list[dict]) -> dict:
     }
     result: dict = {
         "contrast": [], "contrast_fail": [], "delta_e": {}, "delta_e_low": {}, "cvd_low": {}, "siblings": siblings,
+        "pending": [p["id"] for p in palette if p.get("pending")],
     }
     for mode, (colors, bg) in modes.items():
         for cid, color in colors.items():
@@ -262,6 +268,9 @@ def print_report(result: dict, path: Path) -> None:
     if result["siblings"]:
         names = ", ".join(f"{a}/{b}" for a, b in result["siblings"])
         print(f"Søskende med samme farve, skilt ad af ikonet: {names}")
+        print()
+    if result["pending"]:
+        print(f"Afventer og vises gråt, så farven tjekkes ikke: {', '.join(result['pending'])}")
         print()
     print(f"Kontrast (mindst {MIN_CONTRAST:.0f}:1)")
     for mode, cid, color, bg, ratio in result["contrast"]:
@@ -300,8 +309,8 @@ def main(argv: list[str] | None = None) -> int:
     except (OSError, ValueError, yaml.YAMLError) as exc:
         print(f"FEJL: {exc}", file=sys.stderr)
         return 1
-    if len(palette) < 2:
-        print("FEJL: mindst to kategorier kræves", file=sys.stderr)
+    if sum(not p["pending"] for p in palette) < 2:
+        print("FEJL: mindst to kategorier, der ikke afventer, kræves", file=sys.stderr)
         return 1
 
     result = check_palette(palette)

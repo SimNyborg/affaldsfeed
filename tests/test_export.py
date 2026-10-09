@@ -161,8 +161,9 @@ def test_export_builds_site(repo, scenario, tmp_path):
     assert feed["last_judgment"] == "2026-10-07T09:30:00Z"
     assert text == json.dumps(feed, ensure_ascii=False, separators=(",", ":")) + "\n"  # kompakt
     assert "æ" in text  # ensure_ascii=False
-    assert len(feed["categories"]) == 9 and set(feed["categories"][0]) == {
-        "id", "name", "short", "color", "color_dark", "icon", "help"}
+    assert len(feed["categories"]) == 10 and set(feed["categories"][0]) == {
+        "id", "name", "short", "color", "color_dark", "icon", "help", "pending"}
+    assert [c["id"] for c in feed["categories"] if c["pending"]] == ["sociale_medier"]
     assert list(feed["topics"][0]) == ["id", "name", "short", "definition"]
     topics = {t["id"]: t for t in feed["topics"]}
     assert topics["sortering"]["short"] is None

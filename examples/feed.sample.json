@@ -12,7 +12,8 @@
    "color": "#1862B5",
    "color_dark": "#68AAFE",
    "icon": "avis",
-   "help": "Landsdækkende nyhedsmedier og Ritzau-telegrammer med redaktionelt ansvar."
+   "help": "Landsdækkende nyhedsmedier og Ritzau-telegrammer med redaktionelt ansvar.",
+   "pending": false
   },
   {
    "id": "lokalmedie",
@@ -21,7 +22,8 @@
    "color": "#1862B5",
    "color_dark": "#68AAFE",
    "icon": "lokalavis",
-   "help": "Regionale dagblade, TV 2-regionerne, ugeaviser og lokale netaviser med redaktionelt ansvar."
+   "help": "Regionale dagblade, TV 2-regionerne, ugeaviser og lokale netaviser med redaktionelt ansvar.",
+   "pending": false
   },
   {
    "id": "fagmedie",
@@ -30,7 +32,8 @@
    "color": "#107C86",
    "color_dark": "#2CC4CB",
    "icon": "tidsskrift",
-   "help": "Fagblade og nichemedier om kommuner, forsyning, byggeri, emballage, teknik, videnskab og miljø."
+   "help": "Fagblade og nichemedier om kommuner, forsyning, byggeri, emballage, teknik, videnskab og miljø.",
+   "pending": false
   },
   {
    "id": "myndighed",
@@ -39,7 +42,8 @@
    "color": "#5A3584",
    "color_dark": "#9B86C6",
    "icon": "soejle",
-   "help": "Ministerier, styrelser, tilsyn, råd, nævn, Høringsportalen og Folketinget."
+   "help": "Ministerier, styrelser, tilsyn, råd, nævn, Høringsportalen og Folketinget.",
+   "pending": false
   },
   {
    "id": "kommunal",
@@ -48,7 +52,8 @@
    "color": "#065F35",
    "color_dark": "#5EC587",
    "icon": "raadhus",
-   "help": "Kommuner og kommunalt ejede affalds-, forbrændings- og forsyningsselskaber."
+   "help": "Kommuner og kommunalt ejede affalds-, forbrændings- og forsyningsselskaber.",
+   "pending": false
   },
   {
    "id": "organisation",
@@ -57,7 +62,8 @@
    "color": "#CA651B",
    "color_dark": "#FFA350",
    "icon": "personer",
-   "help": "Interesse- og brancheorganisationer. Afsenderen varetager medlemmernes interesser."
+   "help": "Interesse- og brancheorganisationer. Afsenderen varetager medlemmernes interesser.",
+   "pending": false
   },
   {
    "id": "taenketank",
@@ -66,7 +72,8 @@
    "color": "#B8346C",
    "color_dark": "#FF84BA",
    "icon": "paere",
-   "help": "Tænketanke og grønne organisationer, der arbejder for bestemte løsninger."
+   "help": "Tænketanke og grønne organisationer, der arbejder for bestemte løsninger.",
+   "pending": false
   },
   {
    "id": "forskning",
@@ -75,7 +82,8 @@
    "color": "#7A5C0D",
    "color_dark": "#AE9417",
    "icon": "kolbe",
-   "help": "Universiteter, sektorforskning og godkendte teknologiske serviceinstitutter."
+   "help": "Universiteter, sektorforskning og godkendte teknologiske serviceinstitutter.",
+   "pending": false
   },
   {
    "id": "eu_norden",
@@ -84,7 +92,18 @@
    "color": "#84241B",
    "color_dark": "#DD7161",
    "icon": "stjerner",
-   "help": "EU-institutioner og europæiske eller nordiske organisationer."
+   "help": "EU-institutioner og europæiske eller nordiske organisationer.",
+   "pending": false
+  },
+  {
+   "id": "sociale_medier",
+   "name": "Sociale medier",
+   "short": "Sociale medier",
+   "color": "#565656",
+   "color_dark": "#A9B3AE",
+   "icon": "taleboble",
+   "help": "Opslag på sociale medier, fx fra politikere, myndigheder og organisationer.",
+   "pending": true
   }
  ],
  "topics": [

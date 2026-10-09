@@ -28,6 +28,7 @@ CategoryId = Literal[
     "taenketank",
     "forskning",
     "eu_norden",
+    "sociale_medier",
 ]
 TopicId = Literal[
     "sortering",
@@ -67,6 +68,7 @@ CATEGORY_RANK: dict[str, int] = {
     "fagmedie": 2,
     "nyhedsmedie": 3,
     "lokalmedie": 3,
+    "sociale_medier": 4,
 }
 
 DEFAULT_EVERY: dict[str, int] = {"rss": 1, "search": 2, "oda": 3, "sitemap": 6, "html": 6}
@@ -232,6 +234,8 @@ class Category(_Strict):
     color_dark: str
     icon: str
     help: str
+    # Afventer: menuen viser kategorien uden at kunne vælge den, og den må ikke have aktive kilder
+    pending: bool = False
 
 
 class Topic(_Strict):

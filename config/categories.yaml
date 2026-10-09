@@ -1,4 +1,4 @@
-# De 9 afsenderkategorier. Kategorien står på kilden og gættes aldrig ud fra teksten.
+# Afsenderkategorierne. Kategorien står på kilden og gættes aldrig ud fra teksten.
 # Nationale medier og lokalmedier er begge nyhedsmedier og deler farve. Ikonet skiller dem ad.
 - id: nyhedsmedie
   name: Nationalt medie
@@ -63,3 +63,13 @@
   color_dark: "#DD7161"
   icon: stjerner
   help: EU-institutioner og europæiske eller nordiske organisationer.
+# Afventer (pending): menuen viser kategorien, men den kan ikke vælges og må ikke have aktive kilder.
+# Farven er grå som --muted, indtil kategorien tages i brug og får sin egen.
+- id: sociale_medier
+  name: Sociale medier
+  short: Sociale medier
+  color: "#565656"
+  color_dark: "#A9B3AE"
+  icon: taleboble
+  help: Opslag på sociale medier, fx fra politikere, myndigheder og organisationer.
+  pending: true

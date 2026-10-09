@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import dataclasses
 import importlib.util
 import json
 import logging
@@ -112,7 +113,8 @@ def test_load_sources_yaml_error(tmp_path):
 def test_load_config(env):
     cfg = load_config(env.config)
     assert len(cfg.topics) == 13
-    assert len(cfg.categories) == 9
+    assert len(cfg.categories) == 10
+    assert [c.id for c in cfg.categories if c.pending] == ["sociale_medier"]
     assert {g.id for g in cfg.genres} >= {"nyhed", "debat", "hoering"}
     assert [p.id for p in cfg.publishers] == ["tv2", "tv2-ostjylland"]
     assert cfg.search.queries and cfg.search.when == "2d"
@@ -411,6 +413,22 @@ def test_cross_check_warns_on_shared_host(env):
     errors, warnings = cfgmod.cross_check([*sources, extra], cfg)
     assert not errors
     assert any("testmedie-2: værten testmedie.dk bruges også af testmedie" in w for w in warnings)
+
+
+def test_cross_check_pending_category(env):
+    """En kategori, der afventer, må ikke have aktive kilder eller udgivere (KONTRAKTER §3.3)."""
+    sources = load_sources(env.sources)
+    cfg = load_config(env.config)
+    msg = "{}: {}: kategorien sociale_medier afventer og kan ikke have aktive kilder"
+    some = sources[2].model_copy(update={"id": "some-kilde", "category": "sociale_medier"})
+    errors, _ = cfgmod.cross_check([*sources, some], cfg)
+    assert errors == [msg.format("sources.yaml", "some-kilde")]
+    for status in ("kandidat", "planlagt", "pause", "fravalgt"):
+        errors, _ = cfgmod.cross_check([*sources, some.model_copy(update={"status": status})], cfg)
+        assert not errors
+    pub = cfg.publishers[0].model_copy(update={"category": "sociale_medier"})
+    errors, _ = cfgmod.cross_check(sources, dataclasses.replace(cfg, publishers=[pub, *cfg.publishers[1:]]))
+    assert errors == [msg.format("medier.yaml", pub.id)]
 
 
 def test_cross_check_replaces(env):
