@@ -188,7 +188,7 @@ Skriveregler for overblikket:
 
 ### 7. Tidslinje (kun når `TIME` er 22, eller når tidslinjen er tom)
 
-Tidslinjen viser kun de allervigtigste begivenheder på affaldsområdet, typisk 0-3 om ugen. Hellere for få end for mange. Kør trinnet, når `TIME` er 22, eller når `ls data/timeline/*.jsonl` ikke finder nogen filer (første fyldning). Ellers spring det over.
+Tidslinjen giver et kompakt overblik over de store linjer på affaldsområdet: love, politiske aftaler, EU-regler, nationale planer og rapporter og andre beslutninger med betydning for hele landet. Typisk 0-2 om ugen. Hellere for få end for mange. Lokale nyheder hører ikke hjemme her, heller ikke når de fylder meget i feedet. At Næstved har problemer med en skraldemand, er en lokal nyhed. At en national handlingsplan for tekstiler bliver lanceret, er en begivenhed. Kør trinnet, når `TIME` er 22, eller når `ls data/timeline/*.jsonl` ikke finder nogen filer (første fyldning). Ellers spring det over.
 
 1. Hent input:
 
@@ -205,7 +205,7 @@ Tidslinjen viser kun de allervigtigste begivenheder på affaldsområdet, typisk 
    - `stories`: godkendte historier, myndigheder og de mest dækkede først. `also` er andre indslag om samme historie, og `in_events` er de begivenheder, der allerede har et af historiens indslag.
    - `events`: begivenhederne fra de sidste 60 dage.
 
-3. Vælg. En historie bliver kun en begivenhed, når den hører under `include` og ikke under `exclude` og har betydning ud over én kommune. Står begivenheden allerede i `events`, eller har historien `in_events`, så opdatér den eksisterende begivenhed i stedet for at oprette en ny. De fleste dage er der ingen nye begivenheder, og så skriver du intet.
+3. Vælg. En historie bliver kun en begivenhed, når den hører under `include` og ikke under `exclude` og har betydning for hele landet eller hele affaldsområdet. Er du i tvivl, så lad den være. Står begivenheden allerede i `events`, eller har historien `in_events`, så opdatér den eksisterende begivenhed i stedet for at oprette en ny. Står der en begivenhed i `events`, som ikke lever op til reglerne (fx en lokal nyhed), så slet den med en sletningslinje (se trin 4). De fleste dage er der ingen nye begivenheder, og så skriver du intet.
 
 4. Skriv nye linjer nederst i `data/timeline/MÅNED.jsonl`, hvor `MÅNED` er de første 7 tegn af `DATO` (fx `2026-10`). Opret mappen, hvis den mangler (`mkdir -p data/timeline`), og tilføj linjerne med en heredoc som i trin 3. Én JSON-genstand pr. linje, fx:
 

@@ -22,7 +22,7 @@ Manualen beskriver, hvordan Affaldsfeed ser ud, og hvad der står på siden. Dat
 - Kan feedet ikke indlæses, står fejlen i læsekolonnen (også fra 1024 px, hvor sidepanelet så er skjult) uden listens hoved, fordi søgning, "Filtrér" og visning intet har at vise.
 - Headeren er hvid, ikke sticky og har `box-shadow: 0 10px 15px rgba(0,0,0,.05)`. Fra 768 px er den én række på 64 px med logo (28 px) og ordmærket "Affaldsfeed" til venstre og navigationen til højre. Under 768 px står logo og ordmærke på én række (56 px) og navigationen på en række for sig (44 px). Der er ingen undertitel.
 - Navigationen er Feed og Tidslinje. Om kilderne findes via footeren. Den aktive side har teksten i `--link` og en streg på 3 px i `--link` under teksten.
-- Forsiden har denne rækkefølge: demo-strimmel (kun med `?demo=1`), header, sidepanel og læsekolonnen med meddelelser, AI-overblik og listepanelet. Listepanelet har listens hoved øverst og derefter dage og kort. Listen bygges, efterhånden som man scroller (se Dage og listen).
+- Forsiden har denne rækkefølge: demo-strimmel (kun med `?demo=1`), header, sidepanel og læsekolonnen med meddelelser, AI-overblik og listepanelet. Listepanelet har listens hoved øverst og derefter dage og kort. Listen viser 60 kort ad gangen med "Vis mere" under sig (se Dage og listen).
 - Afstande: 4, 8, 12, 16, 20, 24 og 32 px. Kort, listens hoved og overblik har 20 px vandret padding (16 px under 768 px). Optiske justeringer på 2, 3 og 6 px står ved de enkelte komponenter.
 - Radius: 15 px på paneler (0 under 768 px), 8 px på felter, forslagslister og meddelelser, 999 px på knapper og aktive filtre.
 
@@ -107,7 +107,7 @@ Panelet er et `<search>` med overskriften "Filtre" og tekstknappen "Nulstil" til
 |---|---|
 | Sted | søgefeltet "Kommune eller by", de valgte kommuner og byer, regionerne og "Landsdækkende" |
 | Afsender | 10 rækker med kategoriikon, heraf én, der afventer |
-| Tema | 13 rækker, en streg og "Uden tema" |
+| Tema | 13 rækker, en streg og "Andre temaer" (indslag uden tema) |
 | Kilde | feltet "Find kilde" og et foldbart afsnit pr. afsendertype med typens kilder |
 | Genre | 6 rækker |
 
@@ -246,7 +246,7 @@ Fra 768 px er der én række pr. indslag i et grid med logo eller ikon (16 px), 
 - Overskrifterne er "I dag", "I går", "Mandag 5. oktober" for 2 til 6 dage siden og derefter uger som "Uge 40 · 28.–30. september". En ugegruppe nævner kun de dage, den faktisk dækker.
 - Dagsoverskriften er en sticky `<h2>` på 40 px i 14/20 og 600 med streg over og under. Antallet står yderst til højre på samme højrekant som kortenes tider.
 - Der er ingen skillelinje mellem nye og gamle indslag. Nye indslag ses på kanten i `--accent` og i statuslinjen.
-- Der er ingen "Vis flere". De første 50 kort bygges med det samme og de næste, når listens ende er 1.500 px fra skærmen. I ledige stunder bygges op til 300 kort i forvejen, så en normal liste kort efter står helt i siden, og søgning i siden og footeren virker. Et meget langt feed bygges videre, når man scroller, så hvert filterklik forbliver hurtigt.
+- Listen viser 60 kort ad gangen, så den ikke bliver for lang. Under listen står knappen "Vis mere" og under den "Viser 60 af 312 indslag" (13/18, `--muted`), som også er knappens beskrivelse til skærmlæsere. Knappen viser de næste 60 og giver fokus til titlen på det første nye kort. Er alt vist, forsvinder knappen. Ændres et filter, begynder listen forfra med 60.
 
 ### AI-overblikket
 
@@ -272,14 +272,14 @@ Footeren har baggrund `--footer` og hvid tekst i 13/18: teksten om projektet og 
 
 `tidslinje.html` viser de vigtigste begivenheder på affaldsområdet, valgt af Claude (KONTRAKTER 7.3). Siden har samme demo-strimmel, header, footer og læsekolonne som Om kilderne.
 
-- Øverst står "Tidslinje" (`h1`), linjen "De vigtigste begivenheder på affaldsområdet, udvalgt af AI ud fra nyhederne i feedet. Kan indeholde fejl." og tekstvalget "Alle · Kun milepæle" (`niveau=milepael` i URL'en). Til højre står "Spring til 2026 · 2025", når begivenhederne spænder over mere end ét år. Antallet meldes til skærmlæsere, når niveauet skiftes.
+- Tidslinjen er et kompakt overblik over de store linjer på affaldsområdet. Kun begivenheder med betydning for hele landet kommer med (KONTRAKTER 7.3), typisk 0-2 om ugen.
+- Øverst står "Tidslinje" (`h1`) og linjen "De store linjer på affaldsområdet: love, politiske aftaler, EU-regler og andre beslutninger med betydning for hele landet. Udvalgt af AI ud fra nyhederne i feedet. Kan indeholde fejl." Under den står "Spring til 2026 · 2025", når begivenhederne spænder over mere end ét år. Der er intet valg af niveau, og `niveau=` fra ældre links fjernes fra URL'en.
 - Begivenhederne står i ét panel grupperet efter måned. Månedsoverskriften er sticky som feedets dagsoverskrifter, i 17/24 med antallet til højre, og har et anker (`#2026-10`), så man kan linke til en måned.
-- Hver begivenhed har datoen i en fast kolonne til venstre ("7. okt."), en markør på en lodret streg i `--line` og teksten til højre: "Milepæl" (13/18, 600, `--link`) ved milepæle, titlen (17/24, 600), resuméet (15/22, `--muted`), fodlinjen med steder og temaer og "Læs 3 nyheder" (eller "Læs nyheden"). Markøren er en udfyldt cirkel på 12 px i `--link` ved milepæle og en ring ved de andre. Den er dekorativ (`aria-hidden`), fordi "Milepæl" står som tekst.
-- Stedet i fodlinjen er det mest præcise: en region udelades, når en kommune i den eller en by, hvis primære kommune ligger i den, også står på begivenheden, og en kommune udelades, når den er primær kommune for en by på begivenheden. `k:nyborg` og `b:ullerslev` viser "Ullerslev". Der står højst to navne og derefter fx "+2". To byer med samme navn får kommunens korte navn i parentes, fx "Ejby (Køge)".
+- Hver begivenhed har datoen i en fast kolonne til venstre ("7. okt."), en markør på en lodret streg i `--line` og til højre titlen (15/22, 600), resuméet (14/20, `--muted`) og "Læs 3 nyheder" (eller "Læs nyheden"), med 8 px luft over og under. Steder og temaer står ikke på tidslinjen. Markøren er en udfyldt cirkel på 12 px i `--link` ved milepæle og en ring ved de andre. Den er dekorativ (`aria-hidden`), og skærmlæseren hører "Milepæl:" før titlen.
 - "Læs 3 nyheder" folder indslagene ud med kilde (600), dato og titlen som link i ny fane. Er historien stadig i feedet, står "Vis i feedet" nederst og linker til `index.html?story=<id>`.
 - Siden viser de 12 nyeste måneder med begivenheder. "Vis ældre" henter 12 måneder mere og giver fokus til den første nye måneds overskrift. "Spring til" og et anker i URL'en henter ældre måneder efter behov.
 - Under 480 px står datoen over titlen, og stregen følger markøren i venstre side.
-- Tom tidslinje: "Tidslinjen er tom endnu. De vigtigste begivenheder bliver tilføjet, efterhånden som nyhederne kommer." og linket "Gå til feedet". Ingen milepæle: "Der er ingen milepæle på tidslinjen endnu." og "Vis alle begivenheder".
+- Tom tidslinje: "Tidslinjen er tom endnu. De vigtigste begivenheder bliver tilføjet, efterhånden som nyhederne kommer." og linket "Gå til feedet".
 
 ### Om kilderne
 
@@ -305,7 +305,7 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Sted | Kommune eller by · Find kommune eller by · Flest indslag lige nu · Ingen steder har indslag lige nu. · by i Nyborg · Landsdækkende |
 | Kilde | Find kilde · Ingen kilde passer til "x". · Uden Avisen.dk · Uden 5 kilder · 13 kilder · Vis Avisen.dk igen · Vis alle kilder |
 | Forslag | Viser 8 af 23. Skriv mere for at indsnævre. · Ingen kommune eller by passer til "xyz". Byer kommer med, når de er nævnt i et indslag. · Ingen kilde passer til "xyz". · Nyborg Kommune er valgt. · Nyborg Kommune er fravalgt. |
-| Rækker | Uden tema |
+| Rækker | Andre temaer |
 | Kalender | Alle datoer · 2.–5. okt. · 7. okt. · Fra 6. okt. · til skærmlæseren: Periode: 2.–5. okt. · Vis alle datoer · Vælg datoer · Forrige måned · Næste måned · ma ti on to fr lø sø · Vælg første dag. · Fra 5. oktober. Vælg sidste dag. · onsdag 7. oktober, 9 indslag · ingen indslag · Luk |
 | Aktive filtre | Fjern filter: Nyborg Kommune · Landsdækkende · Uden Region Nordjylland · Kommunal · Uden Debat · 4 temaer · Uden 5 kilder · Historie: ... |
 | Statuslinje | Vis 7 nye · Vis 1 ny · 7 nye indslag · 1 nyt indslag · Vis alle · til skærmlæseren og ved fokus: 1.284 indslag · 23 af 1.284 indslag |

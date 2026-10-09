@@ -60,7 +60,7 @@ timeline:
   input_days: 3                  # timeline-input: godkendte historier fra så mange dage
   first_fill_days: 60            # ... når tidslinjen er tom (første fyldning)
   events_days: 60                # nuværende begivenheder i input (til dubletter og nye indslag)
-  max_per_week: 3                # højst så mange begivenheder med dato i samme uge
+  max_per_week: 2                # højst så mange begivenheder med dato i samme uge
   recent_hours: 48               # linjer skrevet så nyligt tjekkes mod de godkendte indslag
 
 window_days: 60                  # så langt tilbage feed.json rækker

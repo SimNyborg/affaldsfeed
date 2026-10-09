@@ -286,15 +286,15 @@ def test_deletions(repo, capsys):
 
 
 def test_max_per_week(repo, capsys):
-    cands = [cand(f"c{i}", source="kefm") for i in range(4)]
+    cands = [cand(f"c{i}", source="kefm") for i in range(3)]
     approve(*cands)
     # uge 41: mandag 5. oktober. Den gamle begivenhed i ugen tæller med
     write("2026-10", event("2026-10-05-gammel", cands[0], updated="2026-10-05T20:25:00Z"))
-    days = ["2026-10-06", "2026-10-07", "2026-10-07"]
+    days = ["2026-10-06", "2026-10-07"]
     write("2026-10", *(event(f"{d}-ny-{i}", c) for i, (d, c) in enumerate(zip(days, cands[1:], strict=True))))
     code, out = validate(capsys)
     assert code == 1
-    assert "2026-10.jsonl:2: uge 41 (5.-11. oktober 2026) har 4 begivenheder; højst 3" in out
+    assert "2026-10.jsonl:2: uge 41 (5.-11. oktober 2026) har 3 begivenheder; højst 2" in out
     # En sletning af den mindst vigtige gør ugen gyldig igen
     write("2026-10", {"id": "2026-10-05-gammel", "deleted": True, "updated": "2026-10-07T20:28:00Z"})
     code, out = validate(capsys)
@@ -350,7 +350,7 @@ def test_input_first_fill_uses_60_days(repo, capsys):
     assert {k: story[k] for k in ("title", "url", "source", "source_name", "published")} == {
         k: v for k, v in ref(new).items() if k != "id"}
     assert story["in_events"] == []
-    assert out["rules"]["max_per_week"] == 3 and out["rules"]["title_max_words"] == 12
+    assert out["rules"]["max_per_week"] == 2 and out["rules"]["title_max_words"] == 12
     assert out["events"] == []
     assert out["weeks"][0]["monday"] == "2026-08-03" and out["weeks"][-1]["monday"] == "2026-10-05"
 
