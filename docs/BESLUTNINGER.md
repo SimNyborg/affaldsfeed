@@ -206,3 +206,7 @@ Brugeren bad om at kalde tidslinjen Højdepunkter. Menupunktet, sidens titel og 
 ## 2026-10-09: Sitemaps må være længere om at svare
 
 Det daglige tjek viste, at Herning Kommunes sitemap gav timeout ved hver kørsel. Serveren danner sitemappet ved hver forespørgsel og var 24 sekunder om det første gang og 7 sekunder lige efter, mens indsamleren gav op efter 20 sekunder. Gribskov og Hedensted gav også timeout i drift, men svarede i afprøvningen. Sitemaps og listesider må derfor nu være 45 sekunder om at svare (`pages.doc_timeout_seconds`), mens artikelsider og feeds stadig har 20 sekunder. Det sker inden for kildens tidsbudget, så en langsom server kan ikke holde en kørsel hen.
+
+## 2026-10-09: Dag for dag i listen
+
+Brugeren ville ikke have ugegrupper som "Uge 40 · 28. september–2. oktober", når man går tilbage i tiden. Listen har nu én overskrift pr. dag hele vejen tilbage: "I dag", "I går" og derefter fx "Mandag 28. september". Dage fra et andet år får årstallet med. Under sin egen dags overskrift viser kortet kun klokkeslættet, også for gamle indslag. Med hele 2026 i feedet giver det mange overskrifter, men listen viser stadig kun 60 kort ad gangen.
