@@ -71,12 +71,14 @@ def get(url: str) -> requests.Response | None:
         print("(blokeret af robots.txt)")
         return None
     _pace(urlsplit(url).netloc)
+    t0 = time.monotonic()
     try:
         r = SESSION.get(url, timeout=60, allow_redirects=True)
     except requests.RequestException as e:
-        print(f"(netværksfejl: {e})")
+        print(f"(netværksfejl efter {time.monotonic() - t0:.1f} s: {e})")
         return None
-    print(f"status {r.status_code}, {r.headers.get('content-type', '')}, {len(r.content)} bytes, slut-URL {r.url}")
+    secs = time.monotonic() - t0
+    print(f"status {r.status_code}, {r.headers.get('content-type', '')}, {len(r.content)} bytes, {secs:.1f} s, slut-URL {r.url}")
     return r
 
 
