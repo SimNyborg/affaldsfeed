@@ -210,6 +210,9 @@
     "etag": "\"8125059c68719a364ea9f946e81770e4-gzip\"",
     "last_modified": "Fri, 09 Oct 2026 06:27:32 GMT"
   },
+  "https://vardekommune.dk/feed/": {
+    "last_modified": "Thu, 08 Oct 2026 13:08:03 GMT"
+  },
   "https://vesthimmerlandsavis.dk/feed/": {
     "etag": "\"f22b6eed21af5aee0daca1263f5f62ff\"",
     "last_modified": "Wed, 07 Oct 2026 06:12:14 GMT"
@@ -226,6 +229,10 @@
   },
   "https://www.brandebladet.dk/rss.xml": {
     "last_modified": "Fri, 09 Oct 2026 06:51:03 GMT"
+  },
+  "https://www.cbs.dk/sitemap.xml": {
+    "etag": "\"89314be75c557b32d74cd6b41ddbaeac\"",
+    "last_modified": "Thu, 08 Oct 2026 13:15:40 GMT"
   },
   "https://www.dr.dk/nyheder/service/feeds/indland": {
     "etag": "W/\"3f33-eeSa30DWT3PiikeYnl1H6dUV2A0\""
@@ -270,6 +277,18 @@
     "etag": "\"203981600be6abae4e00bed56e5600f4\"",
     "last_modified": "Wed, 07 Oct 2026 12:29:34 GMT"
   },
+  "https://www.favrskov.dk/sitemap.xml": {
+    "etag": "W/\"1791529328\"",
+    "last_modified": "Fri, 09 Oct 2026 07:02:08 GMT"
+  },
+  "https://www.faxekommune.dk/sitemap.xml": {
+    "etag": "\"daccbf83fff05afa539cd3bfcfe67243-gzip\"",
+    "last_modified": "Fri, 09 Oct 2026 07:30:28 GMT"
+  },
+  "https://www.fredericia.dk/sitemap.xml": {
+    "etag": "\"34999be8951b01066c594471fdcc6a89-gzip\"",
+    "last_modified": "Fri, 09 Oct 2026 06:45:26 GMT"
+  },
   "https://www.galtenfolkeblad.dk/sitemap.xml": {
     "sitemaps": [
       "https://www.galtenfolkeblad.dk/sitemap.xml?page=4",
@@ -289,6 +308,14 @@
   "https://www.hornsherredlokalavis.dk/feed/": {
     "etag": "\"205f-65d503e10be56\"",
     "last_modified": "Thu, 08 Oct 2026 08:44:40 GMT"
+  },
+  "https://www.kk.dk/sitemap.xml?page=1": {
+    "etag": "\"1791529200\"",
+    "last_modified": "Fri, 09 Oct 2026 07:00:00 GMT"
+  },
+  "https://www.kk.dk/sitemap.xml?page=2": {
+    "etag": "\"1791529200\"",
+    "last_modified": "Fri, 09 Oct 2026 07:00:00 GMT"
   },
   "https://www.mitlejre.dk/feed/": {
     "etag": "\"6845f481e2acbd7c8bd57f150973a3d3\"",
@@ -311,6 +338,10 @@
   "https://www.refa.dk/feed/": {
     "etag": "\"5724fe59a1029ce09f632270aee7b559\"",
     "last_modified": "Wed, 07 Oct 2026 09:40:15 GMT"
+  },
+  "https://www.rudersdal.dk/sitemap.xml": {
+    "etag": "W/\"cd1c7a71e47326fffc66b08bc1a0ca75\"",
+    "last_modified": "Thu, 08 Oct 2026 08:26:15 GMT"
   },
   "https://www.samsoposten.dk/da/pages/45-forside": {
     "etag": "W/\"e1182d3b336da2ef32654356ca7f0284\""

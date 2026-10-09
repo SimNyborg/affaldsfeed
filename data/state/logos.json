@@ -5,16 +5,46 @@
     "checked": "2026-10-07T22:37:50Z",
     "error": null
   },
-  "aau-dk": {
-    "file": "aau-dk.png",
+  "aabenraa-kommune": {
+    "file": "aabenraa-kommune.jpg",
+    "src": "https://aabenraa.dk/media/ihllrwpl/logojpg.jpg?width=57&height=57&format=noformat&v=1da7918dd855610",
+    "checked": "2026-10-09T07:48:56Z",
+    "error": null
+  },
+  "aalborg-kommune": {
+    "file": "aalborg-kommune.png",
+    "src": "https://www.aalborg.dk/favicon.ico",
+    "checked": "2026-10-09T07:48:56Z",
+    "error": null
+  },
+  "aarhus-kommune": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-09T07:48:56Z",
+    "error": "HTTP 404"
+  },
+  "aau": {
+    "file": "aau.png",
     "src": "https://www.aau.dk/apple-touch-icon.png",
-    "checked": "2026-10-07T22:37:50Z",
+    "checked": "2026-10-09T07:48:56Z",
+    "error": null
+  },
+  "aeroe-kommune": {
+    "file": "aeroe-kommune.webp",
+    "src": "https://cdn.moliri.dk/image/moliri-public/aeroekommune/thumbnail?filename=KOMMUNEV%c3%85BEN_RGB_favicon.png&folderPath=Billeder+-+%c3%86r%c3%b8+Kommune%2f%c3%86r%c3%b8+Kommune+info+A-%c3%85%2flogo&width=80",
+    "checked": "2026-10-09T07:48:56Z",
     "error": null
   },
   "affaldplus": {
     "file": "affaldplus.png",
     "src": "https://affaldplus.dk/sites/default/files/favicon.png",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "albertslund-kommune": {
+    "file": "albertslund-kommune.jpg",
+    "src": "https://albertslund.dk/media/1714794/ak_logo_vandret_m-2.jpg?rxy=0.08903682700144513,0.45244774228576595&width=57&height=57&format=noformat&v=1dac6451a431d20",
+    "checked": "2026-10-09T07:48:56Z",
     "error": null
   },
   "albertslundnyt": {
@@ -59,6 +89,12 @@
     "checked": "2026-10-07T22:34:55Z",
     "error": null
   },
+  "assens-kommune": {
+    "file": "assens-kommune.webp",
+    "src": "https://cdn.moliri.dk/image/moliri-public/assenskommune/thumbnail?filename=Assens_Kommune_favicon.png&folderPath=Assens_dk%2fStabene%2fOrganisation+og+Strategi%2fGrafik&width=80",
+    "checked": "2026-10-09T07:48:56Z",
+    "error": null
+  },
   "au": {
     "file": "au.ico",
     "src": "https://cdn.au.dk/favicon.ico",
@@ -95,6 +131,12 @@
     "checked": "2026-10-07T22:37:50Z",
     "error": null
   },
+  "billund-kommune": {
+    "file": "billund-kommune.ico",
+    "src": "https://www.billund.dk/dist/assets/favicon.ico",
+    "checked": "2026-10-09T07:48:56Z",
+    "error": null
+  },
   "billundonline": {
     "file": "billundonline.jpg",
     "src": "https://billundonline.dk/wp-content/uploads/LOGO_RGB_MAIL-110x110.jpg",
@@ -111,6 +153,12 @@
     "file": "blokhus-dk.webp",
     "src": "https://blokhus.dk/wp-content/uploads/2022/11/cropped-Blokhus-Medier_logo-01-e1653469425962.png-1-32x32.webp",
     "checked": "2026-10-07T23:35:08Z",
+    "error": null
+  },
+  "bornholm-kommune": {
+    "file": "bornholm-kommune.webp",
+    "src": "https://cdn1.gopublic.dk/bornholmsregionskommune/Media/638912029555440492/fav.png?width=32&height=32",
+    "checked": "2026-10-09T07:48:56Z",
     "error": null
   },
   "bornholm-nu": {
@@ -149,6 +197,18 @@
     "checked": "2026-10-08T10:34:51Z",
     "error": null
   },
+  "broendby-kommune": {
+    "file": "broendby-kommune.png",
+    "src": "https://www.brondby.dk/media/konjk1wr/android-chrome-192x192.png?width=57&height=57&format=noformat&v=1db78a2a8b80970",
+    "checked": "2026-10-09T07:48:56Z",
+    "error": null
+  },
+  "broenderslev-kommune": {
+    "file": "broenderslev-kommune.webp",
+    "src": "https://cdn.moliri.dk/image/moliri-public/bronderslevkommune/thumbnail?filename=favicon_white.png&folderPath=Logoer&width=80",
+    "checked": "2026-10-09T07:48:56Z",
+    "error": null
+  },
   "bryggebladet-dk": {
     "file": "bryggebladet-dk.ico",
     "src": "https://www.bryggebladet.dk/favicon.ico",
@@ -185,10 +245,10 @@
     "checked": "2026-10-07T23:35:08Z",
     "error": null
   },
-  "cbs-dk": {
-    "file": "cbs-dk.png",
+  "cbs": {
+    "file": "cbs.png",
     "src": "https://www.cbs.dk/themes/custom/campus/assets/shortcut-icons/favicon-32x32.png?v=2",
-    "checked": "2026-10-07T23:35:08Z",
+    "checked": "2026-10-09T07:48:56Z",
     "error": null
   },
   "cepos": {
@@ -371,22 +431,34 @@
     "checked": "2026-10-08T04:31:35Z",
     "error": null
   },
+  "dragoer-kommune": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-09T07:48:56Z",
+    "error": "HTTP 404"
+  },
   "dragoernyt": {
     "file": null,
     "src": null,
     "checked": "2026-10-08T10:34:51Z",
     "error": "HTTP 404"
   },
-  "dtu-dk": {
-    "file": "dtu-dk.ico",
-    "src": "https://dtu.dk/favicon.ico",
-    "checked": "2026-10-08T04:31:35Z",
+  "dtu": {
+    "file": "dtu.ico",
+    "src": "https://www.dtu.dk/favicon.ico",
+    "checked": "2026-10-09T07:48:56Z",
     "error": null
   },
   "eea": {
     "file": "eea.png",
     "src": "https://www.eea.europa.eu/apple-touch-icon.png",
     "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "egedal-kommune": {
+    "file": "egedal-kommune.webp",
+    "src": "https://cdn.moliri.dk/image/moliri-public/egedalkommune/thumbnail?filename=Egedal-Kommune-Favicon.png&folderPath=Logoer+grafik+kampagner%2fDesignguide+kun+for+intern+grafiker&width=80",
+    "checked": "2026-10-09T07:48:56Z",
     "error": null
   },
   "ekstrabladet-dk": {
@@ -413,11 +485,23 @@
     "checked": "2026-10-08T04:31:35Z",
     "error": null
   },
+  "esbjerg-kommune": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-09T07:48:56Z",
+    "error": "HTTP 403"
+  },
   "faa": {
     "file": null,
     "src": null,
     "checked": "2026-10-08T09:11:01Z",
     "error": "springes over: HTTP 503"
+  },
+  "faaborg-midtfyn-kommune": {
+    "file": "faaborg-midtfyn-kommune.png",
+    "src": "https://www.fmk.dk/favicon.ico",
+    "checked": "2026-10-09T07:48:56Z",
+    "error": null
   },
   "faellesavisen": {
     "file": "faellesavisen.webp",
@@ -429,6 +513,12 @@
     "file": "fagbladet3f-dk.webp",
     "src": "https://fagbladet3f.dk/wp-content/uploads/2024/05/cropped-favicon-32x32.png",
     "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "fanoe-kommune": {
+    "file": "fanoe-kommune.png",
+    "src": "https://fanoe.dk/media/sfqbbxg5/favicon-96x96.png?width=57&height=57&format=noformat&v=1dcd0e7e7685730",
+    "checked": "2026-10-09T07:48:56Z",
     "error": null
   },
   "fanoeposten-dk": {
@@ -645,12 +735,6 @@
     "file": "ingenioeren.ico",
     "src": "https://ing.dk/favicon.ico",
     "checked": "2026-10-07T22:37:50Z",
-    "error": null
-  },
-  "itu-dk": {
-    "file": "itu-dk.ico",
-    "src": "https://itu.dk/favicon.ico",
-    "checked": "2026-10-08T05:27:31Z",
     "error": null
   },
   "jammerbugtposten": {
@@ -1031,10 +1115,22 @@
     "checked": "2026-10-08T07:28:04Z",
     "error": null
   },
+  "ringkoebing-skjern-kommune": {
+    "file": "ringkoebing-skjern-kommune.ico",
+    "src": "https://www.rksk.dk/Assets/rksk/Images/favicon.ico",
+    "checked": "2026-10-09T07:48:56Z",
+    "error": null
+  },
   "ruc": {
     "file": "ruc.png",
     "src": "https://ruc.dk/profiles/ruc_profile/themes/school/assets/shortcut-icons/apple-touch-icon-76x76.png",
     "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "rudersdal-kommune": {
+    "file": "rudersdal-kommune.png",
+    "src": "https://rudersdal.dk/profiles/rud_profile/themes/diamond/assets/shortcut-icons/favicon-32x32.png",
+    "checked": "2026-10-09T07:48:56Z",
     "error": null
   },
   "samsoposten": {

@@ -1,4 +1,54 @@
 {
+  "aabenraa-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "aalborg-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "aarhus-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "aau": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "aeroe-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "affaldplus": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T07:22:42Z",
@@ -8,6 +58,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "albertslund-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "albertslundnyt": {
     "last_ok": "2026-10-09",
@@ -79,6 +139,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "assens-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "au": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T07:22:42Z",
@@ -119,6 +189,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "billund-kommune": {
+    "last_ok": null,
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 1,
+    "last_error": "0 matchende URL'er i sitemap (tjek match og domains)",
+    "items_30d": 0,
+    "first_run_done": false,
+    "health": "gul",
+    "since": null
+  },
   "billundonline": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T07:22:42Z",
@@ -148,6 +228,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "bornholm-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "bornholm-nu": {
     "last_ok": "2026-10-09",
@@ -209,6 +299,26 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "broendby-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "broenderslev-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "byensnyt": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T07:22:42Z",
@@ -218,6 +328,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "cbs": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "cepos": {
     "last_ok": "2026-10-09",
@@ -479,6 +599,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "dragoer-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "dragoernyt": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T04:27:45Z",
@@ -488,6 +618,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "dtu": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "eea": {
     "last_ok": "2026-10-09",
@@ -508,6 +648,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": null
+  },
+  "egedal-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "emballagefokus": {
     "last_ok": "2026-10-09",
@@ -539,6 +689,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "esbjerg-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "expra": {
     "last_ok": "2026-10-07",
     "last_attempt": "2026-10-07T11:39:46Z",
@@ -559,6 +719,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "faaborg-midtfyn-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "faellesavisen": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T07:22:42Z",
@@ -569,6 +739,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "fanoe-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "farsoeavis": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T07:22:42Z",
@@ -578,6 +758,26 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "favrskov-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "faxe-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "folkebladet-aarup": {
     "last_ok": "2026-10-09",
@@ -649,6 +849,36 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "fredensborg-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "fredericia-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "frederiksberg-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "frederiksbergliv": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T06:28:19Z",
@@ -658,6 +888,36 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "frederikshavn-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "frederikssund-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "furesoe-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "fyens": {
     "last_ok": "2026-10-09",
@@ -699,6 +959,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "gladsaxe-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "gladsaxenetnyt": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T04:27:45Z",
@@ -708,6 +978,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "glostrup-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "greenpeace-danmark": {
     "last_ok": "2026-10-09",
@@ -719,6 +999,56 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "greve-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "gribskov-kommune": {
+    "last_ok": null,
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 1,
+    "last_error": "https://www.gribskov.dk/sitemap.xml: timeout",
+    "items_30d": 0,
+    "first_run_done": false,
+    "health": "gul",
+    "since": null
+  },
+  "guldborgsund-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "haderslev-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "halsnaes-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "hasserisavis": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T07:22:42Z",
@@ -728,6 +1058,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "hedensted-kommune": {
+    "last_ok": null,
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 1,
+    "last_error": "https://www.hedensted.dk/sitemap.xml: timeout",
+    "items_30d": 0,
+    "first_run_done": false,
+    "health": "gul",
+    "since": null
   },
   "heleherlev": {
     "last_ok": "2026-10-09",
@@ -739,6 +1079,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "helsingoer-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "helsingordagblad": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T04:27:45Z",
@@ -748,6 +1098,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "herning-kommune": {
+    "last_ok": null,
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 1,
+    "last_error": "https://www.herning.dk/sitemap.xml: timeout",
+    "items_30d": 0,
+    "first_run_done": false,
+    "health": "gul",
+    "since": null
   },
   "herningfolkeblad": {
     "last_ok": "2026-10-09",
@@ -759,6 +1119,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "hilleroed-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "hjertingposten": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T07:22:42Z",
@@ -768,6 +1138,26 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "hjoerring-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "hoeje-taastrup-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "hoeringsportalen": {
     "last_ok": "2026-10-09",
@@ -779,6 +1169,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "hoersholm-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "hofor": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T07:22:42Z",
@@ -788,6 +1188,26 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "holbaek-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "holstebro-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "hornsherredlokalavis": {
     "last_ok": "2026-10-09",
@@ -799,6 +1219,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "horsens-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "hsfo": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T04:27:45Z",
@@ -808,6 +1238,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "hvidovre-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "hvidovreavis": {
     "last_ok": "2026-10-09",
@@ -829,6 +1269,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "ikast-brande-kommune": {
+    "last_ok": null,
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 1,
+    "last_error": "0 matchende links på listesiden (tjek select og match)",
+    "items_30d": 0,
+    "first_run_done": false,
+    "health": "gul",
+    "since": null
+  },
   "ingenioeren": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T07:22:42Z",
@@ -839,6 +1289,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "ishoej-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "iswa": {
     "last_ok": "2026-10-07",
     "last_attempt": "2026-10-07T11:39:46Z",
@@ -848,6 +1308,26 @@
     "first_run_done": true,
     "health": "groen",
     "since": null
+  },
+  "itu": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "jammerbugt-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "jammerbugtposten": {
     "last_ok": "2026-10-09",
@@ -869,6 +1349,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "kalundborg-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "kanalfrederikshavn": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T04:27:45Z",
@@ -888,6 +1378,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "kerteminde-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "kfst": {
     "last_ok": "2026-10-09",
@@ -939,6 +1439,36 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "koebenhavn-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "koege-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "kolding-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "kommunen": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T07:22:42Z",
@@ -969,6 +1499,36 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "laesoe-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "langeland-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "lejre-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "lejremagasinet": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T07:22:42Z",
@@ -978,6 +1538,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "lemvig-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "ligeher": {
     "last_ok": "2026-10-09",
@@ -989,6 +1559,36 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "lolland-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "lyngby-taarbaek-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "mariagerfjord-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "mariagerfjordposten": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T07:22:42Z",
@@ -998,6 +1598,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "middelfart-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "midtfynsposten": {
     "last_ok": "2026-10-09",
@@ -1109,6 +1719,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "naestved-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "neravisen": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T07:22:42Z",
@@ -1158,6 +1778,26 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "norddjurs-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "nordfyns-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "nordhavn-avis": {
     "last_ok": "2026-10-09",
@@ -1209,6 +1849,36 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "nyborg-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "odder-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "odense-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "odense-renovation": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T06:28:19Z",
@@ -1218,6 +1888,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "odsherred-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "oestvendsysselfolkeblad": {
     "last_ok": "2026-10-09",
@@ -1269,6 +1949,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "randers-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "refa": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T07:22:42Z",
@@ -1319,6 +2009,36 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "ringkoebing-skjern-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "roedovre-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "roskilde-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "ruc": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T06:28:19Z",
@@ -1328,6 +2048,26 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "rudersdal-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "samsoe-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "samsoposten": {
     "last_ok": "2026-10-09",
@@ -1349,6 +2089,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "silkeborg-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "sjaellandske-medier": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T04:27:45Z",
@@ -1359,6 +2109,26 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "skanderborg-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "skive-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "skivefolkeblad": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T04:27:45Z",
@@ -1368,6 +2138,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "solroed-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "sonderborgnyt": {
     "last_ok": "2026-10-09",
@@ -1389,6 +2169,26 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "soroe-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "stevns-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "stiften": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T04:27:45Z",
@@ -1398,6 +2198,46 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "struer-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "svendborg-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "syddjurs-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "taarnby-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "taenk": {
     "last_ok": "2026-10-09",
@@ -1439,6 +2279,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "thisted-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "tjekfredensborg": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T07:22:42Z",
@@ -1448,6 +2298,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "toender-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "tv2-nyheder": {
     "last_ok": "2026-10-09",
@@ -1489,6 +2349,16 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "vallensbaek-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "vana": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T06:28:19Z",
@@ -1499,6 +2369,36 @@
     "health": "groen",
     "since": "2026-10-08"
   },
+  "varde-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "vejen-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
+  "vejle-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
+  },
   "vestforbraending": {
     "last_ok": "2026-10-09",
     "last_attempt": "2026-10-09T06:28:19Z",
@@ -1508,6 +2408,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "vesthimmerlands-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "vesthimmerlandsavis": {
     "last_ok": "2026-10-09",
@@ -1528,6 +2438,16 @@
     "first_run_done": false,
     "health": "gul",
     "since": "2026-10-08"
+  },
+  "viborg-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "viborher": {
     "last_ok": "2026-10-09",
@@ -1558,6 +2478,16 @@
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08"
+  },
+  "vordingborg-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T07:48:56Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09"
   },
   "voreslokalavis": {
     "last_ok": "2026-10-09",
