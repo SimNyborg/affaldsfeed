@@ -49,7 +49,7 @@
   },
   "aeroe-forsyning": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T15:17:25Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -925,7 +925,7 @@
   },
   "faa": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T18:28:37Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -933,7 +933,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 2
+    "backfill_runs": 3
   },
   "faaborg-midtfyn-kommune": {
     "last_ok": "2026-10-09",
@@ -985,7 +985,7 @@
   },
   "favrskov-forsyning": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T15:17:25Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1009,7 +1009,7 @@
   },
   "faxe-forsyning": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T15:17:25Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
@@ -1045,7 +1045,7 @@
   },
   "fjernvarme-fyn": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T15:17:25Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1081,7 +1081,7 @@
   },
   "folkebladetlemvig": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T18:28:37Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -1089,7 +1089,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 2
+    "backfill_runs": 3
   },
   "folketidende": {
     "last_ok": "2026-10-09",
@@ -1129,7 +1129,7 @@
   },
   "forsyning-helsingoer": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T15:17:25Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -1141,7 +1141,7 @@
   },
   "forsyningen": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T15:17:25Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1165,19 +1165,19 @@
   },
   "frdb": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T18:28:37Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 0,
+    "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 2
+    "backfill_runs": 3
   },
   "fredensborg-forsyning": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T15:17:25Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1225,15 +1225,15 @@
   },
   "frederiksbergliv": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T18:28:37Z",
-    "fails": 1,
-    "last_error": "https://frederiksbergliv.dk/sitemap/2026-10-09: HTTP 503; springes over i denne kørsel; https://frederiksbergliv.dk/sitemap/2026-10-08: springes over: HTTP 503; https://frederiksbergliv.dk/sitemap/2026-09-22: springes over: HTTP 503; https://frederiksbergliv.dk/sitemap/2026-09-21: springes over: HTT",
+    "last_attempt": "2026-10-09T20:53:09Z",
+    "fails": 0,
+    "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
-    "health": "gul",
+    "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 3
+    "backfill_runs": 4
   },
   "frederikshavn-kommune": {
     "last_ok": "2026-10-09",
@@ -1345,7 +1345,7 @@
   },
   "glostrup-forsyning": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T15:17:25Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -1393,7 +1393,7 @@
   },
   "gribskov-forsyning": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T15:17:25Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1705,7 +1705,7 @@
   },
   "htk-forsyning": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T15:17:25Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -1885,7 +1885,7 @@
   },
   "kerteminde-forsyning": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T15:17:25Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1957,8 +1957,8 @@
   },
   "kobenhavnliv": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T18:28:37Z",
-    "fails": 2,
+    "last_attempt": "2026-10-09T20:53:09Z",
+    "fails": 3,
     "last_error": "https://kobenhavnliv.dk/sitemap/2026-10-09: HTTP 503; springes over i denne kørsel; https://kobenhavnliv.dk/sitemap/2026-10-08: springes over: HTTP 503; https://kobenhavnliv.dk/sitemap/2026-09-24: springes over: HTTP 503; https://kobenhavnliv.dk/sitemap/2026-09-23: springes over: HTTP 503; https://k",
     "items_30d": 1,
     "first_run_done": true,
@@ -2149,7 +2149,7 @@
   },
   "maabjerg-energy-center": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T15:17:25Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2185,7 +2185,7 @@
   },
   "middelfart-affald": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T15:17:25Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2209,15 +2209,15 @@
   },
   "midtfynsposten": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T18:28:37Z",
-    "fails": 1,
-    "last_error": "https://midtfynsposten.dk/sitemap/2026-10-09: HTTP 503; springes over i denne kørsel; https://midtfynsposten.dk/sitemap/2026-10-08: springes over: HTTP 503; https://midtfynsposten.dk/sitemap/2026-10-02: springes over: HTTP 503; https://midtfynsposten.dk/sitemap/2026-10-01: springes over: HTTP 503; h",
+    "last_attempt": "2026-10-09T20:53:09Z",
+    "fails": 0,
+    "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
-    "health": "gul",
+    "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 2
+    "backfill_runs": 3
   },
   "midtjyllandsavis": {
     "last_ok": "2026-10-09",
@@ -2317,19 +2317,19 @@
   },
   "miljoeministeriet": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T18:28:37Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
-    "backfilled_from": null,
-    "backfill_runs": 3
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "miljoestyrelsen": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T18:28:37Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 4,
@@ -2337,7 +2337,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 3
+    "backfill_runs": 4
   },
   "naestved-kommune": {
     "last_ok": "2026-10-09",
@@ -2413,7 +2413,7 @@
   },
   "nomi4s": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T15:17:25Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 4,
@@ -2509,7 +2509,7 @@
   },
   "norfors": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T15:17:25Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 4,
@@ -2653,7 +2653,7 @@
   },
   "provas": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T15:17:25Z",
+    "last_attempt": "2026-10-09T20:53:09Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,

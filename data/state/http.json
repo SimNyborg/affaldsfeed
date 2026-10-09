@@ -2,6 +2,9 @@
   "https://a-r-c.dk/feed/": {
     "last_modified": "Fri, 09 Oct 2026 11:24:31 GMT"
   },
+  "https://aeroeforsyning.dk/nyheder/affaldshaandtering": {
+    "last_modified": "Fri, 09 Oct 2026 20:53:10 GMT"
+  },
   "https://affaldplus.dk/rss.xml": {
     "etag": "\"1791550073\"",
     "last_modified": "Fri, 09 Oct 2026 12:47:53 GMT"
@@ -101,6 +104,9 @@
   "https://hjertingposten.dk/feed/": {
     "etag": "\"692d229dacb490a33fedbd001c0f756e\"",
     "last_modified": "Wed, 30 Sep 2026 09:54:13 GMT"
+  },
+  "https://htkforsyning.dk/nyheder/": {
+    "etag": "\"14-1791331578;gz\""
   },
   "https://hvidovrenyt.dk/": {
     "last_modified": "Fri, 09 Oct 2026 13:44:54 GMT"
@@ -275,6 +281,10 @@
   "https://www.faxekommune.dk/sitemap.xml": {
     "etag": "\"b9f279b5f3276b0f5120a5272770d7a3-gzip\"",
     "last_modified": "Fri, 09 Oct 2026 13:30:24 GMT"
+  },
+  "https://www.fh.dk/sitemap.xml": {
+    "etag": "\"1791579002\"",
+    "last_modified": "Fri, 09 Oct 2026 20:50:02 GMT"
   },
   "https://www.fredericia.dk/sitemap.xml": {
     "etag": "\"6d638e9dc9e30177bfb8137aaf3a8365-gzip\"",
