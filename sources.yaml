@@ -2278,15 +2278,17 @@
   homepage: https://www.kredslob.dk
   method: sitemap
   feeds: https://www.kredslob.dk/sitemap.xml
-  match: '/pressemeddelelse/'
+  match: "/pressemeddelelse/"
   filter: normal
   genre: pressemeddelelse
+  places: [k:aarhus]
   basis: offentlig
   status: kandidat
-  checked: 2026-10-07
+  checked: 2026-10-09
   note: >-
-    fejlede ved verifikation 2026-10-07: sitemap.xml og robots.txt svarer 403 (botbeskyttelse), og den omgås ikke.
-    Aarhus' forsyningsselskab (også fjernvarme og vand).
+    Hjemmesiden og robots.txt svarer 403 til feedets UA (botbeskyttelse), og den omgås ikke. Intet
+    nyhedsrum hos Ritzau fundet (afprøvet 2026-10-09). Aarhus Kommunes forsyningsselskab (affald,
+    fjernvarme og vand).
 
 - id: odense-renovation
   name: Odense Renovation
@@ -2382,10 +2384,11 @@
   method: html
   feeds: []
   filter: none
+  places: [k:norddjurs, k:syddjurs]
   basis: offentlig
   status: fravalgt
-  checked: 2026-10-07
-  note: Ingen nyhedssektion (/nyheder og /sitemap.xml giver 404, og /rss.xml er tom).
+  checked: 2026-10-09
+  note: "Ingen nyheder: forsiden har ingen nyhedslinks, og /rss.xml er tom (afprøvet 2026-10-09)."
 
 - id: bofa
   name: BOFA
@@ -2394,10 +2397,11 @@
   method: rss
   feeds: https://bofa.dk/feed/
   filter: none
+  places: [k:bornholm]
   basis: offentlig
   status: fravalgt
-  checked: 2026-10-07
-  note: Feedet indeholder kun WordPress' standardindlæg ("Hej verden!").
+  checked: 2026-10-09
+  note: Feedet har kun ét indlæg fra 2024, og sitemappet har ingen nyheder (afprøvet 2026-10-09).
 
 - id: energnist
   name: Energnist
@@ -2841,19 +2845,79 @@
     Forsyning i Kerteminde Kommune (affald, vand, spildevand og fjernvarme). Nyhedslisten, hvor
     nyhederne ligger direkte under roden.
 
+- id: forsyningen
+  name: Forsyningen (Frederikshavn)
+  category: kommunal
+  homepage: https://www.forsyningen.dk
+  method: html
+  feeds: https://www.forsyningen.dk/nyheder
+  match: "/nyheder/[^/]+$"
+  filter: normal
+  places: [k:frederikshavn]
+  aliases: [Frederikshavn Forsyning]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Forsyning i Frederikshavn Kommune (affald, el, vand, spildevand og varme). Sitemappet har ikke
+    nyhederne, så nyhedslisten bruges.
+
 - id: langeland-forsyning
   name: Langeland Forsyning
   category: kommunal
   homepage: https://www.langeland-forsyning.dk
   method: html
-  feeds: https://www.langeland-forsyning.dk/
-  match: "/nyheder/"
+  feeds: []
   filter: normal
   places: [k:langeland]
   basis: offentlig
-  status: aktiv
+  status: kandidat
   checked: 2026-10-09
-  note: Afprøves.
+  note: >-
+    Hjemmesiden svarer med en captcha (SiteGround), også på robots.txt, og den omgås ikke (afprøvet
+    2026-10-09).
+
+- id: motas
+  name: Motas
+  category: kommunal
+  homepage: http://motas.dk
+  method: html
+  feeds: []
+  filter: none
+  basis: offentlig
+  status: fravalgt
+  checked: 2026-10-09
+  note: >-
+    Modtagestation for farligt affald, ejet af en række kommuner. Hjemmesiden har ingen nyheder
+    (afprøvet 2026-10-09).
+
+- id: deponi-syd
+  name: Deponi Syd
+  category: kommunal
+  homepage: https://deponisyd.dk
+  method: rss
+  feeds: https://deponisyd.dk/feed/
+  filter: none
+  places: [k:aabenraa, k:billund, k:esbjerg, k:haderslev, k:kolding, k:vejen, k:vejle]
+  basis: offentlig
+  status: fravalgt
+  checked: 2026-10-09
+  note: >-
+    Fælleskommunalt deponi. Feedet er tomt, og sitemappet har kun faste sider (afprøvet 2026-10-09).
+
+- id: ressourceindsamling
+  name: Ressourceindsamling
+  category: kommunal
+  homepage: https://ressourceindsamling.dk
+  method: html
+  feeds: []
+  filter: none
+  basis: offentlig
+  status: fravalgt
+  checked: 2026-10-09
+  note: >-
+    Indsamlingsselskab ejet af kommunerne i IPT I/S. Hjemmesiden har kun faste sider og jobopslag
+    (afprøvet 2026-10-09).
 
 # Kommunernes egne nyheder. Kortlagt 2026-10-09 for alle 98 kommuner, se docs/KOMMUNER.md.
 - id: koebenhavn-kommune
