@@ -123,19 +123,20 @@
     ]
   },
   "msn.com": {
-    "name": "Din Avis on MSN",
-    "count": 4,
-    "last_seen": "2026-10-09T09:34:01Z",
+    "name": "Lilyon on MSN",
+    "count": 5,
+    "last_seen": "2026-10-09T21:29:06Z",
     "examples": [
+      "https://www.msn.com/da-dk/nyheder/other/tilfredsstillende-reng%C3%B8ring-af-plys-unicorn-fundet-i-skraldet/vi-AA2dUT2r",
       "https://www.msn.com/da-dk/livsstil/other/byt-til-nyt-s%C3%B8stre-skaber-julegl%C3%A6de-p%C3%A5-genbrug/ar-AA2dTedu",
-      "https://www.msn.com/fr-fr/divertissement/g%C3%A9n%C3%A9ral/la-vache-qui-rit-voici-pourquoi-elle-a-cess%C3%A9-de-sourire-sur-certains-emballages-vous-aurez-du-mal-%C3%A0-y-croire/ar-AA2dObRz",
-      "https://www.msn.com/da-dk/nyheder/other/affald-skulle-blive-billigere-nu-risikerer-danskerne-at-betale-mere/ar-AA2dIQNq"
+      "https://www.msn.com/fr-fr/divertissement/g%C3%A9n%C3%A9ral/la-vache-qui-rit-voici-pourquoi-elle-a-cess%C3%A9-de-sourire-sur-certains-emballages-vous-aurez-du-mal-%C3%A0-y-croire/ar-AA2dObRz"
     ],
     "ids": [
       "2d282b2738cc",
       "b1c4a705b374",
       "ca27c3b6aa8b",
-      "e87d1bca0ae4"
+      "e87d1bca0ae4",
+      "c36daea9418c"
     ]
   },
   "nytimes.com": {
