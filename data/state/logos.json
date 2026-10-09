@@ -533,6 +533,18 @@
     "checked": "2026-10-08T11:28:26Z",
     "error": null
   },
+  "favrskov-kommune": {
+    "file": "favrskov-kommune.png",
+    "src": "https://favrskov.dk/sites/favrskov.dk/themes/custom/favrskov/favicon.ico",
+    "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
+  "faxe-kommune": {
+    "file": "faxe-kommune.ico",
+    "src": "https://www.faxekommune.dk/themes/custom/fds_faxe_theme/favicon.ico",
+    "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
   "finans-dk": {
     "file": "finans-dk.png",
     "src": "https://finans.dk/static/finans.dk/favicon/favicon-32x32.png",
@@ -593,6 +605,24 @@
     "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
+  "fredensborg-kommune": {
+    "file": "fredensborg-kommune.webp",
+    "src": "https://cdn.moliri.dk/image/moliri-public/fredensborg/thumbnail?filename=frico.png&folderPath=demo&width=80",
+    "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
+  "fredericia-kommune": {
+    "file": "fredericia-kommune.jpg",
+    "src": "https://www.fredericia.dk/sites/default/files/fav-icon_1.jpg",
+    "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
+  "frederiksberg-kommune": {
+    "file": "frederiksberg-kommune.png",
+    "src": "https://www.frederiksberg.dk/media/s5uhskev/falk_hovede-til-favikon_2003.png?width=57&height=57&format=noformat&v=1db0383f0560550",
+    "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
   "frederiksbergliv": {
     "file": "frederiksbergliv.png",
     "src": "https://frederiksbergliv.dk/assets/1791279772/kodus/jfm-brands/brands/frederiksbergliv/favicons/apple-icon-57x57.png",
@@ -610,6 +640,24 @@
     "src": null,
     "checked": "2026-10-08T05:27:31Z",
     "error": "blokeret af robots.txt"
+  },
+  "frederikshavn-kommune": {
+    "file": "frederikshavn-kommune.jpg",
+    "src": "https://frederikshavn.dk/media/t2epm1h1/6347247c-3629-4081-bcce-d6dcca8ef11a.jpeg?width=57&height=57&format=noformat&v=1dcd64715934f70",
+    "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
+  "frederikssund-kommune": {
+    "file": "frederikssund-kommune.png",
+    "src": "https://www.frederikssund.dk/Frontend/img/icons/apple-icon-57x57.png",
+    "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
+  "furesoe-kommune": {
+    "file": "furesoe-kommune.webp",
+    "src": "https://cdn.moliri.dk/image/moliri-public/furesoekommune/thumbnail?filename=furesoe_favicon_transperant.png&folderPath=Alle+billeder%2fLogoer+og+grafik%2fDesignelementer&width=80",
+    "checked": "2026-10-09T08:02:44Z",
+    "error": null
   },
   "fyens": {
     "file": "fyens.png",
@@ -635,10 +683,22 @@
     "checked": "2026-10-07T22:37:50Z",
     "error": null
   },
+  "gladsaxe-kommune": {
+    "file": "gladsaxe-kommune.webp",
+    "src": "https://cdn.moliri.dk/image/moliri-public/gladsaxekommune/thumbnail?filename=favicon.png&folderPath=Generelt&width=80",
+    "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
   "gladsaxenetnyt": {
     "file": "gladsaxenetnyt.png",
     "src": "https://gladsaxenetnyt.dk/static/favicon.png",
     "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
+  "glostrup-kommune": {
+    "file": "glostrup-kommune.webp",
+    "src": "https://cdn.glostrup.dk/glostrupkommune/Media/638142952666537491/fav.png?width=32&height=32",
+    "checked": "2026-10-09T08:02:44Z",
     "error": null
   },
   "graastenavis-dk": {
@@ -653,10 +713,46 @@
     "checked": "2026-10-08T05:27:31Z",
     "error": null
   },
+  "greve-kommune": {
+    "file": "greve-kommune.png",
+    "src": "https://greve.dk/media/q2hbne2j/greve-kommune-byvaaben-primaer-219x254.png?width=57&height=57&format=noformat&v=1da275ad5956a90",
+    "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
+  "gribskov-kommune": {
+    "file": "gribskov-kommune.webp",
+    "src": "https://cdn.gribskov.dk/gribskovkommune/Media/E/8/gribskov_byvaaben-rgb-2016.png?width=32&height=32",
+    "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
+  "guldborgsund-kommune": {
+    "file": "guldborgsund-kommune.png",
+    "src": "https://www.guldborgsund.dk/media/oh4lwugj/gbsappikon_1024x1024.png?width=57&height=57&format=noformat&v=1d97e9a5f184630",
+    "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
+  "haderslev-kommune": {
+    "file": "haderslev-kommune.png",
+    "src": "https://www.haderslev.dk/media/t4abucmt/aktive-med-hjerte-og-vilje-favicon.png?width=57&height=57&format=noformat&v=1db876b7e2891c0",
+    "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
+  "halsnaes-kommune": {
+    "file": "halsnaes-kommune.webp",
+    "src": "https://cdn.halsnaes.dk/halsnaeskommune/Media/638382386775269054/fav.png?width=32&height=32",
+    "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
   "hasserisavis": {
     "file": "hasserisavis.webp",
     "src": "https://i0.wp.com/hasserisavis.dk/wp-content/uploads/2022/03/cropped-favicon-1.png?fit=32%2C32&ssl=1",
     "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
+  "hedensted-kommune": {
+    "file": "hedensted-kommune.png",
+    "src": "https://www.hedensted.dk/media/tjhdud0c/hedkom_favicon_180x180.png?width=57&height=57&format=noformat&v=1db6b21e381f7c0",
+    "checked": "2026-10-09T08:02:44Z",
     "error": null
   },
   "heleherlev": {
@@ -671,10 +767,22 @@
     "checked": "2026-10-08T11:28:26Z",
     "error": null
   },
+  "helsingoer-kommune": {
+    "file": "helsingoer-kommune.ico",
+    "src": "https://cdn.helsingor.dk/helsingoerkommune/Media/638320944379211875/favicon.ico?width=32&height=32",
+    "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
   "helsingordagblad": {
     "file": "helsingordagblad.png",
     "src": "https://helsingordagblad.dk/assets/1791279772/kodus/jfm-brands/brands/helsingor/favicons/apple-icon-57x57.png",
     "checked": "2026-10-08T09:11:01Z",
+    "error": null
+  },
+  "herning-kommune": {
+    "file": "herning-kommune.webp",
+    "src": "https://cdn.herning.dk/herningkommune/media/47407/hk_byvaaben_cmyk-uden-tekst.jpe?width=32&height=32",
+    "checked": "2026-10-09T08:02:44Z",
     "error": null
   },
   "herningfolkeblad": {
@@ -683,10 +791,22 @@
     "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
+  "hilleroed-kommune": {
+    "file": "hilleroed-kommune.png",
+    "src": "https://www.hillerod.dk/favicon-32x32.png?v=QpXZV0fPN9OVvsa1XqMRyb7euKDIbzs4H3sDDVv0y3E",
+    "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
   "hjertingposten": {
     "file": "hjertingposten.ico",
     "src": "https://hjertingposten.dk/wp-content/uploads/favicon.ico",
     "checked": "2026-10-08T11:28:26Z",
+    "error": null
+  },
+  "hjoerring-kommune": {
+    "file": "hjoerring-kommune.webp",
+    "src": "https://cdn.hjoerring.dk/hjoerringkommune/Media/A/E/favicon2.jpg?width=32&height=32",
+    "checked": "2026-10-09T08:02:44Z",
     "error": null
   },
   "hoeringsportalen": {
