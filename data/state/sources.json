@@ -157,7 +157,7 @@
   },
   "amtsavisen": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T10:08:20Z",
+    "last_attempt": "2026-10-09T16:29:18Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -165,7 +165,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 0
+    "backfill_runs": 1
   },
   "arc": {
     "last_ok": "2026-10-09",
@@ -517,12 +517,12 @@
   },
   "dagbladet-holstebro-struer": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T10:08:20Z",
-    "fails": 0,
-    "last_error": null,
+    "last_attempt": "2026-10-09T16:29:18Z",
+    "fails": 1,
+    "last_error": "https://dagbladet-holstebro-struer.dk/sitemap/2026-10-09: HTTP 503; springes over i denne kørsel; https://dagbladet-holstebro-struer.dk/sitemap/2026-10-08: springes over: HTTP 503; https://dagbladet-holstebro-struer.dk/sitemap/2026-10-07: springes over: HTTP 503; https://dagbladet-holstebro-struer.d",
     "items_30d": 0,
     "first_run_done": true,
-    "health": "groen",
+    "health": "gul",
     "since": "2026-10-08",
     "backfilled_from": null,
     "backfill_runs": 0
@@ -637,9 +637,9 @@
   },
   "dbrs": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T10:08:20Z",
-    "fails": 1,
-    "last_error": "https://dbrs.dk/sitemap/2026-10-09: timeout; https://dbrs.dk/sitemap/2026-10-08: HTTP 503; springes over i denne kørsel",
+    "last_attempt": "2026-10-09T16:29:18Z",
+    "fails": 2,
+    "last_error": "https://dbrs.dk/sitemap/2026-10-09: HTTP 503; springes over i denne kørsel; https://dbrs.dk/sitemap/2026-10-08: springes over: HTTP 503; https://dbrs.dk/sitemap/2026-10-07: springes over: HTTP 503; https://dbrs.dk/sitemap/2026-10-06: springes over: HTTP 503; https://dbrs.dk/sitemap/2026-10-05: sprin",
     "items_30d": 0,
     "first_run_done": true,
     "health": "gul",
@@ -925,7 +925,7 @@
   },
   "faa": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T10:08:20Z",
+    "last_attempt": "2026-10-09T16:29:18Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -933,7 +933,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 0
+    "backfill_runs": 1
   },
   "faaborg-midtfyn-kommune": {
     "last_ok": "2026-10-09",
@@ -1081,7 +1081,7 @@
   },
   "folkebladetlemvig": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T10:08:20Z",
+    "last_attempt": "2026-10-09T16:29:18Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1089,7 +1089,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 0
+    "backfill_runs": 1
   },
   "folketidende": {
     "last_ok": "2026-10-09",
@@ -1165,7 +1165,7 @@
   },
   "frdb": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T10:08:20Z",
+    "last_attempt": "2026-10-09T16:29:18Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1173,7 +1173,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 0
+    "backfill_runs": 1
   },
   "fredensborg-forsyning": {
     "last_ok": "2026-10-09",
@@ -1273,15 +1273,15 @@
   },
   "fyens": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T10:08:20Z",
+    "last_attempt": "2026-10-09T16:29:18Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 0,
+    "items_30d": 2,
     "first_run_done": false,
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 0
+    "backfill_runs": 1
   },
   "galtenfolkeblad": {
     "last_ok": "2026-10-09",
@@ -1513,15 +1513,15 @@
   },
   "helsingordagblad": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T10:08:20Z",
+    "last_attempt": "2026-10-09T16:29:18Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 0,
+    "items_30d": 3,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 0
+    "backfill_runs": 1
   },
   "herning-kommune": {
     "last_ok": "2026-10-09",
@@ -1693,7 +1693,7 @@
   },
   "hsfo": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T10:08:20Z",
+    "last_attempt": "2026-10-09T16:29:18Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1701,7 +1701,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 0
+    "backfill_runs": 1
   },
   "htk-forsyning": {
     "last_ok": "2026-10-09",
@@ -1837,7 +1837,7 @@
   },
   "jv": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T10:08:20Z",
+    "last_attempt": "2026-10-09T16:29:18Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -1845,7 +1845,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 0
+    "backfill_runs": 1
   },
   "kalundborg-kommune": {
     "last_ok": "2026-10-09",
