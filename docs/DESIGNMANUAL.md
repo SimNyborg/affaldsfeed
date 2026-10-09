@@ -15,7 +15,7 @@ Manualen beskriver, hvordan Affaldsfeed ser ud, og hvad der står på siden. Dat
 ## Layout
 
 - Demo-strimmel, header, indhold og footer deler én container: højst 68rem (1088 px) med 16 px sidemargen. Derfor står logoet på linje med sidepanelets venstrekant, og det sidste menupunkts tekst flugter med listepanelets højrekant.
-- Fra 1024 px er der to kolonner: filterpanelet på 312 px og læsekolonnen på højst 720 px med 24 px imellem. Sidepanelet er sticky 16 px fra toppen, er højst skærmens højde minus 32 px og ruller selv.
+- Fra 1024 px er der to kolonner: filterpanelet på 312 px og læsekolonnen på højst 720 px med 24 px imellem. Sidepanelets top flugter med listepanelets top, så meddelelser og AI-overblik står alene over listen. Læsekolonnen deler gitterets rækker (CSS subgrid), og afstanden på 16 px er en margin, så en skjult meddelelse eller et skjult overblik ikke giver luft. Sidepanelet er sticky 16 px fra toppen, er højst skærmens højde minus 32 px og ruller selv.
 - Fra 768 til 1023 px er containeren 47rem (752 px) med én kolonne på højst 720 px. Filtrene ligger i en skuffe fra højre bag knappen "Filtrér".
 - Under 768 px går panelerne fra kant til kant uden radius, og al tekst står 16 px fra skærmkanten. Der er 8 px grå mellem panelerne. Filtrene ligger i et bundark.
 - Brudpunkterne står i em (48em og 64em), så layoutet skifter tidligere, når brugeren har større grundskrift. Siden kan vises ved 320 px uden vandret scroll, også i tom-tilstanden, hvor knapperne må brydes over to linjer.
