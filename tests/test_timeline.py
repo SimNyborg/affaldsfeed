@@ -38,6 +38,10 @@ SOURCES_YAML = """
 @pytest.fixture
 def repo(tmp_path, monkeypatch):
     shutil.copytree(REAL_CONFIG, tmp_path / "config")
+    # Den almindelige drift: vindue på window_days (window_start afprøves for sig)
+    settings = tmp_path / "config" / "settings.yaml"
+    settings.write_text("".join(ln for ln in settings.read_text(encoding="utf-8").splitlines(keepends=True)
+                                if not ln.startswith("window_start:")), encoding="utf-8")
     (tmp_path / "config" / "medier.yaml").write_text("[]\n", encoding="utf-8")
     (tmp_path / "sources.yaml").write_text(SOURCES_YAML, encoding="utf-8")
     site = tmp_path / "site"

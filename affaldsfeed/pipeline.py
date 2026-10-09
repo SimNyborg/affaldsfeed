@@ -6,9 +6,9 @@ import argparse
 import logging
 import time
 from collections import Counter
-from collections.abc import Iterable
+from collections.abc import Callable, Collection, Iterable
 from dataclasses import dataclass, field
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
 from typing import get_args
 
 from affaldsfeed import paths, store
@@ -33,7 +33,7 @@ from affaldsfeed.models import Candidate, DateQuality, Rejected, Source, SourceS
 from affaldsfeed.normalize import clean_text, item_id, normalize_title
 from affaldsfeed.places import compile_places, rule_places
 from affaldsfeed.relevance import Prefilter
-from affaldsfeed.timeutil import ensure_utc, iso, now_utc, parse_iso
+from affaldsfeed.timeutil import cph_day_start, ensure_utc, iso, now_utc, parse_iso, to_cph
 
 log = logging.getLogger(__name__)
 
@@ -129,10 +129,25 @@ class Processor:
             src = src.model_copy(update={"filter": level})
         return src
 
-    def process(self, source: Source, entries: list[RawEntry], first_run: bool, check_mode: bool = False) -> SourceOutcome:
+    def process(
+        self,
+        source: Source,
+        entries: list[RawEntry],
+        first_run: bool,
+        check_mode: bool = False,
+        since: date | None = None,
+    ) -> SourceOutcome:
+        """Regler for kildens indslag. `since` er bagudindsamlingens første dag (§5.8): ældre indslag er for gamle."""
         out = SourceOutcome()
         s = self.settings
-        max_age = timedelta(days=s.baseline_days if first_run else s.max_age_days_on_find)
+        # Bagudindsamling: indslag ældre end det almindelige vindue, som forfiltret afviser, gemmes ikke som
+        # afviste, ellers fylder et år med dagssitemaps data/rejected/ med titusindvis af poster
+        quiet_before: datetime | None = None
+        if since is not None:
+            oldest = cph_day_start(since)
+            quiet_before = self.now - timedelta(days=s.max_age_days_on_find)
+        else:
+            oldest = self.now - timedelta(days=s.baseline_days if first_run else s.max_age_days_on_find)
         for e in entries:
             url = (e.url or "").strip()
             if not url.startswith(("http://", "https://")):
@@ -181,7 +196,7 @@ class Processor:
                     out.skipped += 1  # udaterede springes over ved første kørsel
                     continue
                 published, dq = self.now, "fundet"
-            too_old = dq != "fundet" and published < self.now - max_age
+            too_old = dq != "fundet" and published < oldest
 
             rsrc = self.rule_source(source, e.source_id)
             why = self.prefilter.evaluate(title, teaser, rsrc)
@@ -198,6 +213,9 @@ class Processor:
                 why = why.model_copy(update={"decision": "afvist", "reason": "for gammel"})
 
             if why.decision == "afvist":
+                if quiet_before is not None and not check_mode and dq != "fundet" and published < quiet_before:
+                    out.skipped += 1
+                    continue
                 out.rejected.append(
                     Rejected(id=iid, url=url, title=title, source=e.source_id, first_seen=self.now, why=why)
                 )
@@ -274,8 +292,9 @@ def plan_sources(
     only: set[str] | None,
     fetcher: Fetcher,
     max_crawl_delay: float,
+    needs_backfill: Callable[[SourceState], bool] | None = None,
 ) -> tuple[list[Source], list[str]]:
-    """(kilder på tur, aktive kilder der venter på fase 2)."""
+    """(kilder på tur, aktive kilder der venter på fase 2). En bagudindsamling med restkø er på tur hver time."""
     by_id = {s.id: s for s in sources}
     if only:
         for sid in sorted(only - set(by_id)):
@@ -293,14 +312,24 @@ def plan_sources(
             due.append(s)
             continue
         eff = s
+        state = states.get(s.id) or SourceState()
         if s.method != "search" and any(fetcher.cached_crawl_delay(f) > max_crawl_delay for f in s.feeds):
             eff = s.model_copy(update={"every": max(s.every_hours, SLOW_EVERY_HOURS)})
-        if is_due(eff, states.get(s.id) or SourceState(), now):
+        elif state.backfill_runs and needs_backfill is not None and needs_backfill(state):
+            eff = s.model_copy(update={"every": 1})  # restkøen hentes hver time (§5.8)
+        if is_due(eff, state, now):
             due.append(s)
     # Feeds først, så søgefund kan dedupes mod dem. Blandt feeds går de længst ventende først, så et brugt
-    # tidsbudget for kørslen ikke rammer de samme kilder hver gang.
+    # tidsbudget for kørslen ikke rammer de samme kilder hver gang. En bagudindsamling med restkø venter, til de
+    # andre kilder har kørt, så nye nyheder ikke forsinkes af den (§5.8).
     never = datetime.min.replace(tzinfo=UTC)
-    due.sort(key=lambda s: (s.method == "search", (states.get(s.id) or SourceState()).last_attempt or never, s.id))
+
+    def order(s: Source) -> tuple[bool, bool, datetime, str]:
+        st = states.get(s.id) or SourceState()
+        busy = bool(st.backfill_runs) and needs_backfill is not None and needs_backfill(st)
+        return s.method == "search", busy, st.last_attempt or never, s.id
+
+    due.sort(key=order)
     return due, waiting
 
 
@@ -333,6 +362,26 @@ def main_run(args: argparse.Namespace) -> int:
         return 1
 
 
+def forget_seen(seen: dict[str, dict[str, str]], source_id: str, keep: Collection[str]) -> int:
+    """Glem kildens sete URL'er, der ikke blev til en kandidat (fx afvist som for gamle), så bagudindsamlingen
+    henter dem igen (KONTRAKTER §5.8). Returnerer antallet."""
+    own = seen.get(source_id)
+    if not own:
+        return 0
+    drop = [iid for iid in own if iid not in keep]
+    for iid in drop:
+        del own[iid]
+    return len(drop)
+
+
+def _run_note(first_run: bool, backfill: bool, backlog: bool) -> str:
+    """Tillæg til kildens loglinje: baseline ved første kørsel, bagud ved bagudindsamling (§5.6 og §5.8)."""
+    if not (first_run or backfill):
+        return ""
+    what = "bagudindsamling" if backfill else "baseline"
+    return f", {what} (ikke komplet; fortsætter)" if backlog else f", {what}"
+
+
 def _run(args: argparse.Namespace) -> int:
     now = now_utc(getattr(args, "now", None))
     dry = bool(getattr(args, "dry_run", False))
@@ -361,7 +410,9 @@ def _run(args: argparse.Namespace) -> int:
     recent_cut = now - timedelta(days=SEARCH_DEDUPE_DAYS)
     recent_titles = {(normalize_title(c.title), c.source) for c in all_candidates if c.first_seen >= recent_cut}
 
-    due, waiting = plan_sources(sources, states, now, only, fetcher, settings.fetch.max_crawl_delay_seconds)
+    due, waiting = plan_sources(
+        sources, states, now, only, fetcher, settings.fetch.max_crawl_delay_seconds, settings.needs_backfill
+    )
     if waiting:
         log.info("Venter på fase 2 (metode ikke implementeret): %s", ", ".join(sorted(waiting)))
     if only and not due:
@@ -395,10 +446,17 @@ def _run(args: argparse.Namespace) -> int:
         state = states.get(s.id) or SourceState()
         # Første kørsel: kilden har aldrig haft en vellykket kørsel (ingen state eller first_run_done false)
         first_run = not state.first_run_done
-        ctx.conditional = not first_run
-        ctx.first_run = first_run
+        # Bagudindsamling til window_start (§5.8): én gang pr. kilde, som en første kørsel med et længere vindue
+        backfill = settings.needs_backfill(state)
+        ctx.conditional = not (first_run or backfill)
+        ctx.first_run = first_run or backfill
+        ctx.backfill_since = settings.window_start if backfill else None
         ctx.last_ok = state.last_ok
-        fetcher.start_budget(settings.fetch.source_budget_seconds)
+        fetcher.start_budget(settings.backfill.source_budget_seconds if backfill else settings.fetch.source_budget_seconds)
+        if backfill and state.backfill_runs == 0:
+            forgot = forget_seen(seen, s.id, proc.existing)
+            if forgot:
+                log.info("%s: bagudindsamling: %d URL'er fra seen uden kandidat hentes igen", s.id, forgot)
         cache_backup = dict(fetcher.http_cache)
         seen_backup = dict(seen.get(s.id, {}))
         t0 = time.monotonic()
@@ -413,7 +471,7 @@ def _run(args: argparse.Namespace) -> int:
             backlog = res.backlog
             for line in res.diagnostics:
                 log.debug("%s: %s", s.id, line)
-            out = proc.process(s, res.entries, first_run)
+            out = proc.process(s, res.entries, first_run or backfill, since=ctx.backfill_since)
             unknown.extend(res.unknown_publishers)
         except Exception as e:  # hver kilde er isoleret
             log.exception("%s: uventet fejl", s.id)
@@ -429,6 +487,17 @@ def _run(args: argparse.Namespace) -> int:
             # Baseline er ikke komplet (sider eller sitemaps venter): næste kørsel er også en første kørsel,
             # så restkøen hentes som baseline med 14-dages-vinduet (KONTRAKTER §5.6)
             states[s.id] = states[s.id].model_copy(update={"first_run_done": False})
+        if backfill and error is None:
+            # Bagudindsamlingen er færdig uden restkø, ellers fortsætter den ved næste kørsel, dog højst max_runs
+            # vellykkede kørsler, så en side med forbigående fejl ikke holder den i gang for altid (§5.8)
+            runs = state.backfill_runs + 1
+            if backlog and runs < settings.backfill.max_runs:
+                update = {"backfill_runs": runs}
+            else:
+                if backlog:
+                    log.warning("%s: bagudindsamlingen stopper efter %d kørsler med en restkø", s.id, runs)
+                update = {"backfilled_from": settings.window_start, "backfill_runs": 0}
+            states[s.id] = states[s.id].model_copy(update=update)
         secs = time.monotonic() - t0
         if error:
             failed[s.id] = error
@@ -445,7 +514,7 @@ def _run(args: argparse.Namespace) -> int:
                 len(out.new) - vis,
                 len(out.rejected),
                 len(out.updated),
-                (", baseline (ikke komplet; fortsætter)" if backlog else ", baseline") if first_run else "",
+                _run_note(first_run, backfill, backlog),
                 secs,
             )
         if dry:
@@ -464,7 +533,7 @@ def _run(args: argparse.Namespace) -> int:
     if not dry and settings.logos.max_per_run and not postponed:
         t_logo = time.monotonic()
         fetcher.start_budget(settings.logos.budget_seconds)
-        cut = now - timedelta(days=settings.window_days)
+        cut = settings.window_since(now)
         in_feed = Counter(c.source for c in proc.existing.values() if (c.published or c.first_seen) >= cut)
         targets = logo_targets(known_sources(sources, config.publishers), sources)
         n = refresh_logos(
@@ -483,11 +552,12 @@ def _run(args: argparse.Namespace) -> int:
 
     # Regelmærkerne for steder følger den aktuelle geografi, også for indslag fundet før en ændring
     t_places = time.monotonic()
-    refreshed, n_refreshed = refresh_places(proc, now - timedelta(days=settings.window_days))
+    window = settings.window_since(now)
+    refreshed, n_refreshed = refresh_places(proc, window)
     log.info(
-        "Steder genberegnet for %d danske kandidater i vinduet (%d dage): %d ændret (%.0f ms)",
+        "Steder genberegnet for %d danske kandidater i vinduet (fra %s): %d ændret (%.0f ms)",
         n_refreshed,
-        settings.window_days,
+        to_cph(window).date().isoformat(),
         len(refreshed),
         (time.monotonic() - t_places) * 1000,
     )

@@ -202,6 +202,40 @@ def test_collect_without_feeds_is_an_error(ctx):
     assert COLLECTORS["oda"](src, _fetcher(), ctx).error == "mangler feeds (ODA's adresse)"
 
 
+# ── Bagudindsamling (KONTRAKTER §5.8) ─────────────────────
+
+
+def test_lookback_reaches_window_start_in_a_backfill(ctx):
+    cfg = OdaSettings(days=3, first_run_days=14)
+    ctx.backfill_since = date(2026, 1, 1)
+    assert lookback_days(ctx, cfg) == 279  # 7. oktober tilbage til 1. januar
+    ctx.backfill_since = date(2026, 10, 1)
+    assert lookback_days(ctx, cfg) == 14  # mindst som en første kørsel
+
+
+def test_backfill_asks_from_midnight_on_window_start_with_more_pages(ctx):
+    src = _source(ctx)
+    ctx.first_run = True
+    ctx.backfill_since = date(2026, 1, 1)
+    ctx.config.settings.oda.max_pages = 1  # backfill.oda_max_pages (20) gælder i stedet
+    fetcher = _fetcher()
+    res = COLLECTORS["oda"](src, fetcher, ctx)
+    calls = [u for u, _ in type(fetcher).calls]
+    assert "opdateringsdato gt datetime'2026-01-01T00:00:00'" in unquote(calls[0])
+    assert calls[1] == NEXT and len(res.entries) == 4 and not res.backlog
+
+
+def test_a_failure_while_paging_is_a_backlog_only_in_a_backfill(ctx):
+    src = _source(ctx)
+    routes = {FIRST: ("oda/side1.json", JSON), NEXT: 500}
+    res = COLLECTORS["oda"](src, _fetcher(routes), ctx)
+    assert res.error is None and not res.backlog and len(res.entries) == 2  # almindelig kørsel: resten tabes
+    ctx.backfill_since = date(2026, 1, 1)
+    res = COLLECTORS["oda"](src, _fetcher(routes), ctx)
+    assert res.error is None and res.backlog and len(res.entries) == 2  # tages om ved næste kørsel
+    assert "bladringen stoppede efter side 1: ODA: HTTP 500" in " ".join(res.diagnostics)
+
+
 # ── Hele kørslen ───────────────────────────────────────────
 
 

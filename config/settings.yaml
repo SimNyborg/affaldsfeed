@@ -28,6 +28,15 @@ pages:
   seen_refresh_days: 30          # state/seen.json: datoen fornyes kun, når den er ældre
   seen_keep_days: 120            # ... og posten fjernes, når URL'en ikke er set så længe
 
+# Indsamling bagud til window_start, én gang pr. kilde. Se KONTRAKTER §5.8.
+backfill:
+  max_pages: 40                  # sitemap: artikelsider pr. kilde pr. kørsel; resten tages næste gang
+  max_sub_sitemaps: 15           # under-sitemaps fra et indeks (fx et pr. måned)
+  max_sitemap_fetches: 20        # sitemap-hentninger pr. kilde pr. kørsel
+  source_budget_seconds: 300.0   # maks tid pr. kilde pr. kørsel
+  oda_max_pages: 20              # Folketinget: sider à oda.top dokumenter
+  max_runs: 24                   # vellykkede kørsler pr. kilde; derefter regnes bagudindsamlingen som færdig
+
 # Folketingets åbne data (method oda). Se KONTRAKTER §5.7.
 oda:
   # Dokumenter, hvis titel indeholder et af ordene (serverfilter; store og små bogstaver er ligegyldige)
@@ -63,14 +72,15 @@ timeline:
   max_per_week: 2                # højst så mange begivenheder med dato i samme uge
   recent_hours: 48               # linjer skrevet så nyligt tjekkes mod de godkendte indslag
 
-window_days: 60                  # så langt tilbage feed.json rækker
+window_days: 60                  # så langt tilbage feed.json rækker, når window_start ikke er sat
+window_start: 2026-01-01         # feedets første dag; hver kilde hentes én gang bagud hertil (KONTRAKTER §5.8)
 max_age_days_on_find: 14         # ældre indslag afvises, når de findes
 baseline_days: 60                # første kørsel for en kilde: gem hele vinduet (window_days) som baseline
 teaser_max: 300
 teaser_display_max: 240
 title_prefixes: ["Nyhed:"]       # præfikser uden indhold, der fjernes fra titler i feedet ("Nyhed: X" vises som "X")
 rejected_keep_days: 90
-pending_hours: 72
+pending_hours: 336               # routinen vurderer kandidater fundet inden for 14 dage (også en kø efter bagudindsamling)
 stale_feed_hours: 6
 story_title_window_days: 3
 story_max_age_days: 7

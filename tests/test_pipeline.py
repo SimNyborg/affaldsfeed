@@ -370,7 +370,7 @@ def test_run_refreshes_places_of_old_candidates(env, monkeypatch, caplog):
     code, _ = _run(monkeypatch, dry_run=True)
     assert code == 0
     assert {c.id: c.places for c in store.load_candidates()} == {c.id: c.places for c in before}
-    assert "danske kandidater i vinduet (60 dage): 3 ændret" in caplog.text  # inkl. nye fra kørslen
+    assert "danske kandidater i vinduet (fra 2026-08-08): 3 ændret" in caplog.text  # inkl. nye fra kørslen
 
     code, _ = _run(monkeypatch)
     assert code == 0
@@ -557,3 +557,94 @@ def test_http_cache_keeps_the_expanded_daily_sitemaps(env):
     assert "https://www.testmedie.dk/sitemap/2026-10-06" not in valid
     assert "https://www.testmedie.dk/sitemap/{dato}" not in valid
 
+
+
+# ── Bagudindsamling til window_start (KONTRAKTER §5.8) ─────
+
+
+def test_window_since_and_needs_backfill():
+    settings = load_config(paths.CONFIG_DIR).settings.model_copy(update={"window_start": None, "window_days": 60})
+    now = datetime(2026, 10, 7, 8, 5, tzinfo=UTC)
+    assert settings.window_since(now) == now - timedelta(days=60)
+    assert not settings.needs_backfill(SourceState()) and not settings.needs_backfill(None)
+    settings = settings.model_copy(update={"window_start": date(2026, 1, 1)})
+    assert settings.window_since(now) == datetime(2025, 12, 31, 23, 0, tzinfo=UTC)  # midnat i København
+    assert settings.needs_backfill(None) and settings.needs_backfill(SourceState(backfill_runs=3))
+    assert not settings.needs_backfill(SourceState(backfilled_from=date(2026, 1, 1)))
+    assert not settings.needs_backfill(SourceState(backfilled_from=date(2025, 6, 1)))  # hentet længere tilbage
+    assert settings.needs_backfill(SourceState(backfilled_from=date(2026, 3, 1)))  # window_start er flyttet bagud
+
+
+def test_forget_seen_keeps_only_urls_that_became_candidates():
+    seen = {"a": {"k1": "2026-10-07", "x": "2026-10-07", "y": "2026-10-01"}, "b": {"z": "2026-10-07"}}
+    assert pipeline.forget_seen(seen, "a", {"k1", "z"}) == 2
+    assert seen == {"a": {"k1": "2026-10-07"}, "b": {"z": "2026-10-07"}}
+    assert pipeline.forget_seen(seen, "ukendt", set()) == 0 and "ukendt" not in seen
+
+
+def test_backfill_with_a_backlog_is_due_hourly_and_runs_after_the_others(env):
+    config = load_config()
+    settings = config.settings.model_copy(update={"window_start": date(2026, 1, 1)})
+    sources = [s.model_copy(update={"every": 6}) if s.id == "testorg" else s for s in load_sources()]
+    now = datetime(2026, 10, 7, 8, 5, tzinfo=UTC)
+    hour_ago = now - timedelta(hours=1)
+    done = {"backfilled_from": date(2026, 1, 1)}
+    states = {
+        "testorg": SourceState(last_attempt=now - timedelta(hours=3), backfill_runs=2),  # restkø: hver time
+        "testmedie": SourceState(last_attempt=hour_ago, **done),
+        "dr": SourceState(last_attempt=hour_ago - timedelta(minutes=5), **done),
+        "affaldsselskab": SourceState(last_attempt=hour_ago, **done),
+        "udateret": SourceState(last_attempt=hour_ago, **done),
+    }
+    fetcher = _fakes().make_fetcher_class(None)(config.settings.fetch, {}, {}, now)
+    due, _ = pipeline.plan_sources(sources, states, now, None, fetcher, 30.0, settings.needs_backfill)
+    ids = [s.id for s in due]
+    assert "testorg" in ids and ids.index("testorg") > ids.index("dr")  # efter de andre feeds
+    assert ids.index("testorg") < ids.index("bing-news")  # søgning stadig til sidst
+    # Uden restkø gælder kildens egen takt (hver 6. time)
+    states["testorg"] = SourceState(last_attempt=now - timedelta(hours=3))
+    due, _ = pipeline.plan_sources(sources, states, now, None, fetcher, 30.0, settings.needs_backfill)
+    assert "testorg" not in [s.id for s in due]
+
+
+@pytest.fixture
+def backfill_env(tmp_path, monkeypatch):
+    return _fakes().setup_env(tmp_path, monkeypatch, window_start="2026-01-01")
+
+
+def test_backfill_run_keeps_this_years_old_items_as_baseline(backfill_env, monkeypatch, caplog):
+    caplog.set_level(logging.INFO)
+    monkeypatch.delitem(COLLECTORS, "oda")
+    code, fake = _run(monkeypatch)
+    assert code == 0
+    assert all(cond is False for _, cond in fake.calls)  # ubetinget som en første kørsel
+    cands = _by_title(_cands())
+    old = cands["Gammel nyhed om affaldssortering i boligforeninger"]  # 28. juli: med, fordi feedet går til 1. januar
+    assert old.baseline and old.published == datetime(2026, 7, 28, 6, 0, tzinfo=UTC)
+    rejected = {r.title: r for r in store.load_rejected()}
+    # Ældre end 14 dage og afvist af forfiltret: gemmes ikke som afvist (ellers fylder et år data/rejected/)
+    assert "Gammel sportsnyhed om håndbold" not in rejected
+    # Fra før 1. januar: hverken kandidat eller afvist
+    assert "Meget gammel nyhed om affaldsgebyrer" not in cands and "Meget gammel nyhed om affaldsgebyrer" not in rejected
+    assert rejected["Fodboldkamp aflyst i regnvejr"].why.decision == "afvist"  # nyt indslag: som altid
+    states = store.load_source_states()
+    assert states["testmedie"].backfilled_from == date(2026, 1, 1) and states["testmedie"].backfill_runs == 0
+    assert "opdaterede, bagudindsamling (" in caplog.text
+
+    # Næste kørsel er almindelig: betingede forespørgsler, og kun de udaterede indslag er nye (som altid)
+    code, fake = _run(monkeypatch, now=LATER)
+    assert code == 0
+    assert [cond for u, cond in fake.calls if u == "https://www.testmedie.dk/rss"] == [True]
+    new = [c for t, c in _by_title(_cands()).items() if t not in cands]
+    assert new and all(c.date_quality == "fundet" and not c.baseline for c in new)
+
+
+def test_backfill_is_not_finished_by_a_failing_run(backfill_env, monkeypatch):
+    monkeypatch.delitem(COLLECTORS, "oda")
+    routes = {**_fakes().DEFAULT_ROUTES, "https://www.testmedie.dk/rss": 500}
+    assert _run(monkeypatch, routes=routes)[0] == 0
+    state = store.load_source_states()["testmedie"]
+    assert state.backfilled_from is None and state.backfill_runs == 0 and state.fails == 1
+    assert _run(monkeypatch, now=LATER)[0] == 0  # kilden svarer igen: bagudindsamlingen gøres færdig
+    assert store.load_source_states()["testmedie"].backfilled_from == date(2026, 1, 1)
+    assert "Gammel nyhed om affaldssortering i boligforeninger" in _by_title(_cands())

@@ -170,3 +170,21 @@ Selskaberne får deres ejerkommuner som faste steder, så deres nyheder kan find
 
 Fors, Norfors, Nomi4s og Energnist er gået fra kandidat eller fravalgt til aktiv. Kredsløb har stadig botbeskyttelse, Langeland Forsyning har en captcha, og Reno Djurs, BOFA, Motas, Deponi Syd og Ressourceindsamling har ingen nyheder på hjemmesiden. De står med en note og kan prøves igen senere.
 
+## 2026-10-09: Hele 2026 i feedet
+
+Brugeren bad om nyhederne fra alle kilder for hele 2026, dag for dag, og derefter de nye hver dag. Feedet rækker nu tilbage til 1. januar 2026. Datoen står som `window_start` i `config/settings.yaml`, og hver kilde hentes én gang bagud dertil (KONTRAKTER §5.8). Det afløser vinduet på 60 dage fra 2026-10-07 (Kalender i stedet for periode).
+
+Bagudindsamlingen kører i de almindelige timekørsler. En kilde, der har mere, end der kan hentes i én kørsel, fortsætter hver time efter de andre kilder, så nye nyheder ikke venter på den. Sitemaps for afsluttede dage, uger og måneder læses kun én gang. Routinen vurderer de gamle indslag sammen med de nye, nyeste først, og har nu 14 dage til køen i stedet for 72 timer. Ellers kunne de ældste indslag nå at falde ud af køen, før de blev vurderet.
+
+Hvor langt tilbage en kilde kan hentes, afhænger af kilden:
+- Sitemaps med datoer går hele året tilbage. Det gælder de fleste kommuner, mange affaldsselskaber og de 18 aviser fra Jysk Fynske Medier, der har ét sitemap pr. dag. De gamle dagssitemaps er afprøvet fra GitHub Actions.
+- Folketingets åbne data går hele året tilbage.
+- RSS-feeds rummer kun de seneste 10 til 50 indslag, så de fleste nationale medier giver kun de seneste uger.
+- Nyhedslister på hjemmesider giver kun det, der står på listens første side.
+- Søgning hjælper ikke bagud. Google News blokerer indsamleren i robots.txt, og Bing News går kun omkring 30 dage tilbage og kan ikke søge i et tidsrum.
+
+Januar til september bliver derfor tyndere for de nationale medier end for kommuner, affaldsselskaber og lokalaviser. Det kan ikke løses generisk uden at omgå en spærring, og det gør projektet ikke.
+
+Artikler, som de første kørsler i oktober hentede og afviste som for gamle, står som sete. Ved kildens første bagudkørsel glemmes de sete adresser, der ikke blev til en kandidat, så de hentes igen. Gamle indslag, som forfiltret afviser, gemmes ikke i `data/rejected/`, for et års dagssitemaps ville ellers give flere titusinde poster dér.
+
+`feed.json` er stadig én fil. Med et helt år bliver den større, anslået 2 til 3 MB. Komprimeret med gzip, som GitHub Pages bruger, fylder den omkring en femtedel, og listen viser kun 60 kort ad gangen. Bliver siden for langsom, deles feedet op i månedsfiler.

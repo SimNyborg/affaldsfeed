@@ -6,6 +6,7 @@ import argparse
 import gzip
 import importlib.util
 import json
+import logging
 import sys
 import time
 from datetime import UTC, date, datetime, timedelta
@@ -18,7 +19,7 @@ from affaldsfeed import fetch as fetchmod
 from affaldsfeed import paths, pipeline, store
 from affaldsfeed.collect import COLLECTORS, CollectContext, pages
 from affaldsfeed.config import load_config, main_check
-from affaldsfeed.models import Source
+from affaldsfeed.models import Source, SourceState
 from affaldsfeed.normalize import item_id
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
@@ -1284,6 +1285,112 @@ def test_invalid_select_is_rejected_by_the_model():
         html_src(select="ul[[")
 
 
+# ── Bagudindsamling (KONTRAKTER §5.8) ──────────────────────
+
+NEWS_NS = "http://www.google.com/schemas/sitemap-news/0.9"
+
+
+def backfill_ctx(cfg, since: date = date(2026, 1, 1), seen: dict | None = None) -> CollectContext:
+    c = ctx(cfg, first_run=True, seen=seen)
+    c.backfill_since = since
+    return c
+
+
+def news_urlset(rows: list[tuple[str, str, str]]) -> bytes:
+    """Google News-sitemap med (url, dato, titel) pr. artikel."""
+    body = "".join(
+        f"<url><loc>{u}</loc><news:news><news:publication_date>{d}</news:publication_date>"
+        f"<news:title>{t}</news:title></news:news></url>"
+        for u, d, t in rows
+    )
+    return f'<urlset xmlns="{SM_NS}" xmlns:news="{NEWS_NS}">{body}</urlset>'.encode()
+
+
+def test_backfill_reaches_window_start_and_fetches_urls_without_lastmod(cfg):
+    table = routes(**{NEWS + "meget-gammel": (P / "article_plain.html", HTML)})
+    f = fetcher(table, etags=True)
+    res = COLLECTORS["sitemap"](src(), f, backfill_ctx(cfg))
+    assert res.error is None and not res.backlog
+    # lastmod fra 1. januar; URL'en uden lastmod hentes til sidst, og sidens egen dato afgør, om den er med
+    assert urls_called(f) == [ART1, ART2, ART3, NEWS + "meget-gammel", ART4]
+    assert not any(cond for _, cond in f.calls)
+    text = diag(res)
+    assert "med lastmod inden for 279 dage" in text and "(0 registreret som baseline)" in text
+    assert SITEMAP not in f.http_cache  # den første almindelige kørsel læser alt igen
+
+
+def test_backfill_takes_40_pages_per_run_and_continues(cfg):
+    rows = [(NEWS + f"artikel-{i:02d}", (NOW - timedelta(days=3 * i)).isoformat()) for i in range(50)]
+    table = {SITEMAP: (urlset(rows), XML), NEWS + "artikel-": (P / "article_plain.html", HTML)}
+    c = backfill_ctx(cfg)
+    f = fetcher(table)
+    res = COLLECTORS["sitemap"](src(), f, c)
+    assert urls_called(f) == [u for u, _ in rows[:40]] and res.backlog
+    assert "10 sider venter til næste kørsel (højst 40 pr. kørsel)" in diag(res)
+    f = fetcher(table)
+    res = COLLECTORS["sitemap"](src(), f, c)
+    assert urls_called(f) == [u for u, _ in rows[40:]] and not res.backlog
+
+
+def test_closed_periods_only_count_in_a_backfill(cfg):
+    week = "https://www.kilde.dk/sitemaps/2026/2026-09-21/2026-09-27.xml"
+    assert not pages._Job(src(), fetcher({}), ctx(cfg)).closed(week)
+    job = pages._Job(src(), fetcher({}), backfill_ctx(cfg))
+    assert job.closed(week) and job.closed("https://www.kilde.dk/sitemap/2026-10-05")
+    assert not job.closed("https://www.kilde.dk/sitemap/2026-10-06")  # i går kan stadig få artikler
+    assert not job.closed("https://www.kilde.dk/sitemaps/2026/10.xml") and not job.closed(SITEMAP)
+
+
+def test_backfill_reads_each_closed_day_sitemap_once_newest_first(cfg):
+    day_url = "https://www.kilde.dk/sitemap/{}"
+    days = [date(2026, 10, 7) - timedelta(days=n) for n in range(28)]  # 7. oktober tilbage til 10. september
+    table = {
+        day_url.format(d): (news_urlset([(f"{NEWS}affald-{d}", d.isoformat(), f"Affald den {d}")]), XML)
+        for d in days
+    }
+    del table[day_url.format(date(2026, 9, 20))]  # en dag uden sitemap (404)
+    s = src(feeds=[day_url.format("{dato}")])
+    c = backfill_ctx(cfg, since=date(2026, 9, 10))
+    f = fetcher(table)
+    res = COLLECTORS["sitemap"](s, f, c)
+    assert res.error is None and res.backlog  # loftet på 20 sitemaps: resten venter
+    assert urls_called(f, 0) == [day_url.format(d) for d in days[:20]]
+    assert "bagudindsamling: 8 sitemaps for afsluttede perioder venter til næste kørsel" in diag(res)
+    assert len(res.entries) == 19
+    # Læste dage før i går huskes (også dagen uden sitemap); i dag og i går læses hver gang
+    assert set(c.seen["kilde"]) == {item_id(day_url.format(d)) for d in days[2:20]}
+
+    f = fetcher(table)
+    res = COLLECTORS["sitemap"](s, f, c)
+    assert res.error is None and not res.backlog
+    assert urls_called(f, 0) == [day_url.format(d) for d in days[:2] + days[20:]]
+    assert "18 sitemaps for afsluttede perioder er læst før og springes over" in diag(res)
+    assert sorted(e.title for e in res.entries)[0] == "Affald den 2026-09-10"
+
+
+def test_backfill_follows_older_weekly_sub_sitemaps_over_several_runs(cfg):
+    mondays = [date(2026, 10, 5) - timedelta(weeks=n) for n in range(23)]  # 5. oktober tilbage til 4. maj
+
+    def week(m: date) -> str:
+        return f"https://www.kilde.dk/sitemaps/2026/{m}/{m + timedelta(days=6)}.xml"
+
+    table = {SITEMAP: (index([(week(m), "") for m in mondays]).replace(b"<lastmod></lastmod>", b""), XML)}
+    for m in mondays:
+        table[week(m)] = (news_urlset([(f"{NEWS}uge-{m}", m.isoformat(), f"Affald i ugen fra {m}")]), XML)
+    c = backfill_ctx(cfg, since=date(2026, 6, 1))
+    f = fetcher(table)
+    res = COLLECTORS["sitemap"](src(), f, c)
+    # 19 uger slutter 1. juni eller senere; de 15 nyeste læses først, og de 4 ældste venter
+    assert urls_called(f, 0) == [SITEMAP, *(week(m) for m in mondays[:15])]
+    assert res.backlog and "4 sitemaps for afsluttede perioder venter" in diag(res)
+    assert len(c.seen["kilde"]) == 14  # alle læste uger undtagen den igangværende
+
+    f = fetcher(table)
+    res = COLLECTORS["sitemap"](src(), f, c)
+    assert urls_called(f, 0) == [SITEMAP, week(mondays[0]), *(week(m) for m in mondays[15:19])]
+    assert not res.backlog and "14 sitemaps for afsluttede perioder er læst før" in diag(res)
+
+
 # ── seen-state på disk ──────────────────────────────────────
 
 
@@ -1460,3 +1567,57 @@ def test_check_fetch_explain_prints_diagnostics_and_writes_nothing(env, monkeypa
     assert main_check(argparse.Namespace(fetch="testkommune", explain=False)) == 0
     assert "DIAGNOSE" not in capsys.readouterr().out
     assert not env.data.exists() or not any(env.data.rglob("*.*"))
+
+
+def test_backfill_run_refetches_seen_urls_without_a_candidate(env, monkeypatch, caplog):
+    """Efter almindelige første kørsler sættes window_start: URL'er i seen uden kandidat (baseline uden lastmod og
+    sider, forfiltret afviste) glemmes og hentes igen, og lastmod-vinduet rækker til 1. januar (§5.8)."""
+    caplog.set_level(logging.INFO)
+    old = NEWS + "meget-gammel"  # lastmod 1. august i urlset.xml
+    old_page = page('<meta property="article:published_time" content="2026-08-01T09:00:00+02:00">',
+                    "<main><h1>Ny affaldsplan for kommunen vedtaget</h1></main>")
+    table = {**RUN_ROUTES, old: (old_page, HTML)}
+    assert _run(monkeypatch, "2026-10-07T08:05:00Z", table=table)[0] == 0
+    assert old not in {c.url for c in store.load_candidates()}
+    _fakes().set_window_start(env.config, "2026-01-01")
+    code, fake = _run(monkeypatch, "2026-10-07T14:05:00Z", table=table)
+    assert code == 0
+    called = [u for u, _ in fake.calls]
+    assert old in called and ART4 in called  # i vinduet nu, og glemt fra baseline uden lastmod
+    assert KOMMUNE + "/2026/10/05/affaldsgebyret-stiger" in called  # forfiltret afviste den: hentes igen
+    assert ART1 not in called and KOMMUNE + "/kommunen-aabner-for-tekstilaffald" not in called  # kandidater
+    assert "kilde-sitemap: bagudindsamling: 1 URL'er fra seen uden kandidat hentes igen" in caplog.text
+    cand = next(c for c in store.load_candidates() if c.url == old)
+    assert cand.baseline and cand.published == datetime(2026, 8, 1, 7, 0, tzinfo=UTC)
+    states = store.load_source_states()
+    assert all(states[sid].backfilled_from == date(2026, 1, 1) for sid in ("kilde-sitemap", "testkommune"))
+
+
+def test_backfill_backlog_continues_hourly_and_stops_after_max_runs(env, monkeypatch, caplog):
+    _fakes().set_window_start(env.config, "2026-01-01")
+    start = datetime(2026, 10, 7, 8, 5, tzinfo=UTC)
+    rows = [(NEWS + f"affald-{i:03d}", (start - timedelta(days=2 * i)).isoformat()) for i in range(100)]
+    table = {SITEMAP: (urlset(rows), XML), NEWS + "affald-": (P / "article_plain.html", HTML)}
+
+    def run(at: datetime) -> tuple[list[str], SourceState]:
+        code, fake = _run(monkeypatch, at.isoformat().replace("+00:00", "Z"), table=table, only=None)
+        assert code == 0
+        return [u for u, _ in fake.calls if "/affald-" in u], store.load_source_states()["kilde-sitemap"]
+
+    called, state = run(start)
+    assert called == [u for u, _ in rows[:40]]
+    assert state.backfill_runs == 1 and state.backfilled_from is None
+    called, state = run(start + timedelta(hours=1))  # sitemap-kilder kører hver 6. time, men restkøen hver time
+    assert called == [u for u, _ in rows[40:80]] and state.backfill_runs == 2
+
+    # Loftet over kørsler: bagudindsamlingen regnes som færdig, selv om der stadig er en restkø
+    settings = env.config / "settings.yaml"
+    settings.write_text(settings.read_text(encoding="utf-8").replace("max_runs: 24", "max_runs: 3"), encoding="utf-8")
+    caplog.set_level(logging.WARNING)
+    rows.extend((NEWS + f"affald-{i:03d}", (start - timedelta(days=i)).isoformat()) for i in range(100, 150))
+    table[SITEMAP] = (urlset(rows), XML)
+    called, state = run(start + timedelta(hours=2))
+    assert len(called) == 40 and state.backfilled_from == date(2026, 1, 1) and state.backfill_runs == 0
+    assert "kilde-sitemap: bagudindsamlingen stopper efter 3 kørsler med en restkø" in caplog.text
+    called, _ = run(start + timedelta(hours=3))
+    assert called == []  # almindelig takt igen (hver 6. time)
