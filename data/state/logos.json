@@ -1547,6 +1547,30 @@
     "checked": "2026-10-08T09:27:44Z",
     "error": null
   },
+  "struer-kommune": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-09T09:27:16Z",
+    "error": "HTTP 404"
+  },
+  "svendborg-kommune": {
+    "file": "svendborg-kommune.png",
+    "src": "https://www.svendborg.dk/favicon.ico",
+    "checked": "2026-10-09T09:27:16Z",
+    "error": null
+  },
+  "syddjurs-kommune": {
+    "file": "syddjurs-kommune.png",
+    "src": "https://www.syddjurs.dk/media/3rymfphi/byvaaben_cmyk-2.png?width=57&height=57&format=noformat&v=1db77dd16ce7af0",
+    "checked": "2026-10-09T09:27:16Z",
+    "error": null
+  },
+  "taarnby-kommune": {
+    "file": "taarnby-kommune.png",
+    "src": "https://www.taarnby.dk/media/5zmlkunq/logo-without-name.png",
+    "checked": "2026-10-09T09:27:16Z",
+    "error": null
+  },
   "taenk": {
     "file": null,
     "src": null,
@@ -1571,10 +1595,22 @@
     "checked": "2026-10-08T07:48:34Z",
     "error": null
   },
+  "thisted-kommune": {
+    "file": "thisted-kommune.webp",
+    "src": "https://www.thisted.dk/Media/638091955740045480/Favicon%20500x500.png?width=32&height=32",
+    "checked": "2026-10-09T09:27:16Z",
+    "error": null
+  },
   "tjekfredensborg": {
     "file": "tjekfredensborg.png",
     "src": "https://tjekfredensborg.dk/wp-content/uploads/2025/06/cropped-Logo-site-ikon-lytter-3-32x32.png",
     "checked": "2026-10-08T13:07:35Z",
+    "error": null
+  },
+  "toender-kommune": {
+    "file": "toender-kommune.png",
+    "src": "https://www.toender.dk/favicon.ico",
+    "checked": "2026-10-09T09:27:16Z",
     "error": null
   },
   "tv2-nyheder": {
@@ -1643,16 +1679,46 @@
     "checked": "2026-10-08T09:27:44Z",
     "error": null
   },
+  "vallensbaek-kommune": {
+    "file": "vallensbaek-kommune.webp",
+    "src": "https://cdn.vallensbaek.dk/vallensbaekkommune/Media/638542198807531615/fav.png?width=32&height=32",
+    "checked": "2026-10-09T09:27:16Z",
+    "error": null
+  },
   "vana": {
     "file": "vana.ico",
     "src": "https://www.vana.dk/favicon.ico",
     "checked": "2026-10-07T22:34:55Z",
     "error": null
   },
+  "varde-kommune": {
+    "file": "varde-kommune.png",
+    "src": "https://vardekommune.dk/wp-content/uploads/2021/08/cropped-favicon-32x32.png",
+    "checked": "2026-10-09T09:27:16Z",
+    "error": null
+  },
+  "vejen-kommune": {
+    "file": "vejen-kommune.webp",
+    "src": "https://cdn.moliri.dk/image/moliri-public/vejenkommune/thumbnail?filename=vejen_favion.png&folderPath=Vejen.dk&width=80",
+    "checked": "2026-10-09T09:27:16Z",
+    "error": null
+  },
+  "vejle-kommune": {
+    "file": "vejle-kommune.png",
+    "src": "https://www.vejle.dk/favicon.ico",
+    "checked": "2026-10-09T09:27:16Z",
+    "error": null
+  },
   "vestforbraending": {
     "file": "vestforbraending.ico",
     "src": "https://vestfor.dk/favicon.ico",
     "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "vesthimmerlands-kommune": {
+    "file": "vesthimmerlands-kommune.webp",
+    "src": "https://cdn.vesthimmerland.dk/vesthimmerlandkommune/Media/638333124717021311/VHK - Kommunevåben.png?width=32&height=32",
+    "checked": "2026-10-09T09:27:16Z",
     "error": null
   },
   "vesthimmerlandsavis": {
@@ -1665,6 +1731,12 @@
     "file": "viborg-folkeblad.png",
     "src": "https://viborg-folkeblad.dk/assets/1791279772/kodus/jfm-brands/brands/viborg/favicons/apple-icon-57x57.png",
     "checked": "2026-10-08T09:27:44Z",
+    "error": null
+  },
+  "viborg-kommune": {
+    "file": "viborg-kommune.png",
+    "src": "https://viborg.dk/favicon.ico",
+    "checked": "2026-10-09T09:27:16Z",
     "error": null
   },
   "viborher": {
@@ -1684,6 +1756,12 @@
     "src": null,
     "checked": "2026-10-08T13:07:35Z",
     "error": "HTTP 410"
+  },
+  "vordingborg-kommune": {
+    "file": "vordingborg-kommune.webp",
+    "src": "https://cdn.vordingborg.dk/vordingborgkommune/Media/638446370354074029/fav.png?width=32&height=32",
+    "checked": "2026-10-09T09:27:16Z",
+    "error": null
   },
   "voreslokalavis": {
     "file": "voreslokalavis.ico",
