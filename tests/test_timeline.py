@@ -11,8 +11,10 @@ import pytest
 from pydantic import ValidationError
 
 from affaldsfeed import export, paths, store, timeline
+from affaldsfeed.config import load_config
 from affaldsfeed.models import (
     Candidate,
+    SourceState,
     TimelineDeletion,
     TimelineEvent,
     TimelineFeed,
@@ -38,6 +40,10 @@ SOURCES_YAML = """
 @pytest.fixture
 def repo(tmp_path, monkeypatch):
     shutil.copytree(REAL_CONFIG, tmp_path / "config")
+    # Den almindelige drift: vindue på window_days (window_start afprøves for sig)
+    settings = tmp_path / "config" / "settings.yaml"
+    settings.write_text("".join(ln for ln in settings.read_text(encoding="utf-8").splitlines(keepends=True)
+                                if not ln.startswith("window_start:")), encoding="utf-8")
     (tmp_path / "config" / "medier.yaml").write_text("[]\n", encoding="utf-8")
     (tmp_path / "sources.yaml").write_text(SOURCES_YAML, encoding="utf-8")
     site = tmp_path / "site"
@@ -286,15 +292,15 @@ def test_deletions(repo, capsys):
 
 
 def test_max_per_week(repo, capsys):
-    cands = [cand(f"c{i}", source="kefm") for i in range(4)]
+    cands = [cand(f"c{i}", source="kefm") for i in range(3)]
     approve(*cands)
     # uge 41: mandag 5. oktober. Den gamle begivenhed i ugen tæller med
     write("2026-10", event("2026-10-05-gammel", cands[0], updated="2026-10-05T20:25:00Z"))
-    days = ["2026-10-06", "2026-10-07", "2026-10-07"]
+    days = ["2026-10-06", "2026-10-07"]
     write("2026-10", *(event(f"{d}-ny-{i}", c) for i, (d, c) in enumerate(zip(days, cands[1:], strict=True))))
     code, out = validate(capsys)
     assert code == 1
-    assert "2026-10.jsonl:2: uge 41 (5.-11. oktober 2026) har 4 begivenheder; højst 3" in out
+    assert "2026-10.jsonl:2: uge 41 (5.-11. oktober 2026) har 3 begivenheder; højst 2" in out
     # En sletning af den mindst vigtige gør ugen gyldig igen
     write("2026-10", {"id": "2026-10-05-gammel", "deleted": True, "updated": "2026-10-07T20:28:00Z"})
     code, out = validate(capsys)
@@ -350,7 +356,7 @@ def test_input_first_fill_uses_60_days(repo, capsys):
     assert {k: story[k] for k in ("title", "url", "source", "source_name", "published")} == {
         k: v for k, v in ref(new).items() if k != "id"}
     assert story["in_events"] == []
-    assert out["rules"]["max_per_week"] == 3 and out["rules"]["title_max_words"] == 12
+    assert out["rules"]["max_per_week"] == 2 and out["rules"]["title_max_words"] == 12
     assert out["events"] == []
     assert out["weeks"][0]["monday"] == "2026-08-03" and out["weeks"][-1]["monday"] == "2026-10-05"
 
@@ -372,6 +378,109 @@ def test_input_with_events(repo, capsys):
     by_id = {s["id"]: s for s in out["stories"]}
     assert by_id[old.id]["in_events"] == ["2026-07-01-gammel", "2026-10-02-aftale"]
     assert by_id[new.id]["in_events"] == []
+
+
+# ── Opfyldning bagud (§7.3) ────────────────────────────────
+
+
+def set_fill(repo, window_start: str = "2026-08-01", until: str = "2026-09", max_stories: int = 150) -> None:
+    settings = repo / "config" / "settings.yaml"
+    text = settings.read_text(encoding="utf-8")
+    text = text.replace('fill_until: "2026-10"', f'fill_until: "{until}"').replace(
+        "fill_max_stories: 150", f"fill_max_stories: {max_stories}")
+    settings.write_text(text + f"window_start: {window_start}\n", encoding="utf-8")
+
+
+def backfilled(*sids: str, failing: tuple[str, ...] = ()) -> None:
+    states = {sid: SourceState(backfilled_from=date(2026, 8, 1), first_run_done=True) for sid in sids}
+    states |= {sid: SourceState(fails=2, health="gul") for sid in failing}
+    store.save_source_states(states)
+
+
+def run_fill(capsys, now: str = "2026-10-07T20:25:00Z") -> dict:
+    assert timeline.main_timeline_input(argparse.Namespace(days=None, fill=True, fill_done=None, now=now)) == 0
+    return json.loads(capsys.readouterr().out)
+
+
+def fill_done(capsys, month: str, now: str = "2026-10-07T20:40:00Z") -> tuple[int, str]:
+    code = timeline.main_timeline_input(argparse.Namespace(days=None, fill=False, fill_done=month, now=now))
+    return code, capsys.readouterr().out
+
+
+def test_fill_months_and_month_bounds(repo):
+    settings = load_config(paths.CONFIG_DIR).settings
+    assert timeline.fill_months(settings) == []  # uden window_start
+    settings = settings.model_copy(update={
+        "window_start": date(2025, 11, 15),
+        "timeline": settings.timeline.model_copy(update={"fill_until": "2026-02"}),
+    })
+    assert timeline.fill_months(settings) == ["2025-11", "2025-12", "2026-01", "2026-02"]
+    start, end = timeline.month_bounds("2026-03")
+    assert (iso(start), iso(end)) == ("2026-02-28T23:00:00Z", "2026-03-31T22:00:00Z")  # sommertid fra 29. marts
+    assert iso(timeline.month_bounds("2026-12")[1]) == "2026-12-31T23:00:00Z"
+
+
+def test_fill_waits_for_the_backfill_and_the_routine_and_goes_month_by_month(repo, capsys, caplog):
+    set_fill(repo)
+    found = NOW - timedelta(hours=2)  # fundet af bagudindsamlingen lige nu
+    aug = cand("aug-aftale", source="kefm", days_ago=60, first_seen=found)
+    sep = cand("sep-plan", source="kefm", days_ago=30, first_seen=found)
+    store.save_candidates([aug, sep])
+    out = run_fill(capsys)
+    assert out["fill_month"] is None and out["months_left"] == ["2026-08", "2026-09"]
+    assert out["status"] == "venter på bagudindsamlingen hos 3 kilder, fx altinget, dr, kefm"
+    backfilled("kefm", "altinget", failing=("dr",))  # en kilde med fejl venter man ikke på
+    out = run_fill(capsys)
+    assert out["status"] == "venter på routinens vurdering af 1 indslag fra 2026-08"
+    approve(aug)
+    out = run_fill(capsys)
+    assert out["fill_month"] == "2026-08" and out["first_fill"] is False
+    assert list(out)[:4] == ["now", "first_fill", "fill_month", "window"]
+    assert [s["id"] for s in out["stories"]] == [aug.id]
+    assert out["window"] == {"start": "2026-07-31T22:00:00Z", "end": "2026-08-31T22:00:00Z"}
+    assert out["weeks"][0]["monday"] == "2026-07-27" and out["weeks"][-1]["monday"] == "2026-08-31"
+
+    code, text = fill_done(capsys, "2026-08")
+    assert code == 0 and "2026-08 er markeret som fyldt; 1 måned tilbage" in text
+    state = json.loads((paths.TIMELINE_DIR / "opfyldning.json").read_text(encoding="utf-8"))
+    assert state == {"months": {"2026-08": "2026-10-07T20:40:00Z"}}
+    assert run_fill(capsys)["status"] == "venter på routinens vurdering af 1 indslag fra 2026-09"
+    approve(sep)
+    assert run_fill(capsys)["fill_month"] == "2026-09"
+    assert fill_done(capsys, "2026-09")[0] == 0
+    out = run_fill(capsys)
+    assert out["fill_month"] is None and out["status"] == "alle måneder er fyldt" and out["months_left"] == []
+    assert fill_done(capsys, "2026-10")[0] == 1  # ikke en måned i opfyldningen
+    assert "2026-10 er ikke en måned i opfyldningen (2026-08 til 2026-09)" in caplog.text
+
+
+def test_fill_input_caps_stories_and_shows_events_around_the_month(repo, capsys):
+    set_fill(repo, max_stories=2)
+    backfilled("kefm", "altinget", "dr")
+    a = cand("a", source="kefm", days_ago=60)
+    b = cand("b", source="altinget", days_ago=59)
+    c = cand("c", source="dr", days_ago=58)
+    d = cand("d", source="kefm", days_ago=25)  # 12. september
+    approve(a, b, c, d)
+    write("2026-10",
+          event("2026-07-28-foer", a), event("2026-09-05-efter", d),
+          event("2026-07-01-for-tidligt", a), event("2026-09-20-for-sent", d))
+    out = run_fill(capsys)
+    assert out["fill_month"] == "2026-08"
+    assert [s["id"] for s in out["stories"]] == [a.id, b.id]  # højst 2: myndighed før fagmedie før nyhedsmedie
+    assert [e["id"] for e in out["events"]] == ["2026-09-05-efter", "2026-07-28-foer"]  # en uge til hver side
+
+
+def test_validate_checks_the_fill_state(repo, capsys):
+    c = cand("aftale", source="kefm")
+    approve(c)
+    write("2026-10", event("2026-10-06-faelles-model", c))
+    (paths.TIMELINE_DIR / "opfyldning.json").write_text('{"months": {"2026-13": "x"}}', encoding="utf-8")
+    code, out = validate(capsys)
+    assert code == 1 and "data/timeline/opfyldning.json: skal være" in out
+    (paths.TIMELINE_DIR / "opfyldning.json").write_text("{", encoding="utf-8")
+    code, out = validate(capsys)
+    assert code == 1 and "ikke gyldig JSON" in out
 
 
 # ── eksport ─────────────────────────────────────────────────

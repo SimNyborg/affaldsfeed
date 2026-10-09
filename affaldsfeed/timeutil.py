@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import UTC, datetime, time, timedelta
+from datetime import UTC, date, datetime, time, timedelta
 from zoneinfo import ZoneInfo
 
 CPH = ZoneInfo("Europe/Copenhagen")
@@ -44,3 +44,8 @@ def cph_day_bounds(dt: datetime) -> tuple[datetime, datetime]:
     start_local = datetime.combine(local.date(), time.min, tzinfo=CPH)
     end_local = start_local + timedelta(days=1)
     return start_local.astimezone(UTC), end_local.astimezone(UTC)
+
+
+def cph_day_start(d: date) -> datetime:
+    """Starten (UTC) af den københavnske kalenderdag d."""
+    return datetime.combine(d, time.min, tzinfo=CPH).astimezone(UTC)

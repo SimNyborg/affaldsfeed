@@ -49,7 +49,7 @@ Læs hele `/tmp/pending.json`. Den indeholder:
 - `pending`: indslag, der venter på din vurdering, nyeste først.
 - `recent_approved`: indslag, du har godkendt de sidste 72 timer. Dem bruger du til `story_hint`.
 
-Er `pending` tom, og skal hverken trin 5, 6 eller 7 køres i denne time, så gå direkte til trin 8.
+Er `pending` tom, og skal hverken trin 5, 6 eller 7 køres i denne time, så gå direkte til trin 7b.
 
 ### 3. Vurdér hvert indslag
 
@@ -188,7 +188,7 @@ Skriveregler for overblikket:
 
 ### 7. Tidslinje (kun når `TIME` er 22, eller når tidslinjen er tom)
 
-Tidslinjen viser kun de allervigtigste begivenheder på affaldsområdet, typisk 0-3 om ugen. Hellere for få end for mange. Kør trinnet, når `TIME` er 22, eller når `ls data/timeline/*.jsonl` ikke finder nogen filer (første fyldning). Ellers spring det over.
+Tidslinjen giver et kompakt overblik over de store linjer på affaldsområdet: love, politiske aftaler, EU-regler, nationale planer og rapporter og andre beslutninger med betydning for hele landet. Typisk 0-2 om ugen. Hellere for få end for mange. Lokale nyheder hører ikke hjemme her, heller ikke når de fylder meget i feedet. At Næstved har problemer med en skraldemand, er en lokal nyhed. At en national handlingsplan for tekstiler bliver lanceret, er en begivenhed. Kør trinnet, når `TIME` er 22, eller når `ls data/timeline/*.jsonl` ikke finder nogen filer (første fyldning). Ellers spring det over.
 
 1. Hent input:
 
@@ -205,7 +205,7 @@ Tidslinjen viser kun de allervigtigste begivenheder på affaldsområdet, typisk 
    - `stories`: godkendte historier, myndigheder og de mest dækkede først. `also` er andre indslag om samme historie, og `in_events` er de begivenheder, der allerede har et af historiens indslag.
    - `events`: begivenhederne fra de sidste 60 dage.
 
-3. Vælg. En historie bliver kun en begivenhed, når den hører under `include` og ikke under `exclude` og har betydning ud over én kommune. Står begivenheden allerede i `events`, eller har historien `in_events`, så opdatér den eksisterende begivenhed i stedet for at oprette en ny. De fleste dage er der ingen nye begivenheder, og så skriver du intet.
+3. Vælg. En historie bliver kun en begivenhed, når den hører under `include` og ikke under `exclude` og har betydning for hele landet eller hele affaldsområdet. Er du i tvivl, så lad den være. Står begivenheden allerede i `events`, eller har historien `in_events`, så opdatér den eksisterende begivenhed i stedet for at oprette en ny. Står der en begivenhed i `events`, som ikke lever op til reglerne (fx en lokal nyhed), så slet den med en sletningslinje (se trin 4). De fleste dage er der ingen nye begivenheder, og så skriver du intet.
 
 4. Skriv nye linjer nederst i `data/timeline/MÅNED.jsonl`, hvor `MÅNED` er de første 7 tegn af `DATO` (fx `2026-10`). Opret mappen, hvis den mangler (`mkdir -p data/timeline`), og tilføj linjerne med en heredoc som i trin 3. Én JSON-genstand pr. linje, fx:
 
@@ -238,6 +238,32 @@ Skriveregler for tidslinjen:
 - Markér interessevaretagelse som i overblikket ("ifølge Dansk Affaldsforening").
 - Skriv neutralt og klart dansk i hele sætninger. Intet salgssprog, ingen superlativer, ingen udråbstegn og ingen tankestreger.
 
+### 7b. Tidslinjen bagud (i hver kørsel, indtil den er færdig)
+
+Feedet går tilbage til 1. januar 2026, men tidslinjen har kun begivenheder fra august. Den fyldes derfor bagud, én måned pr. kørsel. Kør trinnet i hver kørsel, også når trin 7 ikke blev kørt.
+
+1. Hent input:
+
+   ```bash
+   .venv/bin/python -m affaldsfeed timeline-input --fill > /tmp/fill.json
+   ```
+
+2. Er `fill_month` `null`, så spring resten af trinnet over. `status` siger hvorfor, fx at indsamlingen eller dine vurderinger af månedens indslag ikke er færdige endnu. Det er ikke en fejl.
+
+3. Ellers indeholder `/tmp/fill.json` det samme som i trin 7, men for hele måneden `fill_month`: `stories` er månedens godkendte historier (højst 150, myndigheder og de mest dækkede først), `events` er begivenhederne fra en uge før til en uge efter måneden, og `weeks` er månedens uger.
+
+4. Vælg og skriv begivenheder efter reglerne i trin 7, punkt 3 og 4, og skrivereglerne for tidslinjen. `date` skal ligge i `fill_month`. Linjerne skal i `data/timeline/MÅNED.jsonl`, hvor `MÅNED` er de første 7 tegn af `DATO` (måneden for `updated`, ikke `fill_month`). Brug `now` fra `/tmp/fill.json` som `updated`. Mange måneder har kun få store begivenheder, og en måned uden nogen er i orden.
+
+5. Validér som i trin 7, punkt 5.
+
+6. Markér måneden som fyldt, også når du ikke skrev nogen begivenheder:
+
+   ```bash
+   .venv/bin/python -m affaldsfeed timeline-input --fill-done <fill_month>
+   ```
+
+Tag højst én måned pr. kørsel.
+
 ### 8. Heartbeat
 
 ```bash
@@ -266,4 +292,4 @@ Slut med én linje i dette format:
 Vurderet 14 / godkendt 9 / overblik opdateret: dag, uge
 ```
 
-Står der ingen opdaterede perioder, så skriv `overblik opdateret: intet`. Har du kørt trin 7, så tilføj fx ` / tidslinje: 1 ny, 0 opdateret`. Gik et trin galt (validering eller push), så tilføj det kort på samme linje.
+Står der ingen opdaterede perioder, så skriv `overblik opdateret: intet`. Har du kørt trin 7, så tilføj fx ` / tidslinje: 1 ny, 0 opdateret`. Har du fyldt en måned i trin 7b, så tilføj fx ` / tidslinje bagud: 2026-03, 2 nye`. Gik et trin galt (validering eller push), så tilføj det kort på samme linje.

@@ -44,6 +44,8 @@ class CollectContext:
     conditional: bool = True  # False ved kildens første kørsel og ved check --fetch
     first_run: bool = False  # kildens første kørsel (ingen vellykket kørsel endnu); også ved check --fetch
     last_ok: date | None = None  # dagen for kildens sidste vellykkede kørsel (SourceState.last_ok)
+    # Bagudindsamling (KONTRAKTER §5.8): kilden hentes tilbage til denne dag; ellers None
+    backfill_since: date | None = None
     # state/seen.json: {kilde-id: {item-id: "ÅÅÅÅ-MM-DD"}}. Sitemap og html opdaterer den undervejs.
     seen: dict[str, dict[str, str]] = field(default_factory=dict)
 

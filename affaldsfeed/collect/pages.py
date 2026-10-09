@@ -744,17 +744,19 @@ def choose_sub_sitemaps(entries: list[SitemapEntry], n: int) -> list[SitemapEntr
 DATE_PLACEHOLDER = "{dato}"
 
 
-def expand_dates(feeds: Iterable[str], now: datetime) -> list[str]:
+def expand_dates(feeds: Iterable[str], now: datetime, since: date | None = None) -> list[str]:
     """Sitemap-URL'er med {dato} giver dagens og gårsdagens sitemap (dansk tid, ÅÅÅÅ-MM-DD), dagens først.
 
     Til aviser med ét sitemap pr. dag, hvor indekset er for stort til at hente hver time. Gårsdagens tages med,
-    så artikler fra lige før midnat ikke tabes.
+    så artikler fra lige før midnat ikke tabes. Ved bagudindsamling (since) følger dagene før, nyeste først,
+    tilbage til og med since (KONTRAKTER §5.8).
     """
     today = to_cph(now).date()
+    back = (today - since).days if since is not None else 1
+    days = [today - timedelta(days=n) for n in range(max(1, back) + 1)]
     out: list[str] = []
     for url in feeds:
-        urls = [url.replace(DATE_PLACEHOLDER, d.isoformat()) for d in (today, today - timedelta(days=1))] \
-            if DATE_PLACEHOLDER in url else [url]
+        urls = [url.replace(DATE_PLACEHOLDER, d.isoformat()) for d in days] if DATE_PLACEHOLDER in url else [url]
         out += [u for u in urls if u not in out]
     return out
 
@@ -823,7 +825,15 @@ class _Job:
         self.source = source
         self.fetcher = fetcher
         self.ctx = ctx
-        self.cfg = ctx.config.settings.pages
+        cfg = ctx.config.settings.pages
+        if ctx.backfill_since is not None:
+            # Bagudindsamling: flere sider og sitemaps pr. kørsel (KONTRAKTER §5.8)
+            b = ctx.config.settings.backfill
+            cfg = cfg.model_copy(update={
+                "max_pages": b.max_pages, "max_sub_sitemaps": b.max_sub_sitemaps,
+                "max_sitemap_fetches": b.max_sitemap_fetches,
+            })
+        self.cfg = cfg
         self.now = ensure_utc(ctx.now)
         today = to_cph(self.now).date()
         self.today = today.isoformat()
@@ -839,6 +849,10 @@ class _Job:
         self.backlog = False  # sider, der venter til næste kørsel
         self.incomplete = False  # sitemaps/lister, der ikke blev læst (forbigående fejl eller tidsbudget)
         self.unchanged = 0  # sitemaps (ikke indeks) og lister, der svarede 304
+        # Bagudindsamling: sitemaps for perioder, der sluttede før i går (dato i URL'en), læst i denne kørsel
+        self.closed_read: list[str] = []
+        y = today - timedelta(days=1)
+        self.yesterday = (y.year, y.month, y.day)
 
     def diag(self, line: str) -> None:
         self.result.diagnostics.append(line)
@@ -869,6 +883,18 @@ class _Job:
 
     def mark(self, iid: str) -> None:
         self.seen[iid] = self.today
+
+    def closed(self, url: str) -> bool:
+        """Bagudindsamling: et sitemap for en periode, der sluttede før i går (dag, uge eller måned i URL'en).
+        Det ændrer sig ikke længere, så det læses én gang og huskes i seen (KONTRAKTER §5.8)."""
+        if self.ctx.backfill_since is None:
+            return False
+        end = _sitemap_date(url)
+        return end is not None and end < self.yesterday
+
+    def read_before(self, url: str) -> bool:
+        """Et lukket sitemap, der er læst i en tidligere kørsel af bagudindsamlingen."""
+        return self.closed(url) and self.seen_before(item_id(url))
 
     def strict_ok(self, url: str, text: str = "") -> bool:
         """filter strict: stærkt ord eller navn i slug'en (eller linkteksten), ellers hentes siden ikke."""
@@ -994,9 +1020,10 @@ class _Job:
             self.errors.append(f"alle {blocked} sider er blokeret af robots.txt")
 
     def finish(self) -> CollectResult:
-        if self.errors or self.backlog:
+        if self.errors or self.backlog or self.ctx.backfill_since is not None:
             # Næste kørsel skal læse sitemaps og lister helt: en fejl vurderes igen og står i sundheden, til den
-            # er rettet, og en 304 skjuler ikke restkøen
+            # er rettet, og en 304 skjuler ikke restkøen. Efter en bagudindsamling vælger den første almindelige
+            # kørsel selv de nyeste under-sitemaps i stedet for de gamle, bagudindsamlingen huskede
             for url in self.docs:
                 self.forget(url)
         if self.errors:
@@ -1041,8 +1068,10 @@ def _read_sitemaps(job: _Job) -> list[Sitemap] | None:
     """
     cfg = job.cfg
     max_bytes = int(job.ctx.config.settings.fetch.max_response_mb * MB)
+    read_before = 0  # lukkede sitemaps fra en tidligere kørsel af bagudindsamlingen
     # (url, dybde, topniveau)
-    queue: deque[tuple[str, int, bool]] = deque((url, 0, True) for url in expand_dates(job.source.feeds, job.now))
+    feeds = expand_dates(job.source.feeds, job.now, job.ctx.backfill_since)
+    queue: deque[tuple[str, int, bool]] = deque((url, 0, True) for url in feeds)
     done: set[str] = set()  # samme sitemap hentes kun én gang pr. kørsel
     urlsets: list[Sitemap] = []
     top_errors: list[str] = []
@@ -1054,9 +1083,16 @@ def _read_sitemaps(job: _Job) -> list[Sitemap] | None:
         url, depth, top = queue.popleft()
         if item_id(url) in done:
             continue
+        if job.read_before(url):
+            read_before += 1
+            continue
         if fetches >= cfg.max_sitemap_fetches:
             job.diag(f"højst {fetches} sitemap-hentninger pr. kørsel: {len(queue) + 1} springes over")
             notes.append(f"loftet på {fetches} sitemap-hentninger er nået")
+            waiting = sum(1 for u in [url, *(q[0] for q in queue)] if job.closed(u) and item_id(u) not in job.seen)
+            if waiting:
+                job.incomplete = True  # resten læses ved næste kørsel
+                job.diag(f"bagudindsamling: {waiting} sitemaps for afsluttede perioder venter til næste kørsel")
             break
         done.add(item_id(url))
         fetches += 1
@@ -1069,6 +1105,8 @@ def _read_sitemaps(job: _Job) -> list[Sitemap] | None:
                 stopped = job.incomplete = True  # resten læses ved næste kørsel
                 break
             job.incomplete = job.incomplete or not res.permanent
+            if res.permanent and job.closed(url):
+                job.closed_read.append(url)  # fx 404 for en dag uden sitemap: prøves ikke igen
             continue
         if res.not_modified:
             top_ok += 1 if top else 0
@@ -1109,7 +1147,13 @@ def _read_sitemaps(job: _Job) -> list[Sitemap] | None:
             current = [e for e in own if (_sitemap_date(e.loc) or start) >= start]
             if len(current) < len(own):
                 job.diag(f"indeks {url}: {len(own) - len(current)} under-sitemaps for perioder før {first} springes over")
-            chosen = choose_sub_sitemaps(current, cfg.max_sub_sitemaps)
+            unread = [e for e in current if not job.read_before(e.loc)]
+            read_before += len(current) - len(unread)
+            chosen = choose_sub_sitemaps(unread, cfg.max_sub_sitemaps)
+            waiting = sum(1 for e in unread if job.closed(e.loc)) - sum(1 for e in chosen if job.closed(e.loc))
+            if waiting:
+                job.incomplete = True  # bagudindsamling: de ældre perioder læses ved de næste kørsler
+                job.diag(f"bagudindsamling: indeks {url}: {waiting} sitemaps for afsluttede perioder venter")
             job.remember_subs(url, [e.loc for e in chosen])
             foreign = len(sm.entries) - len(own)
             note = f" ({foreign} på fremmede værter springes over)" if foreign else ""
@@ -1124,6 +1168,10 @@ def _read_sitemaps(job: _Job) -> list[Sitemap] | None:
         else:
             urlsets.append(sm)
             job.diag(f"sitemap {url}: {len(sm.entries)} URL'er" + (" (Google News)" if sm.news else ""))
+            if job.closed(url):
+                job.closed_read.append(url)
+    if read_before:
+        job.diag(f"bagudindsamling: {read_before} sitemaps for afsluttede perioder er læst før og springes over")
     if top_ok == 0:
         if not stopped:
             job.errors.append(combine_errors(top_errors, 0) or "ingen sitemap-URL i feeds")
@@ -1143,8 +1191,11 @@ def _read_sitemaps(job: _Job) -> list[Sitemap] | None:
 
 def _window_days(job: _Job) -> int:
     """lastmod-vinduet i dage: 14 ved første kørsel, ellers 3. Har kilden været nede, rækker vinduet tilbage til
-    dagen før sidste vellykkede kørsel (højst 14 dage), så artikler fra nedetiden ikke tabes."""
+    dagen før sidste vellykkede kørsel (højst 14 dage), så artikler fra nedetiden ikke tabes. Ved bagudindsamling
+    rækker det tilbage til window_start."""
     cfg = job.cfg
+    if job.ctx.backfill_since is not None:
+        return max(cfg.first_run_lastmod_days, (to_cph(job.now).date() - job.ctx.backfill_since).days)
     if job.ctx.first_run:
         return cfg.first_run_lastmod_days
     if job.ctx.last_ok is None:
@@ -1203,10 +1254,11 @@ def collect_sitemap(source: Source, fetcher: Fetcher, ctx: CollectContext) -> Co
             no_lastmod += 1
             if known:
                 continue
-            if ctx.first_run:
+            if ctx.first_run and ctx.backfill_since is None:
                 job.mark(iid)  # baseline: registreres uden at blive hentet
                 baseline += 1
                 continue
+            # Ved bagudindsamling hentes den, og sidens egen dato afgør, om den er med (§5.8)
         else:
             if e.lastmod < cutoff:
                 continue
@@ -1244,6 +1296,10 @@ def collect_sitemap(source: Source, fetcher: Fetcher, ctx: CollectContext) -> Co
         else:
             job.errors.append("0 matchende URL'er i sitemap (tjek match og domains)")
     job.fetch_pages(targets)
+    if not job.backlog and not job.errors:
+        # Lukkede sitemaps, hvis artikler er behandlet, læses ikke igen i bagudindsamlingen (§5.8)
+        for url in job.closed_read:
+            job.mark(item_id(url))
     return job.finish()
 
 

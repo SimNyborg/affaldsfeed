@@ -7,7 +7,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "aalborg-kommune": {
     "last_ok": "2026-10-09",
@@ -17,7 +19,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "aarhus-kommune": {
     "last_ok": "2026-10-09",
@@ -27,17 +31,33 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "aau": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:28:28Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
+  },
+  "aeroe-forsyning": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "aeroe-kommune": {
     "last_ok": "2026-10-09",
@@ -47,17 +67,33 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "affaldplus": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
+  },
+  "afld": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T11:28:58Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 4,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "albertslund-kommune": {
     "last_ok": "2026-10-09",
@@ -67,7 +103,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "albertslundnyt": {
     "last_ok": "2026-10-09",
@@ -77,67 +115,105 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "altinget": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "altomfuresoe": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "amagerliv": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
-    "fails": 0,
-    "last_error": null,
-    "items_30d": 0,
-    "first_run_done": true,
-    "health": "groen",
-    "since": "2026-10-08"
-  },
-  "amtsavisen": {
-    "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T04:27:45Z",
-    "fails": 0,
-    "last_error": null,
-    "items_30d": 0,
-    "first_run_done": true,
-    "health": "groen",
-    "since": "2026-10-08"
-  },
-  "arc": {
-    "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T12:30:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 1
+  },
+  "amtsavisen": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T10:08:20Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "arc": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T11:28:58Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "argo": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 5,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
+  },
+  "arwos": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T11:28:58Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
+  },
+  "assens-forsyning": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T11:28:58Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "assens-kommune": {
     "last_ok": "2026-10-09",
@@ -147,47 +223,57 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "au": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "avfall-sverige": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T12:30:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "avisen": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "berlingske": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "billund-kommune": {
     "last_ok": null,
@@ -197,37 +283,45 @@
     "items_30d": 0,
     "first_run_done": false,
     "health": "gul",
-    "since": null
+    "since": null,
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "billundonline": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "bing-news": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:02:44Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "biogas-danmark": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "bornholm-kommune": {
     "last_ok": "2026-10-09",
@@ -237,7 +331,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "bornholm-nu": {
     "last_ok": "2026-10-09",
@@ -247,57 +343,69 @@
     "items_30d": 2,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "bornholmnyt": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "bornholms-tidende": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "borsen": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "brammingposten": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "brandebladet": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "broendby-kommune": {
     "last_ok": "2026-10-09",
@@ -307,7 +415,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "broenderslev-kommune": {
     "last_ok": "2026-10-09",
@@ -317,17 +427,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "byensnyt": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "cbs": {
     "last_ok": "2026-10-09",
@@ -337,17 +451,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "cepos": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T12:30:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "cewep": {
     "last_ok": "2026-10-07",
@@ -357,167 +475,213 @@
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": null
+    "since": null,
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "cirkulaer": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T12:30:30Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 3,
+    "items_30d": 5,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 1
   },
   "cleantech-watch": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T12:30:30Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 18,
+    "items_30d": 34,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 1
   },
   "concito": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T12:30:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "dagbladet-holstebro-struer": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T04:27:45Z",
+    "last_attempt": "2026-10-09T10:08:20Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "dagens-byggeri": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 9,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "dakofa": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T12:30:30Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 28,
+    "items_30d": 39,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 1
   },
   "dansk-erhverv": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T12:30:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "dansk-fjernvarme": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T07:22:42Z",
+    "last_attempt": "2026-10-09T10:08:20Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "dansk-producentansvar": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T12:30:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "dansk-retursystem": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "danske-kommuner": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T12:30:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "danske-regioner": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "danwatch": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "dbrs": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T04:27:45Z",
-    "fails": 0,
-    "last_error": null,
+    "last_attempt": "2026-10-09T10:08:20Z",
+    "fails": 1,
+    "last_error": "https://dbrs.dk/sitemap/2026-10-09: timeout; https://dbrs.dk/sitemap/2026-10-08: HTTP 503; springes over i denne kørsel",
     "items_30d": 0,
     "first_run_done": true,
-    "health": "groen",
-    "since": "2026-10-08"
+    "health": "gul",
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "dg-env": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
-  "dinavis": {
+  "din-forsyning": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-09",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
+  },
+  "dinavis": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T11:28:58Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "ditikast-brande": {
     "last_ok": "2026-10-09",
@@ -527,7 +691,9 @@
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "ditkarup": {
     "last_ok": "2026-10-09",
@@ -537,7 +703,9 @@
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "ditkjellerup": {
     "last_ok": "2026-10-09",
@@ -547,7 +715,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "ditry": {
     "last_ok": "2026-10-09",
@@ -557,7 +727,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "ditsalling": {
     "last_ok": "2026-10-09",
@@ -567,7 +739,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "ditvinderup": {
     "last_ok": "2026-10-09",
@@ -577,27 +751,33 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "dn": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T12:30:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "dr-nyheder": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "dragoer-kommune": {
     "last_ok": "2026-10-09",
@@ -607,7 +787,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "dragoernyt": {
     "last_ok": "2026-10-09",
@@ -617,27 +799,33 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "dtu": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:28:28Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "eea": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T12:30:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "eeb": {
     "last_ok": "2026-10-07",
@@ -647,7 +835,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": null
+    "since": null,
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "egedal-kommune": {
     "last_ok": "2026-10-09",
@@ -657,47 +847,69 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "emballagefokus": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 4,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "energiwatch": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T12:30:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
+  },
+  "energnist": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T11:28:58Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "energy-supply": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "esbjerg-kommune": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:28:28Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "expra": {
     "last_ok": "2026-10-07",
@@ -707,17 +919,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": null
+    "since": null,
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "faa": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T04:27:45Z",
+    "last_attempt": "2026-10-09T10:08:20Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "faaborg-midtfyn-kommune": {
     "last_ok": "2026-10-09",
@@ -727,17 +943,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "faellesavisen": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "fanoe-kommune": {
     "last_ok": "2026-10-09",
@@ -747,17 +967,33 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "farsoeavis": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
+  },
+  "favrskov-forsyning": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "favrskov-kommune": {
     "last_ok": "2026-10-09",
@@ -767,7 +1003,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "faxe-forsyning": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "faxe-kommune": {
     "last_ok": "2026-10-09",
@@ -777,17 +1027,45 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
-  "folkebladet-aarup": {
+  "ffv": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T09:34:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "fjernvarme-fyn": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "folkebladet-aarup": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T11:28:58Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "folkebladet-rebild": {
     "last_ok": "2026-10-09",
@@ -797,57 +1075,117 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "folkebladetlemvig": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T04:27:45Z",
+    "last_attempt": "2026-10-09T10:08:20Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "folketidende": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:02:44Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 4,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "folketinget-oda": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T07:22:42Z",
+    "last_attempt": "2026-10-09T10:08:20Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 21,
+    "items_30d": 22,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "fors": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T11:28:58Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
+  },
+  "forsyning-helsingoer": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "forsyningen": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "forsyningstilsynet": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T12:30:30Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 0,
+    "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "frdb": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T04:27:45Z",
+    "last_attempt": "2026-10-09T10:08:20Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "fredensborg-forsyning": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "fredensborg-kommune": {
     "last_ok": "2026-10-09",
@@ -857,7 +1195,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "fredericia-kommune": {
     "last_ok": "2026-10-09",
@@ -867,7 +1207,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "frederiksberg-kommune": {
     "last_ok": "2026-10-09",
@@ -877,17 +1219,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "frederiksbergliv": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T12:30:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 1
   },
   "frederikshavn-kommune": {
     "last_ok": "2026-10-09",
@@ -897,17 +1243,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "frederikssund-kommune": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:28:28Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "furesoe-kommune": {
     "last_ok": "2026-10-09",
@@ -917,17 +1267,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "fyens": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T04:27:45Z",
+    "last_attempt": "2026-10-09T10:08:20Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": false,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "galtenfolkeblad": {
     "last_ok": "2026-10-09",
@@ -937,27 +1291,33 @@
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "gate-21": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "genvindingsindustrien": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T12:30:30Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "gladsaxe-kommune": {
     "last_ok": "2026-10-09",
@@ -967,7 +1327,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "gladsaxenetnyt": {
     "last_ok": "2026-10-09",
@@ -977,7 +1339,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "glostrup-forsyning": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "glostrup-kommune": {
     "last_ok": "2026-10-09",
@@ -987,17 +1363,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "greenpeace-danmark": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "greve-kommune": {
     "last_ok": "2026-10-09",
@@ -1007,7 +1387,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "gribskov-forsyning": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "gribskov-kommune": {
     "last_ok": null,
@@ -1017,7 +1411,9 @@
     "items_30d": 0,
     "first_run_done": false,
     "health": "gul",
-    "since": null
+    "since": null,
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "guldborgsund-kommune": {
     "last_ok": "2026-10-09",
@@ -1027,7 +1423,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "haderslev-kommune": {
     "last_ok": "2026-10-09",
@@ -1037,7 +1435,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "halsnaes-forsyning": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "halsnaes-kommune": {
     "last_ok": "2026-10-09",
@@ -1047,17 +1459,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "hasserisavis": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "hedensted-kommune": {
     "last_ok": null,
@@ -1067,17 +1483,21 @@
     "items_30d": 0,
     "first_run_done": false,
     "health": "gul",
-    "since": null
+    "since": null,
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "heleherlev": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "helsingoer-kommune": {
     "last_ok": "2026-10-09",
@@ -1087,17 +1507,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "helsingordagblad": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T04:27:45Z",
+    "last_attempt": "2026-10-09T10:08:20Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "herning-kommune": {
     "last_ok": null,
@@ -1107,7 +1531,9 @@
     "items_30d": 0,
     "first_run_done": false,
     "health": "gul",
-    "since": null
+    "since": null,
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "herningfolkeblad": {
     "last_ok": "2026-10-09",
@@ -1117,7 +1543,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "hilleroed-forsyning": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "hilleroed-kommune": {
     "last_ok": "2026-10-09",
@@ -1127,17 +1567,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "hjertingposten": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "hjoerring-kommune": {
     "last_ok": "2026-10-09",
@@ -1147,7 +1591,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "hoeje-taastrup-kommune": {
     "last_ok": "2026-10-09",
@@ -1157,17 +1603,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "hoeringsportalen": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "hoersholm-kommune": {
     "last_ok": "2026-10-09",
@@ -1177,17 +1627,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "hofor": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "holbaek-kommune": {
     "last_ok": "2026-10-09",
@@ -1197,7 +1651,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "holstebro-kommune": {
     "last_ok": "2026-10-09",
@@ -1207,17 +1663,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "hornsherredlokalavis": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "horsens-kommune": {
     "last_ok": "2026-10-09",
@@ -1227,17 +1687,33 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "hsfo": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T04:27:45Z",
+    "last_attempt": "2026-10-09T10:08:20Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "htk-forsyning": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "hvidovre-kommune": {
     "last_ok": "2026-10-09",
@@ -1247,7 +1723,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "hvidovreavis": {
     "last_ok": "2026-10-09",
@@ -1257,7 +1735,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "hvidovrenyt": {
     "last_ok": "2026-10-09",
@@ -1267,7 +1747,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "ikast-brande-kommune": {
     "last_ok": null,
@@ -1277,17 +1759,21 @@
     "items_30d": 0,
     "first_run_done": false,
     "health": "gul",
-    "since": null
+    "since": null,
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "ingenioeren": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "ishoej-kommune": {
     "last_ok": "2026-10-09",
@@ -1297,7 +1783,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "iswa": {
     "last_ok": "2026-10-07",
@@ -1307,17 +1795,21 @@
     "items_30d": 4,
     "first_run_done": true,
     "health": "groen",
-    "since": null
+    "since": null,
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "itu": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:28:28Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "jammerbugt-kommune": {
     "last_ok": "2026-10-09",
@@ -1327,27 +1819,33 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "jammerbugtposten": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "jv": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T04:27:45Z",
+    "last_attempt": "2026-10-09T10:08:20Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "kalundborg-kommune": {
     "last_ok": "2026-10-09",
@@ -1357,7 +1855,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "kanalfrederikshavn": {
     "last_ok": "2026-10-09",
@@ -1367,17 +1867,33 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "kefm": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
+  },
+  "kerteminde-forsyning": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": false,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "kerteminde-kommune": {
     "last_ok": "2026-10-09",
@@ -1387,7 +1903,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "kfst": {
     "last_ok": "2026-10-09",
@@ -1397,7 +1915,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "kl": {
     "last_ok": "2026-10-09",
@@ -1407,7 +1927,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "klar-forsyning": {
     "last_ok": "2026-10-09",
@@ -1417,17 +1939,21 @@
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "klimaraadet": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "kobenhavnliv": {
     "last_ok": "2026-10-09",
@@ -1437,7 +1963,9 @@
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "koebenhavn-kommune": {
     "last_ok": "2026-10-09",
@@ -1447,7 +1975,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "koege-kommune": {
     "last_ok": "2026-10-09",
@@ -1457,7 +1987,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "kolding-kommune": {
     "last_ok": "2026-10-09",
@@ -1467,37 +1999,45 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "kommunen": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "kraka": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "ku": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "laesoe-kommune": {
     "last_ok": "2026-10-09",
@@ -1507,7 +2047,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "langeland-kommune": {
     "last_ok": "2026-10-09",
@@ -1517,7 +2059,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "lejre-kommune": {
     "last_ok": "2026-10-09",
@@ -1527,17 +2071,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "lejremagasinet": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "lemvig-kommune": {
     "last_ok": "2026-10-09",
@@ -1547,17 +2095,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "ligeher": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:02:44Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 1
   },
   "lolland-kommune": {
     "last_ok": "2026-10-09",
@@ -1567,7 +2119,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "ltf": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 2,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "lyngby-taarbaek-kommune": {
     "last_ok": "2026-10-09",
@@ -1577,7 +2143,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "maabjerg-energy-center": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "mariagerfjord-kommune": {
     "last_ok": "2026-10-09",
@@ -1587,17 +2167,33 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "mariagerfjordposten": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
+  },
+  "middelfart-affald": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "middelfart-kommune": {
     "last_ok": "2026-10-09",
@@ -1607,7 +2203,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "midtfynsposten": {
     "last_ok": "2026-10-09",
@@ -1617,7 +2215,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "midtjyllandsavis": {
     "last_ok": "2026-10-09",
@@ -1627,67 +2227,81 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "midtvendsysselavis": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "migogaalborg": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "migogaarhus": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "migogesbjerg": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "migogkbh": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "migogodense": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "migogvejen": {
     "last_ok": "2026-10-09",
@@ -1697,7 +2311,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "miljoeministeriet": {
     "last_ok": "2026-10-09",
@@ -1707,7 +2323,9 @@
     "items_30d": 2,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "miljoestyrelsen": {
     "last_ok": "2026-10-09",
@@ -1717,7 +2335,9 @@
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "naestved-kommune": {
     "last_ok": "2026-10-09",
@@ -1727,57 +2347,81 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "neravisen": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "netavisen-gribskov": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "netavisen-sjaelland": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "nibeavis": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "noah": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
+  },
+  "nomi4s": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 4,
+    "first_run_done": false,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "norddjurs-kommune": {
     "last_ok": "2026-10-09",
@@ -1787,7 +2431,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "nordfyns-kommune": {
     "last_ok": "2026-10-09",
@@ -1797,47 +2443,57 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "nordhavn-avis": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "nordisk-ministerraad": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "nordjyske": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T04:27:45Z",
+    "last_attempt": "2026-10-09T10:08:20Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "nordsoeposten": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 0,
+    "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "nordvaerk": {
     "last_ok": "2026-10-09",
@@ -1847,7 +2503,33 @@
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "norfors": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 4,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "nyborg-forsyning": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T11:28:58Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "nyborg-kommune": {
     "last_ok": "2026-10-09",
@@ -1857,7 +2539,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "odder-kommune": {
     "last_ok": "2026-10-09",
@@ -1867,7 +2551,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "odense-kommune": {
     "last_ok": "2026-10-09",
@@ -1877,7 +2563,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "odense-renovation": {
     "last_ok": "2026-10-09",
@@ -1887,7 +2575,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "odsherred-kommune": {
     "last_ok": "2026-10-09",
@@ -1897,57 +2587,81 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "oestvendsysselfolkeblad": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "orestad-avis": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "pingvinnyt": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "plastindustrien": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 5,
+    "items_30d": 4,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "politiken": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
+  },
+  "provas": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "randers-kommune": {
     "last_ok": "2026-10-09",
@@ -1957,17 +2671,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "refa": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "regeringen": {
     "last_ok": "2026-10-09",
@@ -1977,27 +2695,57 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "ren-forsyning-mariagerfjord": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "renosyd": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
+  },
+  "revas": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "rgo": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "rigsrevisionen": {
     "last_ok": "2026-10-09",
@@ -2007,7 +2755,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "ringkoebing-skjern-kommune": {
     "last_ok": "2026-10-09",
@@ -2017,7 +2767,9 @@
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "roedovre-kommune": {
     "last_ok": "2026-10-09",
@@ -2027,7 +2779,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "roskilde-kommune": {
     "last_ok": "2026-10-09",
@@ -2037,7 +2791,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "ruc": {
     "last_ok": "2026-10-09",
@@ -2047,7 +2803,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "rudersdal-kommune": {
     "last_ok": "2026-10-09",
@@ -2057,7 +2815,9 @@
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "samsoe-kommune": {
     "last_ok": "2026-10-09",
@@ -2067,7 +2827,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "samsoposten": {
     "last_ok": "2026-10-09",
@@ -2077,7 +2839,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "sdu": {
     "last_ok": "2026-10-09",
@@ -2087,7 +2851,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "silkeborg-forsyning": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T11:28:58Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "silkeborg-kommune": {
     "last_ok": "2026-10-09",
@@ -2097,17 +2875,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "sjaellandske-medier": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T04:27:45Z",
+    "last_attempt": "2026-10-09T10:08:20Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 10,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "skanderborg-kommune": {
     "last_ok": "2026-10-09",
@@ -2117,7 +2899,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "skive-kommune": {
     "last_ok": "2026-10-09",
@@ -2127,7 +2911,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "skivefolkeblad": {
     "last_ok": "2026-10-09",
@@ -2137,7 +2923,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "solroed-kommune": {
     "last_ok": "2026-10-09",
@@ -2147,27 +2935,33 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "sonderborgnyt": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "sonfor": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "soroe-kommune": {
     "last_ok": "2026-10-09",
@@ -2177,7 +2971,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "stevns-kommune": {
     "last_ok": "2026-10-09",
@@ -2187,17 +2983,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "stiften": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T04:27:45Z",
+    "last_attempt": "2026-10-09T10:08:20Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "struer-kommune": {
     "last_ok": "2026-10-09",
@@ -2207,7 +3007,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "svendborg-kommune": {
     "last_ok": "2026-10-09",
@@ -2217,7 +3019,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "syddjurs-kommune": {
     "last_ok": "2026-10-09",
@@ -2227,7 +3031,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "taarnby-kommune": {
     "last_ok": "2026-10-09",
@@ -2237,17 +3043,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "taenk": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "teknik-og-miljoe": {
     "last_ok": "2026-10-09",
@@ -2257,17 +3067,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "tekniskfokus": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "teknologisk-institut": {
     "last_ok": "2026-10-09",
@@ -2277,7 +3091,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "thisted-kommune": {
     "last_ok": "2026-10-09",
@@ -2287,17 +3103,45 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
-  "tjekfredensborg": {
+  "thy-forsyning": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T09:34:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "tjekfredensborg": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T11:28:58Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
+  },
+  "toender-forsyning": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T11:28:58Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 1,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "toender-kommune": {
     "last_ok": "2026-10-09",
@@ -2307,27 +3151,33 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "tv2-nyheder": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "tv2-regionerne": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 10,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "ugeavisen": {
     "last_ok": "2026-10-09",
@@ -2337,17 +3187,21 @@
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "vafo": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T04:27:45Z",
+    "last_attempt": "2026-10-09T10:08:20Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "vallensbaek-kommune": {
     "last_ok": "2026-10-09",
@@ -2357,7 +3211,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "vana": {
     "last_ok": "2026-10-09",
@@ -2367,17 +3223,33 @@
     "items_30d": 4,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
-  "varde-kommune": {
+  "vand-og-affald": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:28:28Z",
+    "last_attempt": "2026-10-09T09:34:01Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "varde-kommune": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T11:28:58Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "vejen-kommune": {
     "last_ok": "2026-10-09",
@@ -2387,7 +3259,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "vejle-kommune": {
     "last_ok": "2026-10-09",
@@ -2397,7 +3271,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "vestforbraending": {
     "last_ok": "2026-10-09",
@@ -2407,7 +3283,21 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
+  },
+  "vesthimmerlands-forsyning": {
+    "last_ok": "2026-10-09",
+    "last_attempt": "2026-10-09T09:34:01Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 0,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "vesthimmerlands-kommune": {
     "last_ok": "2026-10-09",
@@ -2417,27 +3307,33 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "vesthimmerlandsavis": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "viborg-folkeblad": {
     "last_ok": "2026-10-08",
-    "last_attempt": "2026-10-09T04:27:45Z",
-    "fails": 1,
+    "last_attempt": "2026-10-09T10:08:20Z",
+    "fails": 2,
     "last_error": "https://viborg-folkeblad.dk/sitemap/2026-10-09: HTTP 503; springes over i denne kørsel; https://viborg-folkeblad.dk/sitemap/2026-10-08: springes over: HTTP 503",
     "items_30d": 0,
     "first_run_done": false,
     "health": "gul",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "viborg-kommune": {
     "last_ok": "2026-10-09",
@@ -2447,27 +3343,33 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "viborher": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "videnskab": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T08:34:12Z",
+    "last_attempt": "2026-10-09T11:28:58Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "vodskovavis": {
     "last_ok": "2026-10-09",
@@ -2477,7 +3379,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "vordingborg-kommune": {
     "last_ok": "2026-10-09",
@@ -2487,7 +3391,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-09"
+    "since": "2026-10-09",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "voreslokalavis": {
     "last_ok": "2026-10-09",
@@ -2497,7 +3403,9 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": "2026-10-08"
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 0
   },
   "zero-waste-europe": {
     "last_ok": "2026-10-07",
@@ -2507,6 +3415,8 @@
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
-    "since": null
+    "since": null,
+    "backfilled_from": null,
+    "backfill_runs": 0
   }
 }

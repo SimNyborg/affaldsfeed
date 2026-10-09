@@ -161,3 +161,44 @@ Ni kommuner kan ikke hentes generisk. Tre har botbeskyttelse, to svarer ikke fra
 Brugeren bad om en kategori for sociale medier, der står i menuen, men ikke kan vælges. Den hedder Sociale medier og har `pending: true` i `config/categories.yaml`. Under Afsender har den en låst afkrydsning og "Afventer", hvor tallet ellers står. Under Kilde og på Om kilderne står den også med "Afventer". Den er ikke et valg, så "Vælg alle", "Fravælg alle" og status ser bort fra den, og `check` fejler, hvis en aktiv kilde får kategorien.
 
 De fleste sociale medier kræver login og har intet åbent feed, og projektet omgår aldrig login. Bluesky, Mastodon og YouTube har åbne feeds og er de oplagte steder at begynde. Før kategorien tages i brug, skal to ting afgøres: om fx en kommunes opslag hører under Sociale medier eller under kommunen, og hvilken farve kategorien skal have. Paletten har ikke plads til en farve mere, der kan skelnes tydeligt fra de andre (se DESIGNMANUAL.md), så kategorien er grå indtil da. Den har den laveste rang for primærkilde, så et opslag aldrig står over en artikel om samme sag.
+
+## 2026-10-09: De kommunale affaldsselskaber
+
+Brugeren bad om de kommunale affaldsselskaber, der manglede, fx Kredsløb, Fors, Reno Djurs og BOFA. Udgangspunktet er medlemslisten hos brancheforeningen Cirkulær (tidligere Dansk Affaldsforening) med 63 medlemmer. De medlemmer, der ikke blev hentet i forvejen, og som hverken er kommuner eller færøske, er afprøvet fra GitHub Actions, og 34 selskaber er kommet til. Feedet henter nu 45 selskaber. Oversigten står i [AFFALDSSELSKABER.md](AFFALDSSELSKABER.md).
+
+Selskaberne får deres ejerkommuner som faste steder, så deres nyheder kan findes med stedfiltret. Det gælder også de ni selskaber, der var med i forvejen, når ejerne er bekræftet. Rene affaldsselskaber har intet filter, forsyninger med vand, spildevand eller varme har normalt filter, og Fjernvarme Fyn har strengt filter, fordi selskabet mest skriver om fjernvarme. Ritzaus nyhedsrum bruges til Silkeborg Forsyning, DIN Forsyning, Assens Forsyning og Fors, fordi deres hjemmesider ikke har et feed eller et sitemap med datoer.
+
+Fors, Norfors, Nomi4s og Energnist er gået fra kandidat eller fravalgt til aktiv. Kredsløb har stadig botbeskyttelse, Langeland Forsyning har en captcha, og Reno Djurs, BOFA, Motas, Deponi Syd og Ressourceindsamling har ingen nyheder på hjemmesiden. De står med en note og kan prøves igen senere.
+
+## 2026-10-09: Hele 2026 i feedet
+
+Brugeren bad om nyhederne fra alle kilder for hele 2026, dag for dag, og derefter de nye hver dag. Feedet rækker nu tilbage til 1. januar 2026. Datoen står som `window_start` i `config/settings.yaml`, og hver kilde hentes én gang bagud dertil (KONTRAKTER §5.8). Det afløser vinduet på 60 dage fra 2026-10-07 (Kalender i stedet for periode).
+
+Bagudindsamlingen kører i de almindelige timekørsler. En kilde, der har mere, end der kan hentes i én kørsel, fortsætter hver time efter de andre kilder, så nye nyheder ikke venter på den. Sitemaps for afsluttede dage, uger og måneder læses kun én gang. Routinen vurderer de gamle indslag sammen med de nye, nyeste først, og har nu 14 dage til køen i stedet for 72 timer. Ellers kunne de ældste indslag nå at falde ud af køen, før de blev vurderet.
+
+Hvor langt tilbage en kilde kan hentes, afhænger af kilden:
+- Sitemaps med datoer går hele året tilbage. Det gælder de fleste kommuner, mange affaldsselskaber og de 18 aviser fra Jysk Fynske Medier, der har ét sitemap pr. dag. De gamle dagssitemaps er afprøvet fra GitHub Actions.
+- Folketingets åbne data går hele året tilbage.
+- RSS-feeds rummer kun de seneste 10 til 50 indslag, så de fleste nationale medier giver kun de seneste uger.
+- Nyhedslister på hjemmesider giver kun det, der står på listens første side.
+- Søgning hjælper ikke bagud. Google News blokerer indsamleren i robots.txt, og Bing News går kun omkring 30 dage tilbage og kan ikke søge i et tidsrum.
+
+Januar til september bliver derfor tyndere for de nationale medier end for kommuner, affaldsselskaber og lokalaviser. Det kan ikke løses generisk uden at omgå en spærring, og det gør projektet ikke.
+
+Artikler, som de første kørsler i oktober hentede og afviste som for gamle, står som sete. Ved kildens første bagudkørsel glemmes de sete adresser, der ikke blev til en kandidat, så de hentes igen. Gamle indslag, som forfiltret afviser, gemmes ikke i `data/rejected/`, for et års dagssitemaps ville ellers give flere titusinde poster dér.
+
+`feed.json` er stadig én fil. Med et helt år bliver den større, anslået 2 til 3 MB. Komprimeret med gzip, som GitHub Pages bruger, fylder den omkring en femtedel, og listen viser kun 60 kort ad gangen. Bliver siden for langsom, deles feedet op i månedsfiler.
+
+## 2026-10-09: Tidslinjen fyldes bagud til januar
+
+Med hele 2026 i feedet skal tidslinjen også dække hele året. Den første fyldning den 7. oktober så kun 60 dage tilbage, og de daglige kørsler ser kun tre dage, så både januar til juli og de indslag fra august til oktober, som bagudindsamlingen finder nu, ville aldrig komme med.
+
+Routinen fylder derfor tidslinjen bagud, én måned pr. kørsel fra januar til oktober (`timeline.fill_until`). En måned er først klar, når alle kilder uden fejl er hentet bagud, og routinen har vurderet månedens indslag. Ellers ville tidslinjen bygge på et halvt billede. Routinen markerer hver måned som fyldt med `timeline-input --fill-done`, også når den ikke fandt nogen store begivenheder, så den ikke tager den samme måned igen. Reglerne for, hvad der kommer på tidslinjen, er de samme som ellers. Det koster omkring ti ekstra trin i routinen i alt.
+
+## 2026-10-09: Kommune/affaldsselskab i menuen
+
+Brugeren bad om at omdøbe afsendertypen "Kommunal" til "Kommune/affaldsselskab". Det korte navn, som står i menuen, på mærkerne over listen og hos skærmlæsere, er nu "Kommune/affaldsselskab". Det fulde navn på "Om kilderne" er stadig "Kommune og affaldsselskab". Det følger de andre typer, der har "og" i det fulde navn og skråstreg i det korte, fx "Tænketank og NGO" og "Tænketank/NGO". Id'et `kommunal` er uændret, så links og data virker som før.
+
+## 2026-10-09: Fanen Højdepunkter
+
+Brugeren bad om at kalde tidslinjen Højdepunkter. Menupunktet, sidens titel og overskriften hedder nu Højdepunkter, og siden er stadig en tidslinje. Adressen `tidslinje.html` er den samme, så links, der allerede er delt, virker. Internt hedder den stadig tidslinjen: `data/timeline/`, `timeline-input` og routinens trin 7 og 7b.

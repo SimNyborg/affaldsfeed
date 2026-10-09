@@ -37,7 +37,7 @@ def selected(geo, item: DisplayItem, chosen: set[str]) -> bool:
 
 
 def test_sample_is_a_valid_feed(raw, feed):
-    assert list(raw) == ["version", "generated", "window_days", "mode", "last_judgment", "categories", "topics",
+    assert list(raw) == ["version", "generated", "window_days", "window_start", "mode", "last_judgment", "categories", "topics",
                          "genres", "sources", "geo", "overview", "items"]
     assert feed.version == FEED_VERSION
     assert all(list(it) == list(DisplayItem.model_fields) for it in raw["items"])

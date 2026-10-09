@@ -28,12 +28,12 @@ Alle køres fra repoets rod.
 python -m affaldsfeed check [--fetch ID] [--explain]
 python -m affaldsfeed run [--only ID,ID] [--dry-run] [--now ISO]
 python -m affaldsfeed export [--out _site] [--now ISO]
-python -m affaldsfeed pending [--max 200] [--hours 72]
+python -m affaldsfeed pending [--max 200] [--hours 336]
 python -m affaldsfeed validate-judgments [--file PATH]
 python -m affaldsfeed heartbeat
 python -m affaldsfeed overview-input --period dag|uge|maaned|aar
 python -m affaldsfeed validate-overview [--period P] [--archive]
-python -m affaldsfeed timeline-input [--days 3]
+python -m affaldsfeed timeline-input [--days 3 | --fill | --fill-done ÅÅÅÅ-MM]
 python -m affaldsfeed validate-timeline [--file PATH]
 python -m affaldsfeed import FILE.csv [--replace]     # fase 4
 python -m affaldsfeed find-feed URL                   # fase 4
@@ -54,8 +54,9 @@ python -m affaldsfeed check
 ## Fase-status
 
 - Fase 0 og 1 er færdige, og feedet har været live siden 7. oktober 2026.
-- Fase 2 er i gang: sitemap, html og ODA virker, og 246 kilder er aktive, heraf 81 regionale og lokale aviser (se `docs/LOKALMEDIER.md`) og 89 kommuner (se `docs/KOMMUNER.md`). Lokalmedier, der ikke kan hentes direkte, står i `config/medier.yaml`. Efterprøvning af sweepet og 7 dages overvågning af sitemap og html mangler.
+- Fase 2 er i gang: sitemap, html og ODA virker, og 280 kilder er aktive, heraf 81 regionale og lokale aviser (se `docs/LOKALMEDIER.md`), 89 kommuner (se `docs/KOMMUNER.md`) og 45 kommunale affaldsselskaber (se `docs/AFFALDSSELSKABER.md`). Lokalmedier, der ikke kan hentes direkte, står i `config/medier.yaml`. Efterprøvning af sweepet og 7 dages overvågning af sitemap og html mangler.
 - Fase 3 er i gang (kompakt visning er færdig). Fase 4 venter på brugerens kildeliste.
+- Feedet rækker tilbage til 1. januar 2026 (`window_start`). Hver kilde hentes én gang bagud dertil (KONTRAKTER §5.8), og den bagudindsamling skal følges, til alle aktive kilder har `backfilled_from`.
 - Se "Næste skridt for cloud-sessionen" i `docs/GAMEPLAN.md`.
 
 ## Arbejdsgang i cloud-sessionen

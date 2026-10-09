@@ -56,7 +56,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     pe = sub.add_parser("pending", help="JSON med uvurderede kandidater til Claude-routinen")
     pe.add_argument("--max", type=int, default=200, help="højst så mange indslag (standard 200)")
-    pe.add_argument("--hours", type=float, default=None, help="kun fundet inden for så mange timer (standard 72)")
+    pe.add_argument("--hours", type=float, default=None, help="kun fundet inden for så mange timer (standard settings.pending_hours, 336)")
     pe.add_argument("--now", metavar="ISO", help="overstyr nu (test)")
 
     vj = sub.add_parser("validate-judgments", help="valider data/judgments/*.jsonl")
@@ -75,7 +75,10 @@ def build_parser() -> argparse.ArgumentParser:
     vo.add_argument("--now", metavar="ISO", help="overstyr nu (test)")
 
     ti = sub.add_parser("timeline-input", help="JSON-input til Claudes tidslinje")
-    ti.add_argument("--days", type=int, default=None, help="historier fra så mange dage (standard 3, tom tidslinje 60)")
+    tg = ti.add_mutually_exclusive_group()
+    tg.add_argument("--days", type=int, default=None, help="historier fra så mange dage (standard 3, tom tidslinje 60)")
+    tg.add_argument("--fill", action="store_true", help="opfyldning: den næste måned, der er klar (KONTRAKTER §7.3)")
+    tg.add_argument("--fill-done", metavar="ÅÅÅÅ-MM", help="markér en måned i opfyldningen som fyldt")
     ti.add_argument("--now", metavar="ISO", help="overstyr nu (test)")
 
     vt = sub.add_parser("validate-timeline", help="valider data/timeline/*.jsonl")

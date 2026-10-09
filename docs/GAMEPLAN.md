@@ -8,14 +8,14 @@ Affaldsfeed bygges i seks faser. Fase 0 og 1 laves i den første lokale session 
 |---|---|---|
 | 0 | Fundament: config, kilderegister, `check`, CI og docs | Færdig |
 | 1 | Første live version: pipeline for RSS og søgning, site, workflows og Claude-routinen | Færdig, live 7. oktober 2026 |
-| 2 | Kilder uden RSS, Folketingets ODA og Claudes sweep | I gang: sitemap, html og ODA virker, og 246 kilder er aktive, heraf 89 kommuner. Sweepet er ikke efterprøvet |
+| 2 | Kilder uden RSS, Folketingets ODA og Claudes sweep | I gang: sitemap, html og ODA virker, og 280 kilder er aktive, heraf 89 kommuner og 45 kommunale affaldsselskaber. Sweepet er ikke efterprøvet |
 | 3 | Kvalitet: "Hvorfor med?", bedre historier, kompakt visning | I gang: kompakt visning, dagsbundter og 150 testcases er færdige; niveau 3 og Via Ritzau er udskudt (se BESLUTNINGER) |
 | 4 | Brugerens kildeliste | Venter på listen |
 | 5 | Udvidelser | Kun ved konkret savn |
 
 Opdatér tabellen, når en fase er færdig.
 
-Ud over planen er der bygget et stedfilter (regioner, kommuner og byer ud fra `geo`), fanen Tidslinje med de vigtigste begivenheder (routinens trin 7 kl. 22) og en enklere brugerflade efter brugerens ønsker: et AI-overblik, der kan foldes sammen, foldbare grupper i menuen med alt afkrydset fra start og en kalender over listen.
+Ud over planen er der bygget et stedfilter (regioner, kommuner og byer ud fra `geo`), fanen Højdepunkter med en tidslinje over de vigtigste begivenheder (routinens trin 7 kl. 22) og en enklere brugerflade efter brugerens ønsker: et AI-overblik, der kan foldes sammen, foldbare grupper i menuen med alt afkrydset fra start og en kalender over listen. Feedet rækker tilbage til 1. januar 2026, og hver kilde hentes én gang bagud dertil (KONTRAKTER §5.8).
 
 ## Fase 0: Fundament
 
@@ -106,7 +106,9 @@ Færdig, når alle kilder på listen er aktive eller fravalgt med en begrundelse
 
 Start med at læse `CLAUDE.md`, `docs/KONTRAKTER.md` og denne fil. Tjek så, at driften kører: `gh run list` skal vise grønne kørsler af "Udgiv" og "Indsamling", og `data/judgments/_heartbeat.json` skal være fra seneste kørsel i dagtimerne. GitHubs tidsplan for `collect.yml` kører kun sporadisk: natten til 8. oktober 2026 kom 2 af omkring 8 planlagte kørsler. Indsamlingen kører derfor mest efter hvert byg (`workflow_run`), altså når routinen har pushet. Står routinen, står indsamlingen næsten også, og om natten går der op til fire timer mellem kørslerne.
 
-Brugeren skal rette routinens prompt på claude.ai, så den siger "Du må kun skrive i data/judgments/, data/overview/ og data/timeline/." Indtil da fyldes tidslinjen ikke. Routinen er oprettet via API, så en session kan ikke selv rette den.
+Brugeren skal rette routinens prompt på claude.ai, så den siger "Du må kun skrive i data/judgments/, data/overview/ og data/timeline/." Prompten nævner stadig kun de to første mapper (tjekket 9. oktober 2026). Routinen har alligevel skrevet tidslinjen kl. 22 den 7. og 8. oktober, fordi instruksen beder om det, men prompten bør passe med instruksen.
+
+Bagudindsamlingen til 1. januar 2026 (BESLUTNINGER 2026-10-09, Hele 2026 i feedet) kører i timekørslerne fra 9. oktober 2026. Følg den, til alle aktive kilder har `backfilled_from` i `data/state/sources.json`: tæl kilderne med og uden, se efter advarslen "bagudindsamlingen stopper efter" i loggen, og hold øje med, at routinens kø (`pending_before` i `_heartbeat.json`) falder igen. Tidslinjen fyldes bagud måned for måned, når bagudindsamlingen er færdig, og månedens indslag er vurderet (routinens trin 7b, KONTRAKTER §7.3). Følg `timeline-input --fill`, til `months_left` er tom, og se, at hver måned har fået de store begivenheder og ikke lokale nyheder.
 
 Fase 2, resten (lokale medier og ODA er færdige):
 1. Følg de 45 sitemap- og 28 html-kilder og ODA i 7 dage. Fejler en, så ret `match`, `select` eller `filter`, eller sæt den på pause med en note.

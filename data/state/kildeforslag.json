@@ -78,28 +78,31 @@
   },
   "kolding-netavis.dk": {
     "name": "kolding-netavis",
-    "count": 1,
-    "last_seen": "2026-10-08T00:05:14Z",
+    "count": 2,
+    "last_seen": "2026-10-09T09:34:01Z",
     "examples": [
+      "https://www.kolding-netavis.dk/guide-vamdrup/",
       "https://www.kolding-netavis.dk/genbrugsplads/"
     ],
     "ids": [
-      "05c2f3b8811f"
+      "05c2f3b8811f",
+      "29217201f385"
     ]
   },
   "msn.com": {
-    "name": "Top Santé on MSN",
-    "count": 3,
-    "last_seen": "2026-10-08T08:27:16Z",
+    "name": "Din Avis on MSN",
+    "count": 4,
+    "last_seen": "2026-10-09T09:34:01Z",
     "examples": [
+      "https://www.msn.com/da-dk/livsstil/other/byt-til-nyt-s%C3%B8stre-skaber-julegl%C3%A6de-p%C3%A5-genbrug/ar-AA2dTedu",
       "https://www.msn.com/fr-fr/divertissement/g%C3%A9n%C3%A9ral/la-vache-qui-rit-voici-pourquoi-elle-a-cess%C3%A9-de-sourire-sur-certains-emballages-vous-aurez-du-mal-%C3%A0-y-croire/ar-AA2dObRz",
-      "https://www.msn.com/da-dk/nyheder/other/affald-skulle-blive-billigere-nu-risikerer-danskerne-at-betale-mere/ar-AA2dIQNq",
-      "https://www.msn.com/da-dk/sundhed/generelt/affaldsselskab-sl%C3%A5r-alarm-popul%C3%A6r-v%C3%A6gttabsmedicin-skaber-uventet-fare/ar-AA2dKg75"
+      "https://www.msn.com/da-dk/nyheder/other/affald-skulle-blive-billigere-nu-risikerer-danskerne-at-betale-mere/ar-AA2dIQNq"
     ],
     "ids": [
       "2d282b2738cc",
       "b1c4a705b374",
-      "ca27c3b6aa8b"
+      "ca27c3b6aa8b",
+      "e87d1bca0ae4"
     ]
   },
   "nytimes.com": {

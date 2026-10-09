@@ -1,19 +1,17 @@
-// Affaldsfeed: forsiden (feed), Tidslinje og "Om kilderne". Ingen build, ingen afhængigheder.
+// Affaldsfeed: forsiden (feed), Højdepunkter (tidslinjen) og "Om kilderne". Ingen build, ingen afhængigheder.
 
 import {
   el, icon, hidden, catStyle, cap, truncate, cph, fmtNum, fmtShort, fmtLong, fmtWhen, fmtStamp,
   isoWeek, fmtDayRange, weekdayOf, parseDate, load, store, DAY_MS,
   readState, syncUrl, setData, defaultState, activeCount, sheetCount, activeFilters, removeFilter, resetFilters, shownSet, NATIONAL,
   prepare, applyFilters, computeCounts, computeDayCounts, buildPanel, renderActive,
-  placeName, placeParents, rangeOf, setRange, fmtRange,
+  placeName, placeParents, rangeOf, setRange, fmtRange, validDay, dayNumOf,
 } from './filters.js';
 import { createOverview } from './overview.js';
 import { createTimeline, demoizeTimeline } from './tidslinje.js';
 import { createDatePicker } from './calendar.js';
 
-const CHUNK = 50; // kort pr. bid, når listen bygges, mens man scroller
-const AHEAD_PX = 1500; // næste bid bygges, når listens ende er så tæt på skærmen
-const IDLE_MAX = 300; // så mange kort bygges i forvejen i ledige stunder; resten, når man scroller
+const PAGE = 60; // kort ad gangen; resten kommer med "Vis mere"
 const STALE_HOURS = 6;
 const TEASER_MAX = 240;
 const TIME_KEYS = new Set(['generated', 'last_judgment', 'published', 'first_seen', 'start', 'end', 'last_attempt']);
@@ -63,7 +61,7 @@ function shiftTimes(obj, delta) {
     if (typeof v === 'string' && TIME_KEYS.has(k)) {
       const d = parseDate(v);
       if (d) obj[k] = new Date(d.getTime() + delta).toISOString().replace('.000Z', 'Z');
-    } else if (k === 'since' && typeof v === 'string') {
+    } else if ((k === 'since' || k === 'window_start') && typeof v === 'string') {  // datoer: hele dage
       const [y, m, d] = v.split('-').map(Number);
       if (y && m && d) obj[k] = new Date(Date.UTC(y, m - 1, d) + Math.round(delta / DAY_MS) * DAY_MS).toISOString().slice(0, 10);
     } else if (v && typeof v === 'object') {
@@ -189,19 +187,19 @@ function setupFeed(feed, state, now, lastVisit) {
     filterBtn: $('filter-btn'), filterCount: $('filter-count'), filterComma: $('filter-comma'), filterCountSr: $('filter-count-sr'),
     head: $('list-head'), q: $('q'), qClear: $('q-clear'), active: $('active-filters'),
     status: $('status'), statusUnit: $('status-unit'), statusText: $('status-text'), statusSep: $('status-sep'),
-    statusAction: $('status-action'), view: $('view-seg'), list: $('feed'), end: $('feed-end'),
+    statusAction: $('status-action'), view: $('view-seg'), list: $('feed'),
+    more: $('feed-more'), moreBtn: $('feed-more-btn'), moreN: $('feed-more-n'),
     dateBtn: $('date-btn'), dateText: $('date-text'), dateClear: $('date-clear'),
   };
   const todayNum = cph(now).dayNum;
-  // Feedets første dag: vinduets start (som standard 60 dage) eller det ældste indslag, hvis det er ældre.
+  // Feedets første dag: window_start (ellers window_days tilbage) eller det ældste indslag, hvis det er ældre.
   // Kalenderen kan vælge dage herfra til i dag.
-  const firstDay = data.members.reduce((d, m) => Math.min(d, m.day.dayNum),
-    cph(new Date(now.getTime() - (Number(feed.window_days) || 60) * DAY_MS)).dayNum);
+  const windowStart = validDay(feed.window_start) ? dayNumOf(feed.window_start)
+    : cph(new Date(now.getTime() - (Number(feed.window_days) || 60) * DAY_MS)).dayNum;
+  const firstDay = data.members.reduce((d, m) => Math.min(d, m.day.dayNum), windowStart);
   let total = null; // antal kort uden filtre
   let cards = [];
   let fill = null; // byggeriet af den aktuelle liste (renderList)
-  let fillId = 0;
-  let pumping = false;
 
   // Meddelelser: forældet feed og regelvisning
   const msgs = [];
@@ -286,9 +284,13 @@ function setupFeed(feed, state, now, lastVisit) {
     ui.dateBtn.focus();
   });
 
-  // ── Listens ende: nærmer den sig skærmen, bygges de næste kort (renderList) ──
-  new IntersectionObserver((entries) => { if (entries.some((e) => e.isIntersecting)) pump(); },
-    { rootMargin: `0px 0px ${AHEAD_PX}px 0px` }).observe(ui.end);
+  // ── "Vis mere": de næste PAGE kort, og fokus til det første af dem ──
+  ui.moreBtn.addEventListener('click', () => {
+    const first = fill.i;
+    appendCards(PAGE);
+    updateMore();
+    ui.list.querySelectorAll('.cards > li')[first]?.querySelector('a')?.focus();
+  });
 
   // ── Statuslinjen ──
   ui.statusAction.addEventListener('click', () => {
@@ -436,25 +438,22 @@ function setupFeed(feed, state, now, lastVisit) {
     };
   }
 
-  // ── Listen bygges i bidder: den første med det samme, de næste, når listens ende nærmer sig skærmen.
-  // I ledige stunder bygges op til IDLE_MAX kort i forvejen, så en normal liste kort efter står helt i
-  // siden (søgning i siden og footeren virker), mens et meget langt feed ikke gør hvert filterklik tungt. ──
-  function done() {
-    return !fill || fill.i >= cards.length;
-  }
-  function near() {
-    return ui.end.getBoundingClientRect().top < innerHeight + AHEAD_PX;
+  // ── Listen viser PAGE kort ad gangen. "Vis mere" under listen viser de næste. ──
+  function updateMore() {
+    const shown = fill ? fill.i : 0;
+    ui.more.hidden = shown >= cards.length;
+    ui.moreN.textContent = `Viser ${fmtNum(shown)} af ${fmtNum(cards.length)} indslag`;
   }
 
   function renderList() {
-    fillId += 1;
     fill = null;
     ui.list.classList.toggle('is-compact', state.vis === 'kompakt');
     if (!data.members.length) {
       ui.list.replaceChildren(el('div', { class: 'empty' }, el('p', { text: 'Der er ingen indslag i feedet endnu.' })));
+      updateMore();
       return;
     }
-    if (!cards.length) { ui.list.replaceChildren(renderEmpty()); return; }
+    if (!cards.length) { ui.list.replaceChildren(renderEmpty()); updateMore(); return; }
 
     const groupOf = grouper();
     const groupCount = new Map();
@@ -470,10 +469,9 @@ function setupFeed(feed, state, now, lastVisit) {
         el('p', { class: 'day-empty', text: `Intet nyt endnu i dag.${gen ? ` Sidst opdateret ${fmtStamp(gen, now)}.` : ''}` })));
     }
     ui.list.replaceChildren(...out);
-    fill = { id: fillId, i: 0, group: null, ul: null, groupOf, groupCount, compact: state.vis === 'kompakt' };
-    appendCards(CHUNK);
-    pump();
-    idleFill();
+    fill = { i: 0, group: null, ul: null, groupOf, groupCount, compact: state.vis === 'kompakt' };
+    appendCards(PAGE);
+    updateMore();
   }
 
   /** De næste n kort i rækkefølge, med dagsoverskrifter. */
@@ -494,35 +492,6 @@ function setupFeed(feed, state, now, lastVisit) {
       }
       f.ul.append(el('li', null, f.compact ? renderRow(card, g) : renderCard(card, g)));
     }
-  }
-
-  // Tæt på listens ende: ét bid pr. billede, til enden er langt nok væk igen
-  function pump() {
-    if (pumping || done()) return;
-    pumping = true;
-    requestAnimationFrame(() => {
-      pumping = false;
-      if (done() || !near()) return;
-      appendCards(CHUNK);
-      pump();
-    });
-  }
-
-  // Op til IDLE_MAX kort bygges i ledige stunder (højst 1 s mellem bidderne, også når siden har travlt)
-  function whenIdle(fn) {
-    if (window.requestIdleCallback) requestIdleCallback(fn, { timeout: 1000 });
-    else setTimeout(() => fn({ timeRemaining: () => 8 }), 50);
-  }
-  function idleFill() {
-    const id = fillId;
-    const full = () => done() || fill.i >= IDLE_MAX;
-    // Små bidder på 2 kort, kun mens der er god tid tilbage, så en langsom telefon ikke får lange opgaver
-    whenIdle((deadline) => {
-      if (id !== fillId || full()) return;
-      appendCards(2);
-      while (!full() && deadline.timeRemaining() > 20) appendCards(2);
-      idleFill();
-    });
   }
 
   // ── Kortet ──
@@ -827,9 +796,9 @@ async function initTimeline() {
   try {
     tl = await loadData('timeline', state.demo);
   } catch (err) {
-    console.warn('Tidslinjen kunne ikke indlæses:', err.message);
+    console.warn('Højdepunkterne kunne ikke indlæses:', err.message);
     root.replaceChildren(el('div', { class: 'panel', role: 'alert' },
-      el('p', { text: 'Tidslinjen kunne ikke indlæses. Prøv igen om lidt.' }),
+      el('p', { text: 'Højdepunkterne kunne ikke indlæses. Prøv igen om lidt.' }),
       el('p', { class: 'actions' }, el('button', { type: 'button', class: 'btn', onclick: () => location.reload() }, 'Prøv igen'))));
     return;
   }

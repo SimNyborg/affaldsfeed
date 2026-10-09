@@ -157,13 +157,30 @@ class FakeSession:
         return item
 
 
-def setup_env(tmp_path: Path, monkeypatch, sources: Path | None = None, medier: Path | None = None) -> SimpleNamespace:
-    """Kopiér config/ og testkilder til tmp_path og peg paths dertil."""
+def set_window_start(config_dir: Path, value: str | None) -> None:
+    """Sæt eller fjern window_start i en kopi af settings.yaml. Uden den kører testene den almindelige drift
+    (vindue på window_days og ingen bagudindsamling); med den afprøves bagudindsamlingen (KONTRAKTER §5.8)."""
+    f = config_dir / "settings.yaml"
+    lines = [ln for ln in f.read_text(encoding="utf-8").splitlines() if not ln.startswith("window_start:")]
+    if value is not None:
+        lines.append(f"window_start: {value}")
+    f.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def setup_env(
+    tmp_path: Path,
+    monkeypatch,
+    sources: Path | None = None,
+    medier: Path | None = None,
+    window_start: str | None = None,
+) -> SimpleNamespace:
+    """Kopiér config/ og testkilder til tmp_path og peg paths dertil. window_start som i set_window_start."""
     config_dir = tmp_path / "config"
     config_dir.mkdir()
     for f in paths.CONFIG_DIR.iterdir():
         if f.is_file() and f.suffix in (".yaml", ".md"):
             shutil.copy(f, config_dir / f.name)
+    set_window_start(config_dir, window_start)
     shutil.copy(medier or FIXTURES / "medier.yaml", config_dir / "medier.yaml")
     sources_file = tmp_path / "sources.yaml"
     shutil.copy(sources or FIXTURES / "sources.yaml", sources_file)

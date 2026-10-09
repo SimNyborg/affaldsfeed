@@ -30,7 +30,7 @@
   help: Ministerier, styrelser, tilsyn, råd, nævn, Høringsportalen og Folketinget.
 - id: kommunal
   name: Kommune og affaldsselskab
-  short: Kommunal
+  short: Kommune/affaldsselskab
   color: "#065F35"
   color_dark: "#5EC587"
   icon: raadhus

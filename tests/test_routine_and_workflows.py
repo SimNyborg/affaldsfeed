@@ -73,6 +73,19 @@ def test_routine_timeline_step():
     TimelineEvent.model_validate_json(line)
 
 
+def test_routine_fills_the_timeline_backwards_month_by_month():
+    """Trin 7b: opfyldningen bagud (KONTRAKTER §7.3) springes ikke over, når der intet er at vurdere."""
+    step = REDAKTOER.split("### 7b. Tidslinjen bagud", 1)[1].split("### 8.", 1)[0]
+    text = " ".join(step.split())
+    assert ".venv/bin/python -m affaldsfeed timeline-input --fill > /tmp/fill.json" in step
+    assert ".venv/bin/python -m affaldsfeed timeline-input --fill-done <fill_month>" in step
+    assert "Er `fill_month` `null`, så spring resten af trinnet over." in text
+    assert "også når du ikke skrev nogen begivenheder" in text and "Tag højst én måned pr. kørsel." in text
+    whole = " ".join(REDAKTOER.split())
+    assert "skal hverken trin 5, 6 eller 7 køres i denne time, så gå direkte til trin 7b." in whole
+    assert "gå direkte til trin 8" not in whole
+
+
 def test_routine_rewrites_invalid_overview():
     """Et overblik, der er blevet ugyldigt efter skrivningen, skrives forfra i næste kørsel."""
     step = REDAKTOER.split("### 5. Opdatér overblikket", 1)[1].split("### 6.", 1)[0]

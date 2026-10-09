@@ -30,7 +30,7 @@
       <nav class="site-nav" aria-label="Sider">
         <ul>
           <li><a href="./" aria-current="page" data-internal>Feed</a></li>
-          <li><a href="tidslinje.html" data-internal>Tidslinje</a></li>
+          <li><a href="tidslinje.html" data-internal>Højdepunkter</a></li>
         </ul>
       </nav>
     </div>
@@ -85,8 +85,11 @@
         </div>
 
         <div class="feed" id="feed" aria-busy="true"></div>
-        <!-- Ældre kort bygges, når denne nærmer sig skærmen (app.js) -->
-        <div class="feed-end" id="feed-end" aria-hidden="true"></div>
+        <!-- 60 kort ad gangen; knappen viser de næste (app.js) -->
+        <div class="more-wrap feed-more" id="feed-more" hidden>
+          <button type="button" class="btn" id="feed-more-btn" aria-describedby="feed-more-n">Vis mere</button>
+          <p class="more-n" id="feed-more-n"></p>
+        </div>
       </div>
     </main>
   </div>

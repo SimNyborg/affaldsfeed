@@ -99,7 +99,7 @@ export const dayNumOf = (iso) => {
   return Date.UTC(y, m - 1, d) / DAY_MS;
 };
 export const isoDay = (n) => new Date(n * DAY_MS).toISOString().slice(0, 10);
-const validDay = (v) => (/^\d{4}-\d{2}-\d{2}$/.test(v || '') && isoDay(dayNumOf(v)) === v ? v : '');
+export const validDay = (v) => (/^\d{4}-\d{2}-\d{2}$/.test(v || '') && isoDay(dayNumOf(v)) === v ? v : '');
 const dayParts = (n) => {
   const t = new Date(n * DAY_MS);
   return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() };
@@ -186,7 +186,7 @@ export const hidden = (text) => el('span', { class: 'visually-hidden', text });
 
 /**
  * Tegnsætning kun til skærmlæsere. Står inline med nul bredde og højde, så navnet bliver
- * "Kommunal, 6 indslag" (en skjult span med position: absolute giver "Kommunal , 6 indslag").
+ * "Kommune/affaldsselskab, 6 indslag" (en skjult span med position: absolute giver "Kommune/affaldsselskab , 6 indslag").
  */
 export const srPunct = (text = ',') => el('span', { class: 'sr-punct', text });
 
@@ -691,7 +691,7 @@ export function genreName(data, id) {
 
 /** Kort temanavn: `short`, ellers `name` (feltet `short` er valgfrit i feed.json). */
 export function topicName(data, id) {
-  if (id === NO_TOPIC) return 'Uden tema';
+  if (id === NO_TOPIC) return 'Andre temaer';
   const t = data.topics.get(id);
   return t ? t.short || t.name : id;
 }
@@ -822,7 +822,7 @@ function frow({ name, title = null, iconName, style = null, onchange, sr = '', p
   const label = el('label', { class: `frow${withIcon ? ' has-icon' : ''}${style ? ' cat' : ''}${pending ? ' is-pending' : ''}`, style, title },
     input,
     withIcon ? (iconName ? icon(iconName) : el('span', { class: 'i' })) : null,
-    // Kommaet står inline lige efter navnet, så navnet bliver "Kommunal, 6 indslag" uden mellemrum før kommaet
+    // Kommaet står inline lige efter navnet, så navnet bliver "Kommune/affaldsselskab, 6 indslag" uden mellemrum før kommaet
     el('span', { class: 'name' }, name, srPunct(), sr ? hidden(` ${sr},`) : null),
     el('span', { class: 'n' }, num, pending ? null : hidden(' indslag')));
   return {
