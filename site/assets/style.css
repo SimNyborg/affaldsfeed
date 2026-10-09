@@ -1306,15 +1306,28 @@ dialog.sheet::backdrop { background: var(--backdrop); }
 
 /* ── Brudpunkter (em, så de følger brugerens grundskrift) ── */
 
-/* Fra 1024 px: sidepanel og læsekolonne i ét grid */
+/* Fra 1024 px: sidepanel og læsekolonne i ét grid. Læsekolonnen deler gitterets rækker (subgrid): meddelelser,
+   AI-overblik og listepanelet står i hver sin række, og sidepanelet står i listens række, så toppen af de to
+   flugter. Afstanden mellem rækkerne er margin og ikke gap, så skjulte rækker ikke giver luft. */
 @media (min-width: 64em) {
   .layout:not(.single) {
     display: grid;
     grid-template-columns: var(--side) minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr;
     column-gap: var(--gap);
     align-items: start;
   }
-  .layout:not(.single) > .main { grid-column: 2; }   /* også når sidepanelet er skjult (fejl) */
+  .layout:not(.single) > .main {   /* også når sidepanelet er skjult (fejl) */
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    display: grid;
+    grid-template-rows: subgrid;
+    row-gap: 0;
+  }
+  .layout:not(.single) > .main > .msgs { grid-row: 1; margin-bottom: var(--block); }
+  .layout:not(.single) > .main > .overview { grid-row: 2; margin-bottom: var(--block); }
+  .layout:not(.single) > .main > .list-panel { grid-row: 3; }
+  .layout:not(.single) > .sidebar { grid-row: 3; }
   /* Om kilderne: læsekolonnen (højst 720 px) står ved containerens venstrekant og flugter med logoet */
   .layout.single { max-width: var(--container); }
   .layout.single > .main { max-width: var(--col); }
