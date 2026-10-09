@@ -20,6 +20,7 @@ Genereres automatisk af `python -m affaldsfeed run`. Viser top 50 efter antal ar
 | idahostatejournal.com | Idaho State Journal | 1 | 2026-10-07 | [1](https://www.idahostatejournal.com/news/local/dedicate-explores-the-salt-lake-temple-renovation-through-the-eyes-of-young-adults/article_05c0f18e-3ced-53f6-accb-fc7897dea527.html) |
 | inc.com | Inc.com | 1 | 2026-10-07 | [1](https://www.inc.com/sarah-bregel/baltimore-orioles-announced-600-million-dollar-renovation-laid-off-employee-behind-mascot/91416095) |
 | kalb.com | KALB | 1 | 2026-10-07 | [1](https://www.kalb.com/2026/10/07/alexandria-hold-ribbon-cutting-charles-smith-park-renovation/) |
+| landbrugsavisen.dk | LandbrugsAvisen | 1 | 2026-10-09 | [1](https://landbrugsavisen.dk/regeringen-vil-haeve-boeder-for-dumping-af-affald-og-forurenet-jord-334943) |
 | nytimes.com | The New York Times | 1 | 2026-10-07 | [1](https://www.nytimes.com/2026/10/07/business/chrysler-building-tishman-speyer.html) |
 | tv4.se | TV4 | 1 | 2026-10-08 | [1](https://www.tv4.se/artikel/3qTbtd9tMSwLcDc3Izr1Lk/agerar-efter-pantkaoset-och-goer-som-sverige-stor-omstaellning) |
 | wspa.com | WSPA 7News | 1 | 2026-10-07 | [1](https://www.wspa.com/your-carolina/the-salvation-army-greenville-2/) |

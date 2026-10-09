@@ -1024,7 +1024,7 @@
     "body": "User-agent: * \nDisallow: /app_browsers/\nDisallow: /app_code/\nDisallow: /app_data/\nDisallow: /app_plugins/\nDisallow: /bin/\nDisallow: /cdn-cgi/\nDisallow: /config/\nDisallow: /controllers/\nDisallow: /config/\nDisallow: /css/\nDisallow: /images/\nDisallow: /obj/\nDisallow: /properties/\nDisallow: /robots/\nDisallow: /scripts/\nDisallow: /umbraco/\nDisallow: /umbraco_client/\nDisallow: /views/\nUser-agent: Sogou web spider\nCrawl-delay: 10\nDisallow: /\nsitemap:https://vejen.dk/sitemap.xml\nUser-agent: *\nDisallow: *.pdf\nDisallow: *.doc*\nDisallow: *.xls*\nDisallow: *.pptx*\n"
   },
   "vestfor.dk": {
-    "fetched": "2026-10-08T16:27:55Z",
+    "fetched": "2026-10-09T19:28:39Z",
     "body": "User-agent: *\nAllow: /"
   },
   "vesthimmerland.dk": {
@@ -1184,7 +1184,7 @@
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditkjellerup.dk/sitemap.xml\n"
   },
   "www.dkteknikogmiljoe.dk": {
-    "fetched": "2026-10-08T16:27:55Z",
+    "fetched": "2026-10-09T19:28:39Z",
     "body": "User-Agent: *\nAllow: /\n\nSitemap: https://www.dkteknikogmiljoe.dk/sitemap.xml\nSitemap: https://www.dkteknikogmiljoe.dk/news-sitemap.xml\n"
   },
   "www.dn.dk": {
@@ -1420,7 +1420,7 @@
     "body": "#\n# robots.txt\n#\n# This file is to prevent the crawling and indexing of certain parts\n# of your site by web crawlers and spiders run by sites like Yahoo!\n# and Google. By telling these \"robots\" where not to go on your site,\n# you save bandwidth and server resources.\n#\n# This file will be ignored unless it is at the root of your host:\n# Used:    http://example.com/robots.txt\n# Ignored: http://example.com/site/robots.txt\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/robotstxt.html\n\nUser-agent: *\n# CSS, JS, Images\nAllow: /core/*.css$\nAllow: /core/*.css?\nAllow: /core/*.js$\nAllow: /core/*.js?\nAllow: /core/*.gif\nAllow: /core/*.jpg\nAllow: /core/*.jpeg\nAllow: /core/*.png\nAllow: /core/*.svg\nAllow: /profiles/*.css$\nAllow: /profiles/*.css?\nAllow: /profiles/*.js$\nAllow: /profiles/*.js?\nAllow: /profiles/*.gif\nAllow: /profiles/*.jpg\nAllow: /profiles/*.jpeg\nAllow: /profiles/*.png\nAllow: /profiles/*.svg\n# Directories\nDisallow: /core/\nDisallow: /profiles/\n# Files\nDisallow: /README.txt\nDisallow: /web.config\n# Paths (clean URLs)\nDisallow: /admin/\nDisallow: /comment/reply/\nDisallow: /filter/tips\nDisallow: /node/add/\nDisallow: /search/\nDisallow: /user/register/\nDisallow: /user/password/\nDisallow: /user/login/\nDisallow: /user/logout/\nDisallow: /node?language=en&page=0\nDisallow: /node?language=en&page=1\nDisallow: /node?language=en&page=2\nDisallow: /node?language=en&page=3\nDisallow: /node?language=en&page=4\nDisallow: /node?language=en&page=5\nDisallow: /node?language=en&page=6\nDisallow: /node?language=en&page=7\nDisallow: /node?language=en&page=8\nDisallow: /node?language=en&page=9\nDisallow: /node?language=en&page=10\nDisallow: /node?language=da&page=0\nDisallow: /node?language=da&page=1\nDisallow: /node?language=da&page=2\nDisallow: /node?language=da&page=3\nDisallow: /node?language=da&page=4\nDisallow: /node?language=da&page=5\nDisallow: /node?language=da&page=6\nDisallow: /node?language=da&page=7\nDisallow: /node?language=da&page=8\nDisallow: /node?language=da&page=9\nDisallow: /node?language=da&page=10\n# Paths (no clean URLs)\nDisallow: /index.php/admin/\nDisallow: /index.php/comment/reply/\nDisallow: /index.php/filter/tips\nDisallow: /index.php/node/add/\nDisallow: /index.php/search/\nDisallow: /index.php/user/password/\nDisallow: /index.php/user/register/\nDisallow: /index.php/user/login/\nDisallow: /index.php/user/logout/\nSitemap: https://www.kk.dk/sitemap.xml"
   },
   "www.kl.dk": {
-    "fetched": "2026-10-08T16:27:55Z",
+    "fetched": "2026-10-09T19:28:39Z",
     "body": "<pre>\r\n    User-Agent: *&#xD;&#xA;Allow: /DependencyHandler.axd&#xD;&#xA;Disallow: /aspnet_client/&#xD;&#xA;Disallow: /bin/&#xD;&#xA;Disallow: /config/&#xD;&#xA;Disallow: /umbraco/&#xD;&#xA;Disallow: /umbraco_client/&#xD;&#xA;Disallow: /usercontrols/&#xD;&#xA;Disallow: /*.axd&#xD;&#xA;Sitemap: INDS&#xC6;T SITEMAP URL HERE\r\n</pre>"
   },
   "www.koege.dk": {
@@ -1596,8 +1596,8 @@
     "body": "# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file\n"
   },
   "www.sdu.dk": {
-    "fetched": "2026-10-08T16:27:55Z",
-    "body": "User-agent: *\r\nDisallow: /systemsok\r\nDisallow: /503.html\r\nDisallow: /Pagenotfound\r\nDisallow: /Pagenottranslated\r\n\r\nSitemap: https://www.sdu.dk/sitemap.xml"
+    "fetched": "2026-10-09T19:28:39Z",
+    "body": "﻿User-agent: *\r\nDisallow: /systemsok\r\nDisallow: /503.html\r\nDisallow: /Pagenotfound\r\nDisallow: /Pagenottranslated\r\nDisallow: /test/\r\n\r\nSitemap: https://www.sdu.dk/sitemap.xml"
   },
   "www.silkeborg.dk": {
     "fetched": "2026-10-09T07:48:56Z",
@@ -1660,7 +1660,7 @@
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://elektronikfokus.dk/inx_sitemap.xml"
   },
   "www.teknologisk.dk": {
-    "fetched": "2026-10-08T16:27:55Z",
+    "fetched": "2026-10-09T19:28:39Z",
     "body": "Sitemap: https://www.teknologisk.dk/sitemap.xml\r\n\r\nUser-agent: *\r\nDisallow: /_/custom/itcert/\r\n\r\nUser-agent: MJ12bot\r\nDisallow: /\r\n"
   },
   "www.thisted.dk": {
