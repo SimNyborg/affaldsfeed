@@ -1,7 +1,36 @@
-# Nye kilder til kildeudvidelsen
-dr-regionale
-videnskab
-tv2-nyheder
-cleantech-watch
-energiwatch
-cepos
+# Runde A5: de kommunale affaldsselskaber hentet med check --fetch --explain, og de sidste nyhedsruter
+links https://www.kertemindeforsyning.dk/ . 80
+sitemap https://www.forsyningen.dk/sitemap.xml (?i)nyhed|aktuel|presse|artikel 30
+robots https://www.langeland-forsyning.dk/ https://www.kredslob.dk/
+afld
+arwos
+nyborg-forsyning
+toender-forsyning
+energnist
+silkeborg-forsyning
+din-forsyning
+assens-forsyning
+fors
+faxe-forsyning
+ffv
+forsyning-helsingoer
+fredensborg-forsyning
+glostrup-forsyning
+gribskov-forsyning
+halsnaes-forsyning
+hilleroed-forsyning
+ltf
+middelfart-affald
+provas
+thy-forsyning
+vand-og-affald
+ren-forsyning-mariagerfjord
+revas
+vesthimmerlands-forsyning
+htk-forsyning
+fjernvarme-fyn
+maabjerg-energy-center
+aeroe-forsyning
+favrskov-forsyning
+nomi4s
+norfors

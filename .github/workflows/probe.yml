@@ -25,7 +25,7 @@ concurrency:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
@@ -35,7 +35,7 @@ jobs:
           cache: pip
           cache-dependency-path: requirements.txt
 
-      - run: pip install -r requirements.txt
+      - run: pip install -r requirements.txt pypdf
 
       - name: Afprøv
         shell: bash
@@ -78,11 +78,21 @@ jobs:
                 echo
                 echo '```'
                 echo
+              elif [[ "$line" =~ ^(links|text|pdf|raw|rss|sitemap|feed|site|robots)\  ]]; then
+                echo "## $line"
+                echo
+                echo '```text'
+                read -r -a parts <<< "$line"
+                timeout 300 python probe/hent.py "${parts[@]}" </dev/null 2>&1 | head -c 400000 || echo "(fejl eller timeout)"
+                echo '```'
+                echo
               else
                 echo "## $line"
                 echo
                 echo '```text'
-                timeout 180 python -m affaldsfeed check --fetch "$line" --explain 2>&1 | tail -n 120 || echo "(fejl eller timeout)"
+                timeout 180 python -m affaldsfeed check --fetch "$line" --explain </dev/null 2>&1 \
+                  | awk '/\(for gammel\)/{skip=2; n++; next} skip>0{skip--; next} {print} END{if(n) print "  ("n" for gamle afvist, ikke vist)"}' \
+                  | head -n 600 || echo "(fejl eller timeout)"
                 echo '```'
                 echo
               fi
@@ -94,15 +104,8 @@ jobs:
         run: |
           git config user.name "affaldsfeed-bot"
           git config user.email "affaldsfeed-bot@users.noreply.github.com"
-          # Lægges oven på grenens nyeste udgave, så en anden kørsels resultat aldrig giver konflikt
-          cp probe/result.md /tmp/result.md
-          msg="Afprøvning af kilder $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          for i in 1 2 3; do
-            git fetch -q origin "$GITHUB_REF_NAME" && git reset -q --hard FETCH_HEAD
-            cp /tmp/result.md probe/result.md
-            git add probe/result.md
-            git diff --cached --quiet && exit 0
-            git commit -q -m "$msg" && git push -q origin HEAD:"$GITHUB_REF_NAME" && exit 0
-            sleep 5
-          done
+          git add probe/result.md
+          git diff --cached --quiet && exit 0
+          git commit -m "Afprøvning af kilder $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
           exit 1

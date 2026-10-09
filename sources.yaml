@@ -2173,6 +2173,7 @@
   method: rss
   feeds: https://a-r-c.dk/feed/
   filter: none
+  places: [k:dragoer, k:frederiksberg, k:hvidovre, k:koebenhavn, k:taarnby]
   basis: offentlig
   status: aktiv
   checked: 2026-10-07
@@ -2197,6 +2198,7 @@
   method: rss
   feeds: https://affaldplus.dk/rss.xml
   filter: none
+  places: [k:faxe, k:naestved, k:ringsted, k:slagelse, k:soroe, k:vordingborg]
   basis: offentlig
   status: aktiv
   checked: 2026-10-07
@@ -2209,6 +2211,7 @@
   method: rss
   feeds: https://renosyd.dk/feed
   filter: none
+  places: [k:odder, k:skanderborg]
   basis: offentlig
   status: aktiv
   checked: 2026-10-07
@@ -2222,6 +2225,7 @@
   method: rss
   feeds: https://www.refa.dk/feed/
   filter: none
+  places: [k:guldborgsund, k:lolland]
   basis: offentlig
   status: aktiv
   checked: 2026-10-07
@@ -2235,6 +2239,7 @@
   method: rss
   feeds: https://sonfor.dk/feed/
   filter: normal
+  places: [k:soenderborg]
   basis: offentlig
   status: aktiv
   checked: 2026-10-07
@@ -2261,6 +2266,7 @@
   feeds: https://vestfor.dk/sitemap.xml
   match: '/nyheder/nyhedsoverblik/'
   filter: normal
+  places: [r:hovedstaden]
   basis: offentlig
   status: aktiv
   checked: 2026-10-07
@@ -2290,6 +2296,7 @@
   feeds: https://www.odenserenovation.dk/sitemap.xml
   match: '/om-odense-renovation/nyheder/'
   filter: normal
+  places: [k:odense]
   basis: offentlig
   status: aktiv
   checked: 2026-10-07
@@ -2303,6 +2310,7 @@
   feeds: https://nordvaerk.dk/sitemap.xml
   match: 'nyhed'
   filter: normal
+  places: [k:aalborg, k:broenderslev, k:hjoerring, k:jammerbugt, k:mariagerfjord, k:rebild]
   basis: offentlig
   status: aktiv
   checked: 2026-10-07
@@ -2311,15 +2319,17 @@
 - id: fors
   name: Fors
   category: kommunal
-  homepage: https://fors.dk
-  method: html
-  feeds: https://fors.dk/nyheder/?tag=affald
-  match: '/nyheder/'
-  filter: none
+  homepage: https://www.fors.dk
+  method: rss
+  feeds: https://via.ritzau.dk/rss/releases/latest?publisherId=13560947
+  filter: normal
+  places: [k:holbaek, k:lejre, k:roskilde]
   basis: offentlig
-  status: kandidat
-  checked: 2026-10-07
-  note: 'Sideudtrækket giver titlen "Nyheder fra Fors" for alle artikler (afprøvet 2026-10-07). Kræver en bedre kilde til titlen, før kilden slås til.'
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Pressemeddelelser via Ritzau (via.ritzau.dk). Hjemmesiden har intet feed eller sitemap. Forsyning i
+    Holbæk, Lejre og Roskilde (affald, vand, spildevand og varme).
 
 - id: klar-forsyning
   name: KLAR Forsyning
@@ -2329,6 +2339,7 @@
   feeds: https://klarforsyning.dk/nyheder
   match: '/nyheder/'
   filter: normal
+  places: [k:greve, k:koege, k:solroed, k:stevns]
   basis: offentlig
   status: aktiv
   checked: 2026-10-07
@@ -2337,26 +2348,32 @@
 - id: norfors
   name: Norfors
   category: kommunal
-  homepage: https://norfors.dk/viden/nyheder
+  homepage: https://norfors.dk
   method: html
   feeds: https://norfors.dk/viden/nyheder
-  filter: none
+  match: "norfors\\.dk/[a-z0-9]+(-[a-z0-9]+){3,}$"
+  filter: normal
+  places: [k:alleroed, k:fredensborg, k:helsingoer, k:hoersholm, k:rudersdal]
   basis: offentlig
-  status: kandidat
-  checked: 2026-10-07
-  note: Listen har datoer, men links er svære at parse, og sitemap.xml svarer 500.
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Fælleskommunalt selskab for affald og fjernvarme i Nordsjælland. Nyhedslisten, hvor nyhederne ligger
+    direkte under roden.
 
 - id: nomi4s
   name: Nomi4s
   category: kommunal
-  homepage: https://nomi4s.dk/om-nomi4s/aktuelt-og-nyheder
+  homepage: https://nomi4s.dk
   method: html
-  feeds: https://nomi4s.dk/om-nomi4s/aktuelt-og-nyheder
+  feeds: https://nomi4s.dk/alle-nyheder
+  match: "/alle-nyheder/[^/]+$"
   filter: none
+  places: [k:holstebro, k:lemvig, k:skive, k:struer]
   basis: offentlig
-  status: kandidat
-  checked: 2026-10-07
-  note: Listen har datoer, men links skal parses mere specifikt.
+  status: aktiv
+  checked: 2026-10-09
+  note: Fælleskommunalt affaldsselskab for Holstebro, Lemvig, Skive og Struer. Nyhedslisten.
 
 - id: reno-djurs
   name: Reno Djurs
@@ -2390,9 +2407,421 @@
   feeds: https://energnist.dk/feed/
   filter: none
   basis: offentlig
-  status: fravalgt
-  checked: 2026-10-07
-  note: Feedet er ikke opdateret siden 2023.
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Affaldsenergianlæg i Esbjerg og Kolding, ejet af 16 kommuner. Udgiver få nyheder. Feedet har også
+    gamle sider, som afvises som for gamle.
+
+# Kommunale affaldsselskaber fra Cirkulærs medlemsliste. Kortlagt 2026-10-09, se docs/AFFALDSSELSKABER.md.
+- id: afld
+  name: AFLD
+  category: kommunal
+  homepage: https://afld.dk
+  method: rss
+  feeds: https://afld.dk/feed/
+  filter: none
+  places: [k:billund, k:hedensted, k:herning, k:ikast-brande, k:ringkoebing-skjern, k:varde]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Fælleskommunalt affaldsselskab med behandlingsanlæg i Tarm og Fasterholt. RSS fra hjemmesiden.
+
+- id: arwos
+  name: Arwos
+  category: kommunal
+  homepage: https://arwos.dk
+  method: rss
+  feeds: https://arwos.dk/feed/
+  filter: normal
+  places: [k:aabenraa]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Forsyning i Aabenraa Kommune (affald, genbrug, vand og spildevand). RSS fra hjemmesiden.
+
+- id: nyborg-forsyning
+  name: Nyborg Forsyning & Service
+  category: kommunal
+  homepage: https://www.nfs.as
+  method: rss
+  feeds: https://www.nfs.as/feed/
+  filter: normal
+  places: [k:nyborg]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Forsyning i Nyborg Kommune (affald, vand, spildevand og varme). RSS fra hjemmesiden.
+
+- id: toender-forsyning
+  name: Tønder Forsyning
+  category: kommunal
+  homepage: https://www.tonfor.dk
+  method: rss
+  feeds: https://www.tonfor.dk/feed/
+  filter: normal
+  places: [k:toender]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Forsyning i Tønder Kommune (affald, vand, spildevand og varme). RSS fra hjemmesiden.
+
+- id: silkeborg-forsyning
+  name: Silkeborg Forsyning
+  category: kommunal
+  homepage: https://www.silkeborgforsyning.dk
+  method: rss
+  feeds: https://via.ritzau.dk/rss/releases/latest?publisherId=13560203
+  filter: normal
+  places: [k:silkeborg]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Pressemeddelelser via Ritzau (via.ritzau.dk). Hjemmesidens sitemap har ingen datoer. Forsyning i
+    Silkeborg Kommune (affald, vand, spildevand og fjernvarme).
+
+- id: din-forsyning
+  name: DIN Forsyning
+  category: kommunal
+  homepage: https://dinforsyning.dk
+  method: rss
+  feeds: https://via.ritzau.dk/rss/releases/latest?publisherId=13561047
+  filter: normal
+  places: [k:esbjerg, k:varde]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Pressemeddelelser via Ritzau (via.ritzau.dk). Forsyning i Esbjerg og Varde kommuner (affald, vand,
+    spildevand og fjernvarme).
+
+- id: assens-forsyning
+  name: Assens Forsyning
+  category: kommunal
+  homepage: https://www.assensforsyning.dk
+  method: rss
+  feeds: https://via.ritzau.dk/rss/releases/latest?publisherId=13559448
+  filter: normal
+  places: [k:assens]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Pressemeddelelser via Ritzau (via.ritzau.dk). Hjemmesidens sitemap har ingen datoer. Forsyning i
+    Assens Kommune (affald, vand og spildevand).
+
+- id: faxe-forsyning
+  name: Faxe Forsyning
+  category: kommunal
+  homepage: https://faxeforsyning.dk
+  method: sitemap
+  feeds: https://faxeforsyning.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: normal
+  places: [k:faxe]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Forsyning i Faxe Kommune (affald, vand og spildevand). Nyheder fra sitemappet.
+
+- id: ffv
+  name: FFV Energi & Miljø
+  category: kommunal
+  homepage: https://www.ffv.dk
+  method: sitemap
+  feeds: https://www.ffv.dk/xml-sitemap/
+  match: "/nyheder/artikler/[^/]+/?$"
+  filter: normal
+  places: [k:faaborg-midtfyn]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Forsyning i Faaborg-Midtfyn Kommune (affald, spildevand og fjernvarme). Nyheder fra sitemappet.
+
+- id: forsyning-helsingoer
+  name: Forsyning Helsingør
+  category: kommunal
+  homepage: https://www.fh.dk
+  method: sitemap
+  feeds: https://www.fh.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: normal
+  places: [k:helsingoer]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Forsyning i Helsingør Kommune (affald, vand, spildevand og varme). Nyheder fra sitemappet.
+
+- id: fredensborg-forsyning
+  name: Fredensborg Forsyning
+  category: kommunal
+  homepage: https://fredensborgforsyning.dk
+  method: sitemap
+  feeds: https://fredensborgforsyning.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: normal
+  places: [k:fredensborg]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Forsyning i Fredensborg Kommune (affald, vand og spildevand). Nyheder fra sitemappet.
+
+- id: glostrup-forsyning
+  name: Glostrup Forsyning
+  category: kommunal
+  homepage: https://glostrupforsyning.dk
+  method: sitemap
+  feeds: https://glostrupforsyning.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: normal
+  places: [k:glostrup]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Forsyning i Glostrup Kommune (affald, vand, spildevand og fjernvarme). Nyheder fra sitemappet.
+
+- id: gribskov-forsyning
+  name: Gribskov Forsyning
+  category: kommunal
+  homepage: https://gribskovforsyning.dk
+  method: sitemap
+  feeds: https://gribskovforsyning.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: normal
+  places: [k:gribskov]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Forsyning i Gribskov Kommune (affald, vand og spildevand). Nyheder fra sitemappet.
+
+- id: halsnaes-forsyning
+  name: Halsnæs Forsyning
+  category: kommunal
+  homepage: https://hnf.dk
+  method: sitemap
+  feeds: https://hnf.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: normal
+  places: [k:halsnaes]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Forsyning i Halsnæs Kommune (affald, vand, spildevand og fjernvarme). Nyheder fra sitemappet.
+
+- id: hilleroed-forsyning
+  name: Hillerød Forsyning
+  category: kommunal
+  homepage: https://hfors.dk
+  method: sitemap
+  feeds: https://hfors.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: normal
+  places: [k:hilleroed]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Forsyning i Hillerød Kommune (affald, vand, spildevand og fjernvarme). Nyheder fra sitemappet.
+
+- id: ltf
+  name: Lyngby-Taarbæk Forsyning
+  category: kommunal
+  homepage: https://ltf.dk
+  method: sitemap
+  feeds: https://ltf.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: normal
+  places: [k:lyngby-taarbaek]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Forsyning i Lyngby-Taarbæk Kommune (affald, vand og spildevand). Nyheder fra sitemappet.
+
+- id: middelfart-affald
+  name: Middelfart Affald & Genbrug
+  category: kommunal
+  homepage: https://affald.middelfart.dk
+  method: sitemap
+  feeds: https://affaldoggenbrug.middelfart.dk/Handlers/Sitemap.ashx
+  match: "/nyheder/[^/]+$"
+  filter: none
+  places: [k:middelfart]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Kommunalt affaldsselskab i Middelfart. Nyheder fra sitemappet.
+
+- id: provas
+  name: Provas
+  category: kommunal
+  homepage: https://www.provas.dk
+  method: sitemap
+  feeds: https://www.provas.dk/sitemap
+  match: "/nyheder/[^/]+/?$"
+  filter: normal
+  places: [k:haderslev]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Forsyning i Haderslev Kommune (affald, vand og spildevand). Nyheder fra sitemappet.
+
+- id: thy-forsyning
+  name: Thy Forsyning
+  category: kommunal
+  homepage: https://www.thyforsyning.dk
+  method: sitemap
+  feeds: https://www.thyforsyning.dk/sitemap-xml/
+  match: "/nyheder/[^/]+/?$"
+  filter: normal
+  places: [k:thisted]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Forsyning i Thisted Kommune (affald, vand og spildevand). Nyheder fra sitemappet.
+
+- id: vand-og-affald
+  name: Vand og Affald
+  category: kommunal
+  homepage: https://www.vandogaffald.dk
+  method: sitemap
+  feeds: https://www.vandogaffald.dk/xml-sitemap/
+  match: "/nyheder/artikler/[^/]+/?$"
+  filter: normal
+  places: [k:svendborg]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Forsyning i Svendborg Kommune (affald, vand og spildevand). Nyheder fra sitemappet.
+
+- id: ren-forsyning-mariagerfjord
+  name: Ren Forsyning Mariagerfjord
+  category: kommunal
+  homepage: https://www.renform.dk
+  method: sitemap
+  feeds: https://www.renform.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: normal
+  places: [k:mariagerfjord]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Forsyning i Mariagerfjord Kommune (affald, vand og spildevand). Sitemappet har ingen datoer, så nye
+    nyheder findes, når de kommer ind i sitemappet.
+
+- id: revas
+  name: Revas
+  category: kommunal
+  homepage: https://www.revas.dk
+  method: sitemap
+  feeds: https://www.revas.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: none
+  places: [k:viborg]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Viborg Kommunes affaldsselskab. Sitemappet har ingen datoer, så nye nyheder findes, når de kommer
+    ind i sitemappet.
+
+- id: vesthimmerlands-forsyning
+  name: Vesthimmerlands Forsyning
+  category: kommunal
+  homepage: https://vesthimmerlandsforsyning.dk
+  method: sitemap
+  feeds: https://vesthimmerlandsforsyning.dk/sitemap.xml
+  match: "/nyheder/[^/]+$"
+  filter: normal
+  places: [k:vesthimmerlands]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Forsyning i Vesthimmerlands Kommune (affald, vand og spildevand). Sitemappet har ingen datoer, så
+    nye nyheder findes, når de kommer ind i sitemappet.
+
+- id: htk-forsyning
+  name: HTK Forsyning
+  category: kommunal
+  homepage: https://htkforsyning.dk
+  method: html
+  feeds: https://htkforsyning.dk/nyheder/
+  match: "/nyheder/[^/]+/$"
+  filter: normal
+  places: [k:hoeje-taastrup]
+  aliases: [Høje-Taastrup Forsyning]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Forsyning i Høje-Taastrup Kommune (affald, vand og spildevand). Hed tidligere Høje-Taastrup
+    Forsyning. Nyhedslisten.
+
+- id: fjernvarme-fyn
+  name: Fjernvarme Fyn
+  category: kommunal
+  homepage: https://www.fjernvarmefyn.dk
+  method: html
+  feeds: https://www.fjernvarmefyn.dk/nyheder/
+  match: "/nyheder/[^/]+/$"
+  filter: strict
+  places: [k:nordfyns, k:odense]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Fjernvarme og affaldsenergi i Odense, ejet af Odense og Nordfyns kommuner. Mest fjernvarme, så
+    strengt filter. Nyhedslisten.
+
+- id: maabjerg-energy-center
+  name: Maabjerg Energy Center
+  category: kommunal
+  homepage: https://maabjergenergycenter.dk
+  method: html
+  feeds: https://maabjergenergycenter.dk/nyheder/nyt-fra-mec/
+  match: "/nyheder/nyt-fra-mec/[^/]+/$"
+  filter: normal
+  places: [k:holstebro, k:struer]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: >-
+    Affaldsenergianlæg ved Holstebro, ejet af Vestforsyning og Struer Forsyning. Udgiver få nyheder.
+    Nyhedslisten.
+
+- id: aeroe-forsyning
+  name: Ærø Forsyning
+  category: kommunal
+  homepage: https://aeroeforsyning.dk
+  method: html
+  feeds: https://aeroeforsyning.dk/nyheder/affaldshaandtering
+  match: "/nyheder/affaldshaandtering/[^/]+$"
+  filter: normal
+  places: [k:aeroe]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Forsyning på Ærø (affald, vand og spildevand). Nyhedslisten om affald.
+
+- id: favrskov-forsyning
+  name: Favrskov Forsyning
+  category: kommunal
+  homepage: https://www.favrskovforsyning.dk
+  method: html
+  feeds: https://www.favrskovforsyning.dk/nyheder
+  match: "/nyheder/[^/]+$"
+  filter: normal
+  places: [k:favrskov]
+  basis: offentlig
+  status: aktiv
+  checked: 2026-10-09
+  note: Forsyning i Favrskov Kommune (affald, vand og spildevand). Nyhedslisten.
 
 # Kommunernes egne nyheder. Kortlagt 2026-10-09 for alle 98 kommuner, se docs/KOMMUNER.md.
 - id: koebenhavn-kommune
