@@ -1,29 +1,112 @@
-# Afprøvning 2026-10-09T13:20:16Z
+# Afprøvning 2026-10-09T13:21:24Z
 
-## robots https://www.herning.dk
+## https://www.herning.dk/sitemap.xml
 
 ```text
-# https://www.herning.dk: vores UA må hente https://www.herning.dk/: ja | Crawl-delay: 10.0 | AI-bots spærret: ingen | sitemaps: https://herning.dk/sitemap.xml, https://www.herning.dk/sitemap.xml
+status 200, application/xml, 32147 bytes, slut-URL https://www.herning.dk/sitemap.xml
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.herning.dk/</loc>
+    <lastmod>2026-10-07T12:48:52+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.herning.dk/borger</loc>
+    <lastmod>2026-05-12T13:02:54+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.herning.dk/borger/borgerservice</loc>
+    <lastmod>2026-07-23T21:41:44+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.herning.dk/borger/borgerservice/pas-og-koerekort</loc>
+    <lastmod>2026-09-25T08:32:56+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.herning.dk/borger/borgerservice/pas-og-koerekort/pas</loc>
+    <lastmod>2026-09-25T08:37:33+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.herning.dk/borger/borgerservice/pas-og-koerekort/koerekort</loc>
+    <lastmod>2026-07-23T21:41:50+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.herning.dk/borger/borgerservice/pas-og-koerekort/koerekort-i-udlandet</loc>
+    <lastmod>2026-07-23T21:41:51+00:00</lastmod>
+  </
 ```
 
-## sitemap https://www.herning.dk/sitemap.xml /nyheder/ 5
+## https://www.herning.dk/sitemap.xml
 
 ```text
-status 200, application/xml, 294273 bytes, slut-URL https://www.herning.dk/sitemap.xml
-urlset: 1619 poster, 1619 med lastmod
-matcher '/nyheder/': 94
-2026-10-09T13:19:33+00:00 | https://www.herning.dk/nyheder/2026/herning-kommune-vil-teste-cirkulaere-loesninger-ved-store-events
-2026-10-07T13:10:35+00:00 | https://www.herning.dk/nyheder/2026/banebrydende-energibaand-ved-herning-passerer-vigtig-milepael
-2026-10-07T11:37:24+00:00 | https://www.herning.dk/nyheder/2026/hvem-fortjener-handicapprisen-2026
-2026-10-06T16:26:30+00:00 | https://www.herning.dk/nyheder/2026/bokseklub-faar-frivilligpris
-2026-10-05T11:09:33+00:00 | https://www.herning.dk/nyheder/2026/skaerpet-opmaerksomhed-ved-identifikation-af-borgere
+status 200, application/xml, 32147 bytes, slut-URL https://www.herning.dk/sitemap.xml
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.herning.dk/</loc>
+    <lastmod>2026-10-07T12:48:52+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.herning.dk/borger</loc>
+    <lastmod>2026-05-12T13:02:54+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.herning.dk/borger/borgerservice</loc>
+    <lastmod>2026-07-23T21:41:44+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.herning.dk/borger/borgerservice/pas-og-koerekort</loc>
+    <lastmod>2026-09-25T08:32:56+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.herning.dk/borger/borgerservice/pas-og-koerekort/pas</loc>
+    <lastmod>2026-09-25T08:37:33+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.herning.dk/borger/borgerservice/pas-og-koerekort/koerekort</loc>
+    <lastmod>2026-07-23T21:41:50+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.herning.dk/borger/borgerservice/pas-og-koerekort/koerekort-i-udlandet</loc>
+    <lastmod>2026-07-23T21:41:51+00:00</lastmod>
+  </
 ```
 
-## links https://www.herning.dk/nyheder /nyheder/20[0-9]{2}/ 40
+## https://herning.dk/sitemap.xml
 
 ```text
-status 200, text/html; charset=utf-8, 71965 bytes, slut-URL https://www.herning.dk/nyheder
-1 links
-https://www.herning.dk/nyheder/2026/skaerpet-opmaerksomhed-ved-identifikation-af-borgere | CPR-læk: Skærpet opmærksomhed ved identifikation af borgere
+status 200, application/xml, 32167 bytes, slut-URL https://herning.dk/sitemap.xml
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://herning.dk/</loc>
+    <lastmod>2026-10-07T12:48:52+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://herning.dk/borger</loc>
+    <lastmod>2026-05-12T13:02:54+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://herning.dk/borger/borgerservice</loc>
+    <lastmod>2026-07-23T21:41:44+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://herning.dk/borger/borgerservice/pas-og-koerekort</loc>
+    <lastmod>2026-09-25T08:32:56+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://herning.dk/borger/borgerservice/pas-og-koerekort/pas</loc>
+    <lastmod>2026-09-25T08:37:33+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://herning.dk/borger/borgerservice/pas-og-koerekort/koerekort</loc>
+    <lastmod>2026-07-23T21:41:50+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://herning.dk/borger/borgerservice/pas-og-koerekort/koerekort-i-udlandet</loc>
+    <lastmod>2026-07-23T21:41:51+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https:
 ```
 
