@@ -54,7 +54,7 @@ python -m affaldsfeed check
 ## Fase-status
 
 - Fase 0 og 1 er færdige, og feedet har været live siden 7. oktober 2026.
-- Fase 2 er i gang: sitemap, html og ODA virker, og 246 kilder er aktive, heraf 81 regionale og lokale aviser (se `docs/LOKALMEDIER.md`) og 89 kommuner (se `docs/KOMMUNER.md`). Lokalmedier, der ikke kan hentes direkte, står i `config/medier.yaml`. Efterprøvning af sweepet og 7 dages overvågning af sitemap og html mangler.
+- Fase 2 er i gang: sitemap, html og ODA virker, og 280 kilder er aktive, heraf 81 regionale og lokale aviser (se `docs/LOKALMEDIER.md`), 89 kommuner (se `docs/KOMMUNER.md`) og 45 kommunale affaldsselskaber (se `docs/AFFALDSSELSKABER.md`). Lokalmedier, der ikke kan hentes direkte, står i `config/medier.yaml`. Efterprøvning af sweepet og 7 dages overvågning af sitemap og html mangler.
 - Fase 3 er i gang (kompakt visning er færdig). Fase 4 venter på brugerens kildeliste.
 - Se "Næste skridt for cloud-sessionen" i `docs/GAMEPLAN.md`.
 
