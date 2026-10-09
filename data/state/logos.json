@@ -29,6 +29,12 @@
     "checked": "2026-10-09T07:48:56Z",
     "error": null
   },
+  "aeroe-forsyning": {
+    "file": "aeroe-forsyning.jpg",
+    "src": "https://aeroeforsyning.dk/images/touch-device-1.jpg",
+    "checked": "2026-10-09T09:34:01Z",
+    "error": null
+  },
   "aeroe-kommune": {
     "file": "aeroe-kommune.webp",
     "src": "https://cdn.moliri.dk/image/moliri-public/aeroekommune/thumbnail?filename=KOMMUNEV%c3%85BEN_RGB_favicon.png&folderPath=Billeder+-+%c3%86r%c3%b8+Kommune%2f%c3%86r%c3%b8+Kommune+info+A-%c3%85%2flogo&width=80",
@@ -39,6 +45,12 @@
     "file": "affaldplus.png",
     "src": "https://affaldplus.dk/sites/default/files/favicon.png",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "afld": {
+    "file": "afld.png",
+    "src": "https://afld.dk/wp-content/uploads/2023/03/cropped-afld-site-icon-512-1-192x192.png",
+    "checked": "2026-10-09T09:34:01Z",
     "error": null
   },
   "albertslund-kommune": {
@@ -87,6 +99,18 @@
     "file": "argo.png",
     "src": "https://argo.dk/wp-content/themes/brandmonkey-base-theme/assets/image/favicomatic/apple-touch-icon-57x57.png",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "arwos": {
+    "file": "arwos.png",
+    "src": "https://arwos.dk/wp-content/uploads/2022/07/cropped-favicon_arwos-32x32.png",
+    "checked": "2026-10-09T09:34:01Z",
+    "error": null
+  },
+  "assens-forsyning": {
+    "file": "assens-forsyning.png",
+    "src": "https://www.assensforsyning.dk/Files/Templates/Designs/Rapido/assens/favicon.png",
+    "checked": "2026-10-09T09:34:01Z",
     "error": null
   },
   "assens-kommune": {
@@ -347,6 +371,12 @@
     "checked": "2026-10-07T22:34:55Z",
     "error": null
   },
+  "din-forsyning": {
+    "file": "din-forsyning.png",
+    "src": "https://dinforsyning.dk/Files/Images/System_Graphics/Fav/apple-icon-57x57.png",
+    "checked": "2026-10-09T09:34:01Z",
+    "error": null
+  },
   "dinavis": {
     "file": "dinavis.png",
     "src": "https://dinavis.dk/static/dinavis.dk/favicon/favicon-32x32.png",
@@ -479,6 +509,12 @@
     "checked": "2026-10-08T04:31:35Z",
     "error": null
   },
+  "energnist": {
+    "file": "energnist.webp",
+    "src": "https://energnist.dk/wp-content/uploads/2023/05/cropped-energnist-favicon-192x192.png",
+    "checked": "2026-10-09T09:34:01Z",
+    "error": null
+  },
   "energy-supply": {
     "file": "energy-supply.ico",
     "src": "https://f.nordiskemedier.dk/favicon/energy.ico",
@@ -533,10 +569,22 @@
     "checked": "2026-10-08T11:28:26Z",
     "error": null
   },
+  "favrskov-forsyning": {
+    "file": "favrskov-forsyning.png",
+    "src": "https://www.favrskovforsyning.dk/Admin/Public/GetImage.ashx?Image=/Files/Images/Website/Fav/apple-icon-57x57.png&Format=.png&Width=57&Crop=6&DoNotUpscale=1",
+    "checked": "2026-10-09T09:34:01Z",
+    "error": null
+  },
   "favrskov-kommune": {
     "file": "favrskov-kommune.png",
     "src": "https://favrskov.dk/sites/favrskov.dk/themes/custom/favrskov/favicon.ico",
     "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
+  "faxe-forsyning": {
+    "file": "faxe-forsyning.png",
+    "src": "https://faxeforsyning.dk/sites/faxeforsyning.dk/themes/octo/img/icons/favicon-32x32.png",
+    "checked": "2026-10-09T09:34:01Z",
     "error": null
   },
   "faxe-kommune": {
@@ -545,10 +593,22 @@
     "checked": "2026-10-09T08:02:44Z",
     "error": null
   },
+  "ffv": {
+    "file": "ffv.png",
+    "src": "https://www.ffv.dk/favicon-32x32.png?v=eQ1oIRV5pq6lUCPAUJqQneWIw_Ew5yxEoBNOAyzPHpU",
+    "checked": "2026-10-09T09:34:01Z",
+    "error": null
+  },
   "finans-dk": {
     "file": "finans-dk.png",
     "src": "https://finans.dk/static/finans.dk/favicon/favicon-32x32.png",
     "checked": "2026-10-08T04:31:35Z",
+    "error": null
+  },
+  "fjernvarme-fyn": {
+    "file": "fjernvarme-fyn.ico",
+    "src": "https://www.fjernvarmefyn.dk/favicon.ico",
+    "checked": "2026-10-09T09:34:01Z",
     "error": null
   },
   "folkebladet-aarup": {
@@ -587,6 +647,24 @@
     "checked": "2026-10-08T00:14:05Z",
     "error": "HTTP 404"
   },
+  "fors": {
+    "file": "fors.png",
+    "src": "https://www.fors.dk/favicon/apple-icon-57x57.png",
+    "checked": "2026-10-09T09:34:01Z",
+    "error": null
+  },
+  "forsyning-helsingoer": {
+    "file": "forsyning-helsingoer.ico",
+    "src": "https://www.fh.dk/sites/fh.dk/themes/octwo/favicon.ico",
+    "checked": "2026-10-09T09:34:01Z",
+    "error": null
+  },
+  "forsyningen": {
+    "file": "forsyningen.png",
+    "src": "https://www.forsyningen.dk/assets/favicons/favicon-32x32.png",
+    "checked": "2026-10-09T09:34:01Z",
+    "error": null
+  },
   "forsyningstilsynet": {
     "file": "forsyningstilsynet.ico",
     "src": "https://forsyningstilsynet.dk/Media/638193024633613905/favicon.ico?width=32&height=32",
@@ -603,6 +681,12 @@
     "file": "frdb--fredericiadagblad-dk.png",
     "src": "https://frdb.dk/assets/1791279772/kodus/jfm-brands/brands/frdb/favicons/apple-icon-57x57.png",
     "checked": "2026-10-08T09:11:01Z",
+    "error": null
+  },
+  "fredensborg-forsyning": {
+    "file": "fredensborg-forsyning.ico",
+    "src": "https://fredensborgforsyning.dk/sites/fredensborgforsyning.dk/themes/octo/favicon.ico",
+    "checked": "2026-10-09T09:34:01Z",
     "error": null
   },
   "fredensborg-kommune": {
@@ -863,6 +947,12 @@
     "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
+  "htk-forsyning": {
+    "file": "htk-forsyning.webp",
+    "src": "https://htkforsyning.dk/wp-content/uploads/2025/12/cropped-HTK-FAV-32x32.png",
+    "checked": "2026-10-09T09:34:01Z",
+    "error": null
+  },
   "hvidovre-kommune": {
     "file": "hvidovre-kommune.webp",
     "src": "https://cdn.hvidovre.dk/hvidovrekommune/Media/638530020701657457/fav.png?width=32&height=32",
@@ -1109,6 +1199,12 @@
     "checked": "2026-10-09T08:28:28Z",
     "error": "ikke et brugbart billede (kun PNG, ICO, GIF, JPEG og WebP på mindst 16 px)"
   },
+  "ltf": {
+    "file": "ltf.ico",
+    "src": "https://ltf.dk/sites/ltf.dk/themes/octo/favicon.ico",
+    "checked": "2026-10-09T09:34:01Z",
+    "error": null
+  },
   "lyngby-taarbaek-kommune": {
     "file": "lyngby-taarbaek-kommune.png",
     "src": "https://www.ltk.dk/media/35thd4ue/ltk_favicon_kun-byvaaben_4f_300ppi_kvadrat.png?width=57&height=57&format=noformat&v=1dbbe78e34a9370",
@@ -1132,6 +1228,12 @@
     "src": "https://mariagerfjordposten.dk/wp-content/uploads/2022/10/favicon_.png",
     "checked": "2026-10-08T12:29:21Z",
     "error": null
+  },
+  "middelfart-affald": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-09T09:34:01Z",
+    "error": "ikke et brugbart billede (kun PNG, ICO, GIF, JPEG og WebP på mindst 16 px)"
   },
   "middelfart-kommune": {
     "file": "middelfart-kommune.webp",
@@ -1271,6 +1373,12 @@
     "checked": "2026-10-08T07:28:04Z",
     "error": null
   },
+  "nomi4s": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-09T09:34:01Z",
+    "error": "svaret er for stort (over 0.195 MB)"
+  },
   "norddjurs-kommune": {
     "file": "norddjurs-kommune.ico",
     "src": "https://cdn.norddjurs.dk/norddjurskommune/Media/637813066634855242/favicon (1).ico?width=32&height=32",
@@ -1311,6 +1419,12 @@
     "file": "nordvaerk.png",
     "src": "https://nordvaerk.dk/media/nsjjjq1f/graf.png",
     "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "norfors": {
+    "file": "norfors.ico",
+    "src": "https://norfors.dk/favicon.ico",
+    "checked": "2026-10-09T09:34:01Z",
     "error": null
   },
   "nyborg-kommune": {
@@ -1605,6 +1719,12 @@
     "file": "tjekfredensborg.png",
     "src": "https://tjekfredensborg.dk/wp-content/uploads/2025/06/cropped-Logo-site-ikon-lytter-3-32x32.png",
     "checked": "2026-10-08T13:07:35Z",
+    "error": null
+  },
+  "toender-forsyning": {
+    "file": "toender-forsyning.png",
+    "src": "https://www.tonfor.dk/wp-content/uploads/2026/02/cropped-logo-kvadratisk-32x32.png",
+    "checked": "2026-10-09T09:34:01Z",
     "error": null
   },
   "toender-kommune": {

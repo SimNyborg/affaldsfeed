@@ -2,9 +2,16 @@
   "https://a-r-c.dk/feed/": {
     "last_modified": "Fri, 09 Oct 2026 08:32:00 GMT"
   },
+  "https://aeroeforsyning.dk/nyheder/affaldshaandtering": {
+    "last_modified": "Fri, 09 Oct 2026 09:34:04 GMT"
+  },
   "https://affaldplus.dk/rss.xml": {
     "etag": "\"1791533033\"",
     "last_modified": "Fri, 09 Oct 2026 08:03:53 GMT"
+  },
+  "https://afld.dk/feed/": {
+    "etag": "\"a5edf53e248c4c31c2ae786d989f8b72\"",
+    "last_modified": "Fri, 09 Oct 2026 09:20:22 GMT"
   },
   "https://altomfuresoe.dk/feed/": {
     "etag": "\"d05397d2e4f7d7f640b677a833af2d03\"",
@@ -13,6 +20,9 @@
   "https://argo.dk/feed/": {
     "etag": "\"0026192349ffdadfab87c3d009700a81-gzip\"",
     "last_modified": "Tue, 06 Oct 2026 11:22:54 GMT"
+  },
+  "https://arwos.dk/feed/": {
+    "last_modified": "Thu, 08 Oct 2026 10:35:00 GMT"
   },
   "https://billundonline.dk/feed/": {
     "etag": "\"e3405f87f94b4bb675632930a415e1d9\"",
@@ -75,6 +85,10 @@
       "https://energiwatch.dk/sitemap1.xml"
     ]
   },
+  "https://energnist.dk/feed/": {
+    "etag": "\"253bcaf72013484b128b334e7f1c22aa\"",
+    "last_modified": "Fri, 31 Jul 2026 11:08:20 GMT"
+  },
   "https://faellesavisen.dk/feed/": {
     "etag": "\"e388a954900fe32399e4542917454742-gzip\"",
     "last_modified": "Thu, 08 Oct 2026 07:54:19 GMT"
@@ -101,6 +115,9 @@
   "https://hjertingposten.dk/feed/": {
     "etag": "\"692d229dacb490a33fedbd001c0f756e\"",
     "last_modified": "Wed, 30 Sep 2026 09:54:13 GMT"
+  },
+  "https://htkforsyning.dk/nyheder/": {
+    "etag": "\"14-1791331578;gz\""
   },
   "https://hvidovrenyt.dk/": {
     "last_modified": "Fri, 09 Oct 2026 06:50:55 GMT"
@@ -285,6 +302,10 @@
     "etag": "\"daccbf83fff05afa539cd3bfcfe67243-gzip\"",
     "last_modified": "Fri, 09 Oct 2026 07:30:28 GMT"
   },
+  "https://www.fh.dk/sitemap.xml": {
+    "etag": "\"1791538204\"",
+    "last_modified": "Fri, 09 Oct 2026 09:30:04 GMT"
+  },
   "https://www.fredericia.dk/sitemap.xml": {
     "etag": "\"34999be8951b01066c594471fdcc6a89-gzip\"",
     "last_modified": "Fri, 09 Oct 2026 06:45:26 GMT"
@@ -376,6 +397,10 @@
   "https://www.tekniskfokus.dk/feed/": {
     "etag": "\"03eee4c8896852e093b6c0cc33188e89\"",
     "last_modified": "Thu, 08 Oct 2026 09:01:42 GMT"
+  },
+  "https://www.tonfor.dk/feed/": {
+    "etag": "\"749e820891970fdee857f8f7142c69a1\"",
+    "last_modified": "Thu, 08 Oct 2026 06:18:59 GMT"
   },
   "https://www.viborher.dk/feed/": {
     "etag": "\"ba9f2f42a854963fa3e8f0eb0cf92144\"",
