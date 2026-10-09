@@ -81,23 +81,7 @@
    "definition": "Love, bekendtgørelser, høringer, EU-regulering og politiske aftaler."
   }
  ],
- "places": [
-  {
-   "id": "k:aalborg",
-   "navn": "Aalborg Kommune",
-   "kort": "Aalborg"
-  },
-  {
-   "id": "r:sjaelland",
-   "navn": "Region Sjælland",
-   "kort": "Sjælland"
-  },
-  {
-   "id": "r:syddanmark",
-   "navn": "Region Syddanmark",
-   "kort": "Syddanmark"
-  }
- ],
+ "places": [],
  "events": [
   {
    "id": "2026-10-07-bred-aftale-om-faelles-model-for-affaldsgebyrer",
@@ -177,30 +161,6 @@
    ],
    "updated": "2026-10-06T20:25:00Z",
    "story": "71f7e2443803"
-  },
-  {
-   "id": "2026-10-05-emballageforordningen-stiller-krav-om-genanvendt-plast",
-   "date": "2026-10-05",
-   "level": "vigtig",
-   "title": "Emballageforordningen stiller krav om genanvendt plast",
-   "summary": "En stigende andel af plastemballagen skal bestå af genanvendt plast. Plastindustrien opfordrer til hurtig afklaring af reglerne.",
-   "topics": [
-    "producentansvar",
-    "genanvendelse"
-   ],
-   "places": [],
-   "items": [
-    {
-     "id": "44f48972f4b8",
-     "title": "Ny EU-forordning stiller krav om genanvendt plast i emballage",
-     "url": "https://example.org/plastindustrien/ny-eu-forordning-stiller-krav-om-genanvendt-plast-i-emballag",
-     "source": "plastindustrien",
-     "source_name": "Plastindustrien",
-     "published": "2026-10-05T10:15:00Z"
-    }
-   ],
-   "updated": "2026-10-05T20:25:00Z",
-   "story": "44f48972f4b8"
   },
   {
    "id": "2026-10-01-eu-parlamentets-miljoeudvalg-stoetter-nye-regler-for-tekstil",
@@ -347,34 +307,24 @@
    "story": null
   },
   {
-   "id": "2026-06-12-storbrand-lukker-sorteringsanlaeg-i-aalborg-i-to-uger",
+   "id": "2026-06-12-ny-vejledning-om-sortering-af-bygge-og-anlaegsaffald",
    "date": "2026-06-12",
    "level": "vigtig",
-   "title": "Storbrand lukker sorteringsanlæg i Aalborg i to uger",
-   "summary": "En brand i et lager med blandet plast har lukket et sorteringsanlæg. Affaldet køres i mellemtiden til andre anlæg i regionen.",
+   "title": "Ny vejledning om sortering af bygge- og anlægsaffald",
+   "summary": "Miljøstyrelsen har udsendt en vejledning til kommunerne om, hvordan bygge- og anlægsaffald skal sorteres efter de nye regler.",
    "topics": [
-    "genanvendelse",
-    "arbejdsmiljoe"
+    "byg_farligt",
+    "regler"
    ],
-   "places": [
-    "k:aalborg"
-   ],
+   "places": [],
    "items": [
     {
-     "id": "a86aac5b1b76",
-     "title": "Storbrand på sorteringsanlæg i Aalborg",
-     "url": "https://example.org/tv2-regionerne/storbrand-paa-sorteringsanlaeg-i-aalborg",
-     "source": "tv2-regionerne",
-     "source_name": "TV 2-regionerne",
-     "published": "2026-06-12T03:40:00Z"
-    },
-    {
-     "id": "3d31971f3445",
-     "title": "Sorteringsanlæg lukket i to uger efter brand",
-     "url": "https://example.org/avisen/sorteringsanlaeg-lukket-i-to-uger-efter-brand",
-     "source": "avisen",
-     "source_name": "Avisen.dk (Ritzau)",
-     "published": "2026-06-12T11:20:00Z"
+     "id": "036ce756c299",
+     "title": "Vejledning: Sådan skal bygge- og anlægsaffald sorteres",
+     "url": "https://example.org/mst/ny-vejledning-om-sortering-af-bygge-og-anlaegsaffald",
+     "source": "mst",
+     "source_name": "Miljøstyrelsen",
+     "published": "2026-06-12T08:00:00Z"
     }
    ],
    "updated": "2026-06-12T20:25:00Z",
@@ -436,24 +386,23 @@
    "story": null
   },
   {
-   "id": "2026-03-10-to-affaldsselskaber-paa-sjaelland-undersoeger-fusion",
+   "id": "2026-03-10-styrelse-undersoeger-priserne-paa-affaldsforbraending",
    "date": "2026-03-10",
    "level": "vigtig",
-   "title": "To affaldsselskaber på Sjælland undersøger fusion",
-   "summary": "Bestyrelserne i to fælleskommunale affaldsselskaber vil undersøge en fusion. Kommunalbestyrelserne skal tage stilling inden sommerferien.",
+   "title": "Styrelse undersøger priserne på affaldsforbrænding",
+   "summary": "Konkurrence- og Forbrugerstyrelsen vil kortlægge, hvordan forbrændingsanlæggene fastsætter deres priser. Resultatet ventes i efteråret.",
    "topics": [
-    "udbud"
+    "forbraending",
+    "gebyrer"
    ],
-   "places": [
-    "r:sjaelland"
-   ],
+   "places": [],
    "items": [
     {
-     "id": "d2320429fb33",
-     "title": "To sjællandske affaldsselskaber undersøger fusion",
-     "url": "https://example.org/kommunen/to-sjaellandske-affaldsselskaber-undersoeger-fusion",
-     "source": "kommunen",
-     "source_name": "Kommunen.dk",
+     "id": "12ac7caf007a",
+     "title": "Styrelsen kortlægger priserne på affaldsforbrænding",
+     "url": "https://example.org/kfst/styrelse-undersoeger-priserne-paa-affaldsforbraending",
+     "source": "kfst",
+     "source_name": "Konkurrence- og Forbrugerstyrelsen",
      "published": "2026-03-10T09:30:00Z"
     }
    ],
@@ -564,25 +513,24 @@
    "story": null
   },
   {
-   "id": "2025-10-22-nyt-biogasanlaeg-til-madaffald-indviet-paa-fyn",
+   "id": "2025-10-22-national-strategi-for-biogas-fra-madaffald",
    "date": "2025-10-22",
    "level": "vigtig",
-   "title": "Nyt biogasanlæg til madaffald indviet på Fyn",
-   "summary": "Anlægget skal behandle madaffald fra husholdningerne i flere fynske kommuner og levere biogas til naturgasnettet.",
+   "title": "National strategi for biogas fra madaffald fremlagt",
+   "summary": "Regeringen har fremlagt en strategi for, hvordan mere madaffald fra husholdningerne kan blive til biogas.",
    "topics": [
-    "bioaffald"
+    "bioaffald",
+    "klima"
    ],
-   "places": [
-    "r:syddanmark"
-   ],
+   "places": [],
    "items": [
     {
-     "id": "80170364c169",
-     "title": "Nyt biogasanlæg skal tage madaffald fra hele Fyn",
-     "url": "https://example.org/fyens/nyt-biogasanlaeg-skal-tage-madaffald-fra-hele-fyn",
-     "source": "fyens",
-     "source_name": "Fyens Stiftstidende",
-     "published": "2025-10-22T05:30:00Z"
+     "id": "031863335467",
+     "title": "Strategi skal give mere biogas fra madaffald",
+     "url": "https://example.org/kefm/national-strategi-for-biogas-fra-madaffald",
+     "source": "kefm",
+     "source_name": "Klima-, Energi- og Forsyningsministeriet",
+     "published": "2025-10-22T07:30:00Z"
     }
    ],
    "updated": "2025-10-22T20:25:00Z",

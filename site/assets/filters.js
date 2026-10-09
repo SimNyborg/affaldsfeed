@@ -691,7 +691,7 @@ export function genreName(data, id) {
 
 /** Kort temanavn: `short`, ellers `name` (feltet `short` er valgfrit i feed.json). */
 export function topicName(data, id) {
-  if (id === NO_TOPIC) return 'Uden tema';
+  if (id === NO_TOPIC) return 'Andre temaer';
   const t = data.topics.get(id);
   return t ? t.short || t.name : id;
 }

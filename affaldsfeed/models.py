@@ -330,7 +330,7 @@ class TimelineSettings(_Strict):
     input_days: int = Field(default=3, gt=0)  # timeline-input: godkendte historier fra så mange dage
     first_fill_days: int = Field(default=60, gt=0)  # ... når tidslinjen er tom
     events_days: int = Field(default=60, gt=0)  # eksisterende begivenheder i input (dubletter, nye indslag)
-    max_per_week: int = Field(default=3, gt=0)  # højst så mange begivenheder med dato i samme uge
+    max_per_week: int = Field(default=2, gt=0)  # højst så mange begivenheder med dato i samme uge
     recent_hours: int = Field(default=48, gt=0)  # linjer skrevet så nyligt tjekkes mod indslagene
 
 

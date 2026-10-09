@@ -1,12 +1,11 @@
 // Affaldsfeed: Tidslinjen med de vigtigste begivenheder på affaldsområdet (KONTRAKTER §7.3).
 // Data: data/timeline.json, ved ?demo=1 eksempelfilen. Claude vælger og skriver begivenhederne.
 
-import { el, icon, hidden, sep, cph, fmtShort, fmtNum, parseDate, segmented, DAY_MS } from './filters.js';
+import { el, icon, hidden, sep, cph, fmtShort, fmtNum, parseDate, DAY_MS } from './filters.js';
 
 const MONTHS = ['Januar', 'Februar', 'Marts', 'April', 'Maj', 'Juni', 'Juli', 'August', 'September', 'Oktober',
   'November', 'December'];
 const PAGE = 12; // måneder med begivenheder ad gangen
-const LEVELS = [{ value: '', label: 'Alle' }, { value: 'milepael', label: 'Kun milepæle' }];
 
 /** "2026-10-07" → kalenderdele som cph() (y, m, d, dayNum). */
 function dayOf(s) {
@@ -41,25 +40,17 @@ export function demoizeTimeline(tl, now) {
 
 /**
  * Tegner tidslinjen i root. `feedHref(story)` giver linket til historien i feedet.
- * Niveauet står i URL'en som niveau=milepael; måneder har ankre (#2026-10).
+ * Måneder har ankre (#2026-10). niveau= fra ældre links fjernes fra URL'en.
  */
 export function createTimeline(root, tl, { feedHref }) {
   const events = (tl.events || [])
     .map((e) => ({ ...e, day: dayOf(e.date) }))
     .filter((e) => e.day)
     .sort((a, b) => b.day.dayNum - a.day.dayNum || (a.id < b.id ? -1 : 1));
-  const placeName = new Map((tl.places || []).map((p) => [p.id, p.kort || p.navn]));
-  const topicName = new Map((tl.topics || []).map((t) => [t.id, t.short || t.name]));
 
-  let level = new URLSearchParams(location.search).get('niveau') === 'milepael' ? 'milepael' : '';
   let shown = PAGE;
+  dropLevelParam();
 
-  // Antallet meldes til skærmlæsere, når niveauet skiftes; synligt står det i månedernes overskrifter
-  const status = el('p', { class: 'visually-hidden', 'aria-live': 'polite' });
-  const choice = segmented({
-    name: 'niveau', legend: 'Vis', options: LEVELS, value: level,
-    onSelect: (v) => { level = v; writeUrl(); render(); },
-  });
   const years = el('p', { class: 'tl-years' });
   const list = el('div', { class: 'tl-months' });
   const moreBtn = el('button', { type: 'button', class: 'btn', onclick: showMore }, 'Vis ældre');
@@ -68,12 +59,9 @@ export function createTimeline(root, tl, { feedHref }) {
   root.replaceChildren(
     el('section', { class: 'panel tl-head', 'aria-labelledby': 'h-tl' },
       el('h1', { id: 'h-tl', text: 'Tidslinje' }),
-      el('p', { class: 'lead', text: 'De vigtigste begivenheder på affaldsområdet, udvalgt af AI ud fra nyhederne i feedet. Kan indeholde fejl.' }),
-      el('div', { class: 'tl-controls' }, choice.root, years),
-      status),
+      el('p', { class: 'lead', text: 'De store linjer på affaldsområdet: love, politiske aftaler, EU-regler og andre beslutninger med betydning for hele landet. Udvalgt af AI ud fra nyhederne i feedet. Kan indeholde fejl.' }),
+      years),
     list, more);
-
-  const visible = () => events.filter((e) => !level || e.level === level);
 
   function groups(evs) {
     const out = [];
@@ -85,20 +73,17 @@ export function createTimeline(root, tl, { feedHref }) {
     return out;
   }
 
-  function writeUrl() {
+  // Valget "Kun milepæle" er fjernet; et gammelt link med niveau= viser alle begivenheder
+  function dropLevelParam() {
     const url = new URL(location.href);
-    if (level) url.searchParams.set('niveau', level);
-    else url.searchParams.delete('niveau');
+    if (!url.searchParams.has('niveau')) return;
+    url.searchParams.delete('niveau');
     history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
   }
 
   function render(focusKey = null) {
-    const evs = visible();
-    const all = groups(evs);
+    const all = groups(events);
     const part = all.slice(0, shown);
-    status.textContent = evs.length
-      ? `${fmtNum(evs.length)} ${evs.length === 1 ? 'begivenhed' : 'begivenheder'}${level ? ', kun milepæle' : ''}`
-      : '';
 
     if (!events.length) {
       list.replaceChildren(el('section', { class: 'panel tl-empty' },
@@ -108,15 +93,6 @@ export function createTimeline(root, tl, { feedHref }) {
       more.hidden = true;
       return;
     }
-    if (!evs.length) {
-      list.replaceChildren(el('section', { class: 'panel tl-empty' },
-        el('p', { text: 'Der er ingen milepæle på tidslinjen endnu.' }),
-        el('p', null, el('button', { type: 'button', class: 'btn-text', onclick: () => { level = ''; choice.set(''); writeUrl(); render(); } }, 'Vis alle begivenheder'))));
-      years.replaceChildren();
-      more.hidden = true;
-      return;
-    }
-
     // Spring til et år, når der er mere end ét
     const ys = [...new Set(all.map((g) => g.y))];
     const links = ys.length > 1 ? ys.map((y) => {
@@ -140,17 +116,6 @@ export function createTimeline(root, tl, { feedHref }) {
       el('ol', { class: 'tl-list' }, g.events.map(eventEl)));
   }
 
-  function facetsEl(e) {
-    const places = (e.places || []).map((p) => placeName.get(p)).filter(Boolean);
-    const topics = (e.topics || []).map((t) => topicName.get(t)).filter(Boolean);
-    if (!places.length && !topics.length) return null;
-    const placeText = places.length ? [icon('sted', 'pin'), hidden('Sted: '), places.join(', ')] : null;
-    const topicText = topics.length
-      ? [hidden(topics.length > 1 ? 'Temaer: ' : 'Tema: '), topics.map((t, i) => (i ? [sep(), t] : t))]
-      : null;
-    return el('p', { class: 'facets' }, placeText, placeText && topicText ? sep() : null, topicText);
-  }
-
   function itemEl(r, e) {
     const p = parseDate(r.published);
     const c = p ? cph(p) : null;
@@ -162,6 +127,10 @@ export function createTimeline(root, tl, { feedHref }) {
         el('a', { href: r.url, target: '_blank', rel: 'noopener' }, r.title, hidden(' (åbner i nyt vindue)'))));
   }
 
+  /**
+   * Kompakt begivenhed: dato, markør, titel, resumé og "Læs 3 nyheder". En milepæl har en udfyldt
+   * markør, og skærmlæseren hører "Milepæl:" før titlen.
+   */
   function eventEl(e) {
     const titleId = `ev-${e.id}`;
     const n = (e.items || []).length;
@@ -171,10 +140,8 @@ export function createTimeline(root, tl, { feedHref }) {
         el('span', { class: 'tl-dot', 'aria-hidden': 'true' }),
         el('p', { class: 'tl-date' }, el('time', { datetime: e.date }, fmtShort(e.day))),
         el('div', { class: 'tl-body' },
-          milestone ? el('p', { class: 'tl-level', text: 'Milepæl' }) : null,
-          el('h3', { class: 'tl-title', id: titleId }, e.title),
+          el('h3', { class: 'tl-title', id: titleId }, milestone ? hidden('Milepæl: ') : null, e.title),
           el('p', { class: 'tl-sum', text: e.summary }),
-          facetsEl(e),
           n ? el('details', { class: 'tl-news' },
             el('summary', null, n === 1 ? 'Læs nyheden' : `Læs ${fmtNum(n)} nyheder`, icon('pil-ned')),
             el('ul', null, e.items.map((r) => itemEl(r, e))),
@@ -182,7 +149,7 @@ export function createTimeline(root, tl, { feedHref }) {
   }
 
   function showMore() {
-    const all = groups(visible());
+    const all = groups(events);
     const next = all[shown]?.key;
     shown += PAGE;
     render(next);
@@ -190,7 +157,7 @@ export function createTimeline(root, tl, { feedHref }) {
 
   /** Viser måneden (indlæser ældre efter behov), ruller til den og sætter ankeret. */
   function jump(key) {
-    const all = groups(visible());
+    const all = groups(events);
     const i = all.findIndex((g) => g.key === key);
     if (i < 0) return;
     if (i >= shown) { shown = Math.ceil((i + 1) / PAGE) * PAGE; render(); }

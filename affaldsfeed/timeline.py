@@ -52,19 +52,23 @@ MONTHS = ("januar", "februar", "marts", "april", "maj", "juni", "juli", "august"
 LEVELS = {
     "milepael": "Ændrer rammerne for hele affaldsområdet: en lov eller bekendtgørelse vedtaget, en bred politisk "
     "aftale, en EU-regel vedtaget eller trådt i kraft.",
-    "vigtig": "En stor beslutning, afgørelse, rapport eller hændelse med betydning ud over én kommune.",
+    "vigtig": "En national beslutning, afgørelse, plan, rapport eller strukturændring med betydning for hele "
+    "affaldsområdet eller hele landet.",
 }
+# Tidslinjen viser de store linjer på affaldsområdet. Kun det, der har betydning for hele landet, kommer med.
 INCLUDE = [
-    "ny lov eller bekendtgørelse vedtaget",
-    "politisk aftale",
+    "ny lov eller bekendtgørelse vedtaget eller trådt i kraft",
+    "bred politisk aftale eller regeringsudspil om affaldsområdet",
     "EU-regel vedtaget eller trådt i kraft",
-    "store afgørelser fra myndigheder",
-    "store beslutninger i kommuner og affaldsselskaber, fx nyt anlæg, lukning eller fusion",
-    "centrale rapporter og analyser fra myndigheder",
-    "store hændelser, fx brande, konkurser og miljøsager",
+    "nationale planer og strategier, fx en national handlingsplan",
+    "afgørelser fra myndigheder med betydning for hele landet",
+    "nationale rapporter, statistikker og analyser om affald og genanvendelse",
+    "strukturændringer med betydning for hele landet, fx en ny national ordning eller lukning af et af de store anlæg",
 ]
 EXCLUDE = [
-    "enkeltstående lokale driftsnyheder",
+    "nyheder, der kun har betydning for én kommune, ét affaldsselskab eller én region, fx driftsproblemer, "
+    "en skraldemand, en genbrugsplads, lokale gebyrer eller et lokalt anlæg",
+    "brande, uheld og konkurser, medmindre de får følger for hele landet",
     "debatindlæg",
     "arrangementer",
     "personnyt",

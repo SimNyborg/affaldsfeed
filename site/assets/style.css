@@ -773,6 +773,9 @@ img.logo { display: inline-block; width: 16px; height: 16px; border-radius: 3px;
 }
 
 .more-wrap { display: flex; justify-content: center; }
+/* Feedet: "Vis mere" under listen med antallet under knappen */
+.feed-more { flex-direction: column; align-items: center; gap: 8px; padding: 16px var(--pad-x) 24px; }
+.more-n { color: var(--muted); font-size: var(--t-xs); line-height: var(--lh-xs); font-variant-numeric: tabular-nums; }
 
 /* Tom-tilstande */
 .empty { padding: 24px var(--pad-x); display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; justify-items: start; }
@@ -1130,8 +1133,7 @@ dialog.sheet::backdrop { background: var(--backdrop); }
 /* ── Tidslinje ────────────────────────────────────────── */
 /* Datoen står i en fast kolonne, markøren på en lodret streg, og teksten flugter til højre for den */
 .tl-head .lead { max-width: 40rem; }
-.tl-controls { margin-top: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; }
-.tl-years { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; font-size: var(--t-xs); line-height: var(--lh-xs); }
+.tl-years { margin-top: 12px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; font-size: var(--t-xs); line-height: var(--lh-xs); }
 .tl-years:empty { display: none; }
 .tl-years-label { color: var(--muted); }
 .tl-years a { font-weight: 600; padding-block: 3px; }
@@ -1148,7 +1150,7 @@ dialog.sheet::backdrop { background: var(--backdrop); }
   display: grid;
   grid-template-columns: var(--tl-date) 12px minmax(0, 1fr);
   column-gap: 12px;
-  padding: 12px var(--pad-x);
+  padding: 8px var(--pad-x);
 }
 /* Den lodrette streg går gennem markørens midte og binder begivenhederne i måneden sammen */
 .tl-ev > article::before {
@@ -1160,8 +1162,8 @@ dialog.sheet::backdrop { background: var(--backdrop); }
   width: 2px;
   background: var(--line);
 }
-.tl-ev:first-child > article::before { top: 18px; }
-.tl-ev:last-child > article::before { bottom: calc(100% - 18px); }
+.tl-ev:first-child > article::before { top: 14px; }
+.tl-ev:last-child > article::before { bottom: calc(100% - 14px); }
 .tl-ev:only-child > article::before { display: none; }
 .tl-date {
   grid-column: 1;
@@ -1169,7 +1171,7 @@ dialog.sheet::backdrop { background: var(--backdrop); }
   text-align: right;
   color: var(--muted);
   font-size: var(--t-xs);
-  line-height: var(--lh-l);
+  line-height: var(--lh-m);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
@@ -1180,18 +1182,16 @@ dialog.sheet::backdrop { background: var(--backdrop); }
   z-index: 1;
   width: 12px;
   height: 12px;
-  margin-top: 6px;
+  margin-top: 5px;
   border: 2px solid var(--link);
   border-radius: 50%;
   background: var(--surface);
 }
 .is-milestone .tl-dot { background: var(--link); }
 .tl-body { grid-column: 3; grid-row: 1 / span 2; min-width: 0; }
-.tl-level { color: var(--link); font-size: var(--t-xs); line-height: var(--lh-xs); font-weight: 600; }
-.tl-title { font-size: var(--t-l); line-height: var(--lh-l); overflow-wrap: anywhere; }
-.tl-sum { margin-top: 4px; color: var(--muted); }
-.tl-body .facets { margin-top: 4px; color: var(--muted); font-size: var(--t-xs); line-height: var(--lh-xs); }
-.tl-news { margin-top: 4px; font-size: var(--t-xs); line-height: var(--lh-xs); }
+.tl-title { font-size: var(--t-m); line-height: var(--lh-m); overflow-wrap: anywhere; }
+.tl-sum { margin-top: 2px; color: var(--muted); font-size: var(--t-s); line-height: var(--lh-s); }
+.tl-news { margin-top: 2px; font-size: var(--t-xs); line-height: var(--lh-xs); }
 .tl-news > summary {
   display: inline-flex;
   align-items: center;
