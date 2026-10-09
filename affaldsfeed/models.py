@@ -302,6 +302,8 @@ class PagesSettings(_Strict):
     max_sitemap_fetches: int = 6  # sitemap-hentninger pr. kilde pr. kørsel
     max_links: int = 30  # links pr. listeside
     max_page_mb: float = Field(default=5.0, gt=0)  # loft over en artikelside (sitemaps og lister: fetch)
+    # Timeout for sitemaps og listesider: mange dannes ved hver forespørgsel og er langsomme første gang
+    doc_timeout_seconds: float = Field(default=45.0, gt=0)
     seen_refresh_days: int = 30  # seen.json: datoen fornyes, når den er ældre
     seen_keep_days: int = 120  # seen.json: fjernes, når den ikke er set så længe
 

@@ -202,3 +202,7 @@ Brugeren bad om at omdøbe afsendertypen "Kommunal" til "Kommune/affaldsselskab"
 ## 2026-10-09: Fanen Højdepunkter
 
 Brugeren bad om at kalde tidslinjen Højdepunkter. Menupunktet, sidens titel og overskriften hedder nu Højdepunkter, og siden er stadig en tidslinje. Adressen `tidslinje.html` er den samme, så links, der allerede er delt, virker. Internt hedder den stadig tidslinjen: `data/timeline/`, `timeline-input` og routinens trin 7 og 7b.
+
+## 2026-10-09: Sitemaps må være længere om at svare
+
+Det daglige tjek viste, at Herning Kommunes sitemap gav timeout ved hver kørsel. Serveren danner sitemappet ved hver forespørgsel og var 24 sekunder om det første gang og 7 sekunder lige efter, mens indsamleren gav op efter 20 sekunder. Gribskov og Hedensted gav også timeout i drift, men svarede i afprøvningen. Sitemaps og listesider må derfor nu være 45 sekunder om at svare (`pages.doc_timeout_seconds`), mens artikelsider og feeds stadig har 20 sekunder. Det sker inden for kildens tidsbudget, så en langsom server kan ikke holde en kørsel hen.
