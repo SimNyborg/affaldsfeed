@@ -1,4 +1,4 @@
-// Affaldsfeed: forsiden (feed), Tidslinje og "Om kilderne". Ingen build, ingen afhængigheder.
+// Affaldsfeed: forsiden (feed), Højdepunkter (tidslinjen) og "Om kilderne". Ingen build, ingen afhængigheder.
 
 import {
   el, icon, hidden, catStyle, cap, truncate, cph, fmtNum, fmtShort, fmtLong, fmtWhen, fmtStamp,
@@ -796,9 +796,9 @@ async function initTimeline() {
   try {
     tl = await loadData('timeline', state.demo);
   } catch (err) {
-    console.warn('Tidslinjen kunne ikke indlæses:', err.message);
+    console.warn('Højdepunkterne kunne ikke indlæses:', err.message);
     root.replaceChildren(el('div', { class: 'panel', role: 'alert' },
-      el('p', { text: 'Tidslinjen kunne ikke indlæses. Prøv igen om lidt.' }),
+      el('p', { text: 'Højdepunkterne kunne ikke indlæses. Prøv igen om lidt.' }),
       el('p', { class: 'actions' }, el('button', { type: 'button', class: 'btn', onclick: () => location.reload() }, 'Prøv igen'))));
     return;
   }

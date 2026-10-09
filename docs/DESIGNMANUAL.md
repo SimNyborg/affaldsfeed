@@ -21,7 +21,7 @@ Manualen beskriver, hvordan Affaldsfeed ser ud, og hvad der står på siden. Dat
 - Brudpunkterne står i em (48em og 64em), så layoutet skifter tidligere, når brugeren har større grundskrift. Siden kan vises ved 320 px uden vandret scroll, også i tom-tilstanden, hvor knapperne må brydes over to linjer.
 - Kan feedet ikke indlæses, står fejlen i læsekolonnen (også fra 1024 px, hvor sidepanelet så er skjult) uden listens hoved, fordi søgning, "Filtrér" og visning intet har at vise.
 - Headeren er hvid, ikke sticky og har `box-shadow: 0 10px 15px rgba(0,0,0,.05)`. Fra 768 px er den én række på 64 px med logo (28 px) og ordmærket "Affaldsfeed" til venstre og navigationen til højre. Under 768 px står logo og ordmærke på én række (56 px) og navigationen på en række for sig (44 px). Der er ingen undertitel.
-- Navigationen er Feed og Tidslinje. Om kilderne findes via footeren. Den aktive side har teksten i `--link` og en streg på 3 px i `--link` under teksten.
+- Navigationen er Feed og Højdepunkter. Om kilderne findes via footeren. Den aktive side har teksten i `--link` og en streg på 3 px i `--link` under teksten.
 - Forsiden har denne rækkefølge: demo-strimmel (kun med `?demo=1`), header, sidepanel og læsekolonnen med meddelelser, AI-overblik og listepanelet. Listepanelet har listens hoved øverst og derefter dage og kort. Listen viser 60 kort ad gangen med "Vis mere" under sig (se Dage og listen).
 - Afstande: 4, 8, 12, 16, 20, 24 og 32 px. Kort, listens hoved og overblik har 20 px vandret padding (16 px under 768 px). Optiske justeringer på 2, 3 og 6 px står ved de enkelte komponenter.
 - Radius: 15 px på paneler (0 under 768 px), 8 px på felter, forslagslister og meddelelser, 999 px på knapper og aktive filtre.
@@ -45,7 +45,7 @@ Open Sans 400 og 600, hostet selv i `site/assets/fonts/` (latin, licensen står 
 | `--t-in` | 15/22, ved berøring 16/24 | 400 | tekst i felter. 16 px forhindrer, at iOS zoomer ind |
 | `--t-l` | 17/24 | 600 | korttitel, udfoldet hovedlinje i overblikket, "Filtre" |
 | `--t-xl` | 20/28 | 600 | ordmærket og `h2` på Om kilderne |
-| `--t-2xl` | 28/34 | 600 | `h1` på Om kilderne og Tidslinje |
+| `--t-2xl` | 28/34 | 600 | `h1` på Om kilderne og Højdepunkter |
 
 - `letter-spacing: 0.2px` på body og ingen anden spatiering.
 - Tider, tal og tællere har `font-variant-numeric: tabular-nums`, så tallene står i kolonne.
@@ -268,18 +268,18 @@ Overblikket ligger i et hvidt panel øverst i læsekolonnen over søgning og fil
 
 Footeren har baggrund `--footer` og hvid tekst i 13/18: teksten om projektet og linkene "Om kilderne · Koden på GitHub". Skilletegnet hænger på linket før det, så en linje aldrig begynder med "·". Fokusringen er hvid. På Om kilderne har linket til siden selv `aria-current="page"`.
 
-### Tidslinje
+### Højdepunkter
 
-`tidslinje.html` viser de vigtigste begivenheder på affaldsområdet, valgt af Claude (KONTRAKTER 7.3). Siden har samme demo-strimmel, header, footer og læsekolonne som Om kilderne.
+Siden Højdepunkter (`tidslinje.html`) viser de vigtigste begivenheder på affaldsområdet, valgt af Claude (KONTRAKTER 7.3). Siden har samme demo-strimmel, header, footer og læsekolonne som Om kilderne.
 
 - Tidslinjen er et kompakt overblik over de store linjer på affaldsområdet. Kun begivenheder med betydning for hele landet kommer med (KONTRAKTER 7.3), typisk 0-2 om ugen.
-- Øverst står "Tidslinje" (`h1`) og linjen "De store linjer på affaldsområdet: love, politiske aftaler, EU-regler og andre beslutninger med betydning for hele landet. Udvalgt af AI ud fra nyhederne i feedet. Kan indeholde fejl." Under den står "Spring til 2026 · 2025", når begivenhederne spænder over mere end ét år. Der er intet valg af niveau, og `niveau=` fra ældre links fjernes fra URL'en.
+- Øverst står "Højdepunkter" (`h1`) og linjen "De store linjer på affaldsområdet: love, politiske aftaler, EU-regler og andre beslutninger med betydning for hele landet. Udvalgt af AI ud fra nyhederne i feedet. Kan indeholde fejl." Under den står "Spring til 2026 · 2025", når begivenhederne spænder over mere end ét år. Der er intet valg af niveau, og `niveau=` fra ældre links fjernes fra URL'en.
 - Begivenhederne står i ét panel grupperet efter måned. Månedsoverskriften er sticky som feedets dagsoverskrifter, i 17/24 med antallet til højre, og har et anker (`#2026-10`), så man kan linke til en måned.
 - Hver begivenhed har datoen i en fast kolonne til venstre ("7. okt."), en markør på en lodret streg i `--line` og til højre titlen (15/22, 600), resuméet (14/20, `--muted`) og "Læs 3 nyheder" (eller "Læs nyheden"), med 8 px luft over og under. Steder og temaer står ikke på tidslinjen. Markøren er en udfyldt cirkel på 12 px i `--link` ved milepæle og en ring ved de andre. Den er dekorativ (`aria-hidden`), og skærmlæseren hører "Milepæl:" før titlen.
 - "Læs 3 nyheder" folder indslagene ud med kilde (600), dato og titlen som link i ny fane. Er historien stadig i feedet, står "Vis i feedet" nederst og linker til `index.html?story=<id>`.
 - Siden viser de 12 nyeste måneder med begivenheder. "Vis ældre" henter 12 måneder mere og giver fokus til den første nye måneds overskrift. "Spring til" og et anker i URL'en henter ældre måneder efter behov.
 - Under 480 px står datoen over titlen, og stregen følger markøren i venstre side.
-- Tom tidslinje: "Tidslinjen er tom endnu. De vigtigste begivenheder bliver tilføjet, efterhånden som nyhederne kommer." og linket "Gå til feedet".
+- Uden begivenheder: "Der er ingen højdepunkter endnu. De vigtigste begivenheder bliver tilføjet, efterhånden som nyhederne kommer." og linket "Gå til feedet". Kan siden ikke indlæses: "Højdepunkterne kunne ikke indlæses. Prøv igen om lidt."
 
 ### Om kilderne
 
@@ -293,7 +293,7 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 
 | Sted | Tekst |
 |---|---|
-| Navigation | Feed · Tidslinje |
+| Navigation | Feed · Højdepunkter |
 | Springlink | Gå til feedet |
 | Søgefelt | Søg i titler og kilder · Ryd søgning |
 | Filtrér-knap | Filtrér (2) |

@@ -198,3 +198,7 @@ Routinen fylder derfor tidslinjen bagud, én måned pr. kørsel fra januar til o
 ## 2026-10-09: Kommune/affaldsselskab i menuen
 
 Brugeren bad om at omdøbe afsendertypen "Kommunal" til "Kommune/affaldsselskab". Det korte navn, som står i menuen, på mærkerne over listen og hos skærmlæsere, er nu "Kommune/affaldsselskab". Det fulde navn på "Om kilderne" er stadig "Kommune og affaldsselskab". Det følger de andre typer, der har "og" i det fulde navn og skråstreg i det korte, fx "Tænketank og NGO" og "Tænketank/NGO". Id'et `kommunal` er uændret, så links og data virker som før.
+
+## 2026-10-09: Fanen Højdepunkter
+
+Brugeren bad om at kalde tidslinjen Højdepunkter. Menupunktet, sidens titel og overskriften hedder nu Højdepunkter, og siden er stadig en tidslinje. Adressen `tidslinje.html` er den samme, så links, der allerede er delt, virker. Internt hedder den stadig tidslinjen: `data/timeline/`, `timeline-input` og routinens trin 7 og 7b.

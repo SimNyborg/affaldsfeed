@@ -1,4 +1,4 @@
-// Affaldsfeed: Tidslinjen med de vigtigste begivenheder på affaldsområdet (KONTRAKTER §7.3).
+// Affaldsfeed: siden Højdepunkter, en tidslinje med de vigtigste begivenheder på affaldsområdet (KONTRAKTER §7.3).
 // Data: data/timeline.json, ved ?demo=1 eksempelfilen. Claude vælger og skriver begivenhederne.
 
 import { el, icon, hidden, sep, cph, fmtShort, fmtNum, parseDate, DAY_MS } from './filters.js';
@@ -58,7 +58,7 @@ export function createTimeline(root, tl, { feedHref }) {
 
   root.replaceChildren(
     el('section', { class: 'panel tl-head', 'aria-labelledby': 'h-tl' },
-      el('h1', { id: 'h-tl', text: 'Tidslinje' }),
+      el('h1', { id: 'h-tl', text: 'Højdepunkter' }),
       el('p', { class: 'lead', text: 'De store linjer på affaldsområdet: love, politiske aftaler, EU-regler og andre beslutninger med betydning for hele landet. Udvalgt af AI ud fra nyhederne i feedet. Kan indeholde fejl.' }),
       years),
     list, more);
@@ -87,7 +87,7 @@ export function createTimeline(root, tl, { feedHref }) {
 
     if (!events.length) {
       list.replaceChildren(el('section', { class: 'panel tl-empty' },
-        el('p', { text: 'Tidslinjen er tom endnu. De vigtigste begivenheder bliver tilføjet, efterhånden som nyhederne kommer.' }),
+        el('p', { text: 'Der er ingen højdepunkter endnu. De vigtigste begivenheder bliver tilføjet, efterhånden som nyhederne kommer.' }),
         el('p', null, el('a', { href: feedHref(null) }, 'Gå til feedet'))));
       years.replaceChildren();
       more.hidden = true;
