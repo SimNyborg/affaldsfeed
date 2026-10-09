@@ -345,6 +345,9 @@ class TimelineSettings(_Strict):
     events_days: int = Field(default=60, gt=0)  # eksisterende begivenheder i input (dubletter, nye indslag)
     max_per_week: int = Field(default=2, gt=0)  # højst så mange begivenheder med dato i samme uge
     recent_hours: int = Field(default=48, gt=0)  # linjer skrevet så nyligt tjekkes mod indslagene
+    # Opfyldning: månederne fra Settings.window_start til og med fill_until fyldes én gang, en måned ad gangen
+    fill_until: str | None = Field(default=None, pattern=r"^\d{4}-(0[1-9]|1[0-2])$")
+    fill_max_stories: int = Field(default=150, gt=0)  # historier i input for en måned
 
 
 class LogoSettings(_Strict):
