@@ -99,7 +99,7 @@ export const dayNumOf = (iso) => {
   return Date.UTC(y, m - 1, d) / DAY_MS;
 };
 export const isoDay = (n) => new Date(n * DAY_MS).toISOString().slice(0, 10);
-const validDay = (v) => (/^\d{4}-\d{2}-\d{2}$/.test(v || '') && isoDay(dayNumOf(v)) === v ? v : '');
+export const validDay = (v) => (/^\d{4}-\d{2}-\d{2}$/.test(v || '') && isoDay(dayNumOf(v)) === v ? v : '');
 const dayParts = (n) => {
   const t = new Date(n * DAY_MS);
   return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() };

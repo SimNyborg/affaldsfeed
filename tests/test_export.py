@@ -36,6 +36,10 @@ MEDIER_YAML = """
 @pytest.fixture
 def repo(tmp_path, monkeypatch):
     shutil.copytree(REAL_CONFIG, tmp_path / "config")
+    # Den almindelige drift: vindue på window_days (window_start afprøves for sig)
+    settings = tmp_path / "config" / "settings.yaml"
+    settings.write_text("".join(ln for ln in settings.read_text(encoding="utf-8").splitlines(keepends=True)
+                                if not ln.startswith("window_start:")), encoding="utf-8")
     (tmp_path / "config" / "medier.yaml").write_text(MEDIER_YAML, encoding="utf-8")
     (tmp_path / "sources.yaml").write_text(SOURCES_YAML, encoding="utf-8")
     site = tmp_path / "site"
@@ -152,11 +156,12 @@ def test_export_builds_site(repo, scenario, tmp_path):
     assert (out / "data" / "feed.sample.json").read_text(encoding="utf-8") == '{"version":1}'
 
     text, feed = read(out, "feed.json")
-    assert list(feed) == ["version", "generated", "window_days", "mode", "last_judgment", "categories", "topics",
+    assert list(feed) == ["version", "generated", "window_days", "window_start", "mode", "last_judgment", "categories", "topics",
                           "genres", "sources", "geo", "overview", "items"]
     assert feed["version"] == 1
     assert feed["generated"] == "2026-10-07T10:00:00Z"
     assert feed["window_days"] == 60
+    assert feed["window_start"] == "2026-08-08"  # 60 dage før 2026-10-07 12:00 i København
     assert feed["mode"] == "claude"
     assert feed["last_judgment"] == "2026-10-07T09:30:00Z"
     assert text == json.dumps(feed, ensure_ascii=False, separators=(",", ":")) + "\n"  # kompakt
@@ -214,6 +219,26 @@ def test_status_json(repo, scenario, tmp_path):
     assert by_id["dakofa"]["health"] == "graa"
     assert by_id["dakofa"]["silent"] is False  # fulgt i under 30 dage
     assert status["counts"] == {"candidates_60d": 5, "shown_60d": 4, "rejected_30d": 1}
+
+
+def test_window_start_reaches_back_to_january_and_counts_stay_60_days(repo, scenario, tmp_path):
+    """Med window_start rækker feedet til midnat den dag i København (KONTRAKTER §8)."""
+    settings = repo / "config" / "settings.yaml"
+    settings.write_text(settings.read_text(encoding="utf-8") + "window_start: 2026-01-01\n", encoding="utf-8")
+    spring = cand("foraar", hours_ago=24 * 150)  # maj
+    december = cand("december", hours_ago=24 * 290)  # december 2025: før vinduet
+    store.save_candidates([spring, december])
+    judge({"id": spring.id, "relevant": True}, {"id": december.id, "relevant": True})
+    out = tmp_path / "_site"
+    assert export_to(out) == 0
+    _, feed = read(out, "feed.json")
+    assert feed["window_start"] == "2026-01-01"
+    assert feed["window_days"] == 279  # hele dage fra midnat 1. januar til 7. oktober kl. 12
+    ids = {i["id"] for i in feed["items"]}
+    assert spring.id in ids and scenario["old"].id in ids  # 70 dage gammel: nu også med
+    assert december.id not in ids
+    _, status = read(out, "status.json")
+    assert status["counts"] == {"candidates_60d": 5, "shown_60d": 4, "rejected_30d": 1}  # stadig 60 dage
 
 
 def test_fallback_mode_shows_unreviewed(repo, scenario, tmp_path):

@@ -5,7 +5,7 @@ import {
   isoWeek, fmtDayRange, weekdayOf, parseDate, load, store, DAY_MS,
   readState, syncUrl, setData, defaultState, activeCount, sheetCount, activeFilters, removeFilter, resetFilters, shownSet, NATIONAL,
   prepare, applyFilters, computeCounts, computeDayCounts, buildPanel, renderActive,
-  placeName, placeParents, rangeOf, setRange, fmtRange,
+  placeName, placeParents, rangeOf, setRange, fmtRange, validDay, dayNumOf,
 } from './filters.js';
 import { createOverview } from './overview.js';
 import { createTimeline, demoizeTimeline } from './tidslinje.js';
@@ -61,7 +61,7 @@ function shiftTimes(obj, delta) {
     if (typeof v === 'string' && TIME_KEYS.has(k)) {
       const d = parseDate(v);
       if (d) obj[k] = new Date(d.getTime() + delta).toISOString().replace('.000Z', 'Z');
-    } else if (k === 'since' && typeof v === 'string') {
+    } else if ((k === 'since' || k === 'window_start') && typeof v === 'string') {  // datoer: hele dage
       const [y, m, d] = v.split('-').map(Number);
       if (y && m && d) obj[k] = new Date(Date.UTC(y, m - 1, d) + Math.round(delta / DAY_MS) * DAY_MS).toISOString().slice(0, 10);
     } else if (v && typeof v === 'object') {
@@ -192,10 +192,11 @@ function setupFeed(feed, state, now, lastVisit) {
     dateBtn: $('date-btn'), dateText: $('date-text'), dateClear: $('date-clear'),
   };
   const todayNum = cph(now).dayNum;
-  // Feedets første dag: vinduets start (som standard 60 dage) eller det ældste indslag, hvis det er ældre.
+  // Feedets første dag: window_start (ellers window_days tilbage) eller det ældste indslag, hvis det er ældre.
   // Kalenderen kan vælge dage herfra til i dag.
-  const firstDay = data.members.reduce((d, m) => Math.min(d, m.day.dayNum),
-    cph(new Date(now.getTime() - (Number(feed.window_days) || 60) * DAY_MS)).dayNum);
+  const windowStart = validDay(feed.window_start) ? dayNumOf(feed.window_start)
+    : cph(new Date(now.getTime() - (Number(feed.window_days) || 60) * DAY_MS)).dayNum;
+  const firstDay = data.members.reduce((d, m) => Math.min(d, m.day.dayNum), windowStart);
   let total = null; // antal kort uden filtre
   let cards = [];
   let fill = null; // byggeriet af den aktuelle liste (renderList)

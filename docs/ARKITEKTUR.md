@@ -104,7 +104,7 @@ Filerne skrives atomisk og kun, når indholdet faktisk ændrer sig, så git ikke
 
 - GitHub Actions og GitHub Pages er gratis for offentlige repos.
 - Claude-routinen bruger 18 kørsler i døgnet af abonnementet (19, hvis cron skal stå i UTC). Forbruget følges på claude.ai/settings/usage. Bliver kvoten for stram, sættes `routine.hours` i `config/settings.yaml` og routinens cron ned, fx til hver anden time. Fallback dækker hullerne.
-- Feedet rækker 60 dage tilbage.
+- Feedet rækker tilbage til 1. januar 2026 (`window_start` i `config/settings.yaml`). `feed.json` er én fil, der vokser med året (se BESLUTNINGER 2026-10-09, Hele 2026 i feedet).
 - GitHub slår planlagte workflows fra efter 60 dage uden aktivitet i et offentligt repo. Datacommits holder repoet aktivt. Sker det alligevel, viser siden bjælken om forældet feed efter 6 timer.
 - Driften kan følges i kildesundheden på "Om kilderne", i `data/judgments/_heartbeat.json` og i kørselsloggen i GitHub Actions.
 

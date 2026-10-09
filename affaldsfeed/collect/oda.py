@@ -48,7 +48,10 @@ def build_url(base: str, words: list[str], since: datetime, top: int) -> str:
 
 
 def lookback_days(ctx: CollectContext, cfg: OdaSettings) -> int:
-    """Dage tilbage: first_run_days ved første kørsel, ellers mindst days og ellers siden sidste gode kørsel."""
+    """Dage tilbage: first_run_days ved første kørsel, ellers mindst days og ellers siden sidste gode kørsel.
+    Ved bagudindsamling tilbage til window_start."""
+    if ctx.backfill_since is not None:
+        return max(cfg.first_run_days, (to_cph(ctx.now).date() - ctx.backfill_since).days)
     if ctx.first_run or ctx.last_ok is None:
         return cfg.first_run_days
     since_ok = (to_cph(ctx.now).date() - ctx.last_ok).days + 1
@@ -128,29 +131,34 @@ def collect(source: Source, fetcher: Fetcher, ctx: CollectContext) -> CollectRes
         return result
     days = lookback_days(ctx, cfg)
     since = to_cph(ctx.now).replace(tzinfo=None) - timedelta(days=days)
+    if ctx.backfill_since is not None:
+        since = min(since, datetime.combine(ctx.backfill_since, time.min))  # fra midnat på window_start
     url: str | None = build_url(source.feeds[0], cfg.words, since, cfg.top)
     exclude = {t.casefold() for t in cfg.exclude_types}
     seen: set[str] = set()
     skipped: dict[str, int] = {}
     total = pages = 0
-    while url and pages < cfg.max_pages:
+    max_pages = cfg.max_pages
+    if ctx.backfill_since is not None:
+        max_pages = max(max_pages, ctx.config.settings.backfill.oda_max_pages)
+    failure: str | None = None  # fejlen, der stoppede bladringen
+    while url and pages < max_pages:
         # ODA svarer med Atom, når Accept foretrækker XML (sessionens standard); derfor JSON eksplicit
         res = fetcher.get(url, conditional=False, accept="application/json")
         result.http_status = res.status or result.http_status
         if res.error:
             log.warning("%s: %s", source.id, res.error)
-            # En fejl midt i bladringen koster kun resten; uden en eneste side fejler kilden
-            result.error = None if pages else f"ODA: {res.error}"[:500]  # adressen er for lang til fejlteksten
+            failure = f"ODA: {res.error}"[:500]  # adressen er for lang til fejlteksten
             break
         try:
             data = json.loads(res.content or b"")
         except ValueError:
             ctype = {k.lower(): v for k, v in res.headers.items()}.get("content-type", "ukendt")
-            result.error = None if pages else f"ODA svarede ikke med gyldig JSON ({ctype})"
+            failure = f"ODA svarede ikke med gyldig JSON ({ctype})"
             break
         docs = data.get("value") if isinstance(data, dict) else None
         if not isinstance(docs, list):
-            result.error = None if pages else "ODA-svaret mangler value"
+            failure = "ODA-svaret mangler value"
             break
         pages += 1
         for doc in docs:
@@ -168,7 +176,16 @@ def collect(source: Source, fetcher: Fetcher, ctx: CollectContext) -> CollectRes
             result.entries.append(entry)
         nxt = data.get("odata.nextLink")
         url = nxt if isinstance(nxt, str) and nxt.startswith("http") else None
-    rest = ", ".join(f"{n} {why}" for why, n in sorted(skipped.items()))
+    if failure:
+        # En fejl midt i bladringen koster kun resten; uden en eneste side fejler kilden. Ved bagudindsamling
+        # tages den om ved næste kørsel (§5.8)
+        result.error = None if pages else failure
+        result.backlog = bool(pages) and ctx.backfill_since is not None
+        if pages:
+            result.diagnostics.append(f"bladringen stoppede efter side {pages}: {failure}")
+    elif url and ctx.backfill_since is not None:
+        log.warning("%s: loftet på %d sider er nået; de ældste dokumenter i bagudindsamlingen mangler", source.id, pages)
+    rest =", ".join(f"{n} {why}" for why, n in sorted(skipped.items()))
     result.diagnostics.append(
         f"ODA: {days} dage tilbage, {pages} sider, {total} dokumenter, {len(result.entries)} indslag"
         + (f" (sprunget over: {rest})" if rest else "")

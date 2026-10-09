@@ -104,7 +104,7 @@ De præcise point og grænser står i KONTRAKTER 5.4. Afviste indslag gemmes i 9
    ```
 
 4. Kør `python -m affaldsfeed check --fetch <id> --explain` og justér `filter`, hvis der kommer for meget eller for lidt med.
-5. Commit. Det kan også gøres direkte i GitHubs webeditor, så validerer CI posten. Kilden hentes ved næste timekørsel. Første gang gemmes indslag fra de seneste 60 dage som baseline, så de ikke markeres som nye.
+5. Commit. Det kan også gøres direkte i GitHubs webeditor, så validerer CI posten. Kilden hentes ved næste timekørsel. Første gang hentes kilden tilbage til feedets første dag (1. januar 2026), og indslagene gemmes som baseline, så de ikke markeres som nye (KONTRAKTER §5.8).
 
 Kan kilden ikke hentes med en af de generiske metoder, skrives der ingen specialkode. Den får `status: kandidat` eller `fravalgt` og en note.
 

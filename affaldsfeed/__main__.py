@@ -56,7 +56,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     pe = sub.add_parser("pending", help="JSON med uvurderede kandidater til Claude-routinen")
     pe.add_argument("--max", type=int, default=200, help="højst så mange indslag (standard 200)")
-    pe.add_argument("--hours", type=float, default=None, help="kun fundet inden for så mange timer (standard 72)")
+    pe.add_argument("--hours", type=float, default=None, help="kun fundet inden for så mange timer (standard settings.pending_hours, 336)")
     pe.add_argument("--now", metavar="ISO", help="overstyr nu (test)")
 
     vj = sub.add_parser("validate-judgments", help="valider data/judgments/*.jsonl")

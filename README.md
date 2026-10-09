@@ -2,7 +2,7 @@
 
 Affaldsfeed samler nyheder om affaldsområdet i Danmark på én side. Indslagene kommer fra nationale medier og lokalmedier, fagmedier, myndigheder, kommuner og affaldsselskaber, organisationer, tænketanke, forskning og EU og Norden. Det nyeste står øverst, og hver titel linker til den oprindelige artikel.
 
-Feedet er skrevet til folk, der arbejder med affald i kommunerne og de kommunale affaldsselskaber. Man kan filtrere på sted, afsender, tema, kilde og genre. Listen går 60 dage tilbage, og en lille kalender viser nyhederne fra et bestemt tidsrum. Øverst ligger et kort AI-overblik med fanerne I dag, Ugen, Måneden og Året. Claude skriver det ud fra de indslag, der er godkendt til feedet, og hvert punkt linker til de artikler, det bygger på. Fanen Tidslinje samler de vigtigste begivenheder på området.
+Feedet er skrevet til folk, der arbejder med affald i kommunerne og de kommunale affaldsselskaber. Man kan filtrere på sted, afsender, tema, kilde og genre. Listen går tilbage til 1. januar 2026, og en lille kalender viser nyhederne fra et bestemt tidsrum. Øverst ligger et kort AI-overblik med fanerne I dag, Ugen, Måneden og Året. Claude skriver det ud fra de indslag, der er godkendt til feedet, og hvert punkt linker til de artikler, det bygger på. Fanen Tidslinje samler de vigtigste begivenheder på området.
 
 Live: https://simnyborg.github.io/affaldsfeed/
 

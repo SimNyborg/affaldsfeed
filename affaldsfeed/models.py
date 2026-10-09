@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import re
 from collections.abc import Iterable
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from typing import Annotated, Any, Literal
 
 from pydantic import (
@@ -17,6 +17,8 @@ from pydantic import (
     field_validator,
     model_validator,
 )
+
+from affaldsfeed.timeutil import cph_day_start, ensure_utc
 
 CategoryId = Literal[
     "nyhedsmedie",
@@ -316,6 +318,17 @@ class OdaSettings(_Strict):
     top: int = Field(default=100, gt=0, le=100)  # dokumenter pr. side (ODA giver højst 100)
 
 
+class BackfillSettings(_Strict):
+    """Indsamling bagud til Settings.window_start, én gang pr. kilde (KONTRAKTER §5.8)."""
+
+    max_pages: int = Field(default=40, gt=0)  # sitemap: artikelsider pr. kilde pr. kørsel
+    max_sub_sitemaps: int = Field(default=15, gt=0)  # under-sitemaps fra et indeks
+    max_sitemap_fetches: int = Field(default=20, gt=0)  # sitemap-hentninger pr. kilde pr. kørsel
+    source_budget_seconds: float = Field(default=300.0, gt=0)  # maks tid pr. kilde pr. kørsel
+    oda_max_pages: int = Field(default=20, gt=0)  # ODA: sider à `oda.top` dokumenter
+    max_runs: int = Field(default=24, gt=0)  # kørsler pr. kilde; derefter regnes den som færdig
+
+
 class PlaceSettings(_Strict):
     """Stedmærkning (places.py). Standarden passer til danske nyheder; kan overstyres i settings.yaml."""
 
@@ -352,19 +365,36 @@ class Settings(_Strict):
     logos: LogoSettings = Field(default_factory=LogoSettings)
     places: PlaceSettings = Field(default_factory=PlaceSettings)
     timeline: TimelineSettings = Field(default_factory=TimelineSettings)
+    backfill: BackfillSettings = Field(default_factory=BackfillSettings)
     window_days: int = 60
+    # Feedets første dag (København). Sat: feedet rækker hertil i stedet for window_days, og hver kilde
+    # hentes én gang bagud hertil (SourceState.backfilled_from, KONTRAKTER §5.8)
+    window_start: date | None = None
     max_age_days_on_find: int = 14
     baseline_days: int = 14
     teaser_max: int = 300
     teaser_display_max: int = 240
     title_prefixes: list[str] = Field(default_factory=list)  # fjernes fra titler i feedet (fx "Nyhed:")
     rejected_keep_days: int = 90
-    pending_hours: int = 72
+    pending_hours: int = 336
     stale_feed_hours: int = 6
     story_title_window_days: int = 3
     story_max_age_days: int = 7
     fail_run_ratio: float = 0.5
     red_after_fails: int = 5
+
+    def window_since(self, now: datetime) -> datetime:
+        """Feedets første tidspunkt (UTC): starten af window_start i København, ellers now - window_days."""
+        if self.window_start is not None:
+            return cph_day_start(self.window_start)
+        return ensure_utc(now) - timedelta(days=self.window_days)
+
+    def needs_backfill(self, state: SourceState | None) -> bool:
+        """Skal kilden hentes bagud til window_start? Kun én gang pr. kilde og dato."""
+        if self.window_start is None:
+            return False
+        done = state.backfilled_from if state is not None else None
+        return done is None or done > self.window_start
 
 
 # ── Indsamlede data ──────────────────────────────────────────
@@ -420,6 +450,8 @@ class SourceState(_Strict):
     first_run_done: bool = False
     health: Health = "graa"
     since: date | None = None  # første vellykkede kørsel (dato i København); None = ikke kendt endnu
+    backfilled_from: date | None = None  # kilden er hentet bagud til denne dag (Settings.window_start)
+    backfill_runs: int = 0  # vellykkede kørsler i den igangværende bagudindsamling (0 = ikke begyndt)
 
 
 # ── Claude-routinen ─────────────────────────────────────────
@@ -753,6 +785,7 @@ class Feed(_Strict):
     version: int
     generated: datetime
     window_days: int
+    window_start: date  # feedets første dag i København (Settings.window_since)
     mode: Literal["claude", "fallback"]
     last_judgment: datetime | None = None
     categories: list[Category]

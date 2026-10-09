@@ -36,6 +36,7 @@ log = logging.getLogger(__name__)
 
 FEED_VERSION = 1
 REJECTED_DAYS = 30
+COUNT_DAYS = 60  # status.json: candidates_60d og shown_60d
 SAMPLE_NAMES = ("feed.sample.json", "timeline.sample.json")
 
 
@@ -88,7 +89,9 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
     config = load_config(paths.CONFIG_DIR)
     sources = load_sources(paths.SOURCES_FILE)
     settings = config.settings
-    since = now - timedelta(days=settings.window_days)
+    # Feedets vindue: fra window_start (København), ellers window_days tilbage (KONTRAKTER §8)
+    since = settings.window_since(now)
+    window_days = max(1, (now - since) // timedelta(days=1))
 
     candidates = [c for c in load_all_candidates(since - timedelta(days=1)) if item_time(c) >= since]
     judgment_list = load_judgment_list()
@@ -154,7 +157,8 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
     feed = {
         "version": FEED_VERSION,
         "generated": iso(now),
-        "window_days": settings.window_days,
+        "window_days": window_days,
+        "window_start": to_cph(since).date().isoformat(),
         "mode": mode,
         "last_judgment": last_judgment,
         "categories": [c.model_dump(mode="json") for c in config.categories],
@@ -187,12 +191,13 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
                 "silent": silent(st, today) if st else False,
             }
         )
+    cut60 = now - timedelta(days=COUNT_DAYS)  # tallene gælder 60 dage, også når feedet rækker længere
     status = {
         "generated": iso(now),
         "sources": status_sources,
         "counts": {
-            "candidates_60d": len(candidates),
-            "shown_60d": len(shown),
+            "candidates_60d": sum(item_time(c) >= cut60 for c in candidates),
+            "shown_60d": sum(item_time(d) >= cut60 for d in shown),
             "rejected_30d": len(store.load_rejected(now - timedelta(days=REJECTED_DAYS))),
         },
     }
