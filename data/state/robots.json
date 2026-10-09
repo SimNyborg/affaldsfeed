@@ -155,8 +155,16 @@
     "fetched": "2026-10-09T08:02:44Z",
     "body": ""
   },
+  "cdn.hvidovre.dk": {
+    "fetched": "2026-10-09T08:28:28Z",
+    "body": ""
+  },
   "cdn.jsdelivr.net": {
     "fetched": "2026-10-08T06:01:09Z",
+    "body": ""
+  },
+  "cdn.lejre.dk": {
+    "fetched": "2026-10-09T08:28:28Z",
     "body": ""
   },
   "cdn.moliri.dk": {
@@ -516,7 +524,7 @@
     "body": "    User-agent: *\n    Allow: /\n    Disallow: /umbraco\n    Sitemap: https://ishoj.dk/sitemap.xml"
   },
   "itu.dk": {
-    "fetched": "2026-10-08T05:27:31Z",
+    "fetched": "2026-10-09T08:28:28Z",
     "body": "\r\n   User-agent: AhrefsBot\r\n   Disallow: /\r\n\r\n   User-agent: *\r\n   Disallow: /docadm/\r\n   Disallow: /kommunikation/\r\n   Disallow: /sitecore/\r\n     "
   },
   "jammerbugtposten.dk": {
@@ -578,6 +586,14 @@
   "kunmedierne.dk": {
     "fetched": "2026-10-08T06:01:09Z",
     "body": "# Facebook\nUser-agent: facebookexternalhit\nDisallow:"
+  },
+  "lejre.dk": {
+    "fetched": "2026-10-09T08:28:28Z",
+    "body": "User-agent: *\nAllow: /\n\nSitemap: https://lejre.dk/sitemap.xml\n"
+  },
+  "lemvig.dk": {
+    "fetched": "2026-10-09T08:28:28Z",
+    "body": "User-agent: *\nAllow: /\n\nSitemap: https://lemvig.dk/sitemap.xml\n"
   },
   "lemvigfolkeblad.dk": {
     "fetched": "2026-10-08T09:11:01Z",

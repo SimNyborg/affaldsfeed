@@ -809,10 +809,22 @@
     "checked": "2026-10-09T08:02:44Z",
     "error": null
   },
+  "hoeje-taastrup-kommune": {
+    "file": "hoeje-taastrup-kommune.webp",
+    "src": "https://cdn.moliri.dk/image/moliri-public/hojetaastrupkommune/thumbnail?filename=Favicon.png&folderPath=Billeder+HTK.dk%2fIcons&width=80",
+    "checked": "2026-10-09T08:28:28Z",
+    "error": null
+  },
   "hoeringsportalen": {
     "file": "hoeringsportalen.ico",
     "src": "https://hoeringsportalen.dk/favicon.ico",
     "checked": "2026-10-08T05:27:31Z",
+    "error": null
+  },
+  "hoersholm-kommune": {
+    "file": "hoersholm-kommune.webp",
+    "src": "https://cdn.moliri.dk/image/moliri-public/horsholmkommune/thumbnail?filename=Logo_tran.png&folderPath=Hoersholm+Kommune%2fDigitalisering%2fLogo&width=80",
+    "checked": "2026-10-09T08:28:28Z",
     "error": null
   },
   "hofor": {
@@ -821,16 +833,40 @@
     "checked": "2026-10-08T00:08:49Z",
     "error": null
   },
+  "holbaek-kommune": {
+    "file": "holbaek-kommune.webp",
+    "src": "https://cdn1.gopublic.dk/holbaekkommune/Media/638495387412804094/favicon.png?width=32&height=32",
+    "checked": "2026-10-09T08:28:28Z",
+    "error": null
+  },
+  "holstebro-kommune": {
+    "file": "holstebro-kommune.png",
+    "src": "https://www.holstebro.dk/Files/Images/Favicon.png",
+    "checked": "2026-10-09T08:28:28Z",
+    "error": null
+  },
   "hornsherredlokalavis": {
     "file": "hornsherredlokalavis.png",
     "src": "https://www.hornsherredlokalavis.dk/wp-content/uploads/2018/11/cropped-Favicon-1-32x32.png",
     "checked": "2026-10-08T11:28:26Z",
     "error": null
   },
+  "horsens-kommune": {
+    "file": "horsens-kommune.png",
+    "src": "https://horsens.dk/media/lchkzyrt/favicon-32x32.png?width=57&height=57&format=noformat&v=1d96dd45bbabf80",
+    "checked": "2026-10-09T08:28:28Z",
+    "error": null
+  },
   "hsfo": {
     "file": "hsfo.png",
     "src": "https://hsfo.dk/assets/1791279772/kodus/jfm-brands/brands/hsfo/favicons/apple-icon-57x57.png",
     "checked": "2026-10-08T09:11:01Z",
+    "error": null
+  },
+  "hvidovre-kommune": {
+    "file": "hvidovre-kommune.webp",
+    "src": "https://cdn.hvidovre.dk/hvidovrekommune/Media/638530020701657457/fav.png?width=32&height=32",
+    "checked": "2026-10-09T08:28:28Z",
     "error": null
   },
   "hvidovreavis": {
@@ -845,6 +881,12 @@
     "checked": "2026-10-08T11:28:26Z",
     "error": null
   },
+  "ikast-brande-kommune": {
+    "file": "ikast-brande-kommune.png",
+    "src": "https://ikast-brande.dk/media/xamdge4j/favi-ikast-brande.png?width=57&height=57&format=noformat&v=1db97f2362473c0",
+    "checked": "2026-10-09T08:28:28Z",
+    "error": null
+  },
   "information-dk": {
     "file": "information-dk.png",
     "src": "https://www.information.dk/themes/custom/information/favicons/favicon-32x32.png",
@@ -855,6 +897,24 @@
     "file": "ingenioeren.ico",
     "src": "https://ing.dk/favicon.ico",
     "checked": "2026-10-07T22:37:50Z",
+    "error": null
+  },
+  "ishoej-kommune": {
+    "file": "ishoej-kommune.ico",
+    "src": "https://ishoj.dk/favicon.ico",
+    "checked": "2026-10-09T08:28:28Z",
+    "error": null
+  },
+  "itu": {
+    "file": "itu.ico",
+    "src": "https://itu.dk/favicon.ico",
+    "checked": "2026-10-09T08:28:28Z",
+    "error": null
+  },
+  "jammerbugt-kommune": {
+    "file": "jammerbugt-kommune.png",
+    "src": "https://www.jammerbugt.dk/favicon.ico",
+    "checked": "2026-10-09T08:28:28Z",
     "error": null
   },
   "jammerbugtposten": {
@@ -875,6 +935,12 @@
     "checked": "2026-10-08T06:01:09Z",
     "error": null
   },
+  "kalundborg-kommune": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-09T08:28:28Z",
+    "error": "HTTP 404"
+  },
   "kanalfrederikshavn": {
     "file": "kanalfrederikshavn.ico",
     "src": "https://www.kanalfrederikshavn.dk/typo3conf/ext/kanal_frederikshavn/Resources/Public/Icons/favicon.ico",
@@ -886,6 +952,12 @@
     "src": "https://www.kefm.dk/Media/638736568521615844/Favicon_KEFM.png?width=32&height=32",
     "checked": "2026-10-07T22:37:50Z",
     "error": null
+  },
+  "kerteminde-kommune": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-09T08:28:28Z",
+    "error": "HTTP 404"
   },
   "kfst": {
     "file": "kfst.png",
@@ -921,6 +993,24 @@
     "file": "kobenhavnliv--osterbroliv-dk.png",
     "src": "https://kobenhavnliv.dk/assets/1791279772/kodus/jfm-brands/brands/kobenhavnliv/favicons/apple-icon-57x57.png",
     "checked": "2026-10-08T12:29:21Z",
+    "error": null
+  },
+  "koebenhavn-kommune": {
+    "file": "koebenhavn-kommune.png",
+    "src": "https://www.kk.dk/themes/custom/kkdk_theme/favicon.png",
+    "checked": "2026-10-09T08:28:28Z",
+    "error": null
+  },
+  "koege-kommune": {
+    "file": "koege-kommune.webp",
+    "src": "https://cdn.moliri.dk/image/moliri-public/kogekommune/thumbnail?filename=Favicon_blaa.png&folderPath=Om+kommunen&width=80",
+    "checked": "2026-10-09T08:28:28Z",
+    "error": null
+  },
+  "kolding-kommune": {
+    "file": "kolding-kommune.webp",
+    "src": "https://cdn.moliri.dk/image/moliri-public/koldingkommune/thumbnail?filename=favicon-1.png&folderPath=Forside&width=80",
+    "checked": "2026-10-09T08:28:28Z",
     "error": null
   },
   "kommunen": {
@@ -971,11 +1061,35 @@
     "checked": "2026-10-08T06:01:09Z",
     "error": null
   },
+  "laesoe-kommune": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-09T08:28:28Z",
+    "error": "HTTP 404"
+  },
+  "langeland-kommune": {
+    "file": "langeland-kommune.webp",
+    "src": "https://cdn.moliri.dk/image/moliri-public/langelandkommune/thumbnail?filename=Favicon_Langeland_Kommune.png&folderPath=Billeder%2fDesign&width=80",
+    "checked": "2026-10-09T08:28:28Z",
+    "error": null
+  },
+  "lejre-kommune": {
+    "file": "lejre-kommune.webp",
+    "src": "https://cdn.lejre.dk/lejrekommune/Media/639239403044979737/lejre-favicon.png?width=32&height=32",
+    "checked": "2026-10-09T08:28:28Z",
+    "error": null
+  },
   "lejremagasinet": {
     "file": null,
     "src": null,
     "checked": "2026-10-08T12:29:21Z",
     "error": "HTTP 404"
+  },
+  "lemvig-kommune": {
+    "file": "lemvig-kommune.webp",
+    "src": "https://cdn1.gopublic.dk/lemvigkommune/Media/638943004517013386/logo-favicon.png?width=32&height=32",
+    "checked": "2026-10-09T08:28:28Z",
+    "error": null
   },
   "licitationen-dk": {
     "file": "licitationen-dk.ico",
@@ -988,6 +1102,12 @@
     "src": "https://ligeher.nu/content/images/logos/favicon-32x32.png",
     "checked": "2026-10-08T12:29:21Z",
     "error": null
+  },
+  "lolland-kommune": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-09T08:28:28Z",
+    "error": "ikke et brugbart billede (kun PNG, ICO, GIF, JPEG og WebP på mindst 16 px)"
   },
   "magasinetkbh-dk": {
     "file": null,
