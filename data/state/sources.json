@@ -301,7 +301,7 @@
   },
   "bing-news": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T11:28:58Z",
+    "last_attempt": "2026-10-09T13:16:33Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1909,38 +1909,38 @@
   },
   "kfst": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T13:16:33Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
-    "backfilled_from": null,
+    "backfilled_from": "2026-01-01",
     "backfill_runs": 0
   },
   "kl": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T13:16:33Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
-    "backfilled_from": null,
+    "backfilled_from": "2026-01-01",
     "backfill_runs": 0
   },
   "klar-forsyning": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T13:16:33Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
-    "backfilled_from": null,
+    "backfilled_from": "2026-01-01",
     "backfill_runs": 0
   },
   "klimaraadet": {
@@ -1957,7 +1957,7 @@
   },
   "kobenhavnliv": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T13:16:33Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -1965,7 +1965,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 0
+    "backfill_runs": 1
   },
   "koebenhavn-kommune": {
     "last_ok": "2026-10-09",
@@ -2209,7 +2209,7 @@
   },
   "midtfynsposten": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T13:16:33Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2217,7 +2217,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 0
+    "backfill_runs": 1
   },
   "midtjyllandsavis": {
     "last_ok": "2026-10-09",
@@ -2317,7 +2317,7 @@
   },
   "miljoeministeriet": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T13:16:33Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
@@ -2325,19 +2325,19 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 0
+    "backfill_runs": 1
   },
   "miljoestyrelsen": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T13:16:33Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 1,
+    "items_30d": 4,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 0
+    "backfill_runs": 1
   },
   "naestved-kommune": {
     "last_ok": "2026-10-09",
@@ -2497,7 +2497,7 @@
   },
   "nordvaerk": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T13:16:33Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -2505,7 +2505,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 0
+    "backfill_runs": 1
   },
   "norfors": {
     "last_ok": "2026-10-09",
@@ -2569,14 +2569,14 @@
   },
   "odense-renovation": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T06:28:19Z",
+    "last_attempt": "2026-10-09T13:16:33Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
-    "backfilled_from": null,
+    "backfilled_from": "2026-01-01",
     "backfill_runs": 0
   },
   "odsherred-kommune": {

@@ -21,6 +21,17 @@
       "431aa96367be"
     ]
   },
+  "dagens.dk": {
+    "name": "Dagens.dk",
+    "count": 1,
+    "last_seen": "2026-10-09T13:16:33Z",
+    "examples": [
+      "https://www.dagens.dk/hus-og-have/smid-ikke-fnugget-fra-toerretumbleren-ud-du-kan-bruge-det-til-mere-end-du-tror"
+    ],
+    "ids": [
+      "47986826309d"
+    ]
+  },
   "effektivtlandbrug.landbrugnet.dk": {
     "name": "effektivtlandbrug.landbrugnet",
     "count": 1,
@@ -30,6 +41,17 @@
     ],
     "ids": [
       "16c1ac3319fb"
+    ]
+  },
+  "espn.com": {
+    "name": "ESPN",
+    "count": 1,
+    "last_seen": "2026-10-09T13:16:33Z",
+    "examples": [
+      "https://www.espn.com/college-football/story/_/id/50127445/nebraska-cornhuskers-memorial-stadium-urinal-sales"
+    ],
+    "ids": [
+      "333111f140f4"
     ]
   },
   "fla.de": {

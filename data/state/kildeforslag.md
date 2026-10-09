@@ -13,7 +13,9 @@ Genereres automatisk af `python -m affaldsfeed run`. Viser top 50 efter antal ar
 | yahoo.com | Yahoo | 2 | 2026-10-07 | [1](https://www.yahoo.com/entertainment/tv/articles/charlie-kawas-details-filming-botched-192742838.html) [2](https://www.yahoo.com/entertainment/tv/articles/hgtv-fans-react-rock-block-174922811.html) |
 | bornholm.nu | Bornholm.nu | 1 | 2026-10-07 | [1](https://bornholm.nu/nyheder/ikke-alt-maa-klunses-hos-bofa/141859) |
 | cardinalpine.com | Cardinal & Pine | 1 | 2026-10-07 | [1](https://cardinalpine.com/local/wilmington-ritzy-plans-thalian-hall-remake/) |
+| dagens.dk | Dagens.dk | 1 | 2026-10-09 | [1](https://www.dagens.dk/hus-og-have/smid-ikke-fnugget-fra-toerretumbleren-ud-du-kan-bruge-det-til-mere-end-du-tror) |
 | effektivtlandbrug.landbrugnet.dk | effektivtlandbrug.landbrugnet | 1 | 2026-10-08 | [1](https://effektivtlandbrug.landbrugnet.dk/artikler/planter/125370/regeringen-vil-mindst-fordoble-boeder-for-miljoekriminalitet) |
+| espn.com | ESPN | 1 | 2026-10-09 | [1](https://www.espn.com/college-football/story/_/id/50127445/nebraska-cornhuskers-memorial-stadium-urinal-sales) |
 | fla.de | fla | 1 | 2026-10-07 | [1](https://www.fla.de/flensborg/lokalt/96529/dansk-inspireret-losning-genbrugspladsen-skal-vaere-aben-nar-) |
 | idahostatejournal.com | Idaho State Journal | 1 | 2026-10-07 | [1](https://www.idahostatejournal.com/news/local/dedicate-explores-the-salt-lake-temple-renovation-through-the-eyes-of-young-adults/article_05c0f18e-3ced-53f6-accb-fc7897dea527.html) |
 | inc.com | Inc.com | 1 | 2026-10-07 | [1](https://www.inc.com/sarah-bregel/baltimore-orioles-announced-600-million-dollar-renovation-laid-off-employee-behind-mascot/91416095) |
