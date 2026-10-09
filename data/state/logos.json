@@ -779,6 +779,12 @@
     "checked": "2026-10-08T11:28:26Z",
     "error": null
   },
+  "glostrup-forsyning": {
+    "file": "glostrup-forsyning.png",
+    "src": "https://glostrupforsyning.dk/sites/glostrupforsyning.dk/themes/octo/img/icons/favicon-32x32.png",
+    "checked": "2026-10-09T10:08:20Z",
+    "error": null
+  },
   "glostrup-kommune": {
     "file": "glostrup-kommune.webp",
     "src": "https://cdn.glostrup.dk/glostrupkommune/Media/638142952666537491/fav.png?width=32&height=32",
@@ -803,6 +809,12 @@
     "checked": "2026-10-09T08:02:44Z",
     "error": null
   },
+  "gribskov-forsyning": {
+    "file": "gribskov-forsyning.png",
+    "src": "https://gribskovforsyning.dk/sites/gribskovforsyning.dk/themes/novus/img/icons/favicon-32x32.png",
+    "checked": "2026-10-09T10:08:20Z",
+    "error": null
+  },
   "gribskov-kommune": {
     "file": "gribskov-kommune.webp",
     "src": "https://cdn.gribskov.dk/gribskovkommune/Media/E/8/gribskov_byvaaben-rgb-2016.png?width=32&height=32",
@@ -819,6 +831,12 @@
     "file": "haderslev-kommune.png",
     "src": "https://www.haderslev.dk/media/t4abucmt/aktive-med-hjerte-og-vilje-favicon.png?width=57&height=57&format=noformat&v=1db876b7e2891c0",
     "checked": "2026-10-09T08:02:44Z",
+    "error": null
+  },
+  "halsnaes-forsyning": {
+    "file": "halsnaes-forsyning.png",
+    "src": "https://hnf.dk/sites/hnf.dk/themes/octo/img/icons/favicon-32x32.png",
+    "checked": "2026-10-09T10:08:20Z",
     "error": null
   },
   "halsnaes-kommune": {
@@ -873,6 +891,12 @@
     "file": "herningfolkeblad.png",
     "src": "https://herningfolkeblad.dk/images/favicons/apple-icon-57x57.png",
     "checked": "2026-10-08T09:11:01Z",
+    "error": null
+  },
+  "hilleroed-forsyning": {
+    "file": "hilleroed-forsyning.png",
+    "src": "https://hfors.dk/sites/hfors.dk/themes/octo/img/icons/favicon-32x32.png",
+    "checked": "2026-10-09T10:08:20Z",
     "error": null
   },
   "hilleroed-kommune": {
@@ -1043,6 +1067,12 @@
     "checked": "2026-10-07T22:37:50Z",
     "error": null
   },
+  "kerteminde-forsyning": {
+    "file": "kerteminde-forsyning.png",
+    "src": "https://www.kertemindeforsyning.dk/Admin/Public/GetImage.ashx?Image=/Files/Templates/Designs/Kerteminde/img/Icons/Fav/apple-icon-57x57.png&Format=.png&Width=57&Crop=6&DoNotUpscale=1",
+    "checked": "2026-10-09T10:08:20Z",
+    "error": null
+  },
   "kerteminde-kommune": {
     "file": null,
     "src": null,
@@ -1210,6 +1240,12 @@
     "src": "https://www.ltk.dk/media/35thd4ue/ltk_favicon_kun-byvaaben_4f_300ppi_kvadrat.png?width=57&height=57&format=noformat&v=1dbbe78e34a9370",
     "checked": "2026-10-09T08:34:12Z",
     "error": null
+  },
+  "maabjerg-energy-center": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-09T10:08:20Z",
+    "error": "HTTP 404"
   },
   "magasinetkbh-dk": {
     "file": null,
@@ -1427,6 +1463,12 @@
     "checked": "2026-10-09T09:34:01Z",
     "error": null
   },
+  "nyborg-forsyning": {
+    "file": "nyborg-forsyning.webp",
+    "src": "https://www.nfs.as/wp-content/uploads/2020/06/web-icon-72.png",
+    "checked": "2026-10-09T10:08:20Z",
+    "error": null
+  },
   "nyborg-kommune": {
     "file": "nyborg-kommune.png",
     "src": "https://www.nyborg.dk/favicon.ico",
@@ -1493,6 +1535,12 @@
     "checked": "2026-10-08T07:28:04Z",
     "error": null
   },
+  "provas": {
+    "file": "provas.ico",
+    "src": "https://www.provas.dk/favicon.ico",
+    "checked": "2026-10-09T10:08:20Z",
+    "error": null
+  },
   "randers-kommune": {
     "file": "randers-kommune.png",
     "src": "https://www.randers.dk/favicon.ico",
@@ -1517,10 +1565,22 @@
     "checked": "2026-10-08T07:28:04Z",
     "error": null
   },
+  "ren-forsyning-mariagerfjord": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-09T10:08:20Z",
+    "error": "HTTP 404"
+  },
   "renosyd": {
     "file": "renosyd.png",
     "src": "https://renosyd.dk/wp-content/uploads/2024/02/cropped-favicon-32x32.png",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "revas": {
+    "file": "revas.png",
+    "src": "https://www.revas.dk/Files/Images/Logos/favicon_2023.png",
+    "checked": "2026-10-09T10:08:20Z",
     "error": null
   },
   "rgo": {
@@ -1581,6 +1641,12 @@
     "file": "sdu.png",
     "src": "https://www.sdu.dk/resources/images/sdu/icon57.png",
     "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "silkeborg-forsyning": {
+    "file": "silkeborg-forsyning.png",
+    "src": "https://www.silkeborgforsyning.dk/Files/Templates/Designs/SF2019/\\img\\Icons\\Fav/favicon-96x96.png",
+    "checked": "2026-10-09T10:08:20Z",
     "error": null
   },
   "silkeborg-kommune": {
@@ -1715,6 +1781,12 @@
     "checked": "2026-10-09T09:27:16Z",
     "error": null
   },
+  "thy-forsyning": {
+    "file": "thy-forsyning.png",
+    "src": "https://www.thyforsyning.dk/favicon.ico",
+    "checked": "2026-10-09T10:08:20Z",
+    "error": null
+  },
   "tjekfredensborg": {
     "file": "tjekfredensborg.png",
     "src": "https://tjekfredensborg.dk/wp-content/uploads/2025/06/cropped-Logo-site-ikon-lytter-3-32x32.png",
@@ -1811,6 +1883,12 @@
     "checked": "2026-10-07T22:34:55Z",
     "error": null
   },
+  "vand-og-affald": {
+    "file": "vand-og-affald.png",
+    "src": "https://www.vandogaffald.dk/favicon-32x32.png?v=LNMfCangPRhZ7Yi-KlLuirw2p6WVIGq9_okqVnpaDTs",
+    "checked": "2026-10-09T10:08:20Z",
+    "error": null
+  },
   "varde-kommune": {
     "file": "varde-kommune.png",
     "src": "https://vardekommune.dk/wp-content/uploads/2021/08/cropped-favicon-32x32.png",
@@ -1833,6 +1911,12 @@
     "file": "vestforbraending.ico",
     "src": "https://vestfor.dk/favicon.ico",
     "checked": "2026-10-08T07:48:34Z",
+    "error": null
+  },
+  "vesthimmerlands-forsyning": {
+    "file": "vesthimmerlands-forsyning.png",
+    "src": "https://vesthimmerlandsforsyning.dk/Admin/Public/GetImage.ashx?Image=/Files/Images/Graphics/Fav/logo.png&Format=png&Width=57&Height=57&Crop=6&DoNotUpscale=1",
+    "checked": "2026-10-09T10:08:20Z",
     "error": null
   },
   "vesthimmerlands-kommune": {
