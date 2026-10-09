@@ -157,7 +157,7 @@
   },
   "amtsavisen": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T20:28:50Z",
+    "last_attempt": "2026-10-09T21:49:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
@@ -165,7 +165,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 3
+    "backfill_runs": 4
   },
   "arc": {
     "last_ok": "2026-10-09",
@@ -493,7 +493,7 @@
   },
   "cleantech-watch": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T20:28:50Z",
+    "last_attempt": "2026-10-09T21:49:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 33,
@@ -501,7 +501,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 5
+    "backfill_runs": 6
   },
   "concito": {
     "last_ok": "2026-10-09",
@@ -541,7 +541,7 @@
   },
   "dakofa": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T20:28:50Z",
+    "last_attempt": "2026-10-09T21:49:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 42,
@@ -549,7 +549,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 5
+    "backfill_runs": 6
   },
   "dansk-erhverv": {
     "last_ok": "2026-10-09",
@@ -925,7 +925,7 @@
   },
   "faa": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T20:53:09Z",
+    "last_attempt": "2026-10-09T21:49:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -933,7 +933,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 3
+    "backfill_runs": 4
   },
   "faaborg-midtfyn-kommune": {
     "last_ok": "2026-10-09",
@@ -1081,7 +1081,7 @@
   },
   "folkebladetlemvig": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T20:53:09Z",
+    "last_attempt": "2026-10-09T21:49:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -1089,7 +1089,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 3
+    "backfill_runs": 4
   },
   "folketidende": {
     "last_ok": "2026-10-09",
@@ -1165,7 +1165,7 @@
   },
   "frdb": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T20:53:09Z",
+    "last_attempt": "2026-10-09T21:49:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -1173,7 +1173,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 3
+    "backfill_runs": 4
   },
   "fredensborg-forsyning": {
     "last_ok": "2026-10-09",
@@ -1225,7 +1225,7 @@
   },
   "frederiksbergliv": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T20:53:09Z",
+    "last_attempt": "2026-10-09T21:49:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1233,7 +1233,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 4
+    "backfill_runs": 5
   },
   "frederikshavn-kommune": {
     "last_ok": "2026-10-09",
@@ -1957,15 +1957,15 @@
   },
   "kobenhavnliv": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T20:53:09Z",
-    "fails": 3,
-    "last_error": "https://kobenhavnliv.dk/sitemap/2026-10-09: HTTP 503; springes over i denne kørsel; https://kobenhavnliv.dk/sitemap/2026-10-08: springes over: HTTP 503; https://kobenhavnliv.dk/sitemap/2026-09-24: springes over: HTTP 503; https://kobenhavnliv.dk/sitemap/2026-09-23: springes over: HTTP 503; https://k",
+    "last_attempt": "2026-10-09T21:49:43Z",
+    "fails": 0,
+    "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
-    "health": "gul",
+    "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 2
+    "backfill_runs": 3
   },
   "koebenhavn-kommune": {
     "last_ok": "2026-10-09",
@@ -3193,7 +3193,7 @@
   },
   "vafo": {
     "last_ok": "2026-10-09",
-    "last_attempt": "2026-10-09T20:28:50Z",
+    "last_attempt": "2026-10-09T21:49:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 5,
@@ -3201,7 +3201,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 2
+    "backfill_runs": 3
   },
   "vallensbaek-kommune": {
     "last_ok": "2026-10-09",
