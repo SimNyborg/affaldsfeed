@@ -1,6 +1,4 @@
-# Dagligt tjek 9. oktober: fem nye kommunekilder, der aldrig har haft en vellykket kørsel
-billund-kommune
-ikast-brande-kommune
-gribskov-kommune
-hedensted-kommune
-herning-kommune
+# Herning Kommune: sitemap.xml giver timeout efter 20 s. Findes et mindre sitemap eller en nyhedsliste?
+robots https://www.herning.dk
+sitemap https://www.herning.dk/sitemap.xml /nyheder/ 5
+links https://www.herning.dk/nyheder /nyheder/20[0-9]{2}/ 40
