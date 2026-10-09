@@ -194,3 +194,11 @@ Artikler, som de første kørsler i oktober hentede og afviste som for gamle, st
 Med hele 2026 i feedet skal tidslinjen også dække hele året. Den første fyldning den 7. oktober så kun 60 dage tilbage, og de daglige kørsler ser kun tre dage, så både januar til juli og de indslag fra august til oktober, som bagudindsamlingen finder nu, ville aldrig komme med.
 
 Routinen fylder derfor tidslinjen bagud, én måned pr. kørsel fra januar til oktober (`timeline.fill_until`). En måned er først klar, når alle kilder uden fejl er hentet bagud, og routinen har vurderet månedens indslag. Ellers ville tidslinjen bygge på et halvt billede. Routinen markerer hver måned som fyldt med `timeline-input --fill-done`, også når den ikke fandt nogen store begivenheder, så den ikke tager den samme måned igen. Reglerne for, hvad der kommer på tidslinjen, er de samme som ellers. Det koster omkring ti ekstra trin i routinen i alt.
+
+## 2026-10-09: Kommune/affaldsselskab i menuen
+
+Brugeren bad om at omdøbe afsendertypen "Kommunal" til "Kommune/affaldsselskab". Det korte navn, som står i menuen, på mærkerne over listen og hos skærmlæsere, er nu "Kommune/affaldsselskab". Det fulde navn på "Om kilderne" er stadig "Kommune og affaldsselskab". Det følger de andre typer, der har "og" i det fulde navn og skråstreg i det korte, fx "Tænketank og NGO" og "Tænketank/NGO". Id'et `kommunal` er uændret, så links og data virker som før.
+
+## 2026-10-09: Fanen Højdepunkter
+
+Brugeren bad om at kalde tidslinjen Højdepunkter. Menupunktet, sidens titel og overskriften hedder nu Højdepunkter, og siden er stadig en tidslinje. Adressen `tidslinje.html` er den samme, så links, der allerede er delt, virker. Internt hedder den stadig tidslinjen: `data/timeline/`, `timeline-input` og routinens trin 7 og 7b.

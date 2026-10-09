@@ -186,7 +186,7 @@ export const hidden = (text) => el('span', { class: 'visually-hidden', text });
 
 /**
  * Tegnsætning kun til skærmlæsere. Står inline med nul bredde og højde, så navnet bliver
- * "Kommunal, 6 indslag" (en skjult span med position: absolute giver "Kommunal , 6 indslag").
+ * "Kommune/affaldsselskab, 6 indslag" (en skjult span med position: absolute giver "Kommune/affaldsselskab , 6 indslag").
  */
 export const srPunct = (text = ',') => el('span', { class: 'sr-punct', text });
 
@@ -822,7 +822,7 @@ function frow({ name, title = null, iconName, style = null, onchange, sr = '', p
   const label = el('label', { class: `frow${withIcon ? ' has-icon' : ''}${style ? ' cat' : ''}${pending ? ' is-pending' : ''}`, style, title },
     input,
     withIcon ? (iconName ? icon(iconName) : el('span', { class: 'i' })) : null,
-    // Kommaet står inline lige efter navnet, så navnet bliver "Kommunal, 6 indslag" uden mellemrum før kommaet
+    // Kommaet står inline lige efter navnet, så navnet bliver "Kommune/affaldsselskab, 6 indslag" uden mellemrum før kommaet
     el('span', { class: 'name' }, name, srPunct(), sr ? hidden(` ${sr},`) : null),
     el('span', { class: 'n' }, num, pending ? null : hidden(' indslag')));
   return {
