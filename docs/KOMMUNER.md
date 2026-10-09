@@ -119,7 +119,7 @@ Alle otte universiteter hentes nu direkte. DTU, Aalborg Universitet og IT-Univer
 | Herning | Sitemap |  |
 | Holstebro | Nyhedsliste |  |
 | Horsens | Sitemap |  |
-| Ikast-Brande | Nyhedsliste |  |
+| Ikast-Brande | Nyhedsliste | Forsidens seneste nyheder, fordi nyhedslisten bruger JavaScript |
 | Lemvig | Sitemap |  |
 | Norddjurs | Sitemap |  |
 | Odder | Sitemap |  |

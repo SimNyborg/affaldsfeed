@@ -3150,7 +3150,7 @@
   homepage: https://www.billund.dk
   method: sitemap
   feeds: https://www.billund.dk/sitemap.xml
-  match: "(/nyheder/senest-nyt-om-grindsted-forureningerne/[^/]+|/nyheder-om-klima/(seneste-nyheder-om-klima|arkiv-over-klimanyheder))/[^/]+$"
+  match: "(/nyheder/senest-nyt-om-grindsted-forureningerne/[^/]+|/nyheder-om-klima/(seneste-nyheder-om-klima|arkiv-over-klimanyheder))/[^/]+/?$"
   filter: strict
   places: [k:billund]
   basis: offentlig
@@ -3506,14 +3506,14 @@
   category: kommunal
   homepage: https://ikast-brande.dk
   method: html
-  feeds: https://ikast-brande.dk/aktuelt-og-presse/nyheder
+  feeds: https://ikast-brande.dk/
   match: "/aktuelt-og-presse/nyheder/20[0-9]{2}/[^/]+$"
   filter: strict
   places: [k:ikast-brande]
   basis: offentlig
   status: aktiv
   checked: 2026-10-09
-  note: "Kommunens nyhedsliste. Strengt filter: kun links med et affaldsord hentes."
+  note: Nyhedslisten hentes med JavaScript, så forsidens seneste nyheder bruges. Strengt filter.
 
 - id: lemvig-kommune
   name: Lemvig Kommune
