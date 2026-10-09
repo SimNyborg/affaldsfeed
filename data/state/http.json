@@ -2,9 +2,6 @@
   "https://a-r-c.dk/feed/": {
     "last_modified": "Fri, 09 Oct 2026 11:24:31 GMT"
   },
-  "https://aeroeforsyning.dk/nyheder/affaldshaandtering": {
-    "last_modified": "Fri, 09 Oct 2026 09:34:04 GMT"
-  },
   "https://affaldplus.dk/rss.xml": {
     "etag": "\"1791550073\"",
     "last_modified": "Fri, 09 Oct 2026 12:47:53 GMT"
@@ -78,9 +75,6 @@
   "https://hjertingposten.dk/feed/": {
     "etag": "\"692d229dacb490a33fedbd001c0f756e\"",
     "last_modified": "Wed, 30 Sep 2026 09:54:13 GMT"
-  },
-  "https://htkforsyning.dk/nyheder/": {
-    "etag": "\"14-1791331578;gz\""
   },
   "https://ing.dk/rss": {
     "etag": "\"1791555962-gzip\"",
@@ -232,10 +226,6 @@
   "https://www.emballagefokus.dk/feed/": {
     "etag": "\"203981600be6abae4e00bed56e5600f4\"",
     "last_modified": "Wed, 07 Oct 2026 12:29:34 GMT"
-  },
-  "https://www.fh.dk/sitemap.xml": {
-    "etag": "\"1791538204\"",
-    "last_modified": "Fri, 09 Oct 2026 09:30:04 GMT"
   },
   "https://www.greenpeace.org/denmark/feed/": {
     "etag": "W/\"ac0269b8611ec9f6469d1582b88b892c\"",
