@@ -39,17 +39,6 @@
     "etag": "\"16d3-65d66a6c936f9\"",
     "last_modified": "Fri, 09 Oct 2026 11:28:46 GMT"
   },
-  "https://ctwatch.dk/sitemap1.xml": {
-    "etag": "W/\"e30c673c5afcf9a96bfb754b8b5e92c0-1\"",
-    "last_modified": "Fri, 09 Oct 2026 02:13:25 GMT"
-  },
-  "https://ctwatch.dk/sitemapindex.xml": {
-    "etag": "\"7dc0369d35861a85f8946817f5bbb365-1\"",
-    "last_modified": "Thu, 08 Oct 2026 02:13:13 GMT",
-    "sitemaps": [
-      "https://ctwatch.dk/sitemap1.xml"
-    ]
-  },
   "https://dagensbyggeri.dk/feed/?s=affald": {
     "etag": "\"a792699156b5f010911b2c426de697f3-gzip\"",
     "last_modified": "Fri, 09 Oct 2026 11:18:32 GMT"
@@ -67,22 +56,6 @@
       "https://dragoernyt.dk/sitemap-articles.xml",
       "https://dragoernyt.dk/sitemap-pages.xml",
       "https://dragoernyt.dk/sitemap-categories.xml"
-    ]
-  },
-  "https://energiwatch.dk/sitemap1.xml": {
-    "etag": "W/\"82c31da5292e29c0c7e63d04f955e1bf-2\"",
-    "last_modified": "Wed, 07 Oct 2026 02:12:37 GMT"
-  },
-  "https://energiwatch.dk/sitemap2.xml": {
-    "etag": "W/\"3dd5be65a48878ed37a520b217682349-1\"",
-    "last_modified": "Thu, 08 Oct 2026 02:13:12 GMT"
-  },
-  "https://energiwatch.dk/sitemapindex.xml": {
-    "etag": "\"965ed8808e167f9d1da91c320fdfad30-1\"",
-    "last_modified": "Thu, 08 Oct 2026 02:13:13 GMT",
-    "sitemaps": [
-      "https://energiwatch.dk/sitemap2.xml",
-      "https://energiwatch.dk/sitemap1.xml"
     ]
   },
   "https://energnist.dk/feed/": {
