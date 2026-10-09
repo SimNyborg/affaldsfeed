@@ -23,7 +23,7 @@ Kategorien hører til kilden og står i registret. Pipelinen gætter den aldrig 
 |---|---|---|
 | `nyhedsmedie` | Nationalt medie | landsdækkende nyhedsmedier og Ritzau-telegrammer |
 | `lokalmedie` | Lokalmedie | regionale dagblade, TV 2-regionerne, ugeaviser og lokale netaviser |
-| `fagmedie` | Fagmedie | fagblade og sektionsmedier om kommuner, forsyning, byggeri og emballage |
+| `fagmedie` | Fagmedie | fagblade og nichemedier om kommuner, forsyning, byggeri, emballage, teknik, videnskab og miljø |
 | `myndighed` | Myndighed og Folketing | ministerier, styrelser, tilsyn, råd, nævn, Høringsportalen og Folketinget |
 | `kommunal` | Kommune og affaldsselskab | kommuner og kommunalt ejede affalds-, forbrændings- og forsyningsselskaber |
 | `organisation` | Organisation og branche | interesse- og brancheorganisationer, herunder KL og Danske Regioner |
@@ -36,7 +36,8 @@ Regler for kategorierne:
 - Geografi går forud for type. Zero Waste Europe og CEWEP hører under EU og Norden, og typen står i `note`.
 - KL er en organisation. KL's magasin Danske Kommuner er et fagmedie med `owner: KL`.
 - Folketinget hører under Myndighed og Folketing. Genren `folketing` skiller sagerne ud.
-- Et medie, der dækker hele landet, er et nationalt medie, også når det har regionale redaktioner som DR. Et medie, der dækker en region, en kommune eller en by, er et lokalmedie. De to deler farve, og ikonet skiller dem ad.
+- Et nyhedsmedie, der dækker hele landet, er et nationalt medie, også når det har regionale redaktioner som DR. Et medie, der dækker en region, en kommune eller en by, er et lokalmedie. De to deler farve, og ikonet skiller dem ad.
+- Et medie med et fagområde er et fagmedie, også når det er landsdækkende. Det gælder fx Ingeniøren (teknik), Videnskab.dk (videnskab) og Danwatch (undersøgende journalistik om virksomheder og miljø).
 - Virksomheder er ikke en kategori.
 
 Når flere kilder dækker samme historie, står primærkilden først: myndighed og Folketing, så afsenderens egen kanal (kommunal, organisation, tænketank, forskning, EU og Norden), så fagmedie og til sidst nationale medier og lokalmedier.
