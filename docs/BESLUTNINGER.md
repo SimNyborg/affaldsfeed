@@ -161,3 +161,12 @@ Ni kommuner kan ikke hentes generisk. Tre har botbeskyttelse, to svarer ikke fra
 Brugeren bad om en kategori for sociale medier, der står i menuen, men ikke kan vælges. Den hedder Sociale medier og har `pending: true` i `config/categories.yaml`. Under Afsender har den en låst afkrydsning og "Afventer", hvor tallet ellers står. Under Kilde og på Om kilderne står den også med "Afventer". Den er ikke et valg, så "Vælg alle", "Fravælg alle" og status ser bort fra den, og `check` fejler, hvis en aktiv kilde får kategorien.
 
 De fleste sociale medier kræver login og har intet åbent feed, og projektet omgår aldrig login. Bluesky, Mastodon og YouTube har åbne feeds og er de oplagte steder at begynde. Før kategorien tages i brug, skal to ting afgøres: om fx en kommunes opslag hører under Sociale medier eller under kommunen, og hvilken farve kategorien skal have. Paletten har ikke plads til en farve mere, der kan skelnes tydeligt fra de andre (se DESIGNMANUAL.md), så kategorien er grå indtil da. Den har den laveste rang for primærkilde, så et opslag aldrig står over en artikel om samme sag.
+
+## 2026-10-09: De kommunale affaldsselskaber
+
+Brugeren bad om de kommunale affaldsselskaber, der manglede, fx Kredsløb, Fors, Reno Djurs og BOFA. Udgangspunktet er medlemslisten hos brancheforeningen Cirkulær (tidligere Dansk Affaldsforening) med 63 medlemmer. De medlemmer, der ikke blev hentet i forvejen, og som hverken er kommuner eller færøske, er afprøvet fra GitHub Actions, og 34 selskaber er kommet til. Feedet henter nu 45 selskaber. Oversigten står i [AFFALDSSELSKABER.md](AFFALDSSELSKABER.md).
+
+Selskaberne får deres ejerkommuner som faste steder, så deres nyheder kan findes med stedfiltret. Det gælder også de ni selskaber, der var med i forvejen, når ejerne er bekræftet. Rene affaldsselskaber har intet filter, forsyninger med vand, spildevand eller varme har normalt filter, og Fjernvarme Fyn har strengt filter, fordi selskabet mest skriver om fjernvarme. Ritzaus nyhedsrum bruges til Silkeborg Forsyning, DIN Forsyning, Assens Forsyning og Fors, fordi deres hjemmesider ikke har et feed eller et sitemap med datoer.
+
+Fors, Norfors, Nomi4s og Energnist er gået fra kandidat eller fravalgt til aktiv. Kredsløb har stadig botbeskyttelse, Langeland Forsyning har en captcha, og Reno Djurs, BOFA, Motas, Deponi Syd og Ressourceindsamling har ingen nyheder på hjemmesiden. De står med en note og kan prøves igen senere.
+
