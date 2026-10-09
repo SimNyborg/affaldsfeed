@@ -145,3 +145,13 @@ Brugeren bad også om at fjerne "Alle" fra gruppernes overskrifter, fordi pilen 
 ## 2026-10-09: Ingeniøren, Videnskab.dk og Danwatch er fagmedier
 
 Brugeren bad om at flytte de tre fra Nationalt medie til Fagmedie. De er landsdækkende, men dækker hvert sit fagområde: teknik, videnskab og undersøgende journalistik om virksomheder og miljø. Reglen i KILDER.md siger nu, at et medie med et fagområde er et fagmedie, også når det er landsdækkende, og Fagmedies hjælpetekst nævner teknik, videnskab og miljø. Som fagmedier står de før de nationale medier, når flere kilder dækker samme historie.
+
+## 2026-10-09: Kommunernes egne nyheder og alle otte universiteter
+
+Brugeren savnede kommunernes egne hjemmesider og flere universiteter, fx DTU. Indtil nu hentede feedet kun de kommunale affaldsselskaber og ingen kommuner. Nu hentes 89 af de 98 kommuner, de fleste via sitemappet med et mønster for nyhederne. Oversigten står i [KOMMUNER.md](KOMMUNER.md).
+
+Kommunerne skriver mest om andet end affald, så de har strengt filter, og indsamleren henter kun en nyhed, når adressen eller linkteksten har et affaldsord. Det holder antallet af kald nede, men en nyhed med en adresse uden affaldsord bliver ikke hentet. Søgningen og routinens søgning efter oversete nyheder dækker en del af det hul.
+
+Ritzaus nyhedsrum (via.ritzau.dk) har et RSS-feed pr. afsender. Det bruges nu til DTU, Aalborg Universitet, IT-Universitetet og Esbjerg Kommune, fordi deres egne sider ikke kan hentes generisk. Den samlede Via Ritzau-kanal for alle pressemeddelelser er stadig udskudt. Her bruges kun nyhedsrummet for afsendere, hvis egen side ikke kan hentes, så det giver ingen dubletter.
+
+Ni kommuner kan ikke hentes generisk. Tre har botbeskyttelse, to svarer ikke fra GitHub Actions, og fire har en nyhedsliste, der kræver JavaScript, eller ingen nyheder i sitemappet. De står som kandidater med en note.

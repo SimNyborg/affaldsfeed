@@ -86,7 +86,7 @@ De præcise point og grænser står i KONTRAKTER 5.4. Afviste indslag gemmes i 9
 
 ## Sådan tilføjer du en kilde
 
-1. Find kildens feed. `python -m affaldsfeed find-feed <url>` prøver de almindelige steder og rapporterer, hvad den finder. Man kan også selv kigge efter `<link rel="alternate">` i sidens kilde eller adresser som `/feed/`, `/rss` og `/rss.xml`.
+1. Find kildens feed. `python -m affaldsfeed find-feed <url>` prøver de almindelige steder og rapporterer, hvad den finder. Man kan også selv kigge efter `<link rel="alternate">` i sidens kilde eller adresser som `/feed/`, `/rss` og `/rss.xml`. Udsender afsenderen pressemeddelelser via Ritzau, har nyhedsrummet på via.ritzau.dk et RSS-feed (`/rss/releases/latest?publisherId=<id>`). Det kan bruges, når afsenderens egen side ikke kan hentes.
 2. Tjek kriterierne ovenfor.
 3. Tilføj en post i `sources.yaml` under den rigtige kategori:
 

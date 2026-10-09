@@ -220,28 +220,3 @@
   domains: [fagbladet3f.dk]
   basis: redaktionelt
   paywall: nej
-
-# ── Universiteter uden brugbart feed (kandidater i sources.yaml) ──
-- id: aau-dk
-  name: Aalborg Universitet
-  category: forskning
-  domains: [aau.dk]
-  basis: forskning
-
-- id: cbs-dk
-  name: CBS (Copenhagen Business School)
-  category: forskning
-  domains: [cbs.dk]
-  basis: forskning
-
-- id: itu-dk
-  name: IT-Universitetet
-  category: forskning
-  domains: [itu.dk]
-  basis: forskning
-
-- id: dtu-dk
-  name: DTU
-  category: forskning
-  domains: [dtu.dk]
-  basis: forskning
