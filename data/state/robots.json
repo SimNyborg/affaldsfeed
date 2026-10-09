@@ -792,7 +792,7 @@
     "body": "User-agent: *\nCrawl-delay: 10"
   },
   "newsletter-proxy.aws.jyllands-posten.dk": {
-    "fetched": "2026-10-08T10:34:51Z",
+    "fetched": "2026-10-09T10:42:41Z",
     "body": ""
   },
   "nibeavis.dk": {
@@ -824,7 +824,7 @@
     "body": "# Search engines\r\nUser-agent: *\r\nAllow: /\r\nDisallow: /assets/\r\n\r\n# Common Crawl\r\nUser-agent: CCBot\r\nDisallow: /\r\n\r\n# OpenAI modeltræning\r\nUser-agent: GPTBot\r\nDisallow: /\r\n\r\n# Anthropic, ældre token\r\nUser-agent: anthropic-ai\r\nDisallow: /\r\n\r\n# Anthropic modeltræning\r\nUser-agent: ClaudeBot\r\nDisallow: /\r\n\r\n# ByteDance\r\nUser-agent: Bytespider\r\nDisallow: /\r\n\r\n# Meta AI-crawler\r\nUser-agent: Meta-ExternalAgent\r\nDisallow: /\r\n\r\n# Apple: fravalg af modeltræning\r\nUser-agent: Applebot-Extended\r\nDisallow: /\r\n\r\n# Google-Extended\r\nUser-agent: Google-Extended\r\nDisallow: /\r\n\r\nSitemap: https://nordjyske.dk/sitemap.xml\r\n"
   },
   "nordsoeposten.dk": {
-    "fetched": "2026-10-08T10:34:51Z",
+    "fetched": "2026-10-09T10:42:41Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://nordsoeposten.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "nordvaerk.dk": {
@@ -860,7 +860,7 @@
     "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://kobenhavnliv.dk/ai.txt                                                                                   ###\n########################################################################################################################\n                        \n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n             \nUser-agent: FacebookBot\nDisallow: /\n\n# META - Product improvement and AI\nUser-agent: meta-externalagent\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: PiplBot\nDisallow: /\n\n# Search engines\nUser-agent: *\nDisallow: /editors/signature/*\nDisallow: /contimo/layout/native\nDisallow: /*noHeader=*\nAllow: /\n\n# Sitemap\nSitemap: https://kobenhavnliv.dk/sitemap\nSitemap: https://kobenhavnliv.dk/advertorials/sitemap.xml\nSitemap: https://kobenhavnliv.dk/kandidattest/sitemap.xml"
   },
   "pingvinnyt.dk": {
-    "fetched": "2026-10-08T10:34:51Z",
+    "fetched": "2026-10-09T10:42:41Z",
     "body": "User-agent: *\r\nDisallow: /wp-admin/\r\nAllow: /wp-admin/admin-ajax.php\r\n\r\nSitemap: https://pingvinnyt.dk/sitemap.xml\r\nSitemap: https://pingvinnyt.dk/sitemap.rss\n"
   },
   "plast.dk": {
