@@ -491,6 +491,10 @@
     "fetched": "2026-10-08T12:29:21Z",
     "body": "User-agent: *\nDisallow:"
   },
+  "gladsaxe.dk": {
+    "fetched": "2026-10-09T13:32:35Z",
+    "body": "User-agent: * \nDisallow: /app_browsers/\nDisallow: /app_code/\nDisallow: /app_data/\nDisallow: /app_plugins/\nDisallow: /bin/\nDisallow: /cdn-cgi/\nDisallow: /config/\nDisallow: /controllers/\nDisallow: /config/\nDisallow: /css/\nDisallow: /images/\nDisallow: /obj/\nDisallow: /properties/\nDisallow: /robots/\nDisallow: /scripts/\nDisallow: /umbraco/\nDisallow: /umbraco_client/\nDisallow: /views/\nUser-agent: Sogou web spider\nCrawl-delay: 10\nDisallow: /\nsitemap:https://gladsaxe.dk/sitemap.xml\n"
+  },
   "gladsaxenetnyt.dk": {
     "fetched": "2026-10-09T08:02:44Z",
     "body": ""
@@ -915,6 +919,10 @@
     "fetched": "2026-10-08T06:01:09Z",
     "body": ""
   },
+  "silkeborg.dk": {
+    "fetched": "2026-10-09T13:32:35Z",
+    "body": "User-agent: * \nDisallow: /app_browsers/\nDisallow: /app_code/\nDisallow: /app_data/\nDisallow: /app_plugins/\nDisallow: /bin/\nDisallow: /cdn-cgi/\nDisallow: /config/\nDisallow: /controllers/\nDisallow: /config/\nDisallow: /css/\nDisallow: /images/\nDisallow: /obj/\nDisallow: /properties/\nDisallow: /robots/\nDisallow: /scripts/\nDisallow: /umbraco/\nDisallow: /umbraco_client/\nDisallow: /views/\nUser-agent: Sogou web spider\nCrawl-delay: 10\nDisallow: /\nsitemap:https://silkeborg.dk/sitemap.xml\n"
+  },
   "sjnyheder.dk": {
     "fetched": "2026-10-08T09:11:01Z",
     "body": "User-agent: *\nDisallow: /\n"
@@ -1000,7 +1008,7 @@
     "body": "# version: 2025-03-07\n\nUser-agent: *\nSitemap: https://www.tvsyd.dk/sitemap.xml\nDisallow: /cp/\nDisallow: /cp\nDisallow: /livewire/update\nDisallow: /api/events\nAllow: /\n\n# Block AI Training Crawlers\n\n# OpenAI\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: ClaudeBot\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\n# Common Crawl\nUser-agent: CCBot\nDisallow: /\n\n# Cohere\nUser-agent: cohere-ai\nDisallow: /\n\n# Google AI\nUser-agent: Google-Extended\nDisallow: /\n\n# Perplexity\nUser-agent: PerplexityBot\nDisallow: /\n\n# Apple\nUser-agent: Applebot-Extended\nDisallow: /\n\n# Block SEO Crawlers\n\n# Block AhrefsBot\nUser-agent: AhrefsBot\nDisallow: /\n\n# Block SemrushBot\nUser-agent: SemrushBot\nDisallow: /\n\n# Block DataForSeoBot\nUser-agent: DataForSeoBot\nDisallow: /\n\n# Block OpenindexBot\nUser-agent: OpenindexBot\nDisallow: /\n\n# Block MJ12bot\nUser-agent: MJ12bot\nDisallow: /\n\n# Block SentiBot\nUser-agent: SentiBot\nDisallow: /\n"
   },
   "ugeavisen.dk": {
-    "fetched": "2026-10-08T07:48:34Z",
+    "fetched": "2026-10-09T13:32:35Z",
     "body": "User-agent: *\nDisallow: /purchase-flow-login\nDisallow: /redirect-to-purchase-flow\n"
   },
   "vafo.dk": {
@@ -1010,6 +1018,10 @@
   "vardekommune.dk": {
     "fetched": "2026-10-09T07:48:56Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://vardekommune.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
+  },
+  "vejen.dk": {
+    "fetched": "2026-10-09T13:32:35Z",
+    "body": "User-agent: * \nDisallow: /app_browsers/\nDisallow: /app_code/\nDisallow: /app_data/\nDisallow: /app_plugins/\nDisallow: /bin/\nDisallow: /cdn-cgi/\nDisallow: /config/\nDisallow: /controllers/\nDisallow: /config/\nDisallow: /css/\nDisallow: /images/\nDisallow: /obj/\nDisallow: /properties/\nDisallow: /robots/\nDisallow: /scripts/\nDisallow: /umbraco/\nDisallow: /umbraco_client/\nDisallow: /views/\nUser-agent: Sogou web spider\nCrawl-delay: 10\nDisallow: /\nsitemap:https://vejen.dk/sitemap.xml\nUser-agent: *\nDisallow: *.pdf\nDisallow: *.doc*\nDisallow: *.xls*\nDisallow: *.pptx*\n"
   },
   "vestfor.dk": {
     "fetched": "2026-10-08T16:27:55Z",
@@ -1046,6 +1058,10 @@
   "videnskab.dk": {
     "fetched": "2026-10-08T16:27:55Z",
     "body": "User-agent: Semrushbot-SA\nAllow: /\n\nUser-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: *\nDisallow: /wp/wp-admin/\nAllow: /wp/wp-admin/admin-ajax.php\n\nSitemap: https://videnskab.dk/sitemap_index.xml\n"
+  },
+  "viskaber.nyborg.dk": {
+    "fetched": "2026-10-09T13:32:35Z",
+    "body": "User-agent: *\nDisallow: /admin/\n\nSITEMAP: https://viskaber.nyborg.dk/sitemap.xml\n"
   },
   "vodskovavis.dk": {
     "fetched": "2026-10-09T08:02:44Z",
