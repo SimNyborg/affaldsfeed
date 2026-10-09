@@ -33,7 +33,7 @@ python -m affaldsfeed validate-judgments [--file PATH]
 python -m affaldsfeed heartbeat
 python -m affaldsfeed overview-input --period dag|uge|maaned|aar
 python -m affaldsfeed validate-overview [--period P] [--archive]
-python -m affaldsfeed timeline-input [--days 3]
+python -m affaldsfeed timeline-input [--days 3 | --fill | --fill-done ÅÅÅÅ-MM]
 python -m affaldsfeed validate-timeline [--file PATH]
 python -m affaldsfeed import FILE.csv [--replace]     # fase 4
 python -m affaldsfeed find-feed URL                   # fase 4

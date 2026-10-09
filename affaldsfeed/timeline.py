@@ -1,12 +1,14 @@
 """Tidslinjen: de vigtigste begivenheder, valgt af Claude-routinen (KONTRAKTER §7.3).
 
 timeline-input giver routinen nye historier og de nuværende begivenheder, validate-timeline tjekker
-data/timeline/*.jsonl, og export_timeline bygger timeline.json til siden.
+data/timeline/*.jsonl, og export_timeline bygger timeline.json til siden. timeline-input --fill giver én måned
+ad gangen til opfyldningen bagud til window_start, og --fill-done markerer den i data/timeline/opfyldning.json.
 """
 
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import re
 from collections import Counter, defaultdict
@@ -18,15 +20,16 @@ from typing import Any
 
 from pydantic import ValidationError
 
-from affaldsfeed import paths
+from affaldsfeed import paths, store
 from affaldsfeed.config import Config
 from affaldsfeed.display import item_time, split_ids, story_hints
-from affaldsfeed.judgments import format_errors, print_json, rel, unknown_places
+from affaldsfeed.judgments import format_errors, pending_candidates, print_json, rel, unknown_places
 from affaldsfeed.models import (
     CATEGORY_RANK,
     TIMELINE_ITEMS_MAX,
     DisplayItem,
     Geo,
+    Settings,
     TimelineDeletion,
     TimelineEvent,
     TimelineFeed,
@@ -36,11 +39,13 @@ from affaldsfeed.models import (
 )
 from affaldsfeed.overview import Data, approved_items, load_data, word_count
 from affaldsfeed.stories import group_stories
-from affaldsfeed.timeutil import ensure_utc, iso, now_utc, to_cph
+from affaldsfeed.timeutil import cph_day_start, ensure_utc, iso, now_utc, to_cph
 
 log = logging.getLogger(__name__)
 
 FILE_RE = re.compile(r"^(\d{4}-\d{2})\.jsonl$")
+MONTH_RE = re.compile(r"^\d{4}-(0[1-9]|1[0-2])$")
+FILL_FILE = "opfyldning.json"  # data/timeline/: de måneder, opfyldningen har dækket
 TIMELINE_VERSION = 1
 TITLE_MAX_WORDS = 12
 SUMMARY_MAX_WORDS = 40
@@ -175,20 +180,113 @@ def _ref(d: DisplayItem, names: dict[str, str]) -> dict[str, Any]:
 # ── timeline-input ──────────────────────────────────────────
 
 
-def build_timeline_input(now: datetime, data: Data, days: int | None = None) -> dict[str, Any]:
+# ── Opfyldning bagud (KONTRAKTER §7.3) ───────────────────────
+
+
+def month_bounds(month: str) -> tuple[datetime, datetime]:
+    """Månedens start og den følgende måneds start i København, som UTC."""
+    y, m = int(month[:4]), int(month[5:7])
+    return cph_day_start(date(y, m, 1)), cph_day_start(date(y + m // 12, m % 12 + 1, 1))
+
+
+def fill_months(settings: Settings) -> list[str]:
+    """Månederne fra window_start til og med timeline.fill_until; tom uden dem."""
+    start, until = settings.window_start, settings.timeline.fill_until
+    if start is None or until is None:
+        return []
+    out: list[str] = []
+    y, m = start.year, start.month
+    while f"{y:04d}-{m:02d}" <= until:
+        out.append(f"{y:04d}-{m:02d}")
+        y, m = (y + 1, 1) if m == 12 else (y, m + 1)
+    return out
+
+
+def fill_path() -> Path:
+    return paths.TIMELINE_DIR / FILL_FILE
+
+
+def load_fill_state() -> dict[str, str]:
+    """De fyldte måneder, {"ÅÅÅÅ-MM": tidspunkt}. ValueError, når filen er ugyldig."""
+    p = fill_path()
+    if not p.exists():
+        return {}
+    try:
+        raw = json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        raise ValueError(f"{rel(p)}: ikke gyldig JSON ({e})") from e
+    months = raw.get("months") if isinstance(raw, dict) else None
+    ok = isinstance(months, dict) and set(raw) == {"months"} and all(
+        isinstance(k, str) and MONTH_RE.match(k) and isinstance(v, str) for k, v in months.items()
+    )
+    if not ok:
+        raise ValueError(f'{rel(p)}: skal være {{"months": {{"ÅÅÅÅ-MM": tidspunkt}}}}; skriv den med --fill-done')
+    return dict(months)
+
+
+@dataclass(frozen=True)
+class FillStatus:
+    month: str | None  # den næste måned, der er klar, ellers None
+    reason: str
+    left: list[str]  # månederne, der mangler
+
+
+def fill_status(data: Data, now: datetime) -> FillStatus:
+    """Den næste måned til opfyldningen. Den er klar, når bagudindsamlingen er færdig hos alle kilder uden fejl,
+    og routinen har vurderet månedens indslag (de, der stadig står i pending)."""
+    settings = data.config.settings
+    months = fill_months(settings)
+    if not months:
+        return FillStatus(None, "ingen opfyldning (window_start eller timeline.fill_until er ikke sat)", [])
+    done = load_fill_state()
+    left = [m for m in months if m not in done]
+    if not left:
+        return FillStatus(None, "alle måneder er fyldt", [])
+    from affaldsfeed.collect import COLLECTORS  # sent: kun opfyldningen har brug for indsamlerne
+
+    states = store.load_source_states()
+    missing = sorted(
+        s.id
+        for s in data.sources
+        if s.status == "aktiv" and s.method in COLLECTORS
+        and (s.id not in states or (states[s.id].fails == 0 and settings.needs_backfill(states[s.id])))
+    )
+    if missing:
+        return FillStatus(
+            None, f"venter på bagudindsamlingen hos {len(missing)} kilder, fx {', '.join(missing[:5])}", left
+        )
+    month = left[0]
+    start, end = month_bounds(month)
+    waiting = [
+        c
+        for c in pending_candidates(data.info, data.candidates, data.judgments, now, settings.pending_hours)
+        if start <= item_time(c) < end
+    ]
+    if waiting:
+        return FillStatus(None, f"venter på routinens vurdering af {len(waiting)} indslag fra {month}", left)
+    return FillStatus(month, f"{month} er klar", left)
+
+
+def build_timeline_input(
+    now: datetime, data: Data, days: int | None = None, month: str | None = None
+) -> dict[str, Any]:
+    """Input til routinen: de seneste dages historier, eller med month en hel måned til opfyldningen."""
     now = ensure_utc(now)
     settings = data.config.settings
     ts = settings.timeline
     events = load_events()
-    first_fill = not events
-    if days is None:
-        days = ts.first_fill_days if first_fill else ts.input_days
-    start = now - timedelta(days=days)
+    first_fill = not events and month is None
+    if month is not None:
+        start, end = month_bounds(month)
+    else:
+        if days is None:
+            days = ts.first_fill_days if first_fill else ts.input_days
+        start, end = now - timedelta(days=days), now
     info = data.info
     names = {sid: i.name for sid, i in info.items()}
     cat_map = {sid: i.category for sid, i in info.items()}
 
-    approved = approved_items(data, now, start, now)
+    approved = [d for d in approved_items(data, now, start, end) if month is None or item_time(d) < end]
     groups = group_stories(
         approved,
         cat_map,
@@ -223,20 +321,30 @@ def build_timeline_input(now: datetime, data: Data, days: int | None = None) -> 
         key = (CATEGORY_RANK.get(cat or "", 9), -len(g), -item_time(head).timestamp(), head.id)
         stories.append((key, entry))
     stories.sort(key=lambda x: x[0])
+    if month is not None:
+        stories = stories[: ts.fill_max_stories]
 
     today = to_cph(now).date()
-    recent = [e for e in sort_events(events.values()) if e.date >= today - timedelta(days=ts.events_days)]
+    if month is not None:
+        # Månedens begivenheder og en uge til hver side, så en historie over månedsskiftet ikke kommer to gange
+        first, last = to_cph(start).date(), to_cph(end).date() - timedelta(days=1)
+        recent = [e for e in sort_events(events.values()) if first - timedelta(days=7) <= e.date <= last + timedelta(days=7)]
+    else:
+        first, last = to_cph(start).date(), today
+        recent = [e for e in sort_events(events.values()) if e.date >= today - timedelta(days=ts.events_days)]
     counts = Counter(monday(e.date) for e in events.values())
     weeks = []
-    m = monday(to_cph(start).date())
-    while m <= today:
+    m = monday(first)
+    while m <= last:
         weeks.append({"week": week_label(m), "monday": m.isoformat(), "events": counts.get(m, 0)})
         m += timedelta(days=7)
 
+    fill = {"fill_month": month} if month is not None else {}
     return {
         "now": iso(now),
         "first_fill": first_fill,
-        "window": {"start": iso(start), "end": iso(now)},
+        **fill,
+        "window": {"start": iso(start), "end": iso(end)},
         "rules": {
             "title_max_words": TITLE_MAX_WORDS,
             "summary_max_words": SUMMARY_MAX_WORDS,
@@ -254,8 +362,50 @@ def build_timeline_input(now: datetime, data: Data, days: int | None = None) -> 
     }
 
 
+def _fill_done(month: str, now: datetime) -> int:
+    """Markér en måned i opfyldningen som fyldt (data/timeline/opfyldning.json)."""
+    months = fill_months(load_data().config.settings)
+    if month not in months:
+        span = f"{months[0]} til {months[-1]}" if months else "ingen måneder"
+        log.error("%s er ikke en måned i opfyldningen (%s)", month, span)
+        return 1
+    try:
+        state = load_fill_state()
+    except ValueError as e:
+        log.error("%s", e)
+        return 1
+    state[month] = iso(now)
+    store.write_json(fill_path(), {"months": dict(sorted(state.items()))})
+    left = len([m for m in months if m not in state])
+    print(f"timeline-input: {month} er markeret som fyldt; {left} {'måned' if left == 1 else 'måneder'} tilbage")
+    return 0
+
+
 def main_timeline_input(args: argparse.Namespace) -> int:
     now = now_utc(getattr(args, "now", None))
+    done_month = getattr(args, "fill_done", None)
+    if done_month:
+        return _fill_done(done_month, now)
+    if getattr(args, "fill", False):
+        data = load_data()
+        try:
+            status = fill_status(data, now)
+        except ValueError as e:
+            log.error("%s", e)
+            return 1
+        if status.month is None:
+            log.info("opfyldning: %s (%d måneder tilbage)", status.reason, len(status.left))
+            print_json({"now": iso(now), "fill_month": None, "status": status.reason, "months_left": status.left})
+            return 0
+        out = build_timeline_input(now, data, month=status.month)
+        log.info(
+            "opfyldning af %s: %d historier og %d begivenheder i input; skriv nye linjer i data/timeline/%s.jsonl "
+            "med updated %s, og kør bagefter timeline-input --fill-done %s",
+            status.month, len(out["stories"]), len(out["events"]), to_cph(now).strftime("%Y-%m"), out["now"],
+            status.month,
+        )
+        print_json(out)
+        return 0
     out = build_timeline_input(now, load_data(), getattr(args, "days", None))
     month = to_cph(now).strftime("%Y-%m")
     log.info(
@@ -422,6 +572,10 @@ def main_validate_timeline(args: argparse.Namespace) -> int:
         print("validate-timeline: ingen tidslinjefiler at validere")
         return 0
     errors, warnings, count, n_events = validate_timeline(load_data(), now, targets)
+    try:
+        load_fill_state()
+    except ValueError as e:
+        errors.append(str(e))
     for w in warnings:
         print(f"ADVARSEL {w}")
     for e in errors:

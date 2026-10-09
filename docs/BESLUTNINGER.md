@@ -188,3 +188,9 @@ Januar til september bliver derfor tyndere for de nationale medier end for kommu
 Artikler, som de første kørsler i oktober hentede og afviste som for gamle, står som sete. Ved kildens første bagudkørsel glemmes de sete adresser, der ikke blev til en kandidat, så de hentes igen. Gamle indslag, som forfiltret afviser, gemmes ikke i `data/rejected/`, for et års dagssitemaps ville ellers give flere titusinde poster dér.
 
 `feed.json` er stadig én fil. Med et helt år bliver den større, anslået 2 til 3 MB. Komprimeret med gzip, som GitHub Pages bruger, fylder den omkring en femtedel, og listen viser kun 60 kort ad gangen. Bliver siden for langsom, deles feedet op i månedsfiler.
+
+## 2026-10-09: Tidslinjen fyldes bagud til januar
+
+Med hele 2026 i feedet skal tidslinjen også dække hele året. Den første fyldning den 7. oktober så kun 60 dage tilbage, og de daglige kørsler ser kun tre dage, så både januar til juli og de indslag fra august til oktober, som bagudindsamlingen finder nu, ville aldrig komme med.
+
+Routinen fylder derfor tidslinjen bagud, én måned pr. kørsel fra januar til oktober (`timeline.fill_until`). En måned er først klar, når alle kilder uden fejl er hentet bagud, og routinen har vurderet månedens indslag. Ellers ville tidslinjen bygge på et halvt billede. Routinen markerer hver måned som fyldt med `timeline-input --fill-done`, også når den ikke fandt nogen store begivenheder, så den ikke tager den samme måned igen. Reglerne for, hvad der kommer på tidslinjen, er de samme som ellers. Det koster omkring ti ekstra trin i routinen i alt.
