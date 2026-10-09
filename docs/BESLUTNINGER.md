@@ -141,3 +141,7 @@ Brugeren ville også have knappen "Vælg alle"/"Fravælg alle" under Sted. Den v
 Med 153 aktive kilder var listen under Kilde lang. Brugeren bad om, at afsendertyperne starter foldet sammen, så man har overblik og selv folder dem ud. Søger man i "Find kilde", foldes de typer ud, der har et træf.
 
 Brugeren bad også om at fjerne "Alle" fra gruppernes overskrifter, fordi pilen er nok til at vise, at man kan folde ud. En status står nu kun, når en gruppe eller en afsendertype er filtreret, fx "Ingen" eller "5 af 17". Så kan man stadig se et filter i en gruppe, der er foldet sammen.
+
+## 2026-10-09: Ingeniøren, Videnskab.dk og Danwatch er fagmedier
+
+Brugeren bad om at flytte de tre fra Nationalt medie til Fagmedie. De er landsdækkende, men dækker hvert sit fagområde: teknik, videnskab og undersøgende journalistik om virksomheder og miljø. Reglen i KILDER.md siger nu, at et medie med et fagområde er et fagmedie, også når det er landsdækkende, og Fagmedies hjælpetekst nævner teknik, videnskab og miljø. Som fagmedier står de før de nationale medier, når flere kilder dækker samme historie.

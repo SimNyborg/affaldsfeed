@@ -30,7 +30,7 @@
    "color": "#107C86",
    "color_dark": "#2CC4CB",
    "icon": "tidsskrift",
-   "help": "Fagblade og sektionsmedier om kommuner, forsyning, byggeri og emballage."
+   "help": "Fagblade og nichemedier om kommuner, forsyning, byggeri, emballage, teknik, videnskab og miljø."
   },
   {
    "id": "myndighed",
@@ -245,7 +245,7 @@
   {
    "id": "ingenioeren",
    "name": "Ingeniøren",
-   "category": "nyhedsmedie",
+   "category": "fagmedie",
    "homepage": "https://ing.dk",
    "lang": "da",
    "paywall": "delvis",

@@ -19,7 +19,6 @@ Kilder, der kun kan hentes via sitemap eller nyhedsside, kræver indsamleren `co
 |---|---|---|
 | DR Nyheder | Landsdækkende historier om affald, gebyrer og kommunale ordninger | RSS (strengt filter) |
 | Avisen.dk (Ritzau) | Ritzau-telegrammer, som mange medier bygger på | RSS |
-| Ingeniøren | Teknik bag forbrænding, CO2-fangst og genanvendelse | RSS (strengt filter) |
 
 Senere: Politiken, Berlingske, Børsen, Jyllands-Posten, Information, B.T. og Mandag Morgen.
 
@@ -40,6 +39,7 @@ Senere: Politiken, Berlingske, Børsen, Jyllands-Posten, Information, B.T. og Ma
 | Danske Kommuner | KL's magasin om kommunal drift og økonomi | Sitemap |
 | Teknik & Miljø | Fagbladet for kommunernes tekniske forvaltninger | Sitemap |
 | EmballageFOKUS | Emballage og udvidet producentansvar | RSS |
+| Ingeniøren | Teknik bag forbrænding, CO2-fangst og genanvendelse | RSS (strengt filter) |
 
 Senere: Dagens Byggeri, TekniskFOKUS, Energy Supply, BygTek og WasteTech.
 
