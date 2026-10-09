@@ -89,6 +89,9 @@ Hver kategori har en farve, et ikon og et kort navn. Ikonet står i kategoriens 
 | Tænketank og NGO | Tænketank/NGO | #B8346C | #FF84BA | `paere` | pære |
 | Forskning og universitet | Forskning | #7A5C0D | #AE9417 | `kolbe` | kolbe |
 | EU og Norden | EU/Norden | #84241B | #DD7161 | `stjerner` | stjernekreds |
+| Sociale medier | Sociale medier | #565656 | #A9B3AE | `taleboble` | taleboble |
+
+Sociale medier afventer (`pending: true` i `config/categories.yaml`). Kategorien vises, så man kan se, at den kommer, men den kan ikke vælges og har ingen kilder. Ikon, navn og "Afventer" står i `--muted`, og farven i tabellen er derfor den samme som `--muted`. Kategorien får sin egen farve, når den tages i brug. Indtil da springer `tools/check_colors.py` den over.
 
 Ikonerne er egne inline SVG'er i `site/assets/ikoner.svg`. De bruger `currentColor`, og der er intet ikonbibliotek. `tools/check_colors.py` tjekker paletten: CIEDE2000 på mindst 20 mellem alle par, simulering af deutan og protan og kontrast på mindst 3:1 mod `--surface` i begge tilstande. Ændres en farve, skal tjekket være grønt igen. Nationalt medie og Lokalmedie er begge nyhedsmedier og deler bevidst farve. Ikonet skiller dem ad, og tjekket måler dem som én farve. En niende farve med mindst 20 til alle de andre findes kun som neongul eller næsten sort. Den nuværende palet har mindst 22 mellem alle par i begge tilstande. Ved simuleret farveblindhed ligger enkelte par mellem 8,8 og 10, så farven står aldrig alene: ikon og navn følger altid med.
 
@@ -103,7 +106,7 @@ Panelet er et `<search>` med overskriften "Filtre" og tekstknappen "Nulstil" til
 | Gruppe | Indhold |
 |---|---|
 | Sted | søgefeltet "Kommune eller by", de valgte kommuner og byer, regionerne og "Landsdækkende" |
-| Afsender | 9 rækker med kategoriikon |
+| Afsender | 10 rækker med kategoriikon, heraf én, der afventer |
 | Tema | 13 rækker, en streg og "Uden tema" |
 | Kilde | feltet "Find kilde" og et foldbart afsnit pr. afsendertype med typens kilder |
 | Genre | 6 rækker |
@@ -136,6 +139,7 @@ Kilde viser alle kilder i `feed.json` som rækker med flueben, så man kan frav�
 - Øverst er feltet "Find kilde" med lup. Det indsnævrer listen, mens man skriver, med samme foldning som søgningen (accenter, å/aa, æ/ae og ø/oe). Esc tømmer feltet. Passer ingen, står "Ingen kilde passer til "x"." (13/18, `--muted`) som status. Mens man skriver, er de afsendertyper foldet ud, der har et træf, og de andre er skjult. Tømmes feltet, er typerne foldet som før.
 - Kilderne står i et afsnit pr. afsendertype i konfigurationens rækkefølge. Afsnittene er foldet sammen fra start, så man først ser typerne. Overskriften er en `<summary>` på én række (`--h-row`) med kategoriikonet (16 px) over fluebenene, det korte navn i 13/18 og 600 og en pil til højre. Er nogle af typens kilder fravalgt, står "5 af 17" eller "Ingen" foran pilen. Inden for afsnittet står kilderne alfabetisk. Brugerens fold huskes ikke.
 - Rækkerne er filterrækker uden ikon. Tallet er antallet af kort, kilden giver med de andre filtre, også når kilden er fravalgt, så man kan se, hvad man går glip af.
+- En afsendertype, der afventer, står på sin plads blandt typerne som en række med ikon, navn og "Afventer" i `--muted`, hvor status ellers står. Den har ingen pil, kan ikke foldes ud og er skjult, mens der søges.
 
 ### Filterrækken
 
@@ -147,6 +151,7 @@ Alle lister i panelet bruger samme række: en `<label>` med et ægte afkrydsning
 - Tallet står højrestillet i 13/18 og `--muted` med en skjult tekst " indslag". Tallet er antallet af kort, rækken giver sammen med de andre gruppers filtre.
 - Et valg ændrer kun afkrydsningen. Navnet beholder vægt og farve, så intet flytter sig.
 - En række med 0 har navnet i `--muted`, bliver stående og kan stadig vælges.
+- En række, der afventer, har en låst afkrydsning (`disabled`) uden flueben, ikon og navn i `--muted` og ordet "Afventer", hvor tallet ellers står. Talkolonnen vokser med ordet. Rækken har ingen hover-flade, markøren er en almindelig pil, og Tab springer den over. Den er ikke et valg, så "Vælg alle", "Fravælg alle", status ("8 af 9") og URL'en ser bort fra den. Skærmlæseren hører "Sociale medier, Afventer" og at feltet er utilgængeligt.
 - Hover giver `--hover-bg` (kun med mus). Fokusringen sidder indvendigt på hele rækken, og rækkens felt har `scroll-margin-block: 12px`, så ringen ikke klippes, når panelet ruller ved Tab.
 - Rækken har `padding: 0 8px; margin: 0 -8px`, så afkrydsningen flugter med overskriften og felterne, mens hover-fladen går 8 px ud.
 - Sidepanelet har `scrollbar-gutter: stable`. Tager en klassisk scrollbar plads, trækkes dens bredde fra panelets højre polstring (højst ned til 8 px, så rækkernes hover-flade på 8 px ikke giver vandret scroll), så navnene stadig har plads. Det samme gælder arket.
@@ -278,7 +283,7 @@ Footeren har baggrund `--footer` og hvid tekst i 13/18: teksten om projektet og 
 
 ### Om kilderne
 
-Siden bruger samme demo-strimmel, header og footer og en læsekolonne på højst 720 px uden sidepanel. Fra 1024 px står læsekolonnen ved containerens venstrekant og flugter med logoet; under 1024 px står den som listepanelet på forsiden. Afsendertyperne står som rækker med ikon, det fulde navn og antal kilder (`id="typer"`), i to kolonner fra 560 px med 48 px imellem. Hver kategori har sin egen sektion med ikonet (20 px) i overskriften, kategoriens forklaring og kildelisten. Statusmærket står altid øverst til højre i kildens række. Har kilden et logo, står det i 16 px foran navnet, 8 px fra det. Tallene i "Status lige nu" står i 20/28 og vægt 600.
+Siden bruger samme demo-strimmel, header og footer og en læsekolonne på højst 720 px uden sidepanel. Fra 1024 px står læsekolonnen ved containerens venstrekant og flugter med logoet; under 1024 px står den som listepanelet på forsiden. Afsendertyperne står som rækker med ikon, det fulde navn og antal kilder (`id="typer"`), i to kolonner fra 560 px med 48 px imellem. En type, der afventer, har "Afventer" i stedet for antallet. Hver kategori har sin egen sektion med ikonet (20 px) i overskriften, kategoriens forklaring og kildelisten. Afventer kategorien, står der "Kategorien afventer og har ingen kilder endnu." i stedet for listen. Statusmærket står altid øverst til højre i kildens række. Har kilden et logo, står det i 16 px foran navnet, 8 px fra det. Tallene i "Status lige nu" står i 20/28 og vægt 600.
 
 ## Tone og mikrotekster
 
@@ -295,6 +300,7 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Panel og ark | Filtre · Nulstil · Luk filtre · Vis 23 indslag |
 | Grupper | Sted · Afsender · Tema · Kilde · Genre |
 | Status i grupperne | Ingen · 7 af 8 · 3 steder |
+| Afventer | Afventer · Kategorien afventer og har ingen kilder endnu. |
 | Værktøjer | Vælg alle · Fravælg alle |
 | Sted | Kommune eller by · Find kommune eller by · Flest indslag lige nu · Ingen steder har indslag lige nu. · by i Nyborg · Landsdækkende |
 | Kilde | Find kilde · Ingen kilde passer til "x". · Uden Avisen.dk · Uden 5 kilder · 13 kilder · Vis Avisen.dk igen · Vis alle kilder |

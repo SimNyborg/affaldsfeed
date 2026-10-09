@@ -68,7 +68,7 @@ En YAML-liste. Felter (se `models.Source`):
 |---|---|---|---|
 | id | str `^[a-z0-9][a-z0-9-]*$` | påkrævet | unikt, ændres aldrig |
 | name | str | påkrævet | |
-| category | CategoryId | påkrævet | 8 værdier, se 3.2 |
+| category | CategoryId | påkrævet | 10 værdier, se 3.2 |
 | homepage | str (http/https) | påkrævet | værtsnavnet bruges til at matche søgeresultater |
 | method | `rss`\|`sitemap`\|`html`\|`oda`\|`search` | `rss` | alle fem er implementeret |
 | feeds | str \| list[str] | påkrævet | normaliseres til list; sitemap: sitemap- eller indeks-URL'er (`{dato}` giver dagens og gårsdagens sitemap, se 5.6); html: listesider. `{dato}` er kun tilladt ved `method: sitemap` (check giver fejl) |
@@ -95,13 +95,13 @@ En YAML-liste. Felter (se `models.Source`):
 Søgekilder (`method: search`) har `category: nyhedsmedie` (ignoreres ved visning), `feeds` = URL-skabeloner med `{q}`, og vises aldrig selv som afsender. Deres indslag krediteres udgiveren (se 5.3).
 
 ### 3.2 Faste id'er
-- **CategoryId**: `nyhedsmedie`, `lokalmedie`, `fagmedie`, `myndighed`, `kommunal`, `organisation`, `taenketank`, `forskning`, `eu_norden`. `nyhedsmedie` er landsdækkende nyhedsmedier og Ritzau; `lokalmedie` er regionale dagblade, TV 2-regionerne, ugeaviser og lokale netaviser.
+- **CategoryId**: `nyhedsmedie`, `lokalmedie`, `fagmedie`, `myndighed`, `kommunal`, `organisation`, `taenketank`, `forskning`, `eu_norden`, `sociale_medier`. `nyhedsmedie` er landsdækkende nyhedsmedier og Ritzau; `lokalmedie` er regionale dagblade, TV 2-regionerne, ugeaviser og lokale netaviser. `sociale_medier` afventer (se 3.3).
 - **TopicId**: `sortering`, `genbrugspladser`, `gebyrer`, `udbud`, `forbraending`, `klima`, `genanvendelse`, `producentansvar`, `bioaffald`, `tekstiler`, `byg_farligt`, `arbejdsmiljoe`, `regler`. ("Uden tema" = tom liste.)
 - **GenreId**: `nyhed`, `debat`, `pressemeddelelse`, `analyse`, `hoering`, `folketing`.
-- **Rang for primærkilde** (lav = først): `myndighed`=0; `kommunal`,`organisation`,`taenketank`,`forskning`,`eu_norden`=1; `fagmedie`=2; `nyhedsmedie`,`lokalmedie`=3.
+- **Rang for primærkilde** (lav = først): `myndighed`=0; `kommunal`,`organisation`,`taenketank`,`forskning`,`eu_norden`=1; `fagmedie`=2; `nyhedsmedie`,`lokalmedie`=3; `sociale_medier`=4.
 
 ### 3.3 `config/`-filer
-- `categories.yaml`: liste af `{id, name, short, color, color_dark, icon, help}`. To kategorier må dele farve i begge tilstande, når de er søskende (`nyhedsmedie` og `lokalmedie`). Ikonet skiller dem ad, og `tools/check_colors.py` måler dem som én farve.
+- `categories.yaml`: liste af `{id, name, short, color, color_dark, icon, help, pending}`. To kategorier må dele farve i begge tilstande, når de er søskende (`nyhedsmedie` og `lokalmedie`). Ikonet skiller dem ad, og `tools/check_colors.py` måler dem som én farve. `pending` (standard `false`) betyder, at kategorien afventer: siden viser den uden at kunne vælge den (§9), `check` fejler, når en kilde med `status: aktiv` i `sources.yaml` eller en udgiver i `medier.yaml` har kategorien (`run` advarer), og `tools/check_colors.py` springer den over. Farven er grå som `--muted`, til kategorien tages i brug.
 - `topics.yaml`: liste af `{id, name, short?, definition, patterns: [..]}`. Mønstre: uden `*` = helt ord; `*` = vilkårlige bogstaver (`\w*`); ingen forskel på store/små bogstaver; mellemrum i mønster = præcis frase. `short` er valgfrit: et kort navn til brugerfladen, når `name` er for langt. Navnet i brugerfladen (`short`, ellers `name`) har højst 26 tegn; `check` advarer (fejler ikke) ved flere.
 - `genres.yaml`: liste af `{id, label, url_patterns: [regex], title_prefixes: [str]}`.
 - `keywords.yaml`: `{strong: {da,en,sv}, names: [..], weak: {da,en}, veto: [..], service: [..]}` (mønster-syntaks som topics).
@@ -337,7 +337,7 @@ De vigtigste begivenheder på affaldsområdet, valgt og skrevet af Claude-routin
   "window_days": 60,
   "mode": "claude|fallback",
   "last_judgment": "ISO|null",
-  "categories": [{"id","name","short","color","color_dark","icon","help"}],
+  "categories": [{"id","name","short","color","color_dark","icon","help","pending"}],
   "topics": [{"id","name","short","definition"}],
   "genres": [{"id","label"}],
   "sources": [{"id","name","category","homepage","lang","paywall","owner","status","health","via_search": false,"logo": "logos/<id>.<ext>"|null,"domain_logos": {"<domæne>": "logos/<id>--<domæne>.<ext>"}}],
@@ -367,6 +367,7 @@ Historier (`stories.py`): niveau 1 = samme id; niveau 2 = samme `normalize_title
 - `tidslinje.html`: URL-parameteren `niveau=milepael` viser kun milepæle (efter `demo`). Månederne har ankre `#ÅÅÅÅ-MM`. "Vis i feedet" linker til `index.html?story=<story>` (med `demo` først).
 - URL-parametre: `afsender`, `tema`, `kilde`, `genre` (kommaseparerede id'er), `region`, `kommune`, `by` (kommaseparerede id'er uden præfiks, fx `region=syddanmark&kommune=nyborg&by=ullerslev`), `landsdaekkende` (`1` eller `0`), `fra` og `til` (ÅÅÅÅ-MM-DD), `q`, `nye=1`, `vis=kompakt`, `story=<id>`, `overblik=dag|uge|maaned|aar`. Historierne er altid samlet, og der er intet sprogvalg: `sprog=` og `saml=` fra ældre links ignoreres og forsvinder fra URL'en. Det samme gælder `periode=`, som kalenderen har afløst.
 - Rækkefølge i URL'en: `demo, afsender, tema, kilde, genre, region, kommune, by, landsdaekkende, fra, til, q, nye, vis, story, overblik`. Id'er står i konfigurationens rækkefølge (kilder, kommuner og byer efter id, regioner i `geo`-rækkefølge), så samme valg giver samme link.
+- **Afsendertyper, der afventer** (`categories[].pending`): står i Afsender med låst afkrydsning uden flueben og "Afventer" i stedet for tallet og under Kilde som en række uden kilder, der ikke kan foldes ud. De er ikke valg i listen: "Vælg alle", "Fravælg alle", status ("8 af 9") og den korteste form i URL'en ser bort fra dem.
 - **Afkrydsningslisterne** (`afsender`, `tema`, `kilde`, `genre`): alt er valgt fra start. Et id uden "-" er valgt, et id med "-" foran er fravalgt (fx `tema=-arbejdsmiljoe`). De viste er de valgte (alle, når ingen er valgt) minus de fravalgte. Siden skriver den korteste form: ingen parameter, når alt er valgt; de valgte, når der er højst lige så mange valgte som fravalgte (og mindst én valgt); ellers de fravalgte med "-". Id'er, der ikke findes i `feed.json`, ignoreres, når valget ændres. Ældre links: `uden=<kilder>` læses som fravalgte kilder (`kilde=-<id>`).
 - **Stedfiltret** (`region`, `kommune`, `by`, `landsdaekkende`): hvert indslag får et udvidet sæt nøgler E ud fra `places` og `geo`:
 

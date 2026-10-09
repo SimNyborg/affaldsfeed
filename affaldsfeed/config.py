@@ -451,6 +451,13 @@ def cross_check(sources: list[Source], config: Config, today: date | None = None
                 errors.extend(_unknown_places(fname, x.id, x.places, known_places))
             if x.places and x.category in ("nyhedsmedie", "lokalmedie"):
                 warnings.append(f"{fname}: {x.id}: {_NEWS_PLACES}")
+
+    # En kategori, der afventer, må ikke have aktive afsendere (KONTRAKTER §3.3). Udgivere er altid aktive.
+    pending = {c.id for c in config.categories if c.pending}
+    for fname, senders in (("sources.yaml", sources), ("medier.yaml", config.publishers)):
+        for x in senders:
+            if x.category in pending and getattr(x, "status", "aktiv") == "aktiv":
+                errors.append(f"{fname}: {x.id}: kategorien {x.category} afventer og kan ikke have aktive kilder")
     return errors, warnings
 
 

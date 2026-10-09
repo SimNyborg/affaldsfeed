@@ -757,24 +757,26 @@ async function initKilder() {
     el('ul', { class: 'legend', 'aria-label': 'Kildernes sundhed' },
       Object.keys(HEALTH).map((h) => el('li', null, healthBadge(h), ` ${fmtNum(healthCount[h])}`)))));
 
-  // Afsendertyperne som rækker med spring til hver type
+  // Afsendertyperne som rækker med spring til hver type. En type, der afventer, har "Afventer" i stedet for tallet.
+  const pend = (c) => (c.pending ? ' is-pending' : '');
   out.push(el('nav', { class: 'panel', id: 'typer', 'aria-labelledby': 'h-typer' },
     el('h2', { id: 'h-typer', text: 'Afsendertyper' }),
     el('ul', { class: 'types' }, cats.map((c) => {
       const n = direct.filter((s) => s.category === c.id).length;
-      return el('li', null, el('a', { class: 'trow cat', style: catStyle(c), href: `#kat-${c.id}` },
+      return el('li', null, el('a', { class: `trow cat${pend(c)}`, style: catStyle(c), href: `#kat-${c.id}` },
         icon(c.icon), el('span', { class: 'name', text: c.name }),
-        el('span', { class: 'n' }, fmtNum(n), hidden(n === 1 ? ' kilde' : ' kilder'))));
+        c.pending ? el('span', { class: 'n', text: 'Afventer' }) : el('span', { class: 'n' }, fmtNum(n), hidden(n === 1 ? ' kilde' : ' kilder'))));
     }))));
 
   for (const c of cats) {
     const list = direct.filter((s) => s.category === c.id).sort((a, b) => a.name.localeCompare(b.name, 'da'));
-    out.push(el('section', { class: 'panel cat-section cat', id: `kat-${c.id}`, style: catStyle(c), 'aria-labelledby': `h-${c.id}` },
+    const none = c.pending ? 'Kategorien afventer og har ingen kilder endnu.' : 'Ingen aktive kilder i denne kategori endnu.';
+    out.push(el('section', { class: `panel cat-section cat${pend(c)}`, id: `kat-${c.id}`, style: catStyle(c), 'aria-labelledby': `h-${c.id}` },
       el('h2', { id: `h-${c.id}` }, icon(c.icon), el('span', { text: c.name })),
       el('p', { class: 'help', text: c.help }),
       list.length
         ? el('ul', { class: 'src-rows' }, list.map((s) => sourceRow(s, now)))
-        : el('p', { class: 'facts', text: 'Ingen aktive kilder i denne kategori endnu.' })));
+        : el('p', { class: 'facts', text: none })));
   }
 
   out.push(el('section', { class: 'panel', 'aria-labelledby': 'h-search' },

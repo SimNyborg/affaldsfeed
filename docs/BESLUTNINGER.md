@@ -155,3 +155,9 @@ Kommunerne skriver mest om andet end affald, så de har strengt filter, og indsa
 Ritzaus nyhedsrum (via.ritzau.dk) har et RSS-feed pr. afsender. Det bruges nu til DTU, Aalborg Universitet, IT-Universitetet og Esbjerg Kommune, fordi deres egne sider ikke kan hentes generisk. Den samlede Via Ritzau-kanal for alle pressemeddelelser er stadig udskudt. Her bruges kun nyhedsrummet for afsendere, hvis egen side ikke kan hentes, så det giver ingen dubletter.
 
 Ni kommuner kan ikke hentes generisk. Tre har botbeskyttelse, to svarer ikke fra GitHub Actions, og fire har en nyhedsliste, der kræver JavaScript, eller ingen nyheder i sitemappet. De står som kandidater med en note.
+
+## 2026-10-09: Sociale medier afventer
+
+Brugeren bad om en kategori for sociale medier, der står i menuen, men ikke kan vælges. Den hedder Sociale medier og har `pending: true` i `config/categories.yaml`. Under Afsender har den en låst afkrydsning og "Afventer", hvor tallet ellers står. Under Kilde og på Om kilderne står den også med "Afventer". Den er ikke et valg, så "Vælg alle", "Fravælg alle" og status ser bort fra den, og `check` fejler, hvis en aktiv kilde får kategorien.
+
+De fleste sociale medier kræver login og har intet åbent feed, og projektet omgår aldrig login. Bluesky, Mastodon og YouTube har åbne feeds og er de oplagte steder at begynde. Før kategorien tages i brug, skal to ting afgøres: om fx en kommunes opslag hører under Sociale medier eller under kommunen, og hvilken farve kategorien skal have. Paletten har ikke plads til en farve mere, der kan skelnes tydeligt fra de andre (se DESIGNMANUAL.md), så kategorien er grå indtil da. Den har den laveste rang for primærkilde, så et opslag aldrig står over en artikel om samme sag.

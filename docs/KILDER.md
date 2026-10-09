@@ -30,6 +30,7 @@ Kategorien hører til kilden og står i registret. Pipelinen gætter den aldrig 
 | `taenketank` | Tænketank og NGO | tænketanke og grønne organisationer |
 | `forskning` | Forskning og universitet | universiteter, sektorforskning og godkendte teknologiske serviceinstitutter |
 | `eu_norden` | EU og Norden | EU-institutioner og europæiske eller nordiske organisationer |
+| `sociale_medier` | Sociale medier | afventer: opslag på sociale medier, fx fra politikere, myndigheder og organisationer |
 
 Regler for kategorierne:
 - Hver kilde har præcis én kategori.
@@ -39,8 +40,9 @@ Regler for kategorierne:
 - Et nyhedsmedie, der dækker hele landet, er et nationalt medie, også når det har regionale redaktioner som DR. Et medie, der dækker en region, en kommune eller en by, er et lokalmedie. De to deler farve, og ikonet skiller dem ad.
 - Et medie med et fagområde er et fagmedie, også når det er landsdækkende. Det gælder fx Ingeniøren (teknik), Videnskab.dk (videnskab) og Danwatch (undersøgende journalistik om virksomheder og miljø).
 - Virksomheder er ikke en kategori.
+- Sociale medier afventer, så ingen aktiv kilde kan have kategorien endnu (`check` fejler). De fleste sociale medier kræver login og har intet åbent feed, og login omgås aldrig.
 
-Når flere kilder dækker samme historie, står primærkilden først: myndighed og Folketing, så afsenderens egen kanal (kommunal, organisation, tænketank, forskning, EU og Norden), så fagmedie og til sidst nationale medier og lokalmedier.
+Når flere kilder dækker samme historie, står primærkilden først: myndighed og Folketing, så afsenderens egen kanal (kommunal, organisation, tænketank, forskning, EU og Norden), så fagmedie og til sidst nationale medier og lokalmedier. Sociale medier kommer efter dem alle, når kategorien tages i brug.
 
 ## Felterne i sources.yaml
 
