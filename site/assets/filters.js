@@ -73,7 +73,6 @@ export function fmtStamp(date, now) {
   return cph(now).dayNum === c.dayNum ? clock : `${fmtShort(c)} ${clock}`;
 }
 
-
 // Datoer i URL'en (fra=, til=) er lokale dage i København som ÅÅÅÅ-MM-DD; internt dayNum som i cph()
 export const dayNumOf = (iso) => {
   const [y, m, d] = iso.split('-').map(Number);
