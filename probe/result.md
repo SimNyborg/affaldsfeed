@@ -1,124 +1,164 @@
-# Afprøvning 2026-10-09T10:24:29Z
+# Afprøvning 2026-10-09T13:18:34Z
 
-## sitemap https://jv.dk/sitemap/2026-01-15 3
+## billund-kommune
 
 ```text
-status 200, application/xml; charset=utf-8, 212675 bytes, slut-URL https://jv.dk/sitemap/2026-01-15
-urlset: 162 poster, 162 med lastmod
-2026-03-23 | https://jv.dk/kolding/dariush-og-kourush-kan-ikke-ringe-hjem-de-ved-ikke-om-deres-familier-er-i-sikkerhed | Dariush og Kourush kan ikke ringe hjem: De ved ikke, om deres familier er i sikkerhed
-2026-01-19 | https://jv.dk/esbjerg/ny-esbjerg-stavanger-rute-skulle-lette-i-februar-nu-starter-lygg-et-helt-andet-sted | susanne kruse soerensen 13
-2026-01-16 | https://jv.dk/billund/styrelse-sagde-nej-legos-solcellepark-bliver-mindre-end-planlagt | Styrelse sagde nej: Legos Solcellepark bliver mindre end planlagt
-... udsnit:
-2026-01-16 | https://jv.dk/esbjerg/optikerkaede-koebte-sig-ind-i-landsby-i-2008-nu-er-bygningerne-sat-til-salg
-2026-01-15 | https://jv.dk/kolding/massiv-vaekst-har-skabt-et-luksusproblem-for-kendt-virksomhed-2026-kan-blive-ekstremt-staerkt
-2026-01-15 | https://jv.dk/team-esbjerg/for-fuld-udblaesning-matchvinder-og-godt-i-gang-med-at-goere-sig-uundvaerlig
-2026-01-15 | https://jv.dk/esbjerg/fald-i-tallene-et-aar-efter-millionplus-maa-virksomhed-i-nordby-se-minus-i-oejnene
-2026-01-15 | https://jv.dk/esbjerg/begraenset-nedgang-virksomhed-i-esbjerg-fik-lidt-lavere-overskud-2026-1-15
-2026-01-15 | https://jv.dk/aabenraa/aabenraa-gildegade-13-solgt-for-1-345-000-kroner
-2026-01-15 | https://jv.dk/soenderborg/vollerup-spang-vade-5-solgt-for-1-575-000-kroner
-2026-01-15 | https://jv.dk/esbjerg/arbejdspresset-fik-ham-til-at-stoppe-faa-maaneder-senere-er-lars-hansen-klar-til-nyt-kapitel
-2026-01-15 | https://jv.dk/vejen/esbjergvej-ramt-igen-32-aarig-snurrede-rundt-og-endte-paa-taget-i-groeften
-2026-01-15 | https://jv.dk/varde/blaavand-blaavandvej-69-solgt-for-2-825-000-kroner
-2026-01-15 | https://jv.dk/esbjerg/stor-fremgang-holdingselskab-i-esbjerg-vender-minus-til-plus
-2026-01-15 | https://jv.dk/soenderborg/landskendt-ejendomsmaegler-saelger-livsvaerk-snart-falder-sidste-hammerslag
-2026-01-15 | https://jv.dk/kolding/naar-effektivitet-trumfer-sund-fornuft
-2026-01-15 | https://jv.dk/kolding/kendt-hotel-flager-for-groenland-man-skal-ikke-tryne-et-lille-land
-2026-01-15 | https://jv.dk/vejen/overskuddet-stiger-flere-gange-jels-produktforretning-aps-tjente-flere-penge-i-seneste-regnskabsaar
-2026-01-15 | https://jv.dk/haderslev/overskud-hos-fuglsig-aps
-2026-01-15 | https://jv.dk/kolding/venstremands-ulovlige-entreprenoerfirma-koerer-videre-kommunen-afventer-svar
-2026-01-15 | https://jv.dk/soenderborg/bortfoert-mand-blev-banket-med-en-hammer-og-stukket-i-ryggen-med-kniv
-2026-01-15 | https://jv.dk/debat/det-handler-om-liv-og-doed-hjemloese-skal-have-flere-steder-at-overnatte
-2026-01-15 | https://jv.dk/esbjerg/nu-har-vi-en-vinder-se-hvor-glade-de-blev
+OK: 348 kilder (280 aktive), 28 udgivere i medier.yaml, 13 temaer, 6 genrer, 9 søgninger, geografi: 5 regioner, 98 kommuner, 470 byer.
+
+Henter billund-kommune (Billund Kommune, kommunal, metode sitemap, filter strict) …
+0 indslag hentet. Beholdt 0 (vis 0, graa 0), afvist 0, sprunget over 0.
+
+DIAGNOSE
+  sitemap https://www.billund.dk/sitemap.xml: 1233 URL'er
+  URL'er: 1233 i alt, 176 matcher, 7 med lastmod inden for 14 dage, 0 uden lastmod (0 registreret som baseline), 0 fra Google News, 7 nye, 7 sprunget over (strict)
+  URL'er, der matcher (eksempler, match '(/nyheder/senest-nyt-om-grindsted-forureningerne/[^/]+|/nyheder-om-klima/(seneste-nyheder-om-klima|arkiv-over-klimanyheder))/[^/]+/?$'):
+    https://www.billund.dk/grindsted-forureningerne/nyheder/senest-nyt-om-grindsted-forureningerne/september-2025/oprensning-af-forureningen-fra-fabriksgrunden-i-grindsted-rykker-naermere/
+    https://www.billund.dk/grindsted-forureningerne/nyheder/senest-nyt-om-grindsted-forureningerne/maj-2022/forskernes-grindsted-anbefaling-klar-til-politisk-behandling/
+    https://www.billund.dk/grindsted-forureningerne/nyheder/senest-nyt-om-grindsted-forureningerne/november-2021/referater-fra-6-og-7-moede-i-den-politiske-foelgegruppe/
+    https://www.billund.dk/grindsted-forureningerne/nyheder/senest-nyt-om-grindsted-forureningerne/januar-2021/nye-boringer-ved-fanen-fra-lossepladsen/
+    https://www.billund.dk/grindsted-forureningerne/nyheder/senest-nyt-om-grindsted-forureningerne/april-2020/pilot-rensningsanlaeg-i-drift-om-to-aar/
+    https://www.billund.dk/grindsted-forureningerne/nyheder/senest-nyt-om-grindsted-forureningerne/august-2019/ingen-private-boringer-i-haveforeningen-heden/
+    https://www.billund.dk/grindsted-forureningerne/nyheder/senest-nyt-om-grindsted-forureningerne/marts-2019/referat-fra-2-moede-i-den-politiske-foelgegruppe/
+    https://www.billund.dk/grindsted-forureningerne/nyheder/senest-nyt-om-grindsted-forureningerne/oktober-2018/paavirker-forureningen-indeklimaet-i-boliger/
+    https://www.billund.dk/grindsted-forureningerne/nyheder/senest-nyt-om-grindsted-forureningerne/april-2023/borgerundersoegelsen-i-grindsted-kommer-med-opfordring-til-deltagerne/
+    https://www.billund.dk/grindsted-forureningerne/nyheder/senest-nyt-om-grindsted-forureningerne/oktober-2024/nu-begynder-den-politiske-behandling-af-sundhedsundersoegelserne/
+  URL'er, der ikke matcher (eksempler, match '(/nyheder/senest-nyt-om-grindsted-forureningerne/[^/]+|/nyheder-om-klima/(seneste-nyheder-om-klima|arkiv-over-klimanyheder))/[^/]+/?$'):
+    https://www.billund.dk/borger/stoette-og-omsorg/
+    https://www.billund.dk/borger/kultur-og-fritid/bliv-frivillig/
+    https://www.billund.dk/erhverv/miljoe/olietanke/
+    https://www.billund.dk/borger/borgerservice/skat-og-feriepenge/
+    https://www.billund.dk/borger/bolig-og-byggeri/koeb-en-byggegrund/byggegrunde-paa-stemmevaerket-og-engvandingen/stemmevaerket-og-engvandingen/
+    https://www.billund.dk/borger/job-ledighed-og-pension/pension/foertidspension/
+    https://www.billund.dk/grindsted-forureningerne/nyheder/senest-nyt-om-grindsted-forureningerne/november-2018/
+    https://www.billund.dk/politik-og-demokrati/hoeringer/landzonetilladelse/juli-2026/ravlundvej-13a-grindsted/
+    https://www.billund.dk/politik-og-demokrati/hoeringer/miljoe/maj-2026/tilladelse-til-indvinding-af-grundvand-til-markvanding-gilbjergvej-16/
+    https://www.billund.dk/politik-og-demokrati/hoeringer/miljoe/august-2026/
+  sider: 0 hentet (0 ok, 0 fejl), 0 med varig fejl, 0 blokeret af robots.txt, 0 ikke HTML, 0 uden titel
 ```
 
-## sitemap https://fyens.dk/sitemap/2026-01-02 3
+## ikast-brande-kommune
 
 ```text
-status 200, application/xml; charset=utf-8, 117679 bytes, slut-URL https://fyens.dk/sitemap/2026-01-02
-urlset: 93 poster, 93 med lastmod
-2026-01-08 | https://fyens.dk/sport/suveraene-faaborg-oeh-gaar-benhaardt-efter-oprykning-hver-kamp-bliver-som-smaa-pokalkampe | Suveræne Faaborg ØH går benhårdt efter oprykning: - Hver kamp bliver som små pokalkampe
-2026-01-03 | https://fyens.dk/odense/bedemand-siger-farvel-efter-18-aar-nu-er-tiden-kommet | Bedemand siger farvel efter 18 år: - Nu er tiden kommet
-2026-01-03 | https://fyens.dk/112/30-aarig-anholdt-sigtet-for-drab | 30-årig anholdt: Sigtet for drab
-... udsnit:
-2026-01-02 | https://fyens.dk/trafik/se-video-journalist-havner-i-roede-lyskryds-igen-og-igen-vi-er-jo-nogle-der-gerne-vil-frem
-2026-01-02 | https://fyens.dk/assens/se-listen-over-aarets-10-dyreste-bolighandler-denne-by-gaar-igen
-2026-01-02 | https://fyens.dk/faaborg-midtfyn/vinden-foerte-ham-til-sydfyn-nu-har-han-faaet-sin-stoerste-post-nogensinde
-2026-01-02 | https://fyens.dk/debat/debat-naar-politiske-poster-fylder-mere-end-udfordringer
-2026-01-02 | https://fyens.dk/sport/imponerende-tider-trods-svaere-forhold-lasse-var-hurtigst-paa-de-glatte-veje-i-jubilaeumsudgaven
-2026-01-02 | https://fyens.dk/assens/glamsbjerg-soendergade-95-solgt-for-600-000-kroner
-2026-01-02 | https://fyens.dk/112/bil-bragede-ind-i-murstenstolpe-og-hegn
-2026-01-02 | https://fyens.dk/odense/hjallese-stubhoejvej-37-solgt-for-2-497-000-kroner
-2026-01-02 | https://fyens.dk/mad/bager-tager-svaer-beslutning-og-lukker-butik-det-er-trist-men-det-har-ligget-lidt-i-kortene
-2026-01-02 | https://fyens.dk/middelfart/nedad-strib-firmaet-aquila-innovation-holding-aps-faar-endnu-et-underskud
-2026-01-02 | https://fyens.dk/nyborg/oerbaek-nyborgvej-24-solgt-for-675-000-kroner
-2026-01-02 | https://fyens.dk/bolig/tre-blev-solgt-i-samme-bygning-faa-overblikket-over-de-milliondyre-lejlighedshandler-paa-fyn-her
-2026-01-02 | https://fyens.dk/odense/se-tilbageblikket-kan-du-huske-pelikanen-der-stak-af-eller-de-soede-loeveunger
-2026-01-02 | https://fyens.dk/odense/ikke-saa-hoejt-som-sidst-overskuddet-gik-ned-hos-1523-oceanis-aps-i-odense-c
-2026-01-02 | https://fyens.dk/assens/vaertshus-presses-af-unge-ned-til-14-aar-nu-strammes-reglerne
-2026-01-02 | https://fyens.dk/nordfyn/saadan-ser-tallene-ud-ugens-regnskaber-fra-nordfyns-virksomheder-2026-1-2
-2026-01-02 | https://fyens.dk/odense/kunder-ventede-i-timevis-restaurant-giver-penge-tilbage-efter-skuffende-nytaar
-2026-01-02 | https://fyens.dk/odense/overskuddet-stiger-ejendomsvirksomhed-i-odense-c-tjente-flere-penge-i-seneste-regnskabsaar-2026-1-2
-2026-01-02 | https://fyens.dk/112/status-paa-nytaaret-brandmaendene-har-virkelig-faaet-lov-til-at-nyde-nytaarsfreden
-2026-01-02 | https://fyens.dk/odense/nedgang-paa-bundlinjen-taxa-syd-busser-a-s-maa-se-tab-i-oejnene
+OK: 348 kilder (280 aktive), 28 udgivere i medier.yaml, 13 temaer, 6 genrer, 9 søgninger, geografi: 5 regioner, 98 kommuner, 470 byer.
+
+Henter ikast-brande-kommune (Ikast-Brande Kommune, kommunal, metode html, filter strict) …
+0 indslag hentet. Beholdt 0 (vis 0, graa 0), afvist 0, sprunget over 0.
+
+DIAGNOSE
+  liste https://ikast-brande.dk/: 90 links på siden, 76 valgt af select 'a[href]', 3 matcher '/aktuelt-og-presse/nyheder/20[0-9]{2}/[^/]+$'
+  alle links (eksempler):
+    #main-content | Gå til hovedindhold
+    https://ikast-brande.dk/job | Job
+    https://ikast-brande.dk/borger | Borger
+    https://ikast-brande.dk/beredskab | Beredskab
+    https://ikast-brande.dk/selvbetjening/borgerservice-og-ydelser/bestil-tid-til-borgerservice-og-ydelse | Bestil tid til Borgerservice og Ydelse
+    https://ikast-brande.dk/selvbetjening/din-oekonomi/anmeld-socialt-bedrageri | Anmeld socialt bedrageri
+    https://ikast-brande.dk/spildevandsafgift | Bidrag og skat på ejendom
+    https://ikast-brande.dk/borger/boern-og-unge | Børn og unge
+    https://ikast-brande.dk/borger/seniorliv-pleje-og-omsorg | Seniorliv, pleje og omsorg
+    https://ikast-brande.dk/erhverv/byggeri-og-anlaeg | Byggeri og anlæg
+    https://ikast-brande.dk/erhverv/send-faktura | Send faktura
+    https://ikast-brande.dk/politik/politikker-strategier-og-visioner | Politikker, strategier og visioner
+    https://ikast-brande.dk/livet-her/haervejen | Hærvejen
+    https://ikast-brande.dk/livet-her/find-bolig | Find bolig
+    https://ikast-brande.dk/aktuelt-og-presse/nyheder/2026/vaer-ekstra-opmaerksom-paa-svindel | 06. okt. 2026 Vær ekstra opmærksom på svindel Der er konstateret en alvorlig sikkerhedshændelse i CPR-systemet, hvor uvedkommende har fået adgang til oplysninger om en meget stor mængde borgere – blan
+    https://ikast-brande.dk/offentliggoerelser-og-hoeringer | Se alle offentliggørelser og høringer
+    tel:+4599604000 | +45 99 60 40 00
+    https://ikast-brande.dk/aktuelt-og-presse/nyheder | Nyheder
+    https://kort.ikast-brande.dk/spatialmap | Kort over kommunen
+    https://ikast-brande.dk/om-kommunen/fakta/cookie-information | Cookie Information
+  matchende links (eksempler):
+    https://ikast-brande.dk/aktuelt-og-presse/nyheder/2026/vaer-ekstra-opmaerksom-paa-svindel | 06. okt. 2026 Vær ekstra opmærksom på svindel Der er konstateret en alvorlig sikkerhedshændelse i CPR-systemet, hvor uvedkommende har fået adgang til oplysninger om en meget stor mængde borgere – blan
+    https://ikast-brande.dk/aktuelt-og-presse/nyheder/2026/ikast-brande-kommune-finder-ny-kommunaldirektoer-i-egne-raekker | 05. okt. 2026 Ikast-Brande Kommune finder ny kommunaldirektør i egne rækker Et enigt byråd har mandag aften ansat Natascha Mannemar Jensen som ny kommunaldirektør i Ikast-Brande Kommune. Natascha Mann
+    https://ikast-brande.dk/aktuelt-og-presse/nyheder/2026/ikast-brande-er-nummer-1-i-brugen-af-digital-familiehjaelp | 28. sep. 2026 Ikast-Brande er nummer 1 i brugen af digital familiehjælp Efter flere års målrettet arbejde med at gøre digital og forskningsbaseret hjælp kendt blandt både familier og fagpersoner toppe
+  links: 3 matchende, 3 nye, 3 sprunget over (strict)
+  sider: 0 hentet (0 ok, 0 fejl), 0 med varig fejl, 0 blokeret af robots.txt, 0 ikke HTML, 0 uden titel
 ```
 
-## sitemap https://stiften.dk/sitemap/2026-05-20 3
+## gribskov-kommune
 
 ```text
-status 200, application/xml; charset=utf-8, 234211 bytes, slut-URL https://stiften.dk/sitemap/2026-05-20
-urlset: 160 poster, 160 med lastmod
-2026-07-30 | https://stiften.dk/bolighandler/brabrand-tranebaervej-42a-solgt-for-8-750-000-kroner | Næstdyreste hus i postnummer 8220 i år solgt på Tranebærvej i Brabrand
-2026-05-24 | https://stiften.dk/agf/alle-aviser-er-revet-vaek-men-du-kan-stadig-naa-det-saadan-faar-du-fat-i-de-eftertragtede-forsider | Alle aviser er revet væk, men du kan stadig nå det: Sådan får du fat i de eftertragtede fo
-2026-05-20 | https://stiften.dk/erhverv/tallene-gaar-op-holdingselskab-i-aarhus-c-fik-stoerre-overskud-end-aaret-foer-2026-5-20 | Annualreport
-... udsnit:
-2026-05-20 | https://stiften.dk/erhverv/retter-paa-det-lindtofte-holding-aps-i-skanderborg-bakker-reducerer-minusset-noget
-2026-05-20 | https://stiften.dk/debat/hvor-har-du-parkeret-din-doemmekraft-raadmand-tiden-er-forbi-for-tjener-boldt-stilen
-2026-05-20 | https://stiften.dk/erhverv/nedgang-paa-bundlinjen-holdingselskab-i-aarhus-c-tjente-noget-mindre-i-seneste-regnskabsaar-2026-5-20
-2026-05-20 | https://stiften.dk/bolighandler/viby-j-selmersvej-36-solgt-for-5-700-000-kroner
-2026-05-20 | https://stiften.dk/erhverv/overskuddet-stiger-flere-gange-bladt-ejendomme-aps-tjente-flere-penge-i-seneste-regnskabsaar-2026-5-20
-2026-05-20 | https://stiften.dk/bolighandler/aarhus-c-skovvejen-75-solgt-for-2-552-000-kroner
-2026-05-20 | https://stiften.dk/erhverv/nye-tal-offentliggjort-underskud-hos-bear-capital-aps
-2026-05-20 | https://stiften.dk/erhverv/overskuddet-stiger-flere-gange-virksomhed-i-aarhus-c-tjente-flere-penge-i-seneste-regnskab-2026-5-20
-2026-05-20 | https://stiften.dk/erhverv/roede-tal-forsvandt-cadesign-base-a-s-i-aarhus-c-vender-underskud-til-millionoverskud
-2026-05-20 | https://stiften.dk/aarhus/a-s-valuebuilding-vii-skifter-ud-i-bestyrelsen
-2026-05-20 | https://stiften.dk/erhverv/stor-fremgang-minus-i-virksomhed-i-hoejbjerg-er-forvandlet-til-gevinst-2026-5-20
-2026-05-20 | https://stiften.dk/erhverv/overskuddet-stiger-flere-gange-holdingselskab-i-egaa-tjente-flere-penge-i-seneste-regnskab-2026-5-20
-2026-05-20 | https://stiften.dk/erhverv/nedgang-underskuddet-haenger-fast-i-ejendomsvirksomhed-i-skanderborg-2026-5-20
-2026-05-20 | https://stiften.dk/erhverv/overskuddet-stiger-divitiae-holding-aps-fik-millionoverskud-2026-5-20
-2026-05-20 | https://stiften.dk/agf/morten-har-ventet-hele-livet-agf-hyldest-kan-streames-fra-midnat
-2026-05-20 | https://stiften.dk/erhverv/har-faaet-roede-tal-munk-advisory-aps-i-maarslet-gaar-fra-plus-til-minus
-2026-05-20 | https://stiften.dk/erhverv/overskuddet-stiger-virksomhed-i-galten-fik-millionoverskud-2026-5-20
-2026-05-20 | https://stiften.dk/erhverv/de-roede-tal-er-vaek-barefoot-kiwi-aps-i-ormslev-er-gaaet-fra-tab-til-overskud
-2026-05-20 | https://stiften.dk/erhverv/overskuddet-stiger-domica-aps-fik-millionoverskud
-2026-05-20 | https://stiften.dk/erhverv/kom-over-stregen-quimby-complex-101-holding-aps-i-aarhus-c-fik-forvandlet-minus-til-gevinst
+OK: 348 kilder (280 aktive), 28 udgivere i medier.yaml, 13 temaer, 6 genrer, 9 søgninger, geografi: 5 regioner, 98 kommuner, 470 byer.
+
+Henter gribskov-kommune (Gribskov Kommune, kommunal, metode sitemap, filter strict) …
+0 indslag hentet. Beholdt 0 (vis 0, graa 0), afvist 0, sprunget over 0.
+
+DIAGNOSE
+  sitemap https://www.gribskov.dk/sitemap.xml: 1093 URL'er
+  URL'er: 1092 i alt, 249 matcher, 21 med lastmod inden for 14 dage, 0 uden lastmod (0 registreret som baseline), 0 fra Google News, 21 nye, 21 sprunget over (strict)
+  URL'er, der matcher (eksempler, match '/nyheder/20[0-9]{2}/[a-z]+/(?!newspage$)[^/]+$'):
+    https://www.gribskov.dk/nyheder/2025/jan/private-daginstitutioner-inviteres-til-dialogmoede-med-kommunen
+    https://www.gribskov.dk/nyheder/2025/apr/2024-medlemstal-i-idraetsforeninger-stiger-igen
+    https://www.gribskov.dk/nyheder/2025/jun/flere-weekendtoge
+    https://www.gribskov.dk/nyheder/2025/jul/performing-landscapes
+    https://www.gribskov.dk/nyheder/2026/jan/sommerferiekatalog-2026
+    https://www.gribskov.dk/nyheder/2026/mar/moed-op-til-byraadsmoede
+    https://www.gribskov.dk/nyheder/2026/maj/demensuge
+    https://www.gribskov.dk/nyheder/2026/juni/ny-device-strategi
+    https://www.gribskov.dk/nyheder/2026/august/saadan-bliver-borgernes-input-samlet-op-paa-dialogmoedet-om-vejby-campingplads
+    https://www.gribskov.dk/nyheder/2026/september/indstil-til-handicapprisen-2026
+  URL'er, der ikke matcher (eksempler, match '/nyheder/20[0-9]{2}/[a-z]+/(?!newspage$)[^/]+$'):
+    https://www.gribskov.dk/
+    https://www.gribskov.dk/borger/boern-og-unge/stoette-til-boern-og-familier/aabne-tilbud-til-boern-unge-og-familier/lettilgaengelige-tilbud-til-boern-og-unge-i-sociale-eller-foelelsesmaessige-udfordringer/modighedsdetektiverne
+    https://www.gribskov.dk/borger/flyt-bolig-og-byg/byggeri
+    https://www.gribskov.dk/borger/kultur-fritid-og-frivillige/kultur-oplevelser/mindesmaerke-for-oktober-1943/haabets-geografi
+    https://www.gribskov.dk/borger/natur-miljoe-klima-og-trafik/kyst-og-strand/kyst-og-strand/strandtrapper-badebroer-og-baadebroer
+    https://www.gribskov.dk/borger/pleje-og-omsorg/plejegribskov/plejegribskov-som-uddannelsessted-til-sygepleje-studerende
+    https://www.gribskov.dk/politik-og-indflydelse/raad-naevn-og-dialogfora/handicapraadet/handicappris
+    https://www.gribskov.dk/om-kommunen/ledige-stillinger/loengennemsigtighed
+    https://www.gribskov.dk/hoeringer/2026/maj/hoering-lokalplanforslag-31527-og-kommuneplantillaeg-nr-8-med-tilhoerende-miljoerapport
+    https://www.gribskov.dk/afgoerelser/2026/apr/maarum-afgoerelse-landzonetilladelse-logistikplads-ved-kagerup-stationsvej
+  sider: 0 hentet (0 ok, 0 fejl), 0 med varig fejl, 0 blokeret af robots.txt, 0 ikke HTML, 0 uden titel
 ```
 
-## sitemap https://faa.dk/sitemap/2025-12-31 3
+## hedensted-kommune
 
 ```text
-status 200, application/xml; charset=utf-8, 30421 bytes, slut-URL https://faa.dk/sitemap/2025-12-31
-urlset: 21 poster, 21 med lastmod
-2026-08-24 | https://faa.dk/svendborg/se-alle-billederne-da-vi-overraskede-vinderne-af-byens-bedste-svendborg-det-er-for-vildt-det-her | Byens bedste 01seqn}
-2026-08-24 | https://faa.dk/byensbedste/her-er-alle-vinderne-af-byens-bedste-svendborg-2025 | Byens bedste 07seqn}
-2026-01-01 | https://faa.dk/svendborg/nabo-til-drabsoffer-han-blev-fundet-i-et-af-skurene-rullet-sammen-i-et-taeppe | Nabo til drabsoffer: - Han blev fundet i et af skurene rullet sammen i et tæppe
-... udsnit:
-2025-12-31 | https://faa.dk/svendborg/et-vartegn-er-paa-vej-vaek-isbryderen-thorbjoern-saa-godt-som-solgt
-2025-12-31 | https://faa.dk/fyn/politiet-efterforsker-drab-i-svendborg
-2025-12-31 | https://faa.dk/svendborg/se-hvad-der-skete-i-oktober-svendborgenser-fik-sin-vm-troeje-og-ny-ballet-over-et-gammelt-tema
-2025-12-31 | https://faa.dk/svendborg/kom-over-stregen-m-rosenbek-holding-aps-i-vejstrup-er-gaaet-fra-minus-til-overskud
-2025-12-31 | https://faa.dk/svendborg/tallene-vendt-r-rosenbek-holding-aps-i-vejstrup-fik-forvandlet-underskud-til-gevinst
-2025-12-31 | https://faa.dk/svendborg/tallene-gaar-op-ejendomsvirksomhed-i-fjellebroen-fik-stoerre-overskud-end-aaret-foer-2025-12-31
-2025-12-31 | https://faa.dk/svendborg/tallene-gaar-op-virksomhed-i-ollerup-fik-stoerre-overskud-end-aaret-foer-2025-12-31
-2025-12-31 | https://faa.dk/svendborg/stabilt-holdingselskab-i-fjellebroen-hold-fast-i-overskuddet
-2025-12-31 | https://faa.dk/langeland/tallene-gaar-op-holdingselskabet-langeland-aps-fik-stoerre-overskud-end-aaret-foer
-2025-12-31 | https://faa.dk/svendborg/kom-med-ind-svendborgs-gamle-isbryder-jeg-er-helt-syg-med-hvordan-man-har-anrettet-det-hele
-2025-12-31 | https://faa.dk/aeroe/klumme-verden-er-lille
-2025-12-31 | https://faa.dk/svendborg/drab-i-svendborg-politi-fortsat-til-stede-paa-den-draebtes-bopael
-2025-12-31 | https://faa.dk/svendborg/nedgang-virksomhed-i-gudme-mister-store-penge
-2025-12-31 | https://faa.dk/svendborg/har-faaet-roede-tal-skaarupsund-a-s-maa-se-milliontab-i-oejnene
-2025-12-31 | https://faa.dk/svendborg/store-smil-og-taarer-november-var-isaer-praeget-af-de-sydfynske-valg-se-billederne-her
-2025-12-31 | https://faa.dk/svendborg/fyns-amts-avis-mener-verden-forandrer-sig-umaerkeligt-i-smaa-bitte-ryk
-2025-12-31 | https://faa.dk/svendborg/hvem-tager-guitaren-paa-ryggen-og-finder-en-baad-i-en-fremmed-havn-det-gjorde-lars-emil
-2025-12-31 | https://faa.dk/langeland/eddie-blev-koert-ihjel-borgmester-sagde-farvel-og-hotel-blev-endelig-solgt-se-december-i-billeder
+OK: 348 kilder (280 aktive), 28 udgivere i medier.yaml, 13 temaer, 6 genrer, 9 søgninger, geografi: 5 regioner, 98 kommuner, 470 byer.
+
+Henter hedensted-kommune (Hedensted Kommune, kommunal, metode sitemap, filter strict) …
+0 indslag hentet. Beholdt 0 (vis 0, graa 0), afvist 0, sprunget over 0.
+
+DIAGNOSE
+  sitemap https://www.hedensted.dk/sitemap.xml: 2618 URL'er
+  URL'er: 2615 i alt, 111 matcher, 3 med lastmod inden for 14 dage, 0 uden lastmod (0 registreret som baseline), 0 fra Google News, 3 nye, 3 sprunget over (strict)
+  URL'er, der matcher (eksempler, match '/om-kommunen/nyheder-og-presse/(pressemeddelelser|nyheder)/[^/]+$'):
+    https://www.hedensted.dk/om-kommunen/nyheder-og-presse/pressemeddelelser/virksomheder-paa-stribe-tager-medansvar-i-hedensted-kommune
+    https://www.hedensted.dk/om-kommunen/nyheder-og-presse/pressemeddelelser/selvom-hjernen-glemmer-husker-kroppen-hedensteds-yngste-skaber-glimt-af-lykke-paa-kaerminde-plejehjem
+    https://www.hedensted.dk/om-kommunen/nyheder-og-presse/pressemeddelelser/milliarder-af-skattekroner-paa-spil-borgmestre-er-begejstrede-for-opgoer-med-skaevt-fordelingssystem
+    https://www.hedensted.dk/om-kommunen/nyheder-og-presse/pressemeddelelser/kom-til-foerste-spadestik-paa-byudviklingsprojektet-i-juelsminde
+    https://www.hedensted.dk/om-kommunen/nyheder-og-presse/pressemeddelelser/turisme-ved-gudenaaen-hedensted-kommune-udbyder-toerring-camping-til-salg
+    https://www.hedensted.dk/om-kommunen/nyheder-og-presse/pressemeddelelser/nyt-uddannelsestilbud-faar-claus-taettere-paa-job
+    https://www.hedensted.dk/om-kommunen/nyheder-og-presse/pressemeddelelser/sprogkursus-hitter-i-hedensted-tosprogede-medarbejdere-faar-bedre-trivsel-og-mod-paa-uddannelse
+    https://www.hedensted.dk/om-kommunen/nyheder-og-presse/pressemeddelelser/unge-i-hedensted-trives-godt-og-paa-flere-omraader-bedre-end-foer-alkohol-og-nikotin-kalder-paa-opmaerksomhed
+    https://www.hedensted.dk/om-kommunen/nyheder-og-presse/pressemeddelelser/mikkel-lindskov-petersen-er-ny-direktoer-for-vaekst-teknik-faellesskab-i-hedensted-kommune-1
+    https://www.hedensted.dk/om-kommunen/nyheder-og-presse/pressemeddelelser/havfrue-guinness-rekordforsoeg-og-krabberaes-markerer-indvielsen-af-juelsmindes-nye-havnetorvet
+  URL'er, der ikke matcher (eksempler, match '/om-kommunen/nyheder-og-presse/(pressemeddelelser|nyheder)/[^/]+$'):
+    https://www.hedensted.dk/
+    https://www.hedensted.dk/service-og-selvbetjening/job-og-ledighed/sygdom-og-nedsat-arbejdsevne/aaben-raadgivning-i-jobhedensted
+    https://www.hedensted.dk/fritid-og-natur/puljer-og-tilskud/materiale-og-vedligeholdelsespuljen
+    https://www.hedensted.dk/politik-og-indflydelse/planlaegning-og-udvikling/byudvikling/byudvikling-toerring
+    https://www.hedensted.dk/politik-og-indflydelse/hoeringer-og-indflydelse/afgoerelser-og-tilladelser/uploadfolder/tilladelse-til-etablering-af-jordvarmeanlaeg-paa-honum-skovvej-26-8763-rask-moelle
+    https://www.hedensted.dk/politik-og-indflydelse/hoeringer-og-indflydelse/afgoerelser-og-tilladelser/uploadfolder/afgoerelse-om-bortledning-af-grundvand-fra-bassinanlaeg-i-nyt-boligomraade-paa-teglvaerksvej-8723-loesning-med-udledning-via-nyt-udloeb-i-privat-aabent-vandloeb-der-udloeber-i-pilebaek
+    https://www.hedensted.dk/politik-og-indflydelse/kommunalbestyrelse-og-udvalg/dagsordener-og-referater/referater-arkiv-2018-2021?agenda=/dagsorden/2018PKO/07-12-2020&elementid=d390
+    https://www.hedensted.dk/politik-og-indflydelse/kommunalbestyrelse-og-udvalg/dagsordener-og-referater/referater-arkiv-2018-2021?agenda=/dagsorden/2018UTeknik/15-01-2019&elementid=e28b
+    https://www.hedensted.dk/politik-og-indflydelse/kommunalbestyrelse-og-udvalg/dagsordener-og-referater/referater-arkiv-2022-2025?agenda=/dagsorden/Oekonomiudvalget_2022/21-10-2024&elementid=52c4
+    https://www.hedensted.dk/politik-og-indflydelse/kommunalbestyrelse-og-udvalg/dagsordener-og-referater/referater-arkiv-2022-2025?agenda=/dagsorden/Udvalget_for_Teknik_/28-08-2024&elementid=f5a8
+  sider: 0 hentet (0 ok, 0 fejl), 0 med varig fejl, 0 blokeret af robots.txt, 0 ikke HTML, 0 uden titel
+```
+
+## herning-kommune
+
+```text
+WARNING affaldsfeed.collect.pages: herning-kommune: https://www.herning.dk/sitemap.xml: timeout
+OK: 348 kilder (280 aktive), 28 udgivere i medier.yaml, 13 temaer, 6 genrer, 9 søgninger, geografi: 5 regioner, 98 kommuner, 470 byer.
+
+Henter herning-kommune (Herning Kommune, kommunal, metode sitemap, filter strict) …
+FEJL https://www.herning.dk/sitemap.xml: timeout
+0 indslag hentet. Beholdt 0 (vis 0, graa 0), afvist 0, sprunget over 0.
+
+DIAGNOSE
+  første kørsel: baseline er ikke komplet, så næste kørsel er også en første kørsel
+(fejl eller timeout)
 ```
 
