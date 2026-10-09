@@ -260,7 +260,7 @@
     "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://faa.dk/ai.txt                                                                                            ###\n########################################################################################################################\n                        \n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n             \nUser-agent: FacebookBot\nDisallow: /\n\n# META - Product improvement and AI\nUser-agent: meta-externalagent\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: PiplBot\nDisallow: /\n\n# Search engines\nUser-agent: *\nDisallow: /editors/signature/*\nDisallow: /contimo/layout/native\nDisallow: /*noHeader=*\nAllow: /\n\n# Sitemap\nSitemap: https://faa.dk/sitemap\nSitemap: https://faa.dk/advertorials/sitemap.xml\nSitemap: https://faa.dk/kandidattest/sitemap.xml"
   },
   "faellesavisen.dk": {
-    "fetched": "2026-10-08T04:31:35Z",
+    "fetched": "2026-10-09T05:27:04Z",
     "body": "User-agent: *\n"
   },
   "fagbladet3f.dk": {
@@ -276,7 +276,7 @@
     "body": "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://fanoeposten.dk/wp-sitemap.xml\n\nSitemap: https://fanoeposten.dk/sitemap.xml\n\nUser-agent: *\nDisallow: /wp-content/uploads/wpo/wpo-plugins-tables-list.json\n"
   },
   "farsoeavis.dk": {
-    "fetched": "2026-10-08T04:31:35Z",
+    "fetched": "2026-10-09T05:27:04Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://farsoeavis.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "feeds.services.tv2.dk": {
@@ -292,7 +292,7 @@
     "body": "# If the Joomla site is installed within a folder such as at\n# e.g. www.example.com/joomla/ the robots.txt file MUST be\n# moved to the site root at e.g. www.example.com/robots.txt\n# AND the joomla folder name MUST be prefixed to the disallowed\n# path, e.g. the Disallow rule for the /administrator/ folder\n# MUST be changed to read Disallow: /joomla/administrator/\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/orig.html\n#\n# For syntax checking, see:\n# http://tool.motoricerca.info/robots-checker.phtml\n\nUser-agent: *\nDisallow: /administrator/\nDisallow: /cache/\nDisallow: /cli/\nDisallow: /components/\nDisallow: /images/\nDisallow: /includes/\nDisallow: /installation/\nDisallow: /language/\nDisallow: /libraries/\nDisallow: /logs/\nDisallow: /modules/\nDisallow: /plugins/\nDisallow: /tmp/\n\n"
   },
   "folkebladet.net": {
-    "fetched": "2026-10-08T04:31:35Z",
+    "fetched": "2026-10-09T05:27:04Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://folkebladet.net/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "folkebladetlemvig.dk": {
