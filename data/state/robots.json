@@ -171,8 +171,28 @@
     "fetched": "2026-10-09T07:48:56Z",
     "body": ""
   },
+  "cdn.norddjurs.dk": {
+    "fetched": "2026-10-09T08:34:12Z",
+    "body": ""
+  },
+  "cdn.odder.dk": {
+    "fetched": "2026-10-09T08:34:12Z",
+    "body": ""
+  },
   "cdn.rigsrevisionen.dk": {
     "fetched": "2026-10-08T07:28:04Z",
+    "body": ""
+  },
+  "cdn.rk.dk": {
+    "fetched": "2026-10-09T08:34:12Z",
+    "body": ""
+  },
+  "cdn.soroe.dk": {
+    "fetched": "2026-10-09T08:34:12Z",
+    "body": ""
+  },
+  "cdn.stevns.dk": {
+    "fetched": "2026-10-09T08:34:12Z",
     "body": ""
   },
   "cdn1.gopublic.dk": {
@@ -619,6 +639,10 @@
     "fetched": "2026-10-09T06:28:19Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://mariagerfjordposten.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
+  "middelfart.dk": {
+    "fetched": "2026-10-09T08:34:12Z",
+    "body": "user-agent: *\r\ndisallow: /error/\r\nsitemap: https://middelfart.dk/Handlers/Sitemap.ashx\r\n"
+  },
   "midtfynsposten.dk": {
     "fetched": "2026-10-09T06:28:19Z",
     "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://midtfynsposten.dk/ai.txt                                                                                 ###\n########################################################################################################################\n                        \n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n             \nUser-agent: FacebookBot\nDisallow: /\n\n# META - Product improvement and AI\nUser-agent: meta-externalagent\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: PiplBot\nDisallow: /\n\n# Search engines\nUser-agent: *\nDisallow: /editors/signature/*\nDisallow: /contimo/layout/native\nDisallow: /*noHeader=*\nAllow: /\n\n# Sitemap\nSitemap: https://midtfynsposten.dk/sitemap\nSitemap: https://midtfynsposten.dk/advertorials/sitemap.xml\nSitemap: https://midtfynsposten.dk/kandidattest/sitemap.xml"
@@ -703,6 +727,10 @@
     "fetched": "2026-10-08T20:28:10Z",
     "body": "#\n# robots.txt\n#\n# This file is to prevent the crawling and indexing of certain parts\n# of your site by web crawlers and spiders run by sites like Yahoo!\n# and Google. By telling these \"robots\" where not to go on your site,\n# you save bandwidth and server resources.\n#\n# This file will be ignored unless it is at the root of your host:\n# Used:    http://example.com/robots.txt\n# Ignored: http://example.com/site/robots.txt\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/robotstxt.html\n\nUser-agent: *\n# CSS, JS, Images\nAllow: /core/*.css$\nAllow: /core/*.css?\nAllow: /core/*.js$\nAllow: /core/*.js?\nAllow: /core/*.gif\nAllow: /core/*.jpg\nAllow: /core/*.jpeg\nAllow: /core/*.png\nAllow: /core/*.svg\nAllow: /profiles/*.css$\nAllow: /profiles/*.css?\nAllow: /profiles/*.js$\nAllow: /profiles/*.js?\nAllow: /profiles/*.gif\nAllow: /profiles/*.jpg\nAllow: /profiles/*.jpeg\nAllow: /profiles/*.png\nAllow: /profiles/*.svg\n# Directories\nDisallow: /core/\nDisallow: /profiles/\n# Files\nDisallow: /README.md\nDisallow: /composer/Metapackage/README.txt\nDisallow: /composer/Plugin/ProjectMessage/README.md\nDisallow: /composer/Plugin/Scaffold/README.md\nDisallow: /composer/Plugin/VendorHardening/README.txt\nDisallow: /composer/Template/README.txt\nDisallow: /modules/README.txt\nDisallow: /sites/README.txt\nDisallow: /themes/README.txt\nDisallow: /web.config\n# Paths (clean URLs)\nDisallow: /admin/\nDisallow: /comment/reply/\nDisallow: /filter/tips\nDisallow: /node/add/\nDisallow: /search/\nDisallow: /user/register\nDisallow: /user/password\nDisallow: /user/login\nDisallow: /user/logout\nDisallow: /media/oembed\nDisallow: /*/media/oembed\n# Paths (no clean URLs)\nDisallow: /index.php/admin/\nDisallow: /index.php/comment/reply/\nDisallow: /index.php/filter/tips\nDisallow: /index.php/node/add/\nDisallow: /index.php/search/\nDisallow: /index.php/user/password\nDisallow: /index.php/user/register\nDisallow: /index.php/user/login\nDisallow: /index.php/user/logout\nDisallow: /index.php/media/oembed\nDisallow: /index.php/*/media/oembed\n"
   },
+  "norddjurs.dk": {
+    "fetched": "2026-10-09T08:34:12Z",
+    "body": "User-agent: *\nAllow: /\n\nSitemap: https://norddjurs.dk/sitemap.xml\n"
+  },
   "norddjurs.lokalavisen.dk": {
     "fetched": "2026-10-08T10:34:51Z",
     "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://www.dinavis.dk/ai.txt                                                                                    ###\n########################################################################################################################\n\nUser-agent: msnbot\nCrawl-delay: 1\n\nUser-agent: AhrefsBot\nDisallow: /\n\nUser-agent: Yandex\nDisallow: /\n\nUser-agent: SemrushBot\nDisallow: /\n\nUser-agent: Eyeotabot\nDisallow: /\n\nUser-agent: SeznamBot\nDisallow: /\n\nUser-agent: DataForSeoBot\nDisallow: /\n\nUser-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: PerplexityBot\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: Applebot-Extended\nDisallow: /\n\nUser-agent: meta-externalagent\nDisallow: /\n\nUser-agent: meta-externalfetcher\nDisallow: /\n\nUser-agent: Applebot-Extended\nDisallow: /\n\nUser-agent: Mediapartners-Google\nDisallow:\n\nUser-agent: *\nDisallow: /soeg/*\n\nSitemap: https://dinavis.dk/sitemapindex.xml\nSitemap: https://dinavis.dk/annoncering/native/sitemap.xml"
@@ -734,6 +762,10 @@
   "oda.ft.dk": {
     "fetched": "2026-10-09T00:22:05Z",
     "body": ""
+  },
+  "odder.dk": {
+    "fetched": "2026-10-09T08:34:12Z",
+    "body": "User-agent: *\nAllow: /\n\nSitemap: https://odder.dk/sitemap.xml\n"
   },
   "orestad-avis.dk": {
     "fetched": "2026-10-08T07:28:04Z",
@@ -779,6 +811,10 @@
     "fetched": "2026-10-08T12:29:21Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://rgo.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
+  "rk.dk": {
+    "fetched": "2026-10-09T08:34:12Z",
+    "body": "User-agent: *\nAllow: /\n\nSitemap: https://rk.dk/sitemap.xml\n"
+  },
   "ruc.dk": {
     "fetched": "2026-10-09T00:22:05Z",
     "body": "#\n# robots.txt\n#\n# This file is to prevent the crawling and indexing of certain parts\n# of your site by web crawlers and spiders run by sites like Yahoo!\n# and Google. By telling these \"robots\" where not to go on your site,\n# you save bandwidth and server resources.\n#\n# This file will be ignored unless it is at the root of your host:\n# Used:    http://example.com/robots.txt\n# Ignored: http://example.com/site/robots.txt\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/robotstxt.html\n\nUser-agent: *\n# CSS, JS, Images\nAllow: /core/*.css$\nAllow: /core/*.css?\nAllow: /core/*.js$\nAllow: /core/*.js?\nAllow: /core/*.gif\nAllow: /core/*.jpg\nAllow: /core/*.jpeg\nAllow: /core/*.png\nAllow: /core/*.svg\nAllow: /profiles/*.css$\nAllow: /profiles/*.css?\nAllow: /profiles/*.js$\nAllow: /profiles/*.js?\nAllow: /profiles/*.gif\nAllow: /profiles/*.jpg\nAllow: /profiles/*.jpeg\nAllow: /profiles/*.png\nAllow: /profiles/*.svg\n# Directories\nDisallow: /core/\nDisallow: /profiles/\n# Files\nDisallow: /README.md\nDisallow: /composer/Metapackage/README.txt\nDisallow: /composer/Plugin/ProjectMessage/README.md\nDisallow: /composer/Plugin/Scaffold/README.md\nDisallow: /composer/Plugin/VendorHardening/README.txt\nDisallow: /composer/Template/README.txt\nDisallow: /modules/README.txt\nDisallow: /sites/README.txt\nDisallow: /themes/README.txt\nDisallow: /web.config\n# Paths (clean URLs)\nDisallow: /admin/\nDisallow: /comment/reply/\nDisallow: /filter/tips\nDisallow: /node/add/\nDisallow: /search/\nDisallow: /user/register\nDisallow: /user/password\nDisallow: /user/login\nDisallow: /user/logout\nDisallow: /media/oembed\nDisallow: /*/media/oembed\n# Paths (no clean URLs)\nDisallow: /index.php/admin/\nDisallow: /index.php/comment/reply/\nDisallow: /index.php/filter/tips\nDisallow: /index.php/node/add/\nDisallow: /index.php/search/\nDisallow: /index.php/user/password\nDisallow: /index.php/user/register\nDisallow: /index.php/user/login\nDisallow: /index.php/user/logout\nDisallow: /index.php/media/oembed\nDisallow: /index.php/*/media/oembed\n\nSitemap: https://ruc.dk/sitemap.xml\nSitemap: https://ruc.dk/en/sitemap.xml\n"
@@ -815,6 +851,10 @@
     "fetched": "2026-10-08T07:28:04Z",
     "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://sn.dk/ai.txt                                                                                             ###\n########################################################################################################################\n\n# Sitemap\nSitemap: https://www.sn.dk/SitemapIndex.0.xml\n\n# Search engines\nUser-agent: *\nAllow: /  \nDisallow: /assets/\n\n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: *\nDisallow: /wp/wp-admin/\nAllow: /wp/wp-admin/admin-ajax.php"
   },
+  "solrod.dk": {
+    "fetched": "2026-10-09T08:34:12Z",
+    "body": "User-agent: *\nAllow: /\n\nSitemap: https://solrod.dk/sitemap.xml\n"
+  },
   "sonderborgnyt.dk": {
     "fetched": "2026-10-08T07:48:34Z",
     "body": "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://www.sonderborgnyt.dk/wp-sitemap.xml\n"
@@ -822,6 +862,10 @@
   "sonfor.dk": {
     "fetched": "2026-10-08T12:29:21Z",
     "body": "User-agent: *\r\nDisallow: /wp-admin/\r\n\r\n\r\nSitemap: https://sonfor.dk/wp-sitemap.xml\n\n# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://sonfor.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
+  },
+  "soroe.dk": {
+    "fetched": "2026-10-09T08:34:12Z",
+    "body": "User-agent: *\nAllow: /\n\nSitemap: https://soroe.dk/sitemap.xml\n"
   },
   "stiften.dk": {
     "fetched": "2026-10-08T07:48:34Z",

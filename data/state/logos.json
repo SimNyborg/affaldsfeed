@@ -1109,16 +1109,34 @@
     "checked": "2026-10-09T08:28:28Z",
     "error": "ikke et brugbart billede (kun PNG, ICO, GIF, JPEG og WebP på mindst 16 px)"
   },
+  "lyngby-taarbaek-kommune": {
+    "file": "lyngby-taarbaek-kommune.png",
+    "src": "https://www.ltk.dk/media/35thd4ue/ltk_favicon_kun-byvaaben_4f_300ppi_kvadrat.png?width=57&height=57&format=noformat&v=1dbbe78e34a9370",
+    "checked": "2026-10-09T08:34:12Z",
+    "error": null
+  },
   "magasinetkbh-dk": {
     "file": null,
     "src": null,
     "checked": "2026-10-08T06:01:09Z",
     "error": "HTTP 404"
   },
+  "mariagerfjord-kommune": {
+    "file": "mariagerfjord-kommune.png",
+    "src": "https://www.mariagerfjord.dk/media/le1j03er/profileimage.png?rxy=0.52015625,0.44&width=57&height=57&format=noformat&v=1d82fbb1ffd1860",
+    "checked": "2026-10-09T08:34:12Z",
+    "error": null
+  },
   "mariagerfjordposten": {
     "file": "mariagerfjordposten.png",
     "src": "https://mariagerfjordposten.dk/wp-content/uploads/2022/10/favicon_.png",
     "checked": "2026-10-08T12:29:21Z",
+    "error": null
+  },
+  "middelfart-kommune": {
+    "file": "middelfart-kommune.webp",
+    "src": "https://middelfart.dk/Media/638513669494478524/fav.png?width=32&height=32",
+    "checked": "2026-10-09T08:34:12Z",
     "error": null
   },
   "midtfynsposten": {
@@ -1199,6 +1217,12 @@
     "checked": "2026-10-08T06:27:28Z",
     "error": null
   },
+  "naestved-kommune": {
+    "file": "naestved-kommune.png",
+    "src": "https://www.naestved.dk/media/etnla20k/naestved-kommune-favicon-1.png?width=57&height=57&format=noformat&v=1da2c401f883440",
+    "checked": "2026-10-09T08:34:12Z",
+    "error": null
+  },
   "neravisen": {
     "file": "neravisen.png",
     "src": "https://neravisen.dk/themes/custom/oestjysk_naeravis/favicons//favicon-32x32.png",
@@ -1247,6 +1271,18 @@
     "checked": "2026-10-08T07:28:04Z",
     "error": null
   },
+  "norddjurs-kommune": {
+    "file": "norddjurs-kommune.ico",
+    "src": "https://cdn.norddjurs.dk/norddjurskommune/Media/637813066634855242/favicon (1).ico?width=32&height=32",
+    "checked": "2026-10-09T08:34:12Z",
+    "error": null
+  },
+  "nordfyns-kommune": {
+    "file": "nordfyns-kommune.png",
+    "src": "https://www.nordfynskommune.dk/favicon.ico",
+    "checked": "2026-10-09T08:34:12Z",
+    "error": null
+  },
   "nordhavn-avis": {
     "file": "nordhavn-avis.png",
     "src": "https://www.nordhavn-avis.dk/wp-content/uploads/2023/03/mstile-150x150-3-80x80.png",
@@ -1277,10 +1313,34 @@
     "checked": "2026-10-08T07:28:04Z",
     "error": null
   },
+  "nyborg-kommune": {
+    "file": "nyborg-kommune.png",
+    "src": "https://www.nyborg.dk/favicon.ico",
+    "checked": "2026-10-09T08:34:12Z",
+    "error": null
+  },
+  "odder-kommune": {
+    "file": "odder-kommune.webp",
+    "src": "https://cdn.odder.dk/odderkommune/Media/638355534355657388/fav.png?width=32&height=32",
+    "checked": "2026-10-09T08:34:12Z",
+    "error": null
+  },
+  "odense-kommune": {
+    "file": "odense-kommune.ico",
+    "src": "https://www.odense.dk/images/odense/favicon.ico",
+    "checked": "2026-10-09T08:34:12Z",
+    "error": null
+  },
   "odense-renovation": {
     "file": "odense-renovation.png",
     "src": "https://www.odenserenovation.dk/favicon-32x32.png",
     "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "odsherred-kommune": {
+    "file": "odsherred-kommune.png",
+    "src": "https://www.odsherred.dk/favicon.ico",
+    "checked": "2026-10-09T08:34:12Z",
     "error": null
   },
   "oestvendsysselfolkeblad": {
@@ -1317,6 +1377,12 @@
     "file": "pro-ing-dk.ico",
     "src": "https://pro.ing.dk/favicon.ico",
     "checked": "2026-10-08T07:28:04Z",
+    "error": null
+  },
+  "randers-kommune": {
+    "file": "randers-kommune.png",
+    "src": "https://www.randers.dk/favicon.ico",
+    "checked": "2026-10-09T08:34:12Z",
     "error": null
   },
   "randersugeavis-dk": {
@@ -1361,6 +1427,18 @@
     "checked": "2026-10-09T07:48:56Z",
     "error": null
   },
+  "roedovre-kommune": {
+    "file": "roedovre-kommune.webp",
+    "src": "https://cdn.rk.dk/roedovrekommune/Media/639053643971418045/fav.png?width=32&height=32",
+    "checked": "2026-10-09T08:34:12Z",
+    "error": null
+  },
+  "roskilde-kommune": {
+    "file": "roskilde-kommune.png",
+    "src": "https://www.roskilde.dk/favicon.ico",
+    "checked": "2026-10-09T08:34:12Z",
+    "error": null
+  },
   "ruc": {
     "file": "ruc.png",
     "src": "https://ruc.dk/profiles/ruc_profile/themes/school/assets/shortcut-icons/apple-touch-icon-76x76.png",
@@ -1371,6 +1449,12 @@
     "file": "rudersdal-kommune.png",
     "src": "https://rudersdal.dk/profiles/rud_profile/themes/diamond/assets/shortcut-icons/favicon-32x32.png",
     "checked": "2026-10-09T07:48:56Z",
+    "error": null
+  },
+  "samsoe-kommune": {
+    "file": "samsoe-kommune.webp",
+    "src": "https://cdn.moliri.dk/image/moliri-public/samsoekommune/thumbnail?filename=favicon.png&folderPath=undefined&width=80",
+    "checked": "2026-10-09T08:34:12Z",
     "error": null
   },
   "samsoposten": {
@@ -1385,6 +1469,12 @@
     "checked": "2026-10-08T07:28:04Z",
     "error": null
   },
+  "silkeborg-kommune": {
+    "file": "silkeborg-kommune.webp",
+    "src": "https://cdn.moliri.dk/image/moliri-public/silkeborgkommune/thumbnail?filename=apple-touch-icon.png&folderPath=Silkeborgdk%2fDesignproces&width=80",
+    "checked": "2026-10-09T08:34:12Z",
+    "error": null
+  },
   "sjaellandske-medier": {
     "file": "sjaellandske-medier.png",
     "src": "https://www.sn.dk/wp-content/themes/sn/assets/dist/img/favicon.png",
@@ -1396,6 +1486,18 @@
     "src": null,
     "checked": "2026-10-08T09:11:01Z",
     "error": "blokeret af robots.txt"
+  },
+  "skanderborg-kommune": {
+    "file": "skanderborg-kommune.png",
+    "src": "https://www.skanderborg.dk/Admin/Public/GetImage.ashx?Image=/Files/Templates/Designs/bleau-solutionset/assets/images/faviconTop.ico&Width=16&Height=16&Crop=5&format=png",
+    "checked": "2026-10-09T08:34:12Z",
+    "error": null
+  },
+  "skive-kommune": {
+    "file": "skive-kommune.png",
+    "src": "https://skive.dk/dist/assets/images/favicon.png",
+    "checked": "2026-10-09T08:34:12Z",
+    "error": null
   },
   "skivefolkeblad": {
     "file": "skivefolkeblad.png",
@@ -1409,6 +1511,12 @@
     "checked": "2026-10-08T07:28:04Z",
     "error": null
   },
+  "solroed-kommune": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-09T08:34:12Z",
+    "error": "HTTP 404"
+  },
   "sonderborgnyt": {
     "file": "sonderborgnyt.png",
     "src": "https://www.sonderborgnyt.dk/wp-content/uploads/fbrfg/favicon-32x32.png",
@@ -1419,6 +1527,18 @@
     "file": "sonfor.png",
     "src": "https://sonfor.dk/wp-content/themes/generaxion-axio-2024-marts-15/dist/favicon/favicon-32x32.png",
     "checked": "2026-10-07T22:34:55Z",
+    "error": null
+  },
+  "soroe-kommune": {
+    "file": "soroe-kommune.webp",
+    "src": "https://cdn.soroe.dk/soroekommune/Media/638156797744394224/fav-icon.png?width=32&height=32",
+    "checked": "2026-10-09T08:34:12Z",
+    "error": null
+  },
+  "stevns-kommune": {
+    "file": "stevns-kommune.webp",
+    "src": "https://cdn.stevns.dk/stevnskommune/Media/637685108907622808/stevns_vaaben_navn_sh_pos_100mm.png?width=32&height=32",
+    "checked": "2026-10-09T08:34:12Z",
     "error": null
   },
   "stiften": {
