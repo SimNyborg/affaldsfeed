@@ -1,4 +1,5 @@
-# Runde B1: Google News med after:/before: (måned for måned)
-rss https://news.google.com/rss/search?q=affald+after:2026-03-01+before:2026-04-01&hl=da&gl=DK&ceid=DK:da 8
-rss https://news.google.com/rss/search?q=affaldsgebyr+OR+affaldsgebyrer+after:2026-01-01+before:2026-02-01&hl=da&gl=DK&ceid=DK:da 8
-rss https://news.google.com/rss/search?q=genbrugsplads+after:2026-06-01+before:2026-07-01&hl=da&gl=DK&ceid=DK:da 5
+# Runde C1: gamle dagssitemaps hos Jysk Fynske Medier (bagudindsamling til 1. januar)
+sitemap https://jv.dk/sitemap/2026-01-15 3
+sitemap https://fyens.dk/sitemap/2026-01-02 3
+sitemap https://stiften.dk/sitemap/2026-05-20 3
+sitemap https://faa.dk/sitemap/2025-12-31 3
