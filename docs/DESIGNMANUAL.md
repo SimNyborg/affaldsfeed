@@ -84,7 +84,7 @@ Hver kategori har en farve, et ikon og et kort navn. Ikonet står i kategoriens 
 | Lokalmedie | Lokalmedie | #1862B5 | #68AAFE | `lokalavis` | avis med kortnål |
 | Fagmedie | Fagmedie | #107C86 | #2CC4CB | `tidsskrift` | tidsskrift |
 | Myndighed og Folketing | Myndighed | #5A3584 | #9B86C6 | `soejle` | søjlebygning |
-| Kommune og affaldsselskab | Kommunal | #065F35 | #5EC587 | `raadhus` | rådhus |
+| Kommune og affaldsselskab | Kommune/affaldsselskab | #065F35 | #5EC587 | `raadhus` | rådhus |
 | Organisation og branche | Organisation | #CA651B | #FFA350 | `personer` | to personer |
 | Tænketank og NGO | Tænketank/NGO | #B8346C | #FF84BA | `paere` | pære |
 | Forskning og universitet | Forskning | #7A5C0D | #AE9417 | `kolbe` | kolbe |
@@ -117,7 +117,7 @@ Panelet er et `<search>` med overskriften "Filtre" og tekstknappen "Nulstil" til
 - Hver gruppe har én tekstknap til højre (13/18). Den står øverst i gruppen, i Sted og Kilde lige under søgefeltet. Den hedder "Fravælg alle", når alt i gruppen er valgt, og ellers "Vælg alle". "Fravælg alle" efterfulgt af ét flueben er den hurtige vej til "kun dette". I Sted fjerner knappen også de valgte kommuner og byer, så "Vælg alle" viser alle steder igen.
 - Tidsrummet vælges i kalenderen over listen (se Kalenderen). Historier er altid samlet, og der er intet valg for sprog.
 - I URL'en står de valgte (fx `tema=gebyrer`), eller med "-" foran de fravalgte (fx `tema=-arbejdsmiljoe`), alt efter hvad der er kortest. Alt valgt giver ingen parameter.
-- Mærkerne over listen siger fx "Kommunal" for et valgt og "Uden Debat" for et fravalgt, højst 3 af hver pr. gruppe, ellers ét samlet mærke: "4 temaer" eller "Uden 5 kilder". "Filtrér (n)" tæller mærkerne. Giver valgene 0 indslag, kan tom-tilstanden foreslå fx "Vis Avisen.dk igen" eller "Vis alle kilder".
+- Mærkerne over listen siger fx "Kommune/affaldsselskab" for et valgt og "Uden Debat" for et fravalgt, højst 3 af hver pr. gruppe, ellers ét samlet mærke: "4 temaer" eller "Uden 5 kilder". "Filtrér (n)" tæller mærkerne. Giver valgene 0 indslag, kan tom-tilstanden foreslå fx "Vis Avisen.dk igen" eller "Vis alle kilder".
 - Sted vises kun, når `feed.json` har `geo`. Uden `geo` læses stedparametrene fra URL'en og skrives uændret tilbage, men de filtrerer ikke.
 
 ### Stedfiltret
@@ -155,7 +155,7 @@ Alle lister i panelet bruger samme række: en `<label>` med et ægte afkrydsning
 - Hover giver `--hover-bg` (kun med mus). Fokusringen sidder indvendigt på hele rækken, og rækkens felt har `scroll-margin-block: 12px`, så ringen ikke klippes, når panelet ruller ved Tab.
 - Rækken har `padding: 0 8px; margin: 0 -8px`, så afkrydsningen flugter med overskriften og felterne, mens hover-fladen går 8 px ud.
 - Sidepanelet har `scrollbar-gutter: stable`. Tager en klassisk scrollbar plads, trækkes dens bredde fra panelets højre polstring (højst ned til 8 px, så rækkernes hover-flade på 8 px ikke giver vandret scroll), så navnene stadig har plads. Det samme gælder arket.
-- Skærmlæseren hører fx "Kommunal, 6 indslag". Kommaet står inline med nul størrelse (`.sr-punct`), fordi en skjult tekst med `position: absolute` giver "Kommunal , 6 indslag" i navnet.
+- Skærmlæseren hører fx "Kommune/affaldsselskab, 6 indslag". Kommaet står inline med nul størrelse (`.sr-punct`), fordi en skjult tekst med `position: absolute` giver "Kommune/affaldsselskab , 6 indslag" i navnet.
 
 ### Søgefelt med forslag
 
@@ -307,7 +307,7 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Forslag | Viser 8 af 23. Skriv mere for at indsnævre. · Ingen kommune eller by passer til "xyz". Byer kommer med, når de er nævnt i et indslag. · Ingen kilde passer til "xyz". · Nyborg Kommune er valgt. · Nyborg Kommune er fravalgt. |
 | Rækker | Andre temaer |
 | Kalender | Alle datoer · 2.–5. okt. · 7. okt. · Fra 6. okt. · til skærmlæseren: Periode: 2.–5. okt. · Vis alle datoer · Vælg datoer · Forrige måned · Næste måned · ma ti on to fr lø sø · Vælg første dag. · Fra 5. oktober. Vælg sidste dag. · onsdag 7. oktober, 9 indslag · ingen indslag · Luk |
-| Aktive filtre | Fjern filter: Nyborg Kommune · Landsdækkende · Uden Region Nordjylland · Kommunal · Uden Debat · 4 temaer · Uden 5 kilder · Historie: ... |
+| Aktive filtre | Fjern filter: Nyborg Kommune · Landsdækkende · Uden Region Nordjylland · Kommune/affaldsselskab · Uden Debat · 4 temaer · Uden 5 kilder · Historie: ... |
 | Statuslinje | Vis 7 nye · Vis 1 ny · 7 nye indslag · 1 nyt indslag · Vis alle · til skærmlæseren og ved fokus: 1.284 indslag · 23 af 1.284 indslag |
 | Visning | Normal · Kompakt |
 | Kort | Auto-resumé: · fundet 09.14 · +3 andre kilder · +1 anden kilde · +3 andre kilder, 2 nye · +3 flere · +1 mere |
@@ -334,7 +334,7 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 - Fokus: `:focus-visible` med en kontur på 2 px i `--link` og 2 px offset. Rækker, forslag og menupunkter har ringen indvendigt, så den ikke klippes. Felter har ringen uden offset, og kanten bliver `--link`. På footeren er ringen hvid. `scroll-padding-top` svarer til dagsoverskriften plus 16 px, så fokus aldrig skjules under den (2.4.11).
 - 2.5.8: alle mål er mindst 24 × 24 px, i praksis 28 til 36 px med mus og 44 px ved berøring.
 - Tastatur: alt kan betjenes med tastatur. Der er ingen genveje på ét tegn. Søgefeltet med forslag følger WAI-ARIA's combobox-mønster med ↓, ↑, Alt + ↓, Alt + ↑, Enter, Esc og Tab. Filterarket er en modal dialog, og Esc lukker det inderste først. Overblikkets faner skiftes med piletasterne.
-- Skærmlæser: tal i rækker og forslag læses med "indslag", mærker læses "Fjern filter: Kommunal", og valg i forslagslisten meldes ("Altinget er valgt."). Statuslinjen er en live-region, og arket har sin egen, fordi siden bag det er inert.
+- Skærmlæser: tal i rækker og forslag læses med "indslag", mærker læses "Fjern filter: Kommune/affaldsselskab", og valg i forslagslisten meldes ("Altinget er valgt."). Statuslinjen er en live-region, og arket har sin egen, fordi siden bag det er inert.
 - Struktur: h1 til h3, `<main>`, `<nav>`, `<search>` og `<article>`. Forsidens skjulte h1 står i headeren, før sidepanelets h2 "Filtre". Links, der åbner i nyt vindue, har den skjulte tekst "(åbner i nyt vindue)".
 - Sprog: `lang="en"` eller `lang="sv"` på titler og teasere på engelsk og svensk, også i overblikkets skjulte kildetekst.
 - 1.4.4, 1.4.10 og 1.4.12: størrelser i rem, brudpunkter i em og container queries i rem eller lh. Siden kan vises ved 320 px, og med grundskrift 20 eller 32 px eller med tekstafstand vokser rækkerne, og navnene brydes i stedet for at blive afkortet (se Filterrækken).
