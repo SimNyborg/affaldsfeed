@@ -151,6 +151,17 @@
       "b78020eda793"
     ]
   },
+  "novinky.cz": {
+    "name": "Novinky.cz",
+    "count": 1,
+    "last_seen": "2026-10-12T22:57:34Z",
+    "examples": [
+      "https://www.novinky.cz/clanek/ekonomika-marius-pedersen-prodava-sve-ceske-a-slovenske-aktivity-francouzum-40602426"
+    ],
+    "ids": [
+      "b778f3712d70"
+    ]
+  },
   "nytimes.com": {
     "name": "The New York Times",
     "count": 1,
@@ -160,6 +171,28 @@
     ],
     "ids": [
       "18bc4c764f45"
+    ]
+  },
+  "seznamzpravy.cz": {
+    "name": "Seznam Zprávy",
+    "count": 1,
+    "last_seen": "2026-10-12T22:57:34Z",
+    "examples": [
+      "https://www.seznamzpravy.cz/clanek/ekonomika-firmy-francouzsky-paprec-kupuje-byznys-marius-pedersen-v-cesku-a-na-slovensku-317695"
+    ],
+    "ids": [
+      "7638fd5a50ab"
+    ]
+  },
+  "sme.sk": {
+    "name": "SME.sk",
+    "count": 1,
+    "last_seen": "2026-10-12T22:57:34Z",
+    "examples": [
+      "https://www.sme.sk/index/c/paprec-kupuje-od-danov-marius-pedersen-na-slovensku-a-v-cesku"
+    ],
+    "ids": [
+      "b6cfcf0e7d1d"
     ]
   },
   "sydkusten.es": {
@@ -175,6 +208,17 @@
       "eee08a92848c",
       "9af3d74184d4",
       "276d7e9af5b8"
+    ]
+  },
+  "teraz.sk": {
+    "name": "Teraz.sk",
+    "count": 1,
+    "last_seen": "2026-10-12T22:57:34Z",
+    "examples": [
+      "https://www.teraz.sk/ekonomika/spolocnost-paprec-prevezme-prevadzky/999148-clanok.html"
+    ],
+    "ids": [
+      "c3b7f83faced"
     ]
   },
   "tv4.se": {
