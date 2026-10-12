@@ -12,6 +12,7 @@ Genereres automatisk af `python -m affaldsfeed run`. Viser top 50 efter antal ar
 | kolding-netavis.dk | kolding-netavis | 2 | 2026-10-09 | [1](https://www.kolding-netavis.dk/guide-vamdrup/) [2](https://www.kolding-netavis.dk/genbrugsplads/) |
 | yahoo.com | Yahoo | 2 | 2026-10-07 | [1](https://www.yahoo.com/entertainment/tv/articles/charlie-kawas-details-filming-botched-192742838.html) [2](https://www.yahoo.com/entertainment/tv/articles/hgtv-fans-react-rock-block-174922811.html) |
 | bornholm.nu | Bornholm.nu | 1 | 2026-10-07 | [1](https://bornholm.nu/nyheder/ikke-alt-maa-klunses-hos-bofa/141859) |
+| byznys.hn.cz | Byznys - Hospodářské noviny | 1 | 2026-10-12 | [1](https://byznys.hn.cz/c1-67943820-hotovo-podepsano-ceskou-a-slovenskou-odpadarskou-firmu-marius-pedersen-prebiraji-francouzi) |
 | cardinalpine.com | Cardinal & Pine | 1 | 2026-10-07 | [1](https://cardinalpine.com/local/wilmington-ritzy-plans-thalian-hall-remake/) |
 | dagens.dk | Dagens.dk | 1 | 2026-10-09 | [1](https://www.dagens.dk/hus-og-have/smid-ikke-fnugget-fra-toerretumbleren-ud-du-kan-bruge-det-til-mere-end-du-tror) |
 | effektivtlandbrug.landbrugnet.dk | effektivtlandbrug.landbrugnet | 1 | 2026-10-08 | [1](https://effektivtlandbrug.landbrugnet.dk/artikler/planter/125370/regeringen-vil-mindst-fordoble-boeder-for-miljoekriminalitet) |
