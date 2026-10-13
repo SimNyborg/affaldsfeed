@@ -123,6 +123,10 @@ def test_routine_times_match_the_settings():
     times = [f"{h:02d}.{routine['minute']:02d}" for h in routine["hours"]]
     named = ", ".join(times[:-1]) + " og " + times[-1]
     assert f"Du kører tre gange om dagen, kl. {named} dansk tid" in REDAKTOER
+    # Kørsler på andre tidspunkter (fx en ældre cron hver time) stopper med det samme
+    hh = [f"{h:02d}" for h in routine["hours"]]
+    listed = ", ".join(hh[:-1]) + " eller " + hh[-1]
+    assert f"Er `TIME` ikke {listed}, så stop med det samme." in REDAKTOER
     # Sweep og tidslinje ligger i kørsler, der findes
     hours = {f"{h:02d}" for h in routine["hours"]}
     for step in re.findall(r"kun når `TIME` er (\d\d)(?: eller (\d\d))?", REDAKTOER):

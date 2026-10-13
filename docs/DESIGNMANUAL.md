@@ -266,7 +266,7 @@ Al småtekst står samlet bag en diskret i-knap yderst til højre i headeren på
 
 - Knappen er 44 × 44 px med ikonet `info` på 20 px i `--muted` (`--text` ved hover) og navnet "Om Affaldsfeed" til skærmlæsere. Ikonets højrekant flugter med containerens indhold.
 - Den åbner en modal dialog med overskriften "Om Affaldsfeed" (fokus ved åbning) og en lukkeknap. Esc, lukkeknappen og et klik på baggrunden lukker den, og fokus går tilbage til knappen. Under 768 px er dialogen et bundark som filterarket, ellers står den midt på skærmen, højst 36rem bred og 85 % af skærmens højde.
-- Indholdet: hvad Affaldsfeed er, med link til Om kilderne, "Udvalgt af AI" (modellen vurderer relevans og skriver overblik og højdepunkter ud fra titel og kort beskrivelse og kan tage fejl), "Opdatering" (vurdering om morgenen, formiddagen og eftermiddagen, tidspunktet for seneste opdatering og en linje, når vurderingen er forsinket) og "Klager og sletning" (jhn@jhn.dk, opslag og kilder fjernes inden for 24 timer).
+- Indholdet: hvad Affaldsfeed er, at betalingsmure aldrig omgås, et link til Om kilderne, "Udvalgt af AI" (modellen vurderer relevans og skriver overblik og højdepunkter ud fra titel og kort beskrivelse og kan tage fejl), "Opdatering" (vurdering om morgenen, formiddagen og eftermiddagen, tidspunktet for seneste opdatering og en linje, når vurderingen er forsinket) og "Klager og sletning" (jhn@jhn.dk, opslag og kilder fjernes inden for 24 timer).
 - Teksten står i 14/20 med underoverskrifter i 15/22 og vægt 600. Mailadressen samles først i browseren.
 
 ### Højdepunkter
