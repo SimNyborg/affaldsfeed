@@ -16,9 +16,12 @@ Genereres automatisk af `python -m affaldsfeed run`. Viser top 50 efter antal ar
 | byznys.hn.cz | Byznys - Hospodářské noviny | 1 | 2026-10-12 | [1](https://byznys.hn.cz/c1-67943820-hotovo-podepsano-ceskou-a-slovenskou-odpadarskou-firmu-marius-pedersen-prebiraji-francouzi) |
 | cardinalpine.com | Cardinal & Pine | 1 | 2026-10-07 | [1](https://cardinalpine.com/local/wilmington-ritzy-plans-thalian-hall-remake/) |
 | dagens.dk | Dagens.dk | 1 | 2026-10-09 | [1](https://www.dagens.dk/hus-og-have/smid-ikke-fnugget-fra-toerretumbleren-ud-du-kan-bruge-det-til-mere-end-du-tror) |
+| doi.dk | doi.dk | 1 | 2026-10-13 | [1](https://www.doi.dk/ccs/artikel/roskilde-ser-co2-fangst-som-afgoerende-for-klimamaal) |
+| e15.cz | e15.cz | 1 | 2026-10-13 | [1](https://www.e15.cz/e15-cz/obri-obchod-na-ceskem-trhu-s-odpady-francouzi-kupuji-marius-pedersen-za-miliardy-1436498) |
 | effektivtlandbrug.landbrugnet.dk | effektivtlandbrug.landbrugnet | 1 | 2026-10-08 | [1](https://effektivtlandbrug.landbrugnet.dk/artikler/planter/125370/regeringen-vil-mindst-fordoble-boeder-for-miljoekriminalitet) |
 | espn.com | ESPN | 1 | 2026-10-09 | [1](https://www.espn.com/college-football/story/_/id/50127445/nebraska-cornhuskers-memorial-stadium-urinal-sales) |
 | fla.de | fla | 1 | 2026-10-07 | [1](https://www.fla.de/flensborg/lokalt/96529/dansk-inspireret-losning-genbrugspladsen-skal-vaere-aben-nar-) |
+| hradecky.denik.cz | Hradecký deník | 1 | 2026-10-13 | [1](https://hradecky.denik.cz/zpravy-region/francouzska-paprec-kupuje-od-danu-marius-pedersen-spolecnost-sidli-v-hradci/) |
 | idahostatejournal.com | Idaho State Journal | 1 | 2026-10-07 | [1](https://www.idahostatejournal.com/news/local/dedicate-explores-the-salt-lake-temple-renovation-through-the-eyes-of-young-adults/article_05c0f18e-3ced-53f6-accb-fc7897dea527.html) |
 | inc.com | Inc.com | 1 | 2026-10-07 | [1](https://www.inc.com/sarah-bregel/baltimore-orioles-announced-600-million-dollar-renovation-laid-off-employee-behind-mascot/91416095) |
 | kalb.com | KALB | 1 | 2026-10-07 | [1](https://www.kalb.com/2026/10/07/alexandria-hold-ribbon-cutting-charles-smith-park-renovation/) |

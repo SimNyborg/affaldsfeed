@@ -43,6 +43,28 @@
       "47986826309d"
     ]
   },
+  "doi.dk": {
+    "name": "doi.dk",
+    "count": 1,
+    "last_seen": "2026-10-13T11:45:53Z",
+    "examples": [
+      "https://www.doi.dk/ccs/artikel/roskilde-ser-co2-fangst-som-afgoerende-for-klimamaal"
+    ],
+    "ids": [
+      "eaa0670bd3d6"
+    ]
+  },
+  "e15.cz": {
+    "name": "e15.cz",
+    "count": 1,
+    "last_seen": "2026-10-13T11:45:53Z",
+    "examples": [
+      "https://www.e15.cz/e15-cz/obri-obchod-na-ceskem-trhu-s-odpady-francouzi-kupuji-marius-pedersen-za-miliardy-1436498"
+    ],
+    "ids": [
+      "28698af3581e"
+    ]
+  },
   "effektivtlandbrug.landbrugnet.dk": {
     "name": "effektivtlandbrug.landbrugnet",
     "count": 1,
@@ -74,6 +96,17 @@
     ],
     "ids": [
       "4ab24a639891"
+    ]
+  },
+  "hradecky.denik.cz": {
+    "name": "Hradecký deník",
+    "count": 1,
+    "last_seen": "2026-10-13T11:45:53Z",
+    "examples": [
+      "https://hradecky.denik.cz/zpravy-region/francouzska-paprec-kupuje-od-danu-marius-pedersen-spolecnost-sidli-v-hradci/"
+    ],
+    "ids": [
+      "609011a417ad"
     ]
   },
   "idahostatejournal.com": {
