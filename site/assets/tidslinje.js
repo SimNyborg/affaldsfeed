@@ -59,7 +59,7 @@ export function createTimeline(root, tl, { feedHref }) {
   root.replaceChildren(
     el('section', { class: 'panel tl-head', 'aria-labelledby': 'h-tl' },
       el('h1', { id: 'h-tl', text: 'Højdepunkter' }),
-      el('p', { class: 'lead', text: 'De store linjer på affaldsområdet: love, politiske aftaler, EU-regler og andre beslutninger med betydning for hele landet. Udvalgt af AI ud fra nyhederne i feedet. Kan indeholde fejl.' }),
+      el('p', { class: 'lead', text: 'De store linjer på affaldsområdet: love, politiske aftaler, EU-regler og andre beslutninger med betydning for hele landet.' }),
       years),
     list, more);
 

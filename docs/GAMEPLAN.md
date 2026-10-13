@@ -15,7 +15,7 @@ Affaldsfeed bygges i seks faser. Fase 0 og 1 laves i den første lokale session 
 
 Opdatér tabellen, når en fase er færdig.
 
-Ud over planen er der bygget et stedfilter (regioner, kommuner og byer ud fra `geo`), fanen Højdepunkter med en tidslinje over de vigtigste begivenheder (routinens trin 7 kl. 22) og en enklere brugerflade efter brugerens ønsker: et AI-overblik, der kan foldes sammen, foldbare grupper i menuen med alt afkrydset fra start og en kalender over listen. Feedet rækker tilbage til 1. januar 2026, og hver kilde hentes én gang bagud dertil (KONTRAKTER §5.8).
+Ud over planen er der bygget et stedfilter (regioner, kommuner og byer ud fra `geo`), fanen Højdepunkter med en tidslinje over de vigtigste begivenheder (routinens trin 7 kl. 14.25) og en enklere brugerflade efter brugerens ønsker: et AI-overblik, der kan foldes sammen, foldbare grupper i menuen med alt afkrydset fra start og en kalender over listen. Feedet rækker tilbage til 1. januar 2026, og hver kilde hentes én gang bagud dertil (KONTRAKTER §5.8).
 
 ## Fase 0: Fundament
 
@@ -60,7 +60,7 @@ Leverancer:
 - `collect/pages.py` til sitemap og html med et fælles sideudtræk for titel, dato og teaser
 - `collect/oda.py` til Folketingets ODA
 - de planlagte kilder i `sources.yaml` slået til én ad gangen
-- Claudes sweep kl. 06.25 og 14.25 i drift
+- Claudes sweep kl. 07.25 og 14.25 i drift
 
 Færdig, når mindst 60 kilder kører, alle afsenderkategorier har mindst 3 aktive kilder, og ingen sitemap- eller html-kilde har fejlet i 7 dage.
 
@@ -112,7 +112,7 @@ Bagudindsamlingen til 1. januar 2026 (BESLUTNINGER 2026-10-09, Hele 2026 i feede
 
 Fase 2, resten (lokale medier og ODA er færdige):
 1. Følg de 45 sitemap- og 28 html-kilder og ODA i 7 dage. Fejler en, så ret `match`, `select` eller `filter`, eller sæt den på pause med en note.
-2. Efterprøv sweepet kl. 06.25 og 14.25. Fund skal skrives som vurderinger med `new_item`, og ukendte udgivere skal havne i `data/judgments/kildeforslag-sweep.md`. Sweepet kl. 06.25 den 8. oktober gav ingen fund. Læs routinens session (`get_trigger` giver `last_run.session_id`, `list_events` viser forløbet) for at se, om det søgte, og hvad det fandt.
+2. Efterprøv sweepet kl. 07.25 og 14.25. Fund skal skrives som vurderinger med `new_item`, og ukendte udgivere skal havne i `data/judgments/kildeforslag-sweep.md`. Sweepet kl. 06.25 den 8. oktober gav ingen fund. Læs routinens session (`get_trigger` giver `last_run.session_id`, `list_events` viser forløbet) for at se, om det søgte, og hvad det fandt.
 3. TV 2: afventer brugerens svar på, om indsamlingen må læse TV 2's sektionssider (HTML) for at få næsten fuld dækning (se BESLUTNINGER 2026-10-08, Dækningen af affaldsnyheder).
 4. Følg de 81 regionale og lokale aviser, der kom til 2026-10-08 (BESLUTNINGER: Lokalaviserne hentes direkte og Ugeaviser og netaviser hentes direkte), i 7 dage. Tjek især dagssitemaps lige efter midnat, Sjællandske Mediers månedsskifte, forsiderne og de små RSS-feeds.
 5. Lokalmedier: kortlægningen mangler målrettede søgninger i 65 kommuner (se `docs/LOKALMEDIER.md`, Huller i kortlægningen). Søg dem igennem i en ny tur, når søgebudgettet tillader det, og afprøv nye fund med `find-feed` via `probe.yml`. Ret tabellerne i `docs/LOKALMEDIER.md`, når en kilde kommer til eller falder fra.

@@ -10,9 +10,9 @@ import {
 import { createOverview } from './overview.js';
 import { createTimeline, demoizeTimeline } from './tidslinje.js';
 import { createDatePicker } from './calendar.js';
+import { setupInfo, setInfoStatus } from './info.js';
 
 const PAGE = 60; // kort ad gangen; resten kommer med "Vis mere"
-const STALE_HOURS = 6;
 const TEASER_MAX = 240;
 const TIME_KEYS = new Set(['generated', 'last_judgment', 'published', 'first_seen', 'start', 'end', 'last_attempt']);
 
@@ -75,12 +75,6 @@ function demoize(feed, now) {
   if (gen) shiftTimes(feed, Math.floor((now - gen) / 6e4) * 6e4);
 }
 
-const withDemo = (href, demo) => {
-  if (!demo) return href;
-  const [path, hash] = href.split('#');
-  return `${path}?demo=${encodeURIComponent(demo)}${hash ? `#${hash}` : ''}`;
-};
-
 /** Demo-strimlen over headeren, og ?demo= på interne links. */
 function initDemo(demo) {
   if (!demo) return;
@@ -122,6 +116,7 @@ function initFeed() {
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') saveVisit(); });
 
   initDemo(state.demo);
+  setupInfo({ demo: state.demo });
   const list = $('feed');
   const slot = $('sidebar-slot');
   const head = $('list-head');
@@ -149,7 +144,7 @@ function initFeed() {
       // Fejlen står i læsekolonnen uden sidepanel og listens hoved (søgning, Filtrér og visning)
       slot.hidden = true;
       head.hidden = true;
-      for (const id of ['overview', 'msgs']) $(id).hidden = true;
+      $('overview').hidden = true;
       $('status-text').textContent = '';
       // Fejlede opbygningen, genindlæses siden, så intet bindes to gange
       const retry = loaded ? () => location.reload() : start;
@@ -173,15 +168,11 @@ function srcIcon(logo, cat) {
   });
 }
 
-function message(kind, iconName, ...content) {
-  return el('div', { class: `msg ${kind}`.trim() }, icon(iconName), el('p', null, content));
-}
-
 function setupFeed(feed, state, now, lastVisit) {
   const data = prepare(feed, lastVisit);
   setData(data);
   const ui = {
-    msgs: $('msgs'), overview: $('overview'), slot: $('sidebar-slot'),
+    overview: $('overview'), slot: $('sidebar-slot'),
     sheet: $('filter-sheet'), sheetTitle: $('sheet-title'), sheetBody: $('sheet-body'), sheetShow: $('sheet-show'),
     sheetClose: $('sheet-close'), sheetReset: $('sheet-reset'), sheetLive: $('sheet-live'),
     filterBtn: $('filter-btn'), filterCount: $('filter-count'), filterComma: $('filter-comma'), filterCountSr: $('filter-count-sr'),
@@ -200,23 +191,8 @@ function setupFeed(feed, state, now, lastVisit) {
   let total = null; // antal kort uden filtre
   let cards = [];
   let fill = null; // byggeriet af den aktuelle liste (renderList)
-
-  // Meddelelser: forældet feed og regelvisning
-  const msgs = [];
   const gen = parseDate(feed.generated);
-  if (gen) {
-    const hours = Math.floor((now - gen) / 36e5);
-    if (hours > STALE_HOURS) {
-      const ago = hours < 48 ? `${hours} timer` : `${Math.floor(hours / 24)} dage`;
-      msgs.push(message('', 'advarsel', `Feedet blev sidst opdateret for ${ago} siden. Indsamlingen kører måske ikke. `,
-        el('a', { href: withDemo('kilder.html', state.demo) }, 'Se kildernes status')));
-    }
-  }
-  if (feed.mode === 'fallback') {
-    msgs.push(message('msg-info', 'info', 'Vurderingen af nye indslag er forsinket, så de vises efter faste regler indtil videre.'));
-  }
-  ui.msgs.replaceChildren(...msgs);
-  ui.msgs.hidden = !msgs.length;
+  setInfoStatus(feed, now);
 
   // ── Ændringer ──
   let qTimer = 0; // søgning, der venter på de 180 ms
@@ -672,6 +648,7 @@ async function initKilder() {
   const state = readState(location.search);
   const now = new Date();
   initDemo(state.demo);
+  setupInfo({ demo: state.demo });
   const root = $('kilder-root');
 
   let feed;
@@ -685,6 +662,7 @@ async function initKilder() {
     return;
   }
   if (state.demo) demoize(feed, now);
+  setInfoStatus(feed, now);
 
   let status = null;
   if (!state.demo) {
@@ -787,6 +765,7 @@ async function initTimeline() {
   const state = readState(location.search);
   const now = new Date();
   initDemo(state.demo);
+  setupInfo({ demo: state.demo });
   const root = $('tidslinje-root');
   let tl;
   try {

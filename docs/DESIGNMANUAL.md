@@ -14,17 +14,17 @@ Manualen beskriver, hvordan Affaldsfeed ser ud, og hvad der står på siden. Dat
 
 ## Layout
 
-- Demo-strimmel, header, indhold og footer deler én container: højst 68rem (1088 px) med 16 px sidemargen. Derfor står logoet på linje med sidepanelets venstrekant, og det sidste menupunkts tekst flugter med listepanelets højrekant.
-- Fra 1024 px er der to kolonner: filterpanelet på 312 px og læsekolonnen på højst 720 px med 24 px imellem. Sidepanelets top flugter med listepanelets top, så meddelelser og AI-overblik står alene over listen. Læsekolonnen deler gitterets rækker (CSS subgrid), og afstanden på 16 px er en margin, så en skjult meddelelse eller et skjult overblik ikke giver luft. Sidepanelet er sticky 16 px fra toppen, er højst skærmens højde minus 32 px og ruller selv.
+- Demo-strimmel, header og indhold deler én container: højst 68rem (1088 px) med 16 px sidemargen. Derfor står logoet på linje med sidepanelets venstrekant, og det sidste menupunkts tekst flugter med listepanelets højrekant.
+- Fra 1024 px er der to kolonner: filterpanelet på 312 px og læsekolonnen på højst 720 px med 24 px imellem. Sidepanelets top flugter med listepanelets top, så nyhedsoverblikket står alene over listen. Læsekolonnen deler gitterets rækker (CSS subgrid), og afstanden på 16 px er en margin, så et skjult overblik ikke giver luft. Sidepanelet er sticky 16 px fra toppen, er højst skærmens højde minus 32 px og ruller selv.
 - Fra 768 til 1023 px er containeren 47rem (752 px) med én kolonne på højst 720 px. Filtrene ligger i en skuffe fra højre bag knappen "Filtrér".
 - Under 768 px går panelerne fra kant til kant uden radius, og al tekst står 16 px fra skærmkanten. Der er 8 px grå mellem panelerne. Filtrene ligger i et bundark.
 - Brudpunkterne står i em (48em og 64em), så layoutet skifter tidligere, når brugeren har større grundskrift. Siden kan vises ved 320 px uden vandret scroll, også i tom-tilstanden, hvor knapperne må brydes over to linjer.
 - Kan feedet ikke indlæses, står fejlen i læsekolonnen (også fra 1024 px, hvor sidepanelet så er skjult) uden listens hoved, fordi søgning, "Filtrér" og visning intet har at vise.
-- Headeren er hvid, ikke sticky og har `box-shadow: 0 10px 15px rgba(0,0,0,.05)`. Fra 768 px er den én række på 64 px med logo (28 px) og ordmærket "Affaldsfeed" til venstre og navigationen til højre. Under 768 px står logo og ordmærke på én række (56 px) og navigationen på en række for sig (44 px). Der er ingen undertitel.
-- Navigationen er Feed og Højdepunkter. Om kilderne findes via footeren. Den aktive side har teksten i `--link` og en streg på 3 px i `--link` under teksten.
-- Forsiden har denne rækkefølge: demo-strimmel (kun med `?demo=1`), header, sidepanel og læsekolonnen med meddelelser, AI-overblik og listepanelet. Listepanelet har listens hoved øverst og derefter dage og kort. Listen viser 60 kort ad gangen med "Vis mere" under sig (se Dage og listen).
+- Headeren er hvid, ikke sticky og har `box-shadow: 0 10px 15px rgba(0,0,0,.05)`. Fra 768 px er den én række på 64 px med logo (28 px) og ordmærket "Affaldsfeed" til venstre og navigationen og i-knappen til højre. Under 768 px står logo, ordmærke og i-knappen på én række (56 px) og navigationen på en række for sig (44 px). Der er ingen undertitel.
+- Navigationen er Feed og Højdepunkter. Om kilderne findes via i-knappen. Den aktive side har teksten i `--link` og en streg på 3 px i `--link` under teksten.
+- Forsiden har denne rækkefølge: demo-strimmel (kun med `?demo=1`), header, sidepanel og læsekolonnen med nyhedsoverblikket og listepanelet. Listepanelet har listens hoved øverst og derefter dage og kort. Listen viser 60 kort ad gangen med "Vis mere" under sig (se Dage og listen).
 - Afstande: 4, 8, 12, 16, 20, 24 og 32 px. Kort, listens hoved og overblik har 20 px vandret padding (16 px under 768 px). Optiske justeringer på 2, 3 og 6 px står ved de enkelte komponenter.
-- Radius: 15 px på paneler (0 under 768 px), 8 px på felter, forslagslister og meddelelser, 999 px på knapper og aktive filtre.
+- Radius: 15 px på paneler (0 under 768 px), 8 px på felter og forslagslister, 999 px på knapper og aktive filtre.
 
 | Højde | Mus fra 768 px | Berøring eller under 768 px | Bruges til |
 |---|---|---|---|
@@ -39,7 +39,7 @@ Open Sans 400 og 600, hostet selv i `site/assets/fonts/` (latin, licensen står 
 
 | Token | Størrelse og linjehøjde | Vægt | Bruges til |
 |---|---|---|---|
-| `--t-xs` | 13/18 | 400, 600 | afsenderlinje, fodlinje, tider, tal, statuslinje, aktive filtre, tekstknapper, tekstvalg, overblikkets første linje og kildelinks, meddelelser og noter |
+| `--t-xs` | 13/18 | 400, 600 | afsenderlinje, fodlinje, tider, tal, statuslinje, aktive filtre, tekstknapper, tekstvalg, overblikkets første linje og kildelinks og noter |
 | `--t-s` | 14/20 | 400, 600 | filterrækker, forslag, gruppeoverskrifter og dagsoverskrifter (600) |
 | `--t-m` | 15/22 | 400, 600 | brødtekst, teaser, knapper, overblikkets foldede hovedlinje og punkter, titler i kompakt visning (600) |
 | `--t-in` | 15/22, ved berøring 16/24 | 400 | tekst i felter. 16 px forhindrer, at iOS zoomer ind |
@@ -66,9 +66,6 @@ Farverne er CSS-variabler på `:root`.
 | `--link-hover` | #67952E | #A5E3B8 | hover på flader og kanter, aldrig som tekst (3,55:1) |
 | `--accent` | #6E9612 | #95C41F | kun kanten på 3 px ved nye indslag, aldrig tekst (3,5:1 på hvid og 8,0:1 på mørk flade; markeringen er en tilstand og skal have mindst 3:1) |
 | `--tag-bg` | #E6F4EA | #1F3326 | kun aktive filtre (#0A602D på den giver 6,79:1) |
-| `--warn-bg` | #FFF4CC | #3A3214 | meddelelsen om forældet feed og forældet overblik |
-| `--footer` | #54595F | #0B0F0D | footer med hvid tekst |
-| `--focus-on-dark` | #FFFFFF | #FFFFFF | fokusring på den mørke footer |
 
 Felter har kanten `--field` og står kun på `--surface`, hvor kanten har mindst 3,4:1. `opacity` bruges aldrig til at vise en tilstand.
 
@@ -248,32 +245,36 @@ Fra 768 px er der én række pr. indslag i et grid med logo eller ikon (16 px), 
 - Der er ingen skillelinje mellem nye og gamle indslag. Nye indslag ses på kanten i `--accent` og i statuslinjen.
 - Listen viser 60 kort ad gangen, så den ikke bliver for lang. Under listen står knappen "Vis mere" og under den "Viser 60 af 312 indslag" (13/18, `--muted`), som også er knappens beskrivelse til skærmlæsere. Knappen viser de næste 60 og giver fokus til titlen på det første nye kort. Er alt vist, forsvinder knappen. Ændres et filter, begynder listen forfra med 60.
 
-### AI-overblikket
+### Nyhedsoverblikket
 
 Overblikket ligger i et hvidt panel øverst i læsekolonnen over søgning og filtre, fordi det altid dækker hele feedet.
 
-- Foldet (standard): første linje er "AI-overblik · I dag" i 13/18 og `--muted` med tekstknappen "Vis hele" til højre. Anden linje er hovedlinjen med "Kort sagt:" i 600, højst to linjer ved alle bredder. Panelet har 12 px lodret polstring, så det fylder 90 px.
-- Udfoldet: knappen hedder "Vis mindre", og første linje er kun "AI-overblik", fordi fanerne viser perioden. 8 px under den står fanerne I dag, Ugen, Måneden og Året som tekstvalg, derefter "Opdateret kl. 14.24 · bygget på 23 indslag", hovedlinjen i 17/24, punkterne med kildelinks og bunden "Skrevet af AI ud fra kilderne. Kan indeholde fejl."
+- Foldet (standard): første linje er "Nyhedsoverblik senest opdateret i dag kl. 14.25" i 13/18 og `--muted` med tekstknappen "Vis hele" til højre. Er en anden periode end I dag valgt, står den efter navnet: "Nyhedsoverblik for ugen senest opdateret i dag kl. 14.25". Anden linje er hovedlinjen med "Kort sagt:" i 600, højst to linjer ved alle bredder. Panelet har 12 px lodret polstring og fylder 90 px, når første linje står på én linje. På telefoner brydes den over to linjer.
+- Udfoldet: knappen hedder "Vis mindre", og første linje er "Nyhedsoverblik senest opdateret ..." uden periode, fordi fanerne viser den. 8 px under den står fanerne I dag, Ugen, Måneden og Året som tekstvalg, derefter hovedlinjen i 17/24 og punkterne med kildelinks. Begynder periodens data senere end perioden, står fx "Siden 7. oktober 2026" over hovedlinjen.
 - Fanerne er `role="tablist"`. Piletaster, Home og End skifter fane, og kun den aktive fane er i tabulatorrækkefølgen. Den valgte periode står i URL'en som `overblik=dag|uge|maaned|aar`.
 - Under hvert punkt står kildelinks i 13/18, fx "Altinget, KEFM +2". Kildenavnene linker til artiklerne i ny fane og er 24 px høje mål (3 px polstring over og under, linjen bliver ikke højere). Den skjulte titel efter kildenavnet har `lang` på engelske og svenske titler. "+2" er en tekstknap på grundlinjen, der filtrerer feedet til historien med `story=<id>`; et usynligt `::before` giver den en klikflade på 24 × 24 px.
-- Er overblikket forældet, står fx "· fra i går kl. 23.25" i første linje, og den udfoldede visning har en note på `--warn-bg`. Er der aktive filtre, står "Overblikket dækker hele feedet, ikke kun dine filtre." nederst.
+- Overblikket har ingen note om forsinkelse og ingen tekst om AI. Den slags står samlet i i-panelet (se Om Affaldsfeed). Er der aktive filtre, står "Overblikket dækker hele feedet, ikke kun dine filtre." nederst.
 - Valget huskes i `af.overviewHidden`: "0" betyder udfoldet, alt andet betyder foldet. Tilstanden holdes i siden, så knappen også virker, når localStorage ikke kan bruges.
 
-### Demo-strimmel og meddelelser
+### Demo-strimmel
 
 - Med `?demo=1` står en tynd strimmel i `--demo-bg` over headeren: "Demodata: opdigtede eksempler med links til example.org. Tiderne er rykket frem." og linket "Vis det rigtige feed", som aldrig brydes midt i. Den kan ikke lukkes. Interne links bevarer `?demo=1`; logoet på Om kilderne peger på `index.html?demo=1`.
-- Meddelelser står øverst i læsekolonnen før overblikket i 13/18, mindst 40 px høje, med 8 px imellem. Forældet feed (over 6 timer) har `--warn-bg` og ikonet `advarsel`. Regelvisning har `--surface`, kant i `--line` og ikonet `info`. De har ingen lukkeknap og forsvinder, når årsagen forsvinder.
 
-### Footer
+### Om Affaldsfeed (i-knappen)
 
-Footeren har baggrund `--footer` og hvid tekst i 13/18: teksten om projektet og linkene "Om kilderne · Koden på GitHub". Skilletegnet hænger på linket før det, så en linje aldrig begynder med "·". Fokusringen er hvid. På Om kilderne har linket til siden selv `aria-current="page"`.
+Al småtekst står samlet bag en diskret i-knap yderst til højre i headeren på alle sider. Siderne har ingen footer og ingen meddelelser over overblikket.
+
+- Knappen er 44 × 44 px med ikonet `info` på 20 px i `--muted` (`--text` ved hover) og navnet "Om Affaldsfeed" til skærmlæsere. Ikonets højrekant flugter med containerens indhold.
+- Den åbner en modal dialog med overskriften "Om Affaldsfeed" (fokus ved åbning) og en lukkeknap. Esc, lukkeknappen og et klik på baggrunden lukker den, og fokus går tilbage til knappen. Under 768 px er dialogen et bundark som filterarket, ellers står den midt på skærmen, højst 36rem bred og 85 % af skærmens højde.
+- Indholdet: hvad Affaldsfeed er, med link til Om kilderne, "Udvalgt af AI" (modellen vurderer relevans og skriver overblik og højdepunkter ud fra titel og kort beskrivelse og kan tage fejl), "Opdatering" (vurdering om morgenen, formiddagen og eftermiddagen, tidspunktet for seneste opdatering og en linje, når vurderingen er forsinket) og "Klager og sletning" (jhn@jhn.dk, opslag og kilder fjernes inden for 24 timer).
+- Teksten står i 14/20 med underoverskrifter i 15/22 og vægt 600. Mailadressen samles først i browseren.
 
 ### Højdepunkter
 
-Siden Højdepunkter (`tidslinje.html`) viser de vigtigste begivenheder på affaldsområdet, valgt af Claude (KONTRAKTER 7.3). Siden har samme demo-strimmel, header, footer og læsekolonne som Om kilderne.
+Siden Højdepunkter (`tidslinje.html`) viser de vigtigste begivenheder på affaldsområdet, valgt af Claude (KONTRAKTER 7.3). Siden har samme demo-strimmel, header og læsekolonne som Om kilderne.
 
 - Tidslinjen er et kompakt overblik over de store linjer på affaldsområdet. Kun begivenheder med betydning for hele landet kommer med (KONTRAKTER 7.3), typisk 0-2 om ugen.
-- Øverst står "Højdepunkter" (`h1`) og linjen "De store linjer på affaldsområdet: love, politiske aftaler, EU-regler og andre beslutninger med betydning for hele landet. Udvalgt af AI ud fra nyhederne i feedet. Kan indeholde fejl." Under den står "Spring til 2026 · 2025", når begivenhederne spænder over mere end ét år. Der er intet valg af niveau, og `niveau=` fra ældre links fjernes fra URL'en.
+- Øverst står "Højdepunkter" (`h1`) og linjen "De store linjer på affaldsområdet: love, politiske aftaler, EU-regler og andre beslutninger med betydning for hele landet." Under den står "Spring til 2026 · 2025", når begivenhederne spænder over mere end ét år. Der er intet valg af niveau, og `niveau=` fra ældre links fjernes fra URL'en.
 - Begivenhederne står i ét panel grupperet efter måned. Månedsoverskriften er sticky som feedets dagsoverskrifter, i 17/24 med antallet til højre, og har et anker (`#2026-10`), så man kan linke til en måned.
 - Hver begivenhed har datoen i en fast kolonne til venstre ("7. okt."), en markør på en lodret streg i `--line` og til højre titlen (15/22, 600), resuméet (14/20, `--muted`) og "Læs 3 nyheder" (eller "Læs nyheden"), med 8 px luft over og under. Steder og temaer står ikke på tidslinjen. Markøren er en udfyldt cirkel på 12 px i `--link` ved milepæle og en ring ved de andre. Den er dekorativ (`aria-hidden`), og skærmlæseren hører "Milepæl:" før titlen.
 - "Læs 3 nyheder" folder indslagene ud med kilde (600), dato og titlen som link i ny fane. Er historien stadig i feedet, står "Vis i feedet" nederst og linker til `index.html?story=<id>`.
@@ -283,7 +284,7 @@ Siden Højdepunkter (`tidslinje.html`) viser de vigtigste begivenheder på affal
 
 ### Om kilderne
 
-Siden bruger samme demo-strimmel, header og footer og en læsekolonne på højst 720 px uden sidepanel. Fra 1024 px står læsekolonnen ved containerens venstrekant og flugter med logoet; under 1024 px står den som listepanelet på forsiden. Afsendertyperne står som rækker med ikon, det fulde navn og antal kilder (`id="typer"`), i to kolonner fra 560 px med 48 px imellem. En type, der afventer, har "Afventer" i stedet for antallet. Hver kategori har sin egen sektion med ikonet (20 px) i overskriften, kategoriens forklaring og kildelisten. Afventer kategorien, står der "Kategorien afventer og har ingen kilder endnu." i stedet for listen. Statusmærket står altid øverst til højre i kildens række. Har kilden et logo, står det i 16 px foran navnet, 8 px fra det. Tallene i "Status lige nu" står i 20/28 og vægt 600.
+Siden bruger samme demo-strimmel og header og en læsekolonne på højst 720 px uden sidepanel. Fra 1024 px står læsekolonnen ved containerens venstrekant og flugter med logoet; under 1024 px står den som listepanelet på forsiden. Afsendertyperne står som rækker med ikon, det fulde navn og antal kilder (`id="typer"`), i to kolonner fra 560 px med 48 px imellem. En type, der afventer, har "Afventer" i stedet for antallet. Hver kategori har sin egen sektion med ikonet (20 px) i overskriften, kategoriens forklaring og kildelisten. Afventer kategorien, står der "Kategorien afventer og har ingen kilder endnu." i stedet for listen. Statusmærket står altid øverst til højre i kildens række. Har kilden et logo, står det i 16 px foran navnet, 8 px fra det. Tallene i "Status lige nu" står i 20/28 og vægt 600.
 
 ## Tone og mikrotekster
 
@@ -311,9 +312,9 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Statuslinje | Vis 7 nye · Vis 1 ny · 7 nye indslag · 1 nyt indslag · Vis alle · til skærmlæseren og ved fokus: 1.284 indslag · 23 af 1.284 indslag |
 | Visning | Normal · Kompakt |
 | Kort | Auto-resumé: · fundet 09.14 · +3 andre kilder · +1 anden kilde · +3 andre kilder, 2 nye · +3 flere · +1 mere |
-| Overblik | AI-overblik · I dag · Ugen · Måneden · Året · Vis hele · Vis mindre · fra i går kl. 23.25 · Opdateret kl. 14.24 · bygget på 23 indslag · Skrevet af AI ud fra kilderne. Kan indeholde fejl. |
-| Overblik, kort data | Siden 7. oktober 2026 · opdateret kl. 09.25 |
-| Overblik, før første kørsel | Dagens overblik kommer efter kl. 06.25. |
+| Overblik | Nyhedsoverblik · senest opdateret fredag kl. 23.28 · for ugen · I dag · Ugen · Måneden · Året · Vis hele · Vis mindre |
+| Overblik, kort data | Siden 7. oktober 2026 |
+| Overblik, før første kørsel | Dagens overblik kommer efter kl. 07.25. |
 | Overblik, filternote | Overblikket dækker hele feedet, ikke kun dine filtre. |
 | Filtre giver 0 | Ingen indslag passer til Nyborg Kommune + Tekstiler. Landsdækkende nyheder er ikke valgt under Sted. · Fjern Tekstiler (viser 23) · Udvid til Nyborg Kommune (viser 4) · Fjern historien (viser 2) · Nulstil filtre |
 | Søgning giver 0 | Intet om "gebyrloft". · Ryd søgning (viser 1.284) |
@@ -325,15 +326,15 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Regelvisning | Vurderingen af nye indslag er forsinket, så de vises efter faste regler indtil videre. |
 | Om kilderne, status | Feedet er opdateret i dag kl. 09.17. · Indslagene blev sidst vurderet i dag kl. 09.25. |
 | Demo | Demodata: opdigtede eksempler med links til example.org. Tiderne er rykket frem. · Vis det rigtige feed |
-| Footer | Uafhængigt hobbyprojekt. Ikke tilknyttet affaldsviden.info. Alle overskrifter linker til den oprindelige kilde. · Om kilderne · Koden på GitHub |
+| Om Affaldsfeed | Om Affaldsfeed (i-knappen) · Udvalgt af AI · Opdatering · Klager og sletning · Siden blev sidst opdateret i dag kl. 14.31. · Vurderingen er forsinket lige nu, så nye nyheder vises efter faste regler. · Luk |
 
 ## Tilgængelighed (WCAG 2.2 AA)
 
 - Kontrast: mindst 4,5:1 for tekst og 3:1 for kanter, fokusringe og markeringer i begge tilstande. #95C41F, #6E9612 og #67952E bruges aldrig som tekst.
 - 1.4.1: farve står aldrig alene.
-- Fokus: `:focus-visible` med en kontur på 2 px i `--link` og 2 px offset. Rækker, forslag og menupunkter har ringen indvendigt, så den ikke klippes. Felter har ringen uden offset, og kanten bliver `--link`. På footeren er ringen hvid. `scroll-padding-top` svarer til dagsoverskriften plus 16 px, så fokus aldrig skjules under den (2.4.11).
+- Fokus: `:focus-visible` med en kontur på 2 px i `--link` og 2 px offset. Rækker, forslag og menupunkter har ringen indvendigt, så den ikke klippes. Felter har ringen uden offset, og kanten bliver `--link`. `scroll-padding-top` svarer til dagsoverskriften plus 16 px, så fokus aldrig skjules under den (2.4.11).
 - 2.5.8: alle mål er mindst 24 × 24 px, i praksis 28 til 36 px med mus og 44 px ved berøring.
-- Tastatur: alt kan betjenes med tastatur. Der er ingen genveje på ét tegn. Søgefeltet med forslag følger WAI-ARIA's combobox-mønster med ↓, ↑, Alt + ↓, Alt + ↑, Enter, Esc og Tab. Filterarket er en modal dialog, og Esc lukker det inderste først. Overblikkets faner skiftes med piletasterne.
+- Tastatur: alt kan betjenes med tastatur. Der er ingen genveje på ét tegn. Søgefeltet med forslag følger WAI-ARIA's combobox-mønster med ↓, ↑, Alt + ↓, Alt + ↑, Enter, Esc og Tab. Filterarket og Om Affaldsfeed er modale dialoger, og Esc lukker det inderste først. Overblikkets faner skiftes med piletasterne.
 - Skærmlæser: tal i rækker og forslag læses med "indslag", mærker læses "Fjern filter: Kommune/affaldsselskab", og valg i forslagslisten meldes ("Altinget er valgt."). Statuslinjen er en live-region, og arket har sin egen, fordi siden bag det er inert.
 - Struktur: h1 til h3, `<main>`, `<nav>`, `<search>` og `<article>`. Forsidens skjulte h1 står i headeren, før sidepanelets h2 "Filtre". Links, der åbner i nyt vindue, har den skjulte tekst "(åbner i nyt vindue)".
 - Sprog: `lang="en"` eller `lang="sv"` på titler og teasere på engelsk og svensk, også i overblikkets skjulte kildetekst.

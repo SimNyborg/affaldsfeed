@@ -31,8 +31,6 @@
   --link-hover: #67952E;
   --accent: #6E9612;           /* nye indslag (3,5:1 mod hvid) */
   --tag-bg: #E6F4EA;
-  --warn-bg: #FFF4CC;
-  --footer: #54595F;
 
   /* Afledte farver */
   --on-link: #FFFFFF;          /* tekst på --link */
@@ -42,7 +40,6 @@
   --demo-text: #222222;
   --backdrop: rgb(0 0 0 / 0.45);
   --shadow: 0 10px 15px rgb(0 0 0 / 0.05);
-  --focus-on-dark: #FFFFFF;    /* fokus på den mørke footer */
   --h-groen: #1E7B3C;
   --h-gul: #B07A00;
   --h-roed: #C0362C;
@@ -93,8 +90,6 @@
     --link-hover: #A5E3B8;
     --accent: #95C41F;
     --tag-bg: #1F3326;
-    --warn-bg: #3A3214;
-    --footer: #0B0F0D;
     --on-link: #0B1F12;
     --field: #6E7975;
     --hover-bg: #222A26;
@@ -245,12 +240,12 @@ svg.i { width: 16px; height: 16px; flex: none; }
 .icon-btn:hover { background: var(--hover-bg); }
 
 /* ── Én container: demo-strimmel, header, layout og footer ── */
-.demo-strip .inner, .site-header .inner, .layout, .site-footer .inner {
+.demo-strip .inner, .site-header .inner, .layout {
   max-width: var(--container);
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
-.demo-strip .inner, .site-header .inner, .site-footer .inner { padding-inline: 16px; } /* altid 16 px */
+.demo-strip .inner, .site-header .inner { padding-inline: 16px; } /* altid 16 px */
 
 /* ── Demo-strimmel ────────────────────────────────────── */
 .demo-strip {
@@ -292,7 +287,7 @@ svg.i { width: 16px; height: 16px; flex: none; }
   white-space: nowrap;
 }
 .brand .logo { width: 28px; height: 28px; margin-right: 8px; vertical-align: top; }
-.site-nav { margin-right: -12px; }
+.site-nav { margin-left: auto; }
 .site-nav ul { display: flex; list-style: none; }
 .site-nav a {
   position: relative;
@@ -341,26 +336,7 @@ svg.i { width: 16px; height: 16px; flex: none; }
 
 .loading-text { color: var(--muted); }
 
-/* ── Meddelelser ──────────────────────────────────────── */
-.msgs { display: flex; flex-direction: column; gap: 8px; }
-.msg {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  min-height: 40px;
-  padding: 11px 12px;          /* én linje giver 40 px */
-  border-radius: var(--r-ctl);
-  background: var(--warn-bg);
-  color: var(--text);
-  font-size: var(--t-xs);
-  line-height: var(--lh-xs);
-}
-.msg .i { margin-top: 1px; }
-.msg a { color: inherit; font-weight: 600; }
-.msg-info { padding: 10px 11px; border: 1px solid var(--line); background: var(--surface); }
-.msg-info .i { color: var(--link); }
-
-/* ── AI-overblik ──────────────────────────────────────── */
+/* ── Nyhedsoverblik ───────────────────────────────────── */
 .ov-head {
   display: flex;
   align-items: center;
@@ -374,7 +350,6 @@ svg.i { width: 16px; height: 16px; flex: none; }
   line-height: var(--lh-xs);
 }
 .ov-label h2 { display: inline; font-size: inherit; line-height: inherit; }
-.ov-old { color: var(--text); font-weight: 600; }
 .ov-toggle { margin-block: calc((var(--lh-xs) - var(--h-chip)) / 2); text-decoration: none; }
 .ov-toggle:hover { text-decoration: underline; }
 .ov-toggle .i, .also > summary .i { transition: transform 0.15s ease; }
@@ -394,18 +369,6 @@ svg.i { width: 16px; height: 16px; flex: none; }
 
 .ov-body .seg-tabs { margin-top: 8px; }   /* fanerne på egen linje lige under første linje */
 .ov-panel:focus-visible { outline-offset: 4px; border-radius: 4px; }
-.ov-warn {
-  margin-top: 12px;
-  display: flex;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: var(--r-ctl);
-  background: var(--warn-bg);
-  color: var(--text);
-  font-size: var(--t-xs);
-  line-height: var(--lh-xs);
-}
-.ov-warn .i { margin-top: 1px; }
 .ov-meta { margin-top: 12px; color: var(--muted); font-size: var(--t-xs); line-height: var(--lh-xs); }
 .ov-headline { margin-top: 4px; font-size: var(--t-l); line-height: var(--lh-l); font-weight: 600; }
 .ov-empty { margin-top: 12px; color: var(--muted); }
@@ -1111,24 +1074,37 @@ dialog.sheet::backdrop { background: var(--backdrop); }
 @keyframes sheet-up { from { transform: translateY(16px); opacity: 0; } }
 @keyframes sheet-in { from { transform: translateX(16px); opacity: 0; } }
 
-/* ── Footer ───────────────────────────────────────────── */
-.site-footer {
-  background: var(--footer);
-  color: #FFFFFF;
-  font-size: var(--t-xs);
-  line-height: var(--lh-xs);
+/* ── Om Affaldsfeed: i-knappen i headeren og dialogen bag den ── */
+.info-btn { margin: 0 -12px 0 -12px; color: var(--muted); }
+.info-btn svg.i { width: 20px; height: 20px; }
+.info-btn:hover { color: var(--text); }
+dialog.info {
+  width: min(36rem, calc(100% - 32px));
+  max-width: 100%;
+  max-height: min(85dvh, 44rem);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-panel);
+  background: var(--surface);
+  color: var(--text);
+  overflow: hidden;
+  overflow: clip;
 }
-.site-footer .inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px 24px;
-  padding-block: 24px;
+dialog.info[open] { display: flex; flex-direction: column; }
+dialog.info::backdrop { background: var(--backdrop); }
+.info-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 16px 20px calc(20px + env(safe-area-inset-bottom));
+  font-size: var(--t-s);
+  line-height: var(--lh-s);
 }
-.site-footer a { color: #FFFFFF; }
-.site-footer :focus-visible { outline-color: var(--focus-on-dark); }
-.foot-text { display: grid; gap: 4px; min-width: 0; }
+.info-body h3 { margin-top: 20px; font-size: var(--t-m); line-height: var(--lh-m); font-weight: 600; }
+.info-body h3 + p { margin-top: 4px; }
+.info-status { color: var(--muted); }
 
 /* ── Tidslinje ────────────────────────────────────────── */
 /* Datoen står i en fast kolonne, markøren på en lodret streg, og teksten flugter til højre for den */
@@ -1306,28 +1282,27 @@ dialog.sheet::backdrop { background: var(--backdrop); }
 
 /* ── Brudpunkter (em, så de følger brugerens grundskrift) ── */
 
-/* Fra 1024 px: sidepanel og læsekolonne i ét grid. Læsekolonnen deler gitterets rækker (subgrid): meddelelser,
-   AI-overblik og listepanelet står i hver sin række, og sidepanelet står i listens række, så toppen af de to
-   flugter. Afstanden mellem rækkerne er margin og ikke gap, så skjulte rækker ikke giver luft. */
+/* Fra 1024 px: sidepanel og læsekolonne i ét grid. Læsekolonnen deler gitterets rækker (subgrid): overblikket
+   og listepanelet står i hver sin række, og sidepanelet står i listens række, så toppen af de to flugter.
+   Afstanden mellem rækkerne er margin og ikke gap, så et skjult overblik ikke giver luft. */
 @media (min-width: 64em) {
   .layout:not(.single) {
     display: grid;
     grid-template-columns: var(--side) minmax(0, 1fr);
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto 1fr;
     column-gap: var(--gap);
     align-items: start;
   }
   .layout:not(.single) > .main {   /* også når sidepanelet er skjult (fejl) */
     grid-column: 2;
-    grid-row: 1 / span 3;
+    grid-row: 1 / span 2;
     display: grid;
     grid-template-rows: subgrid;
     row-gap: 0;
   }
-  .layout:not(.single) > .main > .msgs { grid-row: 1; margin-bottom: var(--block); }
-  .layout:not(.single) > .main > .overview { grid-row: 2; margin-bottom: var(--block); }
-  .layout:not(.single) > .main > .list-panel { grid-row: 3; }
-  .layout:not(.single) > .sidebar { grid-row: 3; }
+  .layout:not(.single) > .main > .overview { grid-row: 1; margin-bottom: var(--block); }
+  .layout:not(.single) > .main > .list-panel { grid-row: 2; }
+  .layout:not(.single) > .sidebar { grid-row: 2; }
   /* Om kilderne: læsekolonnen (højst 720 px) står ved containerens venstrekant og flugter med logoet */
   .layout.single { max-width: var(--container); }
   .layout.single > .main { max-width: var(--col); }
@@ -1364,15 +1339,16 @@ dialog.sheet::backdrop { background: var(--backdrop); }
 /* Under 768 px: paneler fra kant til kant, header i to rækker */
 @media (max-width: 47.99em) {
   .layout { margin-top: 8px; margin-bottom: 8px; }
-  .site-header .inner { display: block; height: auto; }
+  .site-header .inner { position: relative; display: block; height: auto; }
+  .info-btn { position: absolute; top: calc((3.5rem - 44px) / 2); right: 4px; margin: 0; }
+  dialog.info { width: 100%; max-height: 90dvh; margin: auto 0 0; border-radius: 15px 15px 0 0; }
+  dialog.info[open] { animation: sheet-up 0.2s ease-out; }
   .brand { align-items: center; min-height: 3.5rem; }
   .site-nav { margin: 0 0 0 -12px; }
   .site-nav a { height: 2.75rem; }
   .panel { padding-block: 12px; }
   .list-head { padding-block: 12px; }
   .card { padding-block: 12px; }
-  .msg { border-radius: 0; padding-inline: 16px; }
-  .msg-info { border-inline: 0; padding-inline: 16px; }
   .empty { padding-block: 16px; }
   .row { grid-template-columns: 16px minmax(0, 1fr) auto; row-gap: 4px; }
   .row .tcell { grid-column: 1 / -1; grid-row: 2; }

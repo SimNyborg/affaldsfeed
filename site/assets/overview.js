@@ -1,21 +1,21 @@
-// Affaldsfeed: AI-overblikket øverst (I dag, Ugen, Måneden, Året).
+// Affaldsfeed: nyhedsoverblikket øverst (I dag, Ugen, Måneden, Året).
 // Data kommer fra feed.json → overview.{dag,uge,maaned,aar} (KONTRAKTER §7–8).
 // Foldet viser kun "Kort sagt"-linjen; "Vis hele" folder ud. af.overviewHidden = "0" betyder udfoldet.
 
 import {
-  el, icon, hidden, sep, srPunct, cph, fmtStamp, fmtWhen, fmtShort, fmtLongYear, fmtNum, parseDate, shortName,
+  el, icon, hidden, srPunct, cph, fmtWhen, fmtLongYear, parseDate, shortName,
   load, store, OV_PERIODS,
 } from './filters.js';
 
 const LABELS = { dag: 'I dag', uge: 'Ugen', maaned: 'Måneden', aar: 'Året' };
+// Foldet står perioden i første linje, når den ikke er I dag: "Nyhedsoverblik for ugen senest opdateret ..."
+const FOR = { uge: 'for ugen', maaned: 'for måneden', aar: 'for året' };
 const EMPTY = {
-  dag: 'Dagens overblik kommer efter kl. 06.25.',
-  uge: 'Ugens overblik kommer efter kl. 06.25.',
-  maaned: 'Månedens overblik kommer efter kl. 06.25.',
-  aar: 'Årets overblik kommer mandag efter kl. 06.25.',
+  dag: 'Dagens overblik kommer efter kl. 07.25.',
+  uge: 'Ugens overblik kommer efter kl. 07.25.',
+  maaned: 'Månedens overblik kommer efter kl. 07.25.',
+  aar: 'Årets overblik kommer mandag efter kl. 07.25.',
 };
-// Hvor gammelt et overblik må være, før det ikke er opdateret som planlagt (timer)
-const MAX_AGE_H = { uge: 18, maaned: 30, aar: 8 * 24 };
 const KEY = 'af.overviewHidden';
 
 /**
@@ -32,7 +32,7 @@ export function createOverview(root, { data, now, getState, onPeriod, onStory })
   const isOpen = () => open;
 
   const per = el('span', { class: 'ov-per' });
-  const old = el('span', { class: 'ov-old' });
+  const upd = el('span', { class: 'ov-upd' });
   const toggleText = el('span');
   const toggle = el('button', {
     type: 'button', class: 'btn-text ov-toggle', 'aria-expanded': 'false', 'aria-controls': 'ov-body',
@@ -57,7 +57,7 @@ export function createOverview(root, { data, now, getState, onPeriod, onStory })
 
   root.replaceChildren(
     el('div', { class: 'ov-head' },
-      el('div', { class: 'ov-label' }, el('h2', { id: 'ov-title', text: 'AI-overblik' }), per, old),
+      el('div', { class: 'ov-label' }, el('h2', { id: 'ov-title', text: 'Nyhedsoverblik' }), per, upd),
       toggle),
     short, body);
   root.setAttribute('aria-labelledby', 'ov-title');
@@ -78,11 +78,11 @@ export function createOverview(root, { data, now, getState, onPeriod, onStory })
     const ov = current(period);
     const open = isOpen();
     const generated = ov ? parseDate(ov.generated) || now : null;
-    const stale = ov ? isStale(period, ov, generated) : false;
 
-    // Foldet: "AI-overblik · I dag". Udfoldet viser fanerne perioden, så første linje er kun "AI-overblik"
-    per.replaceChildren(...(open ? [] : [...sep(), LABELS[period]]));
-    old.replaceChildren(...(stale ? [...sep(), `fra ${fmtWhen(generated, now)}`] : []));
+    // "Nyhedsoverblik senest opdateret fredag kl. 23.28". Foldet står en anden periode end I dag med
+    // ("for ugen"); udfoldet viser fanerne perioden
+    per.textContent = !open && FOR[period] ? ` ${FOR[period]}` : '';
+    upd.textContent = ov ? ` senest opdateret ${fmtWhen(generated, now)}` : '';
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     toggleText.textContent = open ? 'Vis mindre' : 'Vis hele';
     root.classList.toggle('is-open', open);
@@ -100,7 +100,7 @@ export function createOverview(root, { data, now, getState, onPeriod, onStory })
       t.tabIndex = on ? 0 : -1;
     });
     panel.setAttribute('aria-labelledby', `ov-tab-${period}`);
-    panel.replaceChildren(...panelContent(period, ov, generated, stale));
+    panel.replaceChildren(...panelContent(period, ov));
   }
 
   /** "Kort sagt:" i fed, resten almindelig. */
@@ -110,49 +110,27 @@ export function createOverview(root, { data, now, getState, onPeriod, onStory })
   }
 
   function emptyText(period) {
-    // Før kl. 07 venter vi på morgenkørslen; senere på dagen er overblikket bare ikke skrevet endnu
-    return Number(cph(now).hh) < 7 ? EMPTY[period] : 'Overblikket er ikke skrevet endnu. Det kommer ved en af de næste opdateringer.';
+    // Før kl. 08 venter vi på morgenkørslen; senere på dagen er overblikket bare ikke skrevet endnu
+    return Number(cph(now).hh) < 8 ? EMPTY[period] : 'Overblikket er ikke skrevet endnu. Det kommer ved en af de næste opdateringer.';
   }
 
-  function isStale(period, ov, generated) {
-    if (period === 'dag') {
-      const end = parseDate(ov.window?.end) || generated;
-      return cph(now).dayNum - cph(end).dayNum > 0;
-    }
-    return (now - generated) / 36e5 > MAX_AGE_H[period];
-  }
-
-  function panelContent(period, ov, generated, stale) {
-    if (!ov) return [el('p', { class: 'ov-empty', text: emptyText(period) }), foot(false)];
+  function panelContent(period, ov) {
+    if (!ov) return [el('p', { class: 'ov-empty', text: emptyText(period) }), foot()];
     const out = [];
-    if (stale) out.push(el('p', { class: 'ov-warn' }, icon('advarsel'), el('span', { text: staleText(period, ov, generated) })));
-    let since = '';
     if (ov.since) {
+      // Perioden står allerede i fanerne; "Siden" siger, at data først begynder senere
       const [y, m, d] = String(ov.since).split('-').map(Number);
-      if (y && m && d) since = `Siden ${fmtLongYear({ y, m, d })} · `; // perioden står allerede i fanerne
+      if (y && m && d) out.push(el('p', { class: 'ov-meta', text: `Siden ${fmtLongYear({ y, m, d })}` }));
     }
-    out.push(el('p', { class: 'ov-meta', text: `${since}${since ? 'opdateret' : 'Opdateret'} ${fmtStamp(generated, now)} · bygget på ${fmtNum(ov.based_on || 0)} indslag` }));
     out.push(el('p', { class: 'ov-headline', text: ov.headline }));
     out.push(el('ul', { class: 'ov-bullets' }, ov.bullets.map((b) => el('li', null, el('p', { text: b.text }), refsLine(b)))));
-    out.push(foot(true));
+    out.push(foot());
     return out;
   }
 
-  function staleText(period, ov, generated) {
-    if (period === 'dag') {
-      const end = parseDate(ov.window?.end) || generated;
-      const diff = cph(now).dayNum - cph(end).dayNum;
-      const early = Number(cph(now).hh) < 7;
-      const from = diff === 1 ? 'Dette er gårsdagens overblik' : `Dette overblik er fra ${fmtShort(cph(end))}`;
-      return `${from} (opdateret ${fmtStamp(generated, now)}). ${early ? 'Dagens overblik kommer efter kl. 06.25.' : 'Dagens overblik er forsinket.'}`;
-    }
-    return `Overblikket blev sidst opdateret ${fmtStamp(generated, now)} og er ikke blevet opdateret som planlagt.`;
-  }
-
-  function foot(written) {
-    return el('div', { class: 'ov-foot' },
-      written ? el('p', { text: 'Skrevet af AI ud fra kilderne. Kan indeholde fejl.' }) : null,
-      filtersActive ? filterNote() : null);
+  /** Bunden har kun noten om filtre, når der er aktive filtre. */
+  function foot() {
+    return filtersActive ? el('div', { class: 'ov-foot' }, filterNote()) : null;
   }
 
   function filterNote() {

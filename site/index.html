@@ -33,6 +33,9 @@
           <li><a href="tidslinje.html" data-internal>Højdepunkter</a></li>
         </ul>
       </nav>
+      <button type="button" class="icon-btn info-btn" id="info-btn" aria-haspopup="dialog" aria-label="Om Affaldsfeed">
+        <svg class="i" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#info"></use></svg>
+      </button>
     </div>
   </header>
 
@@ -42,8 +45,6 @@
     </div>
 
     <main class="main" id="indhold" tabindex="-1">
-      <div class="msgs" id="msgs" hidden></div>
-
       <section class="panel overview" id="overview" hidden></section>
 
       <div class="list-panel">
@@ -108,14 +109,5 @@
     </div>
     <p class="visually-hidden" role="status" id="sheet-live"></p>
   </dialog>
-
-  <footer class="site-footer">
-    <div class="inner">
-      <div class="foot-text">
-        <p>Uafhængigt hobbyprojekt. Ikke tilknyttet affaldsviden.info. Alle overskrifter linker til den oprindelige kilde.</p>
-        <p class="foot-links"><a href="kilder.html" data-internal>Om kilderne</a><span class="sep" aria-hidden="true">&nbsp;· </span><a href="https://github.com/SimNyborg/affaldsfeed">Koden på GitHub</a></p>
-      </div>
-    </div>
-  </footer>
 </body>
 </html>

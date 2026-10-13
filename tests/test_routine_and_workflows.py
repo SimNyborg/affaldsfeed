@@ -60,7 +60,7 @@ def test_geography_workflow_commits_only_after_check():
 def test_routine_timeline_step():
     text = " ".join(REDAKTOER.split())
     assert "Du skriver kun i `data/judgments/`, `data/overview/` og `data/timeline/`." in text
-    assert "### 7. Tidslinje (kun når `TIME` er 22, eller når tidslinjen er tom)" in REDAKTOER
+    assert "### 7. Tidslinje (kun når `TIME` er 14, eller når tidslinjen er tom)" in REDAKTOER
     assert ".venv/bin/python -m affaldsfeed timeline-input > /tmp/timeline.json" in REDAKTOER
     assert ".venv/bin/python -m affaldsfeed validate-timeline --file data/timeline/MÅNED.jsonl" in REDAKTOER
     # git add må ikke fejle, før tidslinjen findes
@@ -82,7 +82,7 @@ def test_routine_fills_the_timeline_backwards_month_by_month():
     assert "Er `fill_month` `null`, så spring resten af trinnet over." in text
     assert "også når du ikke skrev nogen begivenheder" in text and "Tag højst én måned pr. kørsel." in text
     whole = " ".join(REDAKTOER.split())
-    assert "skal hverken trin 5, 6 eller 7 køres i denne time, så gå direkte til trin 7b." in whole
+    assert "skal hverken trin 5, 6 eller 7 køres i denne kørsel, så gå direkte til trin 7b." in whole
     assert "gå direkte til trin 8" not in whole
 
 
@@ -115,3 +115,15 @@ def test_collect_starts_from_latest_branch_and_probe_commits_on_top():
     commit = probe["jobs"]["probe"]["steps"][-1]["run"]
     assert "git pull --rebase" not in commit
     assert commit.index("git reset -q --hard FETCH_HEAD") < commit.index("cp /tmp/result.md probe/result.md")
+
+
+def test_routine_times_match_the_settings():
+    # Instruksen nævner de tider, som config/settings.yaml (og routinens cron) bruger
+    routine = yaml.safe_load((ROOT / "config" / "settings.yaml").read_text(encoding="utf-8"))["routine"]
+    times = [f"{h:02d}.{routine['minute']:02d}" for h in routine["hours"]]
+    named = ", ".join(times[:-1]) + " og " + times[-1]
+    assert f"Du kører tre gange om dagen, kl. {named} dansk tid" in REDAKTOER
+    # Sweep og tidslinje ligger i kørsler, der findes
+    hours = {f"{h:02d}" for h in routine["hours"]}
+    for step in re.findall(r"kun når `TIME` er (\d\d)(?: eller (\d\d))?", REDAKTOER):
+        assert {h for h in step if h} <= hours

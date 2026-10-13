@@ -31,6 +31,9 @@
           <li><a href="tidslinje.html" data-internal>Højdepunkter</a></li>
         </ul>
       </nav>
+      <button type="button" class="icon-btn info-btn" id="info-btn" aria-haspopup="dialog" aria-label="Om Affaldsfeed">
+        <svg class="i" aria-hidden="true" focusable="false"><use href="assets/ikoner.svg#info"></use></svg>
+      </button>
     </div>
   </header>
 
@@ -56,24 +59,7 @@
       <div id="kilder-root" class="main">
         <p class="panel loading-text">Henter kildelisten …</p>
       </div>
-
-      <section class="panel prose" aria-labelledby="h-saadan">
-        <h2 id="h-saadan">Sådan bliver feedet og overblikket til</h2>
-        <p>Hver time henter et job på GitHub Actions nyt fra kilderne via RSS-feeds og nyhedssøgninger. Det, der tydeligvis ikke handler om affald, bliver sorteret fra, og artikler om samme historie bliver samlet på ét kort.</p>
-        <p>Mellem kl. 6 og 23 vurderer en AI-model en gang i timen, om de nye indslag er relevante for kommunernes arbejde med affald. Modellen ser kun titlen og kildens egen korte beskrivelse, og feedet viser kun de indslag, den har godkendt. Er vurderingen mere end et par timer forsinket, bliver nye indslag vist efter faste regler og mærket "Ikke vurderet".</p>
-        <p>AI-overblikket øverst på forsiden og højdepunkterne skriver modellen ud fra de godkendte indslag og intet andet. Hvert punkt linker til de artikler, det bygger på, så du selv kan tjekke det. Begge kan indeholde fejl.</p>
-        <p>Feedet viser titel, kilde og tidspunkt samt kildens egen korte beskrivelse, og overskrifterne linker altid til den oprindelige artikel. Affaldsfeed er et uafhængigt hobbyprojekt uden tilknytning til affaldsviden.info. Koden ligger åbent på <a href="https://github.com/SimNyborg/affaldsfeed">GitHub</a>.</p>
-      </section>
     </main>
   </div>
-
-  <footer class="site-footer">
-    <div class="inner">
-      <div class="foot-text">
-        <p>Uafhængigt hobbyprojekt. Ikke tilknyttet affaldsviden.info. Alle overskrifter linker til den oprindelige kilde.</p>
-        <p class="foot-links"><a href="kilder.html" aria-current="page" data-internal>Om kilderne</a><span class="sep" aria-hidden="true">&nbsp;· </span><a href="https://github.com/SimNyborg/affaldsfeed">Koden på GitHub</a></p>
-      </div>
-    </div>
-  </footer>
 </body>
 </html>
