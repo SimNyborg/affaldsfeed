@@ -1,6 +1,7 @@
 """Forbehold hos kilderne (kun på grenen kilder-udvid): robots.txt, AI-bots og TDM-forbehold.
 
 Brug: python probe/forbehold.py [--workers 8]
+      python probe/forbehold.py --vilkaar   (henter vilkårssiderne fra probe/forbehold.json)
 Læser alle kilder i sources.yaml og domænerne i config/medier.yaml. For hver vært hentes robots.txt,
 /.well-known/tdmrep.json og forsiden (kun hvis robots.txt tillader det). Resultatet skrives til
 probe/forbehold.json og som oversigt på stdout. UA fra config/settings.yaml, mindst 2 sek. mellem kald
@@ -176,10 +177,67 @@ def check(origin: str, urls: list[str]) -> dict:
     return out
 
 
+# Sætninger i vilkår om tekst- og datamining, AI, scraping, RSS eller gengivelse
+TERMS_HIT_RE = re.compile(
+    r"tekst-? og datamining|text (?:and|&) data mining|\bTDM\b|datamining|§ ?11 ?b|scrap\w*|skrab\w*|crawl\w*|"
+    r"robot\w*|automati\w+ (?:indsamling|hentning|udtræk)\w*|kunstig intelligens|\bAI\b|maskinlæring|sprogmodel\w*|"
+    r"\bRSS\b|feeds?\b|gengiv\w*|kopier\w*|eftertryk\w*|citer\w*|link\w* til",
+    re.IGNORECASE,
+)
+
+
+def terms(origin: str, links: list[str]) -> dict:
+    """Henter op til to vilkårssider (inden for robots.txt) og gemmer sætningerne, der rammer TERMS_HIT_RE."""
+    h = Host(origin)
+    st, _, text, _ = h.get(origin + "/robots.txt", 500_000)
+    rp = Protego.parse(text) if st == 200 else None
+    out = {"origin": origin, "pages": []}
+    for url in links[:2]:
+        if rp is not None and not rp.can_fetch(url, UA):
+            out["pages"].append({"url": url, "status": "spærret af robots.txt"})
+            continue
+        if rp is None and not 400 <= st < 500:
+            out["pages"].append({"url": url, "status": "robots.txt utilgængelig"})
+            continue
+        if urlsplit(url).netloc != urlsplit(origin).netloc:
+            h2 = Host(f"{urlsplit(url).scheme}://{urlsplit(url).netloc}")
+            status, _, body, final = h2.get(url)
+        else:
+            status, _, body, final = h.get(url)
+        page = {"url": url, "status": status, "final": final, "hits": []}
+        if status == 200 and body:
+            try:
+                doc = lxml_html.fromstring(body)
+                for bad in doc.xpath("//script|//style|//noscript|//nav|//header|//footer"):
+                    bad.drop_tree()
+                txt = re.sub(r"\s+", " ", doc.text_content())
+            except (ValueError, lxml_html.etree.ParserError):
+                txt = ""
+            for sent in re.split(r"(?<=[.!?])\s+", txt):
+                if TERMS_HIT_RE.search(sent) and 20 < len(sent) < 700:
+                    page["hits"].append(sent.strip())
+                if len(page["hits"]) >= 25:
+                    break
+        out["pages"].append(page)
+    return out
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--vilkaar", action="store_true")
     args = ap.parse_args()
+    if args.vilkaar:
+        data = json.loads(Path("probe/forbehold.json").read_text(encoding="utf-8"))
+        todo = [(r["origin"], r["terms_links"]) for r in data if r.get("terms_links")]
+        print(f"# Vilkår hos {len(todo)} værter")
+        with ThreadPoolExecutor(max_workers=args.workers) as pool:
+            res = list(pool.map(lambda t: terms(*t), todo))
+        Path("probe/vilkaar.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
+        for r in res:
+            n = sum(len(pg.get("hits", [])) for pg in r["pages"])
+            print(f"- {r['origin']}: {len(r['pages'])} sider, {n} sætninger")
+        return
     today = date.today().isoformat()
     origins: dict[str, list[str]] = defaultdict(list)
     who: dict[str, list[str]] = defaultdict(list)
