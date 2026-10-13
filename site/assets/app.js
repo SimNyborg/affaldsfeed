@@ -2,7 +2,7 @@
 
 import {
   el, icon, hidden, catStyle, cap, truncate, cph, fmtNum, fmtShort, fmtLong, fmtWhen, fmtStamp,
-  isoWeek, fmtDayRange, weekdayOf, parseDate, load, store, DAY_MS,
+  fmtLongYear, weekdayOf, parseDate, load, store, DAY_MS,
   readState, syncUrl, setData, defaultState, activeCount, sheetCount, activeFilters, removeFilter, resetFilters, shownSet, NATIONAL,
   prepare, applyFilters, computeCounts, computeDayCounts, buildPanel, renderActive,
   placeName, placeParents, rangeOf, setRange, fmtRange, validDay, dayNumOf,
@@ -420,21 +420,16 @@ function setupFeed(feed, state, now, lastVisit) {
     if (action) ui.statusAction.replaceChildren(action, ...(tail ? [hidden(tail)] : []));
   }
 
-  // Grupper: I dag, I går, ugedage til 6 dage tilbage, derefter uger med kun de dage, gruppen dækker
-  // (inden for feedets vindue og et valgt tidsrum)
+  // Grupper: I dag, I går og derefter én dag ad gangen hele vejen tilbage ("Mandag 28. september").
+  // Dage fra et andet år får årstallet med.
   function grouper() {
-    const r = rangeOf(state);
-    const lo = r?.lo ?? firstDay;
-    const hi = r?.hi ?? todayNum;
+    const thisYear = cph(now).y;
     return (day) => {
       const diff = todayNum - day.dayNum;
-      if (diff <= 0) return { key: 'i-dag', label: 'I dag', week: false };
-      if (diff === 1) return { key: 'i-gaar', label: 'I går', week: false };
-      if (diff < 7) return { key: `d${day.dayNum}`, label: `${cap(weekdayOf(day))} ${fmtLong(day)}`, week: false };
-      const w = isoWeek(day.dayNum);
-      const from = Math.max(w.monday, lo);
-      const to = Math.min(w.monday + 6, todayNum - 7, hi);
-      return { key: `w${w.year}-${w.week}`, label: `Uge ${w.week} · ${fmtDayRange(from, to)}`, week: true };
+      if (diff <= 0) return { key: 'i-dag', label: 'I dag' };
+      if (diff === 1) return { key: 'i-gaar', label: 'I går' };
+      const date = day.y === thisYear ? fmtLong(day) : fmtLongYear(day);
+      return { key: `d${day.dayNum}`, label: `${cap(weekdayOf(day))} ${date}` };
     };
   }
 
@@ -490,20 +485,21 @@ function setupFeed(feed, state, now, lastVisit) {
             el('span', { class: 'n' }, fmtNum(f.groupCount.get(g.key) || 0), hidden(' indslag'))),
           f.ul));
       }
-      f.ul.append(el('li', null, f.compact ? renderRow(card, g) : renderCard(card, g)));
+      f.ul.append(el('li', null, f.compact ? renderRow(card) : renderCard(card)));
     }
   }
 
   // ── Kortet ──
 
-  /** Tid efter datokvalitet. Under en dagsoverskrift kun klokkeslæt; ellers datoen. */
-  function timeEl(m, group, headDay) {
+  /** Tid efter datokvalitet. Under sin egen dags overskrift kun klokkeslæt; ellers datoen (fx et andet indslag
+   *  i historien fra en anden dag). */
+  function timeEl(m, headDay) {
     const c = m.day;
     const dateOnly = m.dateQuality === 'url' || m.dateQuality === 'liste';
     const pre = m.dateQuality === 'fundet' ? 'fundet ' : '';
     let text = '';
     let sr = null;
-    if (!group.week && c.dayNum === headDay) {
+    if (c.dayNum === headDay) {
       if (dateOnly) sr = 'uden klokkeslæt';
       else text = `${pre}${c.hh}.${c.mm}`;
     } else {
@@ -529,7 +525,7 @@ function setupFeed(feed, state, now, lastVisit) {
     return el('p', { class: 'who' }, srcIcon(m.logo, m.cat), el('b', { text: m.source.name }));
   }
 
-  function renderCard(card, group) {
+  function renderCard(card) {
     const m = card.primary;
     const others = card.others;
     const titleId = `t-${m.id}`;
@@ -557,20 +553,20 @@ function setupFeed(feed, state, now, lastVisit) {
           `+${others.length} ${noun}${fresh ? `, ${fresh} ${fresh === 1 ? 'ny' : 'nye'}` : ''}`,
           icon('pil-ned')),
         el('ul', { class: bare ? 'bare' : null }, others.map((o) => el('li', { class: 'cat', style: catStyle(o.cat) },
-          bare ? null : el('div', { class: 'meta' }, who(o), timeEl(o, group, headDay)),
+          bare ? null : el('div', { class: 'meta' }, who(o), timeEl(o, headDay)),
           el('p', { class: 'mtitle' }, o.isNew ? hidden('Ny: ') : null, titleLink(o))))));
     }
 
     // Kortet er nyt, når et af dets indslag, der passer på filtrene, er nyt (samme regel som "Vis N nye")
     return el('article', { class: `card cat${card.isNew ? ' is-new' : ''}`, style: catStyle(m.cat), 'aria-labelledby': titleId },
-      el('div', { class: 'meta' }, who(m), timeEl(m, group, headDay)),
+      el('div', { class: 'meta' }, who(m), timeEl(m, headDay)),
       el('h3', { class: 'title', id: titleId }, card.isNew ? hidden('Ny: ') : null, titleLink(m)),
       teaser,
       also ? el('div', { class: 'foot' }, also) : null);
   }
 
   /** Kompakt: ikon, kilde (fast kolonne), titel og tid. */
-  function renderRow(card, group) {
+  function renderRow(card) {
     const m = card.primary;
     const titleId = `t-${m.id}`;
     return el('article', { class: `row cat${card.isNew ? ' is-new' : ''}`, style: catStyle(m.cat), 'aria-labelledby': titleId },
@@ -578,7 +574,7 @@ function setupFeed(feed, state, now, lastVisit) {
       el('span', { class: 'src', text: m.source.name, title: m.source.name.length > 18 ? m.source.name : null }),
       el('div', { class: 'tcell' },
         el('h3', { class: 'title', id: titleId }, card.isNew ? hidden('Ny: ') : null, titleLink(m))),
-      timeEl(m, group, m.day.dayNum));
+      timeEl(m, m.day.dayNum));
   }
 
   /** Efter "+N" i overblikket eller "Vis N indslag": listens hoved i syne og fokus på statuslinjen. */

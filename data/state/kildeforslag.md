@@ -7,18 +7,31 @@ Genereres automatisk af `python -m affaldsfeed run`. Viser top 50 efter antal ar
 
 | Domæne | Navn | Artikler | Senest set | Eksempler |
 |---|---|---:|---|---|
-| msn.com | Din Avis on MSN | 4 | 2026-10-09 | [1](https://www.msn.com/da-dk/livsstil/other/byt-til-nyt-s%C3%B8stre-skaber-julegl%C3%A6de-p%C3%A5-genbrug/ar-AA2dTedu) [2](https://www.msn.com/fr-fr/divertissement/g%C3%A9n%C3%A9ral/la-vache-qui-rit-voici-pourquoi-elle-a-cess%C3%A9-de-sourire-sur-certains-emballages-vous-aurez-du-mal-%C3%A0-y-croire/ar-AA2dObRz) [3](https://www.msn.com/da-dk/nyheder/other/affald-skulle-blive-billigere-nu-risikerer-danskerne-at-betale-mere/ar-AA2dIQNq) |
+| msn.com | Nyheder24 on MSN | 6 | 2026-10-10 | [1](https://www.msn.com/da-dk/nyheder/other/nye-affaldsregler-rammer-pengepungen-kan-ende-med-ekstra-regning/ar-AA2dXupt) [2](https://www.msn.com/da-dk/nyheder/other/tilfredsstillende-reng%C3%B8ring-af-plys-unicorn-fundet-i-skraldet/vi-AA2dUT2r) [3](https://www.msn.com/da-dk/livsstil/other/byt-til-nyt-s%C3%B8stre-skaber-julegl%C3%A6de-p%C3%A5-genbrug/ar-AA2dTedu) |
 | sydkusten.es | Sydkusten | 3 | 2026-10-08 | [1](https://www.sydkusten.es/sk/23/a/46892/svensk-18-aring-gripen-for-mordet-pa-kand-plastikkirurg/) [2](https://www.sydkusten.es/sk/23/a/46884/mordade-plastikkirurgen-en-av-de-mest-framstaende-i-branschen/) [3](https://www.sydkusten.es/sk/23/a/46882/plastikkirurg-skjuten-till-dods-pa-klinik/) |
 | kolding-netavis.dk | kolding-netavis | 2 | 2026-10-09 | [1](https://www.kolding-netavis.dk/guide-vamdrup/) [2](https://www.kolding-netavis.dk/genbrugsplads/) |
+| teraz.sk | Teraz.sk | 2 | 2026-10-13 | [1](https://www.teraz.sk/spravy/spolocnost-paprec-prevezme-prevadzky/999148-clanok.html) [2](https://www.teraz.sk/ekonomika/spolocnost-paprec-prevezme-prevadzky/999148-clanok.html) |
 | yahoo.com | Yahoo | 2 | 2026-10-07 | [1](https://www.yahoo.com/entertainment/tv/articles/charlie-kawas-details-filming-botched-192742838.html) [2](https://www.yahoo.com/entertainment/tv/articles/hgtv-fans-react-rock-block-174922811.html) |
 | bornholm.nu | Bornholm.nu | 1 | 2026-10-07 | [1](https://bornholm.nu/nyheder/ikke-alt-maa-klunses-hos-bofa/141859) |
+| byznys.hn.cz | Byznys - Hospodářské noviny | 1 | 2026-10-12 | [1](https://byznys.hn.cz/c1-67943820-hotovo-podepsano-ceskou-a-slovenskou-odpadarskou-firmu-marius-pedersen-prebiraji-francouzi) |
 | cardinalpine.com | Cardinal & Pine | 1 | 2026-10-07 | [1](https://cardinalpine.com/local/wilmington-ritzy-plans-thalian-hall-remake/) |
+| dagens.dk | Dagens.dk | 1 | 2026-10-09 | [1](https://www.dagens.dk/hus-og-have/smid-ikke-fnugget-fra-toerretumbleren-ud-du-kan-bruge-det-til-mere-end-du-tror) |
+| doi.dk | doi.dk | 1 | 2026-10-13 | [1](https://www.doi.dk/ccs/artikel/roskilde-ser-co2-fangst-som-afgoerende-for-klimamaal) |
+| e15.cz | e15.cz | 1 | 2026-10-13 | [1](https://www.e15.cz/e15-cz/obri-obchod-na-ceskem-trhu-s-odpady-francouzi-kupuji-marius-pedersen-za-miliardy-1436498) |
 | effektivtlandbrug.landbrugnet.dk | effektivtlandbrug.landbrugnet | 1 | 2026-10-08 | [1](https://effektivtlandbrug.landbrugnet.dk/artikler/planter/125370/regeringen-vil-mindst-fordoble-boeder-for-miljoekriminalitet) |
+| espn.com | ESPN | 1 | 2026-10-09 | [1](https://www.espn.com/college-football/story/_/id/50127445/nebraska-cornhuskers-memorial-stadium-urinal-sales) |
 | fla.de | fla | 1 | 2026-10-07 | [1](https://www.fla.de/flensborg/lokalt/96529/dansk-inspireret-losning-genbrugspladsen-skal-vaere-aben-nar-) |
+| hradecky.denik.cz | Hradecký deník | 1 | 2026-10-13 | [1](https://hradecky.denik.cz/zpravy-region/francouzska-paprec-kupuje-od-danu-marius-pedersen-spolecnost-sidli-v-hradci/) |
 | idahostatejournal.com | Idaho State Journal | 1 | 2026-10-07 | [1](https://www.idahostatejournal.com/news/local/dedicate-explores-the-salt-lake-temple-renovation-through-the-eyes-of-young-adults/article_05c0f18e-3ced-53f6-accb-fc7897dea527.html) |
 | inc.com | Inc.com | 1 | 2026-10-07 | [1](https://www.inc.com/sarah-bregel/baltimore-orioles-announced-600-million-dollar-renovation-laid-off-employee-behind-mascot/91416095) |
 | kalb.com | KALB | 1 | 2026-10-07 | [1](https://www.kalb.com/2026/10/07/alexandria-hold-ribbon-cutting-charles-smith-park-renovation/) |
+| landbrugsavisen.dk | LandbrugsAvisen | 1 | 2026-10-09 | [1](https://landbrugsavisen.dk/regeringen-vil-haeve-boeder-for-dumping-af-affald-og-forurenet-jord-334943) |
+| note.com | note | 1 | 2026-10-13 | [1](https://note.com/kotori3/n/n0df824fa06ca?hl=en) |
+| novinky.cz | Novinky.cz | 1 | 2026-10-13 | [1](https://www.novinky.cz/clanek/ekonomika-marius-pedersen-prodava-sve-ceske-a-slovenske-aktivity-francouzum-40602426) |
 | nytimes.com | The New York Times | 1 | 2026-10-07 | [1](https://www.nytimes.com/2026/10/07/business/chrysler-building-tishman-speyer.html) |
+| seznamzpravy.cz | Seznam Zprávy | 1 | 2026-10-13 | [1](https://www.seznamzpravy.cz/clanek/ekonomika-firmy-francouzsky-paprec-kupuje-byznys-marius-pedersen-v-cesku-a-na-slovensku-317695) |
+| sita.sk | SITA.sk | 1 | 2026-10-13 | [1](https://sita.sk/vpriemysle/marius-pedersen-prebera-firma-paprec-spolocnost-s-viac-ako-tisic-zamestnancami-na-slovensku-konci/) |
+| sme.sk | SME.sk | 1 | 2026-10-13 | [1](https://www.sme.sk/index/c/paprec-kupuje-od-danov-marius-pedersen-na-slovensku-a-v-cesku) |
 | tv4.se | TV4 | 1 | 2026-10-08 | [1](https://www.tv4.se/artikel/3qTbtd9tMSwLcDc3Izr1Lk/agerar-efter-pantkaoset-och-goer-som-sverige-stor-omstaellning) |
 | wspa.com | WSPA 7News | 1 | 2026-10-07 | [1](https://www.wspa.com/your-carolina/the-salvation-army-greenville-2/) |
 | zawya.com | ZAWYA | 1 | 2026-10-07 | [1](https://www.zawya.com/en/press-release/companies-news/half-of-dubais-luxury-villa-buyers-now-plan-renovations-before-purchase-says-imperium-group-1543454) |

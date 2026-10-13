@@ -73,26 +73,6 @@ export function fmtStamp(date, now) {
   return cph(now).dayNum === c.dayNum ? clock : `${fmtShort(c)} ${clock}`;
 }
 
-/** ISO-uge for en lokal dato (dayNum). */
-export function isoWeek(dayNum) {
-  const d = new Date(dayNum * DAY_MS);
-  const wd = (d.getUTCDay() + 6) % 7; // mandag = 0
-  const thursday = new Date(d.getTime() + (3 - wd) * DAY_MS);
-  const yearStart = Date.UTC(thursday.getUTCFullYear(), 0, 1);
-  const week = 1 + Math.floor((thursday.getTime() - yearStart) / DAY_MS / 7);
-  return { year: thursday.getUTCFullYear(), week, monday: dayNum - wd };
-}
-
-/** "28.–30. september", "29. september–3. oktober" eller "28. september". */
-export function fmtDayRange(fromNum, toNum) {
-  const a = new Date(fromNum * DAY_MS);
-  const b = new Date(toNum * DAY_MS);
-  const am = a.getUTCMonth(), bm = b.getUTCMonth();
-  if (fromNum >= toNum) return `${b.getUTCDate()}.${NB}${MONTHS[bm]}`;
-  if (am === bm) return `${a.getUTCDate()}.–${b.getUTCDate()}.${NB}${MONTHS[bm]}`;
-  return `${a.getUTCDate()}.${NB}${MONTHS[am]}–${b.getUTCDate()}.${NB}${MONTHS[bm]}`;
-}
-
 // Datoer i URL'en (fra=, til=) er lokale dage i København som ÅÅÅÅ-MM-DD; internt dayNum som i cph()
 export const dayNumOf = (iso) => {
   const [y, m, d] = iso.split('-').map(Number);

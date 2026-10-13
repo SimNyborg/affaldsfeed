@@ -903,8 +903,9 @@ class _Job:
         return bool(find_hits(slug_text(url), self.strict) or (text and find_hits(text, self.strict)))
 
     def get_doc(self, url: str) -> FetchResult:
-        """Hent et sitemap eller en listeside (conditional GET efter første kørsel)."""
-        res = self.fetcher.get(url, conditional=self.ctx.conditional)
+        """Hent et sitemap eller en listeside (conditional GET efter første kørsel). De må være længere om at
+        svare end artikelsider (pages.doc_timeout_seconds), fordi mange dannes ved hver forespørgsel."""
+        res = self.fetcher.get(url, conditional=self.ctx.conditional, timeout=self.cfg.doc_timeout_seconds)
         self.result.http_status = res.status or self.result.http_status
         self.docs.append(url)
         return res

@@ -25,6 +25,7 @@ pages:
   max_sitemap_fetches: 6         # sitemap-hentninger pr. kilde pr. kørsel
   max_links: 30                  # html: links pr. listeside
   max_page_mb: 5                 # artikelsider over så mange MB afbrydes (sitemaps og lister: fetch.max_response_mb)
+  doc_timeout_seconds: 45        # sitemaps og lister må være så længe om at svare (andre kald: fetch.timeout_seconds)
   seen_refresh_days: 30          # state/seen.json: datoen fornyes kun, når den er ældre
   seen_keep_days: 120            # ... og posten fjernes, når URL'en ikke er set så længe
 

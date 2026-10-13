@@ -243,7 +243,7 @@ Fra 768 px er der én række pr. indslag i et grid med logo eller ikon (16 px), 
 
 ### Dage og listen
 
-- Overskrifterne er "I dag", "I går", "Mandag 5. oktober" for 2 til 6 dage siden og derefter uger som "Uge 40 · 28.–30. september". En ugegruppe nævner kun de dage, den faktisk dækker.
+- Overskrifterne er "I dag", "I går" og derefter én dag ad gangen hele vejen tilbage, fx "Mandag 28. september". Dage fra et andet år får årstallet med: "Onsdag 31. december 2025". Der er ingen ugegrupper.
 - Dagsoverskriften er en sticky `<h2>` på 40 px i 14/20 og 600 med streg over og under. Antallet står yderst til højre på samme højrekant som kortenes tider.
 - Der er ingen skillelinje mellem nye og gamle indslag. Nye indslag ses på kanten i `--accent` og i statuslinjen.
 - Listen viser 60 kort ad gangen, så den ikke bliver for lang. Under listen står knappen "Vis mere" og under den "Viser 60 af 312 indslag" (13/18, `--muted`), som også er knappens beskrivelse til skærmlæsere. Knappen viser de næste 60 og giver fokus til titlen på det første nye kort. Er alt vist, forsvinder knappen. Ændres et filter, begynder listen forfra med 60.

@@ -262,9 +262,10 @@ class Fetcher:
             return self._fail(url, 0, f"springes over: {self._blocked_hosts[host]}")
         return self._fail(url, 0, ROBOTS_BLOCKED)
 
-    def _timeout(self) -> float:
-        """Timeout for næste forespørgsel inden for tidsbudgettet. Rejser TimeoutError, når budgettet er brugt."""
-        timeout = self.settings.timeout_seconds
+    def _timeout(self, base: float | None = None) -> float:
+        """Timeout for næste forespørgsel inden for tidsbudgettet (base, ellers fetch.timeout_seconds).
+        Rejser TimeoutError, når budgettet er brugt."""
+        timeout = base or self.settings.timeout_seconds
         remaining = self._remaining()
         if remaining is not None:
             if remaining <= 0:
@@ -272,7 +273,7 @@ class Fetcher:
             timeout = max(1.0, min(timeout, remaining))
         return timeout
 
-    def _follow(self, url: str, headers: dict, limit: int) -> _Answer | FetchResult:
+    def _follow(self, url: str, headers: dict, limit: int, timeout: float | None = None) -> _Answer | FetchResult:
         """GET url og følg omdirigeringer selv, så hvert hop tjekkes mod robots.txt og får sin egen takt.
 
         Svaret efter sidste hop, eller en FetchResult-fejl, hvis et hop ikke må hentes. Netværksfejl og
@@ -281,7 +282,9 @@ class Fetcher:
         hop = url
         for _ in range(MAX_REDIRECTS + 1):
             self._pace(_netloc(hop), self.crawl_delay(hop))
-            resp = self.session.get(hop, headers=headers, timeout=self._timeout(), allow_redirects=False, stream=True)
+            resp = self.session.get(
+                hop, headers=headers, timeout=self._timeout(timeout), allow_redirects=False, stream=True
+            )
             self.requests_made += 1
             with contextlib.closing(resp):
                 status = resp.status_code
@@ -300,11 +303,17 @@ class Fetcher:
         return self._fail(url, status, f"for mange omdirigeringer (over {MAX_REDIRECTS})", resp_headers)
 
     def get(
-        self, url: str, conditional: bool = True, max_bytes: int | None = None, accept: str | None = None
+        self,
+        url: str,
+        conditional: bool = True,
+        max_bytes: int | None = None,
+        accept: str | None = None,
+        timeout: float | None = None,
     ) -> FetchResult:
         """Hent url. max_bytes er loftet over svaret (standard fetch.max_response_mb).
 
-        accept erstatter sessionens Accept-header (feeds først), fx "application/json" til ODA.
+        accept erstatter sessionens Accept-header (feeds først), fx "application/json" til ODA. timeout erstatter
+        fetch.timeout_seconds for kaldet, fx pages.doc_timeout_seconds til sitemaps og lister.
         Omdirigeringer følges, når målet også må hentes ifølge robots.txt (højst MAX_REDIRECTS hop).
         """
         refused = self._refusal(url, url)
@@ -328,7 +337,7 @@ class Fetcher:
             if remaining is not None and remaining <= 0:
                 return self._fail(url, last_status, BUDGET_EXHAUSTED)
             try:
-                answer = self._follow(url, headers, limit)
+                answer = self._follow(url, headers, limit, timeout)
             except TimeoutError as e:
                 return self._fail(url, last_status, str(e))
             except requests.Timeout:

@@ -233,6 +233,21 @@ def test_fetcher_robots_disallow_and_cache():
     assert f.robots_cache["x.dk"] == {"fetched": "2026-10-07T08:05:00Z", "body": robots}
 
 
+def test_fetcher_timeout_per_call_is_capped_by_the_budget():
+    f = _real_fetcher({
+        "https://x.dk/robots.txt": [_resp(200, "")],
+        "https://x.dk/sitemap.xml": [_resp(200, "<urlset/>")],
+        "https://x.dk/rss": [_resp(200, "<rss/>")],
+    })
+    assert f.get("https://x.dk/sitemap.xml", timeout=45).ok  # fx pages.doc_timeout_seconds
+    assert f.get("https://x.dk/rss").ok
+    used = dict(f.session.timeouts)
+    assert used["https://x.dk/sitemap.xml"] == 45 and used["https://x.dk/rss"] == 20.0  # fetch.timeout_seconds
+    f.start_budget(10)
+    assert f.get("https://x.dk/sitemap.xml", timeout=45, conditional=False).ok
+    assert 1 <= f.session.timeouts[-1][1] <= 10  # aldrig ud over kildens tidsbudget
+
+
 def test_fetcher_own_token_group_wins():
     robots = "User-agent: Affaldsfeed\nDisallow: /\n\nUser-agent: *\nAllow: /\n"
     f = _real_fetcher({"https://x.dk/robots.txt": [_resp(200, robots)]})

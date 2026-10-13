@@ -739,6 +739,18 @@ def test_sitemap_window_order_and_entries(cfg):
     assert "sider: 3 hentet (3 ok, 0 fejl)" in text
 
 
+def test_sitemaps_and_lists_may_answer_slower_than_articles(cfg):
+    """Mange sitemaps dannes ved hver forespørgsel (Herning: 24 s første gang), så de får pages.doc_timeout_seconds."""
+    f = fetcher(routes())
+    COLLECTORS["sitemap"](src(), f, ctx(cfg))
+    used = dict(f.timeouts)
+    assert used[SITEMAP] == cfg.settings.pages.doc_timeout_seconds == 45
+    assert used[ART1] is None  # artikelsider: fetch.timeout_seconds
+    f = fetcher(html_routes())
+    COLLECTORS["html"](html_src(), f, ctx(cfg))
+    assert dict(f.timeouts)[LIST] == 45
+
+
 def test_sitemap_first_run_window_and_baseline(cfg):
     c = ctx(cfg, first_run=True)
     f = fetcher(routes())

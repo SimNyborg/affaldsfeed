@@ -10,6 +10,17 @@
       "89a0b12eb936"
     ]
   },
+  "byznys.hn.cz": {
+    "name": "Byznys - Hospodářské noviny",
+    "count": 1,
+    "last_seen": "2026-10-12T15:20:43Z",
+    "examples": [
+      "https://byznys.hn.cz/c1-67943820-hotovo-podepsano-ceskou-a-slovenskou-odpadarskou-firmu-marius-pedersen-prebiraji-francouzi"
+    ],
+    "ids": [
+      "156b2e1beb24"
+    ]
+  },
   "cardinalpine.com": {
     "name": "Cardinal & Pine",
     "count": 1,
@@ -19,6 +30,39 @@
     ],
     "ids": [
       "431aa96367be"
+    ]
+  },
+  "dagens.dk": {
+    "name": "Dagens.dk",
+    "count": 1,
+    "last_seen": "2026-10-09T13:16:33Z",
+    "examples": [
+      "https://www.dagens.dk/hus-og-have/smid-ikke-fnugget-fra-toerretumbleren-ud-du-kan-bruge-det-til-mere-end-du-tror"
+    ],
+    "ids": [
+      "47986826309d"
+    ]
+  },
+  "doi.dk": {
+    "name": "doi.dk",
+    "count": 1,
+    "last_seen": "2026-10-13T11:45:53Z",
+    "examples": [
+      "https://www.doi.dk/ccs/artikel/roskilde-ser-co2-fangst-som-afgoerende-for-klimamaal"
+    ],
+    "ids": [
+      "eaa0670bd3d6"
+    ]
+  },
+  "e15.cz": {
+    "name": "e15.cz",
+    "count": 1,
+    "last_seen": "2026-10-13T11:45:53Z",
+    "examples": [
+      "https://www.e15.cz/e15-cz/obri-obchod-na-ceskem-trhu-s-odpady-francouzi-kupuji-marius-pedersen-za-miliardy-1436498"
+    ],
+    "ids": [
+      "28698af3581e"
     ]
   },
   "effektivtlandbrug.landbrugnet.dk": {
@@ -32,6 +76,17 @@
       "16c1ac3319fb"
     ]
   },
+  "espn.com": {
+    "name": "ESPN",
+    "count": 1,
+    "last_seen": "2026-10-09T13:16:33Z",
+    "examples": [
+      "https://www.espn.com/college-football/story/_/id/50127445/nebraska-cornhuskers-memorial-stadium-urinal-sales"
+    ],
+    "ids": [
+      "333111f140f4"
+    ]
+  },
   "fla.de": {
     "name": "fla",
     "count": 1,
@@ -41,6 +96,17 @@
     ],
     "ids": [
       "4ab24a639891"
+    ]
+  },
+  "hradecky.denik.cz": {
+    "name": "Hradecký deník",
+    "count": 1,
+    "last_seen": "2026-10-13T11:45:53Z",
+    "examples": [
+      "https://hradecky.denik.cz/zpravy-region/francouzska-paprec-kupuje-od-danu-marius-pedersen-spolecnost-sidli-v-hradci/"
+    ],
+    "ids": [
+      "609011a417ad"
     ]
   },
   "idahostatejournal.com": {
@@ -89,20 +155,55 @@
       "29217201f385"
     ]
   },
-  "msn.com": {
-    "name": "Din Avis on MSN",
-    "count": 4,
-    "last_seen": "2026-10-09T09:34:01Z",
+  "landbrugsavisen.dk": {
+    "name": "LandbrugsAvisen",
+    "count": 1,
+    "last_seen": "2026-10-09T19:28:39Z",
     "examples": [
-      "https://www.msn.com/da-dk/livsstil/other/byt-til-nyt-s%C3%B8stre-skaber-julegl%C3%A6de-p%C3%A5-genbrug/ar-AA2dTedu",
-      "https://www.msn.com/fr-fr/divertissement/g%C3%A9n%C3%A9ral/la-vache-qui-rit-voici-pourquoi-elle-a-cess%C3%A9-de-sourire-sur-certains-emballages-vous-aurez-du-mal-%C3%A0-y-croire/ar-AA2dObRz",
-      "https://www.msn.com/da-dk/nyheder/other/affald-skulle-blive-billigere-nu-risikerer-danskerne-at-betale-mere/ar-AA2dIQNq"
+      "https://landbrugsavisen.dk/regeringen-vil-haeve-boeder-for-dumping-af-affald-og-forurenet-jord-334943"
+    ],
+    "ids": [
+      "b977bc6a0cd3"
+    ]
+  },
+  "msn.com": {
+    "name": "Nyheder24 on MSN",
+    "count": 6,
+    "last_seen": "2026-10-10T18:34:06Z",
+    "examples": [
+      "https://www.msn.com/da-dk/nyheder/other/nye-affaldsregler-rammer-pengepungen-kan-ende-med-ekstra-regning/ar-AA2dXupt",
+      "https://www.msn.com/da-dk/nyheder/other/tilfredsstillende-reng%C3%B8ring-af-plys-unicorn-fundet-i-skraldet/vi-AA2dUT2r",
+      "https://www.msn.com/da-dk/livsstil/other/byt-til-nyt-s%C3%B8stre-skaber-julegl%C3%A6de-p%C3%A5-genbrug/ar-AA2dTedu"
     ],
     "ids": [
       "2d282b2738cc",
       "b1c4a705b374",
       "ca27c3b6aa8b",
-      "e87d1bca0ae4"
+      "e87d1bca0ae4",
+      "c36daea9418c",
+      "b78020eda793"
+    ]
+  },
+  "note.com": {
+    "name": "note",
+    "count": 1,
+    "last_seen": "2026-10-13T19:15:33Z",
+    "examples": [
+      "https://note.com/kotori3/n/n0df824fa06ca?hl=en"
+    ],
+    "ids": [
+      "bbe750d05cae"
+    ]
+  },
+  "novinky.cz": {
+    "name": "Novinky.cz",
+    "count": 1,
+    "last_seen": "2026-10-12T22:57:34Z",
+    "examples": [
+      "https://www.novinky.cz/clanek/ekonomika-marius-pedersen-prodava-sve-ceske-a-slovenske-aktivity-francouzum-40602426"
+    ],
+    "ids": [
+      "b778f3712d70"
     ]
   },
   "nytimes.com": {
@@ -114,6 +215,39 @@
     ],
     "ids": [
       "18bc4c764f45"
+    ]
+  },
+  "seznamzpravy.cz": {
+    "name": "Seznam Zprávy",
+    "count": 1,
+    "last_seen": "2026-10-12T22:57:34Z",
+    "examples": [
+      "https://www.seznamzpravy.cz/clanek/ekonomika-firmy-francouzsky-paprec-kupuje-byznys-marius-pedersen-v-cesku-a-na-slovensku-317695"
+    ],
+    "ids": [
+      "7638fd5a50ab"
+    ]
+  },
+  "sita.sk": {
+    "name": "SITA.sk",
+    "count": 1,
+    "last_seen": "2026-10-13T19:15:33Z",
+    "examples": [
+      "https://sita.sk/vpriemysle/marius-pedersen-prebera-firma-paprec-spolocnost-s-viac-ako-tisic-zamestnancami-na-slovensku-konci/"
+    ],
+    "ids": [
+      "dac5bfbc2cf0"
+    ]
+  },
+  "sme.sk": {
+    "name": "SME.sk",
+    "count": 1,
+    "last_seen": "2026-10-12T22:57:34Z",
+    "examples": [
+      "https://www.sme.sk/index/c/paprec-kupuje-od-danov-marius-pedersen-na-slovensku-a-v-cesku"
+    ],
+    "ids": [
+      "b6cfcf0e7d1d"
     ]
   },
   "sydkusten.es": {
@@ -129,6 +263,19 @@
       "eee08a92848c",
       "9af3d74184d4",
       "276d7e9af5b8"
+    ]
+  },
+  "teraz.sk": {
+    "name": "Teraz.sk",
+    "count": 2,
+    "last_seen": "2026-10-13T03:32:50Z",
+    "examples": [
+      "https://www.teraz.sk/spravy/spolocnost-paprec-prevezme-prevadzky/999148-clanok.html",
+      "https://www.teraz.sk/ekonomika/spolocnost-paprec-prevezme-prevadzky/999148-clanok.html"
+    ],
+    "ids": [
+      "c3b7f83faced",
+      "9661d2435a88"
     ]
   },
   "tv4.se": {

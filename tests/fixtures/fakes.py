@@ -39,6 +39,7 @@ def make_fetcher_class(routes: dict[str, str | int | Path | bytes | tuple] | Non
     class FakeFetcher:
         calls: list[tuple[str, bool]] = []
         accepts: list[tuple[str, str | None]] = []  # (url, accept) pr. kald
+        timeouts: list[tuple[str, float | None]] = []  # (url, timeout) pr. kald
         statuses: list[tuple[str, int]] = []  # (url, status) for svar uden fejl (200 eller 304)
         instances: list = []
         routes = table
@@ -59,9 +60,10 @@ def make_fetcher_class(routes: dict[str, str | int | Path | bytes | tuple] | Non
         def allowed(self, url):
             return True
 
-        def get(self, url, conditional=True, max_bytes=None, accept=None):
+        def get(self, url, conditional=True, max_bytes=None, accept=None, timeout=None):
             FakeFetcher.calls.append((url, conditional))
             FakeFetcher.accepts.append((url, accept))
+            FakeFetcher.timeouts.append((url, timeout))
             target = table.get(url)
             if target is None:
                 for prefix, t in table.items():
@@ -143,11 +145,13 @@ class FakeSession:
         self.responses = {k: list(v) for k, v in responses.items()}
         self.calls: list[tuple[str, dict]] = []
         self.follow: list[tuple[str, bool]] = []  # (url, allow_redirects) pr. kald
+        self.timeouts: list[tuple[str, float | None]] = []  # (url, timeout) pr. kald
         self.headers: dict = {}
 
     def get(self, url, headers=None, timeout=None, allow_redirects=True, stream=False):
         self.calls.append((url, dict(headers or {})))
         self.follow.append((url, allow_redirects))
+        self.timeouts.append((url, timeout))
         queue = self.responses.get(url)
         if not queue:
             return FakeResponse(404)
