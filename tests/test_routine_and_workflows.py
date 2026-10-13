@@ -59,7 +59,7 @@ def test_geography_workflow_commits_only_after_check():
 
 def test_routine_timeline_step():
     text = " ".join(REDAKTOER.split())
-    assert "Du skriver kun i `data/judgments/`, `data/overview/` og `data/timeline/`." in text
+    assert "Du skriver kun i `data/judgments/` (også `data/judgments/resumeer/`), `data/overview/` og `data/timeline/`." in text
     assert "### 7. Tidslinje (kun når `TIME` er 14, eller når tidslinjen er tom)" in REDAKTOER
     assert ".venv/bin/python -m affaldsfeed timeline-input > /tmp/timeline.json" in REDAKTOER
     assert ".venv/bin/python -m affaldsfeed validate-timeline --file data/timeline/MÅNED.jsonl" in REDAKTOER
@@ -101,7 +101,8 @@ def test_publish_runs_on_timeline():
     on = wf.get("on", wf.get(True))
     assert "data/timeline/**" in on["push"]["paths"]
     claude_md = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
-    assert "Claude-routinen skriver kun i `data/judgments/`, `data/overview/` og `data/timeline/`." in claude_md
+    assert "Claude-routinen skriver kun i `data/judgments/` (med `resumeer/`), `data/overview/` og `data/timeline/`." in claude_md
+    assert "data/judgments/**" in on["push"]["paths"]  # også resumeer/
 
 
 def test_collect_starts_from_latest_branch_and_probe_commits_on_top():
@@ -131,3 +132,14 @@ def test_routine_times_match_the_settings():
     hours = {f"{h:02d}" for h in routine["hours"]}
     for step in re.findall(r"kun når `TIME` er (\d\d)(?: eller (\d\d))?", REDAKTOER):
         assert {h for h in step if h} <= hours
+
+
+def test_routine_writes_summaries_in_own_words():
+    text = " ".join(REDAKTOER.split())
+    # Resuméer til nye og ældre indslag, kontrolleret mod ordret kopiering
+    assert "Brug højst fem ord i træk fra teaseren." in text
+    assert "### 3b. Omformulér ældre previews" in REDAKTOER
+    assert "validate-summaries --file data/judgments/resumeer/DATO.jsonl" in REDAKTOER
+    # Grænsen i instruksen passer med config/settings.yaml
+    s = yaml.safe_load((ROOT / "config" / "settings.yaml").read_text(encoding="utf-8"))["summaries"]
+    assert s["max_shared_run"] == 5 and f"højst {s['rewrite_per_run']} pr. kørsel" in text

@@ -362,6 +362,15 @@ class LogoSettings(_Strict):
     budget_seconds: float = Field(default=120.0, gt=0)  # samlet tid til logoer i én kørsel
 
 
+class SummarySettings(_Strict):
+    """Resuméer med egne ord, som feedet viser i stedet for kildens teaser (KONTRAKTER §6.2a)."""
+
+    max_shared_run: int = Field(default=5, ge=1)  # højst så mange ord i træk fra kildens teaser
+    max_trigram_share: float = Field(default=0.5, gt=0, le=1)  # højst denne andel af resuméets ordtrioer
+    min_teaser_chars: int = Field(default=40, ge=0)  # kortere teasere får intet resumé og intet preview
+    rewrite_per_run: int = Field(default=150, ge=0)  # ældre indslag, routinen omformulerer pr. kørsel
+
+
 class Settings(_Strict):
     fetch: FetchSettings
     routine: RoutineSettings
@@ -371,6 +380,7 @@ class Settings(_Strict):
     places: PlaceSettings = Field(default_factory=PlaceSettings)
     timeline: TimelineSettings = Field(default_factory=TimelineSettings)
     backfill: BackfillSettings = Field(default_factory=BackfillSettings)
+    summaries: SummarySettings = Field(default_factory=SummarySettings)
     window_days: int = 60
     # Feedets første dag (København). Sat: feedet rækker hertil i stedet for window_days, og hver kilde
     # hentes én gang bagud hertil (SourceState.backfilled_from, KONTRAKTER §5.8)
@@ -478,7 +488,8 @@ class Judgment(_Strict):
     # None = behold regelmærkerne; en liste (også tom) erstatter dem. Højst 8 forskellige.
     places: list[str] | None = None
     genre: GenreId = "nyhed"
-    summary_da: str | None = Field(default=None, max_length=160)
+    # Resumé med egne ord (1-2 sætninger), som vises i stedet for kildens teaser (§6.2a)
+    summary_da: str | None = Field(default=None, max_length=240)
     story_hint: str | None = None
     judged_at: datetime
     by: str = "claude-routine"
@@ -488,6 +499,15 @@ class Judgment(_Strict):
     @classmethod
     def _places(cls, v: list[str] | None) -> list[str] | None:
         return None if v is None else _check_places(v)
+
+
+class Summary(_Strict):
+    """Et resumé med egne ord til et allerede godkendt indslag: én linje i data/judgments/resumeer/*.jsonl."""
+
+    id: str
+    summary_da: str = Field(min_length=20, max_length=240)
+    written_at: datetime
+    by: str = "claude-routine"
 
 
 class Heartbeat(_Strict):

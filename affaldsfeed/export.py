@@ -29,6 +29,7 @@ from affaldsfeed.logos import domain_key, logo_dir, logo_files, site_domains
 from affaldsfeed.models import DisplayItem, Feed, Geo
 from affaldsfeed.overview import PERIODS, load_overviews
 from affaldsfeed.stories import build_stories
+from affaldsfeed.summaries import effective_summaries, load_summaries
 from affaldsfeed.timeline import export_timeline
 from affaldsfeed.timeutil import ensure_utc, iso, now_utc, to_cph
 
@@ -99,7 +100,9 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
     heartbeat = load_heartbeat()
     mode = display_mode(now, heartbeat, settings.routine)
 
-    shown = build_display_items(config, sources, candidates, judgments, mode, now, since)
+    # Previewet er resuméet med egne ord (§6.2a); kildens egen teaser kommer aldrig i feedet
+    summaries = effective_summaries(judgments, load_summaries())
+    shown = build_display_items(config, sources, candidates, judgments, mode, now, since, summaries)
     heads = build_stories(
         shown,
         source_category_map(sources, config.publishers),
@@ -169,7 +172,7 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
         "sources": feed_sources,
         "geo": geo_block(config.geo, heads),
         "overview": {p: (ov.model_dump(mode="json") if ov else None) for p, ov in overviews.items()},
-        "items": [d.model_dump(mode="json") for d in heads],
+        "items": [d.model_copy(update={"teaser": ""}).model_dump(mode="json") for d in heads],
     }
     Feed.model_validate(feed)  # kontrakten (KONTRAKTER §8); ValidationError giver exit 1
 

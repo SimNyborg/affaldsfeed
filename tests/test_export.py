@@ -59,6 +59,7 @@ def repo(tmp_path, monkeypatch):
         "CANDIDATES_DIR": data / "candidates",
         "REJECTED_DIR": data / "rejected",
         "JUDGMENTS_DIR": data / "judgments",
+        "SUMMARIES_DIR": data / "judgments" / "resumeer",
         "OVERVIEW_DIR": data / "overview",
         "OVERVIEW_ARCHIVE_DIR": data / "overview" / "archive",
         "TIMELINE_DIR": data / "timeline",
@@ -427,3 +428,29 @@ def test_export_lists_each_source_once_with_logos_for_its_other_sites(repo, tmp_
     assert by_id["kefm"]["domain_logos"] == {}  # kefm.dk er forsidens eget site
     assert sorted(p.name for p in (out / "logos").iterdir()) == ["tv2-regioner--tvsyd-dk.png", "tv2-regioner.ico"]
 
+
+
+def test_feed_never_contains_the_source_teaser(repo):
+    # Previewet er resuméet med egne ord (§6.2a): fra vurderingen eller en resumélinje, ellers intet
+    own = cand("egne-ord", hours_ago=3, teaser="Kildens egen teaser, som ikke må stå i feedet")
+    later = cand("resumelinje", hours_ago=2, teaser="Endnu en teaser fra kilden, som heller ikke må stå der")
+    none = cand("uden", hours_ago=1, teaser="En tredje teaser fra kilden uden resumé endnu")
+    store.save_candidates([own, later, none])
+    judge(
+        {"id": own.id, "relevant": True, "summary_da": "Et resumé med egne ord fra vurderingen"},
+        {"id": later.id, "relevant": True},
+        {"id": none.id, "relevant": True},
+    )
+    d = paths.SUMMARIES_DIR
+    d.mkdir(parents=True, exist_ok=True)
+    (d / "2026-10-07.jsonl").write_text(json.dumps({
+        "id": later.id, "summary_da": "Et resumé med egne ord fra resumélinjen", "written_at": "2026-10-07T09:30:00Z",
+    }, ensure_ascii=False) + "\n", encoding="utf-8")
+    heartbeat("2026-10-07T09:30:00Z")
+    feed = export.build_feed(NOW)
+    by_id = {i["id"]: i for i in feed["items"]}
+    assert all(i["teaser"] == "" for i in feed["items"])
+    assert "teaser fra kilden" not in json.dumps(feed, ensure_ascii=False)
+    assert by_id[own.id]["summary_da"] == "Et resumé med egne ord fra vurderingen"
+    assert by_id[later.id]["summary_da"] == "Et resumé med egne ord fra resumélinjen"
+    assert by_id[none.id]["summary_da"] is None

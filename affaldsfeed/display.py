@@ -172,9 +172,10 @@ def _from_candidate(
     overrides: Overrides,
     teaser_max: int,
     known_places: set[str],
+    summary: str | None = None,
 ) -> DisplayItem | None:
+    """summary: resuméet med egne ord (§6.2a); uden det bruges vurderingens summary_da."""
     reason: str | None = None
-    summary: str | None = None
     places = list(c.places)
     state = _Shown(show=False, reviewed=True, topics=list(c.topics), genre=c.genre)
     if not info.ai:
@@ -190,10 +191,11 @@ def _from_candidate(
             state.genre = judgment.genre
         if judgment.places is not None:  # None = behold regelmærkerne
             places = list(judgment.places)
-        summary = judgment.summary_da
+        summary = summary or judgment.summary_da
     elif mode == "fallback":
         state.show = c.why.decision == "vis"
         state.reviewed = False
+        summary = None
     # ellers: uvurderet i claude-tilstand venter
     state = _apply_overrides(overrides.find(c.id, c.url), state)
     if not state.show:
@@ -213,7 +215,7 @@ def _from_candidate(
         places=_known_places(places, known_places),
         genre=state.genre,
         lang=c.lang,
-        summary_da=summary if c.lang != "da" else None,
+        summary_da=summary if state.reviewed else None,
         reviewed=state.reviewed,
         reason=reason,
         why=c.why,
@@ -228,6 +230,7 @@ def _from_sweep(
     teaser_max: int,
     known_places: set[str],
     matcher: PlaceMatcher | None,
+    summary: str | None = None,
 ) -> DisplayItem | None:
     ni = j.new_item
     if ni is None or not info.ai:
@@ -260,7 +263,7 @@ def _from_sweep(
         places=_known_places(places, known_places),
         genre=state.genre,
         lang=info.lang,
-        summary_da=j.summary_da if info.lang != "da" else None,
+        summary_da=summary or j.summary_da,
         reviewed=state.reviewed,
         reason=j.reason,
         why=None,
@@ -275,12 +278,15 @@ def build_display_items(
     mode: str,
     now: datetime,
     since: datetime,
+    summaries: dict[str, str] | None = None,
 ) -> list[DisplayItem]:
     """Alle indslag, der skal vises (før samling i historier), nyeste først.
 
     mode er "claude" eller "fallback" (judgments.display_mode). Kun indslag med
-    published (ellers first_seen) >= since kommer med.
+    published (ellers first_seen) >= since kommer med. summaries: resuméer med egne ord pr. id
+    (summaries.effective_summaries); uden dem bruges vurderingernes summary_da.
     """
+    summaries = summaries or {}
     now = ensure_utc(now)
     since = ensure_utc(since)
     info = known_sources(sources, config.publishers)
@@ -298,7 +304,7 @@ def build_display_items(
         src = info.get(c.source)
         if src is None or item_time(c) < since:
             continue
-        item = _from_candidate(c, src, judgments.get(c.id), mode, overrides, teaser_max, known_places)
+        item = _from_candidate(c, src, judgments.get(c.id), mode, overrides, teaser_max, known_places, summaries.get(c.id))
         if item is not None:
             out[item.id] = _without_prefix(item, prefixes)
 
@@ -311,7 +317,7 @@ def build_display_items(
         src = info.get(j.new_item.source)
         if src is None:
             continue
-        item = _from_sweep(j, src, overrides, now, teaser_max, known_places, matcher)
+        item = _from_sweep(j, src, overrides, now, teaser_max, known_places, matcher, summaries.get(j.id))
         if item is not None and item_time(item) >= since:
             out[item.id] = _without_prefix(item, prefixes)
 

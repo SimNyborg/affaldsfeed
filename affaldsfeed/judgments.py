@@ -18,8 +18,17 @@ from pydantic import ValidationError
 from affaldsfeed import paths, store
 from affaldsfeed.config import Config, load_config, load_sources
 from affaldsfeed.display import SourceInfo, item_time, known_sources, sort_newest_first
-from affaldsfeed.models import Candidate, Heartbeat, Judgment, RoutineSettings, Source
+from affaldsfeed.models import (
+    Candidate,
+    Heartbeat,
+    Judgment,
+    RoutineSettings,
+    Source,
+    Summary,
+    SummarySettings,
+)
 from affaldsfeed.normalize import item_id
+from affaldsfeed.summaries import copy_problem, effective_summaries, load_summaries, rewrite_queue
 from affaldsfeed.timeutil import ensure_utc, iso, now_utc, to_cph
 
 log = logging.getLogger(__name__)
@@ -185,9 +194,16 @@ def build_pending(
     now: datetime,
     hours: float,
     max_items: int,
+    summaries: dict[str, Summary] | None = None,
+    rewrite_max: int | None = None,
 ) -> dict[str, Any]:
     info = known_sources(sources, config.publishers)
     pending = pending_candidates(info, candidates, judgments, now, hours)[: max(0, max_items)]
+    # Ældre godkendte indslag uden resumé med egne ord (§6.2a)
+    cfg = config.settings.summaries
+    have = set(effective_summaries(judgments, summaries or {}))
+    limit = cfg.rewrite_per_run if rewrite_max is None else rewrite_max
+    rewrite, rewrite_total = rewrite_queue(info, candidates, judgments, have, config.settings.window_since(now), cfg, limit)
     # Kun id'er fra geografien, så routinen ikke kopierer et id, som valideringen melder ukendt
     known_places = config.geo.place_ids()
 
@@ -244,6 +260,8 @@ def build_pending(
             for c in pending
         ],
         "recent_approved": recent,
+        "rewrite": rewrite,
+        "rewrite_total": rewrite_total,
     }
 
 
@@ -284,13 +302,22 @@ def main_pending(args: argparse.Namespace) -> int:
     sources = load_sources(paths.SOURCES_FILE)
     hours = args.hours if getattr(args, "hours", None) is not None else config.settings.pending_hours
     max_items = args.max if getattr(args, "max", None) is not None else 200
-    out = build_pending(config, sources, load_all_candidates(), load_judgments(), now, hours, max_items)
+    out = build_pending(
+        config, sources, load_all_candidates(), load_judgments(), now, hours, max_items,
+        summaries=load_summaries(), rewrite_max=getattr(args, "rewrite_max", None),
+    )
     day = to_cph(now).date().isoformat()
     log.info(
         "%d uvurderede indslag; skriv vurderinger i data/judgments/%s.jsonl med judged_at %s",
         len(out["pending"]),
         day,
         out["now"],
+    )
+    log.info(
+        "%d af %d ældre indslag skal omformuleres; skriv resuméerne i data/judgments/resumeer/%s.jsonl",
+        len(out["rewrite"]),
+        out["rewrite_total"],
+        day,
     )
     print_json(out)
     return 0
@@ -305,6 +332,7 @@ def validate_lines(
     info: dict[str, SourceInfo],
     known_ids: set[str],
     place_ids: set[str] | None = None,
+    summary_cfg: SummarySettings | None = None,
 ) -> tuple[list[str], list[str], int]:
     """Validerer linjerne i `files`. Returnerer (fejl og advarsler som "fil:linje: besked", antal linjer).
 
@@ -312,6 +340,7 @@ def validate_lines(
     men velformet sted-id er en advarsel (fx efter en ny geografi), ikke en fejl.
     """
     cand_by_id = {c.id: c for c in candidates}
+    summary_cfg = summary_cfg or SummarySettings()
     errors: list[str] = []
     warnings: list[str] = []
     count = 0
@@ -331,7 +360,7 @@ def validate_lines(
             except ValidationError as e:
                 errors.extend(f"{name}:{n}: {msg}" for msg in format_errors(e))
                 continue
-            msgs = _check(j, cand_by_id, info, known_ids, file_day)
+            msgs = _check(j, cand_by_id, info, known_ids, file_day, summary_cfg)
             errors.extend(f"{name}:{n}: {msg}" for msg in msgs)
             warnings.extend(f"{name}:{n}: {msg}" for msg in unknown_places(j.places, place_ids))
     return errors, warnings, count
@@ -359,10 +388,12 @@ def _check(
     info: dict[str, SourceInfo],
     known_ids: set[str],
     file_day: str | None,
+    summary_cfg: SummarySettings,
 ) -> list[str]:
     msgs: list[str] = []
-    lang: str | None = None
+    source_teaser = ""
     if j.new_item is not None:
+        source_teaser = j.new_item.teaser
         expected = item_id(j.new_item.url)
         if j.id != expected:
             msgs.append(f"id skal være item_id(new_item.url) = {expected}")
@@ -372,8 +403,6 @@ def _check(
                 f"new_item.source '{j.new_item.source}' er ukendt (skal være aktiv i sources.yaml "
                 "eller stå i config/medier.yaml)"
             )
-        else:
-            lang = src.lang
         if not j.relevant:
             msgs.append("sweep-fund (new_item) skal have relevant=true")
     else:
@@ -381,9 +410,11 @@ def _check(
         if cand is None:
             msgs.append(f"id '{j.id}' findes ikke blandt kandidaterne (og new_item mangler)")
         else:
-            lang = cand.lang
-    if j.summary_da is not None and lang == "da":
-        msgs.append("summary_da skal være null, når indslaget er på dansk")
+            source_teaser = cand.teaser
+    if j.summary_da is not None:
+        problem = copy_problem(j.summary_da, source_teaser, summary_cfg)
+        if problem:
+            msgs.append(problem)
     if j.story_hint is not None:
         if j.story_hint == j.id:
             msgs.append("story_hint må ikke pege på indslaget selv")
@@ -413,7 +444,7 @@ def main_validate(args: argparse.Namespace) -> int:
         files = judgment_files()
     # Uden geografi (mangler eller er ugyldig) valideres sted-id'erne ikke
     place_ids = config.geo.place_ids() or None
-    errors, warnings, count = validate_lines(files, candidates, info, known_ids, place_ids)
+    errors, warnings, count = validate_lines(files, candidates, info, known_ids, place_ids, config.settings.summaries)
     for w in warnings:
         print(f"ADVARSEL {w}")
     for e in errors:

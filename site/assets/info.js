@@ -59,8 +59,9 @@ function build(btn) {
         + 'Under ', link('kilder.html', 'Om kilderne'), ' kan du se, hvilke kilder feedet bruger.'),
       el('h3', null, 'Udvalgt af AI'),
       el('p', null, 'En AI-model vurderer, hvilke nyheder der er relevante for kommunernes arbejde med affald. '
-        + 'Den skriver også nyhedsoverblikket og højdepunkterne. Modellen ser kun titlen og kildens egen korte '
-        + 'beskrivelse. Teksterne kan indeholde fejl, så tjek altid den oprindelige artikel.'),
+        + 'Den skriver også de korte resuméer under overskrifterne med egne ord, nyhedsoverblikket og '
+        + 'højdepunkterne. Modellen ser kun titlen og kildens egen korte beskrivelse. Teksterne kan indeholde '
+        + 'fejl, så tjek altid den oprindelige artikel.'),
       el('h3', null, 'Opdatering'),
       el('p', null, 'Nyhederne hentes flere gange i døgnet og vurderes om morgenen, om formiddagen og om '
         + 'eftermiddagen. Der kan derfor gå nogle timer, før en ny artikel kommer med.'),

@@ -226,7 +226,7 @@ Kortet er en `<article>`, titlen en `<h3>` og tiden en `<time datetime>`. Paddin
 
 1. Afsenderlinjen (13/18, `--muted`): kildens logo og navnet i 600 og `--text`. Der står intet andet. Logoet er kildens favicon i 16 px på en hvid flade med radius 3 px, så mørke logoer også ses i mørk tilstand (KONTRAKTER 6.4). Samler en kilde flere sites, som TV 2-regionerne, står logoet for det site, artiklen kommer fra, fx TV SYD's. Det er pynt (`alt=""`) og indlæses først, når kortet nærmer sig skærmen. Uden logo, eller når billedet ikke kan vises, står kategoriikonet (14 px) i stedet. Afsendertype og genre kan vælges i menuen, og betalingsmur og ejer står på Om kilderne. Tiden står øverst til højre i en fast kolonne.
 2. Titlen (17/24, 600) linker til kilden i ny fane med den skjulte tekst "(åbner i nyt vindue)". Hover giver `--link` og understregning. Besøgte titler står i `--muted`. Titler på engelsk og svensk har `lang`.
-3. Teaseren (15/22, `--muted`) er højst to linjer og afkortes ved et ord efter højst 240 tegn. Engelske og svenske indslag viser "Auto-resumé:" i 600 og derefter Claudes danske resumé.
+3. Previewet (15/22, `--muted`) er højst to linjer og afkortes ved et ord efter højst 240 tegn. Det er altid et dansk resumé med egne ord, skrevet af AI (KONTRAKTER 6.2a), og aldrig kildens egen teaser. Uden resumé står kun titlen. Der er ingen mærkat på resuméet; det står i i-panelet, at AI skriver dem.
 4. Fodlinjen (13/18) har kun "+3 andre kilder" eller "+1 anden kilde" yderst til højre, når de øvrige er fra hver sin anden kilde. Ellers står der "+3 flere" eller "+1 mere", som i Folketingets dagsbundt. Har historien nye medlemmer, står der fx "+3 andre kilder, 2 nye". Sted og temaer står ikke på kortet, men kan vælges i menuen. Linjen udelades, når der ikke er andre indslag i historien.
 
 - Kun titlen og "+N andre kilder" kan klikkes. Kildenavnet er tekst. Filtrering sker i panelet.
@@ -266,7 +266,7 @@ Al småtekst står samlet bag en diskret i-knap yderst til højre i headeren på
 
 - Knappen er 44 × 44 px med ikonet `info` på 20 px i `--muted` (`--text` ved hover) og navnet "Om Affaldsfeed" til skærmlæsere. Ikonets højrekant flugter med containerens indhold.
 - Den åbner en modal dialog med overskriften "Om Affaldsfeed" (fokus ved åbning) og en lukkeknap. Esc, lukkeknappen og et klik på baggrunden lukker den, og fokus går tilbage til knappen. Under 768 px er dialogen et bundark som filterarket, ellers står den midt på skærmen, højst 36rem bred og 85 % af skærmens højde.
-- Indholdet: hvad Affaldsfeed er, at betalingsmure aldrig omgås, et link til Om kilderne, "Udvalgt af AI" (modellen vurderer relevans og skriver overblik og højdepunkter ud fra titel og kort beskrivelse og kan tage fejl), "Opdatering" (vurdering om morgenen, formiddagen og eftermiddagen, tidspunktet for seneste opdatering og en linje, når vurderingen er forsinket) og "Klager og sletning" (jhn@jhn.dk, opslag og kilder fjernes inden for 24 timer).
+- Indholdet: hvad Affaldsfeed er, at betalingsmure aldrig omgås, et link til Om kilderne, "Udvalgt af AI" (modellen vurderer relevans og skriver resuméerne, overblikket og højdepunkterne ud fra titel og kort beskrivelse og kan tage fejl), "Opdatering" (vurdering om morgenen, formiddagen og eftermiddagen, tidspunktet for seneste opdatering og en linje, når vurderingen er forsinket) og "Klager og sletning" (jhn@jhn.dk, opslag og kilder fjernes inden for 24 timer).
 - Teksten står i 14/20 med underoverskrifter i 15/22 og vægt 600. Mailadressen samles først i browseren.
 
 ### Højdepunkter
@@ -311,7 +311,7 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Aktive filtre | Fjern filter: Nyborg Kommune · Landsdækkende · Uden Region Nordjylland · Kommune/affaldsselskab · Uden Debat · 4 temaer · Uden 5 kilder · Historie: ... |
 | Statuslinje | Vis 7 nye · Vis 1 ny · 7 nye indslag · 1 nyt indslag · Vis alle · til skærmlæseren og ved fokus: 1.284 indslag · 23 af 1.284 indslag |
 | Visning | Normal · Kompakt |
-| Kort | Auto-resumé: · fundet 09.14 · +3 andre kilder · +1 anden kilde · +3 andre kilder, 2 nye · +3 flere · +1 mere |
+| Kort | fundet 09.14 · +3 andre kilder · +1 anden kilde · +3 andre kilder, 2 nye · +3 flere · +1 mere |
 | Overblik | Nyhedsoverblik · senest opdateret fredag kl. 23.28 · for ugen · I dag · Ugen · Måneden · Året · Vis hele · Vis mindre |
 | Overblik, kort data | Siden 7. oktober 2026 |
 | Overblik, før første kørsel | Dagens overblik kommer efter kl. 07.25. |
@@ -337,7 +337,7 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 - Tastatur: alt kan betjenes med tastatur. Der er ingen genveje på ét tegn. Søgefeltet med forslag følger WAI-ARIA's combobox-mønster med ↓, ↑, Alt + ↓, Alt + ↑, Enter, Esc og Tab. Filterarket og Om Affaldsfeed er modale dialoger, og Esc lukker det inderste først. Overblikkets faner skiftes med piletasterne.
 - Skærmlæser: tal i rækker og forslag læses med "indslag", mærker læses "Fjern filter: Kommune/affaldsselskab", og valg i forslagslisten meldes ("Altinget er valgt."). Statuslinjen er en live-region, og arket har sin egen, fordi siden bag det er inert.
 - Struktur: h1 til h3, `<main>`, `<nav>`, `<search>` og `<article>`. Forsidens skjulte h1 står i headeren, før sidepanelets h2 "Filtre". Links, der åbner i nyt vindue, har den skjulte tekst "(åbner i nyt vindue)".
-- Sprog: `lang="en"` eller `lang="sv"` på titler og teasere på engelsk og svensk, også i overblikkets skjulte kildetekst.
+- Sprog: `lang="en"` eller `lang="sv"` på titler på engelsk og svensk, også i overblikkets skjulte kildetekst. Resuméerne er altid på dansk.
 - 1.4.4, 1.4.10 og 1.4.12: størrelser i rem, brudpunkter i em og container queries i rem eller lh. Siden kan vises ved 320 px, og med grundskrift 20 eller 32 px eller med tekstafstand vokser rækkerne, og navnene brydes i stedet for at blive afkortet (se Filterrækken).
 - Bevægelse: ark og skuffe glider ind på 200 ms. `prefers-reduced-motion` slår alle animationer fra.
 - Tvungne farver: det aktive forslag får en ring i `Highlight`, valgte forslag kendes på fluebenet, nye kort får en kant i `CanvasText`, og arket har en kant, så det skiller sig fra siden bag det.

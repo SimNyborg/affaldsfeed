@@ -75,6 +75,13 @@ timeline:
   fill_until: "2026-10"         # opfyldning: måned for måned fra window_start til og med denne (KONTRAKTER §7.3)
   fill_max_stories: 150          # ... historier i input for en måned
 
+# Resuméer med egne ord, som feedet viser i stedet for kildens teaser (KONTRAKTER §6.2a)
+summaries:
+  max_shared_run: 5              # højst så mange ord i træk fra kildens teaser
+  max_trigram_share: 0.5         # højst halvdelen af resuméets ordtrioer må stå i teaseren
+  min_teaser_chars: 40           # kortere teasere får intet resumé og dermed intet preview
+  rewrite_per_run: 150           # ældre godkendte indslag uden resumé, routinen omformulerer pr. kørsel
+
 window_days: 60                  # så langt tilbage feed.json rækker, når window_start ikke er sat
 window_start: 2026-01-01         # feedets første dag; hver kilde hentes én gang bagud hertil (KONTRAKTER §5.8)
 max_age_days_on_find: 14         # ældre indslag afvises, når de findes
