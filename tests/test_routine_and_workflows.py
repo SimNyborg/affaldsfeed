@@ -140,6 +140,9 @@ def test_routine_writes_summaries_in_own_words():
     assert "Brug højst fem ord i træk fra teaseren." in text
     assert "### 3b. Omformulér ældre previews" in REDAKTOER
     assert "validate-summaries --file data/judgments/resumeer/DATO.jsonl" in REDAKTOER
+    # En teaser uden indhold giver null, så indslaget ikke kommer i køen igen
+    assert "Beskriver teaseren ikke artiklen, så skriv linjen med `\"summary_da\":null`." in text
+    assert '"summary_da":null,"written_at"' in REDAKTOER
     # Grænsen i instruksen passer med config/settings.yaml
     s = yaml.safe_load((ROOT / "config" / "settings.yaml").read_text(encoding="utf-8"))["summaries"]
     assert s["max_shared_run"] == 5 and f"højst {s['rewrite_per_run']} pr. kørsel" in text

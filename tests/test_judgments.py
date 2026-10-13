@@ -8,6 +8,7 @@ import shutil
 from datetime import timedelta
 
 import pytest
+from pydantic import ValidationError
 
 from affaldsfeed import judgments, paths, store
 from affaldsfeed.models import Candidate, Heartbeat, RoutineSettings, Why
@@ -393,9 +394,20 @@ def test_effective_summaries_newest_wins():
     lines = {
         "a": Summary(id="a", summary_da="Nyere resumé fra resumélinjen", written_at=parse_iso("2026-10-05T08:00:00Z")),
         "b": Summary(id="b", summary_da="Ældre resumé fra resumélinjen", written_at=parse_iso("2026-09-30T08:00:00Z")),
+        # null: teaseren beskriver ikke artiklen; intet resumé, men id'et er behandlet
+        "c": Summary(id="c", summary_da=None, written_at=parse_iso("2026-10-05T08:00:00Z")),
     }
     eff = summaries.effective_summaries(judg, lines)
     assert eff == {"a": "Nyere resumé fra resumélinjen", "b": "Fra vurderingen"}
+    assert summaries.summarized_ids(judg, lines) == {"a", "b", "c"}
+
+
+def test_summary_null_is_explicit_and_text_has_limits():
+    ok = Summary.model_validate_json('{"id":"a","summary_da":null,"written_at":"2026-10-14T01:00:00Z"}')
+    assert ok.summary_da is None
+    for raw in ['{"id":"a","written_at":"2026-10-14T01:00:00Z"}', '{"id":"a","summary_da":"For kort","written_at":"2026-10-14T01:00:00Z"}']:
+        with pytest.raises(ValidationError):
+            Summary.model_validate_json(raw)
 
 
 def write_summaries(day: str, lines: list) -> None:
@@ -416,15 +428,20 @@ def test_pending_lists_older_approved_items_without_summary(repo, capsys):
     rejected = cand("afvist", hours_ago=8, teaser=long)
     rules_only = cand("dr", source="dr", hours_ago=9, teaser=long)
     pending = cand("venter", hours_ago=2, teaser=long)
-    store.save_candidates([new, old, done, lined, short, rejected, rules_only, pending])
+    boiler = cand("standardtekst", hours_ago=3, teaser=long)
+    store.save_candidates([new, old, done, lined, short, rejected, rules_only, pending, boiler])
     sweep_url = "https://fyens.dk/sweep"
     write_judgments("2026-10-07", [
         j(new.id), j(old.id), j(done.id, summary_da="Et resumé med egne ord om affald"), j(lined.id), j(short.id),
-        j(rejected.id, False), j(rules_only.id),
+        j(rejected.id, False), j(rules_only.id), j(boiler.id),
         j(item_id(sweep_url), True, new_item={"url": sweep_url, "title": "Sweep", "source": "fyens", "teaser": long,
                                              "published": "2026-10-07T03:00:00Z"}),
     ])
-    write_summaries("2026-10-07", [{"id": lined.id, "summary_da": "Et andet resumé med egne ord", "written_at": "2026-10-07T09:25:00Z"}])
+    write_summaries("2026-10-07", [
+        {"id": lined.id, "summary_da": "Et andet resumé med egne ord", "written_at": "2026-10-07T09:25:00Z"},
+        # Teaseren beskriver ikke artiklen: null holder indslaget ude af køen
+        {"id": boiler.id, "summary_da": None, "written_at": "2026-10-07T09:25:00Z"},
+    ])
     assert judgments.main_pending(ns(max=200, hours=72, now="2026-10-07T10:00:00Z", rewrite_max=2)) == 0
     out = json.loads(capsys.readouterr().out)
     assert out["rewrite_total"] == 3
@@ -445,6 +462,7 @@ def test_validate_summaries(repo, capsys):
         {"id": a.id, "summary_da": "For kort", "written_at": "2026-10-07T09:25:00Z"},  # 4
         {"id": a.id, "summary_da": "Et resumé, der står i den forkerte fil", "written_at": "2026-10-08T09:25:00Z"},  # 5
         "{ikke json",  # 6
+        {"id": a.id, "summary_da": None, "written_at": "2026-10-07T09:25:00Z"},  # 7 ok: teaser uden indhold
     ])
     from affaldsfeed.summaries import main_validate_summaries
     assert main_validate_summaries(ns(file=None)) == 1

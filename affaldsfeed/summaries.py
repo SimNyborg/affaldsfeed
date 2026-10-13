@@ -100,16 +100,24 @@ def load_summaries() -> dict[str, Summary]:
 
 
 def effective_summaries(judgments: dict[str, Judgment], summaries: dict[str, Summary]) -> dict[str, str]:
-    """Resuméet, der vises for hvert id: det nyeste af vurderingens summary_da og en resumélinje."""
+    """Resuméet, der vises for hvert id: det nyeste af vurderingens summary_da og en resumélinje.
+    En linje med summary_da null giver intet resumé."""
     best: dict[str, tuple[datetime, str]] = {}
     for j in judgments.values():
         if j.summary_da:
             best[j.id] = (ensure_utc(j.judged_at), j.summary_da)
     for s in summaries.values():
+        if s.summary_da is None:
+            continue
         t = ensure_utc(s.written_at)
         if s.id not in best or t >= best[s.id][0]:
             best[s.id] = (t, s.summary_da)
     return {k: v[1] for k, v in best.items()}
+
+
+def summarized_ids(judgments: dict[str, Judgment], summaries: dict[str, Summary]) -> set[str]:
+    """Id'er, der ikke skal i rewrite: de har et resumé, eller teaseren er erklæret uden indhold (null)."""
+    return set(effective_summaries(judgments, summaries)) | set(summaries)
 
 
 # ── Køen af ældre indslag uden resumé ───────────────────────
@@ -172,7 +180,7 @@ def check_summary(
         msgs.append(f"id '{s.id}' er ikke et godkendt indslag")
     cand = cand_by_id.get(s.id)
     source = cand.teaser if cand is not None else (j.new_item.teaser if j is not None and j.new_item else "")
-    problem = copy_problem(s.summary_da, source, cfg)
+    problem = copy_problem(s.summary_da, source, cfg) if s.summary_da is not None else None
     if problem:
         msgs.append(problem)
     if file_day is not None:

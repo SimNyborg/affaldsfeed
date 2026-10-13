@@ -28,7 +28,7 @@ from affaldsfeed.models import (
     SummarySettings,
 )
 from affaldsfeed.normalize import item_id
-from affaldsfeed.summaries import copy_problem, effective_summaries, load_summaries, rewrite_queue
+from affaldsfeed.summaries import copy_problem, load_summaries, rewrite_queue, summarized_ids
 from affaldsfeed.timeutil import ensure_utc, iso, now_utc, to_cph
 
 log = logging.getLogger(__name__)
@@ -199,9 +199,9 @@ def build_pending(
 ) -> dict[str, Any]:
     info = known_sources(sources, config.publishers)
     pending = pending_candidates(info, candidates, judgments, now, hours)[: max(0, max_items)]
-    # Ældre godkendte indslag uden resumé med egne ord (§6.2a)
+    # Ældre godkendte indslag uden resumé med egne ord (§6.2a). En resumélinje med null tæller som behandlet.
     cfg = config.settings.summaries
-    have = set(effective_summaries(judgments, summaries or {}))
+    have = summarized_ids(judgments, summaries or {})
     limit = cfg.rewrite_per_run if rewrite_max is None else rewrite_max
     rewrite, rewrite_total = rewrite_queue(info, candidates, judgments, have, config.settings.window_since(now), cfg, limit)
     # Kun id'er fra geografien, så routinen ikke kopierer et id, som valideringen melder ukendt

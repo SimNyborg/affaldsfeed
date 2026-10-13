@@ -505,7 +505,9 @@ class Summary(_Strict):
     """Et resumé med egne ord til et allerede godkendt indslag: én linje i data/judgments/resumeer/*.jsonl."""
 
     id: str
-    summary_da: str = Field(min_length=20, max_length=240)
+    # null: teaseren beskriver ikke artiklen (fx sidens standardtekst). Intet preview, og indslaget
+    # kommer ikke i rewrite igen
+    summary_da: str | None = Field(min_length=20, max_length=240)
     written_at: datetime
     by: str = "claude-routine"
 
