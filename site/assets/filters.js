@@ -221,7 +221,8 @@ export function load(key) {
 
 // Afkrydsningslister: alt er valgt fra start, og et fjernet flueben skjuler. I URL'en står de valgte
 // (fx tema=gebyrer) eller med "-" foran de fravalgte (fx tema=-arbejdsmiljoe), alt efter hvad der er kortest.
-export const GROUPS = ['afsender', 'tema', 'kilde', 'genre'];
+// Rækkefølgen er panelets (afsender og kilde er gruppen Kilde) og bruges til mærkerne over listen.
+export const GROUPS = ['afsender', 'kilde', 'tema', 'genre'];
 export const OV_PERIODS = ['dag', 'uge', 'maaned', 'aar'];
 export const NO_TOPIC = 'uden';
 // Steder: ét felt `sted` med præfiksede nøgler internt (r:, k:, b: og l: for landsdækkende), fire
@@ -280,6 +281,9 @@ export function readState(search) {
 let ORDER = {};
 let UNIVERSE = {};
 let GEO = false;
+// Kilde-gruppen: hver kildes afsendertype (som indslagets catId) og kilderne pr. type, der kan vælges
+let SRC_CAT = new Map();
+let CAT_SRCS = new Map();
 export function setData(data) {
   const idx = (ids) => new Map(ids.map((id, i) => [id, i]));
   UNIVERSE = {
@@ -292,6 +296,8 @@ export function setData(data) {
   };
   ORDER = Object.fromEntries(Object.entries(UNIVERSE).map(([g, ids]) => [g, idx(ids)]));
   GEO = !!data.geo;
+  SRC_CAT = new Map([...data.sources.values()].map((src) => [src.id, (data.cats.get(src.category) || UNKNOWN_CAT).id]));
+  CAT_SRCS = new Map(UNIVERSE.afsender.map((c) => [c, UNIVERSE.kilde.filter((id) => SRC_CAT.get(id) === c)]));
 }
 
 /** Valg ("-" foran = fravalgt) i konfigurationens rækkefølge, ukendte til sidst efter id. */
@@ -342,6 +348,74 @@ export function setAllShown(s, g, on) {
 export function allShown(s, g) {
   const set = shownSet(s, g);
   return !set || (UNIVERSE[g] || []).every((k) => set.has(k));
+}
+
+// ── Kilde: afsendertyper og kilder som ét filter ───────────
+// Panelet viser afsender og kilde som én gruppe, hvor hver afsendertype kan foldes ud til sine kilder. De
+// viste kilder er dem, hvis type er vist under afsender, og som selv er vist under kilde (KONTRAKTER §9).
+
+/** De viste kilder som Set, eller null, når intet er fravalgt. */
+export function shownSources(s) {
+  const cats = shownSet(s, 'afsender');
+  const srcs = shownSet(s, 'kilde');
+  if (!cats && !srcs) return null;
+  return new Set(UNIVERSE.kilde.filter((id) => (!cats || cats.has(SRC_CAT.get(id))) && (!srcs || srcs.has(id))));
+}
+
+/** Vises alle kilder? */
+export function allSourcesShown(s) {
+  const shown = shownSources(s);
+  return !shown || UNIVERSE.kilde.every((id) => shown.has(id));
+}
+
+/**
+ * Gemmer de viste kilder i den korteste af to former: hele typer i afsender og de fravalgte kilder i de
+ * viste typer i kilde med "-", eller kun de viste kilder i kilde. Ved lige lang vinder den første, fordi
+ * en fravalgt type også skjuler kilder, der kommer til senere. En form bruges kun, hvis den giver præcis
+ * de samme kilder (fx ikke for en kilde uden kendt afsendertype).
+ */
+function setSources(s, shown) {
+  const catsOn = new Set(UNIVERSE.afsender.filter((c) => !CAT_SRCS.get(c).length || CAT_SRCS.get(c).some((id) => shown.has(id))));
+  const afsender = encodeShown('afsender', catsOn);
+  const byType = {
+    afsender,
+    kilde: UNIVERSE.kilde.filter((id) => !shown.has(id) && (!afsender.length || catsOn.has(SRC_CAT.get(id)))).map((id) => `-${id}`),
+  };
+  const bySource = { afsender: [], kilde: UNIVERSE.kilde.filter((id) => shown.has(id)) };
+  const exact = (x) => {
+    const got = shownSources(x) || new Set(UNIVERSE.kilde);
+    return got.size === bySource.kilde.length && [...got].every((id) => shown.has(id));
+  };
+  const size = (x) => x.afsender.length + x.kilde.length;
+  const forms = [byType, bySource].filter(exact);
+  const best = forms.length ? forms.reduce((a, b) => (size(b) < size(a) ? b : a)) : byType;
+  s.afsender = best.afsender;
+  s.kilde = best.kilde;
+}
+
+/** Flueben sat eller fjernet ved én kilde. */
+export function toggleSource(s, id) {
+  const shown = shownSources(s) || new Set(UNIVERSE.kilde);
+  if (shown.has(id)) shown.delete(id);
+  else shown.add(id);
+  setSources(s, shown);
+}
+
+/** Flueben ved en afsendertype: vises alle typens kilder, skjules de, ellers vises de alle. */
+export function toggleCategory(s, cat) {
+  const shown = shownSources(s) || new Set(UNIVERSE.kilde);
+  const ids = CAT_SRCS.get(cat) || [];
+  const all = ids.every((id) => shown.has(id));
+  for (const id of ids) {
+    if (all) shown.delete(id);
+    else shown.add(id);
+  }
+  setSources(s, shown);
+}
+
+/** "Vælg alle" og "Fravælg alle" under Kilde. */
+export function setAllSources(s, on) {
+  setSources(s, new Set(on ? UNIVERSE.kilde : []));
 }
 
 /**
@@ -624,11 +698,14 @@ export function applyFilters(data, s, now, skip) {
   return cards;
 }
 
+// Afsender og kilde er ét filter i panelet (Kilde), så deres tællere ser bort fra dem begge
+const COUNT_SKIP = { afsender: ['afsender', 'kilde'], kilde: ['afsender', 'kilde'] };
+
 /** Tællere pr. valg med de øvrige filtre slået til. Enheden er det, der vises: historien. */
 export function computeCounts(data, s, now) {
   const out = {};
   for (const g of data.geo ? ['sted', ...GROUPS] : GROUPS) {
-    const pred = makePredicate(s, now, new Set([g]));
+    const pred = makePredicate(s, now, new Set(COUNT_SKIP[g] || [g]));
     const counts = new Map();
     for (const u of data.units) {
       const keys = new Set();
@@ -866,8 +943,8 @@ const fset = (legend, ...rows) => el('fieldset', { class: 'fset' }, el('legend',
  * Bygger filterpanelet én gang. `update(state, counts)` opdaterer tal, flueben og status uden at
  * genopbygge noget, så fokus, fold og scroll bevares. `onChange(mutator)` anvender en ændring.
  *
- * Hver gruppe er foldet sammen fra start (åben, hvis den har et valg) og viser sin status ("Alle",
- * "5 af 8"). I alle lister er alt valgt fra start, og et fjernet flueben skjuler (KONTRAKTER §9).
+ * Hver gruppe er foldet sammen fra start (åben, hvis den har et valg) og viser sin status ("5 af 8"). I
+ * alle lister er alt valgt fra start, og et fjernet flueben skjuler (KONTRAKTER §9).
  */
 export function buildPanel(data, state, onChange, { onReset } = {}) {
   let cur = state;
@@ -880,10 +957,10 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
     return row.label;
   };
   // Én knap pr. gruppe: "Fravælg alle", når alt er valgt, ellers "Vælg alle". update() sætter teksten.
-  const toggles = []; // { g, btn }
-  const tools = (g) => {
-    const btn = el('button', { type: 'button', class: 'btn-text', onclick: () => onChange((s) => setAllShown(s, g, !allShown(s, g))) }, 'Fravælg alle');
-    toggles.push({ g, btn });
+  const toggles = []; // { btn, isAll(s) }
+  const tools = (g, isAll = (s) => allShown(s, g), setAll = (s, on) => setAllShown(s, g, on)) => {
+    const btn = el('button', { type: 'button', class: 'btn-text', onclick: () => onChange((s) => setAll(s, !isAll(s))) }, 'Fravælg alle');
+    toggles.push({ btn, isAll });
     return el('p', { class: 'fg-tools' }, btn);
   };
   /**
@@ -936,13 +1013,103 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
     sted = { cbx, picked, fg };
   }
 
-  // Afsender: korte navne, fuldt navn i title. En type, der afventer, kan ikke vælges og opdateres ikke.
-  const catRows = [...data.cats.values()].map((c) => {
+  // Kilde: afsender og kilde som ét filter. En række pr. afsendertype med flueben (alle, ingen eller nogle af
+  // typens kilder) og en pil, der folder typens kilder ud. Feltet øverst indsnævrer kilderne.
+  const srcRows = new Map(); // kilde-id → { row, keys }
+  const setOpen = (sec, open) => {
+    sec.open = open;
+    sec.list.hidden = !open;
+    sec.btn.setAttribute('aria-expanded', String(open));
+  };
+  const srcSecs = [...data.cats.values()].map((c) => {
     const name = c.short || c.name;
     const opts = { name, title: c.name !== name ? c.name : null, iconName: c.icon, style: catStyle(c) };
-    return c.pending ? frow({ ...opts, pending: true }).label : addRow('afsender', c.id, opts);
+    // En type, der afventer, kan hverken vælges eller foldes ud og opdateres ikke
+    if (c.pending) {
+      return { el: el('div', { class: 'fsrc-cat' }, el('div', { class: 'fsrc-head' }, frow({ ...opts, pending: true }).label)), ids: [], pending: true };
+    }
+    const ids = [...data.sources.keys()].filter((id) => data.sources.get(id).category === c.id)
+      .sort((a, b) => data.sources.get(a).name.localeCompare(data.sources.get(b).name, 'da'));
+    if (!ids.length) return null;
+    const list = el('div', { class: 'opts fsrc-list', id: `fsrc-${c.id}`, role: 'group', 'aria-label': name, hidden: true },
+      ids.map((id) => {
+        const src = data.sources.get(id);
+        const row = frow({ name: src.name, title: src.name.length > 26 ? src.name : null, onchange: () => onChange((s) => toggleSource(s, id)) });
+        srcRows.set(id, { row, keys: foldKeys(src.name) });
+        return row.label;
+      }));
+    const row = frow({ ...opts, onchange: () => onChange((s) => toggleCategory(s, c.id)) });
+    const sec = { id: c.id, row, list, ids, open: false, wasOpen: false };
+    // Skærmlæseren hører fx "5 kilder under Nationalt medie, knap, skjult"
+    sec.btn = el('button', { type: 'button', class: 'fsrc-tgl', 'aria-expanded': 'false', 'aria-controls': list.id, onclick: () => setOpen(sec, !sec.open) },
+      icon('pil-ned'), hidden(`${fmtNum(ids.length)} ${ids.length === 1 ? 'kilde' : 'kilder'} under ${name}`));
+    sec.el = el('div', { class: 'fsrc-cat' }, el('div', { class: 'fsrc-head' }, row.label, sec.btn), list);
+    return sec;
+  }).filter(Boolean);
+  const srcAll = srcSecs.flatMap((x) => x.ids);
+  const srcFind = el('input', {
+    id: 'f-kilde', class: 'field', type: 'search', autocomplete: 'off', spellcheck: 'false', placeholder: 'Find kilde',
+    oninput: () => filterSrc(),
+    onkeydown: (e) => { if (e.key === 'Escape' && srcFind.value) { e.preventDefault(); e.stopPropagation(); srcFind.value = ''; filterSrc(); } },
   });
-  addGroup(foldGroup('Afsender', tools('afsender'), fset('Afsender', catRows)), statusOf('afsender'), (s) => s.afsender.length > 0);
+  const srcNone = el('p', { class: 'fnote', role: 'status' });
+  /** Intet, når alle kilder vises, ellers "Ingen", op til to typer eller kilder eller "45 af 280". */
+  const srcStatus = (s) => {
+    const shown = shownSources(s);
+    const on = shown ? srcAll.filter((id) => shown.has(id)) : srcAll;
+    if (on.length === srcAll.length) return '';
+    if (!on.length) return 'Ingen';
+    const secs = srcSecs.filter((x) => !x.pending);
+    const whole = secs.filter((x) => x.ids.every((id) => shown.has(id)));
+    const part = secs.some((x) => !whole.includes(x) && x.ids.some((id) => shown.has(id)));
+    if (!part && whole.length <= 2) return whole.map((x) => catName(data, x.id)).join(', ');
+    if (on.length <= 2) return on.map((id) => data.sources.get(id).name).join(', ');
+    return `${fmtNum(on.length)} af ${fmtNum(srcAll.length)}`;
+  };
+  addGroup(foldGroup('Kilde',
+    el('div', { class: 'fsrc' },
+      el('label', { for: 'f-kilde', class: 'visually-hidden', text: 'Find kilde' }),
+      el('div', { class: 'cbx-field' }, icon('soeg'), srcFind)),
+    tools('kilde', allSourcesShown, setAllSources),
+    fset('Kilde', srcSecs.map((x) => x.el)), srcNone), srcStatus, (s) => s.afsender.length > 0 || s.kilde.length > 0);
+
+  // Ved indlæsning er en type foldet ud, når kun nogle af dens kilder vises, så man ser fravalget
+  const shown0 = shownSources(state);
+  for (const sec of srcSecs) {
+    if (sec.pending || !shown0) continue;
+    const on = sec.ids.filter((id) => shown0.has(id)).length;
+    if (on > 0 && on < sec.ids.length) setOpen(sec, true);
+  }
+
+  /**
+   * Feltet skjuler kilder, der ikke passer, og typer uden kilder tilbage. Typer med træf foldes ud, mens
+   * der søges, og når feltet tømmes, er de foldet som før søgningen. Typer, der afventer, er skjult under søgning.
+   */
+  let searching = false;
+  function filterSrc() {
+    const qs = foldKeys(srcFind.value).filter(Boolean);
+    if (qs.length && !searching) for (const sec of srcSecs) sec.wasOpen = sec.open;
+    let n = 0;
+    for (const sec of srcSecs) {
+      if (sec.pending) {
+        sec.el.hidden = qs.length > 0;
+        continue;
+      }
+      let any = false;
+      for (const id of sec.ids) {
+        const { row, keys } = srcRows.get(id);
+        // Feltets to stavemåder (å→aa og å→a) er alternativer; én skal passe
+        const hit = !qs.length || qs.some((q) => keys.some((k) => k.includes(q)));
+        row.label.hidden = !hit;
+        if (hit) { any = true; n += 1; }
+      }
+      sec.el.hidden = !any;
+      if (qs.length) setOpen(sec, any);
+      else if (searching) setOpen(sec, sec.wasOpen);
+    }
+    searching = qs.length > 0;
+    srcNone.textContent = qs.length && !n ? `Ingen kilde passer til "${srcFind.value.trim()}".` : '';
+  }
 
   // Tema: `short` hvis feedet har det; title, når navnet afviger eller kan blive afkortet
   const topicRow = (id) => {
@@ -952,74 +1119,6 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
   };
   addGroup(foldGroup('Tema', tools('tema'), fset('Tema', [...data.topics.keys()].map(topicRow),
     el('div', { class: 'fsep', 'aria-hidden': 'true' }), topicRow(NO_TOPIC))), statusOf('tema'), (s) => s.tema.length > 0);
-
-  // Kilde: alle kilder i et afsnit pr. afsendertype, foldet sammen fra start; feltet øverst indsnævrer listen
-  const srcIds = [...data.sources.keys()];
-  const srcRows = new Map();
-  const srcSections = [...data.cats.values()].map((c) => {
-    // En type, der afventer, er en række uden kilder, som ikke kan foldes ud
-    if (c.pending) {
-      const row = el('div', { class: 'fsrc-pending cat is-pending', style: catStyle(c) },
-        icon(c.icon), el('span', { class: 'fsrc-name' }, c.short || c.name, srPunct()), el('span', { class: 'fg-state', text: 'Afventer' }));
-      return { el: row, ids: [], pending: true };
-    }
-    const ids = srcIds.filter((id) => data.sources.get(id).category === c.id)
-      .sort((a, b) => data.sources.get(a).name.localeCompare(data.sources.get(b).name, 'da'));
-    if (!ids.length) return null;
-    const list = ids.map((id) => {
-      const src = data.sources.get(id);
-      const label = addRow('kilde', id, { name: src.name, title: src.name.length > 26 ? src.name : null });
-      srcRows.set(id, { label, keys: foldKeys(src.name) });
-      return label;
-    });
-    const status = el('span', { class: 'fg-state' });
-    const root = el('details', { class: 'fsrc-cat cat', style: catStyle(c) },
-      el('summary', null, icon(c.icon), el('span', { class: 'fsrc-name' }, c.short || c.name, srPunct()), status, icon('pil-ned', 'chev')),
-      el('div', { class: 'opts' }, list));
-    return { el: root, ids, status, wasOpen: false };
-  }).filter(Boolean);
-  const srcFind = el('input', {
-    id: 'f-kilde', class: 'field', type: 'search', autocomplete: 'off', spellcheck: 'false', placeholder: 'Find kilde',
-    oninput: () => filterSrc(),
-    onkeydown: (e) => { if (e.key === 'Escape' && srcFind.value) { e.preventDefault(); e.stopPropagation(); srcFind.value = ''; filterSrc(); } },
-  });
-  const srcNone = el('p', { class: 'fnote', role: 'status' });
-  addGroup(foldGroup('Kilde',
-    el('div', { class: 'fsrc' },
-      el('label', { for: 'f-kilde', class: 'visually-hidden', text: 'Find kilde' }),
-      el('div', { class: 'cbx-field' }, icon('soeg'), srcFind)),
-    tools('kilde'),
-    fset('Kilde', srcSections.map((x) => x.el)), srcNone), statusOf('kilde'), (s) => s.kilde.length > 0);
-
-  /**
-   * Feltet skjuler kilder, der ikke passer, og typer uden kilder tilbage. Typer med træf foldes ud, mens
-   * der søges, og når feltet tømmes, er de foldet som før søgningen. Typer, der afventer, er skjult under søgning.
-   */
-  let searching = false;
-  function filterSrc() {
-    const qs = foldKeys(srcFind.value).filter(Boolean);
-    if (qs.length && !searching) for (const sec of srcSections) sec.wasOpen = sec.el.open;
-    let n = 0;
-    for (const sec of srcSections) {
-      if (sec.pending) {
-        sec.el.hidden = qs.length > 0;
-        continue;
-      }
-      let any = false;
-      for (const id of sec.ids) {
-        const { label, keys } = srcRows.get(id);
-        // Feltets to stavemåder (å→aa og å→a) er alternativer; én skal passe
-        const hit = !qs.length || qs.some((q) => keys.some((k) => k.includes(q)));
-        label.hidden = !hit;
-        if (hit) { any = true; n += 1; }
-      }
-      sec.el.hidden = !any;
-      if (qs.length) sec.el.open = any;
-      else if (searching) sec.el.open = sec.wasOpen;
-    }
-    searching = qs.length > 0;
-    srcNone.textContent = qs.length && !n ? `Ingen kilde passer til "${srcFind.value.trim()}".` : '';
-  }
 
   // Genre
   addGroup(foldGroup('Genre', tools('genre'), fset('Genre', [...data.genres.keys()].map((id) => addRow('genre', id, { name: genreName(data, id) })))),
@@ -1038,16 +1137,18 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
     cur = s;
     counts = c;
     for (const { g, key, row } of rows) row.set(isShown(s, g, key), c[g]?.get(key) || 0);
-    for (const x of groups) x.fg.status.textContent = x.text(s);
-    for (const { g, btn } of toggles) btn.textContent = allShown(s, g) ? 'Fravælg alle' : 'Vælg alle';
-    // Afsendertyperne under Kilde: intet, når alle typens kilder er valgt, ellers "5 af 17" eller "Ingen"
-    const srcShown = shownSet(s, 'kilde');
-    for (const sec of srcSections) {
+    // Kilde: en kilde er afkrydset, når den vises. En type er afkrydset, når alle dens kilder vises, og halvt
+    // afkrydset (indeterminate), når nogle gør. Tallene ser bort fra Kilde-valget (computeCounts).
+    const shown = shownSources(s);
+    for (const [id, { row }] of srcRows) row.set(!shown || shown.has(id), c.kilde?.get(id) || 0);
+    for (const sec of srcSecs) {
       if (sec.pending) continue;
-      const on = srcShown ? sec.ids.filter((id) => srcShown.has(id)).length : sec.ids.length;
-      const all = sec.ids.length;
-      sec.status.textContent = on === all ? '' : on ? `${fmtNum(on)} af ${fmtNum(all)}` : 'Ingen';
+      const on = shown ? sec.ids.filter((id) => shown.has(id)).length : sec.ids.length;
+      sec.row.set(on === sec.ids.length, c.afsender?.get(sec.id) || 0);
+      sec.row.input.indeterminate = on > 0 && on < sec.ids.length;
     }
+    for (const x of groups) x.fg.status.textContent = x.text(s);
+    for (const { btn, isAll } of toggles) btn.textContent = isAll(s) ? 'Fravælg alle' : 'Vælg alle';
     resetBtn.hidden = activeCount(s) === 0;
     if (sted) {
       sted.picked.sync(s, c.sted, !s.sted.length);
