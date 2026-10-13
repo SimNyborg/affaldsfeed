@@ -145,7 +145,7 @@
   },
   "amagerliv": {
     "last_ok": "2026-10-13",
-    "last_attempt": "2026-10-13T19:15:33Z",
+    "last_attempt": "2026-10-13T21:45:35Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -153,11 +153,11 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 11
+    "backfill_runs": 12
   },
   "amtsavisen": {
     "last_ok": "2026-10-13",
-    "last_attempt": "2026-10-13T19:15:33Z",
+    "last_attempt": "2026-10-13T21:45:35Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 4,
@@ -165,7 +165,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 8
+    "backfill_runs": 9
   },
   "arc": {
     "last_ok": "2026-10-13",
@@ -541,7 +541,7 @@
   },
   "dakofa": {
     "last_ok": "2026-10-13",
-    "last_attempt": "2026-10-13T19:15:33Z",
+    "last_attempt": "2026-10-13T21:45:35Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 40,
@@ -549,7 +549,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 10
+    "backfill_runs": 11
   },
   "dansk-erhverv": {
     "last_ok": "2026-10-13",
@@ -565,7 +565,7 @@
   },
   "dansk-fjernvarme": {
     "last_ok": "2026-10-13",
-    "last_attempt": "2026-10-13T19:15:33Z",
+    "last_attempt": "2026-10-13T21:45:35Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
@@ -925,7 +925,7 @@
   },
   "faa": {
     "last_ok": "2026-10-13",
-    "last_attempt": "2026-10-13T19:15:33Z",
+    "last_attempt": "2026-10-13T21:45:35Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -933,7 +933,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 7
+    "backfill_runs": 8
   },
   "faaborg-midtfyn-kommune": {
     "last_ok": "2026-10-13",
@@ -1105,7 +1105,7 @@
   },
   "folketinget-oda": {
     "last_ok": "2026-10-13",
-    "last_attempt": "2026-10-13T19:15:33Z",
+    "last_attempt": "2026-10-13T21:45:35Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 46,
@@ -3181,7 +3181,7 @@
   },
   "ugeavisen": {
     "last_ok": "2026-10-13",
-    "last_attempt": "2026-10-13T19:15:33Z",
+    "last_attempt": "2026-10-13T21:45:35Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
@@ -3189,7 +3189,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 7
+    "backfill_runs": 8
   },
   "vafo": {
     "last_ok": "2026-10-13",
@@ -3325,7 +3325,7 @@
   },
   "viborg-folkeblad": {
     "last_ok": "2026-10-13",
-    "last_attempt": "2026-10-13T11:45:53Z",
+    "last_attempt": "2026-10-13T21:45:35Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -3333,7 +3333,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 4
+    "backfill_runs": 5
   },
   "viborg-kommune": {
     "last_ok": "2026-10-13",
