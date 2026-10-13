@@ -1,408 +1,123 @@
-# Afprøvning 2026-10-13T21:10:09Z
+# Afprøvning 2026-10-13T21:17:05Z
 
-## forbehold
+## forbehold --vilkaar
 
 ```text
-# Forbehold hos kilderne 2026-10-13T21:10:10Z
-
-395 værter, UA: Affaldsfeed/0.1 (+https://github.com/SimNyborg/affaldsfeed)
-
-- http://motas.dk [robots 404] TDM-forbehold (maskinlæsbart)
-- https://a-r-c.dk [robots 200] ingen fund
-- https://a4medier.dk [robots 200] ingen fund
-- https://aabenraa.dk [robots 200] ingen fund
-- https://aarhus.dk [robots 200] ingen fund
-- https://aeroeforsyning.dk [robots 200] TDM-forbehold (maskinlæsbart)
-- https://affald.middelfart.dk [robots 200] TDM-forbehold (maskinlæsbart)
-- https://affaldoggenbrug.middelfart.dk [robots 200] TDM-forbehold (maskinlæsbart)
-- https://affaldplus.dk [robots 200] ingen fund
-- https://afld.dk [robots 200] ingen fund
-- https://albertslund.dk [robots 404] ingen fund
-- https://albertslundnyt.dk [robots 404] ingen fund
-- https://alleroed.dk [robots 200] ingen fund
-- https://altomfuresoe.dk [robots 200] ingen fund
-- https://amagerliv.dk [robots 200] AI-bots spærret: 6
-- https://amtsavisen.dk [robots 200] AI-bots spærret: 6
-- https://api.retsinformation.dk [robots 404] ingen fund
-- https://argo.dk [robots 200] ingen fund
-- https://arwos.dk [robots 200] ingen fund
-- https://avisen2770.dk [robots 200] ingen fund
-- https://avisendanmark.dk [robots 200] AI-bots spærret: 6
-- https://ballerup.dk [robots 200] ingen fund
-- https://billundonline.dk [robots 200] ingen fund
-- https://blokhus.dk [robots 200] ingen fund
-- https://bofa.dk [robots 200] ingen fund
-- https://bornholm.dk [robots 200] ingen fund
-- https://bornholm.nu [robots 200] AI-bots spærret: 1
-- https://bornholmnyt.dk [robots 200] ingen fund
-- https://borsen.dk [robots 200] AI-bots spærret: 5
-- https://brammingposten.dk [robots 200] ingen fund
-- https://bryggebladet.dk [robots 200] ingen fund
-- https://bt.dk [robots 200] AI-bots spærret: 2
-- https://building-supply.dk [robots 200] AI-bots spærret: 5
-- https://byensnyt.dk [robots 200] ingen fund
-- https://byggeri-arkitektur.dk [robots 200] ingen fund
-- https://bygtek.dk [robots 200] ingen fund
-- https://cepos.dk [robots 200] ingen fund
-- https://cewep.eu [robots 200] ingen fund
-- https://circulareconomy.europa.eu [robots 200] AI-bots spærret: 6
-- https://cirkulaer.dk [robots 200] ingen fund
-- https://concito.dk [robots 200] ingen fund
-- https://ctwatch.dk [robots 200] AI-bots spærret: 15
-- https://dagbladet-holstebro-struer.dk [robots 200] AI-bots spærret: 6
-- https://dagensbyggeri.dk [robots 200] ingen fund
-- https://dakofa.dk [robots 200] ingen fund
-- https://danskekommuner.dk [robots 200] ingen fund
-- https://danskfjernvarme.dk [robots 200] ingen fund
-- https://danskretursystem.dk [robots 200] ingen fund
-- https://danwatch.dk [robots 200] ingen fund
-- https://dbrs.dk [robots 200] AI-bots spærret: 6
-- https://dce.au.dk [robots 404] ingen fund
-- https://deponisyd.dk [robots 200] ingen fund
-- https://dinavis.dk [robots 200] AI-bots spærret: 8; TDM-forbehold (maskinlæsbart)
-- https://dinforsyning.dk [robots 200] ingen fund
-- https://ditikast-brande.dk [robots 200] AI-bots spærret: 4
-- https://ditkarup.dk [robots 200] AI-bots spærret: 4
-- https://ditkjellerup.dk [robots 200] AI-bots spærret: 4
-- https://ditry.dk [robots 200] AI-bots spærret: 4
-- https://ditsalling.dk [robots 200] AI-bots spærret: 4
-- https://ditvinderup.dk [robots 200] AI-bots spærret: 4
-- https://dragoernyt.dk [robots 200] ingen fund
-- https://ec.europa.eu [robots 200] ingen fund
-- https://eeb.org [robots 200] ingen fund
-- https://ekstrabladet.dk [robots 200] AI-bots spærret: 13
-- https://energiwatch.dk [robots 200] AI-bots spærret: 15
-- https://energnist.dk [robots 200] ingen fund
-- https://ens.dk [robots 200] ingen fund
-- https://environment.ec.europa.eu [robots 200] ingen fund
-- https://expra.eu [robots 200] ingen fund
-- https://faa.dk [robots 200] AI-bots spærret: 6
-- https://faellesavisen.dk [robots 200] ingen fund
-- https://fagbladet3f.dk [robots 200] AI-bots spærret: 5
-- https://fanoeposten.dk [robots 200] ingen fund
-- https://fanøposten.dk [robots 200] ingen fund
-- https://farsoeavis.dk [robots 200] ingen fund
-- https://faxeforsyning.dk [robots 200] ingen fund
-- https://fead.be [robots 200] ingen fund
-- https://feeds.services.tv2.dk [robots 404] ingen fund
-- https://finans.dk [robots 200] AI-bots spærret: 8; TDM-forbehold (maskinlæsbart)
-- https://folkebladet.info [robots 200] ingen fund
-- https://folkebladet.net [robots 200] ingen fund
-- https://folkebladetlemvig.dk [robots 200] AI-bots spærret: 6
-- https://forskning.ruc.dk [robots 200] spærret for vores UA: 1 adresser; TDM-forbehold (maskinlæsbart)
-- https://forsyningstilsynet.dk [robots 200] ingen fund
-- https://frdb.dk [robots 200] AI-bots spærret: 6
-- https://fredensborgforsyning.dk [robots 200] ingen fund
-- https://frederiksbergliv.dk [robots 200] AI-bots spærret: 6
-- https://frederiksborgamtsavis.dk [robots 200] spærret for vores UA: 1 adresser; AI-bots spærret: 15
-- https://frederiksborgamtsavis.sjnyheder.dk [robots 200] spærret for vores UA: 1 adresser; AI-bots spærret: 15
-- https://frederikshavn.dk [robots 200] ingen fund
-- https://fyens.dk [robots 200] AI-bots spærret: 6
-- https://gate21.dk [robots 200] ingen fund
-- https://gentofte.dk [robots 403] ingen fund
-- https://gladsaxenetnyt.dk [robots 404] ingen fund
-- https://glostrupforsyning.dk [robots 200] ingen fund
-- https://graastenavis.dk [robots 200] ingen fund
-- https://greenpowerdenmark.dk [robots 200] spærret for vores UA: 1 adresser
-- https://greve.dk [robots 200] ingen fund
-- https://gribskovforsyning.dk [robots 200] ingen fund
-- https://hasserisavis.dk [robots 200] ingen fund
-- https://heleherlev.dk [robots 200] ingen fund
-- https://helsingordagblad.dk [robots 200] AI-bots spærret: 6
-- https://herningfolkeblad.dk [robots 200] AI-bots spærret: 4
-- https://hfors.dk [robots 200] ingen fund
-- https://hjertingposten.dk [robots 200] ingen fund
-- https://hnf.dk [robots 200] ingen fund
-- https://hoeringsportalen.dk [robots 404] ingen fund
-- https://holbaek.dk [robots 200] ingen fund
-- https://holddanmarkrent.dk [robots 404] ingen fund
-- https://hsfo.dk [robots 200] AI-bots spærret: 6
-- https://htkforsyning.dk [robots 200] ingen fund
-- https://hvidovreavis.dk [robots 200] ingen fund
-- https://hvidovrenyt.dk [robots 200] ingen fund
-- https://ikast-brande.dk [robots 200] ingen fund
-- https://information.dk [robots 200] AI-bots spærret: 14
-- https://ing.dk [robots 200] AI-bots spærret: 13
-- https://ishoj.dk [robots 200] ingen fund
-- https://itu.dk [robots 200] ingen fund
-- https://jammerbugtposten.dk [robots 200] ingen fund
-- https://jp.dk [robots 200] AI-bots spærret: 8; TDM-forbehold (maskinlæsbart)
-- https://jv.dk [robots 200] AI-bots spærret: 6
-- https://jyllands-posten.dk [robots 200] AI-bots spærret: 8; TDM-forbehold (maskinlæsbart)
-- https://kefm.dk [robots 200] ingen fund
-- https://klarforsyning.dk [robots 200] ingen fund
-- https://klimaraadet.dk [robots 200] ingen fund
-- https://kobenhavnliv.dk [robots 200] AI-bots spærret: 6
-- https://kraka.dk [robots 200] ingen fund
-- https://kristeligt-dagblad.dk [robots 200] AI-bots spærret: 9
-- https://kunmedierne.dk [robots 200] ingen fund
-- https://kunmors.dk [robots 404] ingen fund
-- https://kunthy.dk [robots 404] ingen fund
-- https://lf.dk [robots 200] ingen fund
-- https://licitationen.dk [robots 200] AI-bots spærret: 5
-- https://ligeher.nu [robots 200] AI-bots spærret: 8
-- https://local.forskningsportal.dk [robots 404] ingen fund
-- https://ltf.dk [robots 200] ingen fund
-- https://maabjergenergycenter.dk [robots 404] ingen fund
-- https://magasinetkbh.dk [robots 200] ingen fund
-- https://mariagerfjordposten.dk [robots 200] ingen fund
-- https://mfkn.naevneneshus.dk [robots 200] TDM-forbehold (maskinlæsbart)
-- https://middelfart.dk [robots 200] ingen fund
-- https://midtfynsposten.dk [robots 200] AI-bots spærret: 6
-- https://midtjyllandsavis.dk [robots 200] AI-bots spærret: 4
-- https://midtvendsysselavis.dk [robots 200] ingen fund
-- https://migogaalborg.dk [robots 200] ingen fund
-- https://migogaarhus.dk [robots 200] ingen fund
-- https://migogesbjerg.dk [robots 200] ingen fund
-- https://migogkbh.dk [robots 200] ingen fund
-- https://migogodense.dk [robots 200] ingen fund
-- https://migogvejen.dk [robots 200] ingen fund
-- https://mim.dk [robots 200] ingen fund
-- https://mm.dk [robots 200] ingen fund
-- https://mst.dk [robots 200] ingen fund
-- https://mudp.dk [robots 200] ingen fund
-- https://neravisen.dk [robots 200] ingen fund
-- https://netavisen-sjaelland.dk [robots 200] ingen fund
-- https://netavisengrindsted.dk [robots 200] ingen fund
-- https://news.google.com [robots 200] spærret for vores UA: 1 adresser; AI-bots spærret: 6
-- https://newsletter-proxy.aws.jyllands-posten.dk [robots 401] ingen fund
-- https://nibeavis.dk [robots 200] TDM-forbehold (maskinlæsbart)
-- https://noah.dk [robots 200] ingen fund
-- https://nomi4s.dk [robots 200] ingen fund
-- https://nordjyske.dk [robots 200] AI-bots spærret: 8
-- https://nordsoeposten.dk [robots 200] ingen fund
-- https://nordvaerk.dk [robots 404] ingen fund
-- https://norfors.dk [robots 200] ingen fund
-- https://nyheder.ku.dk [robots 404] ingen fund
-- https://nyheder.tv2.dk [robots 200] AI-bots spærret: 15
-- https://oda.ft.dk [robots 404] ingen fund
-- https://onethird.dk [robots 200] ingen fund
-- https://pingvinnyt.dk [robots 200] ingen fund
-- https://plast.dk [robots 200] ingen fund
-- https://plasticchange.dk [robots 200] ingen fund
-- https://politiken.dk [robots 200] AI-bots spærret: 8
-- https://portal.findresearcher.sdu.dk [robots 200] spærret for vores UA: 1 adresser; TDM-forbehold (maskinlæsbart)
-- https://pro.ing.dk [robots 200] AI-bots spærret: 13
-- https://producentansvar.dk [robots 200] ingen fund
-- https://randersugeavis.dk [robots 200] ingen fund
-- https://rebild.dk [robots 200] ingen fund
-- https://regeringen.dk [robots 200] ingen fund
-- https://renodjurs.dk [robots 200] ingen fund
-- https://renosyd.dk [robots 200] ingen fund
-- https://ressourceindsamling.dk [robots 200] ingen fund
-- https://retur.dk [robots 200] ingen fund
-- https://rgo.dk [robots 200] ingen fund
-- https://ruc.dk [robots 200] ingen fund
-- https://sirknorge.no [robots 200] ingen fund
-- https://skivefolkeblad.dk [robots 200] AI-bots spærret: 4
-- https://skjerntarm-ugeblad.dk [robots 200] ingen fund
-- https://sonderborgkommune.dk [robots 200] ingen fund
-- https://sonfor.dk [robots 200] ingen fund
-- https://stiften.dk [robots 200] AI-bots spærret: 6
-- https://svmn.dk [robots 200] ingen fund
-- https://taenk.dk [robots 200] ingen fund
-- https://thinkeuropa.dk [robots 200] ingen fund
-- https://thisted-dagblad.dk [robots 200] TDM-forbehold (maskinlæsbart)
-- https://tidende.dk [robots 200] AI-bots spærret: 1; TDM-forbehold (maskinlæsbart)
-- https://tjekfredensborg.dk [robots 200] ingen fund
-- https://ugeavisen.dk [robots 200] ingen fund
-- https://uniavisen.dk [robots 200] TDM-forbehold (maskinlæsbart)
-- https://vafo.dk [robots 200] AI-bots spærret: 6
-- https://vardekommune.dk [robots 200] ingen fund
-- https://vbn.aau.dk [robots 200] spærret for vores UA: 1 adresser; TDM-forbehold (maskinlæsbart)
-- https://vestfor.dk [robots 200] TDM-forbehold (maskinlæsbart)
-- https://vesthimmerland.dk [robots 200] ingen fund
-- https://vesthimmerlandsavis.dk [robots 200] ingen fund
-- https://vesthimmerlandsforsyning.dk [robots 200] ingen fund
-- https://via.ritzau.dk [robots 200] ingen fund
-- https://viborg-folkeblad.dk [robots 200] AI-bots spærret: 6
-- https://viborg.dk [robots 200] ingen fund
-- https://videnskab.dk [robots 200] AI-bots spærret: 3
-- https://vodskovavis.dk [robots 410] ingen fund
-- https://weekendavisen.dk [robots 200] AI-bots spærret: 2
-- https://wwf.dk [robots 200] TDM-forbehold (maskinlæsbart)
-- https://www.a-r-c.dk [robots 200] ingen fund
-- https://www.a4medier.dk [robots 200] ingen fund
-- https://www.aalborg.dk [robots 200] ingen fund
-- https://www.aars.dk [robots 200] ingen fund
-- https://www.aau.dk [robots 200] ingen fund
-- https://www.acrplus.org [robots 200] AI-bots spærret: 1
-- https://www.ae.dk [robots 200] ingen fund
-- https://www.aeroekommune.dk [robots 200] ingen fund
-- https://www.affaldplus.dk [robots 200] ingen fund
-- https://www.altinget.dk [robots 200] ingen fund
-- https://www.assens.dk [robots 200] ingen fund
-- https://www.assensforsyning.dk [robots 200] ingen fund
-- https://www.au.dk [robots 404] ingen fund
-- https://www.avfallsverige.se [robots 200] ingen fund
-- https://www.avisen.dk [robots 200] ingen fund
-- https://www.berlingske.dk [robots 200] AI-bots spærret: 2
-- https://www.billund.dk [robots 200] ingen fund
-- https://www.bing.com [robots 200] ingen fund
-- https://www.biogas.dk [robots 200] ingen fund
-- https://www.brandebladet.dk [robots 200] ingen fund
-- https://www.brondby.dk [robots 200] ingen fund
-- https://www.bronderslev.dk [robots 200] ingen fund
-- https://www.bt.dk [robots 200] AI-bots spærret: 2
-- https://www.building-supply.dk [robots 200] AI-bots spærret: 5
-- https://www.bygtek.dk [robots 200] ingen fund
-- https://www.cbs.dk [robots 200] ingen fund
-- https://www.danskerhverv.dk [robots 200] ingen fund
-- https://www.danskindustri.dk [robots 200] ingen fund
-- https://www.dkteknikogmiljoe.dk [robots 200] ingen fund
-- https://www.dn.dk [robots 200] ingen fund
-- https://www.dr.dk [robots 200] AI-bots spærret: 15
-- https://www.dragoer.dk [robots 200] ingen fund
-- https://www.dtu.dk [robots 200] ingen fund
-- https://www.eea.europa.eu [robots 200] ingen fund
-- https://www.egedalkommune.dk [robots 200] ingen fund
-- https://www.emballagefokus.dk [robots 200] ingen fund
-- https://www.energy-supply.dk [robots 200] AI-bots spærret: 5
-- https://www.esbjerg.dk [robots 403] ingen fund
-- https://www.europarl.europa.eu [robots 202] spærret for vores UA: 4 adresser
-- https://www.europen-packaging.eu [robots 200] ingen fund
-- https://www.fanoe.dk [robots 200] ingen fund
-- https://www.favrskov.dk [robots 200] ingen fund
-- https://www.favrskovforsyning.dk [robots 200] ingen fund
-- https://www.faxekommune.dk [robots 200] ingen fund
-- https://www.ffv.dk [robots 200] ingen fund
-- https://www.fh.dk [robots 200] ingen fund
-- https://www.fjernvarmefyn.dk [robots 200] ingen fund
-- https://www.fmk.dk [robots 200] ingen fund
-- https://www.folketidende.dk [robots 200] AI-bots spærret: 5
-- https://www.fors.dk [robots 404] ingen fund
-- https://www.forsyningen.dk [robots 200] ingen fund
-- https://www.fredensborg.dk [robots 200] ingen fund
-- https://www.fredericia.dk [robots 200] ingen fund
-- https://www.frederiksberg.dk [robots 200] ingen fund
-- https://www.frederikssund.dk [robots 200] ingen fund
-- https://www.ft.dk [robots 403] ingen fund
-- https://www.furesoe.dk [robots 200] ingen fund
-- https://www.galtenfolkeblad.dk [robots 200] ingen fund
-- https://www.gate21.dk [robots 200] ingen fund
-- https://www.genvindingsindustrien.dk [robots 404] ingen fund
-- https://www.gladsaxe.dk [robots 200] ingen fund
-- https://www.glostrup.dk [robots 200] ingen fund
-- https://www.greenpeace.org [robots 200] ingen fund
-- https://www.gribskov.dk [robots 200] ingen fund
-- https://www.guldborgsund.dk [robots 200] ingen fund
-- https://www.haderslev.dk [robots 200] ingen fund
-- https://www.halsnaes.dk [robots 200] ingen fund
-- https://www.hedensted.dk [robots 200] ingen fund
-- https://www.helsingor.dk [robots 200] ingen fund
-- https://www.herlev.dk [robots 200] ingen fund
-- https://www.herning.dk [robots 200] ingen fund
-- https://www.hillerod.dk [robots 404] ingen fund
-- https://www.hjoerring.dk [robots 200] ingen fund
-- https://www.hofor.dk [robots 200] ingen fund
-- https://www.holstebro.dk [robots 200] ingen fund
-- https://www.hornsherredlokalavis.dk [robots 200] ingen fund
-- https://www.horsens.dk [robots 200] ingen fund
-- https://www.horsholm.dk [robots 200] ingen fund
-- https://www.htk.dk [robots 200] ingen fund
-- https://www.hvidovre.dk [robots 200] ingen fund
-- https://www.information.dk [robots 200] AI-bots spærret: 14
-- https://www.iswa.org [robots 200] ingen fund
-- https://www.jammerbugt.dk [robots 200] ingen fund
-- https://www.kalundborg.dk [robots 200] ingen fund
-- https://www.kanalfrederikshavn.dk [robots 404] ingen fund
-- https://www.kefm.dk [robots 200] ingen fund
-- https://www.kerteminde.dk [robots 200] ingen fund
-- https://www.kertemindeforsyning.dk [robots 200] ingen fund
-- https://www.kfst.dk [robots 200] ingen fund
-- https://www.kk.dk [robots 200] ingen fund
-- https://www.kl.dk [robots 200] ingen fund
-- https://www.koege.dk [robots 200] ingen fund
-- https://www.kolding.dk [robots 200] ingen fund
-- https://www.kommunen.dk [robots 200] ingen fund
-- https://www.kredslob.dk [robots 403] ingen fund
-- https://www.kristeligt-dagblad.dk [robots 200] AI-bots spærret: 9
-- https://www.laesoe.dk [robots 200] ingen fund
-- https://www.langeland-forsyning.dk [robots 200] ingen fund
-- https://www.langelandkommune.dk [robots 200] ingen fund
-- https://www.lejre.dk [robots 200] ingen fund
-- https://www.lemvig.dk [robots 200] ingen fund
-- https://www.licitationen.dk [robots 200] AI-bots spærret: 5
-- https://www.lolland.dk [robots 200] ingen fund
-- https://www.ltk.dk [robots 200] ingen fund
-- https://www.mariagerfjord.dk [robots 200] ingen fund
-- https://www.middelfart.dk [robots 200] ingen fund
-- https://www.mitlejre.dk [robots 200] ingen fund
-- https://www.mm.dk [robots 200] ingen fund
-- https://www.morsoe.dk [robots 0] spærret for vores UA: 1 adresser
-- https://www.municipalwasteeurope.eu [robots 200] ingen fund
-- https://www.naestved.dk [robots 200] ingen fund
-- https://www.netavisen.nu [robots 200] ingen fund
-- https://www.nfs.as [robots 200] ingen fund
-- https://www.norddjurs.dk [robots 200] ingen fund
-- https://www.norden.org [robots 200] ingen fund
-- https://www.nordfynskommune.dk [robots 200] ingen fund
-- https://www.nordhavn-avis.dk [robots 200] ingen fund
-- https://www.nordschleswiger.dk [robots 200] AI-bots spærret: 13
-- https://www.nyborg.dk [robots 200] ingen fund
-- https://www.odder.dk [robots 200] ingen fund
-- https://www.odense.dk [robots 200] ingen fund
-- https://www.odenserenovation.dk [robots 404] ingen fund
-- https://www.odsherred.dk [robots 200] ingen fund
-- https://www.orestad-avis.dk [robots 200] ingen fund
-- https://www.provas.dk [robots 200] ingen fund
-- https://www.randers.dk [robots 200] ingen fund
-- https://www.refa.dk [robots 200] ingen fund
-- https://www.regioner.dk [robots 404] ingen fund
-- https://www.renform.dk [robots 200] ingen fund
-- https://www.retsinformation.dk [robots 200] TDM-forbehold (maskinlæsbart)
-- https://www.revas.dk [robots 200] ingen fund
-- https://www.rigsrevisionen.dk [robots 200] ingen fund
-- https://www.ringsted.dk [robots 0] spærret for vores UA: 1 adresser
-- https://www.rk.dk [robots 200] ingen fund
-- https://www.rksk.dk [robots 200] ingen fund
-- https://www.roskilde.dk [robots 200] ingen fund
-- https://www.rudersdal.dk [robots 200] ingen fund
-- https://www.samsoe.dk [robots 200] ingen fund
-- https://www.samsoposten.dk [robots 200] ingen fund
-- https://www.sdu.dk [robots 200] ingen fund
-- https://www.silkeborg.dk [robots 200] ingen fund
-- https://www.silkeborgforsyning.dk [robots 200] ingen fund
-- https://www.skanderborg.dk [robots 200] ingen fund
-- https://www.skive.dk [robots 200] ingen fund
-- https://www.skm.dk [robots 200] ingen fund
-- https://www.slagelse.dk [robots 403] ingen fund
-- https://www.sn.dk [robots 200] AI-bots spærret: 4; TDM-forbehold (maskinlæsbart)
-- https://www.solrod.dk [robots 200] ingen fund
-- https://www.sonderborgnyt.dk [robots 200] ingen fund
-- https://www.soroe.dk [robots 200] ingen fund
-- https://www.stevns.dk [robots 200] ingen fund
-- https://www.struer.dk [robots 200] ingen fund
-- https://www.svendborg.dk [robots 200] ingen fund
-- https://www.syddjurs.dk [robots 200] ingen fund
-- https://www.taarnby.dk [robots 200] ingen fund
-- https://www.tekniskfokus.dk [robots 200] ingen fund
-- https://www.teknologisk.dk [robots 200] ingen fund
-- https://www.thisted.dk [robots 200] ingen fund
-- https://www.thyforsyning.dk [robots 200] ingen fund
-- https://www.toender.dk [robots 200] ingen fund
-- https://www.tonfor.dk [robots 200] ingen fund
-- https://www.tv2bornholm.dk [robots 200] AI-bots spærret: 9
-- https://www.tv2east.dk [robots 200] AI-bots spærret: 9
-- https://www.tv2fyn.dk [robots 200] AI-bots spærret: 9
-- https://www.tv2kosmopol.dk [robots 200] AI-bots spærret: 9
-- https://www.tv2nord.dk [robots 200] AI-bots spærret: 9
-- https://www.tv2ostjylland.dk [robots 200] AI-bots spærret: 9
-- https://www.tvmidtvest.dk [robots 200] AI-bots spærret: 9
-- https://www.tvsyd.dk [robots 200] AI-bots spærret: 9
-- https://www.vallensbaek.dk [robots 200] ingen fund
-- https://www.vana.dk [robots 404] ingen fund
-- https://www.vandogaffald.dk [robots 200] ingen fund
-- https://www.vejen.dk [robots 200] ingen fund
-- https://www.vejle.dk [robots 200] ingen fund
-- https://www.viborher.dk [robots 200] ingen fund
-- https://www.vordingborg.dk [robots 200] ingen fund
-- https://www.voreslokalavis.dk [robots 200] ingen fund
-- https://xn--fanposten-n8a.dk [robots 200] ingen fund
-- https://xn--stvendsysselfolkeblad-pfc.dk [robots 200] ingen fund
-- https://zerowasteeurope.eu [robots 200] ingen fund
-- https://zetland.dk [robots 200] AI-bots spærret: 4
-
-Færdig: 395 værter. Detaljer i probe/forbehold.json.
+# Vilkår hos 115 værter
+- https://a4medier.dk: 2 sider, 16 sætninger
+- https://affald.middelfart.dk: 1 sider, 0 sætninger
+- https://affaldoggenbrug.middelfart.dk: 1 sider, 0 sætninger
+- https://amagerliv.dk: 2 sider, 5 sætninger
+- https://amtsavisen.dk: 2 sider, 5 sætninger
+- https://avisendanmark.dk: 2 sider, 5 sætninger
+- https://borsen.dk: 1 sider, 0 sætninger
+- https://bryggebladet.dk: 1 sider, 4 sætninger
+- https://bt.dk: 2 sider, 17 sætninger
+- https://circulareconomy.europa.eu: 1 sider, 0 sætninger
+- https://concito.dk: 1 sider, 0 sætninger
+- https://ctwatch.dk: 2 sider, 12 sætninger
+- https://dagbladet-holstebro-struer.dk: 2 sider, 5 sætninger
+- https://dakofa.dk: 1 sider, 0 sætninger
+- https://danskekommuner.dk: 2 sider, 8 sætninger
+- https://dbrs.dk: 2 sider, 5 sætninger
+- https://dce.au.dk: 1 sider, 2 sætninger
+- https://dinavis.dk: 1 sider, 10 sætninger
+- https://ditikast-brande.dk: 2 sider, 28 sætninger
+- https://ditkarup.dk: 2 sider, 28 sætninger
+- https://ditkjellerup.dk: 2 sider, 28 sætninger
+- https://ditry.dk: 2 sider, 28 sætninger
+- https://ditsalling.dk: 2 sider, 28 sætninger
+- https://ditvinderup.dk: 2 sider, 28 sætninger
+- https://dragoernyt.dk: 2 sider, 10 sætninger
+- https://ekstrabladet.dk: 1 sider, 16 sætninger
+- https://energiwatch.dk: 2 sider, 12 sætninger
+- https://faa.dk: 2 sider, 5 sætninger
+- https://finans.dk: 2 sider, 14 sætninger
+- https://folkebladetlemvig.dk: 2 sider, 5 sætninger
+- https://forsyningstilsynet.dk: 1 sider, 0 sætninger
+- https://frdb.dk: 2 sider, 5 sætninger
+- https://frederiksbergliv.dk: 2 sider, 5 sætninger
+- https://frederikshavn.dk: 1 sider, 0 sætninger
+- https://fyens.dk: 2 sider, 5 sætninger
+- https://helsingordagblad.dk: 2 sider, 5 sætninger
+- https://herningfolkeblad.dk: 2 sider, 28 sætninger
+- https://hfors.dk: 1 sider, 0 sætninger
+- https://hsfo.dk: 2 sider, 5 sætninger
+- https://hvidovrenyt.dk: 2 sider, 0 sætninger
+- https://information.dk: 2 sider, 20 sætninger
+- https://ing.dk: 2 sider, 30 sætninger
+- https://jp.dk: 2 sider, 9 sætninger
+- https://jv.dk: 2 sider, 5 sætninger
+- https://jyllands-posten.dk: 2 sider, 9 sætninger
+- https://kobenhavnliv.dk: 2 sider, 5 sætninger
+- https://lf.dk: 2 sider, 5 sætninger
+- https://ltf.dk: 1 sider, 1 sætninger
+- https://midtfynsposten.dk: 2 sider, 5 sætninger
+- https://midtjyllandsavis.dk: 2 sider, 28 sætninger
+- https://mm.dk: 2 sider, 2 sætninger
+- https://noah.dk: 2 sider, 0 sætninger
+- https://nordjyske.dk: 2 sider, 0 sætninger
+- https://oda.ft.dk: 1 sider, 0 sætninger
+- https://politiken.dk: 1 sider, 15 sætninger
+- https://pro.ing.dk: 1 sider, 15 sætninger
+- https://sirknorge.no: 1 sider, 0 sætninger
+- https://skivefolkeblad.dk: 2 sider, 28 sætninger
+- https://skjerntarm-ugeblad.dk: 1 sider, 0 sætninger
+- https://stiften.dk: 2 sider, 5 sætninger
+- https://taenk.dk: 1 sider, 3 sætninger
+- https://tidende.dk: 2 sider, 8 sætninger
+- https://tjekfredensborg.dk: 1 sider, 1 sætninger
+- https://uniavisen.dk: 1 sider, 3 sætninger
+- https://vafo.dk: 2 sider, 5 sætninger
+- https://vardekommune.dk: 1 sider, 0 sætninger
+- https://vesthimmerlandsforsyning.dk: 1 sider, 0 sætninger
+- https://viborg-folkeblad.dk: 2 sider, 5 sætninger
+- https://videnskab.dk: 1 sider, 13 sætninger
+- https://weekendavisen.dk: 2 sider, 17 sætninger
+- https://www.a4medier.dk: 2 sider, 16 sætninger
+- https://www.altinget.dk: 2 sider, 2 sætninger
+- https://www.au.dk: 1 sider, 2 sætninger
+- https://www.berlingske.dk: 2 sider, 17 sætninger
+- https://www.brondby.dk: 1 sider, 0 sætninger
+- https://www.bt.dk: 2 sider, 17 sætninger
+- https://www.danskerhverv.dk: 2 sider, 3 sætninger
+- https://www.danskindustri.dk: 1 sider, 0 sætninger
+- https://www.dkteknikogmiljoe.dk: 2 sider, 5 sætninger
+- https://www.dr.dk: 1 sider, 10 sætninger
+- https://www.europen-packaging.eu: 1 sider, 0 sætninger
+- https://www.favrskovforsyning.dk: 1 sider, 0 sætninger
+- https://www.fh.dk: 2 sider, 2 sætninger
+- https://www.fjernvarmefyn.dk: 2 sider, 0 sætninger
+- https://www.folketidende.dk: 2 sider, 17 sætninger
+- https://www.fors.dk: 1 sider, 1 sætninger
+- https://www.herning.dk: 1 sider, 2 sætninger
+- https://www.hofor.dk: 2 sider, 1 sætninger
+- https://www.hornsherredlokalavis.dk: 1 sider, 0 sætninger
+- https://www.horsens.dk: 1 sider, 1 sætninger
+- https://www.information.dk: 2 sider, 20 sætninger
+- https://www.iswa.org: 1 sider, 0 sætninger
+- https://www.kanalfrederikshavn.dk: 1 sider, 1 sætninger
+- https://www.kertemindeforsyning.dk: 1 sider, 0 sætninger
+- https://www.kommunen.dk: 1 sider, 3 sætninger
+- https://www.ltk.dk: 1 sider, 1 sætninger
+- https://www.mitlejre.dk: 1 sider, 0 sætninger
+- https://www.mm.dk: 2 sider, 2 sætninger
+- https://www.nfs.as: 1 sider, 0 sætninger
+- https://www.nordhavn-avis.dk: 1 sider, 0 sætninger
+- https://www.orestad-avis.dk: 1 sider, 0 sætninger
+- https://www.regioner.dk: 1 sider, 0 sætninger
+- https://www.revas.dk: 1 sider, 0 sætninger
+- https://www.rigsrevisionen.dk: 1 sider, 0 sætninger
+- https://www.rksk.dk: 1 sider, 0 sætninger
+- https://www.rudersdal.dk: 1 sider, 0 sætninger
+- https://www.samsoposten.dk: 1 sider, 0 sætninger
+- https://www.sdu.dk: 1 sider, 0 sætninger
+- https://www.skanderborg.dk: 2 sider, 0 sætninger
+- https://www.sn.dk: 1 sider, 0 sætninger
+- https://www.tv2bornholm.dk: 1 sider, 0 sætninger
+- https://www.tv2east.dk: 2 sider, 11 sætninger
+- https://www.tv2nord.dk: 1 sider, 3 sætninger
+- https://www.tvmidtvest.dk: 1 sider, 3 sætninger
+- https://zetland.dk: 1 sider, 5 sætninger
 ```
 
