@@ -210,3 +210,13 @@ Det daglige tjek viste, at Herning Kommunes sitemap gav timeout ved hver kørsel
 ## 2026-10-09: Dag for dag i listen
 
 Brugeren ville ikke have ugegrupper som "Uge 40 · 28. september–2. oktober", når man går tilbage i tiden. Listen har nu én overskrift pr. dag hele vejen tilbage: "I dag", "I går" og derefter fx "Mandag 28. september". Dage fra et andet år får årstallet med. Under sin egen dags overskrift viser kortet kun klokkeslættet, også for gamle indslag. Med hele 2026 i feedet giver det mange overskrifter, men listen viser stadig kun 60 kort ad gangen.
+
+## 2026-10-13: Routinen kører tre gange om dagen
+
+Routinen stod stille fra 10. oktober kl. 00.25 til 13. oktober kl. 23.00, fordi abonnementets ugegrænse var nået. Hver kørsel blev afvist med "You've hit your weekly limit". Udviklingssessionen bruger af samme grænse, og den havde brugt meget i dagene før. En kørsel kostede omkring 0,46 dollar efter API-priser, og routinen kørte 19 gange i døgnet. Brugeren bad om kørsler kl. 7.30, 9.00 og 14.00. En routine kan kun køre på samme minut i hver time, så den kører nu kl. 07.25, 09.25 og 14.25 dansk tid (`CRON_TZ=Europe/Copenhagen 25 7,9,14 * * *`), og `routine.hours` er `[7, 9, 14]`. Sweepet kører kl. 07.25 og 14.25, og tidslinjen skrives kl. 14.25 i stedet for kl. 22. Prisen er, at en nyhed fundet om eftermiddagen først kommer på siden næste morgen.
+
+## 2026-10-13: Småtekst samlet bag en i-knap
+
+Brugeren ville have en enklere side med al småtekst ét sted. Beskederne om forsinket vurdering og forældet feed, overblikkets note om forsinkelse, "bygget på N indslag" og teksten om AI under overblikket og på Højdepunkter er fjernet, og det samme er footeren. AI-overblikket hedder nu "Nyhedsoverblik senest opdateret fredag kl. 23.28". En diskret i-knap i headeren åbner "Om Affaldsfeed" med AI, opdatering, klager og sletning og om projektet. Klager og ønsker om sletning går til jhn@jhn.dk, og opslag og kilder fjernes inden for 24 timer. Et opslag skjules med `config/overrides.yaml`, og en kilde tages af listen med `status: fravalgt` i `sources.yaml`.
+
+AI-forordningens artikel 50, stk. 4, gælder fra 2. august 2026. Den kræver, at AI-genereret tekst, der skal informere offentligheden om forhold af offentlig interesse, er tydeligt mærket, medmindre et menneske har redaktionelt ansvar for den. Overblikket og højdepunkterne er AI-skrevne og ikke gennemlæst, og nu står det kun i i-panelet. Det er usikkert, om det er tydeligt nok. Et lille synligt "AI" ved overskriften vil fjerne tvivlen.

@@ -142,7 +142,7 @@ def display_mode(now: datetime, heartbeat: Heartbeat | None, routine: RoutineSet
 
     En planlagt kørsel regnes først som misset, når grace_hours er gået siden dens tidspunkt.
     S* = seneste planlagte kørsel <= now - grace_hours. Fallback når heartbeat mangler eller
-    last_run < S*. Så skifter feedet ikke til fallback hver morgen, før kl. 06:25-kørslen er nået.
+    last_run < S*. Så skifter feedet ikke til fallback hver morgen, før dagens første kørsel er nået.
     """
     if heartbeat is None:
         return "fallback"

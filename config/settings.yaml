@@ -9,9 +9,9 @@ fetch:
   robots_cache_hours: 24
   max_response_mb: 50            # større svar afbrydes under download (også udpakket gzip)
 
-# Claude-routinen (kører på brugerens abonnement)
+# Claude-routinen (kører på brugerens abonnement). Cron på claude.ai: CRON_TZ=Europe/Copenhagen 25 7,9,14 * * *
 routine:
-  hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+  hours: [7, 9, 14]
   minute: 25
   grace_hours: 2.0               # fallback når seneste kørsel er > 2 t forsinket
   timezone: Europe/Copenhagen
@@ -65,7 +65,7 @@ logos:
 places:
   institution_words: [Universit, Lufthavn, Vestegn, Amt, Landevej, Bugt, Motorvej, konvention]
 
-# Tidslinjen (KONTRAKTER §7.3). Claude-routinen skriver den kl. 22.
+# Tidslinjen (KONTRAKTER §7.3). Claude-routinen skriver den ved kørslen kl. 14.25.
 timeline:
   input_days: 3                  # timeline-input: godkendte historier fra så mange dage
   first_fill_days: 60            # ... når tidslinjen er tom (første fyldning)

@@ -16,7 +16,7 @@ import pytest
 from pydantic import ValidationError
 
 from affaldsfeed import fetch as fetchmod
-from affaldsfeed import paths, pipeline, store
+from affaldsfeed import paths, pipeline, store, timeutil
 from affaldsfeed.collect import COLLECTORS, CollectContext, pages
 from affaldsfeed.config import load_config, main_check
 from affaldsfeed.models import Source, SourceState
@@ -1568,6 +1568,8 @@ def test_dry_run_does_not_write_seen(env, monkeypatch):
 def test_check_fetch_explain_prints_diagnostics_and_writes_nothing(env, monkeypatch, capsys):
     fake = _fakes().make_fetcher_class(RUN_ROUTES)
     monkeypatch.setattr(fetchmod, "Fetcher", fake)
+    # Fast tidspunkt: artiklen fra 28. september skal være ny nok til at blive beholdt
+    monkeypatch.setattr(timeutil, "now_utc", lambda override=None: timeutil.parse_iso("2026-10-07T08:05:00Z"))
     assert main_check(argparse.Namespace(fetch="kilde-sitemap", explain=True)) == 0
     out = capsys.readouterr().out
     assert "DIAGNOSE" in out and "7 under-sitemaps, følger 5" in out

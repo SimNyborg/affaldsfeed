@@ -14,13 +14,13 @@ sources.yaml + config/*.yaml               (valideres med pydantic)
    │       → data/candidates/, data/rejected/, data/state/
    │     python -m affaldsfeed export → commit af data/ → deploy til Pages
    │
-   ├─ :25 hver time kl. 06-23 dansk tid: Claude-routinen (abonnement)
+   ├─ kl. 07.25, 09.25 og 14.25 dansk tid: Claude-routinen (abonnement)
    │     følger routine/REDAKTOER.md
    │       pending → Claude vurderer → data/judgments/ÅÅÅÅ-MM-DD.jsonl
    │       → validate-judgments → heartbeat
    │       → overview-input → data/overview/<periode>.json → validate-overview --archive
    │       → git pull --rebase → push
-   │     kl. 06.25 og 14.25 desuden et sweep med WebSearch
+   │     kl. 07.25 og 14.25 desuden et sweep med WebSearch, kl. 14.25 tidslinjen
    │
    └─ ved push til data/judgments/** eller data/overview/**: GitHub Actions publish.yml
          python -m affaldsfeed export (fletter kandidater og vurderinger)
@@ -34,7 +34,7 @@ GitHub Pages: site/index.html henter data/feed.json én gang og filtrerer i brow
 1. Direkte feeds. RSS og Atom i første version, sitemaps fra fase 2. Det dækker cirka 70 % af de kendte kilder pålideligt.
 2. Nyhedssøgninger (`method: search`). Google News og Bing News på dansk med forespørgslerne i `config/search.yaml`. Søgemaskinen bruges kun til at finde artiklen, og indslaget krediteres altid udgiveren. Står udgiveren i `sources.yaml` eller `config/medier.yaml`, bliver artiklen en kandidat. Ukendte udgivere kommer ikke i feedet, men i `data/state/kildeforslag.md`. Bing-links opløses via `url`-parameteren, og dubletter fra Google fanges på normaliseret titel og udgiver.
 3. Officielle kanaler. Høringsportalen, KEFM og EU-kilderne hentes som RSS fra første version. Folketingets ODA kommer i fase 2 og Retsinformation senere.
-4. Claudes sweep kl. 06.25 og 14.25. Routinen søger med WebSearch efter vigtige danske affaldsnyheder fra de sidste 12-24 timer, som ikke er blandt kandidaterne. Fund fra kendte udgivere skrives som vurderinger med `new_item`. Ukendte udgivere havner i `data/judgments/kildeforslag-sweep.md`.
+4. Claudes sweep kl. 07.25 og 14.25. Routinen søger med WebSearch efter vigtige danske affaldsnyheder fra de sidste 12-24 timer, som ikke er blandt kandidaterne. Fund fra kendte udgivere skrives som vurderinger med `new_item`. Ukendte udgivere havner i `data/judgments/kildeforslag-sweep.md`.
 5. Kildesundhed og læring. Hver kilde har en status (grøn, gul, rød eller grå), som vises på "Om kilderne". Et svar med 200 og 0 indslag tæller som fejl, og kilder, der har været tavse længe, markeres. Listen over foreslåede kilder fra lag 2 og 4 gennemgås hver uge.
 
 Indsamleren er høflig: ærlig User-Agent, robots.txt, mindst 2 sekunder mellem kald til samme vært, ETag og Last-Modified, et tidsbudget pr. kilde og automatisk pause efter gentagne fejl. Værdierne står i `config/settings.yaml`. Forfiltret er bevidst løst. Det fjerner det åbenlyst irrelevante og lader Claude vurdere resten (KONTRAKTER 5.4).
@@ -53,18 +53,18 @@ En kørsel:
 5. Overblikket opdateres for de perioder, der er på tur (se næste afsnit).
 6. `git pull --rebase` og push. Pushet starter `publish.yml`.
 
-Fallback: `export` bruger heartbeat til at vælge visning. Er seneste kørsel mere end 2 timer forsinket i forhold til den seneste planlagte kørsel, skifter feedet til regelbaseret visning. Godkendte indslag vises stadig, afviste er stadig skjult, og uvurderede kandidater, som forfiltret ville vise, kommer med. En besked øverst på siden siger, at vurderingen er forsinket. Om natten er der ingen planlagte kørsler, så nye indslag venter til kl. 06.25 uden at feedet skifter. Kilder med `ai: false` vurderes altid kun efter regler. Den præcise regel står i KONTRAKTER 6.3.
+Fallback: `export` bruger heartbeat til at vælge visning. Er seneste kørsel mere end 2 timer forsinket i forhold til den seneste planlagte kørsel, skifter feedet til regelbaseret visning. Godkendte indslag vises stadig, afviste er stadig skjult, og uvurderede kandidater, som forfiltret ville vise, kommer med. Det står i i-panelet (Om Affaldsfeed), ikke øverst på siden. Mellem kørslerne og om natten venter nye indslag til næste kørsel, uden at feedet skifter. Kilder med `ai: false` vurderes altid kun efter regler. Den præcise regel står i KONTRAKTER 6.3.
 
-## AI-overblikket
+## Nyhedsoverblikket
 
 Overblikket har fire perioder, og alle er rullende vinduer i dansk tid.
 
 | Periode | Vindue | Opdateres | Bygges af |
 |---|---|---|---|
-| I dag (`dag`) | kalenderdagen indtil nu | i hver kørsel kl. 06-23 med nye godkendte indslag | dagens godkendte indslag |
-| Ugen (`uge`) | seneste 7 døgn | kl. 06.25 og 14.25 | ugens indslag samlet i historier |
-| Måneden (`maaned`) | seneste 30 døgn | dagligt kl. 06.25 | arkiverede ugeoverblik og de mest dækkede historier |
-| Året (`aar`) | seneste 365 døgn | mandag kl. 06.25 | arkiverede månedsoverblik og årets største historier |
+| I dag (`dag`) | kalenderdagen indtil nu | i hver kørsel med nye godkendte indslag | dagens godkendte indslag |
+| Ugen (`uge`) | seneste 7 døgn | kl. 07.25 og 14.25 | ugens indslag samlet i historier |
+| Måneden (`maaned`) | seneste 30 døgn | dagligt kl. 07.25 | arkiverede ugeoverblik og de mest dækkede historier |
+| Året (`aar`) | seneste 365 døgn | mandag kl. 07.25 | arkiverede månedsoverblik og årets største historier |
 
 Inputtet er hierarkisk. Ugen bygger på historier frem for enkelte artikler, og måneden og året bygger på de overblik, der allerede er skrevet for de mindre perioder, plus højst 40 historier. Derfor vokser token-forbruget ikke, når der kommer mere data. Rækker data ikke hele vinduet tilbage, får overblikket feltet `since`, og siden skriver fx "Året (siden 7. oktober 2026)".
 
@@ -103,9 +103,9 @@ Filerne skrives atomisk og kun, når indholdet faktisk ændrer sig, så git ikke
 ## Drift og omkostning
 
 - GitHub Actions og GitHub Pages er gratis for offentlige repos.
-- Claude-routinen bruger 18 kørsler i døgnet af abonnementet (19, hvis cron skal stå i UTC). Forbruget følges på claude.ai/settings/usage. Bliver kvoten for stram, sættes `routine.hours` i `config/settings.yaml` og routinens cron ned, fx til hver anden time. Fallback dækker hullerne.
+- Claude-routinen kører tre gange i døgnet, kl. 07.25, 09.25 og 14.25 (cron på claude.ai: `CRON_TZ=Europe/Copenhagen 25 7,9,14 * * *`, og `routine.hours` i `config/settings.yaml` skal passe med den). Den kørte hver time indtil 13. oktober 2026, men abonnementets ugegrænse blev nået, og routinen stod stille i fire dage. Forbruget følges på claude.ai/settings/usage. Udviklingssessioner bruger af samme grænse.
 - Feedet rækker tilbage til 1. januar 2026 (`window_start` i `config/settings.yaml`). `feed.json` er én fil, der vokser med året (se BESLUTNINGER 2026-10-09, Hele 2026 i feedet).
-- GitHub slår planlagte workflows fra efter 60 dage uden aktivitet i et offentligt repo. Datacommits holder repoet aktivt. Sker det alligevel, viser siden bjælken om forældet feed efter 6 timer.
+- GitHub slår planlagte workflows fra efter 60 dage uden aktivitet i et offentligt repo. Datacommits holder repoet aktivt. Sker det alligevel, ses det på tidspunktet for seneste opdatering i i-panelet og på "Om kilderne".
 - Driften kan følges i kildesundheden på "Om kilderne", i `data/judgments/_heartbeat.json` og i kørselsloggen i GitHub Actions.
 
 ## Kendte begrænsninger

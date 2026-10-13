@@ -308,7 +308,7 @@ Kildernes egne små logoer (favicons) vises foran navnet på kortene (9). `run` 
 - `aar`: `lower_overviews` = arkiverede `maaned`-overblik (nyeste pr. kalendermåned) + top 40 historier.
 
 ### 7.3 Tidslinje (`timeline.py`) — `data/timeline/ÅÅÅÅ-MM.jsonl`
-De vigtigste begivenheder på affaldsområdet, valgt og skrevet af Claude-routinen kl. 22 (og ved første kørsel, når tidslinjen er tom). Koden vælger ikke begivenheder. Hver begivenhed peger på mindst ét godkendt indslag og gemmer et øjebliksbillede af det, så tidslinjen også kan vise begivenheder, der er ældre end feedets vindue.
+De vigtigste begivenheder på affaldsområdet, valgt og skrevet af Claude-routinen ved kørslen kl. 14.25 (og ved første kørsel, når tidslinjen er tom). Koden vælger ikke begivenheder. Hver begivenhed peger på mindst ét godkendt indslag og gemmer et øjebliksbillede af det, så tidslinjen også kan vise begivenheder, der er ældre end feedets vindue.
 
 `TimelineEvent` (models.TimelineEvent), én pr. linje:
 ```json
