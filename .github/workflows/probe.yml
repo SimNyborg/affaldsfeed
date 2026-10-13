@@ -78,6 +78,13 @@ jobs:
                 echo
                 echo '```'
                 echo
+              elif [[ "$line" == forbehold* ]]; then
+                echo "## $line"
+                echo
+                echo '```text'
+                timeout 2400 python probe/forbehold.py </dev/null 2>&1 | head -c 400000 || echo "(fejl eller timeout)"
+                echo '```'
+                echo
               elif [[ "$line" =~ ^(links|text|pdf|raw|rss|sitemap|feed|site|robots)\  ]]; then
                 echo "## $line"
                 echo
@@ -105,6 +112,7 @@ jobs:
           git config user.name "affaldsfeed-bot"
           git config user.email "affaldsfeed-bot@users.noreply.github.com"
           git add probe/result.md
+          [ -f probe/forbehold.json ] && git add probe/forbehold.json
           git diff --cached --quiet && exit 0
           git commit -m "Afprøvning af kilder $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
