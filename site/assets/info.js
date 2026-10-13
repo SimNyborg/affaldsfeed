@@ -1,5 +1,5 @@
-// Affaldsfeed: "Om Affaldsfeed" bag i-knappen i headeren. Al småtekst samles her: AI, opdatering,
-// klager og sletning og om projektet. Dialogen bygges første gang, knappen bruges.
+// Affaldsfeed: "Om Affaldsfeed" bag i-knappen i headeren. Al småtekst samles her: AI, opdatering og
+// klager og sletning. Dialogen bygges første gang, knappen bruges.
 
 import { el, icon, fmtWhen, parseDate } from './filters.js';
 
@@ -54,7 +54,8 @@ function build(btn) {
       close),
     el('div', { class: 'info-body prose' },
       el('p', null, 'Affaldsfeed samler nyheder om affaldsområdet i Danmark fra kommuner, affaldsselskaber, '
-        + 'myndigheder, medier, organisationer og forskning. Alle overskrifter linker til den oprindelige artikel.'),
+        + 'myndigheder, medier, organisationer og forskning. Alle overskrifter linker til den oprindelige artikel. '
+        + 'Under ', link('kilder.html', 'Om kilderne'), ' kan du se, hvilke kilder feedet bruger.'),
       el('h3', null, 'Udvalgt af AI'),
       el('p', null, 'En AI-model vurderer, hvilke nyheder der er relevante for kommunernes arbejde med affald. '
         + 'Den skriver også nyhedsoverblikket og højdepunkterne. Modellen ser kun titlen og kildens egen korte '
@@ -66,11 +67,7 @@ function build(btn) {
       el('h3', null, 'Klager og sletning'),
       el('p', null, 'Skriv til ', el('a', { href: `mailto:${MAIL}` }, MAIL), ', hvis du vil klage over noget på '
         + 'siden, have fjernet et opslag eller have din side taget af listen over kilder. Opslag og kilder '
-        + 'fjernes inden for 24 timer.'),
-      el('h3', null, 'Om projektet'),
-      el('p', null, 'Affaldsfeed er et uafhængigt hobbyprojekt uden tilknytning til affaldsviden.info. Under ',
-        link('kilder.html', 'Om kilderne'), ' kan du se, hvilke kilder feedet bruger, og om indsamlingen virker. '
-        + 'Koden ligger åbent på ', link('https://github.com/SimNyborg/affaldsfeed', 'GitHub'), '.')));
+        + 'fjernes inden for 24 timer.')));
   close.addEventListener('click', () => dialog.close());
   // Fokus tilbage til knappen, også i browsere, der ikke selv gør det
   dialog.addEventListener('close', () => { if (!dialog.contains(document.activeElement)) btn.focus(); });

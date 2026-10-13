@@ -266,7 +266,7 @@ Al småtekst står samlet bag en diskret i-knap yderst til højre i headeren på
 
 - Knappen er 44 × 44 px med ikonet `info` på 20 px i `--muted` (`--text` ved hover) og navnet "Om Affaldsfeed" til skærmlæsere. Ikonets højrekant flugter med containerens indhold.
 - Den åbner en modal dialog med overskriften "Om Affaldsfeed" (fokus ved åbning) og en lukkeknap. Esc, lukkeknappen og et klik på baggrunden lukker den, og fokus går tilbage til knappen. Under 768 px er dialogen et bundark som filterarket, ellers står den midt på skærmen, højst 36rem bred og 85 % af skærmens højde.
-- Indholdet: hvad Affaldsfeed er, "Udvalgt af AI" (modellen vurderer relevans og skriver overblik og højdepunkter ud fra titel og kort beskrivelse og kan tage fejl), "Opdatering" (vurdering om morgenen, formiddagen og eftermiddagen, tidspunktet for seneste opdatering og en linje, når vurderingen er forsinket), "Klager og sletning" (jhn@jhn.dk, opslag og kilder fjernes inden for 24 timer) og "Om projektet" (uafhængigt, ingen tilknytning til affaldsviden.info, links til Om kilderne og GitHub).
+- Indholdet: hvad Affaldsfeed er, med link til Om kilderne, "Udvalgt af AI" (modellen vurderer relevans og skriver overblik og højdepunkter ud fra titel og kort beskrivelse og kan tage fejl), "Opdatering" (vurdering om morgenen, formiddagen og eftermiddagen, tidspunktet for seneste opdatering og en linje, når vurderingen er forsinket) og "Klager og sletning" (jhn@jhn.dk, opslag og kilder fjernes inden for 24 timer).
 - Teksten står i 14/20 med underoverskrifter i 15/22 og vægt 600. Mailadressen samles først i browseren.
 
 ### Højdepunkter
@@ -326,7 +326,7 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Regelvisning | Vurderingen af nye indslag er forsinket, så de vises efter faste regler indtil videre. |
 | Om kilderne, status | Feedet er opdateret i dag kl. 09.17. · Indslagene blev sidst vurderet i dag kl. 09.25. |
 | Demo | Demodata: opdigtede eksempler med links til example.org. Tiderne er rykket frem. · Vis det rigtige feed |
-| Om Affaldsfeed | Om Affaldsfeed (i-knappen) · Udvalgt af AI · Opdatering · Klager og sletning · Om projektet · Siden blev sidst opdateret i dag kl. 14.31. · Vurderingen er forsinket lige nu, så nye nyheder vises efter faste regler. · Luk |
+| Om Affaldsfeed | Om Affaldsfeed (i-knappen) · Udvalgt af AI · Opdatering · Klager og sletning · Siden blev sidst opdateret i dag kl. 14.31. · Vurderingen er forsinket lige nu, så nye nyheder vises efter faste regler. · Luk |
 
 ## Tilgængelighed (WCAG 2.2 AA)
 
