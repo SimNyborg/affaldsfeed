@@ -64,7 +64,7 @@ Felterne:
 4. `topics`: 0-2 tema-id'er fra `topics`, det vigtigste først. Brug `[]`, når intet tema passer, og altid ved `relevant: false`.
 5. `places`: `null` eller en liste efter reglerne for steder herunder. Ved `relevant: false` er `places` altid `null`.
 6. `genre`: ét id fra `genres` (`nyhed`, `debat`, `pressemeddelelse`, `analyse`, `hoering`, `folketing`). Tag udgangspunkt i `rule_genre`, og skift kun, når titel eller teaser tydeligt viser noget andet.
-7. `summary_da`: et kort resumé med egne ord efter reglerne for resuméer herunder, når indslaget er relevant og har en teaser. Feedet viser det under titlen i stedet for kildens teaser. Ved `relevant: false`, eller når teaseren er tom, er `summary_da` `null`.
+7. `summary_da`: et kort resumé med egne ord efter reglerne for resuméer herunder, når indslaget er relevant og har en teaser. Feedet viser det under titlen i stedet for kildens teaser. Ved `relevant: false`, når teaseren er tom, eller når den ikke beskriver artiklen (se reglerne herunder), er `summary_da` `null`.
 8. `story_hint`: id på et andet indslag i `pending` eller `recent_approved`, der handler om samme historie, ellers `null`. Aldrig indslagets eget id.
 9. `judged_at`: `now` fra `/tmp/pending.json`, kopieret præcist.
 10. `by`: `"claude-routine"`.
@@ -86,6 +86,7 @@ Regler for resuméer:
 - Skriv kun ud fra titel og teaser. Tilføj intet, og gæt ikke på årsager eller følger.
 - Skriv neutralt og klart. Ingen tankestreger, udråbstegn eller salgssprog.
 - Valideringen afviser et resumé, der deler mere end fem ord i træk med teaseren eller ligner den for meget. Så skal det skrives om.
+- Beskriver teaseren ikke artiklen, så skriv intet resumé (`null`). Det gælder fx sidens standardtekst ("Læs nyheder fra ..."), en generel omtale af afsenderen, en liste af stikord, "Indlægget ... blev først udgivet på ...", et spørgsmål til læseren eller en teaser, der kun gentager titlen. Kun titlen vises da.
 
 Tilføj linjerne nederst i `data/judgments/DATO.jsonl` (filen oprettes, hvis den ikke findes). Én JSON-genstand pr. linje, ingen tomme linjer og ingen indrykning. Brug en heredoc med `'EOF'`, så skallen ikke ændrer teksten:
 
@@ -100,7 +101,7 @@ Ret aldrig linjer fra tidligere kørsler. Vil du ændre en tidligere vurdering, 
 
 ### 3b. Omformulér ældre previews
 
-Ældre godkendte indslag fik ikke et resumé, da de blev vurderet. Skriv et resumé for hvert indslag i `rewrite` efter reglerne for resuméer i trin 3, ud fra `title` og `teaser`. Lav ikke vurderingen om. Er `rewrite` tom, så spring trinnet over.
+Ældre godkendte indslag fik ikke et resumé, da de blev vurderet. Skriv et resumé for hvert indslag i `rewrite` efter reglerne for resuméer i trin 3, ud fra `title` og `teaser`. Lav ikke vurderingen om. Er `rewrite` tom, så spring trinnet over. Beskriver teaseren ikke artiklen, så skriv linjen med `"summary_da":null`. Så kommer indslaget ikke i `rewrite` igen.
 
 Tilføj én linje pr. indslag nederst i `data/judgments/resumeer/DATO.jsonl`. Opret mappen, hvis den mangler, og brug en heredoc som i trin 3 med `now` fra `/tmp/pending.json` som `written_at`:
 
@@ -108,6 +109,7 @@ Tilføj én linje pr. indslag nederst i `data/judgments/resumeer/DATO.jsonl`. Op
 mkdir -p data/judgments/resumeer
 cat >> data/judgments/resumeer/DATO.jsonl <<'EOF'
 {"id":"5d2e8a91f0c4","summary_da":"Kommunen åbner en ny genbrugsplads ved motorvejen i foråret, og den gamle plads i centrum lukker.","written_at":"2026-10-07T07:25:41Z","by":"claude-routine"}
+{"id":"77c0e5d1a9b3","summary_da":null,"written_at":"2026-10-07T07:25:41Z","by":"claude-routine"}
 EOF
 ```
 
