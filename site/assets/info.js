@@ -54,7 +54,8 @@ function build(btn) {
       close),
     el('div', { class: 'info-body prose' },
       el('p', null, 'Affaldsfeed samler nyheder om affaldsområdet i Danmark fra kommuner, affaldsselskaber, '
-        + 'myndigheder, medier, organisationer og forskning. Alle overskrifter linker til den oprindelige artikel. '
+        + 'myndigheder, medier, organisationer og forskning. Alle overskrifter linker til den oprindelige artikel, '
+        + 'og feedet omgår aldrig betalingsmure. '
         + 'Under ', link('kilder.html', 'Om kilderne'), ' kan du se, hvilke kilder feedet bruger.'),
       el('h3', null, 'Udvalgt af AI'),
       el('p', null, 'En AI-model vurderer, hvilke nyheder der er relevante for kommunernes arbejde med affald. '

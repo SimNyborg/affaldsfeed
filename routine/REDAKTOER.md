@@ -32,7 +32,7 @@ Den sidste kommando giver tre værdier. Notér dem:
 - `TIME`: timen i dansk tid (normalt 07, 09 eller 14).
 - `UGEDAG`: 1 er mandag, 7 er søndag.
 
-Routinens tidsplan følger dansk tid. Bliver du startet på et andet tidspunkt, fx med "Kør nu", så kør trinnene som normalt. `TIME` afgør stadig, hvilke trin der skal med.
+Routinen skal kun arbejde kl. 07, 09 og 14 dansk tid. Er `TIME` ikke 07, 09 eller 14, så stop med det samme. Gør intet, skriv intet og commit intet. Slut med linjen `Uden for tiderne kl. 07, 09 og 14, intet gjort`.
 
 ### 2. Hent uvurderede indslag
 
