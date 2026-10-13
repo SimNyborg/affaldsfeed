@@ -10,7 +10,7 @@ Instrukser til Claude-sessioner i dette repo. Læs `docs/KONTRAKTER.md`, før du
 - Intet fra Affaldskort. Ingen kode eller data kopieres derfra.
 - Faste skrivegrænser i `data/`:
   - GitHub Actions (`collect.yml`) skriver kun i `data/candidates/`, `data/rejected/` og `data/state/`.
-  - Claude-routinen skriver kun i `data/judgments/`, `data/overview/` og `data/timeline/`.
+  - Claude-routinen skriver kun i `data/judgments/` (med `resumeer/`), `data/overview/` og `data/timeline/`.
   - Udviklingssessioner committer ikke data, de selv har genereret lokalt.
 - `docs/KONTRAKTER.md` er bindende. Ændres en kontrakt, opdateres filen i samme commit som koden. `affaldsfeed/models.py` er kontrakten i kode.
 - Prosa-docs (README og `docs/*.md` undtagen KONTRAKTER) skrives gennem humanizer-skillet i embedded mode.
@@ -28,8 +28,9 @@ Alle køres fra repoets rod.
 python -m affaldsfeed check [--fetch ID] [--explain]
 python -m affaldsfeed run [--only ID,ID] [--dry-run] [--now ISO]
 python -m affaldsfeed export [--out _site] [--now ISO]
-python -m affaldsfeed pending [--max 200] [--hours 336]
+python -m affaldsfeed pending [--max 200] [--hours 336] [--rewrite-max 150]
 python -m affaldsfeed validate-judgments [--file PATH]
+python -m affaldsfeed validate-summaries [--file PATH]
 python -m affaldsfeed heartbeat
 python -m affaldsfeed overview-input --period dag|uge|maaned|aar
 python -m affaldsfeed validate-overview [--period P] [--archive]

@@ -47,8 +47,8 @@ Tider: minut 25 i timerne 6 til 23 dansk tid, som står i `config/settings.yaml`
 
 En kørsel:
 1. `python -m affaldsfeed pending` udskriver kandidater uden vurdering, relevansprofilen, temaer, genrer og nyligt godkendte indslag.
-2. Claude vurderer hvert indslag mod `config/relevansprofil.md`. Vurderingen består af relevant eller ej med en begrundelse på én linje, højst 2 temaer, genre, et dansk resumé for indslag på engelsk og svensk og et `story_hint`, hvis indslaget handler om samme historie som et andet. Claude ser kun titel, uddrag, kildenavn og kategori. Artikelsider hentes ikke.
-3. Vurderingerne skrives i `data/judgments/ÅÅÅÅ-MM-DD.jsonl`, og `validate-judgments` tjekker dem. Ugyldige linjer afvises med en logbesked.
+2. Claude vurderer hvert indslag mod `config/relevansprofil.md`. Vurderingen består af relevant eller ej med en begrundelse på én linje, højst 2 temaer, genre, et dansk resumé med egne ord på højst 240 tegn, hvis indslaget handler om samme historie som et andet. Claude ser kun titel, uddrag, kildenavn og kategori. Artikelsider hentes ikke.
+3. Vurderingerne skrives i `data/judgments/ÅÅÅÅ-MM-DD.jsonl`, og `validate-judgments` tjekker dem. Ældre godkendte indslag uden resumé får et i `data/judgments/resumeer/` i portioner på 150 pr. kørsel (`validate-summaries`). Feedet viser kun resuméet, aldrig kildens egen teaser (KONTRAKTER 6.2a). Ugyldige linjer afvises med en logbesked.
 4. `heartbeat` skriver tidspunktet for kørslen i `data/judgments/_heartbeat.json`.
 5. Overblikket opdateres for de perioder, der er på tur (se næste afsnit).
 6. `git pull --rebase` og push. Pushet starter `publish.yml`.

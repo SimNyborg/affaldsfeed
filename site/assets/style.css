@@ -666,7 +666,6 @@ img.logo { display: inline-block; width: 16px; height: 16px; border-radius: 3px;
   line-clamp: 2;
   overflow: hidden;
 }
-.teaser .auto { font-weight: 600; color: var(--text); }
 .foot {
   margin-top: 8px;
   display: flex;

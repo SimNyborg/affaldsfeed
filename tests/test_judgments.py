@@ -46,6 +46,7 @@ def repo(tmp_path, monkeypatch):
         "CANDIDATES_DIR": data / "candidates",
         "REJECTED_DIR": data / "rejected",
         "JUDGMENTS_DIR": data / "judgments",
+        "SUMMARIES_DIR": data / "judgments" / "resumeer",
         "OVERVIEW_DIR": data / "overview",
         "OVERVIEW_ARCHIVE_DIR": data / "overview" / "archive",
         "TIMELINE_DIR": data / "timeline",
@@ -169,7 +170,7 @@ def test_pending_output(repo, capsys):
     assert judgments.main_pending(ns(max=200, hours=72, now="2026-10-07T10:00:00Z")) == 0
     raw = capsys.readouterr().out
     out = json.loads(raw)
-    assert list(out) == ["now", "profile", "topics", "genres", "places_help", "pending", "recent_approved"]
+    assert list(out) == ["now", "profile", "topics", "genres", "places_help", "pending", "recent_approved", "rewrite", "rewrite_total"]
     # places_help står med én post pr. linje, ikke som én lang linje
     lines = raw.splitlines()
     assert '    {"id":"nyborg","navn":"Nyborg Kommune"},' in lines
@@ -226,7 +227,7 @@ def test_validate_ok(repo, capsys):
 
 
 def test_validate_errors(repo, capsys):
-    a = cand("a")
+    a = cand("a", teaser="Kommunen indfører nye regler for sortering af madaffald fra næste år i alle boliger")
     store.save_candidates([a])
     sweep = "https://fyens.dk/b"
     write_judgments("2026-10-07", [
@@ -235,7 +236,7 @@ def test_validate_errors(repo, capsys):
         j("ukendt12345a", True),                         # 3 ukendt id
         j(a.id, True, reason="x" * 201),                 # 4 for lang
         j(a.id, True, topics=["affald"]),                # 5 ukendt tema
-        j(a.id, True, summary_da="Unødvendig"),          # 6 dansk
+        j(a.id, True, summary_da="Kommunen indfører nye regler for sortering af madaffald fra næste år"),  # 6 kopieret
         j("forkert-id", True, new_item={"url": sweep, "title": "T", "source": "fyens"}),  # 7
         j(item_id(sweep), True, new_item={"url": sweep, "title": "T", "source": "ukendt"}),  # 8
         j(item_id(sweep), False, new_item={"url": sweep, "title": "T", "source": "fyens"}),  # 9
@@ -251,6 +252,7 @@ def test_validate_errors(repo, capsys):
     bad = {int(ln[len(prefix):].split(":")[0]) for ln in lines}
     assert bad == set(range(2, 14))
     assert f"{prefix}7: id skal være item_id(new_item.url) = {item_id(sweep)}" in out
+    assert f"{prefix}6: summary_da kopierer 11 ord i træk fra kildens teaser" in out
     assert "data/judgments/2026-10-08.jsonl" in out
 
 
@@ -354,3 +356,107 @@ def test_heartbeat(repo):
     judgments.main_heartbeat(ns(now="2026-10-07T10:31:00Z"))
     hb = json.loads(paths.HEARTBEAT_FILE.read_text(encoding="utf-8"))
     assert hb == {"last_run": "2026-10-07T10:31:00Z", "pending_before": 1, "judged": 0}
+
+
+# ── Resuméer med egne ord (§6.2a) ───────────────────────────
+
+from affaldsfeed import summaries  # noqa: E402
+from affaldsfeed.models import Summary, SummarySettings  # noqa: E402
+
+TEASER = "Kommunen indfører nye regler for sortering af madaffald fra næste år i alle boliger i byen"
+
+
+def test_copy_problem_allows_own_words_and_short_shared_phrases():
+    cfg = SummarySettings()
+    assert summaries.copy_problem("Fra næste år skal alle husstande i byen sortere madaffald efter nye regler.", TEASER, cfg) is None
+    # Fem ord i træk er tilladt (fx et navn eller en fast vending)
+    assert summaries.copy_problem("Byrådet vedtog, at nye regler for sortering gælder fra 2027.", TEASER, cfg) is None
+    # En engelsk teaser og et dansk resumé deler intet
+    assert summaries.copy_problem("Ny EU-rapport om plastaffald.", "The EU published a new report on plastic waste", cfg) is None
+    assert summaries.copy_problem("Noget", "", cfg) is None
+
+
+def test_copy_problem_flags_long_runs_and_reordered_copies():
+    cfg = SummarySettings()
+    msg = summaries.copy_problem("Ifølge kommunen: nye regler for sortering af madaffald fra næste år.", TEASER, cfg)
+    assert msg.startswith("summary_da kopierer 9 ord i træk") and "nye regler for sortering af madaffald fra næste år" in msg
+    # Samme sætningsdele i en anden rækkefølge: hver del er kort, men næsten alle ordtrioer er kildens
+    shuffled = "Fra næste år i alle boliger i byen. Kommunen indfører nye regler for sortering."
+    msg = summaries.copy_problem(shuffled, TEASER, SummarySettings(max_shared_run=8))
+    assert msg is not None and "ligner kildens teaser for meget" in msg
+
+
+def test_effective_summaries_newest_wins():
+    j_old = {"id": "a", "relevant": True, "reason": "x", "judged_at": "2026-10-01T08:00:00Z", "summary_da": "Fra vurderingen"}
+    from affaldsfeed.models import Judgment
+    judg = {"a": Judgment(**j_old), "b": Judgment(**{**j_old, "id": "b"})}
+    lines = {
+        "a": Summary(id="a", summary_da="Nyere resumé fra resumélinjen", written_at=parse_iso("2026-10-05T08:00:00Z")),
+        "b": Summary(id="b", summary_da="Ældre resumé fra resumélinjen", written_at=parse_iso("2026-09-30T08:00:00Z")),
+    }
+    eff = summaries.effective_summaries(judg, lines)
+    assert eff == {"a": "Nyere resumé fra resumélinjen", "b": "Fra vurderingen"}
+
+
+def write_summaries(day: str, lines: list) -> None:
+    d = paths.SUMMARIES_DIR
+    d.mkdir(parents=True, exist_ok=True)
+    with (d / f"{day}.jsonl").open("a", encoding="utf-8") as f:
+        for line in lines:
+            f.write((line if isinstance(line, str) else json.dumps(line, ensure_ascii=False)) + "\n")
+
+
+def test_pending_lists_older_approved_items_without_summary(repo, capsys):
+    long = "En længere teaser fra kilden om affald og genbrug i kommunen, som er lang nok til et resumé"
+    new = cand("ny", hours_ago=1, teaser=long)
+    old = cand("gammel", hours_ago=30, teaser=long)
+    done = cand("faerdig", hours_ago=5, teaser=long)
+    lined = cand("linje", hours_ago=6, teaser=long)
+    short = cand("kort", hours_ago=7, teaser="For kort")
+    rejected = cand("afvist", hours_ago=8, teaser=long)
+    rules_only = cand("dr", source="dr", hours_ago=9, teaser=long)
+    pending = cand("venter", hours_ago=2, teaser=long)
+    store.save_candidates([new, old, done, lined, short, rejected, rules_only, pending])
+    sweep_url = "https://fyens.dk/sweep"
+    write_judgments("2026-10-07", [
+        j(new.id), j(old.id), j(done.id, summary_da="Et resumé med egne ord om affald"), j(lined.id), j(short.id),
+        j(rejected.id, False), j(rules_only.id),
+        j(item_id(sweep_url), True, new_item={"url": sweep_url, "title": "Sweep", "source": "fyens", "teaser": long,
+                                             "published": "2026-10-07T03:00:00Z"}),
+    ])
+    write_summaries("2026-10-07", [{"id": lined.id, "summary_da": "Et andet resumé med egne ord", "written_at": "2026-10-07T09:25:00Z"}])
+    assert judgments.main_pending(ns(max=200, hours=72, now="2026-10-07T10:00:00Z", rewrite_max=2)) == 0
+    out = json.loads(capsys.readouterr().out)
+    assert out["rewrite_total"] == 3
+    assert [r["id"] for r in out["rewrite"]] == [new.id, item_id(sweep_url)]  # nyeste først, højst 2
+    assert set(out["rewrite"][0]) == {"id", "title", "teaser", "source_name", "lang"}
+    assert [p["id"] for p in out["pending"]] == [pending.id]
+
+
+def test_validate_summaries(repo, capsys):
+    a = cand("a", teaser=TEASER)
+    unjudged = cand("u", teaser=TEASER)
+    store.save_candidates([a, unjudged])
+    write_judgments("2026-10-07", [j(a.id)])
+    write_summaries("2026-10-07", [
+        {"id": a.id, "summary_da": "Fra næste år skal alle husstande sortere madaffald efter nye regler.", "written_at": "2026-10-07T09:25:00Z"},  # 1 ok
+        {"id": unjudged.id, "summary_da": "Et resumé af et indslag uden vurdering", "written_at": "2026-10-07T09:25:00Z"},  # 2
+        {"id": a.id, "summary_da": "Kommunen indfører nye regler for sortering af madaffald.", "written_at": "2026-10-07T09:25:00Z"},  # 3
+        {"id": a.id, "summary_da": "For kort", "written_at": "2026-10-07T09:25:00Z"},  # 4
+        {"id": a.id, "summary_da": "Et resumé, der står i den forkerte fil", "written_at": "2026-10-08T09:25:00Z"},  # 5
+        "{ikke json",  # 6
+    ])
+    from affaldsfeed.summaries import main_validate_summaries
+    assert main_validate_summaries(ns(file=None)) == 1
+    out = capsys.readouterr().out
+    prefix = "data/judgments/resumeer/2026-10-07.jsonl:"
+    bad = {int(ln[len(prefix):].split(":")[0]) for ln in out.splitlines() if ln.startswith(prefix)}
+    assert bad == {2, 3, 4, 5, 6}
+    assert f"{prefix}2: id '{unjudged.id}' er ikke et godkendt indslag" in out
+    assert f"{prefix}3: summary_da kopierer 8 ord i træk" in out
+    # En gyldig fil giver OK
+    (paths.SUMMARIES_DIR / "2026-10-07.jsonl").write_text(
+        json.dumps({"id": a.id, "summary_da": "Fra næste år skal alle husstande sortere madaffald efter nye regler.",
+                    "written_at": "2026-10-07T09:25:00Z"}, ensure_ascii=False) + "\n", encoding="utf-8")
+    assert main_validate_summaries(ns(file="data/judgments/resumeer/2026-10-07.jsonl")) == 0
+    assert "OK, 1 linjer" in capsys.readouterr().out

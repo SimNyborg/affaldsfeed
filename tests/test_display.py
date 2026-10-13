@@ -132,13 +132,27 @@ def test_claude_topics_and_genre_only_when_set(base_config):
     assert by_id[c.id].topics == []
 
 
-def test_summary_only_for_non_danish(base_config):
+def test_summary_for_all_languages(base_config):
+    # Resuméet med egne ord vises for alle indslag, også danske (§6.2a)
     en = cand("en", source="zwe", lang="en")
     da = cand("da")
-    out = build(base_config, [en, da], [judge(en, summary_da="Dansk resumé"), judge(da, summary_da="Bør ignoreres")])
+    out = build(base_config, [en, da], [judge(en, summary_da="Dansk resumé"), judge(da, summary_da="Resumé med egne ord")])
     by_id = {d.id: d for d in out}
     assert by_id[en.id].summary_da == "Dansk resumé"
-    assert by_id[da.id].summary_da is None
+    assert by_id[da.id].summary_da == "Resumé med egne ord"
+
+
+def test_summary_lines_win_and_rules_shown_items_have_none(base_config):
+    a, b = cand("a"), cand("b")
+    config = base_config
+    summaries = {a.id: "Nyt resumé fra resumélinjen"}
+    out = build_display_items(config, SOURCES, [a, b], {a.id: judge(a, summary_da="Gammelt"), b.id: judge(b)}, "claude", NOW, SINCE, summaries)
+    by_id = {d.id: d for d in out}
+    assert by_id[a.id].summary_da == "Nyt resumé fra resumélinjen"
+    assert by_id[b.id].summary_da is None
+    # Regelvisning (fallback) uden vurdering har intet resumé
+    out = build_display_items(config, SOURCES, [b], {}, "fallback", NOW, SINCE, {b.id: "Må ikke vises"})
+    assert out[0].summary_da is None
 
 
 def test_overrides(base_config):

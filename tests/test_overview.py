@@ -41,6 +41,7 @@ def repo(tmp_path, monkeypatch):
         "CANDIDATES_DIR": data / "candidates",
         "REJECTED_DIR": data / "rejected",
         "JUDGMENTS_DIR": data / "judgments",
+        "SUMMARIES_DIR": data / "judgments" / "resumeer",
         "OVERVIEW_DIR": data / "overview",
         "OVERVIEW_ARCHIVE_DIR": data / "overview" / "archive",
         "TIMELINE_DIR": data / "timeline",

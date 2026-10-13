@@ -23,6 +23,7 @@ COMMANDS: dict[str, tuple[str, str]] = {
     "export": ("affaldsfeed.export", "main_export"),
     "pending": ("affaldsfeed.judgments", "main_pending"),
     "validate-judgments": ("affaldsfeed.judgments", "main_validate"),
+    "validate-summaries": ("affaldsfeed.summaries", "main_validate_summaries"),
     "heartbeat": ("affaldsfeed.judgments", "main_heartbeat"),
     "overview-input": ("affaldsfeed.overview", "main_overview_input"),
     "validate-overview": ("affaldsfeed.overview", "main_validate_overview"),
@@ -57,10 +58,14 @@ def build_parser() -> argparse.ArgumentParser:
     pe = sub.add_parser("pending", help="JSON med uvurderede kandidater til Claude-routinen")
     pe.add_argument("--max", type=int, default=200, help="højst så mange indslag (standard 200)")
     pe.add_argument("--hours", type=float, default=None, help="kun fundet inden for så mange timer (standard settings.pending_hours, 336)")
+    pe.add_argument("--rewrite-max", type=int, default=None, help="højst så mange ældre indslag at omformulere (standard settings.summaries.rewrite_per_run)")
     pe.add_argument("--now", metavar="ISO", help="overstyr nu (test)")
 
     vj = sub.add_parser("validate-judgments", help="valider data/judgments/*.jsonl")
     vj.add_argument("--file", metavar="PATH", help="kun denne fil")
+
+    vs = sub.add_parser("validate-summaries", help="valider data/judgments/resumeer/*.jsonl")
+    vs.add_argument("--file", metavar="PATH", help="kun denne fil")
 
     hb = sub.add_parser("heartbeat", help="skriv data/judgments/_heartbeat.json")
     hb.add_argument("--now", metavar="ISO", help="overstyr nu (test)")

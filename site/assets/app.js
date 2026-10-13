@@ -507,12 +507,8 @@ function setupFeed(feed, state, now, lastVisit) {
     const titleId = `t-${m.id}`;
     const headDay = m.day.dayNum;
 
-    let teaser = null;
-    if (m.lang !== 'da' && m.summary) {
-      teaser = el('p', { class: 'teaser' }, el('b', { class: 'auto', text: 'Auto-resumé:' }), ' ', m.summary);
-    } else if (m.teaser) {
-      teaser = el('p', { class: 'teaser', lang: langAttr(m) }, truncate(m.teaser, TEASER_MAX));
-    }
+    // Previewet er resuméet med egne ord (KONTRAKTER §6.2a); kildens egen teaser vises aldrig
+    const teaser = m.summary ? el('p', { class: 'teaser' }, truncate(m.summary, TEASER_MAX)) : null;
 
     // Fodlinjen har kun "+N andre kilder"; sted og temaer står ikke på kortet (de kan vælges i menuen)
     let also = null;
