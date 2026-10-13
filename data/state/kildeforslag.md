@@ -26,9 +26,11 @@ Genereres automatisk af `python -m affaldsfeed run`. Viser top 50 efter antal ar
 | inc.com | Inc.com | 1 | 2026-10-07 | [1](https://www.inc.com/sarah-bregel/baltimore-orioles-announced-600-million-dollar-renovation-laid-off-employee-behind-mascot/91416095) |
 | kalb.com | KALB | 1 | 2026-10-07 | [1](https://www.kalb.com/2026/10/07/alexandria-hold-ribbon-cutting-charles-smith-park-renovation/) |
 | landbrugsavisen.dk | LandbrugsAvisen | 1 | 2026-10-09 | [1](https://landbrugsavisen.dk/regeringen-vil-haeve-boeder-for-dumping-af-affald-og-forurenet-jord-334943) |
+| note.com | note | 1 | 2026-10-13 | [1](https://note.com/kotori3/n/n0df824fa06ca?hl=en) |
 | novinky.cz | Novinky.cz | 1 | 2026-10-13 | [1](https://www.novinky.cz/clanek/ekonomika-marius-pedersen-prodava-sve-ceske-a-slovenske-aktivity-francouzum-40602426) |
 | nytimes.com | The New York Times | 1 | 2026-10-07 | [1](https://www.nytimes.com/2026/10/07/business/chrysler-building-tishman-speyer.html) |
 | seznamzpravy.cz | Seznam Zprávy | 1 | 2026-10-13 | [1](https://www.seznamzpravy.cz/clanek/ekonomika-firmy-francouzsky-paprec-kupuje-byznys-marius-pedersen-v-cesku-a-na-slovensku-317695) |
+| sita.sk | SITA.sk | 1 | 2026-10-13 | [1](https://sita.sk/vpriemysle/marius-pedersen-prebera-firma-paprec-spolocnost-s-viac-ako-tisic-zamestnancami-na-slovensku-konci/) |
 | sme.sk | SME.sk | 1 | 2026-10-13 | [1](https://www.sme.sk/index/c/paprec-kupuje-od-danov-marius-pedersen-na-slovensku-a-v-cesku) |
 | tv4.se | TV4 | 1 | 2026-10-08 | [1](https://www.tv4.se/artikel/3qTbtd9tMSwLcDc3Izr1Lk/agerar-efter-pantkaoset-och-goer-som-sverige-stor-omstaellning) |
 | wspa.com | WSPA 7News | 1 | 2026-10-07 | [1](https://www.wspa.com/your-carolina/the-salvation-army-greenville-2/) |
