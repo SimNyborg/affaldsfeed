@@ -65,6 +65,7 @@
   --h-row: 2rem; --h-ctl: 2.25rem; --h-chip: 1.75rem; --h-day: 2.5rem;
   --cb: 1rem;          /* afkrydsningsfelt og flueben-kolonne */
   --n-col: 2.5rem;     /* talkolonne */
+  --tgl: 1.75rem;      /* pilen, der folder en afsendertypes kilder ud */
   --clr: 24px;         /* ryd-knappen i søgefeltet */
 
   /* Grid */
@@ -73,7 +74,7 @@
 
 /* Berøring og smal skærm: større mål og 16 px felttekst (ingen zoom i iOS) */
 @media (pointer: coarse), (max-width: 47.99em) {
-  :root { --h-row: 2.75rem; --h-ctl: 2.75rem; --h-chip: 2rem; --cb: 1.25rem; --t-in: 1rem; --lh-in: 1.5rem; --clr: 32px; }
+  :root { --h-row: 2.75rem; --h-ctl: 2.75rem; --h-chip: 2rem; --cb: 1.25rem; --tgl: 2rem; --t-in: 1rem; --lh-in: 1.5rem; --clr: 32px; }
 }
 @media (max-width: 63.99em) { :root { --container: 47rem; } }
 @media (max-width: 47.99em) { :root { --gutter: 0px; --block: 8px; --pad-x: 16px; --r-panel: 0px; } }
@@ -862,41 +863,29 @@ dialog.sheet .fg:first-child { border-top: 0; }
 .opts:not(:empty) + .regions { margin-top: 8px; }
 .fnote { margin-top: 4px; color: var(--muted); font-size: var(--t-xs); line-height: var(--lh-xs); }
 
-/* Kilde: et afsnit pr. afsendertype, foldet sammen fra start. Ikonet står over fluebenene, så typens
-   navn flugter med kildernes navne (filters.js) */
-.fsrc-cat > summary {
+/* Kilde: en filterrække pr. afsendertype og til højre en pil, der folder typens kilder ud. Pilen går 8 px
+   ud til højre som rækkernes hover-flade. Typens tal har kun sin egen bredde og står lige før pilen, så
+   et langt navn som "Kommune/affaldsselskab" kan stå helt. Kilderne er rykket 24 px ind (ikonets bredde
+   og afstanden), så deres navne flugter med typens navn, og deres tal flugter med typens, fordi de har
+   pilens bredde som polstring til højre (filters.js) */
+.fsrc-head { display: grid; grid-template-columns: minmax(0, 1fr) var(--tgl); align-items: start; margin-right: -8px; }
+.fsrc-head > .frow { margin-right: 0; padding-right: 0; grid-template-columns: var(--cb) 16px minmax(0, 1fr) auto; }
+.fsrc-tgl {
   display: grid;
-  grid-template-columns: var(--cb) auto minmax(0, 1fr) 16px;
-  align-items: center;
-  column-gap: 8px;
-  min-height: var(--h-row);
-  margin: 0 -8px;
-  padding: 0 8px;
+  place-items: center;
+  width: var(--tgl);
+  height: var(--h-row);
+  padding: 0;
+  border: 0;
   border-radius: var(--r-ctl);
-  cursor: pointer;
-  list-style: none;
-  font-size: var(--t-xs);
-  line-height: var(--lh-xs);
+  background: none;
+  color: var(--muted);
 }
-.fsrc-cat > summary::-webkit-details-marker { display: none; }
-.fsrc-cat > summary:focus-visible { outline-offset: -2px; }
-.fsrc-cat > summary .i { justify-self: center; width: 16px; height: 16px; color: var(--cat); }
-.fsrc-cat > summary .chev { color: var(--muted); transition: transform 0.15s ease; }
-.fsrc-cat[open] > summary .chev { transform: rotate(180deg); }
-.fsrc-name { font-weight: 600; }
-.fsrc-cat .opts { margin-top: 0; padding-bottom: 8px; }
-/* En type, der afventer, står som afsnittenes overskrift, men uden pil, og kan ikke foldes ud */
-.fsrc-pending {
-  display: grid;
-  grid-template-columns: var(--cb) auto minmax(0, 1fr) 16px;
-  align-items: center;
-  column-gap: 8px;
-  min-height: var(--h-row);
-  font-size: var(--t-xs);
-  line-height: var(--lh-xs);
-}
-.fsrc-pending .i { justify-self: center; width: 16px; height: 16px; }
-.fsrc-pending .fsrc-name { color: var(--muted); }
+.fsrc-tgl .i { transition: transform 0.15s ease; }
+.fsrc-tgl[aria-expanded="true"] .i { transform: rotate(180deg); }
+.fsrc-tgl:focus-visible { outline-offset: -2px; }
+.fsrc-cat .fsrc-list { margin-top: 0; padding-bottom: 8px; }
+.fsrc-list .frow { padding-left: 32px; padding-right: var(--tgl); }
 
 /* Søgefelt med forslag (combobox.js) */
 .cbx { scroll-margin-top: 40px; } /* gruppens overskrift bliver stående over feltet */
@@ -1360,7 +1349,8 @@ dialog.info::backdrop { background: var(--backdrop); }
 
 /* Hover-flader kun med mus, så et tryk ikke efterlader noget, der ligner et valg */
 @media (hover: hover) {
-  .frow:hover, .cbx-opt:hover, .fg > summary:hover, .fsrc-cat > summary:hover, .trow:hover { background: var(--hover-bg); }
+  .frow:hover, .cbx-opt:hover, .fg > summary:hover, .fsrc-tgl:hover, .trow:hover { background: var(--hover-bg); }
+  .fsrc-tgl:hover { color: var(--text); }
   .frow.is-pending:hover { background: none; }
   .seg > label:not(:has(input:checked)):hover, .seg > [role="tab"]:not([aria-selected="true"]):hover { color: var(--text); }
   .date-btn:not(.is-set):hover { color: var(--text); }

@@ -103,9 +103,8 @@ Panelet er et `<search>` med overskriften "Filtre" og tekstknappen "Nulstil" til
 | Gruppe | Indhold |
 |---|---|
 | Sted | søgefeltet "Kommune eller by", de valgte kommuner og byer, regionerne og "Landsdækkende" |
-| Afsender | 10 rækker med kategoriikon, heraf én, der afventer |
+| Kilde | feltet "Find kilde" og 10 afsendertyper med kategoriikon, heraf én, der afventer. Hver type kan foldes ud til sine kilder |
 | Tema | 13 rækker, en streg og "Andre temaer" (indslag uden tema) |
-| Kilde | feltet "Find kilde" og et foldbart afsnit pr. afsendertype med typens kilder |
 | Genre | 6 rækker |
 
 - Hver gruppe er en foldbar `<details>`. Overskriften er én række på 36 px (44 px ved berøring) med navnet (14/20, 600) til venstre og en pil til højre. Er gruppen filtreret, står en status i 13/18 og `--muted` foran pilen: "Ingen", op til to navne ("Nyborg Kommune, Landsdækkende"), "7 af 8" eller "3 steder". Når alt er valgt, er der ingen status, fordi pilen er nok til at vise, at gruppen kan foldes ud. Der er en streg i `--line` mellem grupperne.
@@ -129,14 +128,18 @@ Sted står øverst i panelet, fordi man typisk vælger sit område én gang og g
 - Et id i URL'en, der ikke findes i `geo`, bliver stående, giver 0 og vises som id'et i mærket. Steder skrives sorteret i URL'en: regioner i `geo`-rækkefølge, kommuner og byer alfabetisk efter id.
 - Giver valgene 0 indslag, foreslår tom-tilstanden den ene ændring, der giver flest. Et valgt sted foreslås udvidet til sin forælder (by til primær kommune, kommune til region), hvis det giver indslag, fx "Udvid til Nyborg Kommune (viser 4)". Ellers foreslås det fjernet. Er "Landsdækkende" ikke valgt, står det i beskeden.
 
-### Kildelisten
+### Kilde
 
-Kilde viser alle kilder i `feed.json` som rækker med flueben, så man kan fravælge de kilder, man ikke vil se.
+Kilde samler afsendertyperne og deres kilder i én gruppe. Man kan vælge en hel type, fx alle lokalmedier, eller folde typen ud og vælge enkelte kilder.
 
-- Øverst er feltet "Find kilde" med lup. Det indsnævrer listen, mens man skriver, med samme foldning som søgningen (accenter, å/aa, æ/ae og ø/oe). Esc tømmer feltet. Passer ingen, står "Ingen kilde passer til "x"." (13/18, `--muted`) som status. Mens man skriver, er de afsendertyper foldet ud, der har et træf, og de andre er skjult. Tømmes feltet, er typerne foldet som før.
-- Kilderne står i et afsnit pr. afsendertype i konfigurationens rækkefølge. Afsnittene er foldet sammen fra start, så man først ser typerne. Overskriften er en `<summary>` på én række (`--h-row`) med kategoriikonet (16 px) over fluebenene, det korte navn i 13/18 og 600 og en pil til højre. Er nogle af typens kilder fravalgt, står "5 af 17" eller "Ingen" foran pilen. Inden for afsnittet står kilderne alfabetisk. Brugerens fold huskes ikke.
-- Rækkerne er filterrækker uden ikon. Tallet er antallet af kort, kilden giver med de andre filtre, også når kilden er fravalgt, så man kan se, hvad man går glip af.
-- En afsendertype, der afventer, står på sin plads blandt typerne som en række med ikon, navn og "Afventer" i `--muted`, hvor status ellers står. Den har ingen pil, kan ikke foldes ud og er skjult, mens der søges.
+- Øverst er feltet "Find kilde" med lup. Det indsnævrer kilderne, mens man skriver, med samme foldning som søgningen (accenter, å/aa, æ/ae og ø/oe). Esc tømmer feltet. Passer ingen, står "Ingen kilde passer til "x"." (13/18, `--muted`) som status. Mens man skriver, er de typer foldet ud, der har et træf, og de andre er skjult. Tømmes feltet, er typerne foldet som før.
+- Hver afsendertype er en filterrække med flueben, kategoriikon, det korte navn og tallet. Typerne står i konfigurationens rækkefølge og er foldet sammen fra start. Til højre står en pil, en knap på 28 × 32 px (32 × 44 px ved berøring), der folder typens kilder ud. Ved indlæsning er en type foldet ud, når kun nogle af dens kilder vises, så man ser, hvad der er fravalgt. Brugerens fold huskes ikke.
+- Typens flueben er sat, når alle dens kilder vises, og halvt sat (`indeterminate`, en streg i feltet), når nogle gør. Et klik på en afkrydset type skjuler alle dens kilder, og et klik på en halv eller tom type viser dem alle.
+- Kilderne står alfabetisk under typen. De er rykket 24 px ind, så deres flueben står under typens ikon og deres navne flugter med typens navn. Rækkerne er filterrækker uden ikon.
+- Tallene er antallet af kort med de andre gruppers filtre. De ser bort fra valget under Kilde, så en fravalgt type eller kilde viser, hvad man går glip af. Typens tal står lige før pilen og fylder kun sin egen bredde, så et langt navn som "Kommune/affaldsselskab" kan stå helt. Kildernes tal flugter med typens.
+- Pilen har `aria-expanded` og `aria-controls`, og skærmlæseren hører fx "5 kilder under Nationalt medie, knap, skjult". Kilderne under en type er en gruppe med typens navn.
+- Status i gruppens overskrift er "Ingen", op til to hele typer ("Nationalt medie, Fagmedie"), op til to kilder ("Avisen.dk, Berlingske") eller fx "45 af 280".
+- En afsendertype, der afventer, er en låst række med "Afventer" og uden pil. Den er skjult, mens der søges.
 
 ### Filterrækken
 
@@ -299,12 +302,12 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Søgefelt | Søg i titler og kilder · Ryd søgning |
 | Filtrér-knap | Filtrér (2) |
 | Panel og ark | Filtre · Nulstil · Luk filtre · Vis 23 indslag |
-| Grupper | Sted · Afsender · Tema · Kilde · Genre |
-| Status i grupperne | Ingen · 7 af 8 · 3 steder |
+| Grupper | Sted · Kilde · Tema · Genre |
+| Status i grupperne | Ingen · 7 af 8 · 3 steder · 45 af 280 · Nationalt medie, Fagmedie |
 | Afventer | Afventer · Kategorien afventer og har ingen kilder endnu. |
 | Værktøjer | Vælg alle · Fravælg alle |
 | Sted | Kommune eller by · Find kommune eller by · Flest indslag lige nu · Ingen steder har indslag lige nu. · by i Nyborg · Landsdækkende |
-| Kilde | Find kilde · Ingen kilde passer til "x". · Uden Avisen.dk · Uden 5 kilder · 13 kilder · Vis Avisen.dk igen · Vis alle kilder |
+| Kilde | Find kilde · Ingen kilde passer til "x". · til skærmlæseren: 5 kilder under Nationalt medie · Uden Kommune/affaldsselskab · Uden Avisen.dk · Uden 5 kilder · 13 kilder · Vis Avisen.dk igen · Vis alle kilder |
 | Forslag | Viser 8 af 23. Skriv mere for at indsnævre. · Ingen kommune eller by passer til "xyz". Byer kommer med, når de er nævnt i et indslag. · Ingen kilde passer til "xyz". · Nyborg Kommune er valgt. · Nyborg Kommune er fravalgt. |
 | Rækker | Andre temaer |
 | Kalender | Alle datoer · 2.–5. okt. · 7. okt. · Fra 6. okt. · til skærmlæseren: Periode: 2.–5. okt. · Vis alle datoer · Vælg datoer · Forrige måned · Næste måned · ma ti on to fr lø sø · Vælg første dag. · Fra 5. oktober. Vælg sidste dag. · onsdag 7. oktober, 9 indslag · ingen indslag · Luk |
