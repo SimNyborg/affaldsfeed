@@ -212,13 +212,15 @@
   },
   "teraz.sk": {
     "name": "Teraz.sk",
-    "count": 1,
-    "last_seen": "2026-10-12T22:57:34Z",
+    "count": 2,
+    "last_seen": "2026-10-13T03:32:50Z",
     "examples": [
+      "https://www.teraz.sk/spravy/spolocnost-paprec-prevezme-prevadzky/999148-clanok.html",
       "https://www.teraz.sk/ekonomika/spolocnost-paprec-prevezme-prevadzky/999148-clanok.html"
     ],
     "ids": [
-      "c3b7f83faced"
+      "c3b7f83faced",
+      "9661d2435a88"
     ]
   },
   "tv4.se": {

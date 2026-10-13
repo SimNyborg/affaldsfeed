@@ -10,6 +10,7 @@ Genereres automatisk af `python -m affaldsfeed run`. Viser top 50 efter antal ar
 | msn.com | Nyheder24 on MSN | 6 | 2026-10-10 | [1](https://www.msn.com/da-dk/nyheder/other/nye-affaldsregler-rammer-pengepungen-kan-ende-med-ekstra-regning/ar-AA2dXupt) [2](https://www.msn.com/da-dk/nyheder/other/tilfredsstillende-reng%C3%B8ring-af-plys-unicorn-fundet-i-skraldet/vi-AA2dUT2r) [3](https://www.msn.com/da-dk/livsstil/other/byt-til-nyt-s%C3%B8stre-skaber-julegl%C3%A6de-p%C3%A5-genbrug/ar-AA2dTedu) |
 | sydkusten.es | Sydkusten | 3 | 2026-10-08 | [1](https://www.sydkusten.es/sk/23/a/46892/svensk-18-aring-gripen-for-mordet-pa-kand-plastikkirurg/) [2](https://www.sydkusten.es/sk/23/a/46884/mordade-plastikkirurgen-en-av-de-mest-framstaende-i-branschen/) [3](https://www.sydkusten.es/sk/23/a/46882/plastikkirurg-skjuten-till-dods-pa-klinik/) |
 | kolding-netavis.dk | kolding-netavis | 2 | 2026-10-09 | [1](https://www.kolding-netavis.dk/guide-vamdrup/) [2](https://www.kolding-netavis.dk/genbrugsplads/) |
+| teraz.sk | Teraz.sk | 2 | 2026-10-13 | [1](https://www.teraz.sk/spravy/spolocnost-paprec-prevezme-prevadzky/999148-clanok.html) [2](https://www.teraz.sk/ekonomika/spolocnost-paprec-prevezme-prevadzky/999148-clanok.html) |
 | yahoo.com | Yahoo | 2 | 2026-10-07 | [1](https://www.yahoo.com/entertainment/tv/articles/charlie-kawas-details-filming-botched-192742838.html) [2](https://www.yahoo.com/entertainment/tv/articles/hgtv-fans-react-rock-block-174922811.html) |
 | bornholm.nu | Bornholm.nu | 1 | 2026-10-07 | [1](https://bornholm.nu/nyheder/ikke-alt-maa-klunses-hos-bofa/141859) |
 | byznys.hn.cz | Byznys - Hospodářské noviny | 1 | 2026-10-12 | [1](https://byznys.hn.cz/c1-67943820-hotovo-podepsano-ceskou-a-slovenskou-odpadarskou-firmu-marius-pedersen-prebiraji-francouzi) |
@@ -26,7 +27,6 @@ Genereres automatisk af `python -m affaldsfeed run`. Viser top 50 efter antal ar
 | nytimes.com | The New York Times | 1 | 2026-10-07 | [1](https://www.nytimes.com/2026/10/07/business/chrysler-building-tishman-speyer.html) |
 | seznamzpravy.cz | Seznam Zprávy | 1 | 2026-10-13 | [1](https://www.seznamzpravy.cz/clanek/ekonomika-firmy-francouzsky-paprec-kupuje-byznys-marius-pedersen-v-cesku-a-na-slovensku-317695) |
 | sme.sk | SME.sk | 1 | 2026-10-13 | [1](https://www.sme.sk/index/c/paprec-kupuje-od-danov-marius-pedersen-na-slovensku-a-v-cesku) |
-| teraz.sk | Teraz.sk | 1 | 2026-10-13 | [1](https://www.teraz.sk/ekonomika/spolocnost-paprec-prevezme-prevadzky/999148-clanok.html) |
 | tv4.se | TV4 | 1 | 2026-10-08 | [1](https://www.tv4.se/artikel/3qTbtd9tMSwLcDc3Izr1Lk/agerar-efter-pantkaoset-och-goer-som-sverige-stor-omstaellning) |
 | wspa.com | WSPA 7News | 1 | 2026-10-07 | [1](https://www.wspa.com/your-carolina/the-salvation-army-greenville-2/) |
 | zawya.com | ZAWYA | 1 | 2026-10-07 | [1](https://www.zawya.com/en/press-release/companies-news/half-of-dubais-luxury-villa-buyers-now-plan-renovations-before-purchase-says-imperium-group-1543454) |
