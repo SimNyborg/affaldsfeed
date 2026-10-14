@@ -82,7 +82,7 @@ En YAML-liste. Felter (se `models.Source`):
 | places | list[str] | `[]` | faste steder (sted-id'er, se 4.1), højst 8 forskellige. Kun til afsendere med fast geografi, fx et kommunalt affaldsselskab. Nationale medier og lokalmedier (`nyhedsmedie`, `lokalmedie`) får ingen `places` (check advarer). Et id, der ikke står i geografien: `check` fejler, `run` advarer og ignorerer id'et |
 | lang | `da`\|`en`\|`sv` | `da` | |
 | paywall | `nej`\|`delvis`\|`ja` | `nej` | |
-| owner | str \| None | None | udgiver hvis ikke afsender selv |
+| owner | str \| None | None | udgiver hvis ikke afsender selv. Deler to aktive kilder vært (homepage eller `domains`), advarer `check`, fordi søgeresultater og sweep-fund kun går til den første i filen. Det gælder ikke, når den ene kildes `owner` er den andens `name` (et institut under sit universitet), eller når de har samme `owner` |
 | aliases | list[str] | `[]` | |
 | replaces | list[str] | `[]` | tidligere id'er (fx en udgiver fra `medier.yaml`, der er blevet til en kilde), hvis gemte indslag nu vises under denne kilde. Id'erne må ikke findes i `sources.yaml` eller `medier.yaml` (`check` fejler). |
 | every | int \| None | None → rss 1, search 2, oda 3, sitemap/html 6 | timer mellem kørsler |
