@@ -1,4 +1,4 @@
-// Affaldsfeed: forsiden (feed), Højdepunkter (tidslinjen) og "Om kilderne". Ingen build, ingen afhængigheder.
+// Affaldsfeed: forsiden (feed) og Højdepunkter (tidslinjen). Ingen build, ingen afhængigheder.
 
 import {
   el, icon, hidden, catStyle, cap, truncate, cph, fmtNum, fmtShort, fmtLong, fmtWhen, fmtStamp,
@@ -24,7 +24,6 @@ const narrow = matchMedia('(max-width: 47.99em)');
 store('af.theme', null);
 const page = document.body.dataset.page;
 if (page === 'feed') initFeed();
-else if (page === 'kilder') initKilder();
 else if (page === 'tidslinje') initTimeline();
 
 // ── Data ─────────────────────────────────────────────────
@@ -81,7 +80,7 @@ function initDemo(demo) {
   for (const a of document.querySelectorAll('a[data-internal]')) {
     const url = new URL(a.getAttribute('href'), location.href);
     url.searchParams.set('demo', demo);
-    // "./" har intet filnavn; uden "index.html" ville linket pege på siden selv (kilder.html?demo=1)
+    // "./" har intet filnavn; uden "index.html" ville linket pege på siden selv (tidslinje.html?demo=1)
     a.href = (url.pathname.split('/').pop() || 'index.html') + url.search + url.hash;
   }
   const strip = $('demo-strip');
@@ -116,7 +115,7 @@ function initFeed() {
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') saveVisit(); });
 
   initDemo(state.demo);
-  setupInfo({ demo: state.demo });
+  setupInfo();
   const list = $('feed');
   const slot = $('sidebar-slot');
   const head = $('list-head');
@@ -494,8 +493,7 @@ function setupFeed(feed, state, now, lastVisit) {
   }
 
   /**
-   * Afsenderlinjen: kategoriikon og kildens navn, intet andet. Afsendertype og genre kan vælges i menuen,
-   * og betalingsmur og ejer står på Om kilderne.
+   * Afsenderlinjen: kategoriikon og kildens navn, intet andet. Afsendertype og genre kan vælges i menuen.
    */
   function who(m) {
     return el('p', { class: 'who' }, srcIcon(m.logo, m.cat), el('b', { text: m.source.name }));
@@ -625,156 +623,13 @@ function setupFeed(feed, state, now, lastVisit) {
   }
 }
 
-// ── Om kilderne ──────────────────────────────────────────
-
-const HEALTH = {
-  groen: { label: 'Kører', sym: '●' },
-  gul: { label: 'Ustabil', sym: '▲' },
-  roed: { label: 'Fejler', sym: '■' },
-  graa: { label: 'Ingen data endnu', sym: '○' },
-};
-
-function healthBadge(h) {
-  const x = HEALTH[h] || HEALTH.graa;
-  return el('span', { class: `health health-${HEALTH[h] ? h : 'graa'}` },
-    el('span', { class: 'sym', 'aria-hidden': 'true', text: x.sym }), x.label);
-}
-
-async function initKilder() {
-  const state = readState(location.search);
-  const now = new Date();
-  initDemo(state.demo);
-  setupInfo({ demo: state.demo });
-  const root = $('kilder-root');
-
-  let feed;
-  try {
-    feed = await loadFeed(state.demo);
-  } catch (err) {
-    console.warn('Kilderne kunne ikke indlæses:', err.message);
-    root.replaceChildren(el('div', { class: 'panel', role: 'alert' },
-      el('p', { text: 'Kildelisten kunne ikke indlæses. Prøv igen om lidt.' }),
-      el('p', { class: 'actions' }, el('button', { type: 'button', class: 'btn', onclick: () => location.reload() }, 'Prøv igen'))));
-    return;
-  }
-  if (state.demo) demoize(feed, now);
-  setInfoStatus(feed, now);
-
-  let status = null;
-  if (!state.demo) {
-    try { status = await fetchJson('data/status.json'); } catch { status = null; }
-  }
-
-  const cats = feed.categories || [];
-  const stat = new Map((status?.sources || []).map((s) => [s.id, s]));
-  const sources = (feed.sources || []).map((s) => ({ ...s, ...(stat.get(s.id) ? { health: stat.get(s.id).health } : {}), st: stat.get(s.id) || null }));
-  // Medier, der afventer tilladelse, tæller ikke som aktive og står nederst i deres type
-  const waiting = sources.filter((s) => s.status === 'afventer');
-  const direct = sources.filter((s) => !s.via_search && s.status !== 'afventer');
-  const viaSearch = sources.filter((s) => s.via_search);
-
-  const healthCount = { groen: 0, gul: 0, roed: 0, graa: 0 };
-  for (const s of direct) healthCount[HEALTH[s.health] ? s.health : 'graa'] += 1;
-
-  const out = [];
-
-  // Overblik over sundhed
-  const gen = parseDate(feed.generated);
-  const lastJ = parseDate(feed.last_judgment);
-  out.push(el('section', { class: 'panel', 'aria-labelledby': 'h-status' },
-    el('h2', { id: 'h-status', text: 'Status lige nu' }),
-    el('p', { class: 'help', text: 'Mærket ud for hver kilde viser, om indsamlingen virker. En kilde, der svarer, men ikke leverer nogen indslag, tæller som en fejl.' }),
-    el('ul', { class: 'stats' },
-      el('li', null, el('strong', { text: fmtNum(direct.length) }), el('span', { text: 'aktive kilder' })),
-      el('li', null, el('strong', { text: fmtNum(viaSearch.length) }), el('span', { text: 'udgivere fundet via søgning' })),
-      status?.counts ? [
-        el('li', null, el('strong', { text: fmtNum(status.counts.shown_60d ?? 0) }), el('span', { text: 'viste indslag (60 dage)' })),
-        el('li', null, el('strong', { text: fmtNum(status.counts.candidates_60d ?? 0) }), el('span', { text: 'fundne kandidater (60 dage)' })),
-      ] : null),
-    el('p', { class: 'facts status-note' },
-      gen ? `Feedet er opdateret ${fmtWhen(gen, now)}. ` : '',
-      lastJ ? `Indslagene blev sidst vurderet ${fmtWhen(lastJ, now)}. ` : '',
-      feed.mode === 'fallback' ? 'Lige nu vises nye indslag efter faste regler.' : ''),
-    el('ul', { class: 'legend', 'aria-label': 'Kildernes sundhed' },
-      Object.keys(HEALTH).map((h) => el('li', null, healthBadge(h), ` ${fmtNum(healthCount[h])}`)))));
-
-  // Afsendertyperne som rækker med spring til hver type. En type, der afventer, har "Afventer" i stedet for tallet.
-  const pend = (c) => (c.pending ? ' is-pending' : '');
-  out.push(el('nav', { class: 'panel', id: 'typer', 'aria-labelledby': 'h-typer' },
-    el('h2', { id: 'h-typer', text: 'Afsendertyper' }),
-    el('ul', { class: 'types' }, cats.map((c) => {
-      const n = direct.filter((s) => s.category === c.id).length;
-      return el('li', null, el('a', { class: `trow cat${pend(c)}`, style: catStyle(c), href: `#kat-${c.id}` },
-        icon(c.icon), el('span', { class: 'name', text: c.name }),
-        c.pending ? el('span', { class: 'n', text: 'Afventer' }) : el('span', { class: 'n' }, fmtNum(n), hidden(n === 1 ? ' kilde' : ' kilder'))));
-    }))));
-
-  for (const c of cats) {
-    const byName = (a, b) => a.name.localeCompare(b.name, 'da');
-    const list = direct.filter((s) => s.category === c.id).sort(byName);
-    const wait = waiting.filter((s) => s.category === c.id).sort(byName);
-    const none = c.pending ? 'Kategorien afventer og har ingen kilder endnu.' : 'Ingen aktive kilder i denne kategori endnu.';
-    out.push(el('section', { class: `panel cat-section cat${pend(c)}`, id: `kat-${c.id}`, style: catStyle(c), 'aria-labelledby': `h-${c.id}` },
-      el('h2', { id: `h-${c.id}` }, icon(c.icon), el('span', { text: c.name })),
-      el('p', { class: 'help', text: c.help }),
-      list.length || wait.length
-        ? el('ul', { class: 'src-rows' }, list.map((s) => sourceRow(s, now)), wait.map(waitRow))
-        : el('p', { class: 'facts', text: none })));
-  }
-
-  out.push(el('section', { class: 'panel', 'aria-labelledby': 'h-search' },
-    el('h2', { id: 'h-search', text: 'Fundet via søgning' }),
-    el('p', { class: 'help', text: 'Disse udgivere har ikke et feed, som Affaldsfeed henter direkte. Deres artikler blev fundet via nyhedssøgning og krediteres altid udgiveren. Søgningen er slået fra, fordi søgemaskinens vilkår ikke tillader et feed som dette.' }),
-    viaSearch.length
-      ? el('ul', { class: 'src-rows' }, viaSearch.sort((a, b) => a.name.localeCompare(b.name, 'da')).map((s) => sourceRow(s, now, cats)))
-      : el('p', { class: 'facts', text: 'Ingen artikler fra søgning i perioden.' })));
-
-  root.replaceChildren(...out);
-  if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
-}
-
-function sourceRow(s, now, cats = null) {
-  const facts = [];
-  if (cats) {
-    const c = cats.find((x) => x.id === s.category);
-    if (c) facts.push(c.short);
-  }
-  if (s.owner) facts.push(`udgivet af ${s.owner}`);
-  if (s.lang && s.lang !== 'da') facts.push(s.lang === 'en' ? 'engelsk' : 'svensk');
-  if (s.paywall === 'ja') facts.push('betalingsmur');
-  if (s.paywall === 'delvis') facts.push('delvis betalingsmur');
-  const st = s.st;
-  if (st) {
-    const ok = parseDate(st.last_ok);
-    if (ok) facts.push(`sidst hentet ${fmtShort(cph(ok))}`);
-    if (typeof st.items_30d === 'number') facts.push(`${fmtNum(st.items_30d)} indslag på 30 dage`);
-    if (st.silent) facts.push('tavs i lang tid');
-    if (st.fails) facts.push(`${fmtNum(st.fails)} fejl i træk`);
-  }
-  return el('li', { class: 'src-row' },
-    el('div', { class: 'src-who' },
-      el('a', { href: s.homepage, target: '_blank', rel: 'noopener' }, srcIcon(s.logo, null), s.name, hidden(' (åbner i nyt vindue)')),
-      facts.length ? el('p', { class: 'facts', text: facts.join(' · ') }) : null,
-      st?.last_error && s.health === 'roed' ? el('p', { class: 'facts', text: `Seneste fejl: ${truncate(st.last_error, 120)}` }) : null),
-    healthBadge(s.health));
-}
-
-/** Et medie, der afventer tilladelse: ingen sundhed, men "Afventer" i mærkets plads. */
-function waitRow(s) {
-  return el('li', { class: 'src-row is-pending' },
-    el('div', { class: 'src-who' },
-      el('a', { href: s.homepage, target: '_blank', rel: 'noopener' }, s.name, hidden(' (åbner i nyt vindue)')),
-      el('p', { class: 'facts', text: 'Mediets regler tillader ikke et feed som dette. Hentes ikke, før mediet giver lov.' })),
-    el('span', { class: 'health health-graa' }, el('span', { class: 'sym', 'aria-hidden': 'true', text: '◇' }), 'Afventer'));
-}
-
 // ── Tidslinje ────────────────────────────────────────────
 
 async function initTimeline() {
   const state = readState(location.search);
   const now = new Date();
   initDemo(state.demo);
-  setupInfo({ demo: state.demo });
+  setupInfo();
   const root = $('tidslinje-root');
   let tl;
   try {

@@ -1,6 +1,6 @@
 # Kommunernes egne nyheder
 
-Oversigten viser, hvordan feedet henter nyhederne fra de 98 kommuners egne hjemmesider. Den bygger på en kortlægning fra 9. oktober 2026, hvor alle hjemmesider blev afprøvet fra GitHub Actions. Oversigten er et øjebliksbillede. Ændrer en kommune sin hjemmeside, viser kildesundheden på Om kilderne det.
+Oversigten viser, hvordan feedet henter nyhederne fra de 98 kommuners egne hjemmesider. Den bygger på en kortlægning fra 9. oktober 2026, hvor alle hjemmesider blev afprøvet fra GitHub Actions. Oversigten er et øjebliksbillede. Ændrer en kommune sin hjemmeside, viser kildesundheden i `data/status.json` det.
 
 ## Sådan hentes kommunerne
 

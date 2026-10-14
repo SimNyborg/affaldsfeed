@@ -272,3 +272,7 @@ Brugeren så kun højdepunkter fra de seneste to måneder. Opfyldningen bagud ha
 - **Kun kilder med `ai: true` tæller:** Opfyldningen venter kun på bagudindsamlingen og routinens vurderinger hos de kilder, hvis indslag kan komme på tidslinjen (KONTRAKTER §7.3).
 - **Op til fire måneder pr. kørsel:** Hver måned er 20-70 kB input til routinen. Med én måned pr. kørsel og tre kørsler om dagen ville januar til oktober tage over tre dage. Med fire er de fyldt i løbet af et døgn.
 - **Routinens prompt:** Prompten på claude.ai giver routinen lov til kun at skrive i `data/judgments/` og `data/overview/`, selv om instruksen også beder den skrive tidslinjen. Routinen skrev alligevel tidslinjen 7. og 8. oktober, men modstriden kan få den til at springe trinnet over. Brugeren retter prompten, så den også nævner `data/timeline/`, og tidsplanen fra hver time til kl. 7.25, 9.25 og 14.25, hvor routinen alligevel kun arbejder. En udviklingssession kan ikke ændre en routine, som brugeren har oprettet.
+
+## 2026-10-14: Siden Om kilderne er fjernet
+
+Brugeren ville ikke have, at man kan se siden med kilderne. `kilder.html` og dens kode og styling er fjernet, i-dialogen henviser ikke længere til den, og issue-skabelonens link til den er væk. Kilderne står stadig i menuen, fordi man filtrerer på dem, og medier, der afventer tilladelse, står stadig låst nederst i deres type. Kildernes sundhed kan følges i `data/status.json`, som eksporten stadig skriver, og i `data/state/sources.json`.

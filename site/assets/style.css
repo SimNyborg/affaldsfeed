@@ -40,10 +40,6 @@
   --demo-text: #222222;
   --backdrop: rgb(0 0 0 / 0.45);
   --shadow: 0 10px 15px rgb(0 0 0 / 0.05);
-  --h-groen: #1E7B3C;
-  --h-gul: #B07A00;
-  --h-roed: #C0362C;
-  --h-graa: #7C8582;
 
   /* Typografi (px ved 16 px grundstørrelse) */
   --font: "Open Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -98,10 +94,6 @@
     --demo-text: #FFF3C4;
     --backdrop: rgb(0 0 0 / 0.65);
     --shadow: 0 10px 15px rgb(0 0 0 / 0.35);
-    --h-groen: #5FC487;
-    --h-gul: #E8B84A;
-    --h-roed: #F08A80;
-    --h-graa: #8F9A95;
   }
   .cat { --cat: var(--cd, #A9B3AE); }
 }
@@ -1192,82 +1184,13 @@ dialog.info::backdrop { background: var(--backdrop); }
   .tl-ev > article::before { background: CanvasText; forced-color-adjust: none; }
 }
 
-/* ── Om kilderne ─────────────────────────────────────── */
+/* ── Sider og tekster (Højdepunkter og i-dialogen) ──── */
 .page h1 { font-size: var(--t-2xl); line-height: var(--lh-2xl); }
 .page .lead { margin-top: 12px; font-size: 1rem; line-height: 1.5rem; }
 .page h2 { font-size: var(--t-xl); line-height: var(--lh-xl); margin-bottom: 12px; }
 .prose p + p, .prose p + ul, .prose p + ol, .prose ul + p, .prose ol + p { margin-top: 12px; }
 .prose ul, .prose ol { padding-left: 1.25rem; display: grid; gap: 8px; }
 .prose li::marker { color: var(--link); }
-
-.types {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-  column-gap: 48px;
-  list-style: none;
-}
-.trow {
-  display: grid;
-  grid-template-columns: 16px minmax(0, 1fr) auto;
-  column-gap: 8px;
-  align-items: center;
-  height: var(--h-row);
-  padding: 0 8px;
-  margin: 0 -8px;
-  border-radius: var(--r-ctl);
-  color: var(--text);
-  font-size: var(--t-s);
-  line-height: var(--lh-s);
-  text-decoration: none;
-}
-.trow .i { color: var(--cat); }
-.trow .name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.trow .n { color: var(--muted); font-size: var(--t-xs); line-height: var(--lh-xs); font-variant-numeric: tabular-nums; }
-.trow:hover .name { text-decoration: underline; text-underline-offset: 2px; }
-.trow:focus-visible { outline-offset: -2px; }
-
-.cat-section { scroll-margin-top: 16px; }
-.cat-section h2 { display: flex; align-items: center; gap: 8px; }
-.cat-section h2 .i { width: 20px; height: 20px; color: var(--cat); }
-.help { color: var(--muted); }
-.cat-section .help { margin-bottom: 12px; }
-.src-rows { list-style: none; }
-.src-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;   /* mærket står altid øverst til højre */
-  align-items: start;
-  column-gap: 12px;
-  padding: 12px 0;
-  border-top: 1px solid var(--line);
-}
-.src-who { min-width: 0; }
-.src-who a { font-weight: 600; }
-.src-who img.logo { margin-right: 8px; vertical-align: -3px; }
-.facts { color: var(--muted); font-size: var(--t-xs); line-height: var(--lh-xs); }
-.src-row .facts { margin-top: 2px; }
-.status-note { margin-top: 12px; }
-.health {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 24px;
-  padding: 0 8px;
-  border: 1px solid var(--h);
-  border-radius: var(--r-pill);
-  font-size: var(--t-xs);
-  line-height: var(--lh-xs);
-  font-weight: 600;
-  white-space: nowrap;
-}
-.health .sym { color: var(--h); font-size: 0.8125rem; line-height: 1; }
-.health-groen { --h: var(--h-groen); }
-.health-gul { --h: var(--h-gul); }
-.health-roed { --h: var(--h-roed); }
-.health-graa { --h: var(--h-graa); }
-.legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; list-style: none; }
-.stats { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 12px; list-style: none; }
-.stats strong { display: block; font-size: var(--t-xl); line-height: var(--lh-xl); font-weight: 600; }
-.stats span { color: var(--muted); font-size: var(--t-xs); line-height: var(--lh-xs); }
 
 /* ── Brudpunkter (em, så de følger brugerens grundskrift) ── */
 
@@ -1292,7 +1215,7 @@ dialog.info::backdrop { background: var(--backdrop); }
   .layout:not(.single) > .main > .overview { grid-row: 1; margin-bottom: var(--block); }
   .layout:not(.single) > .main > .list-panel { grid-row: 2; }
   .layout:not(.single) > .sidebar { grid-row: 2; }
-  /* Om kilderne: læsekolonnen (højst 720 px) står ved containerens venstrekant og flugter med logoet */
+  /* Højdepunkter: læsekolonnen (højst 720 px) står ved containerens venstrekant og flugter med logoet */
   .layout.single { max-width: var(--container); }
   .layout.single > .main { max-width: var(--col); }
   .sidebar {

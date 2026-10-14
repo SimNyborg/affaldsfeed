@@ -13,7 +13,7 @@ En kilde kommer med, når alle fire krav er opfyldt.
 3. Kvalitetsgrundlag (`basis`). Mindst ét af disse: redaktionelt ansvar, offentlig myndighed eller kommunalt ejet selskab, forsknings- eller sektorforskningsinstitution, eller organisation med offentlig ledelse og oplyst finansiering. Virksomheders markedsføring kommer ikke med.
 4. Relevant og høflig at hente. Kilden skriver mindst 4 gange om året om affald med betydning for kommuner. En central aktør kan komme med på færre. Den kan hentes uden login, captcha, ALTCHA eller Cloudflare-challenge og med ærlig User-Agent.
 
-Fravalgte kilder bliver stående i registret med `status: fravalgt` og en note. "Om kilderne" viser dem under fravalg med begrundelse.
+Fravalgte kilder bliver stående i registret med `status: fravalgt` og en note.
 
 ## De 9 afsenderkategorier
 
@@ -63,7 +63,7 @@ Feltnavnene er på engelsk, så de passer til koden. Valideringen sker med pydan
 | `topics` | nej | tom | Standardtema, når teksten ikke giver et. |
 | `genre` | nej | `nyhed` | Standardgenre, fx `hoering` for Høringsportalen. |
 | `lang` | nej | `da` | `da`, `en` eller `sv`. |
-| `paywall` | nej | `nej` | `nej`, `delvis` eller `ja`. Står på Om kilderne. |
+| `paywall` | nej | `nej` | `nej`, `delvis` eller `ja`. Vises ikke på siden. |
 | `owner` | nej | | Udgiveren, hvis det ikke er afsenderen selv, fx KL. |
 | `aliases` | nej | tom | Andre navneformer, som bruges til Via Ritzau i fase 3. |
 | `every` | nej | efter metode | Timer mellem kørsler. Uden værdi: `rss` 1, `search` 2, `oda` 3, `sitemap` og `html` 6. |
