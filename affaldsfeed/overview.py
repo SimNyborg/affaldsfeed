@@ -24,7 +24,16 @@ from affaldsfeed.display import (
     story_hints,
 )
 from affaldsfeed.judgments import format_errors, load_all_candidates, load_judgments, print_json, rel
-from affaldsfeed.models import CATEGORY_RANK, Candidate, DisplayItem, Judgment, Overview, Source, full_text
+from affaldsfeed.models import (
+    CATEGORY_RANK,
+    Candidate,
+    DisplayItem,
+    Judgment,
+    Overview,
+    Source,
+    TimelineEvent,
+    full_text,
+)
 from affaldsfeed.stories import group_stories
 from affaldsfeed.timeutil import cph_day_bounds, ensure_utc, iso, now_utc, to_cph
 
@@ -163,6 +172,44 @@ def lower_overviews(period: str, start: datetime, end: datetime) -> list[Overvie
 # ── overview-input (§7.2) ───────────────────────────────────
 
 
+def spread_by_month(ranked: list[DisplayItem], limit: int) -> list[DisplayItem]:
+    """Højst limit historier fordelt på kalendermåneder (København), så de seneste uger ikke fylder det hele.
+
+    Runde r tager hver måneds r'te bedste historie, og inden for en runde går de bedst rangerede først.
+    Resultatet står i samme rækkefølge som ranked.
+    """
+    pos = {d.id: i for i, d in enumerate(ranked)}
+    months: dict[tuple[int, int], list[DisplayItem]] = {}
+    for d in ranked:
+        t = to_cph(item_time(d))
+        months.setdefault((t.year, t.month), []).append(d)
+    rounds: list[list[DisplayItem]] = []
+    for stories in months.values():
+        for r, d in enumerate(stories):
+            if r == len(rounds):
+                rounds.append([])
+            rounds[r].append(d)
+    picked = [d for rnd in rounds for d in sorted(rnd, key=lambda d: pos[d.id])][:limit]
+    return sorted(picked, key=lambda d: pos[d.id])
+
+
+def year_highlights(approved: list[DisplayItem], start: datetime) -> list[tuple[TimelineEvent, list[DisplayItem]]]:
+    """Tidslinjens begivenheder i vinduet (§7.3) i datoorden med de godkendte indslag, de peger på.
+
+    En begivenhed uden godkendte indslag i vinduet (fx fordi kilden ikke længere er aktiv) springes over.
+    """
+    from affaldsfeed.timeline import load_events  # timeline importerer overview
+
+    by_id = {d.id: d for d in approved}
+    first = to_cph(start).date()
+    out = []
+    for ev in sorted(load_events().values(), key=lambda e: (e.date, e.id)):
+        refs = [by_id[r.id] for r in ev.items if r.id in by_id]
+        if ev.date >= first and refs:
+            out.append((ev, refs))
+    return out
+
+
 def build_overview_input(period: str, now: datetime, data: Data) -> dict[str, Any]:
     start, end = window_for(period, now)
     info = data.info
@@ -185,14 +232,18 @@ def build_overview_input(period: str, now: datetime, data: Data) -> dict[str, An
     else:
         heads = sort_newest_first([g[0] for g in groups if g])
         heads.sort(key=lambda d: (-size.get(d.id, 1), CATEGORY_RANK.get(cat_map.get(d.source, ""), 9)))
-        listed = heads[: MAX_LISTED[period]]
+        listed = spread_by_month(heads, MAX_LISTED[period]) if period == "aar" else heads[: MAX_LISTED[period]]
 
     lower = lower_overviews(period, start, end)
+    # Året får også højdepunkterne, så måneder uden arkiveret månedsoverblik er dækket af årets vigtigste begivenheder
+    highlights = year_highlights(approved, start) if period == "aar" else []
     approved_ids = {d.id for d in approved}
     allowed = {d.id for d in listed}
     for ov in lower:
         for b in ov.bullets:
             allowed.update(x for x in b.item_ids if x in approved_ids)
+    for _, refs in highlights:
+        allowed.update(d.id for d in refs)
 
     data_start = _data_start(data)
     since = to_cph(data_start).date() if data_start and data_start > start else None
@@ -227,6 +278,11 @@ def build_overview_input(period: str, now: datetime, data: Data) -> dict[str, An
         },
         "items": [entry(d) for d in listed],
         "lower_overviews": [ov.model_dump(mode="json") for ov in lower],
+        "timeline": [
+            {"date": ev.date.isoformat(), "level": ev.level, "title": ev.title, "summary": ev.summary,
+             "items": [entry(d) for d in refs]}
+            for ev, refs in highlights
+        ],
         "allowed_item_ids": sorted(allowed),
         "based_on": based_on,
     }
@@ -266,6 +322,12 @@ def validate_overview(period: str, ov: Overview, data: Data, now: datetime) -> l
         msgs.append(f"window.end {iso(w_end)} ligger i fremtiden")
     if ensure_utc(ov.generated) > now + FUTURE_SLACK:
         msgs.append(f"generated {iso(ov.generated)} ligger i fremtiden")
+    # Rækker data nu længere tilbage end da overblikket blev skrevet (fx efter en bagudindsamling), er det forældet
+    data_start = _data_start(data)
+    exp_since = to_cph(data_start).date() if data_start and data_start > w_start else None
+    if ov.since is not None and (exp_since is None or ov.since > exp_since):
+        msgs.append(f"since er {ov.since}, men data begynder nu {exp_since or 'før vinduet'}. "
+                    "Overblikket er skrevet ud fra færre data og skal skrives forfra")
 
     approved = approved_items(data, now, w_start, w_end)
     approved_ids = {d.id for d in approved}

@@ -362,7 +362,6 @@ svg.i { width: 16px; height: 16px; flex: none; }
 
 .ov-body .seg-tabs { margin-top: 8px; }   /* fanerne på egen linje lige under første linje */
 .ov-panel:focus-visible { outline-offset: 4px; border-radius: 4px; }
-.ov-meta { margin-top: 12px; color: var(--muted); font-size: var(--t-xs); line-height: var(--lh-xs); }
 .ov-headline { margin-top: 4px; font-size: var(--t-l); line-height: var(--lh-l); font-weight: 600; }
 .ov-empty { margin-top: 12px; color: var(--muted); }
 .ov-bullets { margin-top: 12px; padding-left: 1.25rem; display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }

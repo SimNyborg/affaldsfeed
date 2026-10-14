@@ -64,9 +64,9 @@ Overblikket har fire perioder, og alle er rullende vinduer i dansk tid.
 | I dag (`dag`) | kalenderdagen indtil nu | i hver kørsel med nye godkendte indslag | dagens godkendte indslag |
 | Ugen (`uge`) | seneste 7 døgn | kl. 07.25 og 14.25 | ugens indslag samlet i historier |
 | Måneden (`maaned`) | seneste 30 døgn | dagligt kl. 07.25 | arkiverede ugeoverblik og de mest dækkede historier |
-| Året (`aar`) | seneste 365 døgn | mandag kl. 07.25 | arkiverede månedsoverblik og årets største historier |
+| Året (`aar`) | seneste 365 døgn | mandag kl. 07.25 | arkiverede månedsoverblik, højdepunkterne og årets største historier fordelt på månederne |
 
-Inputtet er hierarkisk. Ugen bygger på historier frem for enkelte artikler, og måneden og året bygger på de overblik, der allerede er skrevet for de mindre perioder, plus højst 40 historier. Derfor vokser token-forbruget ikke, når der kommer mere data. Rækker data ikke hele vinduet tilbage, får overblikket feltet `since`, og siden skriver fx "Året (siden 7. oktober 2026)".
+Inputtet er hierarkisk. Ugen bygger på historier frem for enkelte artikler, og måneden og året bygger på de overblik, der allerede er skrevet for de mindre perioder, plus højst 40 historier. Derfor vokser token-forbruget ikke, når der kommer mere data. Året får desuden højdepunkterne fra tidslinjen, og dets 40 historier fordeles på månederne. Månedsoverblikkene findes først fra oktober 2026, mens data går tilbage til januar, så uden det ville de seneste uger fylde hele året. Rækker data ikke hele vinduet tilbage, får overblikket feltet `since`. Siden viser den ikke, men rækker data senere længere tilbage, afviser valideringen overblikket, og routinen skriver det forfra.
 
 Præcisionsreglerne står i `routine/REDAKTOER.md`:
 - Claude skriver kun ud fra godkendte indslag i perioden og bruger ingen viden udefra.

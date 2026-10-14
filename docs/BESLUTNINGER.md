@@ -280,3 +280,11 @@ Brugeren ville ikke have, at man kan se siden med kilderne. `kilder.html` og den
 ## 2026-10-14: Højdepunkterne for januar til september skrevet på én gang
 
 Brugeren ville have højdepunkter for hele 2026 med det samme og ikke vente på, at routinen fyldte månederne bagud over det næste døgn. Udviklingssessionen gennemgik derfor de 506 godkendte historier fra januar til oktober efter routinens regler (REDAKTOER.md, trin 7) og skrev 21 nye begivenheder, så Højdepunkter nu har 24. Juli har ingen, og oktober havde allerede sine. Linjerne har `by: claude-udvikling`, alle ti måneder er markeret som fyldt i `data/timeline/opfyldning.json`, og `validate-timeline` er grøn. Det er en undtagelse fra reglen om, at kun routinen skriver i `data/timeline/`, ligesom resuméerne til de ældre indslag. Fremover skriver routinen nye højdepunkter som før.
+
+## 2026-10-14: Årsoverblikket uden startdato og med hele året
+
+Brugeren ville ikke have linjen "Siden 10. august 2026" over årsoverblikket. Linjen er fjernet, og siden viser ingen startdato i overblikket. Linjen afslørede også, at årsoverblikket var forældet: det var skrevet 8. oktober, før bagudindsamlingen, og byggede på data fra 10. august. Feedet går nu tilbage til 1. januar.
+
+- **Forældede overblik skrives forfra:** `validate-overview` afviser nu et overblik, hvis `since` er senere end den dato, data begynder i dag. Routinen skriver ugyldige overblik forfra i sin næste kørsel, så årsoverblikket bliver skrevet om kl. 14.25 den 14. oktober.
+- **Året fordeles på månederne:** Årets 40 historier var de største og bedst rangerede, og blandt lige gode vandt de nyeste. Derfor var 35 af de 40 fra september og oktober. Nu tager udvælgelsen hver måneds bedste historie på skift, så hver måned får cirka lige mange pladser.
+- **Året får højdepunkterne med:** Inden for en måned rangerer Folketingets spørgsmål højt, fordi de er fra en myndighed. Uden mere hjælp ville tre af augusts fire pladser gå til folketingsspørgsmål, mens emballageforordningen, deponeringstallene og selektiv nedrivning manglede. Højdepunkterne er årets vigtigste begivenheder, så årets input får dem nu med i feltet `timeline` sammen med de indslag, de bygger på. Månedsoverblikkene findes kun fra oktober og dækker ikke resten af året.

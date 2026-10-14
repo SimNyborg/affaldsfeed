@@ -149,7 +149,7 @@ def test_input_dag(repo, capsys):
     approve(rejected, relevant=False)
 
     out = run_input("dag", capsys)
-    assert list(out) == ["period", "now", "window", "since", "rules", "items", "lower_overviews",
+    assert list(out) == ["period", "now", "window", "since", "rules", "items", "lower_overviews", "timeline",
                          "allowed_item_ids", "based_on"]
     assert out["window"] == {"start": "2026-10-06T22:00:00Z", "end": "2026-10-07T10:00:00Z"}
     assert out["rules"] == {"headline_max_words": 25, "bullet_max_words": 30, "bullets_min": 1, "bullets_max": 5}
@@ -160,6 +160,7 @@ def test_input_dag(repo, capsys):
     assert out["allowed_item_ids"] == sorted([today.id, en.id])
     assert out["based_on"] == 2
     assert out["lower_overviews"] == []
+    assert out["timeline"] == []  # kun året får tidslinjen
     assert out["since"] is None
 
 
@@ -201,6 +202,41 @@ def test_input_aar_newest_month_overview(repo, capsys):
         (arch / f"maaned-{day}.json").write_text(json.dumps(m), encoding="utf-8")
     out = run_input("aar", capsys)
     assert [o["headline"] for o in out["lower_overviews"]] == ["Kort sagt: 2026-09-28", "Kort sagt: 2026-10-06"]
+
+
+def test_input_aar_spreads_months_and_adds_timeline(repo, capsys, monkeypatch):
+    """Året fordeler pladserne på månederne og får tidslinjens begivenheder med deres indslag (§7.2)."""
+    monkeypatch.setattr(overview, "MAX_LISTED", {**overview.MAX_LISTED, "aar": 4})
+    titles = ["Regeringen fremlægger ny plan for affald", "Kommunen åbner en ny genbrugsplads",
+              "Skraldebilerne kører nu på strøm", "Rapport viser mere plast i havet"]
+    octo = [cand(f"o{i}", hours_ago=i + 1, title=t) for i, t in enumerate(titles)]
+    june = cand("juni", hours_ago=24 * 100, title="Ny bekendtgørelse om farligt affald")  # 29. juni
+    highlight = cand("hoejdepunkt", hours_ago=24 * 101, title="Folketinget vedtager lov om producentansvar")
+    rejected = cand("afvist", hours_ago=24 * 102, title="Brand på et lager i Vejle")
+    march = cand("marts", hours_ago=24 * 200, title="Forbrændingsanlæg lukker en ovn")  # 21. marts
+    store.save_candidates([*octo, june, highlight, rejected, march])
+    approve(*octo, june, highlight, march)
+    approve(rejected, relevant=False)
+
+    def event(eid: str, c: Candidate) -> dict:
+        ref = {"id": c.id, "title": c.title, "url": c.url, "source": c.source, "source_name": "Altinget"}
+        return {"id": eid, "date": eid[:10], "level": "milepael", "title": "Lov om producentansvar vedtaget",
+                "summary": "Folketinget vedtager loven.", "items": [ref], "updated": "2026-10-07T09:55:00Z"}
+
+    paths.TIMELINE_DIR.mkdir(parents=True)
+    lines = [event("2026-06-28-producentansvar", highlight), event("2026-06-27-brand", rejected)]
+    (paths.TIMELINE_DIR / "2026-06.jsonl").write_text("".join(json.dumps(x) + "\n" for x in lines), encoding="utf-8")
+
+    out = run_input("aar", capsys)
+    # Uden fordeling ville oktober tage alle fire pladser. Rækkefølgen er stadig størrelse, rang og nyeste først.
+    assert [i["id"] for i in out["items"]] == [octo[0].id, octo[1].id, june.id, march.id]
+    # Begivenheden om et afvist indslag springes over
+    assert [(e["date"], e["level"], [i["id"] for i in e["items"]]) for e in out["timeline"]] == [
+        ("2026-06-28", "milepael", [highlight.id])
+    ]
+    assert out["timeline"][0]["items"][0].keys() == out["items"][0].keys()
+    assert highlight.id in out["allowed_item_ids"] and rejected.id not in out["allowed_item_ids"]
+    assert run_input("maaned", capsys)["timeline"] == []
 
 
 # ── validate-overview ───────────────────────────────────────
@@ -252,6 +288,24 @@ def test_validate_errors(repo, capsys, change, message):
     assert "data/overview/dag.json: " in out
     assert message in out
     assert not (paths.OVERVIEW_ARCHIVE_DIR / "dag-2026-10-07.json").exists()
+
+
+def test_validate_fails_when_data_now_reach_further_back(repo, capsys):
+    """Et overblik skrevet, før data rakte så langt tilbage (fx før en bagudindsamling), skal skrives forfra."""
+    a, b = cand("a", hours_ago=1), cand("b", hours_ago=24 * 3)  # b: 4. oktober
+    store.save_candidates([a, b])
+    approve(a, b)
+    obj = ov("uge", [a.id, b.id], start="2026-09-30T10:00:00Z", based_on=2)
+    obj["since"] = "2026-10-06"
+    write_overview("uge", obj)
+    assert validate("uge") == 1
+    assert ("data/overview/uge.json: since er 2026-10-06, men data begynder nu 2026-10-04. Overblikket er skrevet "
+            "ud fra færre data og skal skrives forfra") in capsys.readouterr().out
+    for since in ("2026-10-04", None):  # passer med data, eller uden since
+        obj["since"] = since
+        write_overview("uge", obj)
+        assert validate("uge") == 0, since
+        capsys.readouterr()
 
 
 def test_validate_fails_when_source_is_no_longer_active(repo, capsys):
