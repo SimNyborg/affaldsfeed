@@ -125,6 +125,12 @@
     "checked": "2026-10-07T23:35:08Z",
     "error": null
   },
+  "au-byggeri": {
+    "file": null,
+    "src": null,
+    "checked": "2026-10-14T09:59:37Z",
+    "error": "HTTP 404"
+  },
   "avfall-sverige": {
     "file": "avfall-sverige.png",
     "src": "https://www.avfallsverige.se/favicons/favicon-32x32.png",
@@ -377,24 +383,6 @@
     "checked": "2026-10-09T09:34:01Z",
     "error": null
   },
-  "dinavis": {
-    "file": "dinavis.png",
-    "src": "https://dinavis.dk/static/dinavis.dk/favicon/favicon-32x32.png",
-    "checked": "2026-10-08T10:34:51Z",
-    "error": null
-  },
-  "dinavis--djurslandsposten-dk": {
-    "file": "dinavis--djurslandsposten-dk.png",
-    "src": "https://dinavis.dk/static/dinavis.dk/favicon/favicon-32x32.png",
-    "checked": "2026-10-08T10:34:51Z",
-    "error": null
-  },
-  "dinavis--lokalavisen-dk": {
-    "file": "dinavis--lokalavisen-dk.png",
-    "src": "https://dinavis.dk/static/dinavis.dk/favicon/favicon-32x32.png",
-    "checked": "2026-10-08T11:28:26Z",
-    "error": null
-  },
   "ditikast-brande": {
     "file": "ditikast-brande.png",
     "src": "https://ditikast-brande.dk/images/favicons/apple-icon-57x57.png",
@@ -455,28 +443,28 @@
     "checked": "2026-10-08T04:31:35Z",
     "error": null
   },
-  "dr-nyheder": {
-    "file": "dr-nyheder.ico",
-    "src": "https://www.dr.dk/favicon.ico",
-    "checked": "2026-10-08T04:31:35Z",
-    "error": null
-  },
   "dragoer-kommune": {
     "file": null,
     "src": null,
     "checked": "2026-10-09T07:48:56Z",
     "error": "HTTP 404"
   },
-  "dragoernyt": {
-    "file": null,
-    "src": null,
-    "checked": "2026-10-08T10:34:51Z",
-    "error": "HTTP 404"
-  },
   "dtu": {
     "file": "dtu.ico",
     "src": "https://www.dtu.dk/favicon.ico",
     "checked": "2026-10-09T07:48:56Z",
+    "error": null
+  },
+  "dtu-kemiteknik": {
+    "file": "dtu-kemiteknik.ico",
+    "src": "https://www.kt.dtu.dk/favicon.ico",
+    "checked": "2026-10-14T09:59:37Z",
+    "error": null
+  },
+  "dtu-sustain": {
+    "file": "dtu-sustain.ico",
+    "src": "https://sustain.dtu.dk/favicon.ico",
+    "checked": "2026-10-14T09:59:37Z",
     "error": null
   },
   "eea": {
@@ -632,12 +620,6 @@
   "folkebladetlemvig--lemvigfolkeblad-dk": {
     "file": "folkebladetlemvig--lemvigfolkeblad-dk.png",
     "src": "https://folkebladetlemvig.dk/assets/1791279772/kodus/jfm-brands/brands/lemvig/favicons/apple-icon-57x57.png",
-    "checked": "2026-10-08T09:11:01Z",
-    "error": null
-  },
-  "folketidende": {
-    "file": "folketidende.png",
-    "src": "https://www.folketidende.dk/view-resources/dachser2/public/folketidende/favicon-32x32.png",
     "checked": "2026-10-08T09:11:01Z",
     "error": null
   },
@@ -1175,6 +1157,12 @@
     "checked": "2026-10-08T06:01:09Z",
     "error": null
   },
+  "ku-ifro": {
+    "file": "ku-ifro.png",
+    "src": "https://www.ku.dk/_assets/12a46eea25fd08a7277319b85c785b6b/Icons/favicon-96x96.1791801466.png",
+    "checked": "2026-10-14T09:59:37Z",
+    "error": null
+  },
   "kunmedierne-dk": {
     "file": "kunmedierne-dk.png",
     "src": "https://kunmedierne.dk/wp-content/uploads/sites/3/2025/03/cropped-cropped-fav-1-32x32.png",
@@ -1521,18 +1509,6 @@
     "file": "plastindustrien.png",
     "src": "https://plast.dk/wp-content/uploads/2024/11/favicon-32x32-1.png",
     "checked": "2026-10-07T22:34:55Z",
-    "error": null
-  },
-  "politiken": {
-    "file": "politiken.png",
-    "src": "https://politiken.dk/assets/icons/favicons/favicon-16x16.png",
-    "checked": "2026-10-08T07:28:04Z",
-    "error": null
-  },
-  "pro-ing-dk": {
-    "file": "pro-ing-dk.ico",
-    "src": "https://pro.ing.dk/favicon.ico",
-    "checked": "2026-10-08T07:28:04Z",
     "error": null
   },
   "provas": {
@@ -1971,6 +1947,12 @@
     "file": "voreslokalavis.ico",
     "src": "https://www.voreslokalavis.dk/uploads/grafik/favicon.ico",
     "checked": "2026-10-08T13:07:35Z",
+    "error": null
+  },
+  "wastetech": {
+    "file": "wastetech.ico",
+    "src": "https://pro.ing.dk/favicon.ico",
+    "checked": "2026-10-14T09:59:37Z",
     "error": null
   },
   "weekendavisen-dk": {
