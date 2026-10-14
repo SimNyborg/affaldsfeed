@@ -264,3 +264,11 @@ Brugeren spurgte, om universiteternes institutter har nyheder, som de fælles ny
 - **Madspild:** "madspild*" er nu et svagt ord i forfiltret. IFRO's nyhed om madspild i butikker fik 0 point, selv om temaet Mad- og bioaffald nævner madspild. Ordet ramte kun ét afvist indslag i oktober, så det giver næppe mere støj.
 - **CBS' artikler:** CBS' institut for ledelse, samfund og kommunikation (MSC), hvor forskningen i bæredygtighed og cirkulær økonomi hører til, viser CBS' fælles nyheder. Sitemappet rummer også CBS' artikler (forskningsbaserede tekster). De kom med under samme strenge filter som nyhederne.
 - **Ikke med:** Aalborg Universitets institutter, bl.a. DCEA, er relevante, men deres nyhedslister hentes med JavaScript fra et API. De står som kandidater sammen med to institutter, hvis RSS virker, men som ikke har skrevet om affald i flere år.
+
+## 2026-10-14: Højdepunkterne fyldes bagud uden at vente på medier med kun overskrift
+
+Brugeren så kun højdepunkter fra de seneste to måneder. Opfyldningen bagud havde ikke taget en eneste måned, fordi den ventede på bagudindsamlingen hos 16 aviser fra Jysk Fynske Medier. Deres daglige sitemaps hentes et par uger ad gangen, så det ville tage flere dage endnu. Ventetiden var spildt: aviserne vises kun med overskrift, og deres indslag kommer aldrig på tidslinjen.
+
+- **Kun kilder med `ai: true` tæller:** Opfyldningen venter kun på bagudindsamlingen og routinens vurderinger hos de kilder, hvis indslag kan komme på tidslinjen (KONTRAKTER §7.3).
+- **Op til fire måneder pr. kørsel:** Hver måned er 20-70 kB input til routinen. Med én måned pr. kørsel og tre kørsler om dagen ville januar til oktober tage over tre dage. Med fire er de fyldt i løbet af et døgn.
+- **Routinens prompt:** Prompten på claude.ai giver routinen lov til kun at skrive i `data/judgments/` og `data/overview/`, selv om instruksen også beder den skrive tidslinjen. Routinen skrev alligevel tidslinjen 7. og 8. oktober, men modstriden kan få den til at springe trinnet over. Brugeren retter prompten, så den også nævner `data/timeline/`, og tidsplanen fra hver time til kl. 7.25, 9.25 og 14.25, hvor routinen alligevel kun arbejder. En udviklingssession kan ikke ændre en routine, som brugeren har oprettet.

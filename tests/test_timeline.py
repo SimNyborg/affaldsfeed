@@ -455,6 +455,23 @@ def test_fill_waits_for_the_backfill_and_the_routine_and_goes_month_by_month(rep
     assert "2026-10 er ikke en måned i opfyldningen (2026-08 til 2026-09)" in caplog.text
 
 
+def test_fill_does_not_wait_for_title_only_sources(repo, capsys):
+    """Kilder med ai: titel eller false kommer aldrig på tidslinjen, så opfyldningen venter ikke på deres
+    bagudindsamling eller på routinens vurdering af deres indslag (KONTRAKTER §3.4 og §7.3)."""
+    set_fill(repo)
+    sources = repo / "sources.yaml"
+    text = sources.read_text(encoding="utf-8")
+    sources.write_text(text.replace("basis: redaktionelt, checked", "basis: redaktionelt, ai: titel, checked", 1),
+                       encoding="utf-8")
+    found = NOW - timedelta(hours=2)
+    store.save_candidates([cand("aug-overskrift", source="altinget", days_ago=60, first_seen=found)])
+    backfilled("kefm", "dr")  # altinget (kun overskrift) har ingen bagudindsamling endnu
+    out = run_fill(capsys)
+    assert out["fill_month"] == "2026-08" and out["stories"] == []
+    sources.write_text(text, encoding="utf-8")  # med ai: true venter den igen
+    assert run_fill(capsys)["status"] == "venter på bagudindsamlingen hos 1 kilder, fx altinget"
+
+
 def test_fill_input_caps_stories_and_shows_events_around_the_month(repo, capsys):
     set_fill(repo, max_stories=2)
     backfilled("kefm", "altinget", "dr")
