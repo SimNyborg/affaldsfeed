@@ -393,6 +393,11 @@ def publisher_lookup(sources: list[Source], publishers: list[Publisher]) -> dict
     return lookup
 
 
+def _same_owner(a: Source, b: Source) -> bool:
+    """Hører kilderne under samme udgiver: den ene er den andens owner, eller de har samme owner."""
+    return bool((a.owner and a.owner in (b.name, b.owner)) or (b.owner and b.owner == a.name))
+
+
 def cross_check(sources: list[Source], config: Config, today: date | None = None) -> tuple[list[str], list[str]]:
     """Tjek på tværs af filer. Returnerer (fejl, advarsler)."""
     errors: list[str] = []
@@ -414,13 +419,15 @@ def cross_check(sources: list[Source], config: Config, today: date | None = None
                 errors.append(f"sources.yaml: {s.id}: replaces nævner {old}, som {taken[old]} allerede overtager")
             taken.setdefault(old, s.id)
 
-    # Samme vært hos to forskellige aktive afsendere
+    # Samme vært hos to forskellige aktive afsendere. Et institut under sit universitet (owner) må dele vært
+    # med det; søgeresultater og sweep-fund går så til den første i filen.
     owner: dict[str, str] = {}
+    by_id = {s.id: s for s in sources}
     for s in sources:
         if s.status != "aktiv" or s.method == "search":
             continue
         for h in source_hosts(s):
-            if h in owner and owner[h] != s.id:
+            if h in owner and owner[h] != s.id and not _same_owner(s, by_id[owner[h]]):
                 warnings.append(f"sources.yaml: {s.id}: værten {h} bruges også af {owner[h]}")
             owner.setdefault(h, s.id)
     for p in config.publishers:

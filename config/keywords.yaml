@@ -19,7 +19,8 @@ names:       # tæller som stærkt ord i titlen
    "Norrecco", "Marius Pedersen", "Meldgaard"]
 weak:        # 1 point, højst 2 i alt; tæller kun sammen med et andet hit eller når ordet står i titlen
   da: ["cirkulær*", "ressource*", "*emballage*", "plast*", "tekstil*", "biogas*", "co2-fangst",
-       "nedrivning*", "PFAS", "batteri*", "genbrug*", "sortering*", "kompost*", "tømning*", "miljøstation*"]
+       "nedrivning*", "PFAS", "batteri*", "genbrug*", "sortering*", "kompost*", "tømning*", "miljøstation*",
+       "madspild*"]
   en: ["circular*", "packaging", "plastic*", "textile*"]
 veto:        # tjekkes i titlen og vinder altid
   ["atomaffald*", "radioaktiv*", "rumskrot", "nuclear waste", "space debris", "ledig stilling",

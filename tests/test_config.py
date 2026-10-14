@@ -415,6 +415,21 @@ def test_cross_check_warns_on_shared_host(env):
     assert any("testmedie-2: værten testmedie.dk bruges også af testmedie" in w for w in warnings)
 
 
+def test_cross_check_department_may_share_host(env):
+    """Et institut under sit universitet (owner) må dele vært med det og med andre institutter."""
+    sources = load_sources(env.sources)
+    cfg = load_config(env.config)
+    uni = sources[2]
+    dept = uni.model_copy(update={"id": "testmedie-institut", "name": "Testinstitut", "owner": uni.name})
+    dept2 = uni.model_copy(update={"id": "testmedie-institut-2", "name": "Testinstitut 2", "owner": uni.name})
+    errors, warnings = cfgmod.cross_check([*sources, dept, dept2], cfg)
+    assert not errors
+    assert not [w for w in warnings if "bruges også af" in w]
+    other = uni.model_copy(update={"id": "andet-medie", "name": "Andet medie", "owner": "Et andet universitet"})
+    _, warnings = cfgmod.cross_check([*sources, other], cfg)
+    assert any("andet-medie: værten testmedie.dk bruges også af testmedie" in w for w in warnings)
+
+
 def test_cross_check_pending_category(env):
     """En kategori, der afventer, må ikke have aktive kilder eller udgivere (KONTRAKTER §3.3)."""
     sources = load_sources(env.sources)

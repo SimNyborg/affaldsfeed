@@ -5033,14 +5033,17 @@
   homepage: https://www.cbs.dk
   method: sitemap
   feeds: https://www.cbs.dk/sitemap.xml
-  match: "/nyheder/[^/]+$"
+  match: "/(nyheder|artikler)/[^/]+$"
   lang: en
   filter: strict
   replaces: [cbs-dk]
   basis: forskning
   status: aktiv
-  checked: 2026-10-09
-  note: Nyheder fra sitemappet, mest på engelsk. Strengt filter, så kun sider med et affaldsord i adressen hentes.
+  checked: 2026-10-14
+  note: >-
+    Nyheder og artikler (forskningsbaserede tekster, fra 2026-10-14) fra sitemappet, på dansk og engelsk.
+    MSC-instituttets nyheder om bæredygtighed er en del af de fælles nyheder. Strengt filter, så kun sider med
+    et affaldsord i adressen hentes.
 
 - id: itu
   name: IT-Universitetet i København
@@ -5054,6 +5057,132 @@
   status: aktiv
   checked: 2026-10-09
   note: Pressemeddelelser via Ritzau (via.ritzau.dk). Forsiden har ingen nyhedslinks. Udgiver få pressemeddelelser.
+
+# Tilføjet 2026-10-14: institutter med affaldsforskning (docs/KILDELISTE.md, "Universiteternes institutter").
+- id: dtu-sustain
+  name: DTU Sustain
+  aliases: [Institut for Miljø- og Ressourceteknologi]
+  category: forskning
+  homepage: https://sustain.dtu.dk
+  method: html
+  feeds: https://sustain.dtu.dk
+  match: '^https://sustain\.dtu\.dk/nyhedsliste/[^/?#]+\?id='
+  owner: DTU
+  basis: forskning
+  status: aktiv
+  checked: 2026-10-14
+  note: >-
+    Institut for Miljø- og Ressourceteknologi med forskning i affald og restprodukter. Mest vand og miljø.
+    Forsiden viser de fire nyeste nyheder (nyhedslisten hentes med JavaScript). robots.txt beder om 10
+    sekunder mellem kald.
+
+- id: dtu-kemiteknik
+  name: DTU Kemiteknik
+  aliases: [DTU Chemical Engineering]
+  category: forskning
+  homepage: https://www.kt.dtu.dk
+  method: html
+  feeds: https://www.kt.dtu.dk
+  match: '^https://www\.kt\.dtu\.dk/about-us/news/[^/?#]+\?id='
+  filter: strict
+  lang: en
+  owner: DTU
+  basis: forskning
+  status: aktiv
+  checked: 2026-10-14
+  note: >-
+    Forbrænding, pyrolyse og kemisk genanvendelse af plast (CHEC). Nyhederne er på engelsk, og forsiden
+    viser de to nyeste. Strengt filter, så kun nyheder med et affaldsord i titel eller tekst hentes.
+
+- id: ku-ifro
+  name: Københavns Universitet, Fødevare- og Ressourceøkonomi
+  aliases: [IFRO, Institut for Fødevare- og Ressourceøkonomi]
+  category: forskning
+  homepage: https://www.ku.dk/ifro
+  method: html
+  feeds: https://www.ku.dk/ifro/om-instituttet/nyheder
+  match: '^https://www\.ku\.dk/ifro/om-instituttet/nyheder/[^/?#]+$'
+  owner: Københavns Universitet
+  basis: forskning
+  status: aktiv
+  checked: 2026-10-14
+  note: Ressource- og miljøøkonomi, fx madspild og plastpolitik. Nyhedslisten har datoer.
+
+- id: au-byggeri
+  name: Aarhus Universitet, Byggeri og Bygningsdesign
+  aliases: [Institut for Byggeri og Bygningsdesign]
+  category: forskning
+  homepage: https://cae.au.dk
+  method: rss
+  feeds: https://cae.au.dk/aktuelt/nyheder/element/723123/rss.xml
+  owner: Aarhus Universitet
+  basis: forskning
+  status: aktiv
+  checked: 2026-10-14
+  note: Byggematerialer og genbrug i byggeriet, fx genanvendt træ. Instituttets RSS-feed.
+
+- id: au-miljoevidenskab
+  name: Aarhus Universitet, Miljøvidenskab
+  category: forskning
+  homepage: https://envs.au.dk
+  method: rss
+  feeds: https://envs.au.dk/om-instituttet-1/aktuelt/nyheder/element/722119/rss.xml
+  owner: Aarhus Universitet
+  basis: forskning
+  status: kandidat
+  checked: 2026-10-14
+  note: RSS virker, men de ti seneste nyheder (oktober 2024 til september 2026) handler om luft, is og miljøfarlige stoffer, ikke affald.
+
+- id: ku-plen
+  name: Københavns Universitet, Plante- og Miljøvidenskab
+  category: forskning
+  homepage: https://plen.ku.dk
+  method: rss
+  feeds: https://plen.ku.dk/nyheder/?get_rss=1
+  owner: Københavns Universitet
+  basis: forskning
+  status: kandidat
+  checked: 2026-10-14
+  note: RSS virker, men ingen af nyhederne fra 2022 til 2026 handler om affald (mest drikkevand, spildevand og planter).
+
+- id: aau-plan
+  name: Aalborg Universitet, Bæredygtighed og Planlægning
+  aliases: [DCEA]
+  category: forskning
+  homepage: https://www.plan.aau.dk
+  method: html
+  feeds: https://www.plan.aau.dk/nyheder
+  owner: Aalborg Universitet
+  basis: forskning
+  status: kandidat
+  checked: 2026-10-14
+  note: >-
+    Relevant (DCEA, livscyklusvurdering af affald og cirkulær økonomi), men nyhedslisten hentes med JavaScript
+    fra et API, og sitemappet har ingen nyheder. AAU's pressemeddelelser kommer via Ritzau (aau).
+
+- id: aau-build
+  name: Aalborg Universitet, Byggeri, By og Miljø
+  category: forskning
+  homepage: https://www.build.aau.dk
+  method: html
+  feeds: https://www.build.aau.dk/nyheder
+  owner: Aalborg Universitet
+  basis: forskning
+  status: kandidat
+  checked: 2026-10-14
+  note: Byggeaffald og cirkulært byggeri, men nyhedslisten hentes med JavaScript som hos aau-plan.
+
+- id: sdu-igt
+  name: Syddansk Universitet, Institut for Grøn Teknologi
+  category: forskning
+  homepage: https://www.sdu.dk/da/om-sdu/institutter-centre/igt-green-technology
+  method: html
+  feeds: https://www.sdu.dk/da/om-sdu/institutter-centre/igt-green-technology/nyt-fra-igt
+  owner: Syddansk Universitet
+  basis: forskning
+  status: fravalgt
+  checked: 2026-10-14
+  note: Siden "Nyt fra IGT" er ikke opdateret siden november 2022. Instituttets nyheder står på SDU's fælles nyhedsliste (sdu).
 
 # ── EU og Norden ──────────────────────────────────────────────
 - id: dg-env
