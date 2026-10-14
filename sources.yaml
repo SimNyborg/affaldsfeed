@@ -3139,10 +3139,12 @@
   filter: strict
   places: [k:ishoej]
   basis: offentlig
-  status: aktiv
-  checked: 2026-10-09
+  status: kandidat
+  checked: 2026-10-14
   note: >-
-    Kommunens nyheder fra sitemappet. Strengt filter: kun sider med et affaldsord i adressen hentes.
+    Kommunens nyheder fra sitemappet med strengt filter. Siden 9. oktober 2026 står nyhedssiderne bag Cloudflares
+    udfordring ("Just a moment...", HTTP 403), mens sitemappet stadig svarer. Feedet omgår aldrig Cloudflare, så
+    kilden er sat på pause. Prøv igen senere.
 
 - id: lyngby-taarbaek-kommune
   name: Lyngby-Taarbæk Kommune

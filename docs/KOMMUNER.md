@@ -4,9 +4,9 @@ Oversigten viser, hvordan feedet henter nyhederne fra de 98 kommuners egne hjemm
 
 ## Sådan hentes kommunerne
 
-Feedet henter 89 af de 98 kommuner. Kommunerne skriver mest om andet end affald, så alle har strengt filter, og hver kilde har kommunen som fast sted.
+Feedet henter 88 af de 98 kommuner. Kommunerne skriver mest om andet end affald, så alle har strengt filter, og hver kilde har kommunen som fast sted.
 
-- **Sitemap (81 kommuner).** Sitemappet viser kommunens sider med datoen for seneste ændring. Et mønster pr. kommune udvælger nyhederne, fx `/nyheder/2026/okt/...`. Indsamleren henter kun en nyhed, når adressen har et affaldsord, så kommunernes mange andre nyheder koster ingen kald.
+- **Sitemap (80 kommuner).** Sitemappet viser kommunens sider med datoen for seneste ændring. Et mønster pr. kommune udvælger nyhederne, fx `/nyheder/2026/okt/...`. Indsamleren henter kun en nyhed, når adressen har et affaldsord, så kommunernes mange andre nyheder koster ingen kald.
 - **Nyhedsliste (5 kommuner).** Hillerød, Holstebro, Ikast-Brande, Ringkøbing-Skjern og Skanderborg. Indsamleren læser listen og henter kun de nyheder, hvor linkteksten eller adressen har et affaldsord.
 - **RSS (3 kommuner).** Frederikssund og Varde har et nyhedsfeed. Esbjerg Kommunes hjemmeside svarer 403 til feedets UA, så kommunens pressemeddelelser hentes via Ritzau (via.ritzau.dk).
 
@@ -14,9 +14,10 @@ Sitemaps og nyhedslister hentes hver 6. time og RSS hver time. En nyhed med en a
 
 ## Kommuner, der ikke hentes
 
-Ni kommuner står som kandidater i `sources.yaml` med en note og kan prøves igen senere.
+Ti kommuner står som kandidater i `sources.yaml` med en note og kan prøves igen senere.
 
 - **Gentofte, Herlev og Slagelse** svarer 403 til feedets UA. Det er botbeskyttelse, og den omgås ikke. Ingen af dem har et nyhedsrum hos Ritzau.
+- **Ishøj** har siden 9. oktober haft Cloudflares udfordring foran nyhedssiderne. Den omgås heller ikke. Sitemappet svarer stadig, så kilden kan sættes i gang igen uden andre ændringer, hvis udfordringen forsvinder.
 - **Ringsted og Morsø** svarer ikke fra GitHub Actions, hvor forbindelsen timer ud.
 - **Allerød, Ballerup og Sønderborg** henter deres nyhedsliste med JavaScript, og deres sitemap eller RSS har ikke nyhederne. Sønderborgs affaldsnyheder kommer fra SONFOR, der hentes direkte.
 - **Rebild** har hverken en nyhedsliste eller nyheder i sitemappet, så vidt kortlægningen kunne se.
@@ -53,7 +54,7 @@ Alle otte universiteter hentes nu direkte. DTU, Aalborg Universitet og IT-Univer
 | Hvidovre | Sitemap |  |
 | Høje-Taastrup | Sitemap |  |
 | Hørsholm | Sitemap |  |
-| Ishøj | Sitemap |  |
+| Ishøj | Hentes ikke | Cloudflares udfordring foran nyhedssiderne siden 9. oktober 2026 |
 | København | Sitemap | Sitemap-indekset peger på localhost, så under-sitemaps hentes direkte |
 | Lyngby-Taarbæk | Sitemap |  |
 | Rudersdal | Sitemap |  |
