@@ -276,3 +276,7 @@ Brugeren så kun højdepunkter fra de seneste to måneder. Opfyldningen bagud ha
 ## 2026-10-14: Siden Om kilderne er fjernet
 
 Brugeren ville ikke have, at man kan se siden med kilderne. `kilder.html` og dens kode og styling er fjernet, i-dialogen henviser ikke længere til den, og issue-skabelonens link til den er væk. Kilderne står stadig i menuen, fordi man filtrerer på dem, og medier, der afventer tilladelse, står stadig låst nederst i deres type. Kildernes sundhed kan følges i `data/status.json`, som eksporten stadig skriver, og i `data/state/sources.json`.
+
+## 2026-10-14: Højdepunkterne for januar til september skrevet på én gang
+
+Brugeren ville have højdepunkter for hele 2026 med det samme og ikke vente på, at routinen fyldte månederne bagud over det næste døgn. Udviklingssessionen gennemgik derfor de 506 godkendte historier fra januar til oktober efter routinens regler (REDAKTOER.md, trin 7) og skrev 21 nye begivenheder, så Højdepunkter nu har 24. Juli har ingen, og oktober havde allerede sine. Linjerne har `by: claude-udvikling`, alle ti måneder er markeret som fyldt i `data/timeline/opfyldning.json`, og `validate-timeline` er grøn. Det er en undtagelse fra reglen om, at kun routinen skriver i `data/timeline/`, ligesom resuméerne til de ældre indslag. Fremover skriver routinen nye højdepunkter som før.
