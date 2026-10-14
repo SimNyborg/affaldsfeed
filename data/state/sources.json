@@ -145,7 +145,7 @@
   },
   "amagerliv": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T10:10:48Z",
+    "last_attempt": "2026-10-14T10:56:02Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -153,11 +153,11 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 18
+    "backfill_runs": 19
   },
   "amtsavisen": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T10:10:48Z",
+    "last_attempt": "2026-10-14T10:56:02Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 4,
@@ -165,7 +165,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 15
+    "backfill_runs": 16
   },
   "arc": {
     "last_ok": "2026-10-14",
@@ -556,7 +556,7 @@
     "last_attempt": "2026-10-14T05:29:54Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 40,
+    "items_30d": 39,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
@@ -1309,8 +1309,8 @@
   },
   "fyens": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T10:10:48Z",
-    "fails": 1,
+    "last_attempt": "2026-10-14T10:56:02Z",
+    "fails": 2,
     "last_error": "https://fyens.dk/sitemap/2026-10-14: HTTP 503; springes over i denne kørsel; https://fyens.dk/sitemap/2026-10-13: springes over: HTTP 503; https://fyens.dk/sitemap/2026-10-12: springes over: HTTP 503; https://fyens.dk/sitemap/2026-09-16: springes over: HTTP 503; https://fyens.dk/sitemap/2026-09-15: ",
     "items_30d": 12,
     "first_run_done": false,
@@ -1549,7 +1549,7 @@
   },
   "helsingordagblad": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T10:10:48Z",
+    "last_attempt": "2026-10-14T10:56:02Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
@@ -1557,7 +1557,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 14
+    "backfill_runs": 15
   },
   "herning-kommune": {
     "last_ok": "2026-10-14",
@@ -1729,7 +1729,7 @@
   },
   "hsfo": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T10:10:48Z",
+    "last_attempt": "2026-10-14T10:56:02Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
@@ -1737,7 +1737,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 14
+    "backfill_runs": 15
   },
   "htk-forsyning": {
     "last_ok": "2026-10-14",
@@ -1873,8 +1873,8 @@
   },
   "jv": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T10:10:48Z",
-    "fails": 1,
+    "last_attempt": "2026-10-14T10:56:02Z",
+    "fails": 2,
     "last_error": "https://jv.dk/sitemap/2026-10-14: HTTP 503; springes over i denne kørsel; https://jv.dk/sitemap/2026-10-13: springes over: HTTP 503; https://jv.dk/sitemap/2026-05-04: springes over: HTTP 503; https://jv.dk/sitemap/2026-05-03: springes over: HTTP 503; https://jv.dk/sitemap/2026-05-02: springes over: ",
     "items_30d": 12,
     "first_run_done": true,
@@ -1993,7 +1993,7 @@
   },
   "kobenhavnliv": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T09:59:37Z",
+    "last_attempt": "2026-10-14T10:56:02Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -2001,7 +2001,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 12
+    "backfill_runs": 13
   },
   "koebenhavn-kommune": {
     "last_ok": "2026-10-14",
@@ -2149,7 +2149,7 @@
   },
   "ligeher": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T09:22:57Z",
+    "last_attempt": "2026-10-14T10:56:02Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2257,7 +2257,7 @@
   },
   "midtfynsposten": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T09:59:37Z",
+    "last_attempt": "2026-10-14T10:56:02Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2265,7 +2265,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 12
+    "backfill_runs": 13
   },
   "midtjyllandsavis": {
     "last_ok": "2026-10-14",
@@ -3037,7 +3037,7 @@
   },
   "stiften": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T10:10:48Z",
+    "last_attempt": "2026-10-14T10:56:02Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -3045,7 +3045,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 9
+    "backfill_runs": 10
   },
   "struer-kommune": {
     "last_ok": "2026-10-14",
@@ -3229,7 +3229,19 @@
   },
   "ugeavisen": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T10:10:48Z",
+    "last_attempt": "2026-10-14T10:56:02Z",
+    "fails": 0,
+    "last_error": null,
+    "items_30d": 3,
+    "first_run_done": true,
+    "health": "groen",
+    "since": "2026-10-08",
+    "backfilled_from": null,
+    "backfill_runs": 13
+  },
+  "vafo": {
+    "last_ok": "2026-10-14",
+    "last_attempt": "2026-10-14T10:56:02Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
@@ -3238,18 +3250,6 @@
     "since": "2026-10-08",
     "backfilled_from": null,
     "backfill_runs": 12
-  },
-  "vafo": {
-    "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T10:10:48Z",
-    "fails": 1,
-    "last_error": "https://vafo.dk/sitemap/2026-10-14: HTTP 503; springes over i denne kørsel; https://vafo.dk/sitemap/2026-10-13: springes over: HTTP 503; https://vafo.dk/sitemap/2026-04-24: springes over: HTTP 503; https://vafo.dk/sitemap/2026-04-23: springes over: HTTP 503; https://vafo.dk/sitemap/2026-04-22: sprin",
-    "items_30d": 3,
-    "first_run_done": true,
-    "health": "gul",
-    "since": "2026-10-08",
-    "backfilled_from": null,
-    "backfill_runs": 11
   },
   "vallensbaek-kommune": {
     "last_ok": "2026-10-14",
@@ -3457,7 +3457,7 @@
   },
   "wastetech": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T09:59:37Z",
+    "last_attempt": "2026-10-14T10:56:02Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 41,
@@ -3465,7 +3465,7 @@
     "health": "groen",
     "since": "2026-10-14",
     "backfilled_from": null,
-    "backfill_runs": 2
+    "backfill_runs": 3
   },
   "zero-waste-europe": {
     "last_ok": "2026-10-07",
