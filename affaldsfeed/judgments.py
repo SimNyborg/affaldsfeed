@@ -16,18 +16,21 @@ from zoneinfo import ZoneInfo
 from pydantic import ValidationError
 
 from affaldsfeed import paths, store
-from affaldsfeed.config import Config, load_config, load_sources
+from affaldsfeed.config import Config, load_config, load_sources, publisher_lookup, source_hosts
 from affaldsfeed.display import SourceInfo, item_time, known_sources, sort_newest_first
 from affaldsfeed.models import (
     Candidate,
     Heartbeat,
     Judgment,
+    Publisher,
     RoutineSettings,
     Source,
     Summary,
     SummarySettings,
+    claude_judges,
+    full_text,
 )
-from affaldsfeed.normalize import item_id
+from affaldsfeed.normalize import host_of, item_id
 from affaldsfeed.summaries import copy_problem, load_summaries, rewrite_queue, summarized_ids
 from affaldsfeed.timeutil import ensure_utc, iso, now_utc, to_cph
 
@@ -180,10 +183,32 @@ def pending_candidates(
         for c in candidates
         if c.id not in judgments
         and c.source in info
-        and info[c.source].ai
+        and claude_judges(info[c.source].ai)
         and ensure_utc(c.first_seen) >= cutoff
     ]
     return sort_newest_first(out)
+
+
+def pending_entry(c: Candidate, src: SourceInfo, known_places: set[str]) -> dict[str, Any]:
+    """Et indslag i pending. Fra kilder med kun overskrift (ai: titel) kun titlen og title_only (§3)."""
+    text = full_text(src.ai)
+    entry: dict[str, Any] = {
+        "id": c.id,
+        "url": c.url,
+        "title": c.title,
+        "teaser": c.teaser if text else "",
+        "source_name": src.name,
+        "category": src.category,
+        "lang": c.lang,
+        "published": iso(c.published),
+        "rule_topics": list(c.topics),
+        "rule_genre": c.genre,
+        "rule_places": [p for p in c.places if p in known_places],
+        "prefilter": {"decision": c.why.decision, "score": c.why.score, "hits": list(c.why.hits)},
+    }
+    if not text:
+        entry["title_only"] = True
+    return entry
 
 
 def build_pending(
@@ -242,23 +267,7 @@ def build_pending(
             "regioner": [{"id": r.id, "navn": r.navn} for r in config.geo.regioner],
             "kommuner": [{"id": m.id, "navn": m.navn} for m in config.geo.kommuner],
         },
-        "pending": [
-            {
-                "id": c.id,
-                "url": c.url,
-                "title": c.title,
-                "teaser": c.teaser,
-                "source_name": info[c.source].name,
-                "category": info[c.source].category,
-                "lang": c.lang,
-                "published": iso(c.published),
-                "rule_topics": list(c.topics),
-                "rule_genre": c.genre,
-                "rule_places": [p for p in c.places if p in known_places],
-                "prefilter": {"decision": c.why.decision, "score": c.why.score, "hits": list(c.why.hits)},
-            }
-            for c in pending
-        ],
+        "pending": [pending_entry(c, info[c.source], known_places) for c in pending],
         "recent_approved": recent,
         "rewrite": rewrite,
         "rewrite_total": rewrite_total,
@@ -392,6 +401,7 @@ def _check(
 ) -> list[str]:
     msgs: list[str] = []
     source_teaser = ""
+    src: SourceInfo | None = None
     if j.new_item is not None:
         source_teaser = j.new_item.teaser
         expected = item_id(j.new_item.url)
@@ -403,6 +413,8 @@ def _check(
                 f"new_item.source '{j.new_item.source}' er ukendt (skal være aktiv i sources.yaml "
                 "eller stå i config/medier.yaml)"
             )
+        elif not full_text(src.ai):
+            msgs.append(f"sweep-fund fra {src.name} er ikke tilladt: mediet vises kun med overskrift")
         if not j.relevant:
             msgs.append("sweep-fund (new_item) skal have relevant=true")
     else:
@@ -411,9 +423,11 @@ def _check(
             msgs.append(f"id '{j.id}' findes ikke blandt kandidaterne (og new_item mangler)")
         else:
             source_teaser = cand.teaser
+            src = info.get(cand.source)
     if j.summary_da is not None:
-        problem = copy_problem(j.summary_da, source_teaser, summary_cfg)
-        if problem:
+        if src is not None and not full_text(src.ai):
+            msgs.append(f"summary_da skal udelades: {src.name} vises kun med overskrift (title_only)")
+        elif problem := copy_problem(j.summary_da, source_teaser, summary_cfg):
             msgs.append(problem)
     if j.story_hint is not None:
         if j.story_hint == j.id:
@@ -454,6 +468,30 @@ def main_validate(args: argparse.Namespace) -> int:
         print(f"validate-judgments: {len(errors)} fejl i {count} linjer ({len(files)} filer){advarsler}")
         return 1
     print(f"validate-judgments: OK, {count} linjer i {len(files)} filer{advarsler}")
+    return 0
+
+
+# ── sweep-check (§7) ────────────────────────────────────────
+
+
+def sweep_check(url: str, sources: list[Source], publishers: list[Publisher]) -> tuple[str, str, str]:
+    """(id, afsender-id eller UKENDT, regel) for et sweep-fund. Regel: ok, kun-overskrift eller afventer."""
+    parts = host_of(url).split(".")
+    lookup = publisher_lookup(sources, publishers)
+    waiting = {h: s.id for s in sources if s.status == "afventer" for h in source_hosts(s)}
+    ai = {p.id: p.ai for p in publishers} | {s.id: s.ai for s in sources}
+    for h in (".".join(parts[i:]) for i in range(len(parts) - 1)):
+        if h in lookup:
+            sid = lookup[h]
+            return item_id(url), sid, "ok" if full_text(ai.get(sid, True)) else "kun-overskrift"
+        if h in waiting:
+            return item_id(url), waiting[h], "afventer"
+    return item_id(url), "UKENDT", "ok"
+
+
+def main_sweep_check(args: argparse.Namespace) -> int:
+    config = load_config(paths.CONFIG_DIR)
+    print(" ".join(sweep_check(args.url, load_sources(paths.SOURCES_FILE), config.publishers)))
     return 0
 
 

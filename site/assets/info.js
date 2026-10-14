@@ -56,11 +56,13 @@ function build(btn) {
       el('p', null, 'Affaldsfeed samler nyheder om affaldsområdet i Danmark fra kommuner, affaldsselskaber, '
         + 'myndigheder, medier, organisationer og forskning. Alle overskrifter linker til den oprindelige artikel, '
         + 'og feedet omgår aldrig betalingsmure. '
-        + 'Under ', link('kilder.html', 'Om kilderne'), ' kan du se, hvilke kilder feedet bruger.'),
+        + 'Under ', link('kilder.html', 'Om kilderne'), ' kan du se, hvilke kilder feedet bruger. Medier, hvis regler '
+        + 'ikke tillader et feed som dette, står som "Afventer" i menuen og hentes ikke, før de giver lov.'),
       el('h3', null, 'Udvalgt af AI'),
       el('p', null, 'En AI-model vurderer, hvilke nyheder der er relevante for kommunernes arbejde med affald. '
         + 'Den skriver også de korte resuméer under overskrifterne med egne ord, nyhedsoverblikket og '
-        + 'højdepunkterne. Modellen ser kun titlen og kildens egen korte beskrivelse. Teksterne kan indeholde '
+        + 'højdepunkterne. Modellen ser kun titlen og kildens egen korte beskrivelse. Har et medie forbehold mod '
+        + 'AI, ser modellen kun overskriften, og nyheden vises uden resumé. Teksterne kan indeholde '
         + 'fejl, så tjek altid den oprindelige artikel.'),
       el('h3', null, 'Opdatering'),
       el('p', null, 'Nyhederne hentes flere gange i døgnet og vurderes om morgenen, om formiddagen og om '

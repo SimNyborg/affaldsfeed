@@ -7,9 +7,11 @@ Oversigten viser, hvilke lokale og regionale medier der dækker hver af de 98 ko
 Feedet henter et lokalmedie på en af to måder.
 
 - **Direkte.** Mediet er en kilde i `sources.yaml` og hentes via RSS, sitemap eller forsiden med strengt filter. Artikler med et tydeligt affaldsord i titlen eller adressen kommer med.
-- **Kun via søgning.** Mediet står i `config/medier.yaml` og kommer kun med, når nyhedssøgningen finder artiklen. Søgningen giver omkring 25 resultater pr. runde for hele landet, så de fleste lokale artikler bliver ikke fundet.
+- **Kun via søgning.** Mediet står i `config/medier.yaml` og kom kun med, når nyhedssøgningen fandt artiklen. Søgningen er slået fra fra 14. oktober 2026, fordi Bings vilkår ikke tillader et feed som dette, så disse medier får ikke nye artikler i feedet.
 
-Et medie, der hverken er kilde eller står i `medier.yaml`, dækkes ikke. Alle kommuner dækkes desuden af en TV 2-region og af DR's regionale redaktioner, som begge hentes direkte.
+Fra 14. oktober 2026 følger feedet også mediernes egne regler (BESLUTNINGER, Medier med forbehold vises kun med overskrift). Aviserne fra Jysk Fynske Medier, Sjællandske Medier, Nordjyske, Mediehusene Midtjylland og flere andre har forbehold mod AI eller tekst- og datamining. De hentes stadig direkte, men vises kun med overskrift og link. Din Avis, Lolland-Falsters Folketidende og Dragør Nyt afventer tilladelse, fordi deres regler forbyder et feed som dette. De hentes ikke og står med "(afventer)" i tabellerne.
+
+Et medie, der hverken er kilde eller står i `medier.yaml`, dækkes ikke. Alle kommuner dækkes desuden af en TV 2-region, som hentes direkte med kun overskrift. DR's regionale redaktioner afventer DR's tilladelse.
 
 ## Huller i kortlægningen
 
@@ -54,7 +56,7 @@ Tabellerne viser de medier, kortlægningen fandt i hver kommune. For de direkte 
 | Ballerup | Ballerup Bladet (sitemap) |  |  |
 | Bornholm | Bornholms Tidende (RSS), Bornholm.nu (forside), Bornholmnyt (RSS) |  |  |
 | Brøndby | | | |
-| Dragør | AmagerLIV (sitemap), Dragør Nyt (sitemap) |  |  |
+| Dragør | AmagerLIV (sitemap), Dragør Nyt (afventer) |  |  |
 | Egedal | Frederiksborg Amts Avis (sitemap), Lokalavisen Egedal (sitemap) |  |  |
 | Fredensborg | Frederiksborg Amts Avis (sitemap), Uge-Nyt Fredensborg (sitemap), TjekFredensborg (RSS) |  |  |
 | Frederiksberg | FrederiksbergLIV (sitemap) |  |  |
@@ -85,12 +87,12 @@ Tabellerne viser de medier, kortlægningen fandt i hver kommune. For de direkte 
 |---|---|---|---|
 | Faxe | Sjællandske (Næstved og Slagelse) (sitemap), Haslev-Faxe Posten (sitemap), Netavisen Sjælland (RSS) |  | Faxe Netavis* |
 | Greve | DAGBLADET (Roskilde, Køge, Ringsted) (sitemap), Sydkysten (inkl. Solrød Avis) (sitemap), Netavisen Sjælland (RSS) |  |  |
-| Guldborgsund | Lolland-Falsters Folketidende (sitemap), Ugeavisen Guldborgsund (sitemap), Saxkjøbing Avis (sitemap), Netavisen Sjælland (RSS), GuldborgsundNyt (RSS) |  | Radio Sydhavsøerne*, Guldborgsund Netavis* |
+| Guldborgsund | Lolland-Falsters Folketidende (afventer), Ugeavisen Guldborgsund (sitemap), Saxkjøbing Avis (sitemap), Netavisen Sjælland (RSS), GuldborgsundNyt (RSS) |  | Radio Sydhavsøerne*, Guldborgsund Netavis* |
 | Holbæk | Nordvestnyt (Holbæk/Odsherred og Kalundborg) (sitemap), Ugeavisen Holbæk (sitemap), Netavisen Sjælland (RSS) |  |  |
 | Kalundborg | Nordvestnyt (Holbæk/Odsherred og Kalundborg) (sitemap), Ugeavisen Kalundborg (sitemap), Netavisen Sjælland (RSS) |  |  |
 | Køge | DAGBLADET (Roskilde, Køge, Ringsted) (sitemap), Ugeavisen Køge (sitemap), Netavisen Sjælland (RSS) |  |  |
 | Lejre | DAGBLADET (Roskilde, Køge, Ringsted) (sitemap), Ugeavisen Lejre (sitemap), Netavisen Sjælland (RSS), LejreMagasinet (MitLejre) (RSS), Hornsherred Lokalavis (RSS) |  |  |
-| Lolland | Lolland-Falsters Folketidende (sitemap), Ugeavisen Lolland (sitemap), Netavisen Sjælland (RSS) |  | Radio Sydhavsøerne*, Lolland Netavis* |
+| Lolland | Lolland-Falsters Folketidende (afventer), Ugeavisen Lolland (sitemap), Netavisen Sjælland (RSS) |  | Radio Sydhavsøerne*, Lolland Netavis* |
 | Næstved | Sjællandske (Næstved og Slagelse) (sitemap), Ugeavisen Næstved (sitemap), Netavisen Sjælland (RSS) |  |  |
 | Odsherred | Nordvestnyt (Holbæk/Odsherred og Kalundborg) (sitemap), Ugeavisen Odsherred (sitemap), Netavisen Sjælland (RSS) |  |  |
 | Ringsted | DAGBLADET (Roskilde, Køge, Ringsted) (sitemap), Lokalbladet Ringsted (sitemap), Netavisen Sjælland (RSS) |  |  |
@@ -132,25 +134,25 @@ Tabellerne viser de medier, kortlægningen fandt i hver kommune. For de direkte 
 
 | Kommune | Hentes direkte | Kun via søgning | Ikke dækket |
 |---|---|---|---|
-| Favrskov | Århus Stiftstidende (sitemap), Randers Amtsavis (sitemap), Din Avis Favrskov (RSS), Byens Nyt (RSS), PingvinNyt (RSS) |  | Favrskov Netavis |
+| Favrskov | Århus Stiftstidende (sitemap), Randers Amtsavis (sitemap), Din Avis Favrskov (afventer), Byens Nyt (RSS), PingvinNyt (RSS) |  | Favrskov Netavis |
 | Hedensted | Horsens Folkeblad (sitemap), Vejle Amts Folkeblad (sitemap), Hedensted/Juelsminde Avis (Hedensted Avis) (sitemap), Tørring Folkeblad* (sitemap), Østjysk Næravis (RSS) |  | Hedensted Netavis* |
 | Herning | Herning Folkeblad (forside) |  |  |
 | Holstebro | Dagbladet Holstebro-Struer (sitemap), Holstebro Onsdag (sitemap), Dit Vinderup (Vinderup-Spøttrup Nyt) (forside) |  |  |
 | Horsens | Horsens Folkeblad (sitemap), Horsens Posten (sitemap), Østjysk Næravis (RSS) |  | Onsdagsavisen (Horsens)* |
 | Ikast-Brande | Herning Folkeblad (forside), Ikast Avis (Dit Ikast-Brande) (forside), Brande Bladet (RSS) |  |  |
 | Lemvig | Folkebladet Lemvig (sitemap), LokalAvisen Lemvig (sitemap) |  |  |
-| Norddjurs | Randers Amtsavis (sitemap), Din Avis Norddjurs (RSS), DjurslandsPosten* (RSS) |  | Radio Djursland* |
+| Norddjurs | Randers Amtsavis (sitemap), Din Avis Norddjurs (afventer), DjurslandsPosten* (afventer) |  | Radio Djursland* |
 | Odder | Odder Avis (sitemap), Østjysk Næravis (RSS) |  |  |
 | Randers | Randers Amtsavis (sitemap), Randers Onsdag (sitemap) | Randers Ugeavis* |  |
 | Ringkøbing-Skjern | Dagbladet Ringkøbing-Skjern (sitemap), Ugeavisen Ringkøbing (sitemap), Ugeposten Skjern* (sitemap) | Skjern-Tarm Ugeblad* |  |
 | Samsø | Samsø Posten (forside) |  |  |
 | Silkeborg | Midtjyllands Avis (forside), Dit Kjellerup (Kjellerup Tidende) (forside) |  |  |
-| Skanderborg | Din Avis Skanderborg* (RSS), Dit Ry (Ry Ugeavis) (forside), Galten Folkeblad (sitemap) |  |  |
+| Skanderborg | Din Avis Skanderborg* (afventer), Dit Ry (Ry Ugeavis) (forside), Galten Folkeblad (sitemap) |  |  |
 | Skive | Skive Folkeblad (forside), Dit Salling (Salling-Mors Avis) (forside), Dit Vinderup (Vinderup-Spøttrup Nyt) (forside) |  |  |
 | Struer | Dagbladet Holstebro-Struer (sitemap), Ugeavisen Struer* (sitemap) |  |  |
-| Syddjurs | Randers Amtsavis (sitemap), Din Avis Syddjurs* (RSS), DjurslandsPosten* (RSS) |  | Syddjurs Netavis*, Radio Djursland*, Radio Rønde, Syddjurs Lokalradio* |
+| Syddjurs | Randers Amtsavis (sitemap), Din Avis Syddjurs* (afventer), DjurslandsPosten* (afventer) |  | Syddjurs Netavis*, Radio Djursland*, Radio Rønde, Syddjurs Lokalradio* |
 | Viborg | Viborg Folkeblad (sitemap), Viborg Nyt (sitemap), Bjerringbro Avis (sitemap), Ugeavisen Møldrup-Aalestrup* (sitemap), Dit Karup (Karup-Frederiks Ugeavis) (forside) |  |  |
-| Aarhus | Århus Stiftstidende (sitemap), Din Avis Aarhus* (RSS), MigogAarhus (RSS) |  |  |
+| Aarhus | Århus Stiftstidende (sitemap), Din Avis Aarhus* (afventer), MigogAarhus (RSS) |  |  |
 
 ### Region Nordjylland
 

@@ -137,6 +137,43 @@ def test_save_rejected_merges_and_prunes(env):
     assert not (paths.REJECTED_DIR / "2026-06.jsonl").exists()  # ældre end 90 dage
 
 
+def test_scrub_stored_removes_what_the_sources_do_not_allow(env):
+    # afventer: alt slettes. Kun overskrift: teasere, afviste titler og adresser tømmes. Andre røres ikke (§4)
+    sep = datetime(2026, 9, 30, 12, 0, tzinfo=UTC)
+    cands = [
+        _cand("aaaaaaaaaaaa", NOW).model_copy(update={"source": "dr", "teaser": "DR's tekst"}),
+        _cand("bbbbbbbbbbbb", NOW).model_copy(update={"source": "jv", "teaser": "JV's tekst"}),
+        _cand("cccccccccccc", sep).model_copy(update={"source": "kommune", "teaser": "Kommunens tekst"}),
+    ]
+    store.save_candidates(cands)
+    store.save_rejected([_rej("dddddddddddd", NOW).model_copy(update={"source": "dr"}),
+                         _rej("eeeeeeeeeeee", NOW).model_copy(update={"source": "jv"}),
+                         _rej("ffffffffffff", NOW)], keep_days=60, now=NOW)
+    counts = store.scrub_stored({"dr"}, {"jv"})
+    assert counts == {"kandidater_slettet": 1, "teasere_tømt": 1, "afviste_slettet": 1, "afviste_tømt": 1}
+    by_id = {c.id: c for c in store.load_candidates()}
+    assert set(by_id) == {"bbbbbbbbbbbb", "cccccccccccc"}
+    assert (by_id["bbbbbbbbbbbb"].teaser, by_id["bbbbbbbbbbbb"].title) == ("", "Affald i kommunen")
+    assert by_id["cccccccccccc"].teaser == "Kommunens tekst"
+    rej = {r.id: r for r in store.load_rejected()}
+    assert set(rej) == {"eeeeeeeeeeee", "ffffffffffff"}
+    assert (rej["eeeeeeeeeeee"].title, rej["eeeeeeeeeeee"].url) == ("", "")
+    assert rej["ffffffffffff"].title == "Fodbold"
+    # Idempotent: anden gang er der intet at gøre, og filerne skrives ikke
+    before = {p.name: p.stat().st_mtime_ns for p in paths.CANDIDATES_DIR.glob("*.jsonl")}
+    assert set(store.scrub_stored({"dr"}, {"jv"}).values()) == {0}
+    assert {p.name: p.stat().st_mtime_ns for p in paths.CANDIDATES_DIR.glob("*.jsonl")} == before
+
+
+def test_scrub_stored_never_rewrites_unreadable_files(env):
+    path = paths.CANDIDATES_DIR / "2026-10.jsonl"
+    path.parent.mkdir(parents=True)
+    text = _newer_line(_cand("aaaaaaaaaaaa", NOW).model_copy(update={"source": "dr"})) + "\n"
+    path.write_text(text, encoding="utf-8")
+    store.scrub_stored({"dr"}, set())
+    assert path.read_text(encoding="utf-8") == text
+
+
 def _newer_line(rec) -> str:
     """En linje skrevet af en nyere version af koden (et felt, denne version ikke kender)."""
     return json.dumps({**rec.model_dump(mode="json"), "felt_fra_fremtiden": [1]}, ensure_ascii=False)

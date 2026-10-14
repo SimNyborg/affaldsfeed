@@ -155,6 +155,25 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
                 "domain_logos": domain_logos,
             }
         )
+    # Medier, hvis regler forbyder det, feedet gør: står låst i menuen og hentes ikke. Uden logo (§3, §9)
+    for s in sorted(sources, key=lambda s: s.id):
+        if s.status == "afventer" and s.method != "search" and s.id not in info:
+            feed_sources.append(
+                {
+                    "id": s.id,
+                    "name": s.name,
+                    "category": s.category,
+                    "homepage": s.homepage,
+                    "lang": s.lang,
+                    "paywall": s.paywall,
+                    "owner": s.owner,
+                    "status": s.status,
+                    "health": "graa",
+                    "via_search": False,
+                    "logo": None,
+                    "domain_logos": {},
+                }
+            )
 
     overviews = load_overviews()
     feed = {

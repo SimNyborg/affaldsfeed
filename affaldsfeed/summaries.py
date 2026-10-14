@@ -15,7 +15,7 @@ from pydantic import ValidationError
 
 from affaldsfeed import paths
 from affaldsfeed.display import SourceInfo, item_time
-from affaldsfeed.models import Candidate, Judgment, Summary, SummarySettings
+from affaldsfeed.models import Candidate, Judgment, Summary, SummarySettings, full_text
 from affaldsfeed.timeutil import ensure_utc, to_cph
 
 log = logging.getLogger(__name__)
@@ -134,7 +134,7 @@ def rewrite_queue(
 ) -> tuple[list[dict[str, Any]], int]:
     """Godkendte indslag i feedets vindue uden resumé, nyeste først (højst limit), og antallet i alt.
 
-    Kun kilder, Claude må læse (ai), og kun indslag med en teaser på mindst cfg.min_teaser_chars tegn.
+    Kun kilder, Claude må læse helt (ai: true), og kun indslag med en teaser på mindst cfg.min_teaser_chars tegn.
     """
     rows: list[tuple[datetime, str, dict[str, Any]]] = []
     cand_ids: set[str] = set()
@@ -142,7 +142,7 @@ def rewrite_queue(
         cand_ids.add(c.id)
         j = judgments.get(c.id)
         src = info.get(c.source)
-        if j is None or not j.relevant or src is None or not src.ai or c.id in have:
+        if j is None or not j.relevant or src is None or not full_text(src.ai) or c.id in have:
             continue
         if len(c.teaser.strip()) < cfg.min_teaser_chars or item_time(c) < since:
             continue
@@ -153,7 +153,7 @@ def rewrite_queue(
         if ni is None or not j.relevant or j.id in have or j.id in cand_ids:
             continue
         src = info.get(ni.source)
-        if src is None or not src.ai or len(ni.teaser.strip()) < cfg.min_teaser_chars:
+        if src is None or not full_text(src.ai) or len(ni.teaser.strip()) < cfg.min_teaser_chars:
             continue
         when = ensure_utc(ni.published or j.judged_at)
         if when < since:
@@ -173,6 +173,7 @@ def check_summary(
     judgments: dict[str, Judgment],
     cfg: SummarySettings,
     file_day: str | None,
+    info: dict[str, SourceInfo] | None = None,
 ) -> list[str]:
     msgs: list[str] = []
     j = judgments.get(s.id)
@@ -180,8 +181,11 @@ def check_summary(
         msgs.append(f"id '{s.id}' er ikke et godkendt indslag")
     cand = cand_by_id.get(s.id)
     source = cand.teaser if cand is not None else (j.new_item.teaser if j is not None and j.new_item else "")
-    problem = copy_problem(s.summary_da, source, cfg) if s.summary_da is not None else None
-    if problem:
+    sid = cand.source if cand is not None else (j.new_item.source if j is not None and j.new_item else None)
+    src = (info or {}).get(sid) if sid else None
+    if s.summary_da is not None and src is not None and not full_text(src.ai):
+        msgs.append(f"summary_da skal være null: {src.name} vises kun med overskrift (title_only)")
+    elif problem := copy_problem(s.summary_da, source, cfg) if s.summary_da is not None else None:
         msgs.append(problem)
     if file_day is not None:
         day = to_cph(s.written_at).date().isoformat()
@@ -192,10 +196,13 @@ def check_summary(
 
 def main_validate_summaries(args: argparse.Namespace) -> int:
     # Sent: judgments importerer dette modul
-    from affaldsfeed.config import load_config
+    from affaldsfeed.config import load_config, load_sources
+    from affaldsfeed.display import known_sources
     from affaldsfeed.judgments import format_errors, load_all_candidates, load_judgments, rel
 
-    cfg = load_config(paths.CONFIG_DIR).settings.summaries
+    config = load_config(paths.CONFIG_DIR)
+    cfg = config.settings.summaries
+    info = known_sources(load_sources(paths.SOURCES_FILE), config.publishers)
     cand_by_id = {c.id: c for c in load_all_candidates()}
     judgments = load_judgments()
     file_arg = getattr(args, "file", None)
@@ -223,7 +230,8 @@ def main_validate_summaries(args: argparse.Namespace) -> int:
             except ValidationError as e:
                 errors.extend(f"{name}:{n}: {msg}" for msg in format_errors(e))
                 continue
-            errors.extend(f"{name}:{n}: {msg}" for msg in check_summary(s, cand_by_id, judgments, cfg, m.group(1) if m else None))
+            msgs = check_summary(s, cand_by_id, judgments, cfg, m.group(1) if m else None, info)
+            errors.extend(f"{name}:{n}: {msg}" for msg in msgs)
     for e in errors:
         print(e)
     if errors:

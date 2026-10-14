@@ -280,3 +280,17 @@ def test_validate_schema_error_and_missing(repo, capsys):
     assert "filen findes ikke" in capsys.readouterr().out
     (paths.OVERVIEW_DIR / "uge.json").unlink()
     assert validate() == 0
+
+
+def test_input_leaves_out_title_only_sources(repo, capsys):
+    # Claude skriver ikke tekst om medier med kun overskrift (KONTRAKTER §3)
+    (repo / "sources.yaml").write_text(SOURCES_YAML + """
+- {id: jv, name: JV, category: lokalmedie, homepage: "https://jv.dk", feeds: "https://jv.dk/rss", ai: titel,
+   basis: redaktionelt, checked: 2026-10-01}
+""", encoding="utf-8")
+    full, title_only = cand("fuld", hours_ago=1), cand("titel", source="jv", hours_ago=2)
+    store.save_candidates([full, title_only])
+    approve(full, title_only)
+    out = run_input("dag", capsys)
+    assert [i["id"] for i in out["items"]] == [full.id]
+    assert out["allowed_item_ids"] == [full.id] and out["based_on"] == 1

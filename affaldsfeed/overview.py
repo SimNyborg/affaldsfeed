@@ -24,7 +24,7 @@ from affaldsfeed.display import (
     story_hints,
 )
 from affaldsfeed.judgments import format_errors, load_all_candidates, load_judgments, print_json, rel
-from affaldsfeed.models import CATEGORY_RANK, Candidate, DisplayItem, Judgment, Overview, Source
+from affaldsfeed.models import CATEGORY_RANK, Candidate, DisplayItem, Judgment, Overview, Source, full_text
 from affaldsfeed.stories import group_stories
 from affaldsfeed.timeutil import cph_day_bounds, ensure_utc, iso, now_utc, to_cph
 
@@ -116,6 +116,12 @@ def approved_items(data: Data, now: datetime, start: datetime, end: datetime) ->
     return [d for d in items if d.reviewed and item_time(d) <= end]
 
 
+def text_items(data: Data, items: list[DisplayItem]) -> list[DisplayItem]:
+    """Indslag, Claude må skrive tekst om (overblik og tidslinje): kun kilder med ai: true (KONTRAKTER §3)."""
+    info = data.info
+    return [d for d in items if d.source in info and full_text(info[d.source].ai)]
+
+
 def _data_start(data: Data) -> datetime | None:
     times = [item_time(c) for c in data.candidates]
     times += [ensure_utc(j.judged_at) for j in data.judgments.values() if j.new_item is not None]
@@ -160,7 +166,8 @@ def lower_overviews(period: str, start: datetime, end: datetime) -> list[Overvie
 def build_overview_input(period: str, now: datetime, data: Data) -> dict[str, Any]:
     start, end = window_for(period, now)
     info = data.info
-    approved = approved_items(data, now, start, end)
+    # Medier med kun overskrift indgår ikke i tekster, Claude skriver (§3)
+    approved = text_items(data, approved_items(data, now, start, end))
     settings = data.config.settings
     cat_map = {sid: i.category for sid, i in info.items()}
     groups = group_stories(

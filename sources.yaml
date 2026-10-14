@@ -35,12 +35,14 @@
   filter: normal
   every: 2
   basis: redaktionelt
-  status: aktiv
-  checked: 2026-10-07
+  status: fravalgt
+  checked: 2026-10-14
   note: >-
-    Bruges kun til at finde artikler med søgeordene i config/search.yaml. Artikel-URL'en tages fra
-    url-parameteren i apiclick-linket, og fundet krediteres den rigtige udgiver (aktiv kilde her eller
-    config/medier.yaml). Ukendte udgivere havner i kildeforslag. Bing News vises aldrig selv som afsender.
+    Fravalgt 2026-10-14: Microsofts vilkår (Services Agreement 14.f.i) tillader kun ikke-kommerciel,
+    personlig brug af materiale fra Bing og kræver tilladelse til kopiering og videredeling. Før: Bruges kun
+    til at finde artikler med søgeordene i config/search.yaml. Artikel-URL'en tages fra url-parameteren i
+    apiclick-linket, og fundet krediteres den rigtige udgiver (aktiv kilde her eller config/medier.yaml).
+    Ukendte udgivere havner i kildeforslag. Bing News vises aldrig selv som afsender.
 
 # ── Nyhedsmedier ──────────────────────────────────────────────
 - id: avisen
@@ -64,6 +66,7 @@
   feeds: https://www.berlingske.dk/content/rss
   filter: strict
   paywall: delvis
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-07
@@ -90,13 +93,15 @@
     - https://www.dr.dk/nyheder/service/feeds/politik
   filter: strict
   basis: redaktionelt
-  status: aktiv
-  checked: 2026-10-08
+  status: afventer
+  checked: 2026-10-14
   note: >-
-    robots.txt fravælger AI-agenter. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser
-    (ikke en AI-crawler) må hente feedet. Claude vurderer kun titel og RSS-uddrag. De ni regionale
-    redaktioners feeds er tilføjet 2026-10-07, Viden og Politik 2026-10-08. Hvert feed har de 20
-    nyeste, så timekørslen fanger alt. DR har intet nyhedssitemap.
+    Afventer DR's tilladelse (2026-10-14). Vilkårene på dr.dk siger, at man ikke må lave en systematisk
+    samling af links til DR's indhold, og at RSS kun må bruges på egne private sider. Hentes ikke. Før:
+    robots.txt fravælger AI-agenter. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser (ikke en
+    AI-crawler) må hente feedet. Claude vurderer kun titel og RSS-uddrag. De ni regionale redaktioners feeds
+    er tilføjet 2026-10-07, Viden og Politik 2026-10-08. Hvert feed har de 20 nyeste, så timekørslen fanger
+    alt. DR har intet nyhedssitemap.
 
 - id: tv2-regionerne
   name: TV 2-regionerne
@@ -115,13 +120,14 @@
   domains: [tvmidtvest.dk, tv2ostjylland.dk, tvsyd.dk, tv2fyn.dk, tv2east.dk, tv2kosmopol.dk, tv2bornholm.dk]
   filter: strict
   aliases: [TV2 Nord, TV MIDTVEST, TV2 Østjylland, TV SYD, TV 2 Fyn, TV ØST, TV 2 Kosmopol, TV 2 Bornholm]
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-07
   note: >-
-    De otte regionale TV 2-stationer. Vigtige for lokale affaldsordninger og genbrugspladser.
-    robots.txt fravælger AI-agenter. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser
-    (ikke en AI-crawler) må hente feedene. Claude vurderer kun titel og RSS-uddrag.
+    De otte regionale TV 2-stationer. Vigtige for lokale affaldsordninger og genbrugspladser. robots.txt
+    fravælger AI-agenter. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser (ikke en AI-crawler) må
+    hente feedene. Claude vurderer kun titlen.
 
 # Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: politiken
@@ -133,11 +139,13 @@
   filter: strict
   paywall: ja
   basis: redaktionelt
-  status: aktiv
-  checked: 2026-10-07
+  status: afventer
+  checked: 2026-10-14
   note: >-
-    robots.txt fravælger AI-agenter, og ai.txt har TDM-forbehold. Brugeren besluttede 2026-10-07, at
-    feedets egen RSS-læser (ikke en AI-crawler) må hente feedet. Claude vurderer kun titel og RSS-uddrag.
+    Afventer Politikens tilladelse (2026-10-14). politiken.dk/ophavsret siger, at RSS ikke må indgå i
+    nyhedsoversigter, der er tilgængelige for andre. Hentes ikke. Før: robots.txt fravælger AI-agenter, og
+    ai.txt har TDM-forbehold. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser (ikke en AI-crawler)
+    må hente feedet. Claude vurderer kun titel og RSS-uddrag.
 
 # Senere: ikke med i MVP-kildelisten (docs/KILDELISTE.md)
 - id: borsen
@@ -148,12 +156,13 @@
   feeds: https://borsen.dk/rss
   filter: strict
   paywall: ja
+  ai: titel  # kun overskrift: robots.txt spærrer AI-crawlere (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-07
   note: >-
-    robots.txt fravælger AI-agenter. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser
-    (ikke en AI-crawler) må hente feedet. Claude vurderer kun titel og RSS-uddrag.
+    robots.txt fravælger AI-agenter. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser (ikke en
+    AI-crawler) må hente feedet. Claude vurderer kun titlen.
 
 - id: a4medier
   name: A4 Medier
@@ -192,6 +201,7 @@
   domains: [tv2.dk]
   filter: strict
   replaces: [tv2-dk]
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -280,6 +290,7 @@
   filter: strict
   paywall: delvis
   replaces: [jv-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -298,6 +309,7 @@
   filter: strict
   paywall: delvis
   replaces: [fyens-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -316,6 +328,7 @@
   filter: strict
   paywall: delvis
   replaces: [faa-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -334,6 +347,7 @@
   filter: strict
   paywall: delvis
   replaces: [vafo-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -352,6 +366,7 @@
   filter: strict
   paywall: delvis
   replaces: [hsfo-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -371,6 +386,7 @@
   filter: strict
   paywall: delvis
   replaces: [frdb-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -389,6 +405,7 @@
   filter: strict
   paywall: delvis
   replaces: [stiften-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -407,6 +424,7 @@
   filter: strict
   paywall: delvis
   replaces: [amtsavisen-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -425,6 +443,7 @@
   filter: strict
   paywall: delvis
   replaces: [viborg-folkeblad-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -443,6 +462,7 @@
   filter: strict
   paywall: delvis
   replaces: [dagbladet-holstebro-struer-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -461,6 +481,7 @@
   filter: strict
   paywall: delvis
   replaces: [dbrs-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -480,6 +501,7 @@
   filter: strict
   paywall: delvis
   replaces: [folkebladetlemvig-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -498,6 +520,7 @@
   filter: strict
   paywall: delvis
   replaces: [helsingordagblad-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -516,6 +539,7 @@
   filter: strict
   paywall: delvis
   replaces: [nordjyske-dk]
+  ai: titel  # kun overskrift: robots.txt spærrer AI-crawlere (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -535,6 +559,7 @@
   filter: strict
   paywall: delvis
   replaces: [sn-dk]
+  ai: titel  # kun overskrift: robots.txt spærrer AI-crawlere (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -552,6 +577,7 @@
   filter: strict
   paywall: delvis
   replaces: [tidende-dk]
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -569,12 +595,14 @@
   paywall: delvis
   replaces: [folketidende-dk]
   basis: redaktionelt
-  status: aktiv
-  checked: 2026-10-08
+  status: afventer
+  checked: 2026-10-14
   note: >-
-    Lolland og Guldborgsund. Ét sitemap med de 10.000 nyeste artikler (ca. 400 kB pakket, uden ETag og titler),
-    så det hentes hver anden time, og kun artikler med et affaldsord i URL'en hentes. robots.txt fravælger
-    AI-træning; indsamleren er ikke en AI-crawler (samme princip som DR og TV 2).
+    Afventer Folketidendes tilladelse (2026-10-14). Vilkårene siger, at man ikke må etablere
+    nyhedsoversigter, der er tilgængelige for andre, og at brug af indholdet kræver skriftlig aftale. Hentes
+    ikke. Før: Lolland og Guldborgsund. Ét sitemap med de 10.000 nyeste artikler (ca. 400 kB pakket, uden
+    ETag og titler), så det hentes hver anden time, og kun artikler med et affaldsord i URL'en hentes.
+    robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme princip som DR og TV 2).
 
 # Tilføjet 2026-10-07 (kildeudvidelse)
 - id: nordschleswiger
@@ -605,6 +633,7 @@
   every: 4
   paywall: delvis
   replaces: [herningfolkeblad-dk]
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -625,6 +654,7 @@
   every: 4
   paywall: delvis
   replaces: [midtjyllandsavis-dk]
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -645,6 +675,7 @@
   every: 4
   paywall: delvis
   replaces: [skivefolkeblad-dk]
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -1066,6 +1097,7 @@
   filter: strict
   paywall: nej
   replaces: [ligeher-nu]
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -1185,6 +1217,7 @@
   filter: strict
   paywall: nej
   replaces: [ugeavisen-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -1205,6 +1238,7 @@
   filter: strict
   paywall: delvis
   replaces: [kobenhavnliv-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -1225,6 +1259,7 @@
   filter: strict
   paywall: delvis
   replaces: [frederiksbergliv-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -1244,6 +1279,7 @@
   filter: strict
   paywall: nej
   replaces: [midtfynsposten-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -1265,12 +1301,14 @@
   paywall: nej
   replaces: [dragoernyt-dk]
   basis: redaktionelt
-  status: aktiv
-  checked: 2026-10-08
+  status: afventer
+  checked: 2026-10-14
   note: >-
-    Lokal ugeavis for Dragør. Intet feed. Sitemappet har nyt lastmod på alle artikler, så kun nye
-    adresser med et affaldsord hentes for titlen. Det har omkring 8.000 adresser og hentes derfor hver
-    fjerde time. Fundet via søgning (medier.yaml) indtil 2026-10-08.
+    Afventer Dragør Nyts tilladelse (2026-10-14). Vilkårene forbyder robotter, scripts og AI til at
+    indsamle, kopiere, analysere, lagre eller videreanvende indhold. Hentes ikke. Før: Lokal ugeavis for
+    Dragør. Intet feed. Sitemappet har nyt lastmod på alle artikler, så kun nye adresser med et affaldsord
+    hentes for titlen. Det har omkring 8.000 adresser og hentes derfor hver fjerde time. Fundet via søgning
+    (medier.yaml) indtil 2026-10-08.
 
 - id: brandebladet
   name: Brande Bladet
@@ -1299,13 +1337,15 @@
   paywall: nej
   replaces: [dinavis-dk]
   basis: redaktionelt
-  status: aktiv
-  checked: 2026-10-08
+  status: afventer
+  checked: 2026-10-14
   note: >-
-    JP/Politikens lokalaviser under Din Avis, fx i Aarhus-området, Skanderborg og på Djursland. RSS med
-    de 20 seneste artikler fra alle titler. feeds.dinavis.dk/seneste peger samme sted hen, men giver kun
-    10. robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme princip som DR og TV
-    2). Fundet via søgning (medier.yaml) indtil 2026-10-08.
+    Afventer tilladelse fra Din Avis (2026-10-14). dinavis.dk/ophavsret siger, at RSS ikke må bruges på
+    virksomheders hjemmesider, og at anden brug kræver aftale. Hentes ikke. Før: JP/Politikens lokalaviser
+    under Din Avis, fx i Aarhus-området, Skanderborg og på Djursland. RSS med de 20 seneste artikler fra
+    alle titler. feeds.dinavis.dk/seneste peger samme sted hen, men giver kun 10. robots.txt fravælger
+    AI-træning; indsamleren er ikke en AI-crawler (samme princip som DR og TV 2). Fundet via søgning
+    (medier.yaml) indtil 2026-10-08.
 
 - id: heleherlev
   name: Herlev Bladet
@@ -1430,6 +1470,7 @@
   filter: strict
   paywall: nej
   replaces: [ditsalling-dk]
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -1450,6 +1491,7 @@
   filter: strict
   paywall: delvis
   replaces: [ditry-dk]
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -1471,6 +1513,7 @@
   filter: strict
   paywall: nej
   replaces: [ditkarup-dk]
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -1492,6 +1535,7 @@
   filter: strict
   paywall: nej
   replaces: [ditkjellerup-dk]
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -1512,6 +1556,7 @@
   filter: strict
   paywall: nej
   replaces: [ditvinderup-dk]
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -1533,6 +1578,7 @@
   filter: strict
   paywall: nej
   replaces: [ditikast-brande-dk]
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -1552,6 +1598,7 @@
   filter: strict
   paywall: delvis
   replaces: [amagerliv-dk]
+  ai: titel  # kun overskrift: JFM kræver skriftlig aftale om tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -1571,6 +1618,7 @@
   filter: strict
   paywall: nej
   replaces: [netavisen-nu]
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -1628,6 +1676,7 @@
   every: 4
   filter: strict
   paywall: nej
+  ai: titel  # kun overskrift: robots.txt spærrer AI-crawlere (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-08
@@ -1706,6 +1755,7 @@
     - https://www.altinget.dk/kommunal/rss
   filter: normal
   paywall: delvis
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-07
@@ -1722,13 +1772,12 @@
   filter: normal
   paywall: delvis
   owner: DK Medier
-  ai: false
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-07
   note: >-
-    Artiklerne har TDM-forbehold (ophavsretslovens § 11 b), så Claude vurderer ikke kilden. Den vurderes
-    kun af regler. Feedet omdirigerer til admin.kommunen.dk/feed/.
+    Artiklerne har TDM-forbehold (ophavsretslovens § 11 b). Feedet omdirigerer til admin.kommunen.dk/feed/.
 
 - id: ingenioeren
   name: Ingeniøren
@@ -1739,12 +1788,13 @@
   filter: strict
   paywall: delvis
   owner: Teknologiens Mediehus
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-07
   note: >-
-    robots.txt fravælger AI-agenter. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser
-    (ikke en AI-crawler) må hente feedet. Claude vurderer kun titel og RSS-uddrag.
+    robots.txt fravælger AI-agenter. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser (ikke en
+    AI-crawler) må hente feedet. Claude vurderer kun titlen.
 
 - id: videnskab
   name: Videnskab.dk
@@ -1753,6 +1803,7 @@
   method: rss
   feeds: https://videnskab.dk/wp-json/rss/v1/feeds
   filter: strict
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-07
@@ -1818,12 +1869,13 @@
   feeds: https://www.energy-supply.dk/xml/rss2/articles
   filter: strict
   paywall: delvis
+  ai: titel  # kun overskrift: robots.txt spærrer AI-crawlere (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-07
   note: >-
-    robots.txt fravælger AI-agenter. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser
-    (ikke en AI-crawler) må hente feedet. Claude vurderer kun titel og RSS-uddrag.
+    robots.txt fravælger AI-agenter. Brugeren besluttede 2026-10-07, at feedets egen RSS-læser (ikke en
+    AI-crawler) må hente feedet. Claude vurderer kun titlen.
 
 - id: danske-kommuner
   name: Danske Kommuner
@@ -1849,12 +1901,13 @@
   filter: normal
   paywall: delvis
   owner: DK Medier
-  ai: false
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   match: '^https://www\.dkteknikogmiljoe\.dk/.+'
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-07
-  note: Ingen RSS. Artiklerne har TDM-forbehold (ophavsretslovens § 11 b), så Claude vurderer ikke kilden.
+  note: >-
+    Ingen RSS. Artiklerne har TDM-forbehold (ophavsretslovens § 11 b).
 
 - id: bygtek
   name: BygTek
@@ -1882,12 +1935,14 @@
   filter: none
   paywall: ja
   owner: Teknologiens Mediehus
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
-  status: kandidat
-  checked: 2026-10-07
+  status: aktiv
+  checked: 2026-10-14
   note: >-
-    Danmarks eneste dedikerede affaldsfagmedie, men bag betalingsmur og uden kendt RSS. robots.txt
-    fravælger AI-agenter. Kræver afklaring med Teknologiens Mediehus.
+    Danmarks eneste rene affaldsfagmedie, bag betalingsmur. Med fra 2026-10-14 med kun overskrift:
+    sitemappet giver titel og dato, og robots.txt tillader feedet (afprøvet 2026-10-14). Teknologiens
+    Mediehus tillader links.
 
 - id: licitationen
   name: Licitationen
@@ -1911,15 +1966,15 @@
   filter: strict
   paywall: ja
   match: '^https://energiwatch\.dk/.+'
-  ai: false
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   owner: Watch Medier
   replaces: [energiwatch-dk]
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-07
   note: >-
-    Ingen RSS (/rss er HTML). Samme platform og AI-forbehold som CleanTech Watch, så Claude vurderer ikke
-    kilden (ai: false).
+    Ingen RSS (/rss er HTML). Samme platform og AI-forbehold som CleanTech Watch. Claude vurderede ikke
+    kilden før 2026-10-14 (ai: false).
 
 - id: cleantech-watch
   name: CleanTech Watch
@@ -1927,17 +1982,19 @@
   homepage: https://ctwatch.dk
   method: sitemap
   feeds: https://ctwatch.dk/sitemapindex.xml
-  match: '^https://ctwatch\.dk/.+'
-  filter: strict
+  match: '^https://ctwatch\.dk/nyheder/affald/article\d+\.ece$'
+  filter: none
   paywall: ja
   owner: Watch Medier
-  ai: false
+  ai: titel  # kun overskrift: forbehold mod tekst- og datamining (2026-10-14)
   basis: redaktionelt
   status: aktiv
   checked: 2026-10-07
   note: >-
-    Hed cleantechwatch.dk. Ingen RSS. robots.txt spærrer AI-træningsbots, så Claude vurderer ikke kilden
-    (ai: false); indslagene udvælges af reglerne med strengt filter.
+    Kun artikler i sektionen Affald, så filtret er none, og Claude vurderer titlen. Sektionssiden selv kom
+    med som et kort indtil 2026-10-14. Hed cleantechwatch.dk. Ingen RSS. robots.txt spærrer AI-træningsbots,
+    og Watch Medier forbeholder sig tekst- og datamining. Claude vurderede ikke kilden før 2026-10-14 (ai:
+    false).
 
 - id: building-supply
   name: Building Supply

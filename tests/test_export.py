@@ -454,3 +454,29 @@ def test_feed_never_contains_the_source_teaser(repo):
     assert by_id[own.id]["summary_da"] == "Et resumé med egne ord fra vurderingen"
     assert by_id[later.id]["summary_da"] == "Et resumé med egne ord fra resumélinjen"
     assert by_id[none.id]["summary_da"] is None
+
+
+def test_waiting_sources_are_listed_locked_and_title_only_sources_have_no_text(repo):
+    # afventer: med i sources med status, uden logo og uden indslag. ai: titel: kun overskrift (KONTRAKTER §3, §8)
+    extra = """
+- {id: berlingske, name: Berlingske, category: nyhedsmedie, homepage: "https://berlingske.dk",
+   feeds: "https://berlingske.dk/rss", ai: titel, basis: redaktionelt, checked: 2026-10-01}
+- {id: dr, name: DR Nyheder, category: nyhedsmedie, homepage: "https://dr.dk", feeds: "https://dr.dk/rss",
+   status: afventer, note: Vilkårene forbyder en samling af links, basis: redaktionelt, checked: 2026-10-14}
+"""
+    (repo / "sources.yaml").write_text(SOURCES_YAML + extra, encoding="utf-8")
+    title_only = cand("titel", source="berlingske", hours_ago=2, teaser="Berlingskes egen teaser om affald")
+    waiting = cand("venter", source="dr", hours_ago=1, teaser="DR's egen teaser om affald")
+    store.save_candidates([title_only, waiting])
+    judge({"id": title_only.id, "relevant": True, "reason": "Om affald", "summary_da": "Et resumé, der ikke må vises"},
+          {"id": waiting.id, "relevant": True, "summary_da": "Heller ikke dette resumé"})
+    heartbeat("2026-10-07T09:30:00Z")
+    feed = export.build_feed(NOW)
+    assert [i["id"] for i in feed["items"]] == [title_only.id]
+    item = feed["items"][0]
+    assert (item["title"], item["summary_da"], item["reason"], item["teaser"]) == (title_only.title, None, None, "")
+    src = {s["id"]: s for s in feed["sources"]}
+    assert (src["dr"]["status"], src["dr"]["logo"], src["dr"]["health"]) == ("afventer", None, "graa")
+    assert src["berlingske"]["status"] == "aktiv"
+    text = json.dumps(feed, ensure_ascii=False)
+    assert "resumé" not in text.lower() and "egen teaser" not in text

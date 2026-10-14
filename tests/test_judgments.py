@@ -478,3 +478,66 @@ def test_validate_summaries(repo, capsys):
                     "written_at": "2026-10-07T09:25:00Z"}, ensure_ascii=False) + "\n", encoding="utf-8")
     assert main_validate_summaries(ns(file="data/judgments/resumeer/2026-10-07.jsonl")) == 0
     assert "OK, 1 linjer" in capsys.readouterr().out
+
+
+# ── Medier med forbehold (KONTRAKTER §3) ────────────────────
+
+RESERVED_YAML = SOURCES_YAML + """
+- {id: jv, name: JV, category: lokalmedie, homepage: "https://jv.dk", feeds: "https://jv.dk/sitemap.xml", ai: titel,
+   basis: redaktionelt, checked: 2026-10-01}
+- {id: dn, name: DN, category: lokalmedie, homepage: "https://dn.dk", feeds: "https://dn.dk/rss", status: afventer,
+   note: Vilkårene forbyder feeds, basis: redaktionelt, checked: 2026-10-01}
+"""
+LONG = "En længere teaser fra kilden om affald og genbrug i kommunen, som er lang nok til et resumé"
+
+
+def test_pending_gives_only_the_title_of_title_only_sources(repo, capsys):
+    (repo / "sources.yaml").write_text(RESERVED_YAML, encoding="utf-8")
+    title_only, normal, approved = cand("ny", source="jv", teaser=LONG), cand("a", teaser=LONG), cand("ok", source="jv", teaser=LONG)
+    waiting = cand("w", source="dn", teaser=LONG)
+    store.save_candidates([title_only, normal, approved, waiting])
+    write_judgments("2026-10-07", [j(approved.id)])
+    assert judgments.main_pending(ns(max=200, hours=72, now="2026-10-07T10:00:00Z", rewrite_max=10)) == 0
+    out = json.loads(capsys.readouterr().out)
+    by_id = {p["id"]: p for p in out["pending"]}
+    assert set(by_id) == {title_only.id, normal.id}  # afventer kommer aldrig i pending
+    assert (by_id[title_only.id]["teaser"], by_id[title_only.id]["title_only"]) == ("", True)
+    assert by_id[normal.id]["teaser"] == LONG and "title_only" not in by_id[normal.id]
+    assert out["rewrite"] == []  # et godkendt indslag med kun overskrift får aldrig et resumé
+
+
+def test_validate_rejects_text_for_title_only_sources(repo, capsys):
+    (repo / "sources.yaml").write_text(RESERVED_YAML, encoding="utf-8")
+    a, b = cand("a", source="jv", teaser=LONG), cand("b", source="jv", teaser=LONG)
+    store.save_candidates([a, b])
+    sweep = "https://jv.dk/sweep"
+    write_judgments("2026-10-07", [
+        j(a.id, summary_da="Et resumé med egne ord om affald i kommunen"),  # 1
+        j(b.id),  # 2 ok
+        j(item_id(sweep), new_item={"url": sweep, "title": "Sweep", "source": "jv"}),  # 3
+    ])
+    assert judgments.main_validate(ns(file=None)) == 1
+    out = capsys.readouterr().out
+    assert "2026-10-07.jsonl:1: summary_da skal udelades: JV vises kun med overskrift (title_only)" in out
+    assert "2026-10-07.jsonl:3: sweep-fund fra JV er ikke tilladt: mediet vises kun med overskrift" in out
+    assert ":2:" not in out
+    write_summaries("2026-10-07", [
+        {"id": b.id, "summary_da": "Et resumé med egne ord om affald i kommunen", "written_at": "2026-10-07T09:25:00Z"},
+    ])
+    from affaldsfeed.summaries import main_validate_summaries
+    assert main_validate_summaries(ns(file=None)) == 1
+    assert "summary_da skal være null: JV vises kun med overskrift (title_only)" in capsys.readouterr().out
+
+
+def test_sweep_check(repo, capsys):
+    (repo / "sources.yaml").write_text(RESERVED_YAML, encoding="utf-8")
+    cases = {
+        "https://www.altinget.dk/artikel/x": "altinget ok",
+        "https://jv.dk/a/b": "jv kun-overskrift",
+        "https://www.dn.dk/nyhed": "dn afventer",
+        "https://fyens.dk/artikel": "fyens ok",
+        "https://ukendt.example/x": "UKENDT ok",
+    }
+    for url, expected in cases.items():
+        assert judgments.main_sweep_check(ns(url=url)) == 0
+        assert capsys.readouterr().out.strip() == f"{item_id(url)} {expected}"

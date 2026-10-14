@@ -37,7 +37,7 @@ from affaldsfeed.models import (
     parse_timeline_line,
     sort_places,
 )
-from affaldsfeed.overview import Data, approved_items, load_data, word_count
+from affaldsfeed.overview import Data, approved_items, load_data, text_items, word_count
 from affaldsfeed.stories import group_stories
 from affaldsfeed.timeutil import cph_day_start, ensure_utc, iso, now_utc, to_cph
 
@@ -286,7 +286,8 @@ def build_timeline_input(
     names = {sid: i.name for sid, i in info.items()}
     cat_map = {sid: i.category for sid, i in info.items()}
 
-    approved = [d for d in approved_items(data, now, start, end) if month is None or item_time(d) < end]
+    # Medier med kun overskrift indgår ikke i tekster, Claude skriver (§3)
+    approved = [d for d in text_items(data, approved_items(data, now, start, end)) if month is None or item_time(d) < end]
     groups = group_stories(
         approved,
         cat_map,

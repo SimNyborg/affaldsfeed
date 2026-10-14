@@ -140,6 +140,7 @@ Kilde samler afsendertyperne og deres kilder i én gruppe. Man kan vælge en hel
 - Pilen har `aria-expanded` og `aria-controls`, og skærmlæseren hører fx "5 kilder under Nationalt medie, knap, skjult". Kilderne under en type er en gruppe med typens navn.
 - Status i gruppens overskrift er "Ingen", op til to hele typer ("Nationalt medie, Fagmedie"), op til to kilder ("Avisen.dk, Berlingske") eller fx "45 af 280".
 - En afsendertype, der afventer, er en låst række med "Afventer" og uden pil. Den er skjult, mens der søges.
+- Et medie, der afventer tilladelse (`status: afventer`), står nederst i sin types liste efter de andre kilder, også alfabetisk. Rækken er låst som en type, der afventer, og har `title` "DR Nyheder afventer mediets tilladelse". Søgefeltet finder den, så man kan se, hvorfor mediet ikke kan vælges. Pilens skjulte tekst nævner den: "5 kilder og 2, der afventer, under Nationalt medie".
 
 ### Filterrækken
 
@@ -151,7 +152,7 @@ Alle lister i panelet bruger samme række: en `<label>` med et ægte afkrydsning
 - Tallet står højrestillet i 13/18 og `--muted` med en skjult tekst " indslag". Tallet er antallet af kort, rækken giver sammen med de andre gruppers filtre.
 - Et valg ændrer kun afkrydsningen. Navnet beholder vægt og farve, så intet flytter sig.
 - En række med 0 har navnet i `--muted`, bliver stående og kan stadig vælges.
-- En række, der afventer, har en låst afkrydsning (`disabled`) uden flueben, ikon og navn i `--muted` og ordet "Afventer", hvor tallet ellers står. Talkolonnen vokser med ordet. Rækken har ingen hover-flade, markøren er en almindelig pil, og Tab springer den over. Den er ikke et valg, så "Vælg alle", "Fravælg alle", status ("8 af 9") og URL'en ser bort fra den. Skærmlæseren hører "Sociale medier, Afventer" og at feltet er utilgængeligt.
+- En række, der afventer, har en låst afkrydsning (`disabled`) uden flueben, ikon og navn i `--muted` og ordet "Afventer", hvor tallet ellers står. Talkolonnen vokser med ordet. Rækken har ingen hover-flade, markøren er en almindelig pil, og Tab springer den over. Den er ikke et valg, så "Vælg alle", "Fravælg alle", status ("8 af 9") og URL'en ser bort fra den. Skærmlæseren hører "Sociale medier, Afventer" og at feltet er utilgængeligt. Uden ikon (et medie, der afventer) har rækken kun afkrydsning, navn og "Afventer".
 - Hover giver `--hover-bg` (kun med mus). Fokusringen sidder indvendigt på hele rækken, og rækkens felt har `scroll-margin-block: 12px`, så ringen ikke klippes, når panelet ruller ved Tab.
 - Rækken har `padding: 0 8px; margin: 0 -8px`, så afkrydsningen flugter med overskriften og felterne, mens hover-fladen går 8 px ud.
 - Sidepanelet har `scrollbar-gutter: stable`. Tager en klassisk scrollbar plads, trækkes dens bredde fra panelets højre polstring (højst ned til 8 px, så rækkernes hover-flade på 8 px ikke giver vandret scroll), så navnene stadig har plads. Det samme gælder arket.
@@ -287,7 +288,7 @@ Siden Højdepunkter (`tidslinje.html`) viser de vigtigste begivenheder på affal
 
 ### Om kilderne
 
-Siden bruger samme demo-strimmel og header og en læsekolonne på højst 720 px uden sidepanel. Fra 1024 px står læsekolonnen ved containerens venstrekant og flugter med logoet; under 1024 px står den som listepanelet på forsiden. Afsendertyperne står som rækker med ikon, det fulde navn og antal kilder (`id="typer"`), i to kolonner fra 560 px med 48 px imellem. En type, der afventer, har "Afventer" i stedet for antallet. Hver kategori har sin egen sektion med ikonet (20 px) i overskriften, kategoriens forklaring og kildelisten. Afventer kategorien, står der "Kategorien afventer og har ingen kilder endnu." i stedet for listen. Statusmærket står altid øverst til højre i kildens række. Har kilden et logo, står det i 16 px foran navnet, 8 px fra det. Tallene i "Status lige nu" står i 20/28 og vægt 600.
+Siden bruger samme demo-strimmel og header og en læsekolonne på højst 720 px uden sidepanel. Fra 1024 px står læsekolonnen ved containerens venstrekant og flugter med logoet; under 1024 px står den som listepanelet på forsiden. Afsendertyperne står som rækker med ikon, det fulde navn og antal kilder (`id="typer"`), i to kolonner fra 560 px med 48 px imellem. En type, der afventer, har "Afventer" i stedet for antallet. Medier, der afventer tilladelse, tæller ikke med i antallet og i "aktive kilder". Hver kategori har sin egen sektion med ikonet (20 px) i overskriften, kategoriens forklaring og kildelisten. Afventer kategorien, står der "Kategorien afventer og har ingen kilder endnu." i stedet for listen. Statusmærket står altid øverst til højre i kildens række. Et medie, der afventer tilladelse, står nederst i sin kategori med mærket "◇ Afventer" i stedet for sundheden og en linje om, hvorfor det ikke hentes. Har kilden et logo, står det i 16 px foran navnet, 8 px fra det. Tallene i "Status lige nu" står i 20/28 og vægt 600.
 
 ## Tone og mikrotekster
 
@@ -304,10 +305,10 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Panel og ark | Filtre · Nulstil · Luk filtre · Vis 23 indslag |
 | Grupper | Sted · Kilde · Tema · Genre |
 | Status i grupperne | Ingen · 7 af 8 · 3 steder · 45 af 280 · Nationalt medie, Fagmedie |
-| Afventer | Afventer · Kategorien afventer og har ingen kilder endnu. |
+| Afventer | Afventer · Kategorien afventer og har ingen kilder endnu. · DR Nyheder afventer mediets tilladelse · Mediets regler tillader ikke et feed som dette. Hentes ikke, før mediet giver lov. |
 | Værktøjer | Vælg alle · Fravælg alle |
 | Sted | Kommune eller by · Find kommune eller by · Flest indslag lige nu · Ingen steder har indslag lige nu. · by i Nyborg · Landsdækkende |
-| Kilde | Find kilde · Ingen kilde passer til "x". · til skærmlæseren: 5 kilder under Nationalt medie · Uden Kommune/affaldsselskab · Uden Avisen.dk · Uden 5 kilder · 13 kilder · Vis Avisen.dk igen · Vis alle kilder |
+| Kilde | Find kilde · Ingen kilde passer til "x". · til skærmlæseren: 5 kilder under Nationalt medie · 5 kilder og 2, der afventer, under Nationalt medie · Uden Kommune/affaldsselskab · Uden Avisen.dk · Uden 5 kilder · 13 kilder · Vis Avisen.dk igen · Vis alle kilder |
 | Forslag | Viser 8 af 23. Skriv mere for at indsnævre. · Ingen kommune eller by passer til "xyz". Byer kommer med, når de er nævnt i et indslag. · Ingen kilde passer til "xyz". · Nyborg Kommune er valgt. · Nyborg Kommune er fravalgt. |
 | Rækker | Andre temaer |
 | Kalender | Alle datoer · 2.–5. okt. · 7. okt. · Fra 6. okt. · til skærmlæseren: Periode: 2.–5. okt. · Vis alle datoer · Vælg datoer · Forrige måned · Næste måned · ma ti on to fr lø sø · Vælg første dag. · Fra 5. oktober. Vælg sidste dag. · onsdag 7. oktober, 9 indslag · ingen indslag · Luk |

@@ -445,3 +445,14 @@ def test_cross_check_replaces(env):
     twice = sources[2].model_copy(update={"id": "ny-kilde-2", "replaces": ["nedlagt-dk"]})
     errors, _ = cfgmod.cross_check([*sources, ok, twice], cfg)
     assert any("som ny-kilde allerede overtager" in e for e in errors)
+
+
+def test_ai_levels_and_waiting_sources_need_a_note(make_source):
+    from pydantic import ValidationError
+
+    assert [make_source(ai=v).ai for v in (True, False, "titel")] == [True, False, "titel"]
+    with pytest.raises(ValidationError):
+        make_source(ai="hele")
+    with pytest.raises(ValidationError, match="afventer kræver en note"):
+        make_source(status="afventer")
+    assert make_source(status="afventer", note="Vilkårene forbyder feeds").status == "afventer"
