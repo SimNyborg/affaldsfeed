@@ -143,7 +143,7 @@ Denne kommando viser, om filerne er gyldige. Den skriver `OK` eller en fejl for 
 .venv/bin/python -m affaldsfeed validate-overview
 ```
 
-En fil kan blive ugyldig, efter du har skrevet den, fx når et indslag, den henviser til, forsvinder fra feedet, fordi kilden ikke længere er aktiv.
+En fil kan blive ugyldig, efter du har skrevet den, fx når et indslag, den henviser til, forsvinder fra feedet, fordi kilden ikke længere er aktiv, eller når feedet har fået ældre data, så overblikket er skrevet ud fra for få.
 
 Gør følgende for hver periode `P`, der skal opdateres (`dag`, `uge`, `maaned` eller `aar`):
 
@@ -176,12 +176,13 @@ Gør følgende for hver periode `P`, der skal opdateres (`dag`, `uge`, `maaned` 
 
 Skriveregler for overblikket:
 
-- Skriv kun ud fra `items` og `lower_overviews` i input. Brug ingen viden udefra, søg ikke på nettet, og gæt ikke på årsager eller følger, som ikke står i indslagene.
+- Skriv kun ud fra `items`, `lower_overviews` og `timeline` i input. Brug ingen viden udefra, søg ikke på nettet, og gæt ikke på årsager eller følger, som ikke står i indslagene.
 - Hvert punkt skal pege på mindst ét indslag i `item_ids`. Handler flere indslag om samme sag, så tag dem med.
 - Tal, beløb, datoer, frister og navne må kun stå i et punkt, hvis de står i titlen eller `teaser_or_summary` for et af de indslag, punktet henviser til.
 - Markér interessevaretagelse. Når et synspunkt, et krav eller en vurdering kommer fra en organisation, en tænketank, en virksomhed eller en politiker, så skriv hvem: "ifølge Dansk Affaldsforening", "DAKOFA mener", "ministeren vil". Kategorierne `organisation` og `taenketank` varetager altid nogens interesser.
 - Prioritér i denne rækkefølge: betydning for kommunerne (regler, økonomi og gebyrer, frister, større beslutninger), dernæst bredde i dækningen (høj `story_size`), dernæst nyhedsværdi. Overblikket skal ikke dække alt.
 - `dag` handler om dagens indslag. `uge` om ugens vigtigste historier. For `maaned` og `aar` er `lower_overviews` rygraden, suppleret med de mest dækkede historier i `items`.
+- `aar` skal dække hele perioden fra `since` (eller vinduets start), også de måneder, som `lower_overviews` ikke dækker. `timeline` er årets højdepunkter i datoorden med de indslag, de bygger på, og `items` er fordelt på månederne. Brug dem til de måneder, der ikke har et overblik i `lower_overviews`. Tal og datoer skal stadig stå i et indslag, punktet henviser til.
 - Skriv neutralt og klart dansk i hele sætninger. Intet salgssprog, ingen superlativer, ingen udråbstegn, emojis, fed skrift eller tankestreger.
 
 ### 6. Sweep efter oversete nyheder (kun når `TIME` er 07 eller 14)

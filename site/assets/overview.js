@@ -3,7 +3,7 @@
 // Foldet viser kun "Kort sagt"-linjen; "Vis hele" folder ud. af.overviewHidden = "0" betyder udfoldet.
 
 import {
-  el, icon, hidden, srPunct, cph, fmtWhen, fmtLongYear, parseDate, shortName,
+  el, icon, hidden, srPunct, cph, fmtWhen, parseDate, shortName,
   load, store, OV_PERIODS,
 } from './filters.js';
 
@@ -117,11 +117,6 @@ export function createOverview(root, { data, now, getState, onPeriod, onStory })
   function panelContent(period, ov) {
     if (!ov) return [el('p', { class: 'ov-empty', text: emptyText(period) }), foot()];
     const out = [];
-    if (ov.since) {
-      // Perioden står allerede i fanerne; "Siden" siger, at data først begynder senere
-      const [y, m, d] = String(ov.since).split('-').map(Number);
-      if (y && m && d) out.push(el('p', { class: 'ov-meta', text: `Siden ${fmtLongYear({ y, m, d })}` }));
-    }
     out.push(el('p', { class: 'ov-headline', text: ov.headline }));
     out.push(el('ul', { class: 'ov-bullets' }, ov.bullets.map((b) => el('li', null, el('p', { text: b.text }), refsLine(b)))));
     out.push(foot());

@@ -327,16 +327,17 @@ Kildernes egne små logoer (favicons) vises foran navnet på kortene (9). `run` 
 ```
 - `headline` ≤ 25 ord. Hvert `bullets[].text` ≤ 30 ord. `item_ids` ≥ 1, alle skal være godkendte (relevant) indslag med `published`/`first_seen` inden for vinduet (for `maaned`/`aar`: inden for vinduet). `topics` ≤ 2.
 - Antal punkter: `dag` 1–5 (min 3 hvis `based_on` ≥ 6), `uge` 3–5, `maaned` 5–8, `aar` 5–8 (minimum sænkes til `max(1, based_on//3)` når data er tynde).
-- `since` = første dato med data, hvis vinduet går længere tilbage end data.
+- `since` = første dato med data, hvis vinduet går længere tilbage end data. Siden viser den ikke. Rækker data senere længere tilbage (fx efter en bagudindsamling, 5.8), er overblikket skrevet ud fra for få data, og `validate-overview` afviser det, så routinen skriver det forfra.
 - Vinduer (København): `dag` = kalenderdag til nu; `uge` = 7×24 t; `maaned` = 30×24 t; `aar` = 365×24 t.
 
 ### 7.2 `overview-input` udskriver
-`{"period","now","window":{start,end},"since","rules":{"headline_max_words":25,"bullet_max_words":30,"bullets_min","bullets_max"},"items":[{id,title,teaser_or_summary,source_name,category,genre,topics,published,story_size}],"lower_overviews":[Overview…],"allowed_item_ids":[…]}`
+`{"period","now","window":{start,end},"since","rules":{"headline_max_words":25,"bullet_max_words":30,"bullets_min","bullets_max"},"items":[{id,title,teaser_or_summary,source_name,category,genre,topics,published,story_size}],"lower_overviews":[Overview…],"timeline":[{date,level,title,summary,items:[som items]}],"allowed_item_ids":[…],"based_on"}`
 - Kun indslag fra kilder med `ai: true` (`overview.text_items`, 3.4). Det gælder også `timeline-input` (7.3). Validering af eksisterende overblik og begivenheder bruger alle godkendte indslag.
 - `dag`: alle godkendte indslag i vinduet (maks 150).
 - `uge`: godkendte i vinduet grupperet i historier, sorteret efter story_size og rang (maks 120 historier; kun hovedindslag + story_size).
 - `maaned`: `lower_overviews` = arkiverede `uge`-overblik fra vinduet (højst ét pr. dag, nyeste pr. dag) + top 40 historier efter story_size.
-- `aar`: `lower_overviews` = arkiverede `maaned`-overblik (nyeste pr. kalendermåned) + top 40 historier.
+- `aar`: `lower_overviews` = arkiverede `maaned`-overblik (nyeste pr. kalendermåned) + top 40 historier fordelt på kalendermånederne (`spread_by_month`: hver måneds bedste historie på skift, så de seneste uger ikke fylder det hele) + `timeline` = tidslinjens begivenheder i vinduet (7.3) i datoorden med de godkendte indslag, de peger på. En begivenhed uden godkendte indslag i vinduet springes over. Begivenhedernes indslag står i `allowed_item_ids`.
+- `timeline` er tom for de andre perioder.
 
 ### 7.3 Tidslinje (`timeline.py`) — `data/timeline/ÅÅÅÅ-MM.jsonl`
 De vigtigste begivenheder på affaldsområdet, valgt og skrevet af Claude-routinen ved kørslen kl. 14.25 (og ved første kørsel, når tidslinjen er tom). Koden vælger ikke begivenheder. Hver begivenhed peger på mindst ét godkendt indslag og gemmer et øjebliksbillede af det, så tidslinjen også kan vise begivenheder, der er ældre end feedets vindue.
