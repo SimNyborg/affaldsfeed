@@ -1,6 +1,6 @@
 # Kommunale affaldsselskaber
 
-Oversigten viser, hvordan feedet henter nyhederne fra de kommunale affalds- og forsyningsselskaber. Den bygger på medlemslisten hos brancheforeningen Cirkulær, der tidligere hed Dansk Affaldsforening, og på en kortlægning fra 9. oktober 2026, hvor alle hjemmesiderne blev afprøvet fra GitHub Actions. Oversigten er et øjebliksbillede. Ændrer et selskab sin hjemmeside, viser kildesundheden på Om kilderne det.
+Oversigten viser, hvordan feedet henter nyhederne fra de kommunale affalds- og forsyningsselskaber. Den bygger på medlemslisten hos brancheforeningen Cirkulær, der tidligere hed Dansk Affaldsforening, og på en kortlægning fra 9. oktober 2026, hvor alle hjemmesiderne blev afprøvet fra GitHub Actions. Oversigten er et øjebliksbillede. Ændrer et selskab sin hjemmeside, viser kildesundheden i `data/status.json` det.
 
 ## Sådan hentes selskaberne
 

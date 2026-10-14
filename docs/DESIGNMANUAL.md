@@ -9,7 +9,7 @@ Manualen beskriver, hvordan Affaldsfeed ser ud, og hvad der står på siden. Dat
 3. Farve bærer aldrig information alene. Ikon og tekst følges ad.
 4. Siden er tæt, men der er luft nok til at læse. Der er ingen billeder, og titlerne må gerne stå tæt.
 5. Udtrykket er lånt fra affaldsviden.info: farverne, Open Sans, afrundede hvide paneler på grå baggrund og pilleformede knapper. Logo og navn er ikke lånt, og intet hentes derfra. Farverne står som værdier i `site/assets/style.css`.
-6. Siden er ærlig om data. Anslåede datoer, forældede data, forsinket vurdering og AI-skrevet tekst vises åbent. Betalingsmure står på Om kilderne.
+6. Siden er ærlig om data. Anslåede datoer, forældede data, forsinket vurdering og AI-skrevet tekst vises åbent.
 7. Alt står skarpt. Rækker har fast højde, navne står på én linje, tal står i samme kolonne, og intet skifter bredde, når man vælger noget.
 
 ## Layout
@@ -21,14 +21,14 @@ Manualen beskriver, hvordan Affaldsfeed ser ud, og hvad der står på siden. Dat
 - Brudpunkterne står i em (48em og 64em), så layoutet skifter tidligere, når brugeren har større grundskrift. Siden kan vises ved 320 px uden vandret scroll, også i tom-tilstanden, hvor knapperne må brydes over to linjer.
 - Kan feedet ikke indlæses, står fejlen i læsekolonnen (også fra 1024 px, hvor sidepanelet så er skjult) uden listens hoved, fordi søgning, "Filtrér" og visning intet har at vise.
 - Headeren er hvid, ikke sticky og har `box-shadow: 0 10px 15px rgba(0,0,0,.05)`. Fra 768 px er den én række på 64 px med logo (28 px) og ordmærket "Affaldsfeed" til venstre og navigationen og i-knappen til højre. Under 768 px står logo, ordmærke og i-knappen på én række (56 px) og navigationen på en række for sig (44 px). Der er ingen undertitel.
-- Navigationen er Feed og Højdepunkter. Om kilderne findes via i-knappen. Den aktive side har teksten i `--link` og en streg på 3 px i `--link` under teksten.
+- Navigationen er Feed og Højdepunkter. Den aktive side har teksten i `--link` og en streg på 3 px i `--link` under teksten.
 - Forsiden har denne rækkefølge: demo-strimmel (kun med `?demo=1`), header, sidepanel og læsekolonnen med nyhedsoverblikket og listepanelet. Listepanelet har listens hoved øverst og derefter dage og kort. Listen viser 60 kort ad gangen med "Vis mere" under sig (se Dage og listen).
 - Afstande: 4, 8, 12, 16, 20, 24 og 32 px. Kort, listens hoved og overblik har 20 px vandret padding (16 px under 768 px). Optiske justeringer på 2, 3 og 6 px står ved de enkelte komponenter.
 - Radius: 15 px på paneler (0 under 768 px), 8 px på felter og forslagslister, 999 px på knapper og aktive filtre.
 
 | Højde | Mus fra 768 px | Berøring eller under 768 px | Bruges til |
 |---|---|---|---|
-| `--h-row` | 32 px | 44 px | filterrækker, forslag, rækker på Om kilderne |
+| `--h-row` | 32 px | 44 px | filterrækker og forslag |
 | `--h-ctl` | 36 px | 44 px | søgefelter, "Filtrér", primærknapper |
 | `--h-chip` | 28 px | 32 px | aktive filtre og tekstknapper |
 | `--h-day` | 40 px | 40 px | dagsoverskrifter |
@@ -44,8 +44,8 @@ Open Sans 400 og 600, hostet selv i `site/assets/fonts/` (latin, licensen står 
 | `--t-m` | 15/22 | 400, 600 | brødtekst, teaser, knapper, overblikkets foldede hovedlinje og punkter, titler i kompakt visning (600) |
 | `--t-in` | 15/22, ved berøring 16/24 | 400 | tekst i felter. 16 px forhindrer, at iOS zoomer ind |
 | `--t-l` | 17/24 | 600 | korttitel, udfoldet hovedlinje i overblikket, "Filtre" |
-| `--t-xl` | 20/28 | 600 | ordmærket og `h2` på Om kilderne |
-| `--t-2xl` | 28/34 | 600 | `h1` på Om kilderne og Højdepunkter |
+| `--t-xl` | 20/28 | 600 | ordmærket og sidernes `h2` |
+| `--t-2xl` | 28/34 | 600 | `h1` på Højdepunkter |
 
 - `letter-spacing: 0.2px` på body og ingen anden spatiering.
 - Tider, tal og tællere har `font-variant-numeric: tabular-nums`, så tallene står i kolonne.
@@ -73,7 +73,7 @@ Mørk tilstand følger kun enhedens indstilling (`prefers-color-scheme: dark`). 
 
 ## Afsenderkategorier
 
-Hver kategori har en farve, et ikon og et kort navn. Ikonet står i kategoriens farve og er 16 px i filterpanelet og forslagene, 14 px i kortets afsenderlinje og 20 px i overskrifterne på Om kilderne. På kortene står kildens eget logo i stedet, når kilden har et (se Feed-kortet). Der er ingen prik. Panel, kort og aktive filtre bruger det korte navn. Det fulde navn står i filterrækkens `title` og på Om kilderne.
+Hver kategori har en farve, et ikon og et kort navn. Ikonet står i kategoriens farve og er 16 px i filterpanelet og forslagene og 14 px i kortets afsenderlinje. På kortene står kildens eget logo i stedet, når kilden har et (se Feed-kortet). Der er ingen prik. Panel, kort og aktive filtre bruger det korte navn. Det fulde navn står i filterrækkens `title`.
 
 | Kategori | Kort navn | Lys | Mørk | Ikon-id | Motiv |
 |---|---|---|---|---|---|
@@ -228,7 +228,7 @@ Kildens egen beskrivelse, højst 240 tegn og to linjer ...
 
 Kortet er en `<article>`, titlen en `<h3>` og tiden en `<time datetime>`. Padding er 16 px 20 px (12 px 16 px under 768 px), og der er en streg på 1 px i `--line` mellem kortene.
 
-1. Afsenderlinjen (13/18, `--muted`): kildens logo og navnet i 600 og `--text`. Der står intet andet. Logoet er kildens favicon i 16 px på en hvid flade med radius 3 px, så mørke logoer også ses i mørk tilstand (KONTRAKTER 6.4). Samler en kilde flere sites, som TV 2-regionerne, står logoet for det site, artiklen kommer fra, fx TV SYD's. Det er pynt (`alt=""`) og indlæses først, når kortet nærmer sig skærmen. Uden logo, eller når billedet ikke kan vises, står kategoriikonet (14 px) i stedet. Afsendertype og genre kan vælges i menuen, og betalingsmur og ejer står på Om kilderne. Tiden står øverst til højre i en fast kolonne.
+1. Afsenderlinjen (13/18, `--muted`): kildens logo og navnet i 600 og `--text`. Der står intet andet. Logoet er kildens favicon i 16 px på en hvid flade med radius 3 px, så mørke logoer også ses i mørk tilstand (KONTRAKTER 6.4). Samler en kilde flere sites, som TV 2-regionerne, står logoet for det site, artiklen kommer fra, fx TV SYD's. Det er pynt (`alt=""`) og indlæses først, når kortet nærmer sig skærmen. Uden logo, eller når billedet ikke kan vises, står kategoriikonet (14 px) i stedet. Afsendertype og genre kan vælges i menuen. Tiden står øverst til højre i en fast kolonne.
 2. Titlen (17/24, 600) linker til kilden i ny fane med den skjulte tekst "(åbner i nyt vindue)". Hover giver `--link` og understregning. Besøgte titler står i `--muted`. Titler på engelsk og svensk har `lang`.
 3. Previewet (15/22, `--muted`) er højst to linjer og afkortes ved et ord efter højst 240 tegn. Det er altid et dansk resumé med egne ord, skrevet af AI (KONTRAKTER 6.2a), og aldrig kildens egen teaser. Uden resumé står kun titlen. Der er ingen mærkat på resuméet; det står i i-panelet, at AI skriver dem.
 4. Fodlinjen (13/18) har kun "+3 andre kilder" eller "+1 anden kilde" yderst til højre, når de øvrige er fra hver sin anden kilde. Ellers står der "+3 flere" eller "+1 mere", som i Folketingets dagsbundt. Har historien nye medlemmer, står der fx "+3 andre kilder, 2 nye". Sted og temaer står ikke på kortet, men kan vælges i menuen. Linjen udelades, når der ikke er andre indslag i historien.
@@ -262,7 +262,7 @@ Overblikket ligger i et hvidt panel øverst i læsekolonnen over søgning og fil
 
 ### Demo-strimmel
 
-- Med `?demo=1` står en tynd strimmel i `--demo-bg` over headeren: "Demodata: opdigtede eksempler med links til example.org. Tiderne er rykket frem." og linket "Vis det rigtige feed", som aldrig brydes midt i. Den kan ikke lukkes. Interne links bevarer `?demo=1`; logoet på Om kilderne peger på `index.html?demo=1`.
+- Med `?demo=1` står en tynd strimmel i `--demo-bg` over headeren: "Demodata: opdigtede eksempler med links til example.org. Tiderne er rykket frem." og linket "Vis det rigtige feed", som aldrig brydes midt i. Den kan ikke lukkes. Interne links bevarer `?demo=1`; logoet på Højdepunkter peger på `index.html?demo=1`.
 
 ### Om Affaldsfeed (i-knappen)
 
@@ -270,12 +270,12 @@ Al småtekst står samlet bag en diskret i-knap yderst til højre i headeren på
 
 - Knappen er 44 × 44 px med ikonet `info` på 20 px i `--muted` (`--text` ved hover) og navnet "Om Affaldsfeed" til skærmlæsere. Ikonets højrekant flugter med containerens indhold.
 - Den åbner en modal dialog med overskriften "Om Affaldsfeed" (fokus ved åbning) og en lukkeknap. Esc, lukkeknappen og et klik på baggrunden lukker den, og fokus går tilbage til knappen. Under 768 px er dialogen et bundark som filterarket, ellers står den midt på skærmen, højst 36rem bred og 85 % af skærmens højde.
-- Indholdet: hvad Affaldsfeed er, at betalingsmure aldrig omgås, et link til Om kilderne, "Udvalgt af AI" (modellen vurderer relevans og skriver resuméerne, overblikket og højdepunkterne ud fra titel og kort beskrivelse og kan tage fejl), "Opdatering" (vurdering om morgenen, formiddagen og eftermiddagen, tidspunktet for seneste opdatering og en linje, når vurderingen er forsinket) og "Klager og sletning" (jhn@jhn.dk, opslag og kilder fjernes inden for 24 timer).
+- Indholdet: hvad Affaldsfeed er, at betalingsmure aldrig omgås, at medier, hvis regler ikke tillader et feed som dette, står som "Afventer" i menuen, "Udvalgt af AI" (modellen vurderer relevans og skriver resuméerne, overblikket og højdepunkterne ud fra titel og kort beskrivelse og kan tage fejl), "Opdatering" (vurdering om morgenen, formiddagen og eftermiddagen, tidspunktet for seneste opdatering og en linje, når vurderingen er forsinket) og "Klager og sletning" (jhn@jhn.dk, opslag og kilder fjernes inden for 24 timer).
 - Teksten står i 14/20 med underoverskrifter i 15/22 og vægt 600. Mailadressen samles først i browseren.
 
 ### Højdepunkter
 
-Siden Højdepunkter (`tidslinje.html`) viser de vigtigste begivenheder på affaldsområdet, valgt af Claude (KONTRAKTER 7.3). Siden har samme demo-strimmel, header og læsekolonne som Om kilderne.
+Siden Højdepunkter (`tidslinje.html`) viser de vigtigste begivenheder på affaldsområdet, valgt af Claude (KONTRAKTER 7.3). Siden har samme demo-strimmel og header som forsiden og en læsekolonne på højst 720 px uden sidepanel. Fra 1024 px står læsekolonnen ved containerens venstrekant og flugter med logoet; under 1024 px står den som listepanelet på forsiden.
 
 - Tidslinjen er et kompakt overblik over de store linjer på affaldsområdet. Kun begivenheder med betydning for hele landet kommer med (KONTRAKTER 7.3), typisk 0-2 om ugen.
 - Øverst står "Højdepunkter" (`h1`) og linjen "De store linjer på affaldsområdet: love, politiske aftaler, EU-regler og andre beslutninger med betydning for hele landet." Under den står "Spring til 2026 · 2025", når begivenhederne spænder over mere end ét år. Der er intet valg af niveau, og `niveau=` fra ældre links fjernes fra URL'en.
@@ -285,10 +285,6 @@ Siden Højdepunkter (`tidslinje.html`) viser de vigtigste begivenheder på affal
 - Siden viser de 12 nyeste måneder med begivenheder. "Vis ældre" henter 12 måneder mere og giver fokus til den første nye måneds overskrift. "Spring til" og et anker i URL'en henter ældre måneder efter behov.
 - Under 480 px står datoen over titlen, og stregen følger markøren i venstre side.
 - Uden begivenheder: "Der er ingen højdepunkter endnu. De vigtigste begivenheder bliver tilføjet, efterhånden som nyhederne kommer." og linket "Gå til feedet". Kan siden ikke indlæses: "Højdepunkterne kunne ikke indlæses. Prøv igen om lidt."
-
-### Om kilderne
-
-Siden bruger samme demo-strimmel og header og en læsekolonne på højst 720 px uden sidepanel. Fra 1024 px står læsekolonnen ved containerens venstrekant og flugter med logoet; under 1024 px står den som listepanelet på forsiden. Afsendertyperne står som rækker med ikon, det fulde navn og antal kilder (`id="typer"`), i to kolonner fra 560 px med 48 px imellem. En type, der afventer, har "Afventer" i stedet for antallet. Medier, der afventer tilladelse, tæller ikke med i antallet og i "aktive kilder". Hver kategori har sin egen sektion med ikonet (20 px) i overskriften, kategoriens forklaring og kildelisten. Afventer kategorien, står der "Kategorien afventer og har ingen kilder endnu." i stedet for listen. Statusmærket står altid øverst til højre i kildens række. Et medie, der afventer tilladelse, står nederst i sin kategori med mærket "◇ Afventer" i stedet for sundheden og en linje om, hvorfor det ikke hentes. Har kilden et logo, står det i 16 px foran navnet, 8 px fra det. Tallene i "Status lige nu" står i 20/28 og vægt 600.
 
 ## Tone og mikrotekster
 
@@ -305,7 +301,7 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Panel og ark | Filtre · Nulstil · Luk filtre · Vis 23 indslag |
 | Grupper | Sted · Kilde · Tema · Genre |
 | Status i grupperne | Ingen · 7 af 8 · 3 steder · 45 af 280 · Nationalt medie, Fagmedie |
-| Afventer | Afventer · Kategorien afventer og har ingen kilder endnu. · DR Nyheder afventer mediets tilladelse · Mediets regler tillader ikke et feed som dette. Hentes ikke, før mediet giver lov. |
+| Afventer | Afventer · DR Nyheder afventer mediets tilladelse |
 | Værktøjer | Vælg alle · Fravælg alle |
 | Sted | Kommune eller by · Find kommune eller by · Flest indslag lige nu · Ingen steder har indslag lige nu. · by i Nyborg · Landsdækkende |
 | Kilde | Find kilde · Ingen kilde passer til "x". · til skærmlæseren: 5 kilder under Nationalt medie · 5 kilder og 2, der afventer, under Nationalt medie · Uden Kommune/affaldsselskab · Uden Avisen.dk · Uden 5 kilder · 13 kilder · Vis Avisen.dk igen · Vis alle kilder |
@@ -328,7 +324,6 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | feed.json fejler (også data uden for kontrakten) | Feedet kunne ikke indlæses. Prøv igen om lidt. · Prøv igen |
 | Forældet feed | Feedet blev sidst opdateret for 9 timer siden. Indsamlingen kører måske ikke. · Se kildernes status |
 | Regelvisning | Vurderingen af nye indslag er forsinket, så de vises efter faste regler indtil videre. |
-| Om kilderne, status | Feedet er opdateret i dag kl. 09.17. · Indslagene blev sidst vurderet i dag kl. 09.25. |
 | Demo | Demodata: opdigtede eksempler med links til example.org. Tiderne er rykket frem. · Vis det rigtige feed |
 | Om Affaldsfeed | Om Affaldsfeed (i-knappen) · Udvalgt af AI · Opdatering · Klager og sletning · Siden blev sidst opdateret i dag kl. 14.31. · Vurderingen er forsinket lige nu, så nye nyheder vises efter faste regler. · Luk |
 

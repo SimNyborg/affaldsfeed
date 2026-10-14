@@ -9,11 +9,9 @@ const MAIL = ['jhn', 'jhn.dk'].join('@');
 let dialog = null;
 let statusEl = null;
 let status = null; // {generated, mode, now}
-let opts = { demo: '' };
 
-/** Kobler i-knappen (#info-btn) til dialogen. demo: links til andre sider beholder ?demo=. */
-export function setupInfo({ demo = '' } = {}) {
-  opts = { demo };
+/** Kobler i-knappen (#info-btn) til dialogen. */
+export function setupInfo() {
   const btn = document.getElementById('info-btn');
   if (!btn) return;
   btn.addEventListener('click', () => {
@@ -39,12 +37,6 @@ function renderStatus() {
   statusEl.hidden = !parts.length;
 }
 
-function link(href, text) {
-  const internal = !/^[a-z]+:/i.test(href);
-  const url = internal && opts.demo ? `${href}?demo=${encodeURIComponent(opts.demo)}` : href;
-  return el('a', { href: url, 'data-internal': internal ? '' : null }, text);
-}
-
 function build(btn) {
   statusEl = el('p', { class: 'info-status', hidden: '' });
   const close = el('button', { type: 'button', class: 'icon-btn', 'aria-label': 'Luk' }, icon('luk'));
@@ -55,9 +47,8 @@ function build(btn) {
     el('div', { class: 'info-body prose' },
       el('p', null, 'Affaldsfeed samler nyheder om affaldsområdet i Danmark fra kommuner, affaldsselskaber, '
         + 'myndigheder, medier, organisationer og forskning. Alle overskrifter linker til den oprindelige artikel, '
-        + 'og feedet omgår aldrig betalingsmure. '
-        + 'Under ', link('kilder.html', 'Om kilderne'), ' kan du se, hvilke kilder feedet bruger. Medier, hvis regler '
-        + 'ikke tillader et feed som dette, står som "Afventer" i menuen og hentes ikke, før de giver lov.'),
+        + 'og feedet omgår aldrig betalingsmure. Medier, hvis regler ikke tillader et feed som dette, står som '
+        + '"Afventer" i menuen og hentes ikke, før de giver lov.'),
       el('h3', null, 'Udvalgt af AI'),
       el('p', null, 'En AI-model vurderer, hvilke nyheder der er relevante for kommunernes arbejde med affald. '
         + 'Den skriver også de korte resuméer under overskrifterne med egne ord, nyhedsoverblikket og '

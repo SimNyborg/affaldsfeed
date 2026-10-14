@@ -35,7 +35,7 @@ GitHub Pages: site/index.html henter data/feed.json én gang og filtrerer i brow
 2. Nyhedssøgninger (`method: search`). Google News og Bing News på dansk med forespørgslerne i `config/search.yaml`. Søgemaskinen bruges kun til at finde artiklen, og indslaget krediteres altid udgiveren. Står udgiveren i `sources.yaml` eller `config/medier.yaml`, bliver artiklen en kandidat. Ukendte udgivere kommer ikke i feedet, men i `data/state/kildeforslag.md`. Bing-links opløses via `url`-parameteren, og dubletter fra Google fanges på normaliseret titel og udgiver. Begge søgninger er fravalgt: Google News forbyder det i robots.txt, og Bings vilkår tillader kun personlig brug (BESLUTNINGER 2026-10-14).
 3. Officielle kanaler. Høringsportalen, KEFM og EU-kilderne hentes som RSS fra første version. Folketingets ODA kommer i fase 2 og Retsinformation senere.
 4. Claudes sweep kl. 07.25 og 14.25. Routinen søger med WebSearch efter vigtige danske affaldsnyheder fra de sidste 12-24 timer, som ikke er blandt kandidaterne. Fund fra kendte udgivere skrives som vurderinger med `new_item`. Ukendte udgivere havner i `data/judgments/kildeforslag-sweep.md`.
-5. Kildesundhed og læring. Hver kilde har en status (grøn, gul, rød eller grå), som vises på "Om kilderne". Et svar med 200 og 0 indslag tæller som fejl, og kilder, der har været tavse længe, markeres. Listen over foreslåede kilder fra lag 2 og 4 gennemgås hver uge.
+5. Kildesundhed og læring. Hver kilde har en status (grøn, gul, rød eller grå), som står i `data/status.json` på Pages og i `data/state/sources.json`. Et svar med 200 og 0 indslag tæller som fejl, og kilder, der har været tavse længe, markeres. Listen over foreslåede kilder fra lag 2 og 4 gennemgås hver uge.
 
 Indsamleren er høflig: ærlig User-Agent, robots.txt, mindst 2 sekunder mellem kald til samme vært, ETag og Last-Modified, et tidsbudget pr. kilde og automatisk pause efter gentagne fejl. Værdierne står i `config/settings.yaml`. Forfiltret er bevidst løst. Det fjerner det åbenlyst irrelevante og lader Claude vurdere resten (KONTRAKTER 5.4).
 
@@ -105,8 +105,8 @@ Filerne skrives atomisk og kun, når indholdet faktisk ændrer sig, så git ikke
 - GitHub Actions og GitHub Pages er gratis for offentlige repos.
 - Claude-routinen kører tre gange i døgnet, kl. 07.25, 09.25 og 14.25 (cron på claude.ai: `CRON_TZ=Europe/Copenhagen 25 7,9,14 * * *`, og `routine.hours` i `config/settings.yaml` skal passe med den). Den kørte hver time indtil 13. oktober 2026, men abonnementets ugegrænse blev nået, og routinen stod stille i fire dage. Forbruget følges på claude.ai/settings/usage. Udviklingssessioner bruger af samme grænse.
 - Feedet rækker tilbage til 1. januar 2026 (`window_start` i `config/settings.yaml`). `feed.json` er én fil, der vokser med året (se BESLUTNINGER 2026-10-09, Hele 2026 i feedet).
-- GitHub slår planlagte workflows fra efter 60 dage uden aktivitet i et offentligt repo. Datacommits holder repoet aktivt. Sker det alligevel, ses det på tidspunktet for seneste opdatering i i-panelet og på "Om kilderne".
-- Driften kan følges i kildesundheden på "Om kilderne", i `data/judgments/_heartbeat.json` og i kørselsloggen i GitHub Actions.
+- GitHub slår planlagte workflows fra efter 60 dage uden aktivitet i et offentligt repo. Datacommits holder repoet aktivt. Sker det alligevel, ses det på tidspunktet for seneste opdatering i i-panelet.
+- Driften kan følges i kildesundheden i `data/status.json` og `data/state/sources.json`, i `data/judgments/_heartbeat.json` og i kørselsloggen i GitHub Actions.
 
 ## Kendte begrænsninger
 
