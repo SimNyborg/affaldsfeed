@@ -21,6 +21,7 @@ Genereres automatisk af `python -m affaldsfeed run`. Viser top 50 efter antal ar
 | effektivtlandbrug.landbrugnet.dk | effektivtlandbrug.landbrugnet | 1 | 2026-10-08 | [1](https://effektivtlandbrug.landbrugnet.dk/artikler/planter/125370/regeringen-vil-mindst-fordoble-boeder-for-miljoekriminalitet) |
 | espn.com | ESPN | 1 | 2026-10-09 | [1](https://www.espn.com/college-football/story/_/id/50127445/nebraska-cornhuskers-memorial-stadium-urinal-sales) |
 | fla.de | fla | 1 | 2026-10-07 | [1](https://www.fla.de/flensborg/lokalt/96529/dansk-inspireret-losning-genbrugspladsen-skal-vaere-aben-nar-) |
+| hradecka.drbna.cz | hradecka.drbna | 1 | 2026-10-14 | [1](https://hradecka.drbna.cz/spolecnost/902913-stara-se-o-odpad-zhruba-dvou-tisic-obci-marius-pedersen-ma-zmenit-vlastnika.html) |
 | hradecky.denik.cz | Hradecký deník | 1 | 2026-10-13 | [1](https://hradecky.denik.cz/zpravy-region/francouzska-paprec-kupuje-od-danu-marius-pedersen-spolecnost-sidli-v-hradci/) |
 | idahostatejournal.com | Idaho State Journal | 1 | 2026-10-07 | [1](https://www.idahostatejournal.com/news/local/dedicate-explores-the-salt-lake-temple-renovation-through-the-eyes-of-young-adults/article_05c0f18e-3ced-53f6-accb-fc7897dea527.html) |
 | inc.com | Inc.com | 1 | 2026-10-07 | [1](https://www.inc.com/sarah-bregel/baltimore-orioles-announced-600-million-dollar-renovation-laid-off-employee-behind-mascot/91416095) |
