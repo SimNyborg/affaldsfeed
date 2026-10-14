@@ -34,6 +34,7 @@ from affaldsfeed.models import (
     TimelineEvent,
     TimelineFeed,
     TimelineRef,
+    full_text,
     parse_timeline_line,
     sort_places,
 )
@@ -233,7 +234,8 @@ class FillStatus:
 
 def fill_status(data: Data, now: datetime) -> FillStatus:
     """Den næste måned til opfyldningen. Den er klar, når bagudindsamlingen er færdig hos alle kilder uden fejl,
-    og routinen har vurderet månedens indslag (de, der stadig står i pending)."""
+    og routinen har vurderet månedens indslag (de, der stadig står i pending). Kun kilder med ai: true tæller,
+    for kun deres indslag kan komme på tidslinjen (text_items)."""
     settings = data.config.settings
     months = fill_months(settings)
     if not months:
@@ -248,7 +250,7 @@ def fill_status(data: Data, now: datetime) -> FillStatus:
     missing = sorted(
         s.id
         for s in data.sources
-        if s.status == "aktiv" and s.method in COLLECTORS
+        if s.status == "aktiv" and s.method in COLLECTORS and full_text(s.ai)
         and (s.id not in states or (states[s.id].fails == 0 and settings.needs_backfill(states[s.id])))
     )
     if missing:
@@ -257,10 +259,11 @@ def fill_status(data: Data, now: datetime) -> FillStatus:
         )
     month = left[0]
     start, end = month_bounds(month)
+    info = data.info
     waiting = [
         c
-        for c in pending_candidates(data.info, data.candidates, data.judgments, now, settings.pending_hours)
-        if start <= item_time(c) < end
+        for c in pending_candidates(info, data.candidates, data.judgments, now, settings.pending_hours)
+        if start <= item_time(c) < end and c.source in info and full_text(info[c.source].ai)
     ]
     if waiting:
         return FillStatus(None, f"venter på routinens vurdering af {len(waiting)} indslag fra {month}", left)

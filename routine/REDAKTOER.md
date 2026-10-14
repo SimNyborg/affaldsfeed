@@ -270,7 +270,7 @@ Skriveregler for tidslinjen:
 
 ### 7b. Tidslinjen bagud (i hver kørsel, indtil den er færdig)
 
-Feedet går tilbage til 1. januar 2026, men tidslinjen har kun begivenheder fra august. Den fyldes derfor bagud, én måned pr. kørsel. Kør trinnet i hver kørsel, også når trin 7 ikke blev kørt.
+Feedet går tilbage til 1. januar 2026, men tidslinjen har kun begivenheder fra de seneste to måneder. Den fyldes derfor bagud, ældste måned først og op til fire måneder pr. kørsel. Kør trinnet i hver kørsel, også når trin 7 ikke blev kørt.
 
 1. Hent input:
 
@@ -292,7 +292,7 @@ Feedet går tilbage til 1. januar 2026, men tidslinjen har kun begivenheder fra 
    .venv/bin/python -m affaldsfeed timeline-input --fill-done <fill_month>
    ```
 
-Tag højst én måned pr. kørsel.
+Gentag så punkt 1-6 med den næste måned, til `fill_month` er `null`, eller du har fyldt fire måneder i denne kørsel. Hver måned får sit eget input og sit eget `now`.
 
 ### 8. Heartbeat
 
@@ -322,4 +322,4 @@ Slut med én linje i dette format:
 Vurderet 14 / godkendt 9 / omformuleret 150 af 479 / overblik opdateret: dag, uge
 ```
 
-`omformuleret` er antallet af resuméer fra trin 3b og `rewrite_total` fra `/tmp/pending.json`. Står der ingen opdaterede perioder, så skriv `overblik opdateret: intet`. Har du kørt trin 7, så tilføj fx ` / tidslinje: 1 ny, 0 opdateret`. Har du fyldt en måned i trin 7b, så tilføj fx ` / tidslinje bagud: 2026-03, 2 nye`. Gik et trin galt (validering eller push), så tilføj det kort på samme linje.
+`omformuleret` er antallet af resuméer fra trin 3b og `rewrite_total` fra `/tmp/pending.json`. Står der ingen opdaterede perioder, så skriv `overblik opdateret: intet`. Har du kørt trin 7, så tilføj fx ` / tidslinje: 1 ny, 0 opdateret`. Har du fyldt måneder i trin 7b, så tilføj fx ` / tidslinje bagud: 2026-03 (2 nye), 2026-04 (0 nye)`. Gik et trin galt (validering eller push), så tilføj det kort på samme linje.
