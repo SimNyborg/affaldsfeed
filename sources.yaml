@@ -5033,7 +5033,7 @@
   homepage: https://www.cbs.dk
   method: sitemap
   feeds: https://www.cbs.dk/sitemap.xml
-  match: "/nyheder/[^/]+$"
+  match: "/(nyheder|artikler)/[^/]+$"
   lang: en
   filter: strict
   replaces: [cbs-dk]
