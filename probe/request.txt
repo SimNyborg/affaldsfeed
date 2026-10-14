@@ -1,7 +1,5 @@
-# Nye kilder til kildeudvidelsen
-dr-regionale
-videnskab
-tv2-nyheder
-cleantech-watch
-energiwatch
-cepos
+# Ishøj Kommune: artikelsiderne giver HTTP 403 siden 9. oktober
+ishoej-kommune
+url https://ishoj.dk/robots.txt 4
+url https://ishoj.dk/aktuelt/nyheder/ 6
+url https://ishoj.dk/aktuelt/nyheder/ishoj-sender-nyt-affaldsregulativ-i-horing/ 6
