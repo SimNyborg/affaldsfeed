@@ -5039,8 +5039,11 @@
   replaces: [cbs-dk]
   basis: forskning
   status: aktiv
-  checked: 2026-10-09
-  note: Nyheder fra sitemappet, mest på engelsk. Strengt filter, så kun sider med et affaldsord i adressen hentes.
+  checked: 2026-10-14
+  note: >-
+    Nyheder og artikler (forskningsbaserede tekster, fra 2026-10-14) fra sitemappet, på dansk og engelsk.
+    MSC-instituttets nyheder om bæredygtighed er en del af de fælles nyheder. Strengt filter, så kun sider med
+    et affaldsord i adressen hentes.
 
 - id: itu
   name: IT-Universitetet i København

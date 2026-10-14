@@ -98,7 +98,7 @@ Senere: Kraka, CEPOS og Tænketanken Europa.
 | Københavns Universitet | Forskningsnyheder, filtreret på affald | RSS (strengt filter) |
 | Syddansk Universitet | Forskningsnyheder, filtreret på affald | Nyhedsside (strengt filter) |
 | DTU, Aalborg Universitet og IT-Universitetet | Pressemeddelelser, filtreret på affald | RSS via Ritzau (strengt filter) |
-| Roskilde Universitet og CBS | Nyheder, filtreret på affald | Sitemap (strengt filter) |
+| Roskilde Universitet og CBS | Nyheder og CBS' artikler, filtreret på affald | Sitemap (strengt filter) |
 | DTU Sustain | Miljø- og ressourceteknologi, også affald og restprodukter | Forside med de fire nyeste nyheder |
 | DTU Kemiteknik | Forbrænding, pyrolyse og kemisk genanvendelse af plast | Forside med de to nyeste nyheder (strengt filter, engelsk) |
 | Københavns Universitet, Fødevare- og Ressourceøkonomi | Ressourceøkonomi, fx madspild og plastpolitik | Nyhedsside |
@@ -115,11 +115,11 @@ Universiteternes fælles nyhedslister rummer kun en del af institutternes nyhede
 | DTU | DTU Sustain og DTU Kemiteknik | DTU Construct (byggematerialer, men ingen affaldsnyheder blandt de seneste). DTU Space og de andre institutter arbejder ikke med affald |
 | Københavns Universitet | Fødevare- og Ressourceøkonomi (IFRO) | Plante- og Miljøvidenskab (RSS, ingen affaldsnyheder 2022-2026), Geovidenskab og Naturforvaltning og KU FOOD (ingen nyheder om affaldshåndtering) |
 | Aarhus Universitet | Byggeri og Bygningsdesign | Miljøvidenskab (RSS, ingen affaldsnyheder siden oktober 2024), Bio- og Kemiteknologi, Agroøkologi og CBIO (bioøkonomi) |
-| Aalborg Universitet | Ingen | Bæredygtighed og Planlægning (med DCEA) og Byggeri, By og Miljø er relevante, men nyhedslisterne hentes med JavaScript fra et API |
-| Syddansk Universitet | Ingen | Institut for Grøn Teknologi: "Nyt fra IGT" er ikke opdateret siden 2022, og instituttets nyheder står på SDU's fælles nyhedsliste |
-| Roskilde Universitet | Ingen | RUC_TEKST |
-| CBS | Ingen | CBS_TEKST |
-| IT-Universitetet | Ingen | Ingen institutter med affaldsforskning |
+| Aalborg Universitet | Ingen nye | Bæredygtighed og Planlægning (med DCEA) og Byggeri, By og Miljø er relevante, men nyhedslisterne hentes med JavaScript fra et API |
+| Syddansk Universitet | Ingen nye | Institut for Grøn Teknologi: "Nyt fra IGT" er ikke opdateret siden 2022, og instituttets nyheder står på SDU's fælles nyhedsliste |
+| Roskilde Universitet | Ingen nye | Institutternes nyheder ligger på ruc.dk/nyheder og står i sitemappet, som feedet allerede læser |
+| CBS | CBS' artikler | Instituttet for ledelse, samfund og kommunikation (MSC), hvor forskningen i bæredygtighed hører til, viser CBS' fælles nyheder, som står i sitemappet. CBS' artikler (forskningsbaserede tekster) står i samme sitemap og kom med |
+| IT-Universitetet | Ingen nye | Ingen institutter med affaldsforskning |
 
 ## EU og Norden
 

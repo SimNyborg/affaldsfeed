@@ -1,38 +1,56 @@
-# Afprøvning 2026-10-14T09:17:35Z
+# Afprøvning 2026-10-14T08:12:24Z
 
-## cbs
+## wastetech
 
 ```text
-OK: 357 kilder (279 aktive), 27 udgivere i medier.yaml, 13 temaer, 6 genrer, 9 søgninger, geografi: 5 regioner, 98 kommuner, 470 byer.
+OK: 348 kilder (280 aktive), 28 udgivere i medier.yaml, 13 temaer, 6 genrer, 9 søgninger, geografi: 5 regioner, 98 kommuner, 470 byer.
 
-Henter cbs (CBS (Copenhagen Business School), forskning, metode sitemap, filter strict) …
-0 indslag hentet. Beholdt 0 (vis 0, graa 0), afvist 0, sprunget over 0.
+Henter wastetech (WasteTech (Ingeniøren PRO), fagmedie, metode sitemap, filter none) …
+2 indslag hentet. Beholdt 2 (vis 2, graa 0), afvist 0, sprunget over 0.
+
+BEHOLDT
+  [vis] score  2  2026-10-08  wastetech: Cirkulære tekstiler har et systemproblem – nu kommer implementeringsmotoren
+      https://pro.ing.dk/wastetech/holdning/cirkulaere-tekstiler-har-et-systemproblem-nu-kommer-implementeringsmotoren
+      hits: svag: cirkulær*; svag: tekstil* | tema: tekstiler | genre: debat | steder: -
+  [vis] score  2  2026-10-06  wastetech: Fra jord til bord – men hvordan kommer ressourcerne tilbage til jorden?
+      https://pro.ing.dk/wastetech/holdning/fra-jord-til-bord-men-hvordan-kommer-ressourcerne-tilbage-til-jorden
+      hits: svag: ressource*; svag: cirkulær* | tema: - | genre: debat | steder: -
 
 DIAGNOSE
-  sitemap https://www.cbs.dk/sitemap.xml: 1854 URL'er
-  URL'er: 1854 i alt, 370 matcher, 12 med lastmod inden for 14 dage, 0 uden lastmod (0 registreret som baseline), 0 fra Google News, 12 nye, 12 sprunget over (strict)
-  URL'er, der matcher (eksempler, match '/(nyheder|artikler)/[^/]+$'):
-    https://www.cbs.dk/om-cbs/profil/nyt-fra-cbs/artikler/saadan-finder-du-peer-reviewed-artikler
-    https://www.cbs.dk/artikler/vi-soeger-den-staerke-leder-i-krisetider-men-vi-boer-i-stedet-omfavne-kollektivt-lederskab
-    https://www.cbs.dk/om-cbs/nyt-fra-cbs/nyheder/stort-studie-offentligt-stoettet-forskning-er-ingen-garanti-aabenhed
-    https://www.cbs.dk/artikler/forfremmet-eller-overfloediggjort-en-karriere-med-ai-som-foelgesvend
-    https://www.cbs.dk/artikler/brug-nejet-til-genopbygge-velfaerdsstaten
-    https://www.cbs.dk/artikler/ai-succes-starter-med-ledelsens-mindset
-    https://www.cbs.dk/artikler/ekspertliste-kunstig-intelligens
-    https://www.cbs.dk/artikler/what-keeps-executives-awake-night-launching-digi-executive-conversations
-    https://www.cbs.dk/artikler/rabat-kan-faa-festivalgaester-til-vaelge-groennere-mad-men-der-skal-meget-til
-    https://www.cbs.dk/artikler/careers-qa-never-underestimate-power-networking
-  URL'er, der ikke matcher (eksempler, match '/(nyheder|artikler)/[^/]+$'):
-    https://www.cbs.dk/
-    https://www.cbs.dk/uddannelser/fag-og-kurser/industrioekonomi-0
-    https://www.cbs.dk/uddannelser/fag-og-kurser/lederskabet-under-forandring-og-dets-indvirkning-paa-organisatorisk-0
-    https://www.cbs.dk/uddannelser/fag-og-kurser/hybridarbejde-balancen-mellem-nye-og-gamle-maader-arbejde-paa-0
-    https://www.cbs.dk/uddannelser/fag-og-kurser/globale-transformationer-risikostyring-og-kriseledelse-0
-    https://www.cbs.dk/bibliotek/soeg-i-biblioteket/online-ressourcer/crsp
-    https://www.cbs.dk/fag-og-kurser/it-ret
-    https://www.cbs.dk/fag-og-kurser/forandringsledelse
-    https://www.cbs.dk/efteruddannelse/masteruddannelser/master-business-development/specialisering-innovation
-    https://www.cbs.dk/fag-og-kurser/eksternt-regnskab-4
-  sider: 0 hentet (0 ok, 0 fejl), 0 med varig fejl, 0 blokeret af robots.txt, 0 ikke HTML, 0 uden titel
+  indeks https://pro.ing.dk/sitemap.xml: 8 under-sitemaps, følger 5
+    https://pro.ing.dk/sitemap.xml?page=8 (lastmod 2026-10-12)
+    https://pro.ing.dk/sitemap.xml?page=7 (lastmod 2026-10-12)
+    https://pro.ing.dk/sitemap.xml?page=6 (lastmod 2026-10-12)
+    https://pro.ing.dk/sitemap.xml?page=5 (lastmod 2026-10-12)
+    https://pro.ing.dk/sitemap.xml?page=4 (lastmod 2026-10-12)
+  sitemap https://pro.ing.dk/sitemap.xml?page=8: 10984 URL'er
+  sitemap https://pro.ing.dk/sitemap.xml?page=7: 15000 URL'er
+  sitemap https://pro.ing.dk/sitemap.xml?page=6: 15000 URL'er
+  sitemap https://pro.ing.dk/sitemap.xml?page=5: 15000 URL'er
+  sitemap https://pro.ing.dk/sitemap.xml?page=4: 15000 URL'er
+  URL'er: 65660 i alt, 462 matcher, 2 med lastmod inden for 14 dage, 0 uden lastmod (0 registreret som baseline), 0 fra Google News, 2 nye, 0 sprunget over (strict)
+  URL'er, der matcher (eksempler, match '/wastetech/(artikel|holdning|debat)/'):
+    https://pro.ing.dk/wastetech/holdning/udvikling-af-nye-metoder-til-anvende-plast-fra-havet
+    https://pro.ing.dk/wastetech/holdning/affaldssektoren-maa-tilpasse-sig-fremtidige-kriser
+    https://pro.ing.dk/wastetech/holdning/nedlaegning-af-forbraendingsanlaeg-vil-oege-co2-udledningen-vaesentligt
+    https://pro.ing.dk/wastetech/holdning/skrot-frelst-symbolpolitik-lad-danmark-braende-affaldet
+    https://pro.ing.dk/wastetech/holdning/plastforurening-europaeisk-landbrugsjord-kan-blive-det-stoerste-globale
+    https://pro.ing.dk/wastetech/holdning/syv-gode-grunde-til-automatiseret-sortering
+    https://pro.ing.dk/wastetech/holdning/sundhedsvaesenets-klimaaftryk-er-en-braendende-platform
+    https://pro.ing.dk/wastetech/holdning/vores-indstilling-til-affald-kan-skabe-gennemgribende-social-og-groen-forandring
+    https://pro.ing.dk/wastetech/holdning/mode-og-tekstilbranchen-omstilling-kraever-balance-mellem-regulering-og-konkurrenceevne
+    https://pro.ing.dk/wastetech/holdning/eu-dom-er-en-bombe-under-danske-deponeringsanlaeg-produktionsvirksomheder-og-den-samlede-affalds-og
+  URL'er, der ikke matcher (eksempler, match '/wastetech/(artikel|holdning|debat)/'):
+    https://pro.ing.dk/caretech/jonas-eder-hansen
+    https://pro.ing.dk/wastetech/kaj-bryder
+    https://pro.ing.dk/datatech/sigrid-friis
+    https://pro.ing.dk/wastetech/mie-scharfe
+    https://pro.ing.dk/wastetech/mikhail-skalyga
+    https://pro.ing.dk/compliancetech/torben-blach
+    https://pro.ing.dk/aitech/morten-reimer
+    https://pro.ing.dk/compliancetech/anders-bavnhoej-hansen
+    https://pro.ing.dk/digitech/begivenhed/ehandelsdagen-2020-konference
+    https://pro.ing.dk/digitech/note/ny-faelles-sundhedsplatform-i-11-sjaellandske-kommuner-er-godt-paa-vej-mod-fuld-implementering
+  sider: 2 hentet (2 ok, 0 fejl), 0 med varig fejl, 0 blokeret af robots.txt, 0 ikke HTML, 0 uden titel
 ```
 
