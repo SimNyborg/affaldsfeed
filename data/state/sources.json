@@ -145,7 +145,7 @@
   },
   "amagerliv": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T08:39:15Z",
+    "last_attempt": "2026-10-14T09:40:33Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -153,11 +153,11 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 16
+    "backfill_runs": 17
   },
   "amtsavisen": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T08:39:15Z",
+    "last_attempt": "2026-10-14T09:40:33Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 4,
@@ -165,7 +165,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 13
+    "backfill_runs": 14
   },
   "arc": {
     "last_ok": "2026-10-14",
@@ -1309,15 +1309,15 @@
   },
   "fyens": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T08:39:15Z",
-    "fails": 3,
-    "last_error": "https://fyens.dk/sitemap/2026-10-14: HTTP 503; springes over i denne kørsel; https://fyens.dk/sitemap/2026-10-13: springes over: HTTP 503; https://fyens.dk/sitemap/2026-10-12: springes over: HTTP 503; https://fyens.dk/sitemap/2026-09-16: springes over: HTTP 503; https://fyens.dk/sitemap/2026-09-15: ",
+    "last_attempt": "2026-10-14T09:40:33Z",
+    "fails": 0,
+    "last_error": null,
     "items_30d": 12,
     "first_run_done": false,
-    "health": "gul",
+    "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 7
+    "backfill_runs": 8
   },
   "galtenfolkeblad": {
     "last_ok": "2026-10-14",
@@ -1549,7 +1549,7 @@
   },
   "helsingordagblad": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T08:39:15Z",
+    "last_attempt": "2026-10-14T09:40:33Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
@@ -1557,7 +1557,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 12
+    "backfill_runs": 13
   },
   "herning-kommune": {
     "last_ok": "2026-10-14",
@@ -1729,7 +1729,7 @@
   },
   "hsfo": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T08:39:15Z",
+    "last_attempt": "2026-10-14T09:40:33Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
@@ -1737,7 +1737,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 12
+    "backfill_runs": 13
   },
   "htk-forsyning": {
     "last_ok": "2026-10-14",
@@ -1873,7 +1873,7 @@
   },
   "jv": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T08:39:15Z",
+    "last_attempt": "2026-10-14T09:40:33Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 12,
@@ -1881,7 +1881,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 11
+    "backfill_runs": 12
   },
   "kalundborg-kommune": {
     "last_ok": "2026-10-14",
@@ -3037,15 +3037,15 @@
   },
   "stiften": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T07:29:11Z",
-    "fails": 1,
-    "last_error": "https://stiften.dk/sitemap/2026-10-14: HTTP 503; springes over i denne kørsel; https://stiften.dk/sitemap/2026-10-13: springes over: HTTP 503; https://stiften.dk/sitemap/2026-07-02: springes over: HTTP 503; https://stiften.dk/sitemap/2026-07-01: springes over: HTTP 503; https://stiften.dk/sitemap/20",
+    "last_attempt": "2026-10-14T09:40:33Z",
+    "fails": 0,
+    "last_error": null,
     "items_30d": 1,
     "first_run_done": true,
-    "health": "gul",
+    "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 7
+    "backfill_runs": 8
   },
   "struer-kommune": {
     "last_ok": "2026-10-14",
@@ -3229,7 +3229,7 @@
   },
   "ugeavisen": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T07:29:11Z",
+    "last_attempt": "2026-10-14T09:40:33Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
@@ -3237,11 +3237,11 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 10
+    "backfill_runs": 11
   },
   "vafo": {
     "last_ok": "2026-10-14",
-    "last_attempt": "2026-10-14T08:39:15Z",
+    "last_attempt": "2026-10-14T09:40:33Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
@@ -3249,7 +3249,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 10
+    "backfill_runs": 11
   },
   "vallensbaek-kommune": {
     "last_ok": "2026-10-14",
@@ -3373,8 +3373,8 @@
   },
   "viborg-folkeblad": {
     "last_ok": "2026-10-13",
-    "last_attempt": "2026-10-14T07:29:11Z",
-    "fails": 2,
+    "last_attempt": "2026-10-14T09:40:33Z",
+    "fails": 3,
     "last_error": "https://viborg-folkeblad.dk/sitemap/2026-10-14: HTTP 503; springes over i denne kørsel; https://viborg-folkeblad.dk/sitemap/2026-10-13: springes over: HTTP 503; https://viborg-folkeblad.dk/sitemap/2026-10-12: springes over: HTTP 503; https://viborg-folkeblad.dk/sitemap/2026-10-10: springes over: HTT",
     "items_30d": 1,
     "first_run_done": false,
