@@ -9,6 +9,7 @@ from typing import TypeVar, get_args
 from affaldsfeed.classify import Overrides
 from affaldsfeed.config import Config
 from affaldsfeed.models import (
+    AiLevel,
     Candidate,
     DisplayItem,
     GenreId,
@@ -17,6 +18,7 @@ from affaldsfeed.models import (
     Publisher,
     Source,
     TopicId,
+    full_text,
     sort_places,
 )
 from affaldsfeed.normalize import clean_text, strip_title_prefix
@@ -36,7 +38,7 @@ class SourceInfo:
     name: str
     category: str
     lang: str
-    ai: bool
+    ai: AiLevel
     homepage: str | None
     paywall: str
     owner: str | None
@@ -72,7 +74,7 @@ def known_sources(sources: list[Source], publishers: list[Publisher]) -> dict[st
             name=p.name,
             category=p.category,
             lang=p.lang,
-            ai=True,
+            ai=p.ai,
             homepage=f"https://{p.domains[0]}" if p.domains else None,
             paywall=p.paywall,
             owner=None,
@@ -200,12 +202,14 @@ def _from_candidate(
     state = _apply_overrides(overrides.find(c.id, c.url), state)
     if not state.show:
         return None
+    # Kun overskrift (ai: titel eller false): ingen teaser, intet resumé og ingen begrundelse fra Claude
+    text = full_text(info.ai)
     return DisplayItem(
         id=c.id,
         story=c.id,
         url=c.url,
         title=c.title,
-        teaser=clean_text(c.teaser, teaser_max),
+        teaser=clean_text(c.teaser, teaser_max) if text else "",
         source=info.id,  # nyt id, hvis kilden har overtaget et tidligere (replaces)
         published=ensure_utc(c.published) if c.published else None,
         date_quality=c.date_quality,
@@ -215,9 +219,9 @@ def _from_candidate(
         places=_known_places(places, known_places),
         genre=state.genre,
         lang=c.lang,
-        summary_da=summary if state.reviewed else None,
+        summary_da=summary if state.reviewed and text else None,
         reviewed=state.reviewed,
-        reason=reason,
+        reason=reason if text else None,
         why=c.why,
     )
 
@@ -233,7 +237,8 @@ def _from_sweep(
     summary: str | None = None,
 ) -> DisplayItem | None:
     ni = j.new_item
-    if ni is None or not info.ai:
+    # Sweep-fund kommer fra Claude selv, så kun kilder, Claude må læse helt
+    if ni is None or not full_text(info.ai):
         return None
     state = _Shown(show=j.relevant, reviewed=True, topics=list(j.topics), genre=j.genre)
     state = _apply_overrides(overrides.find(j.id, ni.url), state)

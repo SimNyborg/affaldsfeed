@@ -11,6 +11,10 @@
 #   Når en kandidat eller planlagt kilde aktiveres, fjernes dens domæner herfra.
 # - Medierne har redaktionelt ansvar (basis: redaktionelt). Universiteter uden et feed, Affaldsfeed kan
 #   hente, står her med basis: forskning, så deres nyheder fra søgningen krediteres dem. Tjekket 2026-10-07.
+# - ai virker som i sources.yaml: titel = kun overskrift, når mediet har forbehold mod AI (KONTRAKTER §3).
+#
+# Nyhedssøgningen (bing-news) er fravalgt fra 2026-10-14, så udgiverne her får ikke nye indslag. De
+# indslag, der allerede er fundet, vises fortsat under udgiveren.
 
 # ── Landsdækkende nyhedsmedier ────────────────────────────────
 - id: jyllands-posten-dk
@@ -61,6 +65,7 @@
   domains: [bt.dk]
   basis: redaktionelt
   paywall: delvis
+  ai: titel  # kun overskrift: Berlingske Media forbeholder sig tekst- og datamining (2026-10-14)
 
 - id: zetland-dk
   name: Zetland
@@ -192,13 +197,6 @@
   domains: [building-supply.dk]
   basis: redaktionelt
   paywall: delvis
-
-- id: pro-ing-dk
-  name: Ingeniøren PRO (bl.a. WasteTech)
-  category: fagmedie
-  domains: [pro.ing.dk]
-  basis: redaktionelt
-  paywall: ja
 
 - id: bygtek-dk
   name: BygTek

@@ -68,9 +68,9 @@ Feltnavnene er på engelsk, så de passer til koden. Valideringen sker med pydan
 | `aliases` | nej | tom | Andre navneformer, som bruges til Via Ritzau i fase 3. |
 | `every` | nej | efter metode | Timer mellem kørsler. Uden værdi: `rss` 1, `search` 2, `oda` 3, `sitemap` og `html` 6. |
 | `bundle` | nej | | `day` samler kildens indslag i ét kort pr. dag (fase 3, tænkt til ODA). |
-| `ai` | nej | `true` | `false` betyder, at Claude ikke vurderer kilden. Den vurderes så kun efter regler. |
+| `ai` | nej | `true` | `titel` betyder kun overskrift: Claude vurderer kun titlen, og intet andet fra artiklen gemmes eller vises. `false` betyder, at Claude ikke vurderer kilden. Den vurderes så kun efter regler. |
 | `basis` | ved `aktiv` | | Kvalitetsgrundlaget: `redaktionelt`, `offentlig`, `forskning` eller `organisation`. |
-| `status` | nej | `aktiv` | `aktiv`, `planlagt` (venter på metode eller test), `kandidat` (venter på beslutning), `pause` eller `fravalgt`. |
+| `status` | nej | `aktiv` | `aktiv`, `planlagt` (venter på metode eller test), `kandidat` (venter på beslutning), `pause`, `afventer` (mediets regler forbyder feedet, kræver en note) eller `fravalgt`. |
 | `checked` | ved `aktiv` | | Datoen for seneste vurdering af kilden. |
 | `note` | nej | | Fritekst, fx hvorfor kilden er med eller fravalgt. |
 
@@ -128,6 +128,6 @@ Finder søgningen en ukendt udgiver, bliver artiklen ikke vist. Udgiveren skrive
 
 ## Kilder med AI-fravalg i robots.txt
 
-Nogle medier, fx DR, TV 2-regionerne, Politiken, Børsen, Ingeniøren og Energy Supply, blokerer AI-agenter i robots.txt, men ikke almindelige læsere. Brugeren har besluttet, at de hentes af feedets egen RSS-læser. Den er ikke en AI-crawler, har sin egen User-Agent og følger robots.txt for `*`. Claude vurderer kun titlen og RSS-uddraget, som allerede ligger i data, og henter aldrig noget fra mediets sider. Ombestemmer brugeren sig, sættes `ai: false` på kilden, og så vurderes den kun efter regler.
+Nogle medier blokerer AI-agenter i robots.txt eller forbeholder sig tekst- og datamining. Fra 14. oktober 2026 vises de kun med overskrift (`ai: titel`): feedets egen indsamler henter dem, Claude vurderer kun titlen, og hverken teaser eller resumé gemmes eller vises. Medier, hvis regler forbyder selve feedet, fx DR og Politiken, har `status: afventer` og hentes ikke (BESLUTNINGER 2026-10-14, KONTRAKTER §3.4).
 
 Samme princip gælder de regionale og lokale aviser, som brugeren 2026-10-08 bad om at få med for alle kommuner. De fleste fravælger AI-træning i robots.txt, men ikke almindelige læsere. Nordjyske og Jysk Fynske Mediers dagblade, ugeaviser og LIV-aviser har dags- eller ugesitemaps med titel og dato, så indsamleren henter aldrig selve artiklen. Din Avis hentes via RSS. Hos Sjællandske Medier og Lolland-Falsters Folketidende hentes kun artikler med et affaldsord i URL'en, og hos Midtjyske Medier og deres ugeaviser kun artikler, hvis linktekst på forsiden har et affaldsord. Claude ser kun titlen og uddraget.

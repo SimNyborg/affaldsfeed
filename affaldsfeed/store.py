@@ -233,6 +233,56 @@ def save_rejected(records: list[Rejected], keep_days: int, now: datetime) -> int
     return added
 
 
+# ── Medier med forbehold (KONTRAKTER §4) ───────────────────
+
+
+def scrub_stored(drop: set[str], title_only: set[str]) -> dict[str, int]:
+    """Fjern det, der ikke må ligge i data/ efter kildernes regler. Idempotent, skriver kun ved ændring.
+
+    drop: kilde-id'er (status afventer), hvis kandidater og afviste slettes helt. title_only: kilde-id'er
+    med kun overskrift (ai: titel eller false), hvis teasere og afviste titler og adresser tømmes.
+    Månedsfiler med ulæselige linjer røres ikke (§6). Returnerer antal ændrede poster pr. art.
+    """
+    counts = {"kandidater_slettet": 0, "teasere_tømt": 0, "afviste_slettet": 0, "afviste_tømt": 0}
+    for f in _month_files(paths.CANDIDATES_DIR):
+        current, skipped = read_jsonl_counted(f, Candidate)
+        if skipped:
+            continue
+        out: list[Candidate] = []
+        changed = False
+        for c in current:
+            if c.source in drop:
+                counts["kandidater_slettet"] += 1
+                changed = True
+                continue
+            if c.source in title_only and c.teaser:
+                c = c.model_copy(update={"teaser": ""})
+                counts["teasere_tømt"] += 1
+                changed = True
+            out.append(c)
+        if changed:
+            write_jsonl(f, out, sort_key=lambda c: c.id)
+    for f in _month_files(paths.REJECTED_DIR):
+        current_r, skipped = read_jsonl_counted(f, Rejected)
+        if skipped:
+            continue
+        out_r: list[Rejected] = []
+        changed = False
+        for r in current_r:
+            if r.source in drop:
+                counts["afviste_slettet"] += 1
+                changed = True
+                continue
+            if r.source in title_only and (r.title or r.url):
+                r = r.model_copy(update={"title": "", "url": ""})
+                counts["afviste_tømt"] += 1
+                changed = True
+            out_r.append(r)
+        if changed:
+            write_jsonl(f, out_r, sort_key=lambda r: r.id)
+    return counts
+
+
 # ── State ───────────────────────────────────────────────────
 
 

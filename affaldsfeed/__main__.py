@@ -29,6 +29,7 @@ COMMANDS: dict[str, tuple[str, str]] = {
     "validate-overview": ("affaldsfeed.overview", "main_validate_overview"),
     "timeline-input": ("affaldsfeed.timeline", "main_timeline_input"),
     "validate-timeline": ("affaldsfeed.timeline", "main_validate_timeline"),
+    "sweep-check": ("affaldsfeed.judgments", "main_sweep_check"),
 }
 
 # kommandoer, der videregives til et script i tools/ (main(argv) -> int)
@@ -89,6 +90,9 @@ def build_parser() -> argparse.ArgumentParser:
     vt = sub.add_parser("validate-timeline", help="valider data/timeline/*.jsonl")
     vt.add_argument("--file", metavar="PATH", help="kun denne fil")
     vt.add_argument("--now", metavar="ISO", help="overstyr nu (test)")
+
+    sc = sub.add_parser("sweep-check", help="id, afsender og regel for et sweep-fund (routinens trin 6)")
+    sc.add_argument("url", help="artiklens egen URL hos udgiveren")
 
     sub.add_parser("import", help="importér kildeliste fra CSV (tools/import_csv.py): import FILE.csv [--replace]")
     sub.add_parser("find-feed", help="find RSS/Atom/sitemap for en hjemmeside (tools/find_feed.py): find-feed URL")

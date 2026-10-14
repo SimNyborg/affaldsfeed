@@ -9,7 +9,7 @@ Kilderne står i [`sources.yaml`](../sources.yaml). MVP-kilderne har `status: ak
 - RSS: kildens eget nyhedsfeed.
 - Sitemap: kildens sitemap, hvor nye artikler findes ud fra adressen.
 - Nyhedsside: kildens liste over nyheder, læst med en fast selektor.
-- Søgning: Bing News på danske affaldsord. Google News kan ikke bruges, fordi Googles robots.txt forbyder automatisk hentning. Claude-routinens daglige søgning efter oversete nyheder dækker en del af hullet.
+- Søgning: Bing News på danske affaldsord indtil 14. oktober 2026. Den er fravalgt, fordi Bings vilkår kun tillader personlig brug, og Google News forbyder automatisk hentning i robots.txt. Claude-routinens daglige søgning efter oversete nyheder dækker en del af hullet.
 
 Kilder, der kun kan hentes via sitemap eller nyhedsside, kræver indsamleren `collect/pages.py`. Den bliver derfor en del af MVP'en i stedet for fase 2, fordi flere af de vigtigste kilder ikke har RSS.
 
@@ -28,7 +28,7 @@ Senere: Politiken, Berlingske, Børsen, Jyllands-Posten, Information, B.T. og Ma
 |---|---|---|
 | TV 2-regionerne | Lokale historier fra de 8 regionale stationer, fx nye ordninger, genbrugspladser og skraldebiler | RSS (strengt filter) |
 | Regionale og lokale aviser | 81 dagblade, ugeaviser og netaviser, der dækker alle kommuner med et lokalmedie. Se [LOKALMEDIER.md](LOKALMEDIER.md) | RSS, sitemap eller forside (strengt filter) |
-| Øvrige lokalmedier | Lokalmedier, der ikke kan hentes direkte, fanges via nyhedssøgningen, når de skriver om affald | Søgning |
+| Øvrige lokalmedier | Lokalmedier, der ikke kan hentes direkte, blev fanget via nyhedssøgningen, når de skrev om affald. Søgningen er fravalgt fra 14. oktober 2026 | Søgning |
 
 ## Fagmedie
 

@@ -341,6 +341,62 @@ def test_processor_sets_places(env):
     assert out.new[0].source == "nfs" and out.new[0].places == ["k:nyborg"]
 
 
+def test_processor_title_only_source_keeps_no_text(env):
+    # ai: titel (§3): reglerne ser kun titlen, teaseren gemmes ikke, og afviste gemmes uden titel og adresse
+    from affaldsfeed.collect import RawEntry
+    from affaldsfeed.config import load_sources
+
+    cfg = load_config(env.config)
+    now = datetime(2026, 10, 7, 8, tzinfo=UTC)
+    sources = [s.model_copy(update={"ai": "titel"}) if s.id == "testmedie" else s for s in load_sources(env.sources)]
+    testmedie = next(s for s in sources if s.id == "testmedie")
+
+    def raw(slug: str, title: str, teaser: str) -> RawEntry:
+        return RawEntry("testmedie", f"https://www.testmedie.dk/{slug}", title, teaser, now - timedelta(hours=2), "kilde",
+                        "da", [], None, None, "feed")
+
+    proc = pipeline.Processor(cfg, sources, now, {}, set())
+    out = proc.process(testmedie, [
+        raw("plads", "Ny genbrugsplads åbner i byen", "Kommunen åbner pladsen for affald i maj."),
+        raw("byraad", "Byrådet mødes i aften", "Dagsordenen handler om affald og genbrug."),
+    ], first_run=False)
+    assert [(c.title, c.teaser) for c in out.new] == [("Ny genbrugsplads åbner i byen", "")]
+    assert not any(h.startswith("teaser") for h in out.new[0].why.hits)
+    # Affaldsordet stod kun i teaseren, som ikke bruges: afvist, og hverken titel eller adresse gemmes
+    assert [(r.title, r.url, r.why.decision) for r in out.rejected] == [("", "", "afvist")]
+
+
+def test_restricted_ids_include_replaced_ids(make_source):
+    from affaldsfeed.models import Publisher
+
+    sources = [
+        make_source(id="a", status="afventer", note="Vilkårene forbyder feeds", replaces=["a-dk"]),
+        make_source(id="b", ai="titel", replaces=["b-dk"]),
+        make_source(id="c", ai=False),
+        make_source(id="d"),
+    ]
+    pubs = [Publisher(id="p-dk", name="P", category="nyhedsmedie", domains=["p.dk"], basis="redaktionelt", ai="titel"),
+            Publisher(id="q-dk", name="Q", category="nyhedsmedie", domains=["q.dk"], basis="redaktionelt")]
+    assert pipeline.restricted_ids(sources, pubs) == ({"a", "a-dk"}, {"b", "b-dk", "c", "p-dk"})
+
+
+def test_run_scrubs_stored_text_but_not_in_dry_run(env, monkeypatch):
+    # Kørslen fjerner tekst fra medier med kun overskrift og alt fra medier, der afventer (§4)
+    text = env.sources.read_text(encoding="utf-8")
+    feed = "  feeds: https://www.testmedie.dk/rss\n"
+    assert text.count(feed) == 1
+    env.sources.write_text(text.replace(feed, feed + "  ai: titel\n"), encoding="utf-8")
+    assert next(s for s in load_sources(env.sources) if s.id == "testmedie").ai == "titel"
+    now = datetime(2026, 10, 7, 8, tzinfo=UTC)
+    old = _old_cand("x", "Affald i byen", 1).model_copy(update={"teaser": "Mediets egen tekst"})
+    store.save_candidates([old])
+    _run(monkeypatch, dry_run=True, now=now.isoformat())
+    assert _cands()[old.id].teaser == "Mediets egen tekst"
+    _run(monkeypatch, now=now.isoformat())
+    assert _cands()[old.id].teaser == ""
+    assert all(c.teaser == "" for c in _cands().values() if c.source == "testmedie")
+
+
 def _old_cand(slug: str, title: str, days_ago: float, source: str = "testmedie", **kw):
     """En gemt kandidat fra en tidligere kørsel (fx før stedmærkningen fandtes)."""
     from affaldsfeed.models import Candidate

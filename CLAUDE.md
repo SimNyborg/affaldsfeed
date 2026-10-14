@@ -36,6 +36,7 @@ python -m affaldsfeed overview-input --period dag|uge|maaned|aar
 python -m affaldsfeed validate-overview [--period P] [--archive]
 python -m affaldsfeed timeline-input [--days 3 | --fill | --fill-done ÅÅÅÅ-MM]
 python -m affaldsfeed validate-timeline [--file PATH]
+python -m affaldsfeed sweep-check URL
 python -m affaldsfeed import FILE.csv [--replace]     # fase 4
 python -m affaldsfeed find-feed URL                   # fase 4
 ```
@@ -55,7 +56,7 @@ python -m affaldsfeed check
 ## Fase-status
 
 - Fase 0 og 1 er færdige, og feedet har været live siden 7. oktober 2026.
-- Fase 2 er i gang: sitemap, html og ODA virker, og 280 kilder er aktive, heraf 81 regionale og lokale aviser (se `docs/LOKALMEDIER.md`), 89 kommuner (se `docs/KOMMUNER.md`) og 45 kommunale affaldsselskaber (se `docs/AFFALDSSELSKABER.md`). Lokalmedier, der ikke kan hentes direkte, står i `config/medier.yaml`. Efterprøvning af sweepet og 7 dages overvågning af sitemap og html mangler.
+- Fase 2 er i gang: sitemap, html og ODA virker, og 275 kilder er aktive, heraf 78 regionale og lokale aviser (se `docs/LOKALMEDIER.md`), 89 kommuner (se `docs/KOMMUNER.md`) og 45 kommunale affaldsselskaber (se `docs/AFFALDSSELSKABER.md`). 46 medier med forbehold vises kun med overskrift (`ai: titel`), og 5 afventer tilladelse (`status: afventer`, KONTRAKTER §3.4). Nyhedssøgningen er fravalgt, så `config/medier.yaml` får ikke nye indslag. Efterprøvning af sweepet og 7 dages overvågning af sitemap og html mangler.
 - Fase 3 er i gang (kompakt visning er færdig). Fase 4 venter på brugerens kildeliste.
 - Feedet rækker tilbage til 1. januar 2026 (`window_start`). Hver kilde hentes én gang bagud dertil (KONTRAKTER §5.8), og den bagudindsamling skal følges, til alle aktive kilder har `backfilled_from`.
 - Se "Næste skridt for cloud-sessionen" i `docs/GAMEPLAN.md`.

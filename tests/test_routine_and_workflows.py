@@ -146,3 +146,17 @@ def test_routine_writes_summaries_in_own_words():
     # Grænsen i instruksen passer med config/settings.yaml
     s = yaml.safe_load((ROOT / "config" / "settings.yaml").read_text(encoding="utf-8"))["summaries"]
     assert s["max_shared_run"] == 5 and f"højst {s['rewrite_per_run']} pr. kørsel" in text
+
+
+def test_routine_follows_the_rules_of_media_with_reservations():
+    """Medier med kun overskrift: ingen resumé, ingen sweep-fund og ikke med i overblik og tidslinje (§3)."""
+    whole = " ".join(REDAKTOER.split())
+    assert 'Har et indslag `"title_only":true`' in whole and 'skriv altid `"summary_da":null`' in whole
+    assert "ved `\"title_only\":true`" in whole
+    sweep = " ".join(REDAKTOER.split("### 6. Sweep", 1)[1].split("### 7.", 1)[0].split())
+    assert '.venv/bin/python -m affaldsfeed sweep-check "URL"' in sweep
+    assert "Er reglen `kun-overskrift` eller `afventer`, så spring fundet over" in sweep
+    assert "publisher_lookup" not in REDAKTOER  # den gamle one-liner kendte ikke reglerne
+    for step in ("### 5. Opdatér overblikket", "### 7. Tidslinje"):
+        part = " ".join(REDAKTOER.split(step, 1)[1].split("### ", 1)[0].split())
+        assert "Indslag fra medier med kun overskrift er ikke med" in part

@@ -546,7 +546,9 @@ function expandPlaces(geo, places) {
  */
 export function prepare(feed, lastVisit) {
   const cats = new Map((feed.categories || []).map((c) => [c.id, c]));
-  const sources = new Map((feed.sources || []).map((s) => [s.id, s]));
+  // Medier, der afventer tilladelse, står låst i menuen og er ikke et valg (KONTRAKTER §9)
+  const sources = new Map((feed.sources || []).filter((s) => s.status !== 'afventer').map((s) => [s.id, s]));
+  const waiting = (feed.sources || []).filter((s) => s.status === 'afventer');
   const topics = new Map((feed.topics || []).map((t) => [t.id, t]));
   const genres = new Map((feed.genres || []).map((g) => [g.id, g]));
   const geo = readGeo(feed.geo);
@@ -599,7 +601,7 @@ export function prepare(feed, lastVisit) {
     }
     units.push(unit);
   }
-  return { feed, cats, sources, topics, genres, geo, units, members, byId };
+  return { feed, cats, sources, waiting, topics, genres, geo, units, members, byId };
 }
 
 /**
@@ -819,7 +821,8 @@ export function optionName(data, g, key) {
   if (g === 'sted') return key === NATIONAL ? 'Landsdækkende' : placeName(data, key);
   if (g === 'afsender') return catName(data, key);
   if (g === 'tema') return topicName(data, key);
-  if (g === 'kilde') return data.sources.get(key)?.name || key;
+  // Også medier, der afventer (fx fra et ældre link), vises med navn
+  if (g === 'kilde') return data.sources.get(key)?.name || data.waiting?.find((w) => w.id === key)?.name || key;
   return genreName(data, key);
 }
 
@@ -1030,6 +1033,10 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
     }
     const ids = [...data.sources.keys()].filter((id) => data.sources.get(id).category === c.id)
       .sort((a, b) => data.sources.get(a).name.localeCompare(data.sources.get(b).name, 'da'));
+    // Medier, der afventer tilladelse, står nederst i typen med låst afkrydsning og "Afventer"
+    const wait = (data.waiting || []).filter((w) => w.category === c.id)
+      .sort((a, b) => a.name.localeCompare(b.name, 'da'))
+      .map((w) => ({ row: frow({ name: w.name, title: `${w.name} afventer mediets tilladelse`, pending: true }), keys: foldKeys(w.name) }));
     if (!ids.length) return null;
     const list = el('div', { class: 'opts fsrc-list', id: `fsrc-${c.id}`, role: 'group', 'aria-label': name, hidden: true },
       ids.map((id) => {
@@ -1037,12 +1044,13 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
         const row = frow({ name: src.name, title: src.name.length > 26 ? src.name : null, onchange: () => onChange((s) => toggleSource(s, id)) });
         srcRows.set(id, { row, keys: foldKeys(src.name) });
         return row.label;
-      }));
+      }), wait.map((w) => w.row.label));
     const row = frow({ ...opts, onchange: () => onChange((s) => toggleCategory(s, c.id)) });
-    const sec = { id: c.id, row, list, ids, open: false, wasOpen: false };
-    // Skærmlæseren hører fx "5 kilder under Nationalt medie, knap, skjult"
+    const sec = { id: c.id, row, list, ids, wait, open: false, wasOpen: false };
+    // Skærmlæseren hører fx "5 kilder under Nationalt medie, knap, skjult" eller "5 kilder og 2, der afventer, under ..."
+    const count = `${fmtNum(ids.length)} ${ids.length === 1 ? 'kilde' : 'kilder'}${wait.length ? ` og ${fmtNum(wait.length)}, der afventer,` : ''}`;
     sec.btn = el('button', { type: 'button', class: 'fsrc-tgl', 'aria-expanded': 'false', 'aria-controls': list.id, onclick: () => setOpen(sec, !sec.open) },
-      icon('pil-ned'), hidden(`${fmtNum(ids.length)} ${ids.length === 1 ? 'kilde' : 'kilder'} under ${name}`));
+      icon('pil-ned'), hidden(`${count} under ${name}`));
     sec.el = el('div', { class: 'fsrc-cat' }, el('div', { class: 'fsrc-head' }, row.label, sec.btn), list);
     return sec;
   }).filter(Boolean);
@@ -1096,8 +1104,8 @@ export function buildPanel(data, state, onChange, { onReset } = {}) {
         continue;
       }
       let any = false;
-      for (const id of sec.ids) {
-        const { row, keys } = srcRows.get(id);
+      // Også medier, der afventer, så man kan se, hvorfor de ikke kan vælges
+      for (const { row, keys } of [...sec.ids.map((id) => srcRows.get(id)), ...sec.wait]) {
         // Feltets to stavemåder (å→aa og å→a) er alternativer; én skal passe
         const hit = !qs.length || qs.some((q) => keys.some((k) => k.includes(q)));
         row.label.hidden = !hit;

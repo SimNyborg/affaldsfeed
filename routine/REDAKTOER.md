@@ -56,6 +56,8 @@ Er både `pending` og `rewrite` tomme, og skal hverken trin 5, 6 eller 7 køres 
 
 Skriv præcis én linje for hvert indslag i `pending`. Vurdér kun ud fra titel, teaser, afsender (`source_name`) og kategori. Åbn ikke artiklerne. `prefilter`, `rule_topics`, `rule_genre` og `rule_places` er regelbaserede forslag, som du må tilsidesætte.
 
+Har et indslag `"title_only":true`, har mediet forbehold mod AI, og feedet viser kun overskriften. Vurdér det kun ud fra titlen, afsenderen og kategorien, og skriv altid `"summary_da":null`. Valideringen afviser et resumé til sådan et indslag.
+
 Felterne:
 
 1. `id`: kopiér fra `pending`.
@@ -64,7 +66,7 @@ Felterne:
 4. `topics`: 0-2 tema-id'er fra `topics`, det vigtigste først. Brug `[]`, når intet tema passer, og altid ved `relevant: false`.
 5. `places`: `null` eller en liste efter reglerne for steder herunder. Ved `relevant: false` er `places` altid `null`.
 6. `genre`: ét id fra `genres` (`nyhed`, `debat`, `pressemeddelelse`, `analyse`, `hoering`, `folketing`). Tag udgangspunkt i `rule_genre`, og skift kun, når titel eller teaser tydeligt viser noget andet.
-7. `summary_da`: et kort resumé med egne ord efter reglerne for resuméer herunder, når indslaget er relevant og har en teaser. Feedet viser det under titlen i stedet for kildens teaser. Ved `relevant: false`, når teaseren er tom, eller når den ikke beskriver artiklen (se reglerne herunder), er `summary_da` `null`.
+7. `summary_da`: et kort resumé med egne ord efter reglerne for resuméer herunder, når indslaget er relevant og har en teaser. Feedet viser det under titlen i stedet for kildens teaser. Ved `relevant: false`, ved `"title_only":true`, når teaseren er tom, eller når den ikke beskriver artiklen (se reglerne herunder), er `summary_da` `null`.
 8. `story_hint`: id på et andet indslag i `pending` eller `recent_approved`, der handler om samme historie, ellers `null`. Aldrig indslagets eget id.
 9. `judged_at`: `now` fra `/tmp/pending.json`, kopieret præcist.
 10. `by`: `"claude-routine"`.
@@ -151,7 +153,7 @@ Gør følgende for hver periode `P`, der skal opdateres (`dag`, `uge`, `maaned` 
    .venv/bin/python -m affaldsfeed overview-input --period P > /tmp/overview-P.json
    ```
 
-2. Læs `/tmp/overview-P.json`. Er `items` tom, så spring perioden over og lad den gamle fil stå.
+2. Læs `/tmp/overview-P.json`. Er `items` tom, så spring perioden over og lad den gamle fil stå. Indslag fra medier med kun overskrift er ikke med i input, og du må ikke skrive om dem.
 3. Skriv `data/overview/P.json` (overskriv hele filen):
 
    ```json
@@ -189,10 +191,10 @@ Skriveregler for overblikket:
 3. Find id og afsender for hvert fund (brug artiklens egen URL hos udgiveren, ikke en Google- eller MSN-adresse):
 
    ```bash
-   .venv/bin/python -c "import sys;from affaldsfeed.normalize import item_id,host_of;from affaldsfeed.config import load_config,load_sources,publisher_lookup;m=publisher_lookup(load_sources(),load_config().publishers);u=sys.argv[1];p=host_of(u).split('.');print(item_id(u),next((m[h] for h in ('.'.join(p[i:]) for i in range(len(p)-1)) if h in m),'UKENDT'))" "URL"
+   .venv/bin/python -m affaldsfeed sweep-check "URL"
    ```
 
-   Kommandoen udskriver `<id> <afsender-id>`. Tjek derefter, om indslaget allerede findes:
+   Kommandoen udskriver `<id> <afsender-id> <regel>`. Er reglen `kun-overskrift` eller `afventer`, så spring fundet over: mediet har forbehold, og feedet tager kun det, indsamlingen selv finder. Tjek ellers, om indslaget allerede findes:
 
    ```bash
    grep -rqs "<id>" data/candidates data/judgments && echo kendt
@@ -230,7 +232,7 @@ Tidslinjen giver et kompakt overblik over de store linjer på affaldsområdet: l
    - `first_fill`: `true`, når tidslinjen er tom. Så dækker `stories` de sidste 60 dage, ellers de sidste 3 dage.
    - `rules`: grænserne, niveauerne (`levels`), hvad der hører med (`include`), og hvad der ikke gør (`exclude`).
    - `weeks`: antal begivenheder pr. uge i perioden. Der må højst være `rules.max_per_week` i en uge.
-   - `stories`: godkendte historier, myndigheder og de mest dækkede først. `also` er andre indslag om samme historie, og `in_events` er de begivenheder, der allerede har et af historiens indslag.
+   - `stories`: godkendte historier, myndigheder og de mest dækkede først. `also` er andre indslag om samme historie, og `in_events` er de begivenheder, der allerede har et af historiens indslag. Indslag fra medier med kun overskrift er ikke med, og du må ikke skrive om dem.
    - `events`: begivenhederne fra de sidste 60 dage.
 
 3. Vælg. En historie bliver kun en begivenhed, når den hører under `include` og ikke under `exclude` og har betydning for hele landet eller hele affaldsområdet. Er du i tvivl, så lad den være. Står begivenheden allerede i `events`, eller har historien `in_events`, så opdatér den eksisterende begivenhed i stedet for at oprette en ny. Står der en begivenhed i `events`, som ikke lever op til reglerne (fx en lokal nyhed), så slet den med en sletningslinje (se trin 4). De fleste dage er der ingen nye begivenheder, og så skriver du intet.

@@ -53,12 +53,27 @@ FilterLevel = Literal["none", "normal", "strict"]
 Lang = Literal["da", "en", "sv"]
 Paywall = Literal["nej", "delvis", "ja"]
 Basis = Literal["redaktionelt", "offentlig", "forskning", "organisation"]
-Status = Literal["aktiv", "planlagt", "kandidat", "pause", "fravalgt"]
+# afventer: mediets regler forbyder det, feedet gør. Hentes ikke, men står låst i menuen (KONTRAKTER §3)
+Status = Literal["aktiv", "planlagt", "kandidat", "pause", "afventer", "fravalgt"]
+# Hvad Claude må læse (KONTRAKTER §3): True = titel og teaser, og indslaget får resumé. "titel" = kun
+# overskriften, til at vurdere relevans. False = Claude læser intet, reglerne afgør.
+AiLevel = bool | Literal["titel"]
 DateQuality = Literal["kilde", "url", "liste", "fundet"]
 Decision = Literal["vis", "graa", "afvist"]
 FoundVia = Literal["feed", "search", "sweep"]
 Health = Literal["groen", "gul", "roed", "graa"]
 Period = Literal["dag", "uge", "maaned", "aar"]
+
+
+def full_text(ai: AiLevel) -> bool:
+    """Teaseren må gemmes og læses af Claude, og indslaget får resumé. Ellers vises kun overskriften."""
+    return ai is True
+
+
+def claude_judges(ai: AiLevel) -> bool:
+    """Claude vurderer indslagene (på titel og teaser eller kun på titlen)."""
+    return ai is not False
+
 
 CATEGORY_RANK: dict[str, int] = {
     "myndighed": 0,
@@ -149,7 +164,7 @@ class Source(_Strict):
     replaces: list[str] = Field(default_factory=list)
     every: int | None = None
     bundle: Literal["day"] | None = None
-    ai: bool = True
+    ai: AiLevel = True
     basis: Basis | None = None
     status: Status = "aktiv"
     checked: date | None = None
@@ -161,6 +176,12 @@ class Source(_Strict):
         if not _ID_RE.match(v):
             raise ValueError("id skal bestå af små bogstaver, tal og bindestreg")
         return v
+
+    @model_validator(mode="after")
+    def _afventer_note(self) -> Source:
+        if self.status == "afventer" and not (self.note or "").strip():
+            raise ValueError("status afventer kræver en note om, hvilken regel der forhindrer feedet")
+        return self
 
     @field_validator("places")
     @classmethod
@@ -221,6 +242,7 @@ class Publisher(_Strict):
     paywall: Paywall = "nej"
     lang: Lang = "da"
     places: list[str] = Field(default_factory=list)  # højst 8
+    ai: AiLevel = True  # som Source.ai
 
     @field_validator("places")
     @classmethod

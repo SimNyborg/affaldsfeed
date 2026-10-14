@@ -821,8 +821,9 @@ dialog.sheet .fg:first-child { border-top: 0; }
   white-space: nowrap;
 }
 .frow.is-zero .name { color: var(--muted); }
-/* En afsendertype, der afventer: låst afkrydsning, grå tekst og "Afventer", hvor tallet ellers står */
-.frow.is-pending { grid-template-columns: var(--cb) 16px minmax(0, 1fr) auto; cursor: default; }
+/* En afsendertype eller kilde, der afventer: låst afkrydsning, grå tekst og "Afventer", hvor tallet ellers står */
+.frow.is-pending { grid-template-columns: var(--cb) minmax(0, 1fr) auto; cursor: default; }
+.frow.has-icon.is-pending { grid-template-columns: var(--cb) 16px minmax(0, 1fr) auto; }
 .frow.is-pending input { cursor: default; }
 .frow.is-pending .name { color: var(--muted); }
 .cat.is-pending .i { color: var(--muted); }

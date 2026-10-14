@@ -8,7 +8,7 @@ Affaldsfeed bygges i seks faser. Fase 0 og 1 laves i den første lokale session 
 |---|---|---|
 | 0 | Fundament: config, kilderegister, `check`, CI og docs | Færdig |
 | 1 | Første live version: pipeline for RSS og søgning, site, workflows og Claude-routinen | Færdig, live 7. oktober 2026 |
-| 2 | Kilder uden RSS, Folketingets ODA og Claudes sweep | I gang: sitemap, html og ODA virker, og 280 kilder er aktive, heraf 89 kommuner og 45 kommunale affaldsselskaber. Sweepet er ikke efterprøvet |
+| 2 | Kilder uden RSS, Folketingets ODA og Claudes sweep | I gang: sitemap, html og ODA virker, og 275 kilder er aktive, heraf 89 kommuner og 45 kommunale affaldsselskaber. 46 medier vises kun med overskrift, og 5 afventer tilladelse. Sweepet er ikke efterprøvet |
 | 3 | Kvalitet: "Hvorfor med?", bedre historier, kompakt visning | I gang: kompakt visning, dagsbundter og 150 testcases er færdige; niveau 3 og Via Ritzau er udskudt (se BESLUTNINGER) |
 | 4 | Brugerens kildeliste | Venter på listen |
 | 5 | Udvidelser | Kun ved konkret savn |
@@ -110,13 +110,15 @@ Brugeren skal rette routinens prompt på claude.ai, så den siger "Du må kun sk
 
 Bagudindsamlingen til 1. januar 2026 (BESLUTNINGER 2026-10-09, Hele 2026 i feedet) kører i timekørslerne fra 9. oktober 2026. Følg den, til alle aktive kilder har `backfilled_from` i `data/state/sources.json`: tæl kilderne med og uden, se efter advarslen "bagudindsamlingen stopper efter" i loggen, og hold øje med, at routinens kø (`pending_before` i `_heartbeat.json`) falder igen. Tidslinjen fyldes bagud måned for måned, når bagudindsamlingen er færdig, og månedens indslag er vurderet (routinens trin 7b, KONTRAKTER §7.3). Følg `timeline-input --fill`, til `months_left` er tom, og se, at hver måned har fået de store begivenheder og ikke lokale nyheder.
 
+Medier med forbehold (BESLUTNINGER 2026-10-14, KONTRAKTER §3.4): Brugeren skriver til Jysk Fynske Medier og Teknologiens Mediehus om lov til at vise overskrifter og lade Claude læse dem. Giver et medie lov, sættes `ai: true`, ellers bliver det på `ai: titel`. Svarer et af de fem medier, der afventer, ja, sættes `status: aktiv` igen. Tjek efter fletningen, at indsamlingen logger "Medier med forbehold: …" én gang og derefter intet, at CleanTech Watchs 224 artikler kommer tilbage, når routinen har vurderet overskrifterne, at routinen skriver månedsoverblikket om (dets `based_on` blev for højt, da de fem medier forsvandt), og at WasteTechs bagudindsamling går igennem.
+
 Fase 2, resten (lokale medier og ODA er færdige):
 1. Følg de 45 sitemap- og 28 html-kilder og ODA i 7 dage. Fejler en, så ret `match`, `select` eller `filter`, eller sæt den på pause med en note.
 2. Efterprøv sweepet kl. 07.25 og 14.25. Fund skal skrives som vurderinger med `new_item`, og ukendte udgivere skal havne i `data/judgments/kildeforslag-sweep.md`. Sweepet kl. 06.25 den 8. oktober gav ingen fund. Læs routinens session (`get_trigger` giver `last_run.session_id`, `list_events` viser forløbet) for at se, om det søgte, og hvad det fandt.
 3. TV 2: afventer brugerens svar på, om indsamlingen må læse TV 2's sektionssider (HTML) for at få næsten fuld dækning (se BESLUTNINGER 2026-10-08, Dækningen af affaldsnyheder).
 4. Følg de 81 regionale og lokale aviser, der kom til 2026-10-08 (BESLUTNINGER: Lokalaviserne hentes direkte og Ugeaviser og netaviser hentes direkte), i 7 dage. Tjek især dagssitemaps lige efter midnat, Sjællandske Mediers månedsskifte, forsiderne og de små RSS-feeds.
 5. Lokalmedier: kortlægningen mangler målrettede søgninger i 65 kommuner (se `docs/LOKALMEDIER.md`, Huller i kortlægningen). Søg dem igennem i en ny tur, når søgebudgettet tillader det, og afprøv nye fund med `find-feed` via `probe.yml`. Ret tabellerne i `docs/LOKALMEDIER.md`, når en kilde kommer til eller falder fra.
-6. Gennemgå `data/state/kildeforslag.md` hver uge. Troværdige udgivere flyttes til `config/medier.yaml` eller `sources.yaml`.
+6. Gennemgå `data/state/kildeforslag.md` hver uge. Troværdige udgivere flyttes til `config/medier.yaml` eller `sources.yaml`. Nyhedssøgningen er fravalgt (BESLUTNINGER 2026-10-14), så der kommer kun nye forslag fra routinens sweep.
 
 Fase 3:
 1. "Hvorfor med?" bygger på feltet `why`, som allerede står i `feed.json`.

@@ -29,7 +29,7 @@ from affaldsfeed.display import known_sources
 from affaldsfeed.fetch import Fetcher
 from affaldsfeed.health import is_due, record_result
 from affaldsfeed.logos import logo_targets, refresh_logos
-from affaldsfeed.models import Candidate, DateQuality, Rejected, Source, SourceState
+from affaldsfeed.models import Candidate, DateQuality, Publisher, Rejected, Source, SourceState, full_text
 from affaldsfeed.normalize import clean_text, item_id, normalize_title
 from affaldsfeed.places import compile_places, rule_places
 from affaldsfeed.relevance import Prefilter
@@ -118,6 +118,7 @@ class Processor:
                 paywall=pub.paywall,
                 places=pub.places,
                 basis=pub.basis,
+                ai=pub.ai,
                 status="aktiv",
                 checked=self.now.date(),
                 filter=collector_source.filter,
@@ -199,6 +200,10 @@ class Processor:
             too_old = dq != "fundet" and published < oldest
 
             rsrc = self.rule_source(source, e.source_id)
+            # Kun overskrift (ai: titel eller false, §3): teaseren bruges ikke i reglerne og gemmes ikke
+            text = full_text(rsrc.ai)
+            if not text:
+                teaser = ""
             why = self.prefilter.evaluate(title, teaser, rsrc)
             forced = any(o.action == "vis" for o in self.overrides.find(iid, url))
             if forced and (why.decision == "afvist" or too_old):
@@ -216,8 +221,16 @@ class Processor:
                 if quiet_before is not None and not check_mode and dq != "fundet" and published < quiet_before:
                     out.skipped += 1
                     continue
+                # Fra medier med kun overskrift gemmes hverken titel eller adresse på afviste (§4)
                 out.rejected.append(
-                    Rejected(id=iid, url=url, title=title, source=e.source_id, first_seen=self.now, why=why)
+                    Rejected(
+                        id=iid,
+                        url=url if text else "",
+                        title=title if text else "",
+                        source=e.source_id,
+                        first_seen=self.now,
+                        why=why,
+                    )
                 )
                 continue
 
@@ -374,6 +387,20 @@ def forget_seen(seen: dict[str, dict[str, str]], source_id: str, keep: Collectio
     return len(drop)
 
 
+def restricted_ids(sources: Iterable[Source], publishers: Iterable[Publisher]) -> tuple[set[str], set[str]]:
+    """(afventer, kun overskrift) som afsender-id'er, også tidligere id'er (replaces). KONTRAKTER §4."""
+    drop: set[str] = set()
+    title_only: set[str] = set()
+    for s in sources:
+        ids = {s.id, *s.replaces}
+        if s.status == "afventer":
+            drop |= ids
+        elif not full_text(s.ai):
+            title_only |= ids
+    title_only |= {p.id for p in publishers if not full_text(p.ai)}
+    return drop, title_only - drop
+
+
 def _run_note(first_run: bool, backfill: bool, backlog: bool) -> str:
     """Tillæg til kildens loglinje: baseline ved første kørsel, bagud ved bagudindsamling (§5.6 og §5.8)."""
     if not (first_run or backfill):
@@ -405,6 +432,11 @@ def _run(args: argparse.Namespace) -> int:
     fetcher = Fetcher(settings.fetch, store.load_http_cache(), store.load_robots_cache(), now)
     kildeforslag = store.load_kildeforslag()
     seen = store.load_seen()
+    if not dry:
+        # Det, kildernes regler ikke tillader i data/, fjernes ved hver kørsel (§4). Normalt intet at gøre
+        scrub = store.scrub_stored(*restricted_ids(sources, config.publishers))
+        if any(scrub.values()):
+            log.info("Medier med forbehold: %s", ", ".join(f"{k.replace('_', ' ')} {v}" for k, v in scrub.items() if v))
     all_candidates = store.load_candidates()
     existing = {c.id: c for c in all_candidates}
     recent_cut = now - timedelta(days=SEARCH_DEDUPE_DAYS)

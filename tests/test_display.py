@@ -210,6 +210,32 @@ def test_sweep_items(base_config):
     assert by_id[future.id].published == future.judged_at
 
 
+RESERVED = [*SOURCES, _src("jv", "lokalmedie", ai="titel"), _src("dn", "lokalmedie", status="afventer", note="Forbyder feeds")]
+
+
+def test_title_only_source_shows_the_headline_and_nothing_else(base_config):
+    a, b = cand("a", source="jv"), cand("b", source="jv")
+    js = {a.id: judge(a, reason="Nye affaldsgebyrer", summary_da="Et resumé, der ikke må vises")}
+    out = build_display_items(base_config, RESERVED, [a, b], js, "claude", NOW, SINCE, {a.id: "Resumélinje"})
+    # Kun den vurderede vises; uden teaser, resumé og Claudes begrundelse (KONTRAKTER §3)
+    assert ids(out) == {a.id}
+    assert out[0].reviewed is True
+    assert (out[0].title, out[0].teaser, out[0].summary_da, out[0].reason) == ("Titel om a", "", None, None)
+
+
+def test_waiting_source_is_never_shown(base_config):
+    a = cand("a", source="dn")
+    assert build_display_items(base_config, RESERVED, [a], {a.id: judge(a)}, "claude", NOW, SINCE) == []
+    assert build_display_items(base_config, RESERVED, [a], {}, "fallback", NOW, SINCE) == []
+    assert "dn" not in known_sources(RESERVED, PUBLISHERS)
+
+
+def test_sweep_items_need_a_full_text_source(base_config):
+    url = "https://jv.dk/artikel/ny-ordning"
+    sweep = judge(item_id(url), new_item={"url": url, "title": "Ny ordning", "source": "jv"})
+    assert build_display_items(base_config, RESERVED, [], {sweep.id: sweep}, "claude", NOW, SINCE) == []
+
+
 def test_sorted_newest_first_then_id(base_config):
     a, b, c = cand("a", hours_ago=5), cand("b", hours_ago=1), cand("c", hours_ago=1)
     out = build(base_config, [a, b, c], [judge(a), judge(b), judge(c)])

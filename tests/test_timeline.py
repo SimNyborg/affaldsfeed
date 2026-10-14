@@ -544,3 +544,17 @@ def test_sample_timeline_is_valid():
     stories = {it["story"] for it in feed["items"]}
     assert any(e.story for e in events)
     assert all(e.story in stories for e in events if e.story)
+
+
+def test_input_leaves_out_title_only_sources(repo, capsys):
+    # Claude skriver ikke tekst om medier med kun overskrift (KONTRAKTER §3)
+    (repo / "sources.yaml").write_text(SOURCES_YAML + """
+- {id: jv, name: JV, category: lokalmedie, homepage: "https://jv.dk", feeds: "https://jv.dk/rss", ai: titel,
+   basis: redaktionelt, checked: 2026-10-01}
+""", encoding="utf-8")
+    full = cand("fuld", days_ago=1, title="Kommunerne får nye regler for affaldsgebyrer")
+    title_only = cand("titel", source="jv", days_ago=0.9, title="Kommunerne får nye regler for affaldsgebyrer")
+    approve(full, title_only)
+    out = run_input(capsys)
+    assert [s["id"] for s in out["stories"]] == [full.id]
+    assert out["stories"][0]["also"] == [] and out["stories"][0]["story_size"] == 1

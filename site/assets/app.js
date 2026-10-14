@@ -668,7 +668,9 @@ async function initKilder() {
   const cats = feed.categories || [];
   const stat = new Map((status?.sources || []).map((s) => [s.id, s]));
   const sources = (feed.sources || []).map((s) => ({ ...s, ...(stat.get(s.id) ? { health: stat.get(s.id).health } : {}), st: stat.get(s.id) || null }));
-  const direct = sources.filter((s) => !s.via_search);
+  // Medier, der afventer tilladelse, tæller ikke som aktive og står nederst i deres type
+  const waiting = sources.filter((s) => s.status === 'afventer');
+  const direct = sources.filter((s) => !s.via_search && s.status !== 'afventer');
   const viaSearch = sources.filter((s) => s.via_search);
 
   const healthCount = { groen: 0, gul: 0, roed: 0, graa: 0 };
@@ -708,19 +710,21 @@ async function initKilder() {
     }))));
 
   for (const c of cats) {
-    const list = direct.filter((s) => s.category === c.id).sort((a, b) => a.name.localeCompare(b.name, 'da'));
+    const byName = (a, b) => a.name.localeCompare(b.name, 'da');
+    const list = direct.filter((s) => s.category === c.id).sort(byName);
+    const wait = waiting.filter((s) => s.category === c.id).sort(byName);
     const none = c.pending ? 'Kategorien afventer og har ingen kilder endnu.' : 'Ingen aktive kilder i denne kategori endnu.';
     out.push(el('section', { class: `panel cat-section cat${pend(c)}`, id: `kat-${c.id}`, style: catStyle(c), 'aria-labelledby': `h-${c.id}` },
       el('h2', { id: `h-${c.id}` }, icon(c.icon), el('span', { text: c.name })),
       el('p', { class: 'help', text: c.help }),
-      list.length
-        ? el('ul', { class: 'src-rows' }, list.map((s) => sourceRow(s, now)))
+      list.length || wait.length
+        ? el('ul', { class: 'src-rows' }, list.map((s) => sourceRow(s, now)), wait.map(waitRow))
         : el('p', { class: 'facts', text: none })));
   }
 
   out.push(el('section', { class: 'panel', 'aria-labelledby': 'h-search' },
     el('h2', { id: 'h-search', text: 'Fundet via søgning' }),
-    el('p', { class: 'help', text: 'Disse udgivere har ikke et feed, som Affaldsfeed henter direkte. Deres artikler bliver fundet via nyhedssøgninger, men krediteres altid udgiveren. Kun udgivere på listen over troværdige medier kommer med.' }),
+    el('p', { class: 'help', text: 'Disse udgivere har ikke et feed, som Affaldsfeed henter direkte. Deres artikler blev fundet via nyhedssøgning og krediteres altid udgiveren. Søgningen er slået fra, fordi søgemaskinens vilkår ikke tillader et feed som dette.' }),
     viaSearch.length
       ? el('ul', { class: 'src-rows' }, viaSearch.sort((a, b) => a.name.localeCompare(b.name, 'da')).map((s) => sourceRow(s, now, cats)))
       : el('p', { class: 'facts', text: 'Ingen artikler fra søgning i perioden.' })));
@@ -753,6 +757,15 @@ function sourceRow(s, now, cats = null) {
       facts.length ? el('p', { class: 'facts', text: facts.join(' · ') }) : null,
       st?.last_error && s.health === 'roed' ? el('p', { class: 'facts', text: `Seneste fejl: ${truncate(st.last_error, 120)}` }) : null),
     healthBadge(s.health));
+}
+
+/** Et medie, der afventer tilladelse: ingen sundhed, men "Afventer" i mærkets plads. */
+function waitRow(s) {
+  return el('li', { class: 'src-row is-pending' },
+    el('div', { class: 'src-who' },
+      el('a', { href: s.homepage, target: '_blank', rel: 'noopener' }, s.name, hidden(' (åbner i nyt vindue)')),
+      el('p', { class: 'facts', text: 'Mediets regler tillader ikke et feed som dette. Hentes ikke, før mediet giver lov.' })),
+    el('span', { class: 'health health-graa' }, el('span', { class: 'sym', 'aria-hidden': 'true', text: '◇' }), 'Afventer'));
 }
 
 // ── Tidslinje ────────────────────────────────────────────
