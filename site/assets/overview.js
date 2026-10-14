@@ -128,9 +128,11 @@ export function createOverview(root, { data, now, getState, onPeriod, onStory })
     return out;
   }
 
-  /** Bunden har kun noten om filtre, når der er aktive filtre. */
+  /** Bunden har kun noten om filtre, når der er aktive filtre. Uden noten er den tom og skjult af CSS
+   *  (.ov-foot:empty). Den skal altid findes: replaceChildren skriver null som teksten "null", og
+   *  setFiltersActive sætter noten ind i den. */
   function foot() {
-    return filtersActive ? el('div', { class: 'ov-foot' }, filterNote()) : null;
+    return el('div', { class: 'ov-foot' }, filtersActive ? filterNote() : null);
   }
 
   function filterNote() {
