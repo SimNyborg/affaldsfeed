@@ -139,6 +139,7 @@
 {"id":"01a3c5878024","url":"","title":"","source":"energy-supply","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"01aca51ff4c0","url":"","title":"","source":"helsingordagblad","first_seen":"2026-10-13T03:32:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"01afc07076b8","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"01b0a65da3d2","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"01b1db0181d0","url":"","title":"","source":"fyens","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"01b60da509fd","url":"","title":"","source":"faa","first_seen":"2026-10-08T21:27:25Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"01b9c44e7073","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-12T05:54:42Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -158,6 +159,7 @@
 {"id":"01f18e0afd88","url":"","title":"","source":"helsingordagblad","first_seen":"2026-10-11T01:52:00Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"01fc42bcb35d","url":"","title":"","source":"ugeavisen","first_seen":"2026-10-09T13:32:35Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"0205473fc051","url":"","title":"","source":"ugeavisen","first_seen":"2026-10-14T09:40:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"02057fd25700","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"020ab3738f16","url":"","title":"","source":"vafo","first_seen":"2026-10-09T17:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"020b1134a089","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-09T20:28:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"0214bbe9e79d","url":"","title":"","source":"stiften","first_seen":"2026-10-12T05:54:42Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -281,6 +283,8 @@
 {"id":"03abc92fee0c","url":"","title":"","source":"videnskab","first_seen":"2026-10-09T10:08:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"03b2fd21f27d","url":"","title":"","source":"hsfo","first_seen":"2026-10-13T03:32:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"03b79b4f7fdc","url":"","title":"","source":"jv","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"03bbfde0e692","url":"https://migogaalborg.dk/kun-paa-soendag-billigt-braendstof-paa-aalborg-tank/","title":"Kun på søndag: Billigt brændstof på Aalborg-tank","source":"migogaalborg","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"03c059accc4e","url":"","title":"","source":"berlingske","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"03c41086e489","url":"","title":"","source":"dagbladet-holstebro-struer","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"03c98431d3e4","url":"","title":"","source":"bornholms-tidende","first_seen":"2026-10-10T18:34:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"03ce7abd8400","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -413,6 +417,7 @@
 {"id":"05ee28994ae3","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"05eee89cb6cd","url":"","title":"","source":"frederiksbergliv","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"05f46ceee35b","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"05f6bb3407d0","url":"","title":"","source":"dagbladet-holstebro-struer","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"05f9a9bd7e26","url":"","title":"","source":"nordjyske","first_seen":"2026-10-10T13:39:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"06000a5197ed","url":"","title":"","source":"dagbladet-holstebro-struer","first_seen":"2026-10-10T22:30:45Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"06021d805a23","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-12T22:57:34Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -795,6 +800,7 @@
 {"id":"0b553d01e98f","url":"https://vesthimmerlandsavis.dk/vesthimmerlands-kommune-og-politiet-oplyser-om-svindel/","title":"Vesthimmerlands Kommune og politiet oplyser om svindel","source":"vesthimmerlandsavis","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"0b55da0e499f","url":"","title":"","source":"dbrs","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"0b578120fabb","url":"https://migogaarhus.dk/regeringen-dropper-speciel-skat-i-aarhus/","title":"Netop vedtaget: Regeringen dropper speciel skat i Aarhus","source":"migogaarhus","first_seen":"2026-10-09T10:08:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"0b5a34102326","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"0b5d65f9a61e","url":"https://danskfjernvarme.dk/aktuelt/nyheder/2026/godt-og-groent-finanslovsudspil-har-fokus-paa-de-rigtige-ting","title":"Godt og grønt finanslovsudspil har fokus på de rigtige ting","source":"dansk-fjernvarme","first_seen":"2026-10-09T07:22:42Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"0b5da123477e","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"0b6271cc6c1a","url":"","title":"","source":"bornholms-tidende","first_seen":"2026-10-11T15:39:11Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -950,6 +956,7 @@
 {"id":"0da58d8ad9a7","url":"","title":"","source":"borsen","first_seen":"2026-10-09T14:28:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"0daab41044c5","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-11T08:48:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"0daf0a1735d8","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"0db006349178","url":"","title":"","source":"dagbladet-holstebro-struer","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"0db876fde807","url":"","title":"","source":"ugeavisen","first_seen":"2026-10-09T13:32:35Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"0db9cb87a6f2","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"0dbbdfc1bf44","url":"","title":"","source":"faa","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -1211,6 +1218,7 @@
 {"id":"10db8845731a","url":"","title":"","source":"faa","first_seen":"2026-10-10T18:34:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"10dc2853b54f","url":"","title":"","source":"vafo","first_seen":"2026-10-09T17:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"10e26a4a803c","url":"","title":"","source":"dagbladet-holstebro-struer","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"10e5e00c7fce","url":"https://migogaarhus.dk/kom-til-drop-in-daab-i-aarhus/","title":"Gentager succesen: Kendt Aarhus-kirke holder Drop-In-Dåb","source":"migogaarhus","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"10e6f523de25","url":"","title":"","source":"fyens","first_seen":"2026-10-13T03:32:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"10ea27e33a4f","url":"","title":"","source":"kobenhavnliv","first_seen":"2026-10-09T13:16:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"10ea5cfa8218","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -1367,6 +1375,7 @@
 {"id":"130d635e256c","url":"","title":"","source":"frederiksbergliv","first_seen":"2026-10-09T14:28:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"130de0455446","url":"","title":"","source":"jv","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"130e9aca8e82","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"131175e4eccf","url":"","title":"","source":"dbrs","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"131b383072dc","url":"","title":"","source":"borsen","first_seen":"2026-10-08T20:28:10Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"131bd0052335","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-09T10:08:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"1322a1f1deb0","url":"https://migogkbh.dk/har-du-set-dem-nye-skilte-skal-faa-flere-til-at-tage-livsvigtig-omvej/","title":"Har du set dem: Nye skilte skal få flere til at tage livsvigtig omvej","source":"migogkbh","first_seen":"2026-10-13T11:45:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -1703,6 +1712,7 @@
 {"id":"1814ffc00461","url":"","title":"","source":"nordjyske","first_seen":"2026-10-13T11:45:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"181b9e0d9ccc","url":"","title":"","source":"faa","first_seen":"2026-10-09T18:28:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"181f3b0f3ee0","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T09:22:57Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"182056c815cd","url":"","title":"","source":"berlingske","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"18209f2ce756","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"182877097d1d","url":"","title":"","source":"ugeavisen","first_seen":"2026-10-09T13:32:35Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"182e04c4ad95","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -2195,6 +2205,7 @@
 {"id":"1eeaf3f859bb","url":"","title":"","source":"bornholms-tidende","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"1ef6f72498da","url":"","title":"","source":"ugeavisen","first_seen":"2026-10-09T13:32:35Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"1ef854dbfc51","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"1ef89061801a","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"1efe862b9905","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"1efed34d4805","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"1f0cd12f7e9f","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -2356,6 +2367,7 @@
 {"id":"219f00a9bff3","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"21a213626394","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"21a2d828eebf","url":"https://www.tekniskfokus.dk/53-vilde-og-dristige-forskningsideer-faar-stoette/","title":"53 vilde og dristige forskningsideer får støtte","source":"tekniskfokus","first_seen":"2026-10-07T11:39:46Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"21a2f095da2b","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"21a371e996bf","url":"","title":"","source":"fyens","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"21a3a3f7edaf","url":"","title":"","source":"jv","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"21a67734df25","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -2365,6 +2377,7 @@
 {"id":"21ab8c10383f","url":"","title":"","source":"borsen","first_seen":"2026-10-09T05:27:04Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"21ac68ef43c8","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-12T05:54:42Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"21ae4e70d052","url":"https://billundonline.dk/laeserbrev-boernenes-hovedstad-2-0/","title":"Læserbrev: Børnenes Hovedstad 2.0","source":"billundonline","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"21af06f46dd4","url":"","title":"","source":"energy-supply","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"21bb05213dbb","url":"https://hoeringsportalen.dk/Hearing/Details/71596","title":"Høring over udkast til bekendtgørelse om gennemførelse af bygge- og anlægsprojekt i forbindelse med etablering af faciliteter til Hærens tunge brigade på Aalborg Kaserne","source":"hoeringsportalen","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"21bf174d46d1","url":"","title":"","source":"dbrs","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"21bf1fcf8eae","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-13T11:45:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -2394,6 +2407,7 @@
 {"id":"220e12e9a806","url":"","title":"","source":"fyens","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2210f05cac28","url":"https://migogodense.dk/fra-naesby-til-europa-parlamentet-odense-kunstners-provokerende-trump-statue-gaar-viralt-verden-over/","title":"Fra Næsby til Europa-Parlamentet: Odense-kunstners provokerende Trump-statue går viralt verden over","source":"migogodense","first_seen":"2026-10-11T23:41:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2212df4a4085","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"2215e32ac7e4","url":"https://migogaarhus.dk/nyt-hyrox-center-abner-i-aarhus/","title":"Næsten 2.000 kvm: Nyt HYROX-center åbner i Aarhus","source":"migogaarhus","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2228657ed8e7","url":"https://www.avisen.dk/katte-kan-blive-koensmodne-allerede-efter-fire-maane_844030.aspx","title":"Katte kan blive kønsmodne allerede efter fire måneder","source":"avisen","first_seen":"2026-10-07T11:39:46Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2228903a9067","url":"","title":"","source":"jv","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2229c0aeb44a","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -2788,6 +2802,7 @@
 {"id":"27e8a51a7394","url":"","title":"","source":"viborg-folkeblad","first_seen":"2026-10-14T10:10:48Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"27ea5c206225","url":"https://hoeringsportalen.dk/Hearing/Details/71603","title":"Høring over udkast til bekendtgørelse om regulering af forsikringsdækningsbeløb","source":"hoeringsportalen","first_seen":"2026-10-08T14:27:34Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"27ed27c0a9ab","url":"","title":"","source":"fyens","first_seen":"2026-10-11T20:15:10Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"27ed6f5ad5d3","url":"","title":"","source":"borsen","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"27ee608a702d","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-07T11:39:46Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"27fd0a5ccf07","url":"https://migogkbh.dk/r2-d2-eller-rasmus-nu-kan-du-bestemme-hvad-koebenhavns-2-foerste-robotter-skal-hedde/","title":"R2-D2 eller Rasmus: Nu kan DU bestemme, hvad Københavns 2 første robotter skal hedde","source":"migogkbh","first_seen":"2026-10-09T06:28:19Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"27fde9acb812","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -2834,6 +2849,7 @@
 {"id":"287b331f1226","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-09T04:27:45Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"287bbffa7a3c","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"287fe4466ca6","url":"","title":"","source":"helsingordagblad","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"28846aff339c","url":"","title":"","source":"berlingske","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"288512a53b20","url":"","title":"","source":"borsen","first_seen":"2026-10-12T22:57:34Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"288575b8be3d","url":"","title":"","source":"hsfo","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"28866a729884","url":"","title":"","source":"stiften","first_seen":"2026-10-13T11:45:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -3237,6 +3253,7 @@
 {"id":"2ea13e86700f","url":"","title":"","source":"borsen","first_seen":"2026-10-09T05:27:04Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2ea582d0a40a","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-09T17:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2eab7e64e8c4","url":"","title":"","source":"jv","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"2eadb8795065","url":"https://bornholmnyt.dk/anette-og-sverre-vandt-i-aakirkeby/","title":"Anette og Sverre vandt på Dueodde Golfbane","source":"bornholmnyt","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2eadc3c11431","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-14T10:38:29Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2eb5ef5eb31c","url":"","title":"","source":"frdb","first_seen":"2026-10-09T18:28:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2eb7df0d6bf6","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-14T10:38:29Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -3255,6 +3272,7 @@
 {"id":"2ec9b5f51b39","url":"","title":"","source":"ugeavisen","first_seen":"2026-10-14T09:40:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2ecafef3c7bb","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2ecbb3430b56","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-09T09:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"2ece4f22fc9a","url":"https://billundonline.dk/lars-svingede-slagterkniven-paa-karensminde-de-kan-ikke-slippe-af-med-mig/","title":"Lars svingede slagterkniven på Karensminde: – De kan ikke slippe af med mig","source":"billundonline","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2ed488165074","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-08T14:27:34Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2ed52547a5eb","url":"","title":"","source":"nordjyske","first_seen":"2026-10-14T04:50:54Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2ed8b06c7827","url":"","title":"","source":"stiften","first_seen":"2026-10-09T10:08:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -3329,6 +3347,7 @@
 {"id":"2fc478fc0b44","url":"","title":"","source":"berlingske","first_seen":"2026-10-09T10:08:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2fc70abaca0f","url":"https://xn--stvendsysselfolkeblad-pfc.dk/fra-flaskedreng-i-oestervraa-til-virksomhedsejer-med-220-medarbejdere/","title":"Fra flaskedreng i Østervrå til virksomhedsejer med 220 medarbejdere","source":"oestvendsysselfolkeblad","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2fc84f3d6223","url":"","title":"","source":"ingenioeren","first_seen":"2026-10-07T11:39:46Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"2fc9f290130b","url":"https://midtvendsysselavis.dk/ny-bog-fortaeller-historien-om-dorf-moellegaard/?utm_source=rss&utm_medium=rss&utm_campaign=ny-bog-fortaeller-historien-om-dorf-moellegaard","title":"Ny bog fortæller historien om Dorf Møllegård","source":"midtvendsysselavis","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2fca362f9973","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2fd1a4c3cd13","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"2fd4355f457f","url":"","title":"","source":"fyens","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -3818,6 +3837,7 @@
 {"id":"36ec3d5e34f1","url":"","title":"","source":"jv","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"36ecbbcdab84","url":"","title":"","source":"amagerliv","first_seen":"2026-10-09T12:30:30Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"36ed397508e2","url":"","title":"","source":"tv2-nyheder","first_seen":"2026-10-07T15:53:30Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"36ed3cc5b265","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"36f403f23cd5","url":"","title":"","source":"jv","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"36f40804e3d2","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"36f5bce5c1ac","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -3877,6 +3897,7 @@
 {"id":"37c4229b070e","url":"","title":"","source":"jv","first_seen":"2026-10-10T07:05:04Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"37c4ca92c7e4","url":"","title":"","source":"vafo","first_seen":"2026-10-09T17:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"37c7b1988ae1","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"37ccd09c4f5d","url":"https://migogesbjerg.dk/hvorfor-er-bonusvilkaar-vigtigere-end-bonusbeloebet-paa-danske-online-casinoer/","title":"Hvorfor er bonusvilkår vigtigere end bonusbeløbet på danske online casinoer?","source":"migogesbjerg","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"37cd92f3b962","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"37d1de78e09c","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"37d3813376ae","url":"","title":"","source":"viborg-folkeblad","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -3988,6 +4009,7 @@
 {"id":"398403c89a8a","url":"https://altomfuresoe.dk/gratis-groent-virksomhedsforloeb-skal-styrke-lokale-virksomheder-i-furesoe/","title":"Gratis grønt virksomhedsforløb skal styrke lokale virksomheder i Furesø","source":"altomfuresoe","first_seen":"2026-10-13T11:45:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"3988046a3f59","url":"","title":"","source":"dagbladet-holstebro-struer","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"398c89dcd5ce","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"398cb49807ff","url":"https://migogaarhus.dk/nu-rykker-mobil-politistation-ud-efter-overfald/","title":"Efter overfald på unge kvinder: Nu rykker mobil politistation ud","source":"migogaarhus","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"399178369ba9","url":"","title":"","source":"vafo","first_seen":"2026-10-09T17:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"399d97a40077","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"399f0cdafa8f","url":"","title":"","source":"fyens","first_seen":"2026-10-11T20:15:10Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -4022,6 +4044,7 @@
 {"id":"39ffec637f13","url":"","title":"","source":"hsfo","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"3a055a88f18a","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-09T10:08:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"3a09905345bf","url":"","title":"","source":"frdb","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"3a1011d06203","url":"https://migogesbjerg.dk/the-julekalender-musical/","title":"The Julekalender-musical: Stor interesse sender nisserne på ekstra tur i Esbjerg","source":"migogesbjerg","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"3a16ef2a9fce","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"3a1772dee27a","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"3a17b9b5d58e","url":"","title":"","source":"frdb","first_seen":"2026-10-09T18:28:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -4035,6 +4058,7 @@
 {"id":"3a3c6834e84f","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"3a3d25be7803","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"3a4272c5d057","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"3a4359859bcc","url":"https://migogesbjerg.dk/hvem-savner-sin-vielsesring-politiet-efterlyser-ejeren-efter-fund/","title":"Hvem savner sin vielsesring?: Politiet efterlyser ejeren efter fund","source":"migogesbjerg","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"3a46a2c78b55","url":"","title":"","source":"jv","first_seen":"2026-10-14T09:40:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"3a492f75fd6c","url":"","title":"","source":"netavisen-gribskov","first_seen":"2026-10-12T22:57:34Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"3a4b6c8c9995","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -4436,6 +4460,7 @@
 {"id":"407744f88ae1","url":"","title":"","source":"kobenhavnliv","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"407925b5fc90","url":"","title":"","source":"jv","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"4079d760bd76","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"407b434fa435","url":"","title":"","source":"dagbladet-holstebro-struer","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"407e22ee48d2","url":"","title":"","source":"kobenhavnliv","first_seen":"2026-10-09T13:16:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"407ecad740cf","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"407f8c38fe94","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-12T22:57:34Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -4751,6 +4776,7 @@
 {"id":"44ba41ae6382","url":"","title":"","source":"dbrs","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"44bbd7ac0368","url":"","title":"","source":"helsingordagblad","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"44be8f17a5b4","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-13T11:45:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"44bfb6529509","url":"https://migogesbjerg.dk/hvad-betyder-sikkerhed-i-praksis-paa-et-dansk-online-casino/","title":"Hvad betyder sikkerhed i praksis på et dansk online casino?","source":"migogesbjerg","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"44c0d883f888","url":"","title":"","source":"faa","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"44c0f7f8f5cc","url":"","title":"","source":"folkebladetlemvig","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"44c40084c288","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -4760,6 +4786,7 @@
 {"id":"44cdd8a01fad","url":"","title":"","source":"ugeavisen","first_seen":"2026-10-11T08:48:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"44d04eefa3fd","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"44d0f5d5c296","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"44d24a923055","url":"https://migogesbjerg.dk/erhvervslivet-spiller-med/","title":"Erhvervslivet spiller med: Sammenhængskraften i byen styrkes","source":"migogesbjerg","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"44d320932e15","url":"","title":"","source":"fyens","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"44dba0bd1d6f","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"44e641dec41c","url":"","title":"","source":"tv2-nyheder","first_seen":"2026-10-09T17:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -4811,6 +4838,7 @@
 {"id":"45894a856e5f","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"458dc93ec5fa","url":"","title":"","source":"dagbladet-holstebro-struer","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"45925ee82e88","url":"https://www.frederikssund.dk/service/Nyheder/2026/September/hjemmevaernet-rykker-ind-i-frederikssund-paa-loerdag","title":"Hjemmeværnet rykker ind i Frederikssund på lørdag","source":"frederikssund-kommune","first_seen":"2026-10-09T07:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"459421167bf7","url":"","title":"","source":"berlingske","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"459499e4b40e","url":"","title":"","source":"vafo","first_seen":"2026-10-09T17:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"459ad6a69f4a","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-09T20:28:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"459c1b6bb80b","url":"","title":"","source":"viborg-folkeblad","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -5237,6 +5265,7 @@
 {"id":"4be06876f07c","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"4be3935f3ac4","url":"","title":"","source":"viborg-folkeblad","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"4be4cc4c767c","url":"","title":"","source":"frdb","first_seen":"2026-10-09T18:28:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"4be5703cd88a","url":"https://mariagerfjordposten.dk/hb-petanque-kaarede-aarets-sidste-klubmestre/","title":"HB Petanque kårede årets sidste klubmestre","source":"mariagerfjordposten","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"4bf2a6382bfd","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-09T20:28:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"4bf452832cc1","url":"","title":"","source":"jv","first_seen":"2026-10-09T04:27:45Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"4bf4fa330553","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -5536,6 +5565,7 @@
 {"id":"50295e08a67b","url":"","title":"","source":"jv","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"502e56c47162","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5031e7d9abdf","url":"https://jammerbugtposten.dk/nu-er-det-tid-til-vinterdaek/","title":"Husker du sidste vinter? Nu er det tid til at få styr på vinterdækkene","source":"jammerbugtposten","first_seen":"2026-10-09T14:28:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"5035c0caa362","url":"https://midtvendsysselavis.dk/mylund-kirke-fylder-100-aar/?utm_source=rss&utm_medium=rss&utm_campaign=mylund-kirke-fylder-100-aar","title":"Mylund Kirke fylder 100 år","source":"midtvendsysselavis","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5038e4a467ea","url":"https://migogesbjerg.dk/fra-parkeringsplads-til-gron-bypark/","title":"Fra parkeringsplads til grøn bypark: Nu er første store bid af Esbjergs nye midtby indviet","source":"migogesbjerg","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5039dfb012e8","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"503ab00154fe","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -5884,10 +5914,12 @@
 {"id":"54efa9852232","url":"","title":"","source":"vafo","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"54f0cb5fa232","url":"","title":"","source":"viborg-folkeblad","first_seen":"2026-10-14T10:10:48Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"54f1225e9493","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"54fd137929dc","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"54feb9cd08c5","url":"https://byensnyt.dk/8450/byens-puls-8450/hgf-formand-undrer-sig-over-manglende-dialog-med-favrskov-kommune/?utm_source=rss&utm_medium=rss&utm_campaign=hgf-formand-undrer-sig-over-manglende-dialog-med-favrskov-kommune","title":"HGF-formand undrer sig over manglende dialog med Favrskov Kommune","source":"byensnyt","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5505afd2eaf4","url":"","title":"","source":"ingenioeren","first_seen":"2026-10-09T04:27:45Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"550673b4421b","url":"https://migogesbjerg.dk/koebmand-i-tarp-efterlyste-tidligere-ansatte-nu-er-opslaget-set-over-40-000-gange/","title":"Købmand i Tarp efterlyste tidligere ansatte: Nu er opslaget set over 40.000 gange","source":"migogesbjerg","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"550b9a04fd19","url":"","title":"","source":"amagerliv","first_seen":"2026-10-12T22:57:34Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"551073b0cac1","url":"https://tjekfredensborg.dk/2026/10/baren-er-aaben-fra-en-halv-time-foer-kig-forbi-til-nordiske-sange-og-viser/","title":"Baren er åben fra en halv time før. Kig forbi til nordiske sange og viser","source":"tjekfredensborg","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"55156c628619","url":"","title":"","source":"faa","first_seen":"2026-10-09T21:49:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5517269db0f6","url":"https://mariagerfjordposten.dk/helstegt-pattegris-og-stand-up-med-beardo-i-veddum/","title":"Helstegt pattegris og stand-up med Beardo i Veddum","source":"mariagerfjordposten","first_seen":"2026-10-14T08:39:15Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"551b38d56439","url":"https://via.ritzau.dk/pressemeddelelse/15192758/nye-gronne-byrum-i-esbjerg-indvies?lang=da","title":"Nye grønne byrum i Esbjerg indvies","source":"esbjerg-kommune","first_seen":"2026-10-09T07:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -5973,6 +6005,7 @@
 {"id":"563810ed52a2","url":"","title":"","source":"fyens","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"56393de00f31","url":"","title":"","source":"fyens","first_seen":"2026-10-14T09:40:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"563d8304c836","url":"","title":"","source":"tv2-nyheder","first_seen":"2026-10-07T15:53:30Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"564135b0f7ec","url":"https://migogodense.dk/taet-trafik-og-koedannelse-dobbelt-vejarbejde-rammer-motorvejen-ved-odense/","title":"Tæt trafik og kødannelse: Dobbelt vejarbejde rammer motorvejen ved Odense","source":"migogodense","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5644e0e64e32","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5645e53873c4","url":"https://danskfjernvarme.dk/aktuelt/nyheder/2026/webinar-fokuserer-paa-eu-s-ai-forordning","title":"Webinar fokuserer på EU’s AI-forordning","source":"dansk-fjernvarme","first_seen":"2026-10-07T11:39:46Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":["veto: webinar*"],"reason":"veto: webinar*"}}
 {"id":"5649eceedd13","url":"","title":"","source":"kobenhavnliv","first_seen":"2026-10-09T13:16:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -6055,6 +6088,7 @@
 {"id":"57456f35cd9d","url":"https://jammerbugtposten.dk/rekordmange-hjortepaakoersler-paa-danske-veje/","title":"Antallet af hjortepåkørsler sætter rekord for fjerde år i træk","source":"jammerbugtposten","first_seen":"2026-10-14T04:50:54Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5745b913f92d","url":"","title":"","source":"kobenhavnliv","first_seen":"2026-10-13T03:32:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"574b478bc6ff","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"574d851a0e05","url":"","title":"","source":"berlingske","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"574de0590ece","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"575175613275","url":"","title":"","source":"berlingske","first_seen":"2026-10-09T09:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5753c96b950d","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -6246,6 +6280,7 @@
 {"id":"5a3278e25e69","url":"","title":"","source":"stiften","first_seen":"2026-10-13T11:45:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5a332e49b8d3","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5a37c15a4b51","url":"","title":"","source":"nordjyske","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"5a3b87ca4569","url":"https://danskfjernvarme.dk/aktuelt/nyheder/2026/dan-joergensen-energipriser-vil-give-problemer-denne-vinter","title":"Dan Jørgensen: Energipriser vil give problemer denne vinter","source":"dansk-fjernvarme","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5a420d1f5122","url":"https://www.orestad-avis.dk/ai-laeringsprojekt-godt-i-gang-paa-oerestad-gymnasium/","title":"AI læringsprojekt godt i gang på Ørestad Gymnasium","source":"orestad-avis","first_seen":"2026-10-08T12:29:21Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5a46dcf36981","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5a57c31024ae","url":"","title":"","source":"videnskab","first_seen":"2026-10-07T15:53:30Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -6625,6 +6660,7 @@
 {"id":"5faba3a4ad23","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5fbb0bcf89e9","url":"","title":"","source":"amagerliv","first_seen":"2026-10-09T12:30:30Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5fbccb47c8fd","url":"","title":"","source":"ugeavisen","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"5fbccfa810cf","url":"https://altomfuresoe.dk/62-aarig-kvinde-paa-hospitalet-efter-paakoersel/","title":"62-årig kvinde på hospitalet efter påkørsel","source":"altomfuresoe","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5fc2bb4e987a","url":"","title":"","source":"amagerliv","first_seen":"2026-10-09T12:30:30Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5fc617cfe743","url":"","title":"","source":"altinget","first_seen":"2026-10-07T11:39:46Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"5fc8e8f22df9","url":"","title":"","source":"hsfo","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -6656,6 +6692,7 @@
 {"id":"6031b890cdc2","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-10T07:05:04Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"6032890187f7","url":"","title":"","source":"ugeavisen","first_seen":"2026-10-09T13:32:35Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"6032c381c6b6","url":"","title":"","source":"stiften","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"604eb31b1c5a","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"60520682ece3","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"6053dd848809","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"60542eaba01a","url":"","title":"","source":"kobenhavnliv","first_seen":"2026-10-10T18:34:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -6854,6 +6891,7 @@
 {"id":"6329518c1f31","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"632aa9d8a662","url":"","title":"","source":"fyens","first_seen":"2026-10-14T09:40:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"632ad3670e23","url":"","title":"","source":"dagbladet-holstebro-struer","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"633625aff66f","url":"","title":"","source":"tv2-nyheder","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"6336d58c1b17","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"633a5f911422","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"63407e925acd","url":"","title":"","source":"ingenioeren","first_seen":"2026-10-14T04:50:54Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -7103,6 +7141,7 @@
 {"id":"669bc658f59a","url":"https://www.avisen.dk/mandagsfravaer-halveret-efter-indfoerelse-af-faelles_844080.aspx","title":"Mandagsfravær halveret efter indførelse af fælles morgenmad","source":"avisen","first_seen":"2026-10-09T06:28:19Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"669bee9f85a4","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-07T11:39:46Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"66a232b7b43a","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-08T11:28:26Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"66a5425ef0f5","url":"","title":"","source":"energy-supply","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"66aab3742eb8","url":"","title":"","source":"fyens","first_seen":"2026-10-11T20:15:10Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"66aad8a49644","url":"","title":"","source":"altinget","first_seen":"2026-10-08T04:31:35Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"66b562a57ee9","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-08T05:27:31Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -7123,6 +7162,7 @@
 {"id":"66f28f6cda16","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"66f54b9a7107","url":"","title":"","source":"nordjyske","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"66fd0626cf45","url":"","title":"","source":"kobenhavnliv","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"66ffaede7911","url":"","title":"","source":"frdb","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"66ffdf669402","url":"","title":"","source":"nordjyske","first_seen":"2026-10-10T22:30:45Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"670029140fc1","url":"","title":"","source":"jv","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"67011155ee5b","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -7292,6 +7332,7 @@
 {"id":"696da265520d","url":"","title":"","source":"nordjyske","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"69738feb75b3","url":"","title":"","source":"bornholms-tidende","first_seen":"2026-10-08T17:08:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"697e5b070426","url":"","title":"","source":"berlingske","first_seen":"2026-10-09T06:28:19Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"6980ffd08e6a","url":"https://xn--stvendsysselfolkeblad-pfc.dk/fodboldafslutning-for-de-yngste/","title":"Fodboldafslutning for de yngste","source":"oestvendsysselfolkeblad","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"69851d4ae2ea","url":"","title":"","source":"fyens","first_seen":"2026-10-11T20:15:10Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"698aa5d59ead","url":"","title":"","source":"nordjyske","first_seen":"2026-10-09T10:08:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"698e42e61596","url":"","title":"","source":"ugeavisen","first_seen":"2026-10-09T13:32:35Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -7393,6 +7434,7 @@
 {"id":"6af00130775e","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"6af095d30981","url":"","title":"","source":"faa","first_seen":"2026-10-10T18:34:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"6af13552ac0c","url":"","title":"","source":"jv","first_seen":"2026-10-11T08:48:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"6af569515e37","url":"https://migogaarhus.dk/kendt-ramasjang-figur-abner-arets-juleudstilling/","title":"1000 gratis kager: Kendt Ramasjang-figur åbner årets juleudstilling","source":"migogaarhus","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"6afa29223ecf","url":"","title":"","source":"hsfo","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"6b01db830462","url":"","title":"","source":"midtfynsposten","first_seen":"2026-10-14T09:22:57Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"6b04338a4c3a","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -7952,6 +7994,7 @@
 {"id":"72798e649085","url":"","title":"","source":"berlingske","first_seen":"2026-10-09T06:28:19Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"727a4a42b3dd","url":"","title":"","source":"viborg-folkeblad","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"727f1720415b","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"7281463501f0","url":"","title":"","source":"netavisen-gribskov","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"72828358cf70","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7285f4d897f5","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-12T05:54:42Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"729183534613","url":"","title":"","source":"frederiksbergliv","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -7975,6 +8018,7 @@
 {"id":"72ccacd1d4d2","url":"https://bygtek.dk/artikel/politik/ai-kan-ikke-fortrnge-hndens-arbejde","title":"AI kan ikke fortrænge håndens arbejde","source":"bygtek-dk","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"72d075ad7c33","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"72d193640ce9","url":"https://migogaalborg.dk/aalborg-blev-ikke-europas-gronneste-by/","title":"Slået på målstregen: Aalborg blev ikke Europas grønneste by","source":"migogaalborg","first_seen":"2026-10-09T06:28:19Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"72d591ca79b3","url":"","title":"","source":"netavisen-gribskov","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"72d74cd91805","url":"https://www.tekniskfokus.dk/netvaerksforbundne-elevatorer-afsloerer-europaeernes-doegnrytme/","title":"Netværksforbundne elevatorer afslører europæernes døgnrytme","source":"tekniskfokus","first_seen":"2026-10-08T06:01:09Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"72d751ce0249","url":"","title":"","source":"folkebladetlemvig","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"72d8116dafbb","url":"","title":"","source":"altinget","first_seen":"2026-10-08T04:31:35Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -8063,6 +8107,7 @@
 {"id":"740794e24e74","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"740a5a19cb1c","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"74151060f49f","url":"","title":"","source":"berlingske","first_seen":"2026-10-08T12:29:21Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"7415ce12e020","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7416f3fb5241","url":"","title":"","source":"hsfo","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"741fbdf617cc","url":"","title":"","source":"vafo","first_seen":"2026-10-09T10:08:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"74202feea771","url":"","title":"","source":"jv","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -8341,6 +8386,7 @@
 {"id":"77f8c1e7fa1b","url":"","title":"","source":"jv","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"77fbdc567463","url":"","title":"","source":"faa","first_seen":"2026-10-08T21:27:25Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7804b30feca7","url":"https://bornholmnyt.dk/naar-de-gamle-myter-blander-sig-i-vores-tid/","title":"Når de gamle myter blander sig i vores tid","source":"bornholmnyt","first_seen":"2026-10-09T10:08:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"780b977dcb09","url":"https://migogesbjerg.dk/lofter-sloret-for-15-navne/","title":"Løfter sløret for 15 navne: Folk & Fæstival fejrer Fleetwood Mac-klassiker på årsdagen","source":"migogesbjerg","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"780e166f9449","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"780f227102b1","url":"https://xn--stvendsysselfolkeblad-pfc.dk/sogneaften-saetter-fokus-paa-mellemoesten/","title":"Sogneaften sætter fokus på Mellemøsten","source":"oestvendsysselfolkeblad","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"781439157b8a","url":"","title":"","source":"fyens","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -8571,6 +8617,7 @@
 {"id":"7b98772a58ba","url":"","title":"","source":"berlingske","first_seen":"2026-10-14T09:22:57Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7b9aee21491c","url":"https://hoeringsportalen.dk/Hearing/Details/71595","title":"Høring over udkast til ændringsbekendtgørelse til bekendtgørelse om Ledningsejerregistret","source":"hoeringsportalen","first_seen":"2026-10-08T07:28:04Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7ba5fea2b803","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"7ba8e0181045","url":"https://nordsoeposten.dk/sinne-eeg-begejstrede-publikum-ved-jazzy-days-i-tversted/","title":"Sinne Eeg begejstrede publikum ved Jazzy Days i Tversted","source":"nordsoeposten","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7baba2890afa","url":"","title":"","source":"vafo","first_seen":"2026-10-09T17:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7bac7bf6848b","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7bacd2817dd2","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -8714,6 +8761,7 @@
 {"id":"7d9ca1d64c86","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7da0d64979bd","url":"","title":"","source":"fyens","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7da147e09dc7","url":"","title":"","source":"altinget","first_seen":"2026-10-14T07:29:11Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"7da63e231337","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7daef83cabed","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7dafd5a82ed3","url":"","title":"","source":"dbrs","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7db0593ab7bd","url":"","title":"","source":"stiften","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -8775,6 +8823,7 @@
 {"id":"7e8b8340e78f","url":"","title":"","source":"faa","first_seen":"2026-10-09T04:27:45Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7e8cb0539c98","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7e9103151bfe","url":"","title":"","source":"vafo","first_seen":"2026-10-09T17:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"7e9303da6052","url":"","title":"","source":"bornholms-tidende","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7e9adfe6a837","url":"","title":"","source":"ingenioeren","first_seen":"2026-10-07T11:39:46Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7e9b0bd470cd","url":"https://www.frederikssund.dk/service/Nyheder/2026/September/sidste-chance-husk-at-annoncere-din-adresse-til-bredbaandspuljen","title":"Sidste chance: Husk at annoncere din adresse til Bredbåndspuljen","source":"frederikssund-kommune","first_seen":"2026-10-09T07:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7ea0cf4e3c5e","url":"","title":"","source":"fyens","first_seen":"2026-10-11T20:15:10Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -8856,6 +8905,7 @@
 {"id":"7fbeea23d724","url":"https://danskfjernvarme.dk/aktuelt/nyheder/2026/von-der-leyen-goer-energiuafhaengighed-til-eus-naeste-store-projekt","title":"Von der Leyen gør energiuafhængighed til EU's næste store projekt","source":"dansk-fjernvarme","first_seen":"2026-10-07T11:39:46Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":["svag: ressource*"],"reason":"intet affaldsord"}}
 {"id":"7fc1e37a0966","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7fcc43fa77af","url":"","title":"","source":"nordjyske","first_seen":"2026-10-09T10:08:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"7fcd2406b438","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7fd38d0e8620","url":"","title":"","source":"vafo","first_seen":"2026-10-09T17:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7fd5ddee8dfc","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"7fd663aef771","url":"","title":"","source":"folkebladetlemvig","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -8919,6 +8969,7 @@
 {"id":"80a622cb89ea","url":"https://netavisen-sjaelland.dk/nyheder/nedskudt-drone-fundet-ved-hellebaek/","title":"Nedskudt drone fundet ved Hellebæk","source":"netavisen-sjaelland","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"80aeca285975","url":"","title":"","source":"ugeavisen","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"80b110c6fdb0","url":"","title":"","source":"kobenhavnliv","first_seen":"2026-10-09T13:16:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"80b2d18bfe3d","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"80b8d7013d2a","url":"","title":"","source":"stiften","first_seen":"2026-10-13T11:45:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"80bd89d718ff","url":"","title":"","source":"kobenhavnliv","first_seen":"2026-10-09T13:16:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"80be5ec8b5ab","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-10T07:05:04Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -9030,6 +9081,7 @@
 {"id":"82145cf294da","url":"","title":"","source":"nordjyske","first_seen":"2026-10-09T17:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"821493b9af32","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T04:50:54Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"821864efcac9","url":"","title":"","source":"vafo","first_seen":"2026-10-09T17:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"821b2f17ba4f","url":"","title":"","source":"tv2-nyheder","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"821bc3203bc2","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"821cab3bfcc2","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"821d60ad1284","url":"","title":"","source":"kobenhavnliv","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -9694,6 +9746,7 @@
 {"id":"8af289eb07ee","url":"","title":"","source":"fyens","first_seen":"2026-10-11T20:15:10Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"8af55ef378d7","url":"","title":"","source":"viborg-folkeblad","first_seen":"2026-10-11T01:52:00Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"8af676e430cb","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"8af9e1fbe78b","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"8aff16bd17c2","url":"https://www.tonfor.dk/nyhed/husk-at-tjekke-app-og-hjemmeside-inden-dit-besoeg-paa-genbrugspladsen/","title":"Husk at tjekke app og hjemmeside inden dit besøg på genbrugspladsen","source":"toender-forsyning","first_seen":"2026-10-09T09:34:01Z","why":{"filter":"normal","score":6,"decision":"afvist","hits":["titel: genbrugsplads*","teaser: genbrugsplads*"],"reason":"for gammel"}}
 {"id":"8b083380e57f","url":"","title":"","source":"ingenioeren","first_seen":"2026-10-08T08:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"8b10301e0737","url":"","title":"","source":"tv2-nyheder","first_seen":"2026-10-07T18:30:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -9876,6 +9929,7 @@
 {"id":"8da4a3ff0730","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"8dae21e59dd6","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"8daea75e467a","url":"","title":"","source":"ugeavisen","first_seen":"2026-10-09T13:32:35Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"8db1a59fb90c","url":"","title":"","source":"bornholms-tidende","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"8dbdaf29d370","url":"","title":"","source":"dagbladet-holstebro-struer","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"8dbf3ea157eb","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"8dc2fbea71aa","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -9890,6 +9944,7 @@
 {"id":"8dde57215e0b","url":"https://sonfor.dk/nyheder/sonfor-udpeger-nyt-eksternt-bestyrelsesmedlem/","title":"SONFOR udpeger nyt eksternt bestyrelsesmedlem","source":"sonfor","first_seen":"2026-10-07T11:39:46Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"8de7d39c8893","url":"","title":"","source":"jv","first_seen":"2026-10-12T05:54:42Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"8df139c18f28","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"8df796cf9ba2","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"8df953a25cff","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"8dfc5d0881b8","url":"","title":"","source":"hsfo","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"8e01228f9888","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -10104,6 +10159,7 @@
 {"id":"90d0072c67bc","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-14T10:38:29Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"90d10025f54f","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-10T07:05:04Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"90d2f0c3cabf","url":"","title":"","source":"fyens","first_seen":"2026-10-11T20:15:10Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"90db01c0ef3e","url":"","title":"","source":"berlingske","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"90db546aa6a1","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-07T18:30:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"90e6477f1b34","url":"","title":"","source":"dagbladet-holstebro-struer","first_seen":"2026-10-09T10:08:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"90e924f0be0b","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -10163,6 +10219,7 @@
 {"id":"91ce20470453","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"91d0d79c9001","url":"","title":"","source":"berlingske","first_seen":"2026-10-12T22:57:34Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"91dbbac713a0","url":"https://www.hornsherredlokalavis.dk/mindre-skal-blive-mere/","title":"Mindre skal blive mere","source":"hornsherredlokalavis","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"91dc4952df46","url":"https://www.brandebladet.dk/sikken-en-tirsdag","title":"Sikken en tirsdag","source":"brandebladet","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"91de00b84fad","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"91e142370679","url":"","title":"","source":"jv","first_seen":"2026-10-12T05:54:42Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"91e5039cf421","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -10185,6 +10242,7 @@
 {"id":"921bf51d6ac3","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-09T20:28:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"92225adefb38","url":"","title":"","source":"frdb","first_seen":"2026-10-09T18:28:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"92251cf7bb7c","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-09T08:02:44Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"92288a30c558","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"922d8a7336b0","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"922f9405ff17","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-13T11:45:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"92302983fbc7","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -10300,6 +10358,7 @@
 {"id":"93bd5fb3aa7c","url":"","title":"","source":"helsingordagblad","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"93bde3b95b4e","url":"","title":"","source":"jv","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"93c00331f82f","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-07T11:39:46Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"93cd58ba1f26","url":"https://migogodense.dk/odenseanske-fritidsaktiviteter-aktivt-samvaer-og-valg-af-det-rette-bordtennisbord/","title":"Odenseanske fritidsaktiviteter, aktivt samvær og valg af det rette bordtennisbord","source":"migogodense","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"93cf99285d48","url":"https://hoeringsportalen.dk/Hearing/Details/71635","title":"Bekendtgørelse om etableringsstøtte til unge landbrugere 2027","source":"hoeringsportalen","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"93ed78a90ce0","url":"","title":"","source":"amagerliv","first_seen":"2026-10-11T01:52:00Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"93ee574a7a49","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -10330,6 +10389,7 @@
 {"id":"944906b0e4e1","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"944b1f400ccc","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"944c9c0f541f","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"945171f9dfa3","url":"","title":"","source":"berlingske","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"9451f8aed0de","url":"","title":"","source":"frdb","first_seen":"2026-10-09T18:28:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"94557a647a68","url":"","title":"","source":"nordjyske","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"945852d2fba3","url":"","title":"","source":"dbrs","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -10364,6 +10424,7 @@
 {"id":"94d71c2c50c8","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"94d887ffac61","url":"","title":"","source":"fyens","first_seen":"2026-10-13T03:32:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"94d9c8f5a215","url":"","title":"","source":"ingenioeren","first_seen":"2026-10-07T11:39:46Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"94e0548a161d","url":"","title":"","source":"borsen","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"94e1019c65f9","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"94e26a7c98f5","url":"https://danskfjernvarme.dk/aktuelt/nyheder/2026/nu-kan-du-laere-alt-om-indregulering","title":"Nu kan du lære alt om indregulering","source":"dansk-fjernvarme","first_seen":"2026-10-12T05:54:42Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"94e5753c0f30","url":"","title":"","source":"ingenioeren","first_seen":"2026-10-08T08:27:16Z","why":{"filter":"strict","score":1,"decision":"afvist","hits":["svag: batteri*"],"reason":"for få affaldsord"}}
@@ -10513,6 +10574,7 @@
 {"id":"96ef1cc8325d","url":"https://nordsoeposten.dk/danmarks-bedste-feriecenter-hedder-for-fjerde-aar-i-streg-skallerup-seaside-resort/","title":"Danmarks bedste feriecenter hedder for fjerde år i streg Skallerup Seaside Resort","source":"nordsoeposten","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"96f3337d528f","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"96f9d8c7463f","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-08T12:29:21Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"97034ddbd947","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"970528cd5bce","url":"","title":"","source":"dagbladet-holstebro-struer","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"9708199b52aa","url":"","title":"","source":"tv2-nyheder","first_seen":"2026-10-09T08:02:44Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"970a2c63483b","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -10568,6 +10630,7 @@
 {"id":"979b15bd19d6","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-10T07:05:04Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"97a945bccefa","url":"","title":"","source":"folkebladetlemvig","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"97ac8985ce15","url":"","title":"","source":"folkebladetlemvig","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"97b1af3e22d7","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"97bb13e4e26e","url":"","title":"","source":"vafo","first_seen":"2026-10-09T17:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"97bda090efde","url":"","title":"","source":"jv","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"97c00ba1f6bc","url":"https://www.viborher.dk/nyheder-solrod/solroed-center-fejrer-50-aar-med-tre-store-jubilaeumsdage/","title":"SOLRØD CENTER FEJRER 50 ÅR MED TRE STORE JUBILÆUMSDAGE","source":"viborher","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -10927,6 +10990,7 @@
 {"id":"9c88598f8e93","url":"","title":"","source":"fyens","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"9c8a66f4d312","url":"","title":"","source":"viborg-folkeblad","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"9c8af68d36d8","url":"","title":"","source":"ugeavisen","first_seen":"2026-10-14T09:40:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"9c8ec4212112","url":"","title":"","source":"berlingske","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"9c98f8b2f442","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"9c9b6b7bd574","url":"","title":"","source":"faa","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"9c9d96a82099","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -12019,6 +12083,7 @@
 {"id":"ac6afdbdaed7","url":"","title":"","source":"berlingske","first_seen":"2026-10-08T07:28:04Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"ac6c2063992e","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"ac6e5596e22c","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"ac729564a648","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"ac74f38cf3dc","url":"","title":"","source":"tv2-nyheder","first_seen":"2026-10-11T08:48:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"ac78ff39c6f8","url":"","title":"","source":"stiften","first_seen":"2026-10-14T10:10:48Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"ac7ee74782f9","url":"","title":"","source":"hsfo","first_seen":"2026-10-13T03:32:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -12140,6 +12205,7 @@
 {"id":"ae59629b03f8","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"ae599ae4bd71","url":"","title":"","source":"helsingordagblad","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"ae5a80e3e433","url":"","title":"","source":"berlingske","first_seen":"2026-10-08T04:31:35Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"ae5ac54c93b4","url":"https://www.hofor.dk/nyhed/omraade-paa-amagerbro-er-uden-varme-et-doegns-tid/","title":"Område på Amagerbro er uden varme et døgns tid","source":"hofor","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"ae5cbbbd9f92","url":"https://danskfjernvarme.dk/aktuelt/nyheder/2026/machine-learning-optimerer-drift-med-eksisterende-data","title":"Machine Learning optimerer drift med eksisterende data","source":"dansk-fjernvarme","first_seen":"2026-10-12T05:54:42Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"ae5f8ccd6f8c","url":"","title":"","source":"faa","first_seen":"2026-10-09T21:49:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"ae6211b25083","url":"","title":"","source":"berlingske","first_seen":"2026-10-09T17:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -12610,6 +12676,7 @@
 {"id":"b4a4ebdb4873","url":"https://jammerbugtposten.dk/mobilepay-bliver-til-vipps/","title":"MobilePay bliver til Vipps","source":"jammerbugtposten","first_seen":"2026-10-10T07:05:04Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"b4add4f21dbf","url":"https://migogaalborg.dk/bliver-overste-chef-for-kirkens-korshaer/","title":"Efter 19 år: Aalborgenser bliver øverste chef for Kirkens Korshær","source":"migogaalborg","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"b4b467bea113","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-09T20:28:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"b4b59d20148d","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"b4bd18e10898","url":"","title":"","source":"helsingordagblad","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"b4be72fce876","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"b4c48eab43be","url":"","title":"","source":"dbrs","first_seen":"2026-10-13T03:32:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -13027,6 +13094,7 @@
 {"id":"babb485cc062","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-09T20:28:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"babf110b5fa1","url":"","title":"","source":"dagbladet-holstebro-struer","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"bac099a8db1a","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"bac49e9ea58f","url":"","title":"","source":"borsen","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"bacdb5169529","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"bad516838194","url":"","title":"","source":"borsen","first_seen":"2026-10-08T14:27:34Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"bad8b08497d9","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -13227,6 +13295,7 @@
 {"id":"bd80ceee2c98","url":"","title":"","source":"dagbladet-holstebro-struer","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"bd81260c710b","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-11T08:48:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"bd8812e0ae0d","url":"","title":"","source":"fyens","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"bd920b00978b","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"bd96fb3b0145","url":"","title":"","source":"faa","first_seen":"2026-10-09T20:53:09Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"bd9a3561ed6e","url":"","title":"","source":"netavisen-gribskov","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"bd9e25d2012e","url":"","title":"","source":"altinget","first_seen":"2026-10-07T15:53:30Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -13335,6 +13404,7 @@
 {"id":"befda0006036","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"bf057be12f2f","url":"","title":"","source":"jv","first_seen":"2026-10-11T08:48:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"bf09158a26a1","url":"","title":"","source":"jv","first_seen":"2026-10-09T10:08:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"bf16a444b523","url":"https://xn--stvendsysselfolkeblad-pfc.dk/100-kroner-blev-starten-paa-ivaerksaettereventyr/","title":"100 kroner blev starten på iværksættereventyr","source":"oestvendsysselfolkeblad","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"bf1d44a695be","url":"","title":"","source":"fyens","first_seen":"2026-10-11T20:15:10Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"bf1d44d541fc","url":"https://migogodense.dk/kommer-du-ofte-til-kort-nu-kan-du-flashe-striberne-helt-frem-til-kassen/","title":"Kommer du ofte til kort? Nu kan du flashe striberne helt frem til kassen","source":"migogodense","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"bf200378dd66","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -13635,6 +13705,7 @@
 {"id":"c308b7c56ec9","url":"https://migogesbjerg.dk/der-sker-store-ting-ved-storkesoeen-i-ribe-tre-nye-ansigter-er-kommet-til/","title":"Der sker store ting ved Storkesøen i Ribe: Tre nye ansigter er kommet til","source":"migogesbjerg","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c30bb759a77a","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-09T20:28:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c314fb5a82af","url":"https://folkebladet.net/aarup/stort-tam-tam-da-aarup-private-boernehave-indviede-ny-multihytte/","title":"Stort tam-tam, da Aarup Private Børnehave indviede ny multihytte","source":"folkebladet-aarup","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"c3180e25af37","url":"","title":"","source":"netavisen-gribskov","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c32225af9112","url":"https://altomfuresoe.dk/hemmelige-steder-paa-flyvestation-vaerloese-kanonstillingen/","title":"Hemmelige steder på Flyvestation Værløse – Kanonstillingen","source":"altomfuresoe","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c32342840391","url":"https://migogkbh.dk/koebenhavns-bedste-halloween-godter/","title":"Næsten for cute til at spise: 7 lækre Halloween-godter i København","source":"migogkbh","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c3241f5ce93c","url":"https://xn--stvendsysselfolkeblad-pfc.dk/brian-jensen-er-gulvmand/","title":"Brian Jensen er gulvmand","source":"oestvendsysselfolkeblad","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -13712,6 +13783,7 @@
 {"id":"c40d8dadf655","url":"","title":"","source":"berlingske","first_seen":"2026-10-13T11:45:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c4140a1bd55c","url":"https://migogodense.dk/fyns-politi-melder-ud-det-var-et-uheld/","title":"Fyns Politi melder ud: Det var et uheld","source":"migogodense","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c41b31b3efd6","url":"","title":"","source":"dbrs","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"c422af43109f","url":"https://byensnyt.dk/8370/det-sker-8370/erhverv/lokal-virksomhed-henter-gazellepris-nr-2/?utm_source=rss&utm_medium=rss&utm_campaign=lokal-virksomhed-henter-gazellepris-nr-2","title":"Lokal virksomhed henter gazellepris nr 2.","source":"byensnyt","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c423ae6f1c26","url":"","title":"","source":"fyens","first_seen":"2026-10-13T03:32:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c426bdf33368","url":"","title":"","source":"viborg-folkeblad","first_seen":"2026-10-13T11:45:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c42a59154935","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-08T12:29:21Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -13778,6 +13850,7 @@
 {"id":"c4d889cf5b2b","url":"","title":"","source":"faa","first_seen":"2026-10-09T18:28:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c4da593de22d","url":"","title":"","source":"jv","first_seen":"2026-10-09T10:08:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c4e1578929ac","url":"","title":"","source":"dbrs","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"c4eaddb90920","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c4eb8b1dfdac","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-08T19:27:29Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c4ed9f55d59f","url":"","title":"","source":"helsingordagblad","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c4ef783ebda7","url":"","title":"","source":"faa","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -13835,6 +13908,7 @@
 {"id":"c5a5ca3b1488","url":"","title":"","source":"jv","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c5adc1ebf3d3","url":"","title":"","source":"helsingordagblad","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c5b1953a9f99","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-07T19:15:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"c5b78f56d9f3","url":"","title":"","source":"ingenioeren","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c5b8e4e432b3","url":"","title":"","source":"kobenhavnliv","first_seen":"2026-10-09T13:16:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c5c2a88e8fa1","url":"","title":"","source":"stiften","first_seen":"2026-10-13T11:45:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c5c67d78dd55","url":"","title":"","source":"nordjyske","first_seen":"2026-10-13T11:45:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -13899,6 +13973,7 @@
 {"id":"c689784a2890","url":"","title":"","source":"hsfo","first_seen":"2026-10-13T03:32:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c692313cb12b","url":"https://migogkbh.dk/i-aften-kan-du-vinde-750-millioner-her-er-den-saerlige-regel-der-stopper-jackpotten/","title":"I aften kan du vinde 750 millioner: Her er den særlige regel, der stopper jackpotten","source":"migogkbh","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c698f84fb05d","url":"https://danskfjernvarme.dk/aktuelt/nyheder/2026/elpriserne-fortsaetter-formentlig-med-at-stige-i-september","title":"Elpriserne fortsætter formentlig med at stige i september","source":"dansk-fjernvarme","first_seen":"2026-10-07T11:39:46Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"c69b5b06a0fa","url":"","title":"","source":"netavisen-gribskov","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c69c2a7349fd","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c69d201c5c68","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c6a02cac1d5b","url":"https://migogaarhus.dk/arets-vaerste-udtryk-pa-arbejdet-er-karet/","title":"Bruger du det?: Årets værste udtryk på arbejdet er kåret","source":"migogaarhus","first_seen":"2026-10-08T18:27:40Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -14063,6 +14138,7 @@
 {"id":"c8e7f443d44b","url":"","title":"","source":"fyens","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c8ea0ede51d2","url":"","title":"","source":"nordjyske","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c8f1f5393345","url":"","title":"","source":"viborg-folkeblad","first_seen":"2026-10-11T01:52:00Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"c8f304e5f16c","url":"","title":"","source":"frdb","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c8f866d677ee","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c8fd69b96a40","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"c902a31bb21a","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-07T16:28:13Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -14288,6 +14364,7 @@
 {"id":"cc2be2e2d198","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-10T07:05:04Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"cc31ad186346","url":"","title":"","source":"fyens","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"cc32e888bc06","url":"","title":"","source":"viborg-folkeblad","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"cc332d9215fd","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"cc35a2c16cea","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"cc3c75ddd890","url":"","title":"","source":"jv","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"cc47cff0123e","url":"","title":"","source":"kobenhavnliv","first_seen":"2026-10-09T13:16:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -14329,6 +14406,7 @@
 {"id":"ccd4d06f9e20","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T09:59:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"ccd827dbc0b3","url":"","title":"","source":"vafo","first_seen":"2026-10-09T17:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"ccda420970ec","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"ccdbce778adb","url":"https://migogesbjerg.dk/aerlig-og-kontant-efb-sportschef-forandringer-goer-altid-ondt/","title":"Ærlig og kontant EfB-sportschef: Forandringer gør altid ondt","source":"migogesbjerg","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"ccdcacedb7b0","url":"","title":"","source":"fyens","first_seen":"2026-10-11T20:15:10Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"cce3ac6e1d21","url":"","title":"","source":"nordjyske","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"cce54a38f43a","url":"","title":"","source":"frdb","first_seen":"2026-10-09T18:28:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -14491,6 +14569,7 @@
 {"id":"cf407aae2fa2","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"cf4e7768acec","url":"","title":"","source":"viborg-folkeblad","first_seen":"2026-10-13T11:45:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"cf4f93295e49","url":"","title":"","source":"faa","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"cf5259911991","url":"","title":"","source":"borsen","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"cf534276668a","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"cf53f03740c5","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-09T20:28:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"cf5572a29dc1","url":"","title":"","source":"nordjyske","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -14554,6 +14633,7 @@
 {"id":"d034b95ab0b2","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d037c1eafcc0","url":"","title":"","source":"frederiksbergliv","first_seen":"2026-10-09T14:28:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d03ab65b9199","url":"","title":"","source":"fyens","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"d040389d052e","url":"","title":"","source":"berlingske","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d040ad1c954d","url":"","title":"","source":"hsfo","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d042957ee28b","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d042e992f6dc","url":"","title":"","source":"jv","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -14703,6 +14783,7 @@
 {"id":"d25d419ab015","url":"","title":"","source":"fyens","first_seen":"2026-10-11T20:15:10Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d26528a11cd3","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d2669a84b842","url":"https://migogesbjerg.dk/ny-toerhavn-ved-tjaereborg-lokale-vil-have-stoerst-mulig-indflydelse/","title":"Ny tørhavn ved Tjæreborg: Lokale vil have størst mulig indflydelse","source":"migogesbjerg","first_seen":"2026-10-10T13:39:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"d266efaad3e3","url":"https://bornholmnyt.dk/bornholm-holder-paa-medarbejderne-i-aeldreplejen/","title":"Bornholm holder på medarbejderne i ældreplejen","source":"bornholmnyt","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d267eea68bf8","url":"","title":"","source":"berlingske","first_seen":"2026-10-09T14:28:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d268fa12f95e","url":"","title":"","source":"jv","first_seen":"2026-10-11T08:48:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d27045ea806a","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-07T18:30:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -14901,9 +14982,11 @@
 {"id":"d4fd6a3f95be","url":"https://altomfuresoe.dk/fodboldboss-faar-nyt-job-som-direktoer/","title":"Fodboldboss får nyt job som direktør","source":"altomfuresoe","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d50335fc89b6","url":"","title":"","source":"nordjyske","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d504afa6fb0c","url":"","title":"","source":"stiften","first_seen":"2026-10-09T10:08:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"d505798dfa7e","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d506df402b63","url":"","title":"","source":"vafo","first_seen":"2026-10-09T17:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d50853260e1f","url":"","title":"","source":"fyens","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d51023cd5617","url":"","title":"","source":"vafo","first_seen":"2026-10-13T03:32:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"d516922b515b","url":"","title":"","source":"energy-supply","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d516f81b9fed","url":"https://xn--stvendsysselfolkeblad-pfc.dk/en-fantastisk-dag-med-aktivitetscentret-paa-laesoe/","title":"En fantastisk dag med Aktivitetscentret på Læsø","source":"oestvendsysselfolkeblad","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d51b64d2f9ca","url":"","title":"","source":"fyens","first_seen":"2026-10-11T20:15:10Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d52668845263","url":"","title":"","source":"vafo","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -14971,6 +15054,7 @@
 {"id":"d6522765786e","url":"","title":"","source":"faa","first_seen":"2026-10-13T21:45:35Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d6565d588754","url":"","title":"","source":"jv","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d657868de9a6","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-09T20:28:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"d65d15039ea1","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d66239811ee1","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-13T19:15:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d669bbd476fc","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-10T13:39:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d66b8f4650f7","url":"https://via.ritzau.dk/pressemeddelelse/15210237/ny-institutdirektor-pa-dtu-kemi?lang=da","title":"Ny institutdirektør på DTU Kemi","source":"dtu","first_seen":"2026-10-09T07:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -15065,6 +15149,7 @@
 {"id":"d7a668203262","url":"","title":"","source":"vafo","first_seen":"2026-10-13T03:32:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d7a95d26ab30","url":"","title":"","source":"berlingske","first_seen":"2026-10-14T09:22:57Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d7aaf7dbcadb","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"d7adf5b32be7","url":"","title":"","source":"netavisen-gribskov","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d7b366304379","url":"https://www.avisen.dk/udeblev-fra-forsvarets-dag-19-aarig-blev-efterlyst_844067.aspx","title":"Udeblev fra Forsvarets Dag: 19-årig blev efterlyst","source":"avisen","first_seen":"2026-10-08T16:27:55Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d7b538238d7f","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-09T20:28:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"d7b648332fac","url":"","title":"","source":"hsfo","first_seen":"2026-10-13T03:32:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -15396,6 +15481,7 @@
 {"id":"dcb968701993","url":"","title":"","source":"hsfo","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"dcbac14a67ea","url":"","title":"","source":"dbrs","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"dcbc6956f880","url":"","title":"","source":"nordjyske","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"dcbd03655bf0","url":"https://byensnyt.dk/8370/det-sker-8370/byens-puls-8370/ingen-badesoe-til-hadsten-maaske-et-friluftsbad-i-stedet/?utm_source=rss&utm_medium=rss&utm_campaign=ingen-badesoe-til-hadsten-maaske-et-friluftsbad-i-stedet","title":"Ingen badesø til Hadsten – måske et friluftsbad i stedet","source":"byensnyt","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"dcbded24d907","url":"https://midtvendsysselavis.dk/poul-har-oeje-for-landskaber/?utm_source=rss&utm_medium=rss&utm_campaign=poul-har-oeje-for-landskaber","title":"Poul har øje for landskaber","source":"midtvendsysselavis","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"dcbf1a854551","url":"","title":"","source":"kobenhavnliv","first_seen":"2026-10-09T13:16:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"dcc65aac7af8","url":"","title":"","source":"amagerliv","first_seen":"2026-10-12T22:57:34Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -15485,6 +15571,7 @@
 {"id":"de342282d434","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-09T20:28:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"de3ec82049b9","url":"","title":"","source":"bt-dk","first_seen":"2026-10-11T15:39:11Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"de3f41c1ffdc","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-09T15:34:17Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"de40e7177f02","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"de413ecf0da4","url":"","title":"","source":"frdb","first_seen":"2026-10-09T18:28:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"de442dd718c6","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-09T20:28:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"de4bda9373f4","url":"","title":"","source":"jv","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -15536,6 +15623,7 @@
 {"id":"df172179df64","url":"","title":"","source":"vafo","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"df17db302ba5","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-08T04:31:35Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"df19219aae00","url":"https://jammerbugtposten.dk/kokainfund-foerte-politiet-videre/","title":"Kokainfund i bilen førte til nyt narkofund på hjemmeadressen","source":"jammerbugtposten","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"df1d5c3fb023","url":"https://xn--stvendsysselfolkeblad-pfc.dk/mylund-kirke-fylder-100-aar/","title":"Mylund Kirke fylder 100 år","source":"oestvendsysselfolkeblad","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"df21f7b2c527","url":"","title":"","source":"hsfo","first_seen":"2026-10-10T07:05:04Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"df2346eeb764","url":"https://mariagerfjordposten.dk/indbrud-i-tre-kirker-kirkeboesser-stjaalet-to-steder/","title":"Indbrud i tre kirker – kirkebøsser stjålet to steder","source":"mariagerfjordposten","first_seen":"2026-10-08T10:34:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"df2676479767","url":"","title":"","source":"jv","first_seen":"2026-10-12T05:54:42Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -15599,6 +15687,7 @@
 {"id":"dfe36c510253","url":"","title":"","source":"kobenhavnliv","first_seen":"2026-10-09T13:16:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"dfe3bea41930","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-11T08:48:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"dfeca433e1e5","url":"https://www.tekniskfokus.dk/thys-internationale-skovl-mager-fylder-80/","title":"Thys internationale skovl-mager fylder 80","source":"tekniskfokus","first_seen":"2026-10-07T11:39:46Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"dff2b187f61f","url":"","title":"","source":"dagbladet-holstebro-struer","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"dff510010867","url":"","title":"","source":"kobenhavnliv","first_seen":"2026-10-13T03:32:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"dff7d46e6606","url":"","title":"","source":"helsingordagblad","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"dffc4066ee17","url":"https://hoeringsportalen.dk/Hearing/Details/70269","title":"Høring over forslag til lov om ændring af lov om ophavsret (Indførelse af en præstationsbeskyttelse og beskyttelse mod digitalt genererede efterligninger mv.)","source":"hoeringsportalen","first_seen":"2026-10-08T07:28:04Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -15662,6 +15751,7 @@
 {"id":"e0d18394c75f","url":"","title":"","source":"fyens","first_seen":"2026-10-11T20:15:10Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"e0d294ae93fb","url":"","title":"","source":"tv2-nyheder","first_seen":"2026-10-08T08:27:16Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"e0d3bf645fc4","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-07T15:53:30Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"e0d5ed753942","url":"https://migogaalborg.dk/nu-kan-den-blive-til-virkelighed-i-gaden/","title":"Går du med en bardrøm i maven?: Nu kan den blive til virkelighed i Gaden","source":"migogaalborg","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"e0d7ba432536","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"e0dafe3e4114","url":"","title":"","source":"helsingordagblad","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"e0dc919f3f1c","url":"","title":"","source":"jv","first_seen":"2026-10-09T10:08:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -15759,6 +15849,7 @@
 {"id":"e218fdf22cbe","url":"","title":"","source":"jv","first_seen":"2026-10-11T08:48:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"e21ae19ab0df","url":"","title":"","source":"frederiksbergliv","first_seen":"2026-10-09T14:28:51Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"e21bbd022f9b","url":"","title":"","source":"hsfo","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"e21e8cfbe5ce","url":"","title":"","source":"dagbladet-holstebro-struer","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"e221e3facb2b","url":"https://nordsoeposten.dk/dommerformand-kraever-haardere-straffe/","title":"Dommerformand kræver hårdere straffe","source":"nordsoeposten","first_seen":"2026-10-13T11:45:53Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"e2238d7ee98c","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"e226716f9dbe","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -16133,6 +16224,7 @@
 {"id":"e766de1781e8","url":"","title":"","source":"berlingske","first_seen":"2026-10-10T18:34:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"e7671720e3af","url":"","title":"","source":"folkebladetlemvig","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"e769f82b02c7","url":"","title":"","source":"fyens","first_seen":"2026-10-09T21:29:06Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"e76c7b7c73cd","url":"","title":"","source":"netavisen-gribskov","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"e772b166c088","url":"","title":"","source":"jv","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"e77414ebf1a6","url":"","title":"","source":"hsfo","first_seen":"2026-10-11T23:41:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"e7748042baed","url":"","title":"","source":"stiften","first_seen":"2026-10-08T09:11:01Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -16410,6 +16502,7 @@
 {"id":"eb5c142ab312","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-09T10:08:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"eb602e9b71f2","url":"","title":"","source":"fyens","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"eb60f92312d8","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"eb704b575132","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"eb71136c15e5","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"eb73b4f32231","url":"","title":"","source":"amtsavisen","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"eb764bfd2468","url":"https://hoeringsportalen.dk/Hearing/Details/71605","title":"Høring over udkast til ny bekendtgørelse om anvendelse af tekniske hjælpemidler","source":"hoeringsportalen","first_seen":"2026-10-09T08:02:44Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -16720,6 +16813,7 @@
 {"id":"efef4aaf2f2c","url":"","title":"","source":"borsen","first_seen":"2026-10-09T05:27:04Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"eff2fcea75b1","url":"","title":"","source":"frdb","first_seen":"2026-10-09T18:28:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"eff6ee2af7a7","url":"","title":"","source":"fyens","first_seen":"2026-10-13T21:29:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"eff7d9fc96d1","url":"https://www.sonderborgnyt.dk/han-blev-ansat-i-soenderborg-og-overtager-nu-chefens-stilling/","title":"Han blev ansat i Sønderborg og overtager nu chefens stilling","source":"sonderborgnyt","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"effa9e95360b","url":"","title":"","source":"hsfo","first_seen":"2026-10-11T23:41:12Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"effbd705244b","url":"","title":"","source":"frdb","first_seen":"2026-10-13T03:32:50Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"effbefe4e3df","url":"https://danwatch.dk/putins-atomplaner/","title":"Putins atomplaner","source":"danwatch","first_seen":"2026-10-07T19:48:44Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -17091,6 +17185,7 @@
 {"id":"f516080abb48","url":"","title":"","source":"stiften","first_seen":"2026-10-10T00:48:56Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"f5178ecce7c3","url":"https://mariagerfjordposten.dk/hadsund-samlede-37-012-kroner-ind/","title":"Hadsund viste igen sit store hjerte – 37.012 kroner til Røde Kors","source":"mariagerfjordposten","first_seen":"2026-10-11T15:39:11Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"f51ba00016a9","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"f524c583deea","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"f525448be1d9","url":"https://www.avisen.dk/givskud-zoo-inviterer-til-giftig-efteraarsferie_844036.aspx","title":"Givskud Zoo inviterer til giftig efterårsferie","source":"avisen","first_seen":"2026-10-07T11:39:46Z","why":{"filter":"normal","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"f525ec1fcd42","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"f5270f1b6f18","url":"https://migogkbh.dk/nyt-asiatisk-spisested-abner-pa-vesterbro/","title":"Med bao buns, cocktails og karaoke: Nyt asiatisk spisested åbner på Vesterbro","source":"migogkbh","first_seen":"2026-10-12T15:20:43Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
@@ -17299,6 +17394,7 @@
 {"id":"f809a249c4ea","url":"","title":"","source":"fyens","first_seen":"2026-10-09T16:29:18Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"f80c76c56380","url":"","title":"","source":"sjaellandske-medier","first_seen":"2026-10-08T15:27:37Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"f80f4c9bcb93","url":"","title":"","source":"kobenhavnliv","first_seen":"2026-10-09T13:16:33Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
+{"id":"f81636ee3b5b","url":"","title":"","source":"tv2-nyheder","first_seen":"2026-10-14T12:30:41Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"f816d3245f78","url":"https://migogaalborg.dk/aalborg-hylder-dolly-parton/","title":"Aalborg hylder Dolly Parton: Kom til stor hyldestkoncert i med de største hits","source":"migogaalborg","first_seen":"2026-10-11T08:48:20Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"f818024d85b5","url":"","title":"","source":"tv2-regionerne","first_seen":"2026-10-11T15:39:11Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
 {"id":"f82dacc97b47","url":"","title":"","source":"jv","first_seen":"2026-10-09T19:28:39Z","why":{"filter":"strict","score":0,"decision":"afvist","hits":[],"reason":"intet affaldsord"}}
