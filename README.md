@@ -9,7 +9,7 @@ Live: https://simnyborg.github.io/affaldsfeed/
 ## Sådan virker det
 
 1. GitHub Actions kører indsamlingen efter hver kørsel af routinen og ellers efter en tidsplan hver time, som GitHub dog ofte forsinker. Den henter fra kilderne i `sources.yaml`, sorterer det åbenlyst irrelevante fra med et løst forfilter og foreslår tema og genre ud fra faste regler. Kandidaterne gemmes i `data/candidates/`, og sitet bygges og lægges på GitHub Pages.
-2. En Claude-routine kører 25 minutter over hel fra kl. 06 til 23 dansk tid på projektejerens Claude-abonnement. Den læser instruksen i `routine/REDAKTOER.md`, vurderer de nye kandidater mod `config/relevansprofil.md` og skriver vurderingerne i `data/judgments/`. Derefter opdaterer den AI-overblikket i `data/overview/` og pusher.
+2. En Claude-routine kører kl. 07.25, 09.25 og 14.25 dansk tid på projektejerens Claude-abonnement. Den læser instruksen i `routine/REDAKTOER.md`, vurderer de nye kandidater mod `config/relevansprofil.md` og skriver vurderingerne i `data/judgments/`. Derefter opdaterer den AI-overblikket i `data/overview/`, kl. 14.25 også højdepunkterne i `data/timeline/`, og pusher.
 3. Pushet starter et nyt byg, og GitHub Pages viser de godkendte indslag og det nye overblik.
 
 Feedet viser kun indslag, Claude har godkendt. Routinen kører kl. 07.25, 09.25 og 14.25. Er den mere end to timer forsinket, fx fordi kvoten er brugt op, skifter feedet selv til regelbaseret visning, og i-panelet øverst til højre siger det. Mellem kørslerne venter nye indslag til næste kørsel. Hele forløbet er beskrevet i [docs/ARKITEKTUR.md](docs/ARKITEKTUR.md).

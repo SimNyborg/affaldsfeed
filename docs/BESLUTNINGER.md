@@ -271,7 +271,7 @@ Brugeren så kun højdepunkter fra de seneste to måneder. Opfyldningen bagud ha
 
 - **Kun kilder med `ai: true` tæller:** Opfyldningen venter kun på bagudindsamlingen og routinens vurderinger hos de kilder, hvis indslag kan komme på tidslinjen (KONTRAKTER §7.3).
 - **Op til fire måneder pr. kørsel:** Hver måned er 20-70 kB input til routinen. Med én måned pr. kørsel og tre kørsler om dagen ville januar til oktober tage over tre dage. Med fire er de fyldt i løbet af et døgn.
-- **Routinens prompt:** Prompten på claude.ai giver routinen lov til kun at skrive i `data/judgments/` og `data/overview/`, selv om instruksen også beder den skrive tidslinjen. Routinen skrev alligevel tidslinjen 7. og 8. oktober, men modstriden kan få den til at springe trinnet over. Brugeren retter prompten, så den også nævner `data/timeline/`, og tidsplanen fra hver time til kl. 7.25, 9.25 og 14.25, hvor routinen alligevel kun arbejder. En udviklingssession kan ikke ændre en routine, som brugeren har oprettet.
+- **Routinens prompt:** Prompten på claude.ai giver routinen lov til kun at skrive i `data/judgments/` og `data/overview/`, selv om instruksen også beder den skrive tidslinjen. Routinen skrev alligevel tidslinjen 7. og 8. oktober, men modstriden kan få den til at springe trinnet over. Brugeren retter prompten, så den også nævner `data/timeline/`, og tidsplanen fra hver time til kl. 7.25, 9.25 og 14.25, hvor routinen alligevel kun arbejder. En udviklingssession kan ikke ændre en routine, som brugeren har oprettet. Brugeren rettede begge dele samme dag, og tidsplanen er nu `CRON_TZ=Europe/Copenhagen 25 7,9,14 * * *`.
 
 ## 2026-10-14: Siden Om kilderne er fjernet
 

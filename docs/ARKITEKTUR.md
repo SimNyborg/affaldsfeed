@@ -43,7 +43,7 @@ Indsamleren er høflig: ærlig User-Agent, robots.txt, mindst 2 sekunder mellem 
 
 Routinen er en Claude cloud-routine på projektejerens eget abonnement. Den bruger ingen API-nøgle, og koden har ingen anthropic-SDK. Routinen arbejder i en klon af repoet og følger instruksen i `routine/REDAKTOER.md`, som er versioneret her. Netværket i cloud-miljøet er ikke ændret: routinen skal kun bruge GitHub og PyPI, som er på standardlisten, og WebSearch, som er Claudes eget værktøj.
 
-Tider: minut 25 i timerne 6 til 23 dansk tid, som står i `config/settings.yaml` under `routine`. Cron er `25 6-23 * * *`, hvis routinen kan køre i dansk tid. Kan den kun køre i UTC, bruges `25 4-22 * * *`, som dækker kl. 06-23 både sommer og vinter og giver en ekstra kørsel uden for vinduet.
+Tider: kl. 07.25, 09.25 og 14.25 dansk tid, som står i `config/settings.yaml` under `routine`. Cron på claude.ai er `CRON_TZ=Europe/Copenhagen 25 7,9,14 * * *`, så tiderne følger sommer- og vintertid. Starter routinen på et andet tidspunkt, stopper den med det samme uden at skrive noget (REDAKTOER trin 1).
 
 En kørsel:
 1. `python -m affaldsfeed pending` udskriver kandidater uden vurdering, relevansprofilen, temaer, genrer og nyligt godkendte indslag.
