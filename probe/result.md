@@ -1,65 +1,56 @@
-# Afprøvning 2026-10-14T13:14:34Z
+# Afprøvning 2026-10-14T08:12:24Z
 
-## ishoej-kommune
+## wastetech
 
 ```text
-OK: 357 kilder (279 aktive), 27 udgivere i medier.yaml, 13 temaer, 6 genrer, 9 søgninger, geografi: 5 regioner, 98 kommuner, 470 byer.
+OK: 348 kilder (280 aktive), 28 udgivere i medier.yaml, 13 temaer, 6 genrer, 9 søgninger, geografi: 5 regioner, 98 kommuner, 470 byer.
 
-Henter ishoej-kommune (Ishøj Kommune, kommunal, metode sitemap, filter strict) …
-0 indslag hentet. Beholdt 0 (vis 0, graa 0), afvist 0, sprunget over 0.
+Henter wastetech (WasteTech (Ingeniøren PRO), fagmedie, metode sitemap, filter none) …
+2 indslag hentet. Beholdt 2 (vis 2, graa 0), afvist 0, sprunget over 0.
+
+BEHOLDT
+  [vis] score  2  2026-10-08  wastetech: Cirkulære tekstiler har et systemproblem – nu kommer implementeringsmotoren
+      https://pro.ing.dk/wastetech/holdning/cirkulaere-tekstiler-har-et-systemproblem-nu-kommer-implementeringsmotoren
+      hits: svag: cirkulær*; svag: tekstil* | tema: tekstiler | genre: debat | steder: -
+  [vis] score  2  2026-10-06  wastetech: Fra jord til bord – men hvordan kommer ressourcerne tilbage til jorden?
+      https://pro.ing.dk/wastetech/holdning/fra-jord-til-bord-men-hvordan-kommer-ressourcerne-tilbage-til-jorden
+      hits: svag: ressource*; svag: cirkulær* | tema: - | genre: debat | steder: -
 
 DIAGNOSE
-  sitemap https://ishoj.dk/sitemap.xml: 2282 URL'er
-  URL'er: 2282 i alt, 496 matcher, 4 med lastmod inden for 14 dage, 0 uden lastmod (0 registreret som baseline), 0 fra Google News, 4 nye, 4 sprunget over (strict)
-  URL'er, der matcher (eksempler, match '/aktuelt/nyheder/[^/]+/?$'):
-    https://ishoj.dk/aktuelt/nyheder/brohusets-etape-2-er-lige-pa-trapperne/
-    https://ishoj.dk/aktuelt/nyheder/ishoj-kommune-er-klar-til-at-hjaelpe-ukrainske-flygtninge/
-    https://ishoj.dk/aktuelt/nyheder/byradet-baner-vej-for-fjernvarme-til-1735-husstande/
-    https://ishoj.dk/aktuelt/nyheder/ishoj-gar-imod-strommen-ledigheden-falder/
-    https://ishoj.dk/aktuelt/nyheder/nyt-boligsystem-laengere-svartid-i-en-kort-periode/
-    https://ishoj.dk/aktuelt/nyheder/flere-er-plaget-af-trafikstoj-men-stojvolden-har-gjort-en-stor-forskel-for-de-mest-stojbelastede/
-    https://ishoj.dk/aktuelt/nyheder/grundlovsceremoni-pa-ishoj-radhus/
-    https://ishoj.dk/aktuelt/nyheder/vibeholmskolen-med-i-landsdaekkende-forsog-med-gratis-skolemad/
-    https://ishoj.dk/aktuelt/nyheder/prisbelonnet-socialt-initiativ-skaber-jobs-lokalt/
-    https://ishoj.dk/aktuelt/nyheder/bliv-havbonde-for-en-dag/
-  URL'er, der ikke matcher (eksempler, match '/aktuelt/nyheder/[^/]+/?$'):
-    https://ishoj.dk/
-    https://ishoj.dk/borger/dagtilbud-og-skoler/dagtilbud/daginstitutionernes-og-dagplejens-hjemmesider/bornehuset-oernebo/paedagogisk-laereplan-for-bornehuset-oernebo/om-kvalitetsparametre-oernebo/
-    https://ishoj.dk/borger/dagtilbud-og-skoler/dagtilbud/daginstitutionernes-og-dagplejens-hjemmesider/piletraeet/paedagogisk-laereplan-for-piletraeet/piletraeet-temaer/krop-piletraeet/
-    https://ishoj.dk/borger/dagtilbud-og-skoler/skoler/skolernes-hjemmesider/ishoj-skole/skolebestyrelsen/skolebestyrelsen-dagsordener-med-referat/
-    https://ishoj.dk/borger/born-unge-og-familie/born-og-unge-med-saerlige-behov/forebyggende-indsatser-for-born-unge-og-familier/soskendegruppe-for-born-og-unge-med-soskende-der-har-et-handicap/
-    https://ishoj.dk/borger/kultur-og-fritid/kultur/tvaergaende-projekter/17-verdenstraeer-x-17-verdensmal/platan/
-    https://ishoj.dk/borger/sundhed/sundhedspleje/ammeradgivning-og-nyttige-links/
-    https://ishoj.dk/borger/klima-natur-og-miljo/natur/biodiversitet-i-ishoj-kommune/afbraending-trangilde-mose/
-    https://ishoj.dk/borger/klima-natur-og-miljo/vand/spildevand-og-regnvand/
-    https://ishoj.dk/aktuelt/arrangementer-og-moder/kom-til-dialogkaffe-25062026/
-  sider: 0 hentet (0 ok, 0 fejl), 0 med varig fejl, 0 blokeret af robots.txt, 0 ikke HTML, 0 uden titel
-```
-
-## https://ishoj.dk/robots.txt
-
-```text
-status 200, text/plain, 188 bytes, slut-URL https://ishoj.dk/robots.txt
-
-    User-agent: *
-    Allow: /
-    Disallow: /umbraco
-    Sitemap: https://ishoj.dk/sitemap.xml
-```
-
-## https://ishoj.dk/aktuelt/nyheder/
-
-```text
-status 403, text/html; charset=UTF-8, 3058 bytes, slut-URL https://ishoj.dk/aktuelt/nyheder/
-
-<!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="content-security-policy" content="default-src &#39;none&#39;; script-src &#39;nonce-wWqIjiOBsiegX5jzzbT3mf&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-src-attr &#39;none&#39;; style-src &#39;unsafe-inline&#39;; img-src &#39;self&#39; https://challenges.cloudflare.com; connect-src &#39;self&#39; https://challenges.cloudflare.com; frame-src &#39;self&#39; https://challenges.cloudflare.com blob:; child-src &#39;self&#39; https://challenges.cloudflare.com blob:; worker-src blob:; form-action http: https:; base-uri &#39;self&#39;"><style>*{box-sizing:border-box;margin:0;padding:0}html{line-height:1.15;-webkit-text-size-adjust:100%;color:#313131;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}body{display:flex;flex-direction:column;height:100vh;min-height:100vh}.main-content{margin:8rem auto;padding-left:1.5rem;max-width:60rem}@media (width <= 720px){.main-content{margin-top:4rem}}#challenge-error-text{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSI+PHBhdGggZmlsbD0iI0IyMEYwMyIgZD0iTTE2IDNhMTMgMTMgMCAxIDAgMTMgMTNBMTMuMDE1IDEzLjAxNSAwIDAgMCAxNiAzbTAgMjRhMTEgMTEgMCAxIDEgMTEtMTEgMTEuMDEgMTEuMDEgMCAwIDEtMTEgMTEiLz48cGF0aCBmaWxsPSIjQjIwRjAzIiBkPSJNMTcuMDM4IDE4LjYxNUgxNC44N0wxNC41NjMgOS41aDIuNzgzem0tMS4wODQgMS40MjdxLjY2IDAgMS4wNTcuMzg4LjQwNy4zODkuNDA3Ljk5NCAwIC41OTYtLjQwNy45ODQtLjM5Ny4zOS0xLjA1Ny4zODktLjY1IDAtMS4wNTYtLjM4OS0uMzk4LS4zODktLjM5OC0uOTg0IDAtLjU5Ny4zOTgtLjk4NS40MDYtLjM5NyAxLjA1Ni0uMzk3Ii8+PC9zdmc+");background-repeat:no-repeat;background-size:contain;padding-left:34px}</style><meta http-equiv="refresh" content="360"></head><body><div class="main-wrapper" role="main"><div class="main-content"><noscript><div class="h2"><span id="challenge-error-text">Enable JavaScript and cookies to continue</span></div></noscript></div></div><script nonce="wWqIjiOBsiegX5jzzbT3mf">(function(){window._cf_chl_opt = {cFPWv: 'g',cH: '9H03PK9FARKtVRuls5a2j4Uxd3B9Ix0R1BqW0LrmD4c-1791983678-1.2.1.1-My4yAJEw2tlzMnHzUDS0ZVMs4hXX.vnh9l4DPWXou4Yx7ixSDns_Z6_DxPOLNG3B',cITimeS: '1791983678',cN: 'wWqIjiOBsiegX5jzzbT3mf',cRay: 'a4a6d9288da52549',cTplC:0,cTplO:0,cTplV:5,cType: 'managed',cUPMDTk:"/aktuelt/nyheder/?__cf_chl_tk=LHqqEPQeg.BVR3UGGLDz4EOtHIeE_AwwNe98XdcwgXA-1791983678-1.0.1.1-VcyvVQ_kK7kRU.5f1Vs8LvR6HIoJVpZZ6YhJI_fYzGA",cvId: '3',cZone: 'ishoj.dk',fa:"/aktuelt/nyheder/?__cf_chl_f_tk=LHqqEPQeg.BVR3UGGLDz4EOtHIeE_AwwNe98XdcwgXA-1791983678-1.0.1.1-VcyvVQ_kK7kRU.5f1Vs8LvR6HIoJVpZZ6YhJI_fYzGA",md: '1id7IiWhVuU7zyoJVXhY3Q1T6NugZP7XbYScf4CoS2k-1791983678-1.2.1.1-KWecYurGkipXG5DyFR4KYXbdMDRu0Cr0CO54dvhUdIShffEE0vgU.cQDbkc.yWFfuc_KeIIRL_xmTa9JVRk9D5ML1aaJ3itjGfiYHUNhfQQvh2Up.5m_TCve4i0zf.kAkbSpu.mzgqDZ_HyHzK3Yuh_7jw5Oe9f3j.FBXiGG.V3_Ou1Zcentq6JNbvthJxQTHA.u.l_Ne_xkBN5ur1KHWNZSdJq_PSDnFB.Wu6OFKrXukHsxhKDKCaeQxMIKIqFlAzM.rGtVpsL0PFgobC4f3A3wimI7WqMPHV9Vx7.FP9H3pRBJED78EsQk9XZZ69_WLZiYv55DEc_p4z_Ja4CM9SfsZnV8KVrg5VN4iiJAwE9qfFiywmthDIS7LMNsVb9VptFwQnRcc83X3SuKptn7t.bk83V6aYF1tmj75se7xx07LeUZUL1ebb0HMtB6xcYFL5XcbaUf99yTbDUm.7ceIiq_Y0xLJl.XQfQBjJedbHvYNTzcgeNVM5_zv3kbC7MEE6aE3zYO2bVkT_7pMFkCKh7b145AmaH3ojLmPc7GBxip8RUNE.qDH7p6WSnTKSiqj7ffMoghYYIS73FTVeuIDk2QQLSRrtbeRPqjXbzI3ECLnN4ADXh.cwXU2kM_CA_fdeJhbPlOEY6LKgwpWRIZNe7H6yzJwL_9ZB.dHe3ra.9Iz63W9unXrx0TB.Ik.8b1gAoqRIWokffuKtyMJJkMp3jDIyWLdlWzEOwO3tCy1EOZ5CvVfDWpxRL.jzR0adfcHojXT2rmSHylUp1u2MyLOKXYmEz1LBrUbacHbzadoL_iknUNkrzyz.08_mFPHL5UTvTQIxSzzYUvNmngnaQqJszyeDxY2YtKbDNgp6QQQWAbeKRC_bsmqkBk_0vhuWGhqJceOG7MAGLMoQ3RUCE925ynjjf1T1lzfhRfihB.zAUS18kB0sFvVmTKwD1cKgSvTQJVrGTSdM5etaGB4Dcz.ym3yY5v12cBs99odsHx48_Ajqx_xXO1OGnUNmt22v_seMgeqOMbGdPlq2_4EuqlAamXjnzqfqIYevsyz0CLScvBD9bQJvwFZA6ZoE8xBqSiL9S917HmYR...js45qZLcCB8DpLKA_OdJbUYuVzQ3jI',mdrd: 'lFiV7w2vbpgZzpFsJgqhwNw2rqbYxbM8Pytahs.aHyU-1791983678-1.2.1.1-SBaucdwYgHp0w9jKlIZoFyDPA62P_2pgzIyHi1D2CnNv_IsmE6KIUK_xyU.T70e5HMY7jB4uOD4LdgUp2nko022ivuXzrPTHTlSq6A6X_4s0ebxhxF5Jv0X0s6KWs7bIsImDRlcw694AFEfgOT7_FfR_3U1dbaCgkDmtrNqZ7jJIfZpp6kzK3Htp8hIJsvAtYilKrnSXZ_IVYiExw33C8c1UO0DfR1oFRHcWPRwDVYHWF1P1EpWr50sm4E6dtpJ6MoDAbKa_VoyLdnJNCp22ng',};var a = document.createElement('script');a.nonce = 'wWqIjiOBsiegX5jzzbT3mf';a.src = '/cdn-cgi/challenge-platform/h/g/orchestrate/chl_page/v1?ray=a4a6d9288da52549';window._cf_chl_opt.cOgUHash = location.hash === '' && location.href.indexOf('#') !== -1 ? '#' : location.hash;window._cf_chl_opt.cOgUQuery = location.search === '' && location.href.slice(0, location.href.length - window._cf_chl_opt.cOgUHash.length).indexOf('?') !== -1 ? '?' : location.search;if (window.history && window.history.replaceState) {var ogU = location.pathname + window._cf_chl_opt.cOgUQuery + window._cf_chl_opt.cOgUHash;history.replaceState(null, null,"/aktuelt/nyheder/?__cf_chl_rt_tk=LHqqEPQeg.BVR3UGGLDz4EOtHIeE_AwwNe98XdcwgXA-1791983678-1.0.1.1-VcyvVQ_kK7kRU.5f1Vs8LvR6HIoJVpZZ6YhJI_fYzGA"+ window._cf_chl_opt.cOgUHash);a.onload = function() {history.replaceState(null, null, ogU);}}document.getElementsByTagName('head')[0].appendChild(a);}());</script></body></html>
-```
-
-## https://ishoj.dk/aktuelt/nyheder/ishoj-sender-nyt-affaldsregulativ-i-horing/
-
-```text
-status 403, text/html; charset=UTF-8, 3127 bytes, slut-URL https://ishoj.dk/aktuelt/nyheder/ishoj-sender-nyt-affaldsregulativ-i-horing/
-
-<!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="content-security-policy" content="default-src &#39;none&#39;; script-src &#39;nonce-xH5hEWzYHLWkx3uauN7G7V&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-src-attr &#39;none&#39;; style-src &#39;unsafe-inline&#39;; img-src &#39;self&#39; https://challenges.cloudflare.com; connect-src &#39;self&#39; https://challenges.cloudflare.com; frame-src &#39;self&#39; https://challenges.cloudflare.com blob:; child-src &#39;self&#39; https://challenges.cloudflare.com blob:; worker-src blob:; form-action http: https:; base-uri &#39;self&#39;"><style>*{box-sizing:border-box;margin:0;padding:0}html{line-height:1.15;-webkit-text-size-adjust:100%;color:#313131;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}body{display:flex;flex-direction:column;height:100vh;min-height:100vh}.main-content{margin:8rem auto;padding-left:1.5rem;max-width:60rem}@media (width <= 720px){.main-content{margin-top:4rem}}#challenge-error-text{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSI+PHBhdGggZmlsbD0iI0IyMEYwMyIgZD0iTTE2IDNhMTMgMTMgMCAxIDAgMTMgMTNBMTMuMDE1IDEzLjAxNSAwIDAgMCAxNiAzbTAgMjRhMTEgMTEgMCAxIDEgMTEtMTEgMTEuMDEgMTEuMDEgMCAwIDEtMTEgMTEiLz48cGF0aCBmaWxsPSIjQjIwRjAzIiBkPSJNMTcuMDM4IDE4LjYxNUgxNC44N0wxNC41NjMgOS41aDIuNzgzem0tMS4wODQgMS40MjdxLjY2IDAgMS4wNTcuMzg4LjQwNy4zODkuNDA3Ljk5NCAwIC41OTYtLjQwNy45ODQtLjM5Ny4zOS0xLjA1Ny4zODktLjY1IDAtMS4wNTYtLjM4OS0uMzk4LS4zODktLjM5OC0uOTg0IDAtLjU5Ny4zOTgtLjk4NS40MDYtLjM5NyAxLjA1Ni0uMzk3Ii8+PC9zdmc+");background-repeat:no-repeat;background-size:contain;padding-left:34px}</style><meta http-equiv="refresh" content="360"></head><body><div class="main-wrapper" role="main"><div class="main-content"><noscript><div class="h2"><span id="challenge-error-text">Enable JavaScript and cookies to continue</span></div></noscript></div></div><script nonce="xH5hEWzYHLWkx3uauN7G7V">(function(){window._cf_chl_opt = {cFPWv: 'g',cH: 'JsqCLOMu37T7I_SKCnGbDzWn65BWcQtjlSxs3ZW7qRo-1791983678-1.2.1.1-0G_DoK_7OO8ge3fuOcgKDy9MKkA4JdnsHedvlj_UBRtCSq1WXF.HcfVKuVIRDjvW',cITimeS: '1791983678',cN: 'xH5hEWzYHLWkx3uauN7G7V',cRay: 'a4a6d9290ef83518',cTplC:0,cTplO:0,cTplV:5,cType: 'managed',cUPMDTk:"/aktuelt/nyheder/ishoj-sender-nyt-affaldsregulativ-i-horing/?__cf_chl_tk=VSt4MveENebuzByHN9WNQpZ4J_Zf5ufyC7wMe.54r.w-1791983678-1.0.1.1-FBgiCCmvMYPL.fVvaTxe0TgYiUzEaqkxYrNnsx4eiAI",cvId: '3',cZone: 'ishoj.dk',fa:"/aktuelt/nyheder/ishoj-sender-nyt-affaldsregulativ-i-horing/?__cf_chl_f_tk=VSt4MveENebuzByHN9WNQpZ4J_Zf5ufyC7wMe.54r.w-1791983678-1.0.1.1-FBgiCCmvMYPL.fVvaTxe0TgYiUzEaqkxYrNnsx4eiAI",md: 'vW9fptJ0ctZUKRQ7wOfiAHhJWEmOf4DnWqN6hhqRmzU-1791983678-1.2.1.1-QQNMsi.38o4TxlJqwFMkx30TEX2mG3KAkZtR4WQDPJ_CrLZFq7iIDJiIKzdTC0r5mQNz2LL75VrvxxSTTWeRhRAVWzuDf4ORMJYn0N5G5GeYo36huANl9_GuUYe463q1uazMVpHkwTum58a7kXbnkMYILV22tz2kv7yqVBcQoCdEJXOxURDvzZznIgxOhOw3EpiqMB1dwZPn9ZuZx2vPA8t7FfVotC2mjdyP8LiyrgyllSVsLwPq8wohsTvTejJ.lDnMDI..13n0BjlBhhKngVxL6Yfw_tbdGmUR_34bLsP5.dOJT3jJBMrdg4fhMDsIY67b6JoKFLNoaFfl7eTuzELL_gm1ZlsU1mXqof1Kwzo3Jy6jTrqHHcz5TDbva56c.bJoKih7ryN.aA.ApgPO4n5j7hzKP97Al9SocfkV1fa2HNDt2rRGzeAPiY5RmYtAl2Zi3RqD2mqYVnotf2kkDGfTGZ5vQEVN5YZDreoHyElmt0PyMZVlSpYMAI8Ha66mh9EwnsYfO0p6WYLPifaajeeMWLstgZ9V.Lc6f78TaXzwsHC3lZsqTyeMYJ_9prhQr7l1tOAFDvU24xMPVPxIXeoTgsZm02v2k6KMkc0ED8vPty0EtZ_55bbd8S5P3FlIwXLZ9xw4Mv55PEK6Cw9Ij7OK6Jd0_2zx.oRv_eTXbIXy9xWclFpzlTS21r5dBdKUKQXN.u3ujSVVRGDGTDk9DyLllDOjJUrRLLsuPu6O6QU8TPqKO_2PEV7Uzubc3tZ0ihxq.IATR605hLLB4sA4ODDnodtKFZwUWpLRrmKJwT6Cb0meRZOFWvB4iHdA7OxwooqUXEByQ_7aO3ECHFgXGMSyE_nZ_YTANYi3gTVnlW706caQhWaMu8NfmcLW7r8PF72SvOpgLWdmObrp66Or_axaIIJdabs9qJvoOa6Y1Te8DScirK4RHD.aAmEBQYPAEMfsvAAhnCr17cCFFzmGo8_85Nbx0SY0C0LH6RJTemjf7Tj7aJLWYLZZCOwDrLRNWqBQGcMWEuj6Clmjv7WzaP8y9XOqXIYlAYF7X4Q7_lWRoCXOvSKCD5BoE1uScpvB8INvUOg7LV_sfMR_dSSpoKXPFEOJ9CU7nYIqHykzwQzKMgcYwDtb75qwbQ.iJwh8YiENlEZL7CDWnbmYjWoktBkL0ePnFT2G4O1I_mtqgPg',mdrd: 'wKuDcm4r98CTNl6E5PnCGfbByH.yqZPhbAPcTPJ45tg-1791983678-1.2.1.1-aa0vl0OgSqX54HNt3Dk01ZNSDxUXuHyqZ05HeICn3O_6MbqFyMr1gyegyb.5O4Mur9gijgDJKn0FMtZ8eibiAOyL48nYF9.xoOSejjvDkU1UaoGl6ZV40NteMuCHK9DVjZ8P2xEu9EGBOF69c9vqUz3f0BPBYKIm.HpMbld4jQrNKgwFXHRGP6Vk6CUqvX__l81PkvHlLaG18VkB7wzYBNYFPjuNJgPcj9OFqmHJ_X2ECglZ.fjRRKFjbucZAz9Vx4p_3iJ4CmW2Rx2dkUQ2Bw',};var a = document.createElement('script');a.nonce = 'xH5hEWzYHLWkx3uauN7G7V';a.src = '/cdn-cgi/challenge-platform/h/g/orchestrate/chl_page/v1?ray=a4a6d9290ef83518';window._cf_chl_opt.cOgUHash = location.hash === '' && location.href.indexOf('#') !== -1 ? '#' : location.hash;window._cf_chl_opt.cOgUQuery = location.search === '' && location.href.slice(0, location.href.length - window._cf_chl_opt.cOgUHash.length).indexOf('?') !== -1 ? '?' : location.search;if (window.history && window.history.replaceState) {var ogU = location.pathname + window._cf_chl_opt.cOgUQuery + window._cf_chl_opt.cOgUHash;history.replaceState(null, null,"/aktuelt/nyheder/ishoj-sender-nyt-affaldsregulativ-i-horing/?__cf_chl_rt_tk=VSt4MveENebuzByHN9WNQpZ4J_Zf5ufyC7wMe.54r.w-1791983678-1.0.1.1-FBgiCCmvMYPL.fVvaTxe0TgYiUzEaqkxYrNnsx4eiAI"+ window._cf_chl_opt.cOgUHash);a.onload = function() {history.replaceState(null, null, ogU);}}document.getElementsByTagName('head')[0].appendChild(a);}());</script></body></html>
+  indeks https://pro.ing.dk/sitemap.xml: 8 under-sitemaps, følger 5
+    https://pro.ing.dk/sitemap.xml?page=8 (lastmod 2026-10-12)
+    https://pro.ing.dk/sitemap.xml?page=7 (lastmod 2026-10-12)
+    https://pro.ing.dk/sitemap.xml?page=6 (lastmod 2026-10-12)
+    https://pro.ing.dk/sitemap.xml?page=5 (lastmod 2026-10-12)
+    https://pro.ing.dk/sitemap.xml?page=4 (lastmod 2026-10-12)
+  sitemap https://pro.ing.dk/sitemap.xml?page=8: 10984 URL'er
+  sitemap https://pro.ing.dk/sitemap.xml?page=7: 15000 URL'er
+  sitemap https://pro.ing.dk/sitemap.xml?page=6: 15000 URL'er
+  sitemap https://pro.ing.dk/sitemap.xml?page=5: 15000 URL'er
+  sitemap https://pro.ing.dk/sitemap.xml?page=4: 15000 URL'er
+  URL'er: 65660 i alt, 462 matcher, 2 med lastmod inden for 14 dage, 0 uden lastmod (0 registreret som baseline), 0 fra Google News, 2 nye, 0 sprunget over (strict)
+  URL'er, der matcher (eksempler, match '/wastetech/(artikel|holdning|debat)/'):
+    https://pro.ing.dk/wastetech/holdning/udvikling-af-nye-metoder-til-anvende-plast-fra-havet
+    https://pro.ing.dk/wastetech/holdning/affaldssektoren-maa-tilpasse-sig-fremtidige-kriser
+    https://pro.ing.dk/wastetech/holdning/nedlaegning-af-forbraendingsanlaeg-vil-oege-co2-udledningen-vaesentligt
+    https://pro.ing.dk/wastetech/holdning/skrot-frelst-symbolpolitik-lad-danmark-braende-affaldet
+    https://pro.ing.dk/wastetech/holdning/plastforurening-europaeisk-landbrugsjord-kan-blive-det-stoerste-globale
+    https://pro.ing.dk/wastetech/holdning/syv-gode-grunde-til-automatiseret-sortering
+    https://pro.ing.dk/wastetech/holdning/sundhedsvaesenets-klimaaftryk-er-en-braendende-platform
+    https://pro.ing.dk/wastetech/holdning/vores-indstilling-til-affald-kan-skabe-gennemgribende-social-og-groen-forandring
+    https://pro.ing.dk/wastetech/holdning/mode-og-tekstilbranchen-omstilling-kraever-balance-mellem-regulering-og-konkurrenceevne
+    https://pro.ing.dk/wastetech/holdning/eu-dom-er-en-bombe-under-danske-deponeringsanlaeg-produktionsvirksomheder-og-den-samlede-affalds-og
+  URL'er, der ikke matcher (eksempler, match '/wastetech/(artikel|holdning|debat)/'):
+    https://pro.ing.dk/caretech/jonas-eder-hansen
+    https://pro.ing.dk/wastetech/kaj-bryder
+    https://pro.ing.dk/datatech/sigrid-friis
+    https://pro.ing.dk/wastetech/mie-scharfe
+    https://pro.ing.dk/wastetech/mikhail-skalyga
+    https://pro.ing.dk/compliancetech/torben-blach
+    https://pro.ing.dk/aitech/morten-reimer
+    https://pro.ing.dk/compliancetech/anders-bavnhoej-hansen
+    https://pro.ing.dk/digitech/begivenhed/ehandelsdagen-2020-konference
+    https://pro.ing.dk/digitech/note/ny-faelles-sundhedsplatform-i-11-sjaellandske-kommuner-er-godt-paa-vej-mod-fuld-implementering
+  sider: 2 hentet (2 ok, 0 fejl), 0 med varig fejl, 0 blokeret af robots.txt, 0 ikke HTML, 0 uden titel
 ```
 
