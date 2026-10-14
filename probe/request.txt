@@ -1,7 +1,18 @@
-# Nye kilder til kildeudvidelsen
-dr-regionale
-videnskab
-tv2-nyheder
-cleantech-watch
-energiwatch
-cepos
+# Universiteternes institutter, runde 1: forsider, robots og sitemaps
+url https://sustain.dtu.dk 200
+url https://sustain.dtu.dk/robots.txt 5
+url https://sustain.dtu.dk/sitemap.xml 20
+url https://kt.dtu.dk 120
+url https://construct.dtu.dk 120
+url https://ifro.ku.dk 120
+url https://ign.ku.dk 120
+url https://plen.ku.dk 120
+url https://envs.au.dk 150
+url https://envs.au.dk/aktuelt/nyheder 150
+url https://bce.au.dk/aktuelt/nyheder 150
+url https://cbio.au.dk 150
+url https://www.plan.aau.dk 150
+url https://www.build.aau.dk 150
+url https://www.sdu.dk/da/forskning/institut-for-groen-teknologi 150
+url https://ruc.dk/institut-mennesker-og-teknologi 120
+url https://ruc.dk/institut-naturvidenskab-og-miljo 120
