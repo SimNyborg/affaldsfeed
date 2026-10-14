@@ -1,19 +1,5 @@
-# Universiteternes institutter, runde 2: nyhedslister og RSS
-url https://sustain.dtu.dk/nyhedsliste 400
-url https://www.kt.dtu.dk 400
-url https://construct.dtu.dk 400
-url https://www.ku.dk/ifro/om-instituttet/nyheder 300
-url https://nyheder.ku.dk/rss/ 150
-url https://ign.ku.dk/nyheder/?get_rss=1 40
-url https://plen.ku.dk/nyheder/?get_rss=1 40
-url https://food.ku.dk 150
-url https://envs.au.dk/om-instituttet-1/aktuelt/nyheder/element/722119/rss.xml 60
-url https://bce.au.dk/aktuelt/nyheder/element/723218/rss.xml 60
-url https://cbio.au.dk/news-and-events 150
-url https://cae.au.dk/aktuelt/nyheder 150
-url https://agro.au.dk/aktuelt/nyheder 150
-url https://www.plan.aau.dk/nyheder 400
-url https://www.build.aau.dk/nyheder 400
-url https://www.sdu.dk/da/om-sdu/institutter-centre/igt-green-technology/nyt-fra-igt 400
-url https://www.sdu.dk/da/nyheder/lokalenyheder 400
-url https://ruc.dk/nyheder-fra-institut-mennesker-og-teknologi 150
+# Universiteternes institutter, runde 3: de nye kilder
+dtu-sustain
+dtu-kemiteknik
+ku-ifro
+au-byggeri
