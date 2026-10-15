@@ -288,3 +288,11 @@ Brugeren ville ikke have linjen "Siden 10. august 2026" over årsoverblikket. Li
 - **Forældede overblik skrives forfra:** `validate-overview` afviser nu et overblik, hvis `since` er senere end den dato, data begynder i dag. Routinen skriver ugyldige overblik forfra i sin næste kørsel, så årsoverblikket bliver skrevet om kl. 14.25 den 14. oktober.
 - **Året fordeles på månederne:** Årets 40 historier var de største og bedst rangerede, og blandt lige gode vandt de nyeste. Derfor var 35 af de 40 fra september og oktober. Nu tager udvælgelsen hver måneds bedste historie på skift, så hver måned får cirka lige mange pladser.
 - **Året får højdepunkterne med:** Inden for en måned rangerer Folketingets spørgsmål højt, fordi de er fra en myndighed. Uden mere hjælp ville tre af augusts fire pladser gå til folketingsspørgsmål, mens emballageforordningen, deponeringstallene og selektiv nedrivning manglede. Højdepunkterne er årets vigtigste begivenheder, så årets input får dem nu med i feltet `timeline` sammen med de indslag, de bygger på. Månedsoverblikkene findes kun fra oktober og dækker ikke resten af året.
+
+## 2026-10-15: I dag er nyhederne siden midnat
+
+Om formiddagen 15. oktober viste fanen I dag gårsdagens overblik, og brugeren ville have, at I dag er tom, når der ikke er nyheder fra i dag. Routinen skriver kun et dagsoverblik, når der er godkendte nyheder fra i dag, og lader ellers den gamle fil stå. Siden viste den gamle fil, som om den var fra i dag.
+
+Nu er I dag tom, til der er et overblik fra i dag. Siden skjuler et dagsoverblik, hvis det er skrevet på en tidligere dag, og eksporten udelader det fra `feed.json`, så andre, der læser filen, heller ikke får gårsdagens. Fanen viser da "Intet overblik endnu i dag." Ugen, Måneden og Året var allerede de seneste 7, 30 og 365 døgn og er uændrede.
+
+Routinen kører kl. 7.25, 9.25 og 14.25. Nyheder, der kommer efter kl. 14.25, bliver derfor først vurderet næste morgen og kommer aldrig med i I dag, kun i Ugen. Skal eftermiddagen med, skal routinen også køre senere på dagen.

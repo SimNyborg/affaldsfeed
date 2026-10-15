@@ -272,6 +272,20 @@ def test_overview_embedded(repo, scenario, tmp_path):
     assert feed["overview"]["uge"] is None
 
 
+@pytest.mark.parametrize(("end", "kept"), [
+    ("2026-10-06T21:30:00Z", False),  # 23.30 i går dansk tid
+    ("2026-10-06T22:00:00Z", True),   # midnat i dag dansk tid
+])
+def test_day_overview_from_an_earlier_day_is_left_out(repo, scenario, end, kept):
+    """I dag er nyhederne siden midnat (dansk tid): gårsdagens dagsoverblik kommer ikke med i feed.json."""
+    start = "2026-10-05T22:00:00Z" if not kept else end
+    ov = {"period": "dag", "window": {"start": start, "end": end}, "generated": end, "since": None,
+          "headline": "Kort sagt: Nye gebyrregler.", "bullets": [{"text": "Regeringen vil ændre gebyrreglerne.",
+          "item_ids": [scenario["main"].id], "topics": ["gebyrer"]}], "based_on": 4}
+    (paths.OVERVIEW_DIR / "dag.json").write_text(json.dumps(ov, ensure_ascii=False), encoding="utf-8")
+    assert (export.build_feed(NOW)["overview"]["dag"] is not None) is kept
+
+
 def test_out_inside_site_is_refused(repo):
     assert export_to(paths.SITE_DIR / "x") == 1
 

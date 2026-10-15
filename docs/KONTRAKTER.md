@@ -400,6 +400,7 @@ De vigtigste begivenheder på affaldsområdet, valgt og skrevet af Claude-routin
 ```
 `DisplayItem`:
 `{id, story, url, title, teaser, source, published, date_quality, first_seen, baseline, topics, places, genre, lang, summary_da, reviewed, reason, also: [{id, source, url, title, published}], why}`
+- `overview.dag` er `null`, når dagsoverblikkets `window.end` ligger på en tidligere dag (dansk tid) end `generated`. I dag er nyhederne siden midnat, så siden viser heller ikke et dagsoverblik fra en tidligere dag. `uge`, `maaned` og `aar` er de seneste 7, 30 og 365 døgn regnet fra overblikkets `window.end` (7.1).
 - `teaser` er altid tom i `feed.json`. Previewet er `summary_da`, resuméet med egne ord (6.2a), eller `null`.
 - `title`: kandidatens (eller sweep-fundets) titel uden præfikserne i `settings.title_prefixes` (fx "Nyhed: X" → "X"). Kandidaten på disk er uændret, og historierne samles på den viste titel.
 - `window_start`: feedets første dag i København (`Settings.window_since`): `settings.window_start`, når den er sat, ellers dagen `window_days` før `generated`. Kun indslag fra og med det tidspunkt er med. `window_days` er antallet af hele døgn fra vinduets start til `generated` (mindst 1).

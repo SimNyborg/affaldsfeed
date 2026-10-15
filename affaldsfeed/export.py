@@ -176,6 +176,10 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
             )
 
     overviews = load_overviews()
+    # I dag er nyhederne siden midnat: et dagsoverblik fra en tidligere dag kommer ikke med (§8)
+    dag = overviews.get("dag")
+    if dag is not None and to_cph(dag.window.end).date() != to_cph(now).date():
+        overviews["dag"] = None
     feed = {
         "version": FEED_VERSION,
         "generated": iso(now),

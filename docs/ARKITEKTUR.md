@@ -66,6 +66,8 @@ Overblikket har fire perioder, og alle er rullende vinduer i dansk tid.
 | Måneden (`maaned`) | seneste 30 døgn | dagligt kl. 07.25 | arkiverede ugeoverblik og de mest dækkede historier |
 | Året (`aar`) | seneste 365 døgn | mandag kl. 07.25 | arkiverede månedsoverblik, højdepunkterne og årets største historier fordelt på månederne |
 
+I dag er nyhederne siden midnat. Er der ingen nyheder fra i dag, skriver routinen intet dagsoverblik, og fanen I dag er tom, også selv om gårsdagens fil stadig ligger i `data/overview/`. Ugen, Måneden og Året er altid de seneste 7, 30 og 365 døgn regnet fra det tidspunkt, overblikket blev opdateret.
+
 Inputtet er hierarkisk. Ugen bygger på historier frem for enkelte artikler, og måneden og året bygger på de overblik, der allerede er skrevet for de mindre perioder, plus højst 40 historier. Derfor vokser token-forbruget ikke, når der kommer mere data. Året får desuden højdepunkterne fra tidslinjen, og dets 40 historier fordeles på månederne. Månedsoverblikkene findes først fra oktober 2026, mens data går tilbage til januar, så uden det ville de seneste uger fylde hele året. Rækker data ikke hele vinduet tilbage, får overblikket feltet `since`. Siden viser den ikke, men rækker data senere længere tilbage, afviser valideringen overblikket, og routinen skriver det forfra.
 
 Præcisionsreglerne står i `routine/REDAKTOER.md`:
