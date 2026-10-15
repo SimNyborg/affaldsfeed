@@ -961,7 +961,7 @@
   },
   "faa": {
     "last_ok": "2026-10-15",
-    "last_attempt": "2026-10-15T01:28:25Z",
+    "last_attempt": "2026-10-15T07:43:39Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -969,7 +969,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 13
+    "backfill_runs": 14
   },
   "faaborg-midtfyn-kommune": {
     "last_ok": "2026-10-15",
@@ -1201,7 +1201,7 @@
   },
   "frdb": {
     "last_ok": "2026-10-15",
-    "last_attempt": "2026-10-15T05:30:10Z",
+    "last_attempt": "2026-10-15T07:43:39Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1209,7 +1209,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 18
+    "backfill_runs": 19
   },
   "fredensborg-forsyning": {
     "last_ok": "2026-10-15",
@@ -1261,15 +1261,15 @@
   },
   "frederiksbergliv": {
     "last_ok": "2026-10-15",
-    "last_attempt": "2026-10-15T05:30:10Z",
+    "last_attempt": "2026-10-15T07:43:39Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
-    "backfilled_from": null,
-    "backfill_runs": 19
+    "backfilled_from": "2026-01-01",
+    "backfill_runs": 0
   },
   "frederikshavn-kommune": {
     "last_ok": "2026-10-15",
@@ -1309,15 +1309,15 @@
   },
   "fyens": {
     "last_ok": "2026-10-15",
-    "last_attempt": "2026-10-15T01:28:25Z",
+    "last_attempt": "2026-10-15T07:43:39Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 13,
+    "items_30d": 14,
     "first_run_done": false,
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 10
+    "backfill_runs": 11
   },
   "galtenfolkeblad": {
     "last_ok": "2026-10-15",
@@ -1729,7 +1729,7 @@
   },
   "hsfo": {
     "last_ok": "2026-10-15",
-    "last_attempt": "2026-10-15T01:28:25Z",
+    "last_attempt": "2026-10-15T07:43:39Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
@@ -1737,7 +1737,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 18
+    "backfill_runs": 19
   },
   "htk-forsyning": {
     "last_ok": "2026-10-15",
@@ -1873,12 +1873,12 @@
   },
   "jv": {
     "last_ok": "2026-10-15",
-    "last_attempt": "2026-10-15T01:28:25Z",
-    "fails": 0,
-    "last_error": null,
+    "last_attempt": "2026-10-15T07:43:39Z",
+    "fails": 1,
+    "last_error": "https://jv.dk/sitemap/2026-10-15: HTTP 503; springes over i denne kørsel; https://jv.dk/sitemap/2026-10-14: springes over: HTTP 503; https://jv.dk/sitemap/2026-03-22: springes over: HTTP 503; https://jv.dk/sitemap/2026-03-21: springes over: HTTP 503; https://jv.dk/sitemap/2026-03-20: springes over: ",
     "items_30d": 12,
     "first_run_done": true,
-    "health": "groen",
+    "health": "gul",
     "since": "2026-10-08",
     "backfilled_from": null,
     "backfill_runs": 15
@@ -1993,7 +1993,7 @@
   },
   "kobenhavnliv": {
     "last_ok": "2026-10-15",
-    "last_attempt": "2026-10-15T05:30:10Z",
+    "last_attempt": "2026-10-15T07:43:39Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -2001,7 +2001,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 16
+    "backfill_runs": 17
   },
   "koebenhavn-kommune": {
     "last_ok": "2026-10-15",
@@ -2257,7 +2257,7 @@
   },
   "midtfynsposten": {
     "last_ok": "2026-10-15",
-    "last_attempt": "2026-10-15T05:30:10Z",
+    "last_attempt": "2026-10-15T07:43:39Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2265,7 +2265,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 16
+    "backfill_runs": 17
   },
   "midtjyllandsavis": {
     "last_ok": "2026-10-15",
@@ -3037,7 +3037,7 @@
   },
   "stiften": {
     "last_ok": "2026-10-15",
-    "last_attempt": "2026-10-15T05:30:10Z",
+    "last_attempt": "2026-10-15T07:43:39Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -3045,7 +3045,7 @@
     "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": null,
-    "backfill_runs": 13
+    "backfill_runs": 14
   },
   "struer-kommune": {
     "last_ok": "2026-10-15",
