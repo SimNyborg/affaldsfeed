@@ -257,6 +257,7 @@ Overblikket ligger i et hvidt panel øverst i læsekolonnen over søgning og fil
 - Udfoldet: knappen hedder "Vis mindre", og første linje er "Nyhedsoverblik senest opdateret ..." uden periode, fordi fanerne viser den. 8 px under den står fanerne I dag, Ugen, Måneden og Året som tekstvalg, derefter hovedlinjen i 17/24 og punkterne med kildelinks. Der står ingen startdato, heller ikke når data begynder senere end perioden.
 - Fanerne er `role="tablist"`. Piletaster, Home og End skifter fane, og kun den aktive fane er i tabulatorrækkefølgen. Den valgte periode står i URL'en som `overblik=dag|uge|maaned|aar`.
 - Under hvert punkt står kildelinks i 13/18, fx "Altinget, KEFM +2". Kildenavnene linker til artiklerne i ny fane og er 24 px høje mål (3 px polstring over og under, linjen bliver ikke højere). Den skjulte titel efter kildenavnet har `lang` på engelske og svenske titler. "+2" er en tekstknap på grundlinjen, der filtrerer feedet til historien med `story=<id>`; et usynligt `::before` giver den en klikflade på 24 × 24 px.
+- I dag viser kun et overblik over nyhederne siden midnat. Er der endnu intet overblik fra i dag, typisk fordi der ikke er godkendte nyheder fra i dag, står "Intet overblik endnu i dag." både foldet og udfoldet, og første linje har intet tidspunkt. Gårsdagens overblik vises aldrig under I dag. Ugen, Måneden og Året er de seneste 7, 30 og 365 dage.
 - Overblikket har ingen note om forsinkelse og ingen tekst om AI. Den slags står samlet i i-panelet (se Om Affaldsfeed). Er der aktive filtre, står "Overblikket dækker hele feedet, ikke kun dine filtre." nederst.
 - Valget huskes i `af.overviewHidden`: "0" betyder udfoldet, alt andet betyder foldet. Tilstanden holdes i siden, så knappen også virker, når localStorage ikke kan bruges.
 
@@ -313,7 +314,8 @@ Overblikket følger samme tone. Det skrives neutralt og markerer, når en afsend
 | Visning | Normal · Kompakt |
 | Kort | fundet 09.14 · +3 andre kilder · +1 anden kilde · +3 andre kilder, 2 nye · +3 flere · +1 mere |
 | Overblik | Nyhedsoverblik · senest opdateret fredag kl. 23.28 · for ugen · I dag · Ugen · Måneden · Året · Vis hele · Vis mindre |
-| Overblik, før første kørsel | Dagens overblik kommer efter kl. 07.25. |
+| Overblik, I dag uden overblik | Intet overblik endnu i dag. |
+| Overblik, før første kørsel | Ugens overblik kommer efter kl. 07.25. |
 | Overblik, filternote | Overblikket dækker hele feedet, ikke kun dine filtre. |
 | Filtre giver 0 | Ingen indslag passer til Nyborg Kommune + Tekstiler. Landsdækkende nyheder er ikke valgt under Sted. · Fjern Tekstiler (viser 23) · Udvid til Nyborg Kommune (viser 4) · Fjern historien (viser 2) · Nulstil filtre |
 | Søgning giver 0 | Intet om "gebyrloft". · Ryd søgning (viser 1.284) |

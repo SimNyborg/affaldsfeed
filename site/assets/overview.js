@@ -10,8 +10,9 @@ import {
 const LABELS = { dag: 'I dag', uge: 'Ugen', maaned: 'Måneden', aar: 'Året' };
 // Foldet står perioden i første linje, når den ikke er I dag: "Nyhedsoverblik for ugen senest opdateret ..."
 const FOR = { uge: 'for ugen', maaned: 'for måneden', aar: 'for året' };
+// I dag er tom, til routinen har skrevet et overblik over dagens nyheder
+const EMPTY_DAG = 'Intet overblik endnu i dag.';
 const EMPTY = {
-  dag: 'Dagens overblik kommer efter kl. 07.25.',
   uge: 'Ugens overblik kommer efter kl. 07.25.',
   maaned: 'Månedens overblik kommer efter kl. 07.25.',
   aar: 'Årets overblik kommer mandag efter kl. 07.25.',
@@ -70,7 +71,13 @@ export function createOverview(root, { data, now, getState, onPeriod, onStory })
 
   function current(period) {
     const ov = overviews[period];
-    return ov && Array.isArray(ov.bullets) ? ov : null;
+    if (!ov || !Array.isArray(ov.bullets)) return null;
+    // I dag er nyhederne siden midnat: et dagsoverblik fra en tidligere dag vises ikke
+    if (period === 'dag') {
+      const end = parseDate(ov.window && ov.window.end);
+      if (!end || cph(end).dayNum !== cph(now).dayNum) return null;
+    }
+    return ov;
   }
 
   function render() {
@@ -110,6 +117,7 @@ export function createOverview(root, { data, now, getState, onPeriod, onStory })
   }
 
   function emptyText(period) {
+    if (period === 'dag') return EMPTY_DAG;
     // Før kl. 08 venter vi på morgenkørslen; senere på dagen er overblikket bare ikke skrevet endnu
     return Number(cph(now).hh) < 8 ? EMPTY[period] : 'Overblikket er ikke skrevet endnu. Det kommer ved en af de næste opdateringer.';
   }
