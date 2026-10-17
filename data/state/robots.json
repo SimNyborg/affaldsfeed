@@ -284,7 +284,7 @@
     "body": "User-agent: *\nDisallow: /wp/wp-admin/\nAllow: /wp/wp-admin/admin-ajax.php\n"
   },
   "danwatch.dk": {
-    "fetched": "2026-10-16T07:27:23Z",
+    "fetched": "2026-10-17T07:27:29Z",
     "body": "User-agent: *\nDisallow: /wp-admin/\nDisallow: /?s=\nDisallow: /page/*/?s=\nDisallow: /search/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://danwatch.dk/sitemap.xml\n"
   },
   "dbrs.dk": {
@@ -972,7 +972,7 @@
     "body": "User-agent: *\r\nDisallow: /sitecore/\r\nDisallow: /sitecore modules/\r\nDisallow: /layouts/\r\nDisallow: /upload/\r\nDisallow: /english/sitecore/\r\nDisallow: /dtu/\r\nDisallow: /institutter/\r\nDisallow: /centre/\r\nDisallow: /sites/ \r\nDisallow: /subsites/\r\nDisallow: /andre_universitetsenheder/\r\nDisallow: /andre/\r\nDisallow: /webservice/\r\nDisallow: /functions/\r\nDisallow: /resultat\r\nDisallow: /english/resultat\r\nSitemap: https://www.dtu.dk/sitemap.xml\r\nCrawl-delay: 10\r\n\r\nUser-agent: ClaudeBot\r\nDisallow: /sitecore/\r\nDisallow: /sitecore modules/\r\nDisallow: /layouts/\r\nDisallow: /upload/\r\nDisallow: /english/sitecore/\r\nDisallow: /dtu/\r\nDisallow: /institutter/\r\nDisallow: /centre/\r\nDisallow: /sites/ \r\nDisallow: /subsites/\r\nDisallow: /andre_universitetsenheder/\r\nDisallow: /andre/\r\nDisallow: /webservice/\r\nDisallow: /functions/\r\nDisallow: /resultat\r\nDisallow: /english/resultat\r\nSitemap: https://www.dtu.dk/sitemap.xml\r\nCrawl-delay: 1000\r\n\r\nUser-agent: GPTBot\r\nDisallow: /sitecore/\r\nDisallow: /sitecore modules/\r\nDisallow: /layouts/\r\nDisallow: /upload/\r\nDisallow: /english/sitecore/\r\nDisallow: /dtu/\r\nDisallow: /institutter/\r\nDisallow: /centre/\r\nDisallow: /sites/ \r\nDisallow: /subsites/\r\nDisallow: /andre_universitetsenheder/\r\nDisallow: /andre/\r\nDisallow: /webservice/\r\nDisallow: /functions/\r\nDisallow: /resultat\r\nDisallow: /english/resultat\r\nSitemap: https://www.dtu.dk/sitemap.xml\r\nCrawl-delay: 1000\r\n\r\nUser-agent: GoogleOther\r\nDisallow: /sitecore/\r\nDisallow: /sitecore modules/\r\nDisallow: /layouts/\r\nDisallow: /upload/\r\nDisallow: /english/sitecore/\r\nDisallow: /dtu/\r\nDisallow: /institutter/\r\nDisallow: /centre/\r\nDisallow: /sites/ \r\nDisallow: /subsites/\r\nDisallow: /andre_universitetsenheder/\r\nDisallow: /andre/\r\nDisallow: /webservice/\r\nDisallow: /functions/\r\nDisallow: /resultat\r\nDisallow: /english/resultat\r\nSitemap: https://www.dtu.dk/sitemap.xml\r\nCrawl-delay: 1000\r\n"
   },
   "taenk.dk": {
-    "fetched": "2026-10-16T07:27:23Z",
+    "fetched": "2026-10-17T07:27:29Z",
     "body": "#\r\n# robots.txt..\r\n#\r\n# This file is to prevent the crawling and indexing of certain parts\r\n# of your site by web crawlers and spiders run by sites like Yahoo!\r\n# and Google. By telling these \"robots\" where not to go on your site,\r\n# you save bandwidth and server resources.\r\n#\r\n# This file will be ignored unless it is at the root of your host:\r\n# Used:    http://example.com/robots.txt\r\n# Ignored: http://example.com/site/robots.txt\r\n#\r\n# For more information about the robots.txt standard, see:\r\n# http://www.robotstxt.org/robotstxt.html\r\n\r\nUser-agent: *\r\n# CSS, JS, Images\r\n# Directories\r\nDisallow: /core/\r\nDisallow: /profiles/\r\n# Files\r\nDisallow: /README.txt\r\nDisallow: /web.config\r\n# Paths (clean URLs)\r\nDisallow: /admin/\r\nDisallow: /comment/reply/\r\nDisallow: /filter/tips\r\nDisallow: /node/add/\r\nDisallow: /search/\r\nDisallow: /user/register\r\nDisallow: /user/password\r\nDisallow: /user/login\r\nDisallow: /user/logout\r\n# Paths (no clean URLs)\r\nDisallow: /index.php/admin/\r\nDisallow: /index.php/comment/reply/\r\nDisallow: /index.php/filter/tips\r\nDisallow: /index.php/node/add/\r\nDisallow: /index.php/search/\r\nDisallow: /index.php/user/password\r\nDisallow: /index.php/user/register\r\nDisallow: /index.php/user/login\r\nDisallow: /index.php/user/logout\r\n\r\n# Custom rules\r\nDisallow: /search\r\nDisallow: /soeg\r\nDisallow: /view-prices/\r\nDisallow: /product/\r\nDisallow: /products/\r\nDisallow: /user\r\nDisallow: /node\r\nDisallow: /taxonomy/\r\nDisallow: /bliv-medlem/*\r\nDisallow: /member/*\r\nDisallow: /min-side/*\r\n\r\nAllow: /*.css$\r\nAllow: /*.css?\r\nAllow: /*.js$\r\nAllow: /*.js?\r\nAllow: /*.gif\r\nAllow: /*.jpg\r\nAllow: /*.jpeg\r\nAllow: /*.png\r\nAllow: /*.svg\r\n\r\nUser-agent: SentiBot\r\nDisallow: /\nSitemap: https://taenk.dk/sitemap.xml"
   },
   "thisted-dagblad.dk": {
@@ -1320,7 +1320,7 @@
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://www.glostrup.dk/sitemap.xml\n"
   },
   "www.greenpeace.org": {
-    "fetched": "2026-10-16T07:27:23Z",
+    "fetched": "2026-10-17T07:27:29Z",
     "body": "User-agent: *\nDisallow:"
   },
   "www.gribskov.dk": {
