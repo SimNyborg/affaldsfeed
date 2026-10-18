@@ -144,7 +144,7 @@
     "body": "User-agent: *\r\nDisallow: /boligmagasin/"
   },
   "cae.au.dk": {
-    "fetched": "2026-10-17T11:36:18Z",
+    "fetched": "2026-10-18T12:28:09Z",
     "body": ""
   },
   "cbs.dk": {
@@ -276,7 +276,7 @@
     "body": "<pre>\r\n    User-Agent: *&#xA;Allow: /DependencyHandler.axd&#xA;Disallow: /aspnet_client/&#xA;Disallow: /bin/&#xA;Disallow: /config/&#xA;Disallow: /umbraco/&#xA;Disallow: /umbraco_client/&#xA;Disallow: /usercontrols/&#xA;Disallow: /*.axd&#xA;Sitemap: http://www.danskekommuner.dk/sitemapxml\r\n</pre>"
   },
   "danskfjernvarme.dk": {
-    "fetched": "2026-10-17T11:36:18Z",
+    "fetched": "2026-10-18T12:28:09Z",
     "body": "<pre>\r\n        # robots.txt, danskfjernvarme.dk&#xA;&#xA;User-Agent: *&#xA;Allow: /DependencyHandler.axd&#xA;Disallow: /aspnet_client/&#xA;Disallow: /bin/&#xA;Disallow: /config/&#xA;Disallow: /umbraco/&#xA;Disallow: /umbraco_client/&#xA;Disallow: /usercontrols/&#xA;Disallow: /*.axd&#xA;Sitemap: https://danskfjernvarme.dk/sitemap.xml\r\n</pre>"
   },
   "danskretursystem.dk": {
