@@ -628,7 +628,7 @@
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://jammerbugtposten.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "jv.dk": {
-    "fetched": "2026-10-18T00:01:43Z",
+    "fetched": "2026-10-19T05:27:46Z",
     "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://jv.dk/ai.txt                                                                                             ###\n########################################################################################################################\n                        \n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n             \nUser-agent: FacebookBot\nDisallow: /\n\n# META - Product improvement and AI\nUser-agent: meta-externalagent\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: PiplBot\nDisallow: /\n\n# Search engines\nUser-agent: *\nDisallow: /editors/signature/*\nDisallow: /contimo/layout/native\nDisallow: /*noHeader=*\nAllow: /\n\n# Sitemap\nSitemap: https://jv.dk/sitemap\nSitemap: https://jv.dk/advertorials/sitemap.xml\nSitemap: https://jv.dk/kandidattest/sitemap.xml"
   },
   "jyllands-posten.dk": {
@@ -728,7 +728,7 @@
     "body": "user-agent: *\r\ndisallow: /error/\r\nsitemap: https://middelfart.dk/Handlers/Sitemap.ashx\r\n"
   },
   "midtfynsposten.dk": {
-    "fetched": "2026-10-18T00:01:43Z",
+    "fetched": "2026-10-19T05:27:46Z",
     "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://midtfynsposten.dk/ai.txt                                                                                 ###\n########################################################################################################################\n                        \n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n             \nUser-agent: FacebookBot\nDisallow: /\n\n# META - Product improvement and AI\nUser-agent: meta-externalagent\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: PiplBot\nDisallow: /\n\n# Search engines\nUser-agent: *\nDisallow: /editors/signature/*\nDisallow: /contimo/layout/native\nDisallow: /*noHeader=*\nAllow: /\n\n# Sitemap\nSitemap: https://midtfynsposten.dk/sitemap\nSitemap: https://midtfynsposten.dk/advertorials/sitemap.xml\nSitemap: https://midtfynsposten.dk/kandidattest/sitemap.xml"
   },
   "midtjyllandsavis.dk": {
@@ -964,7 +964,7 @@
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://soroe.dk/sitemap.xml\n"
   },
   "stiften.dk": {
-    "fetched": "2026-10-18T00:01:43Z",
+    "fetched": "2026-10-19T05:27:46Z",
     "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://stiften.dk/ai.txt                                                                                        ###\n########################################################################################################################\n                        \n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n             \nUser-agent: FacebookBot\nDisallow: /\n\n# META - Product improvement and AI\nUser-agent: meta-externalagent\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: PiplBot\nDisallow: /\n\n# Search engines\nUser-agent: *\nDisallow: /editors/signature/*\nDisallow: /contimo/layout/native\nDisallow: /*noHeader=*\nAllow: /\n\n# Sitemap\nSitemap: https://stiften.dk/sitemap\nSitemap: https://stiften.dk/advertorials/sitemap.xml\nSitemap: https://stiften.dk/kandidattest/sitemap.xml"
   },
   "sustain.dtu.dk": {
