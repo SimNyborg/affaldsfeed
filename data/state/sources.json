@@ -892,7 +892,7 @@
     "last_attempt": "2026-10-21T07:27:06Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 8,
+    "items_30d": 7,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
@@ -2449,7 +2449,7 @@
   },
   "noah": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2497,7 +2497,7 @@
   },
   "nordhavn-avis": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -2509,7 +2509,7 @@
   },
   "nordisk-ministerraad": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2533,10 +2533,10 @@
   },
   "nordsoeposten": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 3,
+    "items_30d": 4,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
@@ -2569,7 +2569,7 @@
   },
   "nyborg-forsyning": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2641,7 +2641,7 @@
   },
   "oestvendsysselfolkeblad": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2653,7 +2653,7 @@
   },
   "orestad-avis": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -2665,7 +2665,7 @@
   },
   "pingvinnyt": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2677,7 +2677,7 @@
   },
   "plastindustrien": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 6,
@@ -2725,7 +2725,7 @@
   },
   "refa": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2761,7 +2761,7 @@
   },
   "renosyd": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -2785,7 +2785,7 @@
   },
   "rgo": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2905,7 +2905,7 @@
   },
   "silkeborg-forsyning": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2989,7 +2989,7 @@
   },
   "sonderborgnyt": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3001,10 +3001,10 @@
   },
   "sonfor": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 0,
+    "items_30d": 1,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
@@ -3097,7 +3097,7 @@
   },
   "taenk": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3121,7 +3121,7 @@
   },
   "tekniskfokus": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
@@ -3169,7 +3169,7 @@
   },
   "tjekfredensborg": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3181,7 +3181,7 @@
   },
   "toender-forsyning": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -3205,7 +3205,7 @@
   },
   "tv2-nyheder": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 7,
@@ -3217,7 +3217,7 @@
   },
   "tv2-regionerne": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 33,
@@ -3289,7 +3289,7 @@
   },
   "varde-kommune": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3361,7 +3361,7 @@
   },
   "vesthimmerlandsavis": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3397,7 +3397,7 @@
   },
   "viborher": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3409,7 +3409,7 @@
   },
   "videnskab": {
     "last_ok": "2026-10-21",
-    "last_attempt": "2026-10-21T05:28:31Z",
+    "last_attempt": "2026-10-21T07:42:43Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
