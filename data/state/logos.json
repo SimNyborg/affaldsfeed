@@ -218,7 +218,7 @@
   "brammingposten": {
     "file": null,
     "src": null,
-    "checked": "2026-10-16T05:28:42Z",
+    "checked": "2026-10-23T05:28:55Z",
     "error": "HTTP 404"
   },
   "brandebladet": {
@@ -266,7 +266,7 @@
   "byggeri-arkitektur-dk": {
     "file": null,
     "src": null,
-    "checked": "2026-10-16T05:28:42Z",
+    "checked": "2026-10-23T05:28:55Z",
     "error": "HTTP 502"
   },
   "bygtek-dk": {
@@ -516,10 +516,10 @@
     "error": "HTTP 403"
   },
   "faa": {
-    "file": null,
-    "src": null,
-    "checked": "2026-10-16T05:28:42Z",
-    "error": "springes over: HTTP 503"
+    "file": "faa.png",
+    "src": "https://faa.dk/assets/1792475972/kodus/jfm-brands/brands/faa/favicons/apple-icon-57x57.png",
+    "checked": "2026-10-23T05:28:55Z",
+    "error": null
   },
   "faaborg-midtfyn-kommune": {
     "file": "faaborg-midtfyn-kommune.png",
@@ -548,7 +548,7 @@
   "fanoeposten-dk": {
     "file": null,
     "src": null,
-    "checked": "2026-10-16T05:28:42Z",
+    "checked": "2026-10-23T05:28:55Z",
     "error": "HTTP 404"
   },
   "farsoeavis": {
@@ -608,7 +608,7 @@
   "folkebladet-rebild": {
     "file": null,
     "src": null,
-    "checked": "2026-10-16T05:28:42Z",
+    "checked": "2026-10-23T05:28:55Z",
     "error": "HTTP 404"
   },
   "folkebladetlemvig": {
@@ -626,7 +626,7 @@
   "folketinget-oda": {
     "file": null,
     "src": null,
-    "checked": "2026-10-16T05:28:42Z",
+    "checked": "2026-10-23T05:28:55Z",
     "error": "HTTP 404"
   },
   "fors": {
@@ -702,10 +702,10 @@
     "error": null
   },
   "frederiksborgamtsavis-dk": {
-    "file": null,
-    "src": null,
-    "checked": "2026-10-16T05:28:42Z",
-    "error": "blokeret af robots.txt"
+    "file": "frederiksborgamtsavis-dk.png",
+    "src": "https://frederiksborgamtsavis.sn.dk/favicons/frederiksborg-96x96.png",
+    "checked": "2026-10-23T05:28:55Z",
+    "error": null
   },
   "frederikshavn-kommune": {
     "file": "frederikshavn-kommune.jpg",
@@ -1184,7 +1184,7 @@
   "lejremagasinet": {
     "file": null,
     "src": null,
-    "checked": "2026-10-16T05:28:42Z",
+    "checked": "2026-10-23T05:28:55Z",
     "error": "HTTP 404"
   },
   "lemvig-kommune": {
@@ -1232,8 +1232,8 @@
   "magasinetkbh-dk": {
     "file": null,
     "src": null,
-    "checked": "2026-10-16T05:28:42Z",
-    "error": "HTTP 404"
+    "checked": "2026-10-23T05:28:55Z",
+    "error": "ikke et brugbart billede (kun PNG, ICO, GIF, JPEG og WebP på mindst 16 px)"
   },
   "mariagerfjord-kommune": {
     "file": "mariagerfjord-kommune.png",
@@ -1382,7 +1382,7 @@
   "nibeavis": {
     "file": null,
     "src": null,
-    "checked": "2026-10-16T05:28:42Z",
+    "checked": "2026-10-23T05:28:55Z",
     "error": "HTTP 404"
   },
   "noah": {
@@ -1418,8 +1418,8 @@
   "nordisk-ministerraad": {
     "file": null,
     "src": null,
-    "checked": "2026-10-16T05:28:42Z",
-    "error": "HTTP 404"
+    "checked": "2026-10-23T05:28:55Z",
+    "error": "HTTP 503 (Retry-After: 86400); springes over i denne kørsel"
   },
   "nordjyske": {
     "file": "nordjyske.png",
@@ -1634,7 +1634,7 @@
   "sjaellandske-medier--sjnyheder-dk": {
     "file": null,
     "src": null,
-    "checked": "2026-10-16T05:28:42Z",
+    "checked": "2026-10-23T05:28:55Z",
     "error": "blokeret af robots.txt"
   },
   "skanderborg-kommune": {
@@ -1724,7 +1724,7 @@
   "taenk": {
     "file": null,
     "src": null,
-    "checked": "2026-10-16T05:28:42Z",
+    "checked": "2026-10-23T05:28:55Z",
     "error": "blokeret af robots.txt"
   },
   "teknik-og-miljoe": {
@@ -1928,7 +1928,7 @@
   "vodskovavis": {
     "file": null,
     "src": null,
-    "checked": "2026-10-16T05:28:42Z",
+    "checked": "2026-10-23T05:28:55Z",
     "error": "HTTP 410"
   },
   "vordingborg-kommune": {
