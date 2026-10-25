@@ -36,7 +36,7 @@
     "body": ""
   },
   "affaldoggenbrug.middelfart.dk": {
-    "fetched": "2026-10-24T12:28:15Z",
+    "fetched": "2026-10-25T19:04:46Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://affaldoggenbrug.middelfart.dk/sitemap.xml\n"
   },
   "affaldplus.dk": {
@@ -448,7 +448,7 @@
     "body": ""
   },
   "forsyningstilsynet.dk": {
-    "fetched": "2026-10-24T05:27:57Z",
+    "fetched": "2026-10-25T19:04:46Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://forsyningstilsynet.dk/sitemap.xml\n"
   },
   "frdb.dk": {
@@ -1508,7 +1508,7 @@
     "body": "<pre>\r\n        # robots.txt, www.mariagerfjord.dk/&#xA;&#xA;User-Agent: *&#xA;Allow: /DependencyHandler.axd&#xA;Disallow: /aspnet_client/&#xA;Disallow: /bin/&#xA;Disallow: /config/&#xA;Disallow: /umbraco/&#xA;Disallow: /umbraco_client/&#xA;Disallow: /usercontrols/&#xA;Disallow: /*.axd&#xA;Sitemap: https://www.mariagerfjord.dk/sitemap.xml\r\n</pre>"
   },
   "www.middelfart.dk": {
-    "fetched": "2026-10-24T12:28:15Z",
+    "fetched": "2026-10-25T19:04:46Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://www.middelfart.dk/sitemap.xml\n"
   },
   "www.mitlejre.dk": {
@@ -1692,7 +1692,7 @@
     "body": "Sitemap: https://www.teknologisk.dk/sitemap.xml\r\n\r\nUser-agent: *\r\nDisallow: /_/custom/itcert/\r\n\r\nUser-agent: MJ12bot\r\nDisallow: /\r\n"
   },
   "www.thisted.dk": {
-    "fetched": "2026-10-24T12:28:15Z",
+    "fetched": "2026-10-25T19:04:46Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://www.thisted.dk/sitemap.xml\n"
   },
   "www.thyforsyning.dk": {
