@@ -52,7 +52,7 @@
     "body": ""
   },
   "albertslundnyt.dk": {
-    "fetched": "2026-10-24T05:27:57Z",
+    "fetched": "2026-10-25T06:06:15Z",
     "body": ""
   },
   "altomfuresoe.dk": {
@@ -100,7 +100,7 @@
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://bornholm.dk/sitemap.xml\n"
   },
   "bornholm.nu": {
-    "fetched": "2026-10-24T05:27:57Z",
+    "fetched": "2026-10-25T06:06:15Z",
     "body": "User-agent: GPTBot\r\nDisallow: /\r\n\r\nUser-agent: *\r\nDisallow: /admin/\r\nDisallow: /ajax-services/\r\nDisallow: /konto/\r\nDisallow: /soeg/\r\nDisallow: /print/\r\n\r\n\r\n\r\n"
   },
   "bornholmnyt.dk": {
@@ -304,27 +304,27 @@
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditikast-brande.dk/sitemap.xml\n"
   },
   "ditikast-brande.dk": {
-    "fetched": "2026-10-24T05:27:57Z",
+    "fetched": "2026-10-25T06:06:15Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditikast-brande.dk/sitemap.xml\n"
   },
   "ditkarup.dk": {
-    "fetched": "2026-10-24T05:27:57Z",
+    "fetched": "2026-10-25T06:06:15Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditkarup.dk/sitemap.xml\n"
   },
   "ditkjellerup.dk": {
-    "fetched": "2026-10-24T05:27:57Z",
+    "fetched": "2026-10-25T06:06:15Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditkjellerup.dk/sitemap.xml\n"
   },
   "ditry.dk": {
-    "fetched": "2026-10-24T05:27:57Z",
+    "fetched": "2026-10-25T06:06:15Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditry.dk/sitemap.xml\n"
   },
   "ditsalling.dk": {
-    "fetched": "2026-10-24T05:27:57Z",
+    "fetched": "2026-10-25T06:06:15Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditsalling.dk/sitemap.xml\n"
   },
   "ditvinderup.dk": {
-    "fetched": "2026-10-24T05:27:57Z",
+    "fetched": "2026-10-25T06:06:15Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditvinderup.dk/sitemap.xml\n"
   },
   "djurslandsposten.dk": {
