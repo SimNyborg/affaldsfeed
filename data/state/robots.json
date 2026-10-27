@@ -36,7 +36,7 @@
     "body": ""
   },
   "affaldoggenbrug.middelfart.dk": {
-    "fetched": "2026-10-26T19:17:40Z",
+    "fetched": "2026-10-27T21:17:07Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://affaldoggenbrug.middelfart.dk/sitemap.xml\n"
   },
   "affaldplus.dk": {
@@ -452,7 +452,7 @@
     "body": ""
   },
   "forsyningstilsynet.dk": {
-    "fetched": "2026-10-26T19:17:40Z",
+    "fetched": "2026-10-27T21:17:07Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://forsyningstilsynet.dk/sitemap.xml\n"
   },
   "frdb.dk": {
@@ -864,7 +864,7 @@
     "body": "User-agent: *\nAllow: /\n\n########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://tv2.dk/ai.txt                                                                                            ###\n########################################################################################################################\n\nUser-agent: AddSearchBot\nUser-agent: AI2Bot\nUser-agent: Ai2Bot-Dolma\nUser-agent: aiHitBot\nUser-agent: Amazonbot\nUser-agent: Andibot\nUser-agent: anthropic-ai\nUser-agent: Applebot\nUser-agent: Applebot-Extended\nUser-agent: Awario\nUser-agent: bedrockbot\nUser-agent: bigsur.ai\nUser-agent: Brightbot 1.0\nUser-agent: Bytespider\nUser-agent: CCBot\nUser-agent: ChatGPT Agent\nUser-agent: ChatGPT-User\nUser-agent: Claude-SearchBot\nUser-agent: Claude-User\nUser-agent: Claude-Web\nUser-agent: ClaudeBot\nUser-agent: CloudVertexBot\nUser-agent: cohere-ai\nUser-agent: cohere-training-data-crawler\nUser-agent: Cotoyogi\nUser-agent: Crawlspace\nUser-agent: Datenbank Crawler\nUser-agent: DeepSeekBot\nUser-agent: Devin\nUser-agent: Diffbot\nUser-agent: DuckAssistBot\nUser-agent: Echobot Bot\nUser-agent: EchoboxBot\nUser-agent: Factset_spyderbot\nUser-agent: FirecrawlAgent\nUser-agent: FriendlyCrawler\nUser-agent: Gemini-Deep-Research\nUser-agent: Google-CloudVertexBot\nUser-agent: Google-Extended\nUser-agent: Google-Firebase\nUser-agent: GoogleAgent-Mariner\nUser-agent: GoogleOther\nUser-agent: GoogleOther-Image\nUser-agent: GoogleOther-Video\nUser-agent: GPTBot\nUser-agent: iaskspider/2.0\nUser-agent: ICC-Crawler\nUser-agent: ImagesiftBot\nUser-agent: img2dataset\nUser-agent: ISSCyberRiskCrawler\nUser-agent: Kangaroo Bot\nUser-agent: LinerBot\nUser-agent: meta-externalagent\nUser-agent: Meta-ExternalAgent\nUser-agent: meta-externalfetcher\nUser-agent: Meta-ExternalFetcher\nUser-agent: meta-webindexer\nUser-agent: MistralAI-User\nUser-agent: MistralAI-User/1.0\nUser-agent: MyCentralAIScraperBot\nUser-agent: netEstate Imprint Crawler\nUser-agent: NovaAct\nUser-agent: OAI-SearchBot\nUser-agent: omgili\nUser-agent: omgilibot\nUser-agent: OpenAI\nUser-agent: Operator\nUser-agent: PanguBot\nUser-agent: Panscient\nUser-agent: panscient.com\nUser-agent: Perplexity-User\nUser-agent: PerplexityBot\nUser-agent: PetalBot\nUser-agent: PhindBot\nUser-agent: Poseidon Research Crawler\nUser-agent: QualifiedBot\nUser-agent: QuillBot\nUser-agent: quillbot.com\nUser-agent: SBIntuitionsBot\nUser-agent: Scrapy\nUser-agent: SemrushBot-OCOB\nUser-agent: SemrushBot-SWA\nUser-agent: ShapBot\nUser-agent: Sidetrade indexer bot\nUser-agent: TerraCotta\nUser-agent: Thinkbot\nUser-agent: TikTokSpider\nUser-agent: Timpibot\nUser-agent: VelenPublicWebCrawler\nUser-agent: WARDBot\nUser-agent: Webzio-Extended\nUser-agent: wpbot\nUser-agent: YaK\nUser-agent: YandexAdditional\nUser-agent: YandexAdditionalBot\nUser-agent: YouBot\nDisallow: /"
   },
   "oda.ft.dk": {
-    "fetched": "2026-10-26T19:17:40Z",
+    "fetched": "2026-10-27T21:17:07Z",
     "body": ""
   },
   "odder.dk": {
@@ -1512,7 +1512,7 @@
     "body": "<pre>\r\n        # robots.txt, www.mariagerfjord.dk/&#xA;&#xA;User-Agent: *&#xA;Allow: /DependencyHandler.axd&#xA;Disallow: /aspnet_client/&#xA;Disallow: /bin/&#xA;Disallow: /config/&#xA;Disallow: /umbraco/&#xA;Disallow: /umbraco_client/&#xA;Disallow: /usercontrols/&#xA;Disallow: /*.axd&#xA;Sitemap: https://www.mariagerfjord.dk/sitemap.xml\r\n</pre>"
   },
   "www.middelfart.dk": {
-    "fetched": "2026-10-26T19:17:40Z",
+    "fetched": "2026-10-27T21:17:07Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://www.middelfart.dk/sitemap.xml\n"
   },
   "www.mitlejre.dk": {
@@ -1696,7 +1696,7 @@
     "body": "Sitemap: https://www.teknologisk.dk/sitemap.xml\r\n\r\nUser-agent: *\r\nDisallow: /_/custom/itcert/\r\n\r\nUser-agent: MJ12bot\r\nDisallow: /\r\n"
   },
   "www.thisted.dk": {
-    "fetched": "2026-10-26T19:17:40Z",
+    "fetched": "2026-10-27T21:17:07Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://www.thisted.dk/sitemap.xml\n"
   },
   "www.thyforsyning.dk": {
