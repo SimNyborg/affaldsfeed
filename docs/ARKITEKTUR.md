@@ -53,7 +53,7 @@ En kørsel:
 5. Overblikket opdateres for de perioder, der er på tur (se næste afsnit).
 6. `git pull --rebase` og push. Pushet starter `publish.yml`.
 
-Fallback: `export` bruger heartbeat til at vælge visning. Er seneste kørsel mere end 2 timer forsinket i forhold til den seneste planlagte kørsel, skifter feedet til regelbaseret visning. Godkendte indslag vises stadig, afviste er stadig skjult, og uvurderede kandidater, som forfiltret ville vise, kommer med. Det står i i-panelet (Om Affaldsfeed), ikke øverst på siden. Mellem kørslerne og om natten venter nye indslag til næste kørsel, uden at feedet skifter. Kilder med `ai: false` vurderes altid kun efter regler. Den præcise regel står i KONTRAKTER 6.3.
+Fallback: `export` bruger heartbeat til at vælge visning. Er seneste kørsel mere end 2 timer forsinket i forhold til den seneste planlagte kørsel, skifter feedet til regelbaseret visning. Godkendte indslag vises stadig, afviste er stadig skjult, og uvurderede kandidater fra myndigheder, som forfiltret ville vise, kommer med. Kategorierne står i `routine.fallback_categories` i `config/settings.yaml`. Andre uvurderede indslag venter på Claude, fordi forfiltret tager fejl for ofte i dem. Det står i i-panelet (Om Affaldsfeed), ikke øverst på siden. Mellem kørslerne og om natten venter nye indslag til næste kørsel, uden at feedet skifter. Kilder med `ai: false` vurderes altid kun efter regler. Den præcise regel står i KONTRAKTER 6.3.
 
 ## Nyhedsoverblikket
 

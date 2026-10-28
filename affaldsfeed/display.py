@@ -175,8 +175,10 @@ def _from_candidate(
     teaser_max: int,
     known_places: set[str],
     summary: str | None = None,
+    fallback_categories: list[str] | None = None,
 ) -> DisplayItem | None:
-    """summary: resuméet med egne ord (§6.2a); uden det bruges vurderingens summary_da."""
+    """summary: resuméet med egne ord (§6.2a); uden det bruges vurderingens summary_da.
+    fallback_categories: kategorier, hvis uvurderede indslag vises i fallback (None = alle)."""
     reason: str | None = None
     places = list(c.places)
     state = _Shown(show=False, reviewed=True, topics=list(c.topics), genre=c.genre)
@@ -195,7 +197,8 @@ def _from_candidate(
             places = list(judgment.places)
         summary = summary or judgment.summary_da
     elif mode == "fallback":
-        state.show = c.why.decision == "vis"
+        # Kun kategorier, hvor forfiltret sjældent tager fejl; resten venter på Claude
+        state.show = c.why.decision == "vis" and (fallback_categories is None or info.category in fallback_categories)
         state.reviewed = False
         summary = None
     # ellers: uvurderet i claude-tilstand venter
@@ -299,6 +302,7 @@ def build_display_items(
     teaser_max = config.settings.teaser_display_max
     prefixes = config.settings.title_prefixes
     known_places = config.geo.place_ids()
+    fallback_categories = config.settings.routine.fallback_categories
 
     out: dict[str, DisplayItem] = {}
     cand_ids: set[str] = set()
@@ -309,7 +313,8 @@ def build_display_items(
         src = info.get(c.source)
         if src is None or item_time(c) < since:
             continue
-        item = _from_candidate(c, src, judgments.get(c.id), mode, overrides, teaser_max, known_places, summaries.get(c.id))
+        item = _from_candidate(c, src, judgments.get(c.id), mode, overrides, teaser_max, known_places,
+                               summaries.get(c.id), fallback_categories)
         if item is not None:
             out[item.id] = _without_prefix(item, prefixes)
 

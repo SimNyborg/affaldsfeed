@@ -296,3 +296,13 @@ Om formiddagen 15. oktober viste fanen I dag gårsdagens overblik, og brugeren v
 Nu er I dag tom, til der er et overblik fra i dag. Siden skjuler et dagsoverblik, hvis det er skrevet på en tidligere dag, og eksporten udelader det fra `feed.json`, så andre, der læser filen, heller ikke får gårsdagens. Fanen viser da "Intet overblik endnu i dag." Ugen, Måneden og Året var allerede de seneste 7, 30 og 365 døgn og er uændrede.
 
 Routinen kører kl. 7.25, 9.25 og 14.25. Nyheder, der kommer efter kl. 14.25, bliver derfor først vurderet næste morgen og kommer aldrig med i I dag, kun i Ugen. Skal eftermiddagen med, skal routinen også køre senere på dagen.
+
+## 2026-10-28: Nødvisningen viser kun myndigheder
+
+Brugeren så to artikler fra Ingeniøren om tips om ulovlige vandløb, der "ryger i skraldespanden". De handler ikke om affald. Claude afviste dem, men først 28. oktober kl. 7.26. Routinen kørte nemlig ikke 27. oktober, så feedet stod i fallback fra om formiddagen den 27. til næste morgen, og fallback viste uvurderede indslag, som forfiltret ville vise. Her talte "skraldespanden" som et stærkt affaldsord. Grunden til, at routinen ikke kørte, er ikke bekræftet, men mønsteret ligner ugegrænsen på abonnementet, som også stoppede routinen 10.-13. oktober.
+
+Forfiltret er bevidst løst, og Claude afviser mange af de indslag, det ville vise. Blandt de indslag, forfiltret markerede "vis", og som Claude har vurderet, var andelen relevante 94 % hos myndigheder, 80 % hos fagmedier, 62 % hos organisationer og 43 % hos både lokalmedier og kommuner. Det samme ord "skrald*" alene i titlen gav kun 35 % relevante.
+
+- **Fallback viser kun myndigheder:** Uvurderede indslag vises kun i fallback, når kildens kategori står i `routine.fallback_categories` i `config/settings.yaml`. Den er `[myndighed]`. Resten venter på Claude, så feedet ikke fyldes med forkerte indslag, når routinen står stille. Listen kan udvides, hvis friskhed vejer tungere end præcision.
+- **Relevansprofilen:** Under "Ikke med" står nu landbrug, gødning, kvælstof og vandløb uden affaldsvinkel, og eksemplet "ryger i skraldespanden" for skrald i overført betydning. Biogas, afgasset biomasse, kompost og spildevandsslam er stadig med.
+- **Test med fast tidspunkt:** `test_main_check_fetch_prints_decisions_and_writes_nothing` brugte dagens dato, og fixturens indslag blev for gamle omkring 28. oktober. Testen bruger nu et fast tidspunkt.

@@ -306,7 +306,7 @@ Skrivning er atomisk (skriv `.tmp`, `os.replace`). Filer ændres kun, når indho
 ### 6.3 Fallback (judgments.py: `display_mode(now, heartbeat, settings) -> "claude"|"fallback"`)
 Rutinen kører kl. `settings.routine.minute` i timerne `settings.routine.hours` (København). En planlagt kørsel regnes først som misset, når `settings.routine.grace_hours` (standard 2) er gået siden dens tidspunkt: `S*` = seneste tidspunkt ≤ `now - grace_hours` på formen HH:MM i vinduet. Tilstand er `fallback`, når heartbeat mangler, eller `last_run < S*`. Ellers `claude`.
 - `claude`: vis kandidater med `relevant: true`-vurdering; skjul `relevant: false`; uvurderede vises ikke (venter).
-- `fallback`: som `claude`, men uvurderede kandidater med `why.decision == "vis"` vises også med `reviewed: false`.
+- `fallback`: som `claude`, men uvurderede kandidater med `why.decision == "vis"` vises også med `reviewed: false`, når kildens kategori står i `settings.routine.fallback_categories` (`None` = alle kategorier). Resten venter på Claude.
 - Kilder med `ai: false` vurderes altid af regler: vises når `why.decision == "vis"`, `reviewed: false`.
 - Kilder med `ai: titel` vurderes som andre af Claude (på titlen). Indslag fra kilder uden `ai: true` vises uden teaser, resumé og `reason` (3.4). Kilder med `status: afventer` er ikke kendte afsendere, så deres indslag vises aldrig.
 

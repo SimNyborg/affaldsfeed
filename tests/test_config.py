@@ -14,6 +14,7 @@ import pytest
 
 from affaldsfeed import config as cfgmod
 from affaldsfeed import fetch as fetchmod
+from affaldsfeed import timeutil
 from affaldsfeed.collect import COLLECTORS
 from affaldsfeed.config import ConfigError, load_config, load_sources, main_check, publisher_lookup
 
@@ -223,6 +224,8 @@ def test_main_check_date_template_only_for_sitemaps(env, capsys):
 def test_main_check_fetch_prints_decisions_and_writes_nothing(env, monkeypatch, capsys):
     fake = _fakes().make_fetcher_class()
     monkeypatch.setattr(fetchmod, "Fetcher", fake)
+    # Fast tidspunkt: fixturens indslag er fra oktober 2026, og "for gammel" afhænger af dagen
+    monkeypatch.setattr(timeutil, "now_utc", lambda override=None: timeutil.parse_iso(override or "2026-10-07T08:05:00Z"))
     assert main_check(argparse.Namespace(fetch="testmedie", explain=True)) == 0
     out = capsys.readouterr().out
     assert "BEHOLDT" in out and "AFVIST" in out

@@ -31,11 +31,12 @@ Europæiske og nordiske nyheder er med, når de handler om regler, erfaringer el
 - Nordic Waste-sagen og lignende sager om industri- eller jordaffald uden kommunal vinkel
 - atomaffald og radioaktivt affald
 - rumskrot
-- "affald" eller "skrald" brugt i overført betydning
+- "affald" eller "skrald" brugt i overført betydning, fx når tips eller sager "ryger i skraldespanden"
 - ren driftsinformation til borgere (forsinket tømning, åbningstider, helligdagsændringer)
 - jobopslag, kurser, webinarer og tilmeldinger
 - reklame for enkelte virksomheders produkter
 - generelle klima- eller miljønyheder uden affaldsvinkel
+- landbrug, gødning, kvælstof og vandløb, medmindre det handler om affald, fx biogas, afgasset biomasse, kompost eller spildevandsslam
 
 ## Når du er i tvivl
 
