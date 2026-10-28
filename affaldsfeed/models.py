@@ -312,6 +312,8 @@ class RoutineSettings(_Strict):
     minute: int = 25
     grace_hours: float = 2.0
     timezone: str = "Europe/Copenhagen"
+    # Fallback viser kun uvurderede indslag fra disse kategorier (§6.3); None = alle
+    fallback_categories: list[CategoryId] | None = None
 
 
 class PagesSettings(_Strict):

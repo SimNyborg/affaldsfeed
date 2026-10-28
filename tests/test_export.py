@@ -243,13 +243,17 @@ def test_window_start_reaches_back_to_january_and_counts_stay_60_days(repo, scen
 
 
 def test_fallback_mode_shows_unreviewed(repo, scenario, tmp_path):
+    """Fallback viser uvurderede indslag fra myndigheder (routine.fallback_categories). Resten venter på Claude."""
+    authority = cand("myndighed-venter", source="kefm", hours_ago=1)
+    store.save_candidates([authority])
     heartbeat("2026-10-07T05:00:00Z")  # over 2 t forsinket kl. 12
     out = tmp_path / "_site"
     export_to(out)
     _, feed = read(out, "feed.json")
     assert feed["mode"] == "fallback"
     by_id = {i["id"]: i for i in feed["items"]}
-    assert by_id[scenario["waiting"].id]["reviewed"] is False
+    assert by_id[authority.id]["reviewed"] is False
+    assert scenario["waiting"].id not in by_id  # fagmedie
     assert scenario["hidden"].id not in by_id
 
 

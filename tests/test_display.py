@@ -100,13 +100,21 @@ def test_claude_mode_shows_only_relevant(base_config):
 
 
 def test_fallback_shows_unjudged_vis_unreviewed(base_config):
-    a, b, g, h = cand("a"), cand("b"), cand("g", decision="graa"), cand("h")
-    out = build(base_config, [a, b, g, h], [judge(a, True), judge(h, False)], mode="fallback")
+    """Fallback viser uvurderede vis-indslag, men kun fra kategorierne i routine.fallback_categories."""
+    assert base_config.settings.routine.fallback_categories == ["myndighed"]
+    a, h = cand("a"), cand("h")
+    b, g = cand("b", source="kefm"), cand("g", source="kefm", decision="graa")
+    trade = cand("fagmedie")  # altinget er et fagmedie: venter på Claude
+    out = build(base_config, [a, b, g, h, trade], [judge(a, True), judge(h, False)], mode="fallback")
     by_id = {d.id: d for d in out}
     assert set(by_id) == {a.id, b.id}
     assert by_id[a.id].reviewed is True
     assert by_id[b.id].reviewed is False
     assert by_id[b.id].reason is None
+    # Uden listen (None) viser fallback uvurderede indslag fra alle kategorier
+    routine = base_config.settings.routine.model_copy(update={"fallback_categories": None})
+    every = dataclasses.replace(base_config, settings=base_config.settings.model_copy(update={"routine": routine}))
+    assert ids(build(every, [trade], [], mode="fallback")) == {trade.id}
 
 
 def test_ai_false_source_uses_rules_only(base_config):
@@ -151,7 +159,8 @@ def test_summary_lines_win_and_rules_shown_items_have_none(base_config):
     assert by_id[a.id].summary_da == "Nyt resumé fra resumélinjen"
     assert by_id[b.id].summary_da is None
     # Regelvisning (fallback) uden vurdering har intet resumé
-    out = build_display_items(config, SOURCES, [b], {}, "fallback", NOW, SINCE, {b.id: "Må ikke vises"})
+    k = cand("k", source="kefm")
+    out = build_display_items(config, SOURCES, [k], {}, "fallback", NOW, SINCE, {k.id: "Må ikke vises"})
     assert out[0].summary_da is None
 
 
@@ -306,7 +315,7 @@ def test_places_from_judgment_or_rules(base_config):
 
 def test_places_rules_only_and_fallback(base_config):
     rules_only = cand("dr", source="dr", places=["k:aarhus"])
-    unjudged = cand("venter", places=["k:odense"])
+    unjudged = cand("venter", source="kefm", places=["k:odense"])
     out = build(base_config, [rules_only, unjudged], [judge(rules_only, places=[])], mode="fallback")
     by_id = {d.id: d for d in out}
     assert by_id[rules_only.id].places == ["k:aarhus"]  # ai:false ser bort fra vurderingen

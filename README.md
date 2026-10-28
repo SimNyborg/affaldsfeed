@@ -12,7 +12,7 @@ Live: https://simnyborg.github.io/affaldsfeed/
 2. En Claude-routine kører kl. 07.25, 09.25 og 14.25 dansk tid på projektejerens Claude-abonnement. Den læser instruksen i `routine/REDAKTOER.md`, vurderer de nye kandidater mod `config/relevansprofil.md` og skriver vurderingerne i `data/judgments/`. Derefter opdaterer den AI-overblikket i `data/overview/`, kl. 14.25 også højdepunkterne i `data/timeline/`, og pusher.
 3. Pushet starter et nyt byg, og GitHub Pages viser de godkendte indslag og det nye overblik.
 
-Feedet viser kun indslag, Claude har godkendt. Routinen kører kl. 07.25, 09.25 og 14.25. Er den mere end to timer forsinket, fx fordi kvoten er brugt op, skifter feedet selv til regelbaseret visning, og i-panelet øverst til højre siger det. Mellem kørslerne venter nye indslag til næste kørsel. Hele forløbet er beskrevet i [docs/ARKITEKTUR.md](docs/ARKITEKTUR.md).
+Feedet viser kun indslag, Claude har godkendt. Routinen kører kl. 07.25, 09.25 og 14.25. Er den mere end to timer forsinket, fx fordi kvoten er brugt op, viser feedet også myndighedernes nye indslag uden Claudes vurdering, og i-panelet øverst til højre siger det. Mellem kørslerne venter nye indslag til næste kørsel. Hele forløbet er beskrevet i [docs/ARKITEKTUR.md](docs/ARKITEKTUR.md).
 
 Indsamleren henter med User-Agent `Affaldsfeed/0.1 (+https://github.com/SimNyborg/affaldsfeed)`, følger robots.txt, holder mindst to sekunder mellem kald til samme vært og bruger ETag, så uændrede feeds ikke hentes igen. Ejer du en af kilderne og vil have den fjernet eller hentet sjældnere, så opret et issue.
 

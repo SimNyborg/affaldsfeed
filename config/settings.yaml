@@ -14,6 +14,7 @@ routine:
   hours: [7, 9, 14]
   minute: 25
   grace_hours: 2.0               # fallback når seneste kørsel er > 2 t forsinket
+  fallback_categories: [myndighed]  # fallback viser kun uvurderede indslag herfra (94 % relevante, okt. 2026)
   timezone: Europe/Copenhagen
 
 # Kilder uden RSS (method sitemap og html). Se KONTRAKTER §5.6.
