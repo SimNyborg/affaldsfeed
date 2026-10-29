@@ -36,7 +36,7 @@
     "body": ""
   },
   "affaldoggenbrug.middelfart.dk": {
-    "fetched": "2026-10-27T21:17:07Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://affaldoggenbrug.middelfart.dk/sitemap.xml\n"
   },
   "affaldplus.dk": {
@@ -452,7 +452,7 @@
     "body": ""
   },
   "forsyningstilsynet.dk": {
-    "fetched": "2026-10-27T21:17:07Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://forsyningstilsynet.dk/sitemap.xml\n"
   },
   "frdb.dk": {
@@ -636,7 +636,7 @@
     "body": "\r\n   User-agent: AhrefsBot\r\n   Disallow: /\r\n\r\n   User-agent: *\r\n   Disallow: /docadm/\r\n   Disallow: /kommunikation/\r\n   Disallow: /sitecore/\r\n     "
   },
   "jammerbugtposten.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://jammerbugtposten.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "jv.dk": {
@@ -820,7 +820,7 @@
     "body": "# If the Joomla site is installed within a folder such as at\n# e.g. www.example.com/joomla/ the robots.txt file MUST be\n# moved to the site root at e.g. www.example.com/robots.txt\n# AND the joomla folder name MUST be prefixed to the disallowed\n# path, e.g. the Disallow rule for the /administrator/ folder\n# MUST be changed to read Disallow: /joomla/administrator/\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/orig.html\n#\n# For syntax checking, see:\n# http://tool.motoricerca.info/robots-checker.phtml\n\nUser-agent: *\nDisallow: /administrator/\nDisallow: /cache/\nDisallow: /cli/\n#Disallow: /components/\n#Disallow: /images/\nDisallow: /includes/\nDisallow: /installation/\nDisallow: /language/\nDisallow: /libraries/\nDisallow: /logs/\n##Disallow: /modules/\n#Disallow: /plugins/\n#Disallow: /tmp/\n\n"
   },
   "noah.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "#\n# robots.txt\n#\n# This file is to prevent the crawling and indexing of certain parts\n# of your site by web crawlers and spiders run by sites like Yahoo!\n# and Google. By telling these \"robots\" where not to go on your site,\n# you save bandwidth and server resources.\n#\n# This file will be ignored unless it is at the root of your host:\n# Used:    http://example.com/robots.txt\n# Ignored: http://example.com/site/robots.txt\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/robotstxt.html\n\nUser-agent: *\n# CSS, JS, Images\nAllow: /core/*.css$\nAllow: /core/*.css?\nAllow: /core/*.js$\nAllow: /core/*.js?\nAllow: /core/*.gif\nAllow: /core/*.jpg\nAllow: /core/*.jpeg\nAllow: /core/*.png\nAllow: /core/*.svg\nAllow: /profiles/*.css$\nAllow: /profiles/*.css?\nAllow: /profiles/*.js$\nAllow: /profiles/*.js?\nAllow: /profiles/*.gif\nAllow: /profiles/*.jpg\nAllow: /profiles/*.jpeg\nAllow: /profiles/*.png\nAllow: /profiles/*.svg\n# Directories\nDisallow: /core/\nDisallow: /profiles/\n# Files\nDisallow: /README.md\nDisallow: /composer/Metapackage/README.txt\nDisallow: /composer/Plugin/ProjectMessage/README.md\nDisallow: /composer/Plugin/Scaffold/README.md\nDisallow: /composer/Plugin/VendorHardening/README.txt\nDisallow: /composer/Template/README.txt\nDisallow: /modules/README.txt\nDisallow: /sites/README.txt\nDisallow: /themes/README.txt\nDisallow: /web.config\n# Paths (clean URLs)\nDisallow: /admin/\nDisallow: /comment/reply/\nDisallow: /filter/tips\nDisallow: /node/add/\nDisallow: /search/\nDisallow: /user/register\nDisallow: /user/password\nDisallow: /user/login\nDisallow: /user/logout\nDisallow: /media/oembed\nDisallow: /*/media/oembed\n# Paths (no clean URLs)\nDisallow: /index.php/admin/\nDisallow: /index.php/comment/reply/\nDisallow: /index.php/filter/tips\nDisallow: /index.php/node/add/\nDisallow: /index.php/search/\nDisallow: /index.php/user/password\nDisallow: /index.php/user/register\nDisallow: /index.php/user/login\nDisallow: /index.php/user/logout\nDisallow: /index.php/media/oembed\nDisallow: /index.php/*/media/oembed\n"
   },
   "nomi4s.dk": {
@@ -828,7 +828,7 @@
     "body": "Sitemap: https://nomi4s.dk/Sitemap.xml\r\nUser-agent: *\r\nDisallow: /Files/Papirkurv/\r\n\r\n\r\n\r\nDisallow: /*?cartcmd=*"
   },
   "norddjurs.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://norddjurs.dk/sitemap.xml\n"
   },
   "norddjurs.lokalavisen.dk": {
@@ -848,7 +848,7 @@
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://nordsoeposten.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "nordvaerk.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": ""
   },
   "norfors.dk": {
@@ -864,11 +864,11 @@
     "body": "User-agent: *\nAllow: /\n\n########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://tv2.dk/ai.txt                                                                                            ###\n########################################################################################################################\n\nUser-agent: AddSearchBot\nUser-agent: AI2Bot\nUser-agent: Ai2Bot-Dolma\nUser-agent: aiHitBot\nUser-agent: Amazonbot\nUser-agent: Andibot\nUser-agent: anthropic-ai\nUser-agent: Applebot\nUser-agent: Applebot-Extended\nUser-agent: Awario\nUser-agent: bedrockbot\nUser-agent: bigsur.ai\nUser-agent: Brightbot 1.0\nUser-agent: Bytespider\nUser-agent: CCBot\nUser-agent: ChatGPT Agent\nUser-agent: ChatGPT-User\nUser-agent: Claude-SearchBot\nUser-agent: Claude-User\nUser-agent: Claude-Web\nUser-agent: ClaudeBot\nUser-agent: CloudVertexBot\nUser-agent: cohere-ai\nUser-agent: cohere-training-data-crawler\nUser-agent: Cotoyogi\nUser-agent: Crawlspace\nUser-agent: Datenbank Crawler\nUser-agent: DeepSeekBot\nUser-agent: Devin\nUser-agent: Diffbot\nUser-agent: DuckAssistBot\nUser-agent: Echobot Bot\nUser-agent: EchoboxBot\nUser-agent: Factset_spyderbot\nUser-agent: FirecrawlAgent\nUser-agent: FriendlyCrawler\nUser-agent: Gemini-Deep-Research\nUser-agent: Google-CloudVertexBot\nUser-agent: Google-Extended\nUser-agent: Google-Firebase\nUser-agent: GoogleAgent-Mariner\nUser-agent: GoogleOther\nUser-agent: GoogleOther-Image\nUser-agent: GoogleOther-Video\nUser-agent: GPTBot\nUser-agent: iaskspider/2.0\nUser-agent: ICC-Crawler\nUser-agent: ImagesiftBot\nUser-agent: img2dataset\nUser-agent: ISSCyberRiskCrawler\nUser-agent: Kangaroo Bot\nUser-agent: LinerBot\nUser-agent: meta-externalagent\nUser-agent: Meta-ExternalAgent\nUser-agent: meta-externalfetcher\nUser-agent: Meta-ExternalFetcher\nUser-agent: meta-webindexer\nUser-agent: MistralAI-User\nUser-agent: MistralAI-User/1.0\nUser-agent: MyCentralAIScraperBot\nUser-agent: netEstate Imprint Crawler\nUser-agent: NovaAct\nUser-agent: OAI-SearchBot\nUser-agent: omgili\nUser-agent: omgilibot\nUser-agent: OpenAI\nUser-agent: Operator\nUser-agent: PanguBot\nUser-agent: Panscient\nUser-agent: panscient.com\nUser-agent: Perplexity-User\nUser-agent: PerplexityBot\nUser-agent: PetalBot\nUser-agent: PhindBot\nUser-agent: Poseidon Research Crawler\nUser-agent: QualifiedBot\nUser-agent: QuillBot\nUser-agent: quillbot.com\nUser-agent: SBIntuitionsBot\nUser-agent: Scrapy\nUser-agent: SemrushBot-OCOB\nUser-agent: SemrushBot-SWA\nUser-agent: ShapBot\nUser-agent: Sidetrade indexer bot\nUser-agent: TerraCotta\nUser-agent: Thinkbot\nUser-agent: TikTokSpider\nUser-agent: Timpibot\nUser-agent: VelenPublicWebCrawler\nUser-agent: WARDBot\nUser-agent: Webzio-Extended\nUser-agent: wpbot\nUser-agent: YaK\nUser-agent: YandexAdditional\nUser-agent: YandexAdditionalBot\nUser-agent: YouBot\nDisallow: /"
   },
   "oda.ft.dk": {
-    "fetched": "2026-10-27T21:17:07Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": ""
   },
   "odder.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://odder.dk/sitemap.xml\n"
   },
   "orestad-avis.dk": {
@@ -908,11 +908,11 @@
     "body": "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://randersugeavis.dk/sitemap_index.xml\n"
   },
   "regeringen.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "NOFOLLOW:  *\nNOINDEX:  /aspnet_client/\nDisallow:  /bin/\nDisallow:  /config/\nDisallow:  /data/\nNOINDEX,NOFOLLOW,  /macroScripts/\nDisallow:  /umbraco/\nDisallow:  /umbraco_client/\nDisallow:  /usercontrols/\nDisallow:  /xslt/\nDisallow:  /?morecontrast=1\nDisallow:  /?morecontrast=0\nDisallow:  /?accessibility=1\nDisallow:  /?accessibility=0\nSitemap:  /sitemap.xml"
   },
   "renosyd.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://renosyd.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "rgo.dk": {
@@ -920,7 +920,7 @@
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://rgo.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "rk.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://rk.dk/sitemap.xml\n"
   },
   "ruc.dk": {
@@ -964,7 +964,7 @@
     "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://sn.dk/ai.txt                                                                                             ###\n########################################################################################################################\n\n# Sitemap\nSitemap: https://www.sn.dk/SitemapIndex.0.xml\n\n# Search engines\nUser-agent: *\nAllow: /  \nDisallow: /assets/\n\n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: *\nDisallow: /wp/wp-admin/\nAllow: /wp/wp-admin/admin-ajax.php"
   },
   "solrod.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://solrod.dk/sitemap.xml\n"
   },
   "sonderborgnyt.dk": {
@@ -976,7 +976,7 @@
     "body": "User-agent: *\r\nDisallow: /wp-admin/\r\n\r\n\r\nSitemap: https://sonfor.dk/wp-sitemap.xml\n\n# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://sonfor.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "soroe.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://soroe.dk/sitemap.xml\n"
   },
   "stiften.dk": {
@@ -1032,7 +1032,7 @@
     "body": "# version: 2025-03-07\n\nUser-agent: *\nSitemap: https://www.tvsyd.dk/sitemap.xml\nDisallow: /cp/\nDisallow: /cp\nDisallow: /livewire/update\nDisallow: /api/events\nAllow: /\n\n# Block AI Training Crawlers\n\n# OpenAI\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: ClaudeBot\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\n# Common Crawl\nUser-agent: CCBot\nDisallow: /\n\n# Cohere\nUser-agent: cohere-ai\nDisallow: /\n\n# Google AI\nUser-agent: Google-Extended\nDisallow: /\n\n# Perplexity\nUser-agent: PerplexityBot\nDisallow: /\n\n# Apple\nUser-agent: Applebot-Extended\nDisallow: /\n\n# Block SEO Crawlers\n\n# Block AhrefsBot\nUser-agent: AhrefsBot\nDisallow: /\n\n# Block SemrushBot\nUser-agent: SemrushBot\nDisallow: /\n\n# Block DataForSeoBot\nUser-agent: DataForSeoBot\nDisallow: /\n\n# Block OpenindexBot\nUser-agent: OpenindexBot\nDisallow: /\n\n# Block MJ12bot\nUser-agent: MJ12bot\nDisallow: /\n\n# Block SentiBot\nUser-agent: SentiBot\nDisallow: /\n"
   },
   "ugeavisen.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "User-agent: *\nDisallow: /purchase-flow-login\nDisallow: /redirect-to-purchase-flow\n"
   },
   "vafo.dk": {
@@ -1048,7 +1048,7 @@
     "body": "User-agent: * \nDisallow: /app_browsers/\nDisallow: /app_code/\nDisallow: /app_data/\nDisallow: /app_plugins/\nDisallow: /bin/\nDisallow: /cdn-cgi/\nDisallow: /config/\nDisallow: /controllers/\nDisallow: /config/\nDisallow: /css/\nDisallow: /images/\nDisallow: /obj/\nDisallow: /properties/\nDisallow: /robots/\nDisallow: /scripts/\nDisallow: /umbraco/\nDisallow: /umbraco_client/\nDisallow: /views/\nUser-agent: Sogou web spider\nCrawl-delay: 10\nDisallow: /\nsitemap:https://vejen.dk/sitemap.xml\nUser-agent: *\nDisallow: *.pdf\nDisallow: *.doc*\nDisallow: *.xls*\nDisallow: *.pptx*\n"
   },
   "vestfor.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "User-agent: *\nAllow: /"
   },
   "vesthimmerland.dk": {
@@ -1056,7 +1056,7 @@
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://vesthimmerland.dk/sitemap.xml\n"
   },
   "vesthimmerlandsavis.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://vesthimmerlandsavis.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "vesthimmerlandsforsyning.dk": {
@@ -1208,7 +1208,7 @@
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditkjellerup.dk/sitemap.xml\n"
   },
   "www.dkteknikogmiljoe.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "User-Agent: *\nAllow: /\n\nSitemap: https://www.dkteknikogmiljoe.dk/sitemap.xml\nSitemap: https://www.dkteknikogmiljoe.dk/news-sitemap.xml\n"
   },
   "www.dn.dk": {
@@ -1512,7 +1512,7 @@
     "body": "<pre>\r\n        # robots.txt, www.mariagerfjord.dk/&#xA;&#xA;User-Agent: *&#xA;Allow: /DependencyHandler.axd&#xA;Disallow: /aspnet_client/&#xA;Disallow: /bin/&#xA;Disallow: /config/&#xA;Disallow: /umbraco/&#xA;Disallow: /umbraco_client/&#xA;Disallow: /usercontrols/&#xA;Disallow: /*.axd&#xA;Sitemap: https://www.mariagerfjord.dk/sitemap.xml\r\n</pre>"
   },
   "www.middelfart.dk": {
-    "fetched": "2026-10-27T21:17:07Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://www.middelfart.dk/sitemap.xml\n"
   },
   "www.mitlejre.dk": {
@@ -1600,7 +1600,7 @@
     "body": "Sitemap: https://www.revas.dk/Sitemap.xml\r\nUser-agent: *\r\nDisallow: /Files/Papirkurv/\r\n\r\nfsd\r\nDisallow: /*?cartcmd=*"
   },
   "www.rigsrevisionen.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://www.rigsrevisionen.dk/sitemap.xml\n"
   },
   "www.rk.dk": {
@@ -1628,8 +1628,8 @@
     "body": "# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file\n"
   },
   "www.sdu.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
-    "body": "﻿User-agent: *\r\nDisallow: /systemsok\r\nDisallow: /503.html\r\nDisallow: /Pagenotfound\r\nDisallow: /Pagenottranslated\r\nDisallow: /test/\r\n\r\nSitemap: https://www.sdu.dk/sitemap.xml"
+    "fetched": "2026-10-28T23:59:44Z",
+    "body": "User-agent: *\r\nDisallow: /systemsok\r\nDisallow: /503.html\r\nDisallow: /Pagenotfound\r\nDisallow: /Pagenottranslated\r\n\r\nSitemap: https://www.sdu.dk/sitemap.xml"
   },
   "www.silkeborg.dk": {
     "fetched": "2026-10-28T00:33:10Z",
@@ -1692,11 +1692,11 @@
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://elektronikfokus.dk/inx_sitemap.xml"
   },
   "www.teknologisk.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "Sitemap: https://www.teknologisk.dk/sitemap.xml\r\n\r\nUser-agent: *\r\nDisallow: /_/custom/itcert/\r\n\r\nUser-agent: MJ12bot\r\nDisallow: /\r\n"
   },
   "www.thisted.dk": {
-    "fetched": "2026-10-27T21:17:07Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://www.thisted.dk/sitemap.xml\n"
   },
   "www.thyforsyning.dk": {
@@ -1748,7 +1748,7 @@
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://www.vallensbaek.dk/sitemap.xml\n"
   },
   "www.vana.dk": {
-    "fetched": "2026-10-27T16:36:51Z",
+    "fetched": "2026-10-28T23:59:44Z",
     "body": ""
   },
   "www.vandogaffald.dk": {
