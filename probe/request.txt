@@ -1,7 +1,6 @@
-# Nye kilder til kildeudvidelsen
-dr-regionale
-videnskab
-tv2-nyheder
-cleantech-watch
-energiwatch
-cepos
+# Skattebetalerne: find nyhedsside, RSS eller sitemap
+url https://skattebetalerne.dk/robots.txt 4
+url https://skattebetalerne.dk/ 60
+url https://skattebetalerne.dk/sitemap.xml 20
+url https://skattebetalerne.dk/feed/ 10
+url https://skattebetalerne.dk/nyheder/ 40
