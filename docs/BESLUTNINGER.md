@@ -306,3 +306,9 @@ Forfiltret er bevidst løst, og Claude afviser mange af de indslag, det ville vi
 - **Fallback viser kun myndigheder:** Uvurderede indslag vises kun i fallback, når kildens kategori står i `routine.fallback_categories` i `config/settings.yaml`. Den er `[myndighed]`. Resten venter på Claude, så feedet ikke fyldes med forkerte indslag, når routinen står stille. Listen kan udvides, hvis friskhed vejer tungere end præcision.
 - **Relevansprofilen:** Under "Ikke med" står nu landbrug, gødning, kvælstof og vandløb uden affaldsvinkel, og eksemplet "ryger i skraldespanden" for skrald i overført betydning. Biogas, afgasset biomasse, kompost og spildevandsslam er stadig med.
 - **Test med fast tidspunkt:** `test_main_check_fetch_prints_decisions_and_writes_nothing` brugte dagens dato, og fixturens indslag blev for gamle omkring 28. oktober. Testen bruger nu et fast tidspunkt.
+
+## 2026-11-03: Skattebetalerne er kilde med kun overskrift
+
+Brugeren ønskede interesseorganisationen Skattebetalerne med, fordi den skriver om kommunale affaldsgebyrer, fx om Københavns administration på affaldsområdet. RSS-feedet har kun de nyeste indlæg, så kilden hentes fra WordPress-sitemappet med strengt filter. Sitemappet har alle indlæg med dato, så bagudindsamlingen til 1. januar kan også finde ældre indlæg om affald. Afprøvningen 3. november hentede kun de to nyeste indlæg med affaldsord i adressen, og begge blev beholdt.
+
+Sidens robots.txt har Cloudflares Content-Signal med `ai-train=no` og `use=reference` som forbehold efter DSM-direktivets artikel 4, og den spærrer AI-crawlere. Indsamlingen er tilladt (`search=yes` og `Allow: /` for andre). Efter reglen fra 14. oktober om medier, der spærrer AI-crawlere, vises kilden derfor kun med overskrift og link (`ai: titel`). Claude vurderer på titlen og skriver intet resumé, og indslagene indgår ikke i nyhedsoverblikket og højdepunkterne.

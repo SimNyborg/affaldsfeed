@@ -4697,6 +4697,25 @@
   checked: 2026-10-07
   note: Ingen RSS. Sitemap med ca. 27.600 URL'er; match-mønster for nyheder mangler. Affaldsbranchen dækkes af ARI (di-ari).
 
+# Tilføjet 2026-11-03 efter ønske fra brugeren
+- id: skattebetalerne
+  name: Skattebetalerne
+  category: organisation
+  homepage: https://skattebetalerne.dk
+  method: sitemap
+  feeds: https://skattebetalerne.dk/wp-sitemap-posts-post-1.xml
+  match: '^https://skattebetalerne\.dk/[^/?#]+/$'
+  filter: strict
+  ai: titel  # kun overskrift: robots.txt forbeholder rettighederne mod AI og spærrer AI-crawlere (2026-11-03)
+  basis: organisation
+  status: aktiv
+  checked: 2026-11-03
+  note: >-
+    Interesseorganisation for skatteydere (stiftet 2025), som bl.a. skriver om kommunale affaldsgebyrer. RSS
+    (/feed/) har kun de nyeste indlæg, så indlæggene hentes fra WordPress-sitemappet, der også rækker
+    bagud. robots.txt har Content-Signal ai-train=no og use=reference som forbehold efter DSM-direktivets
+    artikel 4 og spærrer AI-crawlere, men tillader andre (search=yes). Derfor kun overskrift og link.
+
 # ── Tænketank og NGO ──────────────────────────────────────────
 - id: rgo
   name: Rådet for Grøn Omstilling
