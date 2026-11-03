@@ -1,6 +1,3 @@
-# Skattebetalerne: find nyhedsside, RSS eller sitemap
-url https://skattebetalerne.dk/robots.txt 4
-url https://skattebetalerne.dk/ 60
-url https://skattebetalerne.dk/sitemap.xml 20
-url https://skattebetalerne.dk/feed/ 10
-url https://skattebetalerne.dk/nyheder/ 40
+# Skattebetalerne: kilden med sitemappet og sitemappet selv
+url https://skattebetalerne.dk/wp-sitemap-posts-post-1.xml 12
+skattebetalerne
