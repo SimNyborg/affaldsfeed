@@ -76,6 +76,7 @@ Senere: Odense Renovation, Nordværk, Fors, REFA, SONFOR, HOFOR, KLAR Forsyning,
 | KL | Kommunernes forhandlinger, høringssvar og nyheder om affald | Sitemap (strengt filter) |
 | Dansk Producentansvar | Ordningerne for producentansvar på emballage, el og batterier | Sitemap |
 | Dansk Retursystem | Pantsystemet for flasker og dåser | RSS |
+| Skattebetalerne | Interesseorganisation for skatteydere, der bl.a. skriver om kommunale affaldsgebyrer. Kun overskrift | Sitemap (strengt filter) |
 
 Senere: VANA, Genvindingsindustrien, DI (ARI), Dansk Erhverv, Plastindustrien, Dansk Fjernvarme, Biogas Danmark, Gate 21 og Danske Regioner.
 
