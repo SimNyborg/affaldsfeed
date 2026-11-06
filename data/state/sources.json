@@ -2473,7 +2473,7 @@
   },
   "norddjurs-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2485,7 +2485,7 @@
   },
   "nordfyns-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2497,7 +2497,7 @@
   },
   "nordhavn-avis": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -2509,7 +2509,7 @@
   },
   "nordisk-ministerraad": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2521,7 +2521,7 @@
   },
   "nordjyske": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
@@ -2533,7 +2533,7 @@
   },
   "nordsoeposten": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 8,
@@ -2545,7 +2545,7 @@
   },
   "nordvaerk": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
@@ -2557,7 +2557,7 @@
   },
   "norfors": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 4,
@@ -2569,7 +2569,7 @@
   },
   "nyborg-forsyning": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2581,8 +2581,8 @@
   },
   "nyborg-kommune": {
     "last_ok": "2026-11-05",
-    "last_attempt": "2026-11-06T00:14:10Z",
-    "fails": 1,
+    "last_attempt": "2026-11-06T06:47:03Z",
+    "fails": 2,
     "last_error": "https://www.nyborg.dk/sitemap.xml: HTTP 403",
     "items_30d": 0,
     "first_run_done": true,
@@ -2593,7 +2593,7 @@
   },
   "odder-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2605,7 +2605,7 @@
   },
   "odense-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2617,7 +2617,7 @@
   },
   "odense-renovation": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2629,7 +2629,7 @@
   },
   "odsherred-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2641,7 +2641,7 @@
   },
   "oestvendsysselfolkeblad": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2653,7 +2653,7 @@
   },
   "orestad-avis": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -2665,7 +2665,7 @@
   },
   "pingvinnyt": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2677,7 +2677,7 @@
   },
   "plastindustrien": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 6,
@@ -2701,7 +2701,7 @@
   },
   "provas": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2713,7 +2713,7 @@
   },
   "randers-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2725,7 +2725,7 @@
   },
   "refa": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2737,7 +2737,7 @@
   },
   "regeringen": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2749,7 +2749,7 @@
   },
   "ren-forsyning-mariagerfjord": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -2761,7 +2761,7 @@
   },
   "renosyd": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -2773,7 +2773,7 @@
   },
   "revas": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -2785,7 +2785,7 @@
   },
   "rgo": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2797,7 +2797,7 @@
   },
   "rigsrevisionen": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2809,7 +2809,7 @@
   },
   "ringkoebing-skjern-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2821,7 +2821,7 @@
   },
   "roedovre-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2833,7 +2833,7 @@
   },
   "roskilde-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2845,7 +2845,7 @@
   },
   "ruc": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2856,20 +2856,20 @@
     "backfill_runs": 0
   },
   "rudersdal-kommune": {
-    "last_ok": "2026-11-05",
-    "last_attempt": "2026-11-06T00:14:10Z",
-    "fails": 1,
-    "last_error": "https://www.rudersdal.dk/sitemap.xml: HTTP 500",
+    "last_ok": "2026-11-06",
+    "last_attempt": "2026-11-06T06:47:03Z",
+    "fails": 0,
+    "last_error": null,
     "items_30d": 0,
     "first_run_done": true,
-    "health": "gul",
+    "health": "groen",
     "since": "2026-10-09",
     "backfilled_from": "2026-01-01",
     "backfill_runs": 0
   },
   "samsoe-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2881,7 +2881,7 @@
   },
   "samsoposten": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2893,7 +2893,7 @@
   },
   "sdu": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2905,7 +2905,7 @@
   },
   "silkeborg-forsyning": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2917,7 +2917,7 @@
   },
   "silkeborg-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2932,7 +2932,7 @@
     "last_attempt": "2026-11-06T06:29:43Z",
     "fails": 20,
     "last_error": "https://www.sn.dk/SitemapIndex.0.xml: HTTP 404",
-    "items_30d": 8,
+    "items_30d": 7,
     "first_run_done": true,
     "health": "roed",
     "since": "2026-10-08",
@@ -2941,7 +2941,7 @@
   },
   "skanderborg-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2953,7 +2953,7 @@
   },
   "skattebetalerne": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
@@ -2965,7 +2965,7 @@
   },
   "skive-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2977,7 +2977,7 @@
   },
   "skivefolkeblad": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -2989,7 +2989,7 @@
   },
   "solroed-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3001,7 +3001,7 @@
   },
   "sonderborgnyt": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
@@ -3013,7 +3013,7 @@
   },
   "sonfor": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -3025,7 +3025,7 @@
   },
   "soroe-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3037,7 +3037,7 @@
   },
   "stevns-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3049,7 +3049,7 @@
   },
   "stiften": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -3061,7 +3061,7 @@
   },
   "struer-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3073,7 +3073,7 @@
   },
   "svendborg-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3085,7 +3085,7 @@
   },
   "syddjurs-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3097,7 +3097,7 @@
   },
   "taarnby-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
@@ -3109,7 +3109,7 @@
   },
   "taenk": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3121,7 +3121,7 @@
   },
   "teknik-og-miljoe": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3133,7 +3133,7 @@
   },
   "tekniskfokus": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
@@ -3145,7 +3145,7 @@
   },
   "teknologisk-institut": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3169,7 +3169,7 @@
   },
   "thy-forsyning": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3181,7 +3181,7 @@
   },
   "tjekfredensborg": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3193,7 +3193,7 @@
   },
   "toender-forsyning": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -3205,7 +3205,7 @@
   },
   "toender-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3217,7 +3217,7 @@
   },
   "tv2-nyheder": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 4,
@@ -3229,7 +3229,7 @@
   },
   "tv2-regionerne": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 43,
@@ -3241,7 +3241,7 @@
   },
   "ugeavisen": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -3253,7 +3253,7 @@
   },
   "vafo": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -3265,7 +3265,7 @@
   },
   "vallensbaek-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3277,7 +3277,7 @@
   },
   "vana": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 8,
@@ -3289,7 +3289,7 @@
   },
   "vand-og-affald": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3301,7 +3301,7 @@
   },
   "varde-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3313,7 +3313,7 @@
   },
   "vejen-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3325,7 +3325,7 @@
   },
   "vejle-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3337,7 +3337,7 @@
   },
   "vestforbraending": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
@@ -3349,19 +3349,19 @@
   },
   "vesthimmerlands-forsyning": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
-    "fails": 0,
-    "last_error": null,
+    "last_attempt": "2026-11-06T06:47:03Z",
+    "fails": 1,
+    "last_error": "alle 1 sidehentninger fejlede (https://vesthimmerlandsforsyning.dk/nyheder/toemning-af-affald-i-julen: HTTP 404)",
     "items_30d": 0,
     "first_run_done": true,
-    "health": "groen",
+    "health": "gul",
     "since": "2026-10-09",
     "backfilled_from": "2026-01-01",
     "backfill_runs": 0
   },
   "vesthimmerlands-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3373,7 +3373,7 @@
   },
   "vesthimmerlandsavis": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3385,7 +3385,7 @@
   },
   "viborg-folkeblad": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
@@ -3397,7 +3397,7 @@
   },
   "viborg-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3409,7 +3409,7 @@
   },
   "viborher": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3421,7 +3421,7 @@
   },
   "videnskab": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3433,7 +3433,7 @@
   },
   "vodskovavis": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3445,7 +3445,7 @@
   },
   "vordingborg-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3457,7 +3457,7 @@
   },
   "voreslokalavis": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -3469,10 +3469,10 @@
   },
   "wastetech": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T00:14:10Z",
+    "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 8,
+    "items_30d": 9,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-14",
