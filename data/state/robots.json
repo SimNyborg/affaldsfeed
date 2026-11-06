@@ -52,7 +52,7 @@
     "body": ""
   },
   "albertslundnyt.dk": {
-    "fetched": "2026-11-05T08:27:36Z",
+    "fetched": "2026-11-06T13:30:26Z",
     "body": ""
   },
   "altomfuresoe.dk": {
@@ -100,7 +100,7 @@
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://bornholm.dk/sitemap.xml\n"
   },
   "bornholm.nu": {
-    "fetched": "2026-11-05T08:27:36Z",
+    "fetched": "2026-11-06T13:30:26Z",
     "body": "User-agent: GPTBot\r\nDisallow: /\r\n\r\nUser-agent: *\r\nDisallow: /admin/\r\nDisallow: /ajax-services/\r\nDisallow: /konto/\r\nDisallow: /soeg/\r\nDisallow: /print/\r\n\r\n\r\n\r\n"
   },
   "bornholmnyt.dk": {
@@ -243,10 +243,6 @@
     "fetched": "2026-11-06T06:29:43Z",
     "body": "User-agent: *\nDisallow:\n\nSitemap: https://cepos.dk/sitemap.xml"
   },
-  "cewep.eu": {
-    "fetched": "2026-10-07T11:39:46Z",
-    "body": "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://cewep.eu/wp-sitemap.xml\n"
-  },
   "cirkulaer.dk": {
     "fetched": "2026-11-06T06:29:43Z",
     "body": "#\r\n# robots.txt\r\n#\r\n# This file is to prevent the crawling and indexing of certain parts\r\n# of your site by web crawlers and spiders run by sites like Yahoo!\r\n# and Google. By telling these \"robots\" where not to go on your site,\r\n# you save bandwidth and server resources.\r\n#\r\n# This file will be ignored unless it is at the root of your host:\r\n# Used:    http://example.com/robots.txt\r\n# Ignored: http://example.com/site/robots.txt\r\n#\r\n# For more information about the robots.txt standard, see:\r\n# http://www.robotstxt.org/robotstxt.html\r\n\r\nUser-agent: *\r\n# CSS, JS, Images\r\nAllow: /core/*.css$\r\nAllow: /core/*.css?\r\nAllow: /core/*.js$\r\nAllow: /core/*.js?\r\nAllow: /core/*.gif\r\nAllow: /core/*.jpg\r\nAllow: /core/*.jpeg\r\nAllow: /core/*.png\r\nAllow: /core/*.svg\r\nAllow: /profiles/*.css$\r\nAllow: /profiles/*.css?\r\nAllow: /profiles/*.js$\r\nAllow: /profiles/*.js?\r\nAllow: /profiles/*.gif\r\nAllow: /profiles/*.jpg\r\nAllow: /profiles/*.jpeg\r\nAllow: /profiles/*.png\r\nAllow: /profiles/*.svg\r\n# Directories\r\nDisallow: /core/\r\nDisallow: /profiles/\r\n# Files\r\nDisallow: /README.txt\r\nDisallow: /web.config\r\n# Paths (clean URLs)\r\nDisallow: /admin/\r\nDisallow: /comment/reply/\r\nDisallow: /filter/tips\r\nDisallow: /node/add/\r\nDisallow: /search/\r\nDisallow: /user/register/\r\nDisallow: /user/password/\r\nDisallow: /user/login/\r\nDisallow: /user/logout/\r\n# Paths (no clean URLs)\r\nDisallow: /index.php/admin/\r\nDisallow: /index.php/comment/reply/\r\nDisallow: /index.php/filter/tips\r\nDisallow: /index.php/node/add/\r\nDisallow: /index.php/search/\r\nDisallow: /index.php/user/password/\r\nDisallow: /index.php/user/register/\r\nDisallow: /index.php/user/login/\r\nDisallow: /index.php/user/logout/"
@@ -280,7 +276,7 @@
     "body": "<pre>\r\n    User-Agent: *&#xA;Allow: /DependencyHandler.axd&#xA;Disallow: /aspnet_client/&#xA;Disallow: /bin/&#xA;Disallow: /config/&#xA;Disallow: /umbraco/&#xA;Disallow: /umbraco_client/&#xA;Disallow: /usercontrols/&#xA;Disallow: /*.axd&#xA;Sitemap: http://www.danskekommuner.dk/sitemapxml\r\n</pre>"
   },
   "danskfjernvarme.dk": {
-    "fetched": "2026-11-05T08:27:36Z",
+    "fetched": "2026-11-06T13:30:26Z",
     "body": "<pre>\r\n        # robots.txt, danskfjernvarme.dk&#xA;&#xA;User-Agent: *&#xA;Allow: /DependencyHandler.axd&#xA;Disallow: /aspnet_client/&#xA;Disallow: /bin/&#xA;Disallow: /config/&#xA;Disallow: /umbraco/&#xA;Disallow: /umbraco_client/&#xA;Disallow: /usercontrols/&#xA;Disallow: /*.axd&#xA;Sitemap: https://danskfjernvarme.dk/sitemap.xml\r\n</pre>"
   },
   "danskretursystem.dk": {
@@ -308,27 +304,27 @@
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditikast-brande.dk/sitemap.xml\n"
   },
   "ditikast-brande.dk": {
-    "fetched": "2026-11-05T08:27:36Z",
+    "fetched": "2026-11-06T13:30:26Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditikast-brande.dk/sitemap.xml\n"
   },
   "ditkarup.dk": {
-    "fetched": "2026-11-05T08:27:36Z",
+    "fetched": "2026-11-06T13:30:26Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditkarup.dk/sitemap.xml\n"
   },
   "ditkjellerup.dk": {
-    "fetched": "2026-11-05T08:27:36Z",
+    "fetched": "2026-11-06T13:30:26Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditkjellerup.dk/sitemap.xml\n"
   },
   "ditry.dk": {
-    "fetched": "2026-11-05T08:27:36Z",
+    "fetched": "2026-11-06T13:30:26Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditry.dk/sitemap.xml\n"
   },
   "ditsalling.dk": {
-    "fetched": "2026-11-05T08:27:36Z",
+    "fetched": "2026-11-06T13:30:26Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditsalling.dk/sitemap.xml\n"
   },
   "ditvinderup.dk": {
-    "fetched": "2026-11-05T08:27:36Z",
+    "fetched": "2026-11-06T13:30:26Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditvinderup.dk/sitemap.xml\n"
   },
   "djurslandsposten.dk": {
@@ -350,10 +346,6 @@
   "dtu.dk": {
     "fetched": "2026-10-08T04:31:35Z",
     "body": "User-agent: *\r\nDisallow: /sitecore/\r\nDisallow: /sitecore modules/\r\nDisallow: /layouts/\r\nDisallow: /upload/\r\nDisallow: /english/sitecore/\r\nDisallow: /dtu/\r\nDisallow: /institutter/\r\nDisallow: /centre/\r\nDisallow: /sites/ \r\nDisallow: /subsites/\r\nDisallow: /andre_universitetsenheder/\r\nDisallow: /andre/\r\nDisallow: /webservice/\r\nDisallow: /functions/\r\nDisallow: /resultat\r\nDisallow: /english/resultat\r\nSitemap: https://www.dtu.dk/sitemap.xml\r\nCrawl-delay: 10\r\n\r\nUser-agent: ClaudeBot\r\nDisallow: /sitecore/\r\nDisallow: /sitecore modules/\r\nDisallow: /layouts/\r\nDisallow: /upload/\r\nDisallow: /english/sitecore/\r\nDisallow: /dtu/\r\nDisallow: /institutter/\r\nDisallow: /centre/\r\nDisallow: /sites/ \r\nDisallow: /subsites/\r\nDisallow: /andre_universitetsenheder/\r\nDisallow: /andre/\r\nDisallow: /webservice/\r\nDisallow: /functions/\r\nDisallow: /resultat\r\nDisallow: /english/resultat\r\nSitemap: https://www.dtu.dk/sitemap.xml\r\nCrawl-delay: 1000\r\n\r\nUser-agent: GPTBot\r\nDisallow: /sitecore/\r\nDisallow: /sitecore modules/\r\nDisallow: /layouts/\r\nDisallow: /upload/\r\nDisallow: /english/sitecore/\r\nDisallow: /dtu/\r\nDisallow: /institutter/\r\nDisallow: /centre/\r\nDisallow: /sites/ \r\nDisallow: /subsites/\r\nDisallow: /andre_universitetsenheder/\r\nDisallow: /andre/\r\nDisallow: /webservice/\r\nDisallow: /functions/\r\nDisallow: /resultat\r\nDisallow: /english/resultat\r\nSitemap: https://www.dtu.dk/sitemap.xml\r\nCrawl-delay: 1000\r\n\r\nUser-agent: GoogleOther\r\nDisallow: /sitecore/\r\nDisallow: /sitecore modules/\r\nDisallow: /layouts/\r\nDisallow: /upload/\r\nDisallow: /english/sitecore/\r\nDisallow: /dtu/\r\nDisallow: /institutter/\r\nDisallow: /centre/\r\nDisallow: /sites/ \r\nDisallow: /subsites/\r\nDisallow: /andre_universitetsenheder/\r\nDisallow: /andre/\r\nDisallow: /webservice/\r\nDisallow: /functions/\r\nDisallow: /resultat\r\nDisallow: /english/resultat\r\nSitemap: https://www.dtu.dk/sitemap.xml\r\nCrawl-delay: 1000\r\n"
-  },
-  "eeb.org": {
-    "fetched": "2026-10-07T11:39:46Z",
-    "body": "User-agent: Scrapy\nAllow: /\n\n"
   },
   "egedalkommune.dk": {
     "fetched": "2026-10-09T07:48:56Z",
@@ -378,10 +370,6 @@
   "esbjergliv.dk": {
     "fetched": "2026-10-08T12:29:21Z",
     "body": "Sitemap: https://esbjergliv.dk/sitemap.xml\nSitemap: https://esbjergliv.dk/news-sitemap.xml\n# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://esbjergliv.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
-  },
-  "expra.eu": {
-    "fetched": "2026-10-07T11:39:46Z",
-    "body": "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://expra.eu/wp-sitemap.xml\n"
   },
   "f.nordiskemedier.dk": {
     "fetched": "2026-10-07T23:35:08Z",
@@ -1415,10 +1403,6 @@
     "fetched": "2026-10-08T05:27:31Z",
     "body": "#\n# robots.txt\n#\n# This file is to prevent the crawling and indexing of certain parts\n# of your site by web crawlers and spiders run by sites like Yahoo!\n# and Google. By telling these \"robots\" where not to go on your site,\n# you save bandwidth and server resources.\n#\n# This file will be ignored unless it is at the root of your host:\n# Used:    http://example.com/robots.txt\n# Ignored: http://example.com/site/robots.txt\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/robotstxt.html\n\nUser-agent: *\n# CSS, JS, Images\nAllow: /core/*.css$\nAllow: /core/*.css?\nAllow: /core/*.js$\nAllow: /core/*.js?\nAllow: /core/*.avif\nAllow: /core/*.gif\nAllow: /core/*.jpg\nAllow: /core/*.jpeg\nAllow: /core/*.png\nAllow: /core/*.svg\nAllow: /core/*.webp\nAllow: /profiles/*.css$\nAllow: /profiles/*.css?\nAllow: /profiles/*.js$\nAllow: /profiles/*.js?\nAllow: /profiles/*.avif\nAllow: /profiles/*.gif\nAllow: /profiles/*.jpg\nAllow: /profiles/*.jpeg\nAllow: /profiles/*.png\nAllow: /profiles/*.svg\nAllow: /profiles/*.webp\n# Directories\nDisallow: /core/\nDisallow: /profiles/\n# Files\nDisallow: /README.md\nDisallow: /composer/Metapackage/README.txt\nDisallow: /composer/Plugin/ProjectMessage/README.md\nDisallow: /composer/Plugin/Scaffold/README.md\nDisallow: /composer/Plugin/VendorHardening/README.txt\nDisallow: /composer/Template/README.txt\nDisallow: /modules/README.txt\nDisallow: /sites/README.txt\nDisallow: /themes/README.txt\n# Paths (clean URLs)\nDisallow: /admin/\nDisallow: /comment/reply/\nDisallow: /filter/tips\nDisallow: /node/add/\nDisallow: /search/\nDisallow: /search?\nDisallow: /user/register\nDisallow: /user/password\nDisallow: /user/login\nDisallow: /user/logout\nDisallow: /media/oembed\nDisallow: /*/media/oembed\n# Paths (no clean URLs)\nDisallow: /index.php/admin/\nDisallow: /index.php/comment/reply/\nDisallow: /index.php/filter/tips\nDisallow: /index.php/node/add/\nDisallow: /index.php/search/\nDisallow: /index.php/search?\nDisallow: /index.php/user/password\nDisallow: /index.php/user/register\nDisallow: /index.php/user/login\nDisallow: /index.php/user/logout\nDisallow: /index.php/media/oembed\nDisallow: /index.php/*/media/oembed\n\nUser-agent: *\nSitemap: https://www.information.dk/sitemap.xml\nDisallow: /bruger?destination=*\nDisallow: /en/\nDisallow: /eavis\nDisallow: /epaper_redirect\nDisallow: /gavekort\nDisallow: /redirect/epaper/\nDisallow: /soeg-arkiv\nDisallow: /user/login\nAllow: /\n\n# AI crawlers from https://github.com/ai-robots-txt/ai.robots.txt/blob/main/robots.txt\n\nUser-agent: AI2Bot\nUser-agent: AddSearchBot\nUser-agent: Ai2Bot-Dolma\nUser-agent: Amazonbot\nUser-agent: Andibot\nUser-agent: Applebot-Extended\nUser-agent: Awario\nUser-agent: AwarioRssBot\nUser-agent: AwarioSmartBot\nUser-agent: Brightbot 1.0\nUser-agent: Bytespider\nUser-agent: CCBot\nUser-agent: ChatGPT Agent\nUser-agent: ChatGPT-User\nUser-agent: Claude-SearchBot\nUser-agent: Claude-User\nUser-agent: Claude-Web\nUser-agent: ClaudeBot\nUser-agent: CloudVertexBot\nUser-agent: Cotoyogi\nUser-agent: Crawlspace\nUser-agent: Datenbank Crawler\nUser-agent: Devin\nUser-agent: Diffbot\nUser-agent: DuckAssistBot\nUser-agent: Echobot Bot\nUser-agent: EchoboxBot\nUser-agent: FacebookBot\nUser-agent: Factset_spyderbot\nUser-agent: FirecrawlAgent\nUser-agent: FriendlyCrawler\nUser-agent: GPTBot\nUser-agent: Gemini-Deep-Research\nUser-agent: Google-CloudVertexBot\nUser-agent: Google-Firebase\nUser-agent: GoogleAgent-Mariner\nUser-agent: ICC-Crawler\nUser-agent: ISSCyberRiskCrawler\nUser-agent: ImagesiftBot\nUser-agent: Kangaroo Bot\nUser-agent: LinerBot\nUser-agent: Meta-ExternalAgent\nUser-agent: Meta-ExternalFetcher\nUser-agent: MistralAI-User\nUser-agent: MistralAI-User/1.0\nUser-agent: MyCentralAIScraperBot\nUser-agent: NovaAct\nUser-agent: OAI-SearchBot\nUser-agent: OpenAI\nUser-agent: Operator\nUser-agent: PanguBot\nUser-agent: Panscient\nUser-agent: Perplexity-User\nUser-agent: PerplexityBot\nUser-agent: PetalBot\nUser-agent: PhindBot\nUser-agent: Poseidon Research Crawler\nUser-agent: QualifiedBot\nUser-agent: QuillBot\nUser-agent: SBIntuitionsBot\nUser-agent: Scrapy\nUser-agent: SemrushBot-OCOB\nUser-agent: SemrushBot-SWA\nUser-agent: ShapBot\nUser-agent: Sidetrade indexer bot\nUser-agent: Thinkbot\nUser-agent: TikTokSpider\nUser-agent: Timpibot\nUser-agent: VelenPublicWebCrawler\nUser-agent: WARDBot\nUser-agent: Webzio-Extended\nUser-agent: YaK\nUser-agent: YandexAdditional\nUser-agent: YandexAdditionalBot\nUser-agent: YouBot\nUser-agent: aiHitBot\nUser-agent: anthropic-ai\nUser-agent: bedrockbot\nUser-agent: bigsur.ai\nUser-agent: cohere-ai\nUser-agent: cohere-training-data-crawler\nUser-agent: facebookexternalhit\nUser-agent: iaskspider/2.0\nUser-agent: img2dataset\nUser-agent: meta-externalagent\nUser-agent: meta-externalfetcher\nUser-agent: netEstate Imprint Crawler\nUser-agent: omgili\nUser-agent: omgilibot\nUser-agent: panscient.com\nUser-agent: quillbot.com\nUser-agent: wpbot\nDisallow: /\n\n# SEO crawlers\n\nUser-agent: AhrefsBot\nUser-agent: AwarioBot\nUser-agent: AwarioRssBot\nUser-agent: AwarioSmartBot\nUser-agent: Buck\nUser-agent: CriteoBot\nUser-agent: DataForSeoBot\nUser-agent: ImagesiftBot\nUser-agent: MJ12bot\nUser-agent: Mediapartners-Google\nUser-agent: OpenindexBot\nUser-agent: OpenindexSpider\nUser-agent: Pinterestbot\nUser-agent: SemrushBot\nUser-agent: SentiBot\nUser-agent: Twitterbot\nUser-agent: barkrowler\nUser-agent: dotbot\nUser-agent: proximic\nUser-agent: turnitinbot\nDisallow: /\n\n# Search engine crawlers\n\nUser-agent: SeekportBot\nUser-agent: YandexBot\nDisallow: /\n"
   },
-  "www.iswa.org": {
-    "fetched": "2026-10-07T11:39:46Z",
-    "body": ""
-  },
   "www.jammerbugt.dk": {
     "fetched": "2026-11-06T06:29:43Z",
     "body": ""
@@ -1794,10 +1778,6 @@
   "xn--stvendsysselfolkeblad-pfc.dk": {
     "fetched": "2026-11-06T08:28:09Z",
     "body": ""
-  },
-  "zerowasteeurope.eu": {
-    "fetched": "2026-10-07T11:39:46Z",
-    "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://zerowasteeurope.eu/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "zetland.dk": {
     "fetched": "2026-10-08T07:48:34Z",

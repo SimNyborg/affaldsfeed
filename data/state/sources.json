@@ -1,7 +1,7 @@
 {
   "aabenraa-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -13,7 +13,7 @@
   },
   "aalborg-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -25,7 +25,7 @@
   },
   "aarhus-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -49,7 +49,7 @@
   },
   "aeroe-forsyning": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -61,7 +61,7 @@
   },
   "aeroe-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -97,7 +97,7 @@
   },
   "albertslund-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -109,7 +109,7 @@
   },
   "albertslundnyt": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -145,7 +145,7 @@
   },
   "amagerliv": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -157,7 +157,7 @@
   },
   "amtsavisen": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 5,
@@ -217,7 +217,7 @@
   },
   "assens-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -253,7 +253,7 @@
   },
   "avfall-sverige": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 7,
@@ -289,7 +289,7 @@
   },
   "billund-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -337,19 +337,19 @@
   },
   "bornholm-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
-    "fails": 0,
-    "last_error": null,
+    "last_attempt": "2026-11-06T13:30:26Z",
+    "fails": 1,
+    "last_error": "https://bornholm.dk/sitemap.xml: netværksfejl: ConnectionError",
     "items_30d": 0,
     "first_run_done": true,
-    "health": "groen",
+    "health": "gul",
     "since": "2026-10-09",
     "backfilled_from": "2026-01-01",
     "backfill_runs": 0
   },
   "bornholm-nu": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 10,
@@ -421,7 +421,7 @@
   },
   "broendby-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -433,7 +433,7 @@
   },
   "broenderslev-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -457,7 +457,7 @@
   },
   "cbs": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -469,7 +469,7 @@
   },
   "cepos": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -493,7 +493,7 @@
   },
   "cirkulaer": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -505,7 +505,7 @@
   },
   "cleantech-watch": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 29,
@@ -517,7 +517,7 @@
   },
   "concito": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -529,7 +529,7 @@
   },
   "dagbladet-holstebro-struer": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 5,
@@ -553,7 +553,7 @@
   },
   "dakofa": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 41,
@@ -565,7 +565,7 @@
   },
   "dansk-erhverv": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -577,7 +577,7 @@
   },
   "dansk-fjernvarme": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 6,
@@ -589,7 +589,7 @@
   },
   "dansk-producentansvar": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -613,7 +613,7 @@
   },
   "danske-kommuner": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -649,12 +649,12 @@
   },
   "dbrs": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
-    "fails": 0,
-    "last_error": null,
+    "last_attempt": "2026-11-06T13:30:26Z",
+    "fails": 1,
+    "last_error": "https://dbrs.dk/sitemap/2026-11-06: HTTP 503; springes over i denne kørsel; https://dbrs.dk/sitemap/2026-11-05: springes over: HTTP 503",
     "items_30d": 3,
     "first_run_done": true,
-    "health": "groen",
+    "health": "gul",
     "since": "2026-10-08",
     "backfilled_from": "2026-01-01",
     "backfill_runs": 0
@@ -697,7 +697,7 @@
   },
   "ditikast-brande": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -709,7 +709,7 @@
   },
   "ditkarup": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -721,7 +721,7 @@
   },
   "ditkjellerup": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -733,7 +733,7 @@
   },
   "ditry": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -745,7 +745,7 @@
   },
   "ditsalling": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -757,7 +757,7 @@
   },
   "ditvinderup": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -769,7 +769,7 @@
   },
   "dn": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -793,7 +793,7 @@
   },
   "dragoer-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -829,7 +829,7 @@
   },
   "dtu-kemiteknik": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -841,7 +841,7 @@
   },
   "dtu-sustain": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -853,7 +853,7 @@
   },
   "eea": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -877,7 +877,7 @@
   },
   "egedal-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -901,7 +901,7 @@
   },
   "energiwatch": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -961,19 +961,19 @@
   },
   "faa": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
-    "fails": 0,
-    "last_error": null,
+    "last_attempt": "2026-11-06T13:30:26Z",
+    "fails": 1,
+    "last_error": "https://faa.dk/sitemap/2026-11-06: HTTP 503; springes over i denne kørsel; https://faa.dk/sitemap/2026-11-05: springes over: HTTP 503",
     "items_30d": 2,
     "first_run_done": true,
-    "health": "groen",
+    "health": "gul",
     "since": "2026-10-08",
     "backfilled_from": "2026-01-01",
     "backfill_runs": 0
   },
   "faaborg-midtfyn-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -997,7 +997,7 @@
   },
   "fanoe-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1021,7 +1021,7 @@
   },
   "favrskov-forsyning": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1033,8 +1033,8 @@
   },
   "favrskov-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
-    "fails": 1,
+    "last_attempt": "2026-11-06T13:30:26Z",
+    "fails": 2,
     "last_error": "https://www.favrskov.dk/sitemap.xml: netværksfejl: ChunkedEncodingError",
     "items_30d": 0,
     "first_run_done": true,
@@ -1045,7 +1045,7 @@
   },
   "faxe-forsyning": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -1057,7 +1057,7 @@
   },
   "faxe-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1069,7 +1069,7 @@
   },
   "ffv": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1081,7 +1081,7 @@
   },
   "fjernvarme-fyn": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1105,7 +1105,7 @@
   },
   "folkebladet-rebild": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1117,7 +1117,7 @@
   },
   "folkebladetlemvig": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -1141,10 +1141,10 @@
   },
   "folketinget-oda": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 68,
+    "items_30d": 69,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
@@ -1165,7 +1165,7 @@
   },
   "forsyning-helsingoer": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -1177,7 +1177,7 @@
   },
   "forsyningen": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1201,7 +1201,7 @@
   },
   "frdb": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -1213,7 +1213,7 @@
   },
   "fredensborg-forsyning": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1225,7 +1225,7 @@
   },
   "fredensborg-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1237,7 +1237,7 @@
   },
   "fredericia-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1249,7 +1249,7 @@
   },
   "frederiksberg-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -1261,7 +1261,7 @@
   },
   "frederiksbergliv": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1273,7 +1273,7 @@
   },
   "frederikshavn-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1297,7 +1297,7 @@
   },
   "furesoe-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1309,19 +1309,19 @@
   },
   "fyens": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
-    "fails": 1,
-    "last_error": "https://fyens.dk/sitemap/2026-11-06: HTTP 503; springes over i denne kørsel; https://fyens.dk/sitemap/2026-11-05: springes over: HTTP 503",
+    "last_attempt": "2026-11-06T13:30:26Z",
+    "fails": 0,
+    "last_error": null,
     "items_30d": 9,
     "first_run_done": true,
-    "health": "gul",
+    "health": "groen",
     "since": "2026-10-08",
     "backfilled_from": "2026-01-01",
     "backfill_runs": 0
   },
   "galtenfolkeblad": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1345,7 +1345,7 @@
   },
   "genvindingsindustrien": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1357,7 +1357,7 @@
   },
   "gladsaxe-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
@@ -1369,7 +1369,7 @@
   },
   "gladsaxenetnyt": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1381,7 +1381,7 @@
   },
   "glostrup-forsyning": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 2,
@@ -1393,12 +1393,12 @@
   },
   "glostrup-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
-    "fails": 0,
-    "last_error": null,
+    "last_attempt": "2026-11-06T13:30:26Z",
+    "fails": 1,
+    "last_error": "https://www.glostrup.dk/sitemap.xml: netværksfejl: ConnectionError",
     "items_30d": 0,
     "first_run_done": true,
-    "health": "groen",
+    "health": "gul",
     "since": "2026-10-09",
     "backfilled_from": "2026-01-01",
     "backfill_runs": 0
@@ -1417,7 +1417,7 @@
   },
   "greve-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1429,7 +1429,7 @@
   },
   "gribskov-forsyning": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1441,19 +1441,19 @@
   },
   "gribskov-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
-    "fails": 0,
-    "last_error": null,
+    "last_attempt": "2026-11-06T13:30:26Z",
+    "fails": 1,
+    "last_error": "https://www.gribskov.dk/sitemap.xml: netværksfejl: ConnectionError",
     "items_30d": 0,
     "first_run_done": true,
-    "health": "groen",
+    "health": "gul",
     "since": "2026-10-09",
     "backfilled_from": "2026-01-01",
     "backfill_runs": 0
   },
   "guldborgsund-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1465,7 +1465,7 @@
   },
   "haderslev-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1477,7 +1477,7 @@
   },
   "halsnaes-forsyning": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1489,12 +1489,12 @@
   },
   "halsnaes-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
-    "fails": 0,
-    "last_error": null,
+    "last_attempt": "2026-11-06T13:30:26Z",
+    "fails": 1,
+    "last_error": "https://www.halsnaes.dk/sitemap.xml: netværksfejl: ConnectionError",
     "items_30d": 0,
     "first_run_done": true,
-    "health": "groen",
+    "health": "gul",
     "since": "2026-10-09",
     "backfilled_from": "2026-01-01",
     "backfill_runs": 0
@@ -1513,7 +1513,7 @@
   },
   "hedensted-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1537,22 +1537,22 @@
   },
   "helsingoer-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
-    "fails": 0,
-    "last_error": null,
+    "last_attempt": "2026-11-06T13:30:26Z",
+    "fails": 1,
+    "last_error": "https://www.helsingor.dk/sitemap.xml: netværksfejl: ConnectionError",
     "items_30d": 0,
     "first_run_done": true,
-    "health": "groen",
+    "health": "gul",
     "since": "2026-10-09",
     "backfilled_from": "2026-01-01",
     "backfill_runs": 0
   },
   "helsingordagblad": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 3,
+    "items_30d": 4,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
@@ -1561,19 +1561,19 @@
   },
   "herning-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
-    "fails": 0,
-    "last_error": null,
+    "last_attempt": "2026-11-06T13:30:26Z",
+    "fails": 1,
+    "last_error": "https://www.herning.dk/sitemap.xml: netværksfejl: ConnectionError",
     "items_30d": 0,
     "first_run_done": true,
-    "health": "groen",
+    "health": "gul",
     "since": "2026-10-09",
     "backfilled_from": "2026-01-01",
     "backfill_runs": 0
   },
   "herningfolkeblad": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -1585,7 +1585,7 @@
   },
   "hilleroed-forsyning": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1597,7 +1597,7 @@
   },
   "hilleroed-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1621,19 +1621,19 @@
   },
   "hjoerring-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
-    "fails": 0,
-    "last_error": null,
+    "last_attempt": "2026-11-06T13:30:26Z",
+    "fails": 1,
+    "last_error": "https://www.hjoerring.dk/sitemap.xml: netværksfejl: ConnectionError",
     "items_30d": 0,
     "first_run_done": true,
-    "health": "groen",
+    "health": "gul",
     "since": "2026-10-09",
     "backfilled_from": "2026-01-01",
     "backfill_runs": 0
   },
   "hoeje-taastrup-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1657,7 +1657,7 @@
   },
   "hoersholm-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1681,19 +1681,19 @@
   },
   "holbaek-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
-    "fails": 0,
-    "last_error": null,
+    "last_attempt": "2026-11-06T13:30:26Z",
+    "fails": 1,
+    "last_error": "https://holbaek.dk/sitemap.xml: netværksfejl: ConnectionError",
     "items_30d": 0,
     "first_run_done": true,
-    "health": "groen",
+    "health": "gul",
     "since": "2026-10-09",
     "backfilled_from": "2026-01-01",
     "backfill_runs": 0
   },
   "holstebro-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1717,7 +1717,7 @@
   },
   "horsens-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1729,7 +1729,7 @@
   },
   "hsfo": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 1,
@@ -1741,7 +1741,7 @@
   },
   "htk-forsyning": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1753,7 +1753,7 @@
   },
   "hvidovre-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1765,7 +1765,7 @@
   },
   "hvidovreavis": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1777,7 +1777,7 @@
   },
   "hvidovrenyt": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1789,7 +1789,7 @@
   },
   "ikast-brande-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1849,7 +1849,7 @@
   },
   "jammerbugt-kommune": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 0,
@@ -1873,7 +1873,7 @@
   },
   "jv": {
     "last_ok": "2026-11-06",
-    "last_attempt": "2026-11-06T06:29:43Z",
+    "last_attempt": "2026-11-06T13:30:26Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 10,
@@ -3220,7 +3220,7 @@
     "last_attempt": "2026-11-06T08:28:09Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 4,
+    "items_30d": 3,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
@@ -3472,7 +3472,7 @@
     "last_attempt": "2026-11-06T06:47:03Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 9,
+    "items_30d": 7,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-14",
