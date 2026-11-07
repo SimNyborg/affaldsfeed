@@ -44,7 +44,7 @@
     "body": ""
   },
   "albertslundnyt.dk": {
-    "fetched": "2026-11-06T13:30:26Z",
+    "fetched": "2026-11-07T18:46:46Z",
     "body": ""
   },
   "altomfuresoe.dk": {
@@ -92,7 +92,7 @@
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://bornholm.dk/sitemap.xml\n"
   },
   "bornholm.nu": {
-    "fetched": "2026-11-06T13:30:26Z",
+    "fetched": "2026-11-07T18:46:46Z",
     "body": "User-agent: GPTBot\r\nDisallow: /\r\n\r\nUser-agent: *\r\nDisallow: /admin/\r\nDisallow: /ajax-services/\r\nDisallow: /konto/\r\nDisallow: /soeg/\r\nDisallow: /print/\r\n\r\n\r\n\r\n"
   },
   "bornholmnyt.dk": {
@@ -256,7 +256,7 @@
     "body": "<pre>\r\n    User-Agent: *&#xA;Allow: /DependencyHandler.axd&#xA;Disallow: /aspnet_client/&#xA;Disallow: /bin/&#xA;Disallow: /config/&#xA;Disallow: /umbraco/&#xA;Disallow: /umbraco_client/&#xA;Disallow: /usercontrols/&#xA;Disallow: /*.axd&#xA;Sitemap: http://www.danskekommuner.dk/sitemapxml\r\n</pre>"
   },
   "danskfjernvarme.dk": {
-    "fetched": "2026-11-06T13:30:26Z",
+    "fetched": "2026-11-07T18:46:46Z",
     "body": "<pre>\r\n        # robots.txt, danskfjernvarme.dk&#xA;&#xA;User-Agent: *&#xA;Allow: /DependencyHandler.axd&#xA;Disallow: /aspnet_client/&#xA;Disallow: /bin/&#xA;Disallow: /config/&#xA;Disallow: /umbraco/&#xA;Disallow: /umbraco_client/&#xA;Disallow: /usercontrols/&#xA;Disallow: /*.axd&#xA;Sitemap: https://danskfjernvarme.dk/sitemap.xml\r\n</pre>"
   },
   "danskretursystem.dk": {
@@ -275,28 +275,32 @@
     "fetched": "2026-10-09T09:34:01Z",
     "body": "Sitemap: https://dinforsyning.dk/Sitemap.xml\r\nUser-agent: *\r\nDisallow: /Files/Papirkurv/\r\nUser-agent: Googlebot-Image\r\nDisallow: /Files/Files/INTRANET/*\r\nDisallow: /*?cartcmd=*"
   },
+  "ditbrande.dk": {
+    "fetched": "2026-11-07T18:46:46Z",
+    "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditikast-brande.dk/sitemap.xml\n"
+  },
   "ditikast-brande.dk": {
-    "fetched": "2026-11-06T13:30:26Z",
+    "fetched": "2026-11-07T18:46:46Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditikast-brande.dk/sitemap.xml\n"
   },
   "ditkarup.dk": {
-    "fetched": "2026-11-06T13:30:26Z",
+    "fetched": "2026-11-07T18:46:46Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditkarup.dk/sitemap.xml\n"
   },
   "ditkjellerup.dk": {
-    "fetched": "2026-11-06T13:30:26Z",
+    "fetched": "2026-11-07T18:46:46Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditkjellerup.dk/sitemap.xml\n"
   },
   "ditry.dk": {
-    "fetched": "2026-11-06T13:30:26Z",
+    "fetched": "2026-11-07T18:46:46Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditry.dk/sitemap.xml\n"
   },
   "ditsalling.dk": {
-    "fetched": "2026-11-06T13:30:26Z",
+    "fetched": "2026-11-07T18:46:46Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditsalling.dk/sitemap.xml\n"
   },
   "ditvinderup.dk": {
-    "fetched": "2026-11-06T13:30:26Z",
+    "fetched": "2026-11-07T18:46:46Z",
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditvinderup.dk/sitemap.xml\n"
   },
   "dl2phipa8wx75.cloudfront.net": {
@@ -414,6 +418,10 @@
   "fredericiadagblad.dk": {
     "fetched": "2026-11-07T13:59:45Z",
     "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://frdb.dk/ai.txt                                                                                           ###\n########################################################################################################################\n                        \n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n             \nUser-agent: FacebookBot\nDisallow: /\n\n# META - Product improvement and AI\nUser-agent: meta-externalagent\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: PiplBot\nDisallow: /\n\n# Search engines\nUser-agent: *\nDisallow: /editors/signature/*\nDisallow: /contimo/layout/native\nDisallow: /*noHeader=*\nAllow: /\n\n# Sitemap\nSitemap: https://frdb.dk/sitemap\nSitemap: https://frdb.dk/advertorials/sitemap.xml\nSitemap: https://frdb.dk/kandidattest/sitemap.xml"
+  },
+  "frederiksbergbladet.dk": {
+    "fetched": "2026-11-07T18:46:46Z",
+    "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://frederiksbergliv.dk/ai.txt                                                                               ###\n########################################################################################################################\n                        \n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n             \nUser-agent: FacebookBot\nDisallow: /\n\n# META - Product improvement and AI\nUser-agent: meta-externalagent\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: PiplBot\nDisallow: /\n\n# Search engines\nUser-agent: *\nDisallow: /editors/signature/*\nDisallow: /contimo/layout/native\nDisallow: /*noHeader=*\nAllow: /\n\n# Sitemap\nSitemap: https://frederiksbergliv.dk/sitemap\nSitemap: https://frederiksbergliv.dk/advertorials/sitemap.xml\nSitemap: https://frederiksbergliv.dk/kandidattest/sitemap.xml"
   },
   "frederiksbergliv.dk": {
     "fetched": "2026-11-07T13:27:52Z",
@@ -567,6 +575,10 @@
     "fetched": "2026-11-07T07:07:55Z",
     "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://www.jyllands-posten.dk/ai.txt                                                                            ###\n########################################################################################################################\n\nUser-agent: msnbot\nCrawl-delay: 1\n\nUser-agent: AhrefsBot\nDisallow: /\n\nUser-agent: Yandex\nDisallow: /\n\nUser-agent: SemrushBot\nDisallow: /\n\nUser-agent: Eyeotabot\nDisallow: /\n\nUser-agent: SeznamBot\nDisallow: /\n\nUser-agent: DataForSeoBot\nDisallow: /\n\nUser-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: PerplexityBot\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: Applebot-Extended\nDisallow: /\n\nUser-agent: meta-externalagent\nDisallow: /\n\nUser-agent: meta-externalfetcher\nDisallow: /\n\nUser-agent: Applebot-Extended\nDisallow: /\n\nUser-agent: Mediapartners-Google\nDisallow:\n\nUser-agent: *\nDisallow: /soeg/*\nDisallow: /incoming/\nDisallow: /import/\nDisallow: /jptest/\nDisallow: /rabatkode/user/*\nDisallow: /rabatkode/ajax/*\nDisallow: /rabatkode/clickout/*\nDisallow: /rabatkode/gotoshop/*\nDisallow: /rabatkode/*/show/*\nDisallow: /bestil/*\nDisallow: /checkout/*\n\nSitemap: https://jyllands-posten.dk/sitemapindex.xml\nSitemap: https://jyllands-posten.dk/annoncering/native/sitemap.xml"
   },
+  "karupugeavis.dk": {
+    "fetched": "2026-11-07T18:46:46Z",
+    "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditkarup.dk/sitemap.xml\n"
+  },
   "kefm.dk": {
     "fetched": "2026-11-07T13:27:52Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://www.kefm.dk/sitemap.xml\n"
@@ -628,7 +640,7 @@
     "body": "# As a condition of accessing this website, you agree to abide by the following\n# content signals:\n\n# (a)  If a Content-Signal = yes, you may collect content for the corresponding\n#      use.\n# (b)  If a Content-Signal = no, you may not collect content for the\n#      corresponding use.\n# (c)  If the website operator does not include a Content-Signal for a\n#      corresponding use, the website operator neither grants nor restricts\n#      permission via Content-Signal with respect to the corresponding use.\n\n# The content signals and their meanings are:\n\n# search:   building a search index and providing search results (e.g., returning\n#           hyperlinks and short excerpts from your website's contents). Search does not\n#           include providing AI-generated search summaries.\n# ai-input: inputting content into one or more AI models (e.g., retrieval\n#           augmented generation, grounding, or other real-time taking of content for\n#           generative AI search answers).\n# ai-train: training or fine-tuning AI models.\n# use:      how AI systems may consume the content (immediate, reference, or full).\n\n# ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF\n# RIGHTS UNDER ARTICLE 4 OF THE EUROPEAN UNION DIRECTIVE 2019/790 ON COPYRIGHT\n# AND RELATED RIGHTS IN THE DIGITAL SINGLE MARKET.\n\n# BEGIN Cloudflare Managed content\n\n\nUser-agent: *\nContent-Signal: search=yes,ai-train=no,use=reference\nAllow: /\n\n# Training crawlers\nUser-agent: Amazonbot\nDisallow: /\n\nUser-agent: Applebot-Extended\nDisallow: /\n\nUser-agent: Bytespider\nDisallow: /\n\nUser-agent: CCBot\nDisallow: /\n\nUser-agent: ClaudeBot\nDisallow: /\n\nUser-agent: Diffbot\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: omgili\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n\nUser-agent: cohere-ai\nDisallow: /\n\nUser-agent: MistralAI-Training\nDisallow: /\n\nUser-agent: meta-externalagent\nDisallow: /\n\nUser-agent: GoogleOther\nDisallow: /\n\nUser-agent: Baiduspider\nDisallow: /\n\nUser-agent: PetalBot\nDisallow: /\n\nUser-agent: AwarioSmartBot\nUser-agent: AwarioRssBot\nDisallow: /\n\nUser-agent: Google-CloudVertexBot\nDisallow: /\n\nUser-agent: QualifiedBot\nDisallow: /\n\nUser-agent: Cotoyogi\nDisallow: /\n\nUser-agent: ICC-Crawler\nDisallow: /\n\nUser-agent: atlassian-bot\nDisallow: /\n\nUser-agent: FishBot\nDisallow: /\n\nUser-agent: BorderxBot\nDisallow: /\n\nUser-agent: NavuBot\nDisallow: /\n\nUser-agent: SemrushBot-SWA\nDisallow: /\n\nUser-agent: WARDBot\nDisallow: /\n\nUser-agent: magpie-crawler\nDisallow: /\n\nUser-agent: KimiBot\nDisallow: /\n\nUser-agent: CitibotSiteCrawler\nDisallow: /\n\n# END Cloudflare Managed Content\n\n"
   },
   "mariagerfjordposten.dk": {
-    "fetched": "2026-11-06T15:01:54Z",
+    "fetched": "2026-11-07T18:46:46Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://mariagerfjordposten.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "middelfart.dk": {
@@ -935,6 +947,14 @@
     "fetched": "2026-11-06T20:53:20Z",
     "body": ""
   },
+  "www-static.jammerbugtposten.dk": {
+    "fetched": "2026-11-07T18:46:46Z",
+    "body": ""
+  },
+  "www-static.mariagerfjordposten.dk": {
+    "fetched": "2026-11-07T18:46:46Z",
+    "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://mariagerfjordposten.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
+  },
   "www.a-r-c.dk": {
     "fetched": "2026-11-07T06:28:05Z",
     "body": "User-agent: *\nDisallow: /wp/wp-admin/\nAllow: /wp/wp-admin/admin-ajax.php\n\n# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://a-r-c.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
@@ -1026,6 +1046,10 @@
   "www.danskerhverv.dk": {
     "fetched": "2026-11-07T08:26:57Z",
     "body": "# Standard rules\nUser-agent: *\nDisallow: /episerver/\nDisallow: /siteassets/*\n\n# AI crawlers — eksplicit adgang\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: Google-Extended\nAllow: /\n\nUser-agent: CCBot\nAllow: /\n\nSitemap: https://www.danskerhverv.dk/sitemap.xml"
+  },
+  "www.ditkarup.dk": {
+    "fetched": "2026-11-07T18:46:46Z",
+    "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://www.ditkarup.dk/sitemap.xml\n"
   },
   "www.dkteknikogmiljoe.dk": {
     "fetched": "2026-11-06T15:01:54Z",
