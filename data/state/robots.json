@@ -143,32 +143,12 @@
     "fetched": "2026-11-07T07:07:55Z",
     "body": ""
   },
-  "cdn.glostrup.dk": {
-    "fetched": "2026-10-09T08:02:44Z",
-    "body": ""
-  },
-  "cdn.gribskov.dk": {
-    "fetched": "2026-10-09T08:02:44Z",
-    "body": ""
-  },
-  "cdn.halsnaes.dk": {
-    "fetched": "2026-10-09T08:02:44Z",
-    "body": ""
-  },
-  "cdn.helsingor.dk": {
-    "fetched": "2026-10-09T08:02:44Z",
-    "body": ""
-  },
-  "cdn.herning.dk": {
-    "fetched": "2026-10-09T08:02:44Z",
-    "body": ""
-  },
-  "cdn.hjoerring.dk": {
-    "fetched": "2026-10-09T08:02:44Z",
+  "cdn.bornholm.dk": {
+    "fetched": "2026-11-08T08:29:05Z",
     "body": ""
   },
   "cdn.hvidovre.dk": {
-    "fetched": "2026-10-09T08:28:28Z",
+    "fetched": "2026-11-08T08:29:05Z",
     "body": ""
   },
   "cdn.jsdelivr.net": {
@@ -176,11 +156,11 @@
     "body": ""
   },
   "cdn.lejre.dk": {
-    "fetched": "2026-10-09T08:28:28Z",
+    "fetched": "2026-11-08T08:29:05Z",
     "body": ""
   },
   "cdn.moliri.dk": {
-    "fetched": "2026-11-06T15:01:54Z",
+    "fetched": "2026-11-08T08:29:05Z",
     "body": ""
   },
   "cdn.norddjurs.dk": {
@@ -216,7 +196,7 @@
     "body": ""
   },
   "cdn1.gopublic.dk": {
-    "fetched": "2026-11-07T07:07:55Z",
+    "fetched": "2026-11-08T08:29:05Z",
     "body": ""
   },
   "cdn2.gopublic.dk": {
@@ -318,10 +298,6 @@
   "driftsinfo.net": {
     "fetched": "2026-10-21T18:37:20Z",
     "body": "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n"
-  },
-  "egedalkommune.dk": {
-    "fetched": "2026-10-09T07:48:56Z",
-    "body": "User-agent: * \nDisallow: /app_browsers/\nDisallow: /app_code/\nDisallow: /app_data/\nDisallow: /app_plugins/\nDisallow: /bin/\nDisallow: /cdn-cgi/\nDisallow: /config/\nDisallow: /controllers/\nDisallow: /config/\nDisallow: /css/\nDisallow: /images/\nDisallow: /obj/\nDisallow: /properties/\nDisallow: /robots/\nDisallow: /scripts/\nDisallow: /umbraco/\nDisallow: /umbraco_client/\nDisallow: /views/\nUser-agent: Sogou web spider\nCrawl-delay: 10\nDisallow: /\nsitemap:https://egedalkommune.dk/sitemap.xml\n"
   },
   "ekstrabladet.dk": {
     "fetched": "2026-11-07T08:26:57Z",
@@ -575,10 +551,6 @@
     "fetched": "2026-10-14T04:50:54Z",
     "body": "    User-agent: *\n    Allow: /\n    Disallow: /umbraco\n    Sitemap: https://ishoj.dk/sitemap.xml"
   },
-  "itu.dk": {
-    "fetched": "2026-10-09T08:28:28Z",
-    "body": "\r\n   User-agent: AhrefsBot\r\n   Disallow: /\r\n\r\n   User-agent: *\r\n   Disallow: /docadm/\r\n   Disallow: /kommunikation/\r\n   Disallow: /sitecore/\r\n     "
-  },
   "jammerbugtposten.dk": {
     "fetched": "2026-11-07T22:44:00Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://jammerbugtposten.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
@@ -776,7 +748,7 @@
     "body": "# As a condition of accessing this website, you agree to abide by the following\n# content signals:\n\n# (a)  If a Content-Signal = yes, you may collect content for the corresponding\n#      use.\n# (b)  If a Content-Signal = no, you may not collect content for the\n#      corresponding use.\n# (c)  If the website operator does not include a Content-Signal for a\n#      corresponding use, the website operator neither grants nor restricts\n#      permission via Content-Signal with respect to the corresponding use.\n\n# The content signals and their meanings are:\n\n# search:   building a search index and providing search results (e.g., returning\n#           hyperlinks and short excerpts from your website's contents). Search does not\n#           include providing AI-generated search summaries.\n# ai-input: inputting content into one or more AI models (e.g., retrieval\n#           augmented generation, grounding, or other real-time taking of content for\n#           generative AI search answers).\n# ai-train: training or fine-tuning AI models.\n# use:      how AI systems may consume the content (immediate, reference, or full).\n\n# ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF\n# RIGHTS UNDER ARTICLE 4 OF THE EUROPEAN UNION DIRECTIVE 2019/790 ON COPYRIGHT\n# AND RELATED RIGHTS IN THE DIGITAL SINGLE MARKET.\n\n# BEGIN Cloudflare Managed content\n\n\nUser-agent: *\nContent-Signal: search=yes,ai-train=no,use=reference\nAllow: /\n\n# Training crawlers\nUser-agent: Amazonbot\nDisallow: /\n\nUser-agent: Applebot-Extended\nDisallow: /\n\nUser-agent: Bytespider\nDisallow: /\n\nUser-agent: CCBot\nDisallow: /\n\nUser-agent: ClaudeBot\nDisallow: /\n\nUser-agent: Diffbot\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: omgili\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n\nUser-agent: cohere-ai\nDisallow: /\n\nUser-agent: MistralAI-Training\nDisallow: /\n\nUser-agent: meta-externalagent\nDisallow: /\n\nUser-agent: GoogleOther\nDisallow: /\n\nUser-agent: Baiduspider\nDisallow: /\n\nUser-agent: PetalBot\nDisallow: /\n\nUser-agent: AwarioSmartBot\nUser-agent: AwarioRssBot\nDisallow: /\n\nUser-agent: Google-CloudVertexBot\nDisallow: /\n\nUser-agent: QualifiedBot\nDisallow: /\n\nUser-agent: Cotoyogi\nDisallow: /\n\nUser-agent: ICC-Crawler\nDisallow: /\n\nUser-agent: atlassian-bot\nDisallow: /\n\nUser-agent: FishBot\nDisallow: /\n\nUser-agent: BorderxBot\nDisallow: /\n\nUser-agent: NavuBot\nDisallow: /\n\nUser-agent: SemrushBot-SWA\nDisallow: /\n\nUser-agent: WARDBot\nDisallow: /\n\nUser-agent: magpie-crawler\nDisallow: /\n\nUser-agent: KimiBot\nDisallow: /\n\nUser-agent: CitibotSiteCrawler\nDisallow: /\n\n# END Cloudflare Managed Content\n\nUser-Agent: *\nAllow: /\n\nSitemap: https://backend.norfors.dk/sitemap.xml\n"
   },
   "nyheder.ku.dk": {
-    "fetched": "2026-11-07T06:28:05Z",
+    "fetched": "2026-11-08T08:29:05Z",
     "body": ""
   },
   "nyheder.tv2.dk": {
@@ -1008,7 +980,7 @@
     "body": "User-Agent: *\nSitemap: https://www.aalborg.dk/sitemap.xml"
   },
   "www.aau.dk": {
-    "fetched": "2026-10-09T07:48:56Z",
+    "fetched": "2026-11-08T08:29:05Z",
     "body": "User-agent: *\nAllow: /"
   },
   "www.aeroekommune.dk": {
@@ -1114,10 +1086,6 @@
   "www.dragoer.dk": {
     "fetched": "2026-11-07T13:27:52Z",
     "body": "<pre>\r\n        # robots.txt, www.dragoer.dk/&#xA;&#xA;User-Agent: *&#xA;Allow: /DependencyHandler.axd&#xA;Disallow: /aspnet_client/&#xA;Disallow: /bin/&#xA;Disallow: /config/&#xA;Disallow: /umbraco/&#xA;Disallow: /umbraco_client/&#xA;Disallow: /usercontrols/&#xA;Disallow: /*.axd&#xA;Sitemap: https://www.dragoer.dk/sitemap.xml\r\n</pre>"
-  },
-  "www.dtu.dk": {
-    "fetched": "2026-10-09T07:48:56Z",
-    "body": "User-agent: *\r\nDisallow: /sitecore/\r\nDisallow: /sitecore modules/\r\nDisallow: /layouts/\r\nDisallow: /upload/\r\nDisallow: /english/sitecore/\r\nDisallow: /dtu/\r\nDisallow: /institutter/\r\nDisallow: /centre/\r\nDisallow: /sites/ \r\nDisallow: /subsites/\r\nDisallow: /andre_universitetsenheder/\r\nDisallow: /andre/\r\nDisallow: /webservice/\r\nDisallow: /functions/\r\nDisallow: /resultat\r\nDisallow: /english/resultat\r\nSitemap: https://www.dtu.dk/sitemap.xml\r\nCrawl-delay: 10\r\n\r\nUser-agent: ClaudeBot\r\nDisallow: /sitecore/\r\nDisallow: /sitecore modules/\r\nDisallow: /layouts/\r\nDisallow: /upload/\r\nDisallow: /english/sitecore/\r\nDisallow: /dtu/\r\nDisallow: /institutter/\r\nDisallow: /centre/\r\nDisallow: /sites/ \r\nDisallow: /subsites/\r\nDisallow: /andre_universitetsenheder/\r\nDisallow: /andre/\r\nDisallow: /webservice/\r\nDisallow: /functions/\r\nDisallow: /resultat\r\nDisallow: /english/resultat\r\nSitemap: https://www.dtu.dk/sitemap.xml\r\nCrawl-delay: 1000\r\n\r\nUser-agent: GPTBot\r\nDisallow: /sitecore/\r\nDisallow: /sitecore modules/\r\nDisallow: /layouts/\r\nDisallow: /upload/\r\nDisallow: /english/sitecore/\r\nDisallow: /dtu/\r\nDisallow: /institutter/\r\nDisallow: /centre/\r\nDisallow: /sites/ \r\nDisallow: /subsites/\r\nDisallow: /andre_universitetsenheder/\r\nDisallow: /andre/\r\nDisallow: /webservice/\r\nDisallow: /functions/\r\nDisallow: /resultat\r\nDisallow: /english/resultat\r\nSitemap: https://www.dtu.dk/sitemap.xml\r\nCrawl-delay: 1000\r\n\r\nUser-agent: GoogleOther\r\nDisallow: /sitecore/\r\nDisallow: /sitecore modules/\r\nDisallow: /layouts/\r\nDisallow: /upload/\r\nDisallow: /english/sitecore/\r\nDisallow: /dtu/\r\nDisallow: /institutter/\r\nDisallow: /centre/\r\nDisallow: /sites/ \r\nDisallow: /subsites/\r\nDisallow: /andre_universitetsenheder/\r\nDisallow: /andre/\r\nDisallow: /webservice/\r\nDisallow: /functions/\r\nDisallow: /resultat\r\nDisallow: /english/resultat\r\nSitemap: https://www.dtu.dk/sitemap.xml\r\nCrawl-delay: 1000\r\n"
   },
   "www.eea.europa.eu": {
     "fetched": "2026-11-07T13:27:52Z",
