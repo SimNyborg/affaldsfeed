@@ -163,36 +163,16 @@
     "fetched": "2026-11-08T08:29:05Z",
     "body": ""
   },
-  "cdn.norddjurs.dk": {
-    "fetched": "2026-10-09T08:34:12Z",
-    "body": ""
-  },
   "cdn.odder.dk": {
-    "fetched": "2026-10-09T08:34:12Z",
-    "body": ""
-  },
-  "cdn.rk.dk": {
-    "fetched": "2026-10-09T08:34:12Z",
-    "body": ""
-  },
-  "cdn.soroe.dk": {
-    "fetched": "2026-10-09T08:34:12Z",
-    "body": ""
-  },
-  "cdn.stevns.dk": {
-    "fetched": "2026-10-09T08:34:12Z",
+    "fetched": "2026-11-08T10:17:32Z",
     "body": ""
   },
   "cdn.vallensbaek.dk": {
-    "fetched": "2026-10-09T09:27:16Z",
-    "body": ""
-  },
-  "cdn.vesthimmerland.dk": {
-    "fetched": "2026-10-09T09:27:16Z",
+    "fetched": "2026-11-08T10:17:32Z",
     "body": ""
   },
   "cdn.vordingborg.dk": {
-    "fetched": "2026-10-09T09:27:16Z",
+    "fetched": "2026-11-08T10:17:32Z",
     "body": ""
   },
   "cdn1.gopublic.dk": {
@@ -256,7 +236,7 @@
     "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://dbrs.dk/ai.txt                                                                                           ###\n########################################################################################################################\n                        \n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n             \nUser-agent: FacebookBot\nDisallow: /\n\n# META - Product improvement and AI\nUser-agent: meta-externalagent\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: PiplBot\nDisallow: /\n\n# Search engines\nUser-agent: *\nDisallow: /editors/signature/*\nDisallow: /contimo/layout/native\nDisallow: /*noHeader=*\nAllow: /\n\n# Sitemap\nSitemap: https://dbrs.dk/sitemap\nSitemap: https://dbrs.dk/advertorials/sitemap.xml\nSitemap: https://dbrs.dk/kandidattest/sitemap.xml"
   },
   "dinforsyning.dk": {
-    "fetched": "2026-10-09T09:34:01Z",
+    "fetched": "2026-11-08T10:17:32Z",
     "body": "Sitemap: https://dinforsyning.dk/Sitemap.xml\r\nUser-agent: *\r\nDisallow: /Files/Papirkurv/\r\nUser-agent: Googlebot-Image\r\nDisallow: /Files/Files/INTRANET/*\r\nDisallow: /*?cartcmd=*"
   },
   "ditbrande.dk": {
@@ -643,10 +623,6 @@
     "fetched": "2026-11-07T18:46:46Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://mariagerfjordposten.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
-  "middelfart.dk": {
-    "fetched": "2026-10-09T08:34:12Z",
-    "body": "user-agent: *\r\ndisallow: /error/\r\nsitemap: https://middelfart.dk/Handlers/Sitemap.ashx\r\n"
-  },
   "midtfynsposten.dk": {
     "fetched": "2026-11-07T06:28:05Z",
     "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://midtfynsposten.dk/ai.txt                                                                                 ###\n########################################################################################################################\n                        \n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n             \nUser-agent: FacebookBot\nDisallow: /\n\n# META - Product improvement and AI\nUser-agent: meta-externalagent\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: PiplBot\nDisallow: /\n\n# Search engines\nUser-agent: *\nDisallow: /editors/signature/*\nDisallow: /contimo/layout/native\nDisallow: /*noHeader=*\nAllow: /\n\n# Sitemap\nSitemap: https://midtfynsposten.dk/sitemap\nSitemap: https://midtfynsposten.dk/advertorials/sitemap.xml\nSitemap: https://midtfynsposten.dk/kandidattest/sitemap.xml"
@@ -999,10 +975,6 @@
     "fetched": "2026-11-07T13:27:52Z",
     "body": "User-agent: * \nDisallow: /app_browsers/\nDisallow: /app_code/\nDisallow: /app_data/\nDisallow: /app_plugins/\nDisallow: /bin/\nDisallow: /cdn-cgi/\nDisallow: /config/\nDisallow: /controllers/\nDisallow: /config/\nDisallow: /css/\nDisallow: /images/\nDisallow: /obj/\nDisallow: /properties/\nDisallow: /robots/\nDisallow: /scripts/\nDisallow: /umbraco/\nDisallow: /umbraco_client/\nDisallow: /views/\nDisallow: /pdfversion\nUser-agent: Sogou web spider\nCrawl-delay: 10\nDisallow: /\nsitemap:https://www.assens.dk/sitemap.xml\nUser-agent: *\n\n# Bloker filer\nDisallow: /*.pdf\nDisallow: /*.doc\nDisallow: /*.docx\nDisallow: /*.xls\nDisallow: /*.xlsx\nDisallow: /*.ppt\nDisallow: /*.pptx\nDisallow: /*.asp\nDisallow: /*_asp\nDisallow: /*.aspx\nDisallow: /*_aspx\n\n\n# Bloker parametre\nDisallow: /*utm_source=\nDisallow: /*utm_medium=\nDisallow: /*fbclid=\nDisallow: /*trk=\nDisallow: /*flush=\nDisallow: /*term=\nDisallow: /*infoId=\nDisallow: /*fileID=\n\n# Bloker forkortede URL'er\nDisallow: /*.../*\n\n# Bloker soegning fra tidligere hjemmeside\nDisallow: /soeg?q=\n\n# Bloker sektioner fra tidligere hjemmeside\nDisallow: /vores-kommune/\nDisallow: /vaer-aktiv/\nDisallow: /sub-url/\nDisallow: /media/\n\n# Bloker sektioner fra nuvaerende hjemmeside\nDisallow: /borger/trafik-og-veje/aktuelt-lige-nu/aktuelt-vejarbejde/\nDisallow: /borger/job-og-ledighed/job-paa-saerlige-vilkaar/ledige-fleksjob/\nDisallow: /demokrati-og-indflydelse/hoeringer-og-afgoerelser/\nDisallow: /om-os/udvikling-og-strategi/by-land-og-kultur/miljoe-og-teknik/vaadomraade-og-lavbundsprojekter/"
   },
-  "www.assensforsyning.dk": {
-    "fetched": "2026-10-09T09:34:01Z",
-    "body": "Sitemap: https://www.assensforsyning.dk/Sitemap.xml\r\nUser-agent: *\r\nDisallow: /Files/Papirkurv/\r\n\r\nDisallow: /*?cartcmd=*"
-  },
   "www.au.dk": {
     "fetched": "2026-11-07T22:44:00Z",
     "body": ""
@@ -1144,7 +1116,7 @@
     "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://folketidende.dk/robots.txt                                                                                   ###\n########################################################################################################################\n                        \n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n\nUser-agent: Googlebot\nAllow: /\nUser-agent: Googlebot-Image\nAllow: /\nUser-agent: Googlebot-Video\nAllow: /\nUser-agent: Googlebot-News\nAllow: /\nUser-agent: Google-InspectionTool\nAllow: /\nUser-agent: Google-Extended\nDisallow: /\nUser-agent: GoogleOther\nDisallow: /\nUser-agent: GoogleOther-Video\nDisallow: /\nUser-agent: GoogleOther-Image\nDisallow: /\nUser-agent: Google-CloudVertexBot\nDisallow: /\n \nUser-agent: DeepSeekBot\nDisallow: /\nUser-agent: Bingbot\nAllow: /\nUser-agent: Microsoft-CreatorBot\nDisallow: /\n\n\n# Dotbot\nUser-agent: dotbot\nDisallow:/\n\n# Sentibot\nUser-agent: dotbot\nDisallow:/\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\n# Search engines\nUser-agent: *\nDisallow: /*?teaser-referral=\nDisallow: /purchase-flow-login\nAllow: /\n\n\n# SEO\nUser-agent: BLEXBot\nDisallow: BLEXBot\nDisallow: /\n\n# SEO\nUser-agent: DataForSeoBot\nDisallow: DataForSeoBot\ndisallow: /\n\n# SEO\nUser-agent: DataForSeoBot\nDisallow: DataForSeoBot\ndisallow: /\n\n# SEM\nUser-agent: SemrushBot\nDisallow: SemrushBot\nDisallow: /\n\n# Sitemap\nSitemap: https://www.folketidende.dk/sitemapindex.xml\nSitemap: https://www.folketidende.dk/tag/nyheder/sport/lolland/guldborgund/krimi/erhverv/kultur/lyspunkter/debat/krimi/det%20sker/vores%20lolland-falster/vores%20lolland%20falster/sydhavs%C3%B8ernes%20bedste/ugeavisen%20lolland/ugeavisen%20guldborgsund/sponseret%20indhold/sponsoreret%20indhold?lab_viewport=newssitemap"
   },
   "www.fors.dk": {
-    "fetched": "2026-10-09T09:34:01Z",
+    "fetched": "2026-11-08T10:17:32Z",
     "body": ""
   },
   "www.forsyningen.dk": {
@@ -1490,10 +1462,6 @@
   "www.silkeborg.dk": {
     "fetched": "2026-11-07T22:44:00Z",
     "body": "User-agent: * \nDisallow: /app_browsers/\nDisallow: /app_code/\nDisallow: /app_data/\nDisallow: /app_plugins/\nDisallow: /bin/\nDisallow: /cdn-cgi/\nDisallow: /config/\nDisallow: /controllers/\nDisallow: /config/\nDisallow: /css/\nDisallow: /images/\nDisallow: /obj/\nDisallow: /properties/\nDisallow: /robots/\nDisallow: /scripts/\nDisallow: /umbraco/\nDisallow: /umbraco_client/\nDisallow: /views/\nDisallow: /pdfversion\nUser-agent: Sogou web spider\nCrawl-delay: 10\nDisallow: /\nsitemap:https://www.silkeborg.dk/sitemap.xml\n"
-  },
-  "www.silkeborgforsyning.dk": {
-    "fetched": "2026-10-09T10:08:20Z",
-    "body": "User-agent: *\r\nDisallow: /Files/Papirkurv/\r\n\r\nDisallow: /*?cartcmd=*"
   },
   "www.skanderborg.dk": {
     "fetched": "2026-11-07T22:44:00Z",
