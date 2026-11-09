@@ -199,6 +199,10 @@
     "fetched": "2026-11-08T10:17:32Z",
     "body": ""
   },
+  "cdn.rigsrevisionen.dk": {
+    "fetched": "2026-11-09T07:56:57Z",
+    "body": ""
+  },
   "cdn.rk.dk": {
     "fetched": "2026-11-08T17:01:59Z",
     "body": ""
@@ -822,6 +826,10 @@
   "pub.norden.org": {
     "fetched": "2026-10-26T00:21:54Z",
     "body": ""
+  },
+  "randersugeavis.dk": {
+    "fetched": "2026-11-09T07:56:57Z",
+    "body": "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://randersugeavis.dk/sitemap_index.xml\n"
   },
   "regeringen.dk": {
     "fetched": "2026-11-08T21:09:28Z",

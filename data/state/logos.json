@@ -1466,13 +1466,13 @@
   "odense-kommune": {
     "file": "odense-kommune.ico",
     "src": "https://www.odense.dk/images/odense/favicon.ico",
-    "checked": "2026-10-09T08:34:12Z",
-    "error": null
+    "checked": "2026-11-09T07:56:57Z",
+    "error": "timeout"
   },
   "odense-renovation": {
     "file": "odense-renovation.png",
     "src": "https://www.odenserenovation.dk/favicon-32x32.png",
-    "checked": "2026-10-08T07:28:04Z",
+    "checked": "2026-11-09T07:56:57Z",
     "error": null
   },
   "odsherred-kommune": {
@@ -1484,7 +1484,7 @@
   "oestvendsysselfolkeblad": {
     "file": "oestvendsysselfolkeblad.png",
     "src": "https://xn--stvendsysselfolkeblad-pfc.dk/wp-content/uploads/2021/03/cropped-Oestvendsyssel-Folkeblad-32x32.png",
-    "checked": "2026-10-08T13:07:35Z",
+    "checked": "2026-11-09T07:56:57Z",
     "error": null
   },
   "orestad-avis": {
@@ -1496,7 +1496,7 @@
   "pingvinnyt": {
     "file": "pingvinnyt.png",
     "src": "https://pingvinnyt.dk/wp-content/uploads/2025/10/cropped-android-chrome-512x512-1-32x32.png",
-    "checked": "2026-10-08T13:07:35Z",
+    "checked": "2026-11-09T07:56:57Z",
     "error": null
   },
   "plastindustrien": {
@@ -1520,7 +1520,7 @@
   "randersugeavis-dk": {
     "file": "randersugeavis-dk.png",
     "src": "https://randersugeavis.dk/wp-content/uploads/2025/03/cropped-Ugeavis-logo-1-32x32.png",
-    "checked": "2026-10-08T07:28:04Z",
+    "checked": "2026-11-09T07:56:57Z",
     "error": null
   },
   "refa": {
@@ -1532,7 +1532,7 @@
   "regeringen": {
     "file": "regeringen.png",
     "src": "https://regeringen.dk/media/kwkldl3h/favicon-32x32.png?rmode=pad&width=32&height=32&format=png&bgcolor=transparent&v=1db9e3463f9e0d0",
-    "checked": "2026-10-08T07:28:04Z",
+    "checked": "2026-11-09T07:56:57Z",
     "error": null
   },
   "ren-forsyning-mariagerfjord": {
@@ -1562,7 +1562,7 @@
   "rigsrevisionen": {
     "file": "rigsrevisionen.webp",
     "src": "https://cdn.rigsrevisionen.dk/rigsrevisionen/Media/F/5/favicon.png?width=32&height=32",
-    "checked": "2026-10-08T07:28:04Z",
+    "checked": "2026-11-09T07:56:57Z",
     "error": null
   },
   "ringkoebing-skjern-kommune": {
