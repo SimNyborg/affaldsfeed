@@ -1892,7 +1892,7 @@
   "vesthimmerlands-forsyning": {
     "file": "vesthimmerlands-forsyning.png",
     "src": "https://vesthimmerlandsforsyning.dk/Admin/Public/GetImage.ashx?Image=/Files/Images/Graphics/Fav/logo.png&Format=png&Width=57&Height=57&Crop=6&DoNotUpscale=1",
-    "checked": "2026-10-09T10:08:20Z",
+    "checked": "2026-11-09T18:45:54Z",
     "error": null
   },
   "vesthimmerlands-kommune": {
@@ -1904,7 +1904,7 @@
   "vesthimmerlandsavis": {
     "file": "vesthimmerlandsavis.jpg",
     "src": "https://vesthimmerlandsavis.dk/wp-content/uploads/2023/02/cropped-icon-1-32x32.jpg",
-    "checked": "2026-10-08T13:07:35Z",
+    "checked": "2026-11-09T18:45:54Z",
     "error": null
   },
   "viborg-folkeblad": {
@@ -1922,13 +1922,13 @@
   "viborher": {
     "file": "viborher.png",
     "src": "https://www.viborher.dk/favicon.ico",
-    "checked": "2026-10-08T13:07:35Z",
+    "checked": "2026-11-09T18:45:54Z",
     "error": null
   },
   "videnskab": {
     "file": "videnskab.webp",
-    "src": "https://videnskab.dk/wp-content/uploads/2023/03/cropped-favicon-orange-32x32.png.webp",
-    "checked": "2026-10-08T07:48:34Z",
+    "src": "https://videnskab.dk/wp-content/uploads/2026/10/videnskabdk-125x125.png.webp",
+    "checked": "2026-11-09T18:45:54Z",
     "error": null
   },
   "vodskovavis": {
@@ -1946,7 +1946,7 @@
   "voreslokalavis": {
     "file": "voreslokalavis.ico",
     "src": "https://www.voreslokalavis.dk/uploads/grafik/favicon.ico",
-    "checked": "2026-10-08T13:07:35Z",
+    "checked": "2026-11-09T18:45:54Z",
     "error": null
   },
   "wastetech": {
@@ -1958,13 +1958,13 @@
   "weekendavisen-dk": {
     "file": "weekendavisen-dk.png",
     "src": "https://www.weekendavisen.dk/brands/weekendavisen/icon-32x32.png",
-    "checked": "2026-10-08T07:48:34Z",
+    "checked": "2026-11-09T18:45:54Z",
     "error": null
   },
   "zetland-dk": {
-    "file": "zetland-dk.png",
-    "src": "https://www.zetland.dk/fav/zetland/touch-icon-ipad.png",
-    "checked": "2026-10-08T07:48:34Z",
-    "error": null
+    "file": null,
+    "src": null,
+    "checked": "2026-11-09T18:45:54Z",
+    "error": "blokeret af robots.txt"
   }
 }
