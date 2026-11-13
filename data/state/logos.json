@@ -20,7 +20,7 @@
   "aarhus-kommune": {
     "file": null,
     "src": null,
-    "checked": "2026-11-06T15:01:54Z",
+    "checked": "2026-11-13T22:36:34Z",
     "error": "HTTP 404"
   },
   "aau": {
@@ -446,7 +446,7 @@
   "dragoer-kommune": {
     "file": null,
     "src": null,
-    "checked": "2026-11-06T15:01:54Z",
+    "checked": "2026-11-13T22:36:34Z",
     "error": "HTTP 404"
   },
   "dtu": {
@@ -458,13 +458,13 @@
   "dtu-kemiteknik": {
     "file": "dtu-kemiteknik.ico",
     "src": "https://www.kt.dtu.dk/favicon.ico",
-    "checked": "2026-10-14T09:59:37Z",
+    "checked": "2026-11-13T22:36:34Z",
     "error": null
   },
   "dtu-sustain": {
     "file": "dtu-sustain.ico",
     "src": "https://sustain.dtu.dk/favicon.ico",
-    "checked": "2026-10-14T09:59:37Z",
+    "checked": "2026-11-13T22:36:34Z",
     "error": null
   },
   "eea": {
@@ -512,7 +512,7 @@
   "esbjerg-kommune": {
     "file": null,
     "src": null,
-    "checked": "2026-11-06T15:01:54Z",
+    "checked": "2026-11-13T22:36:34Z",
     "error": "HTTP 403"
   },
   "faa": {
@@ -1028,7 +1028,7 @@
   "kalundborg-kommune": {
     "file": null,
     "src": null,
-    "checked": "2026-11-06T15:01:54Z",
+    "checked": "2026-11-13T22:36:34Z",
     "error": "HTTP 404"
   },
   "kanalfrederikshavn": {
@@ -1052,7 +1052,7 @@
   "kerteminde-kommune": {
     "file": null,
     "src": null,
-    "checked": "2026-11-06T15:01:54Z",
+    "checked": "2026-11-13T22:36:34Z",
     "error": "HTTP 404"
   },
   "kfst": {
@@ -1153,8 +1153,8 @@
   },
   "ku-ifro": {
     "file": "ku-ifro.png",
-    "src": "https://www.ku.dk/_assets/12a46eea25fd08a7277319b85c785b6b/Icons/favicon-96x96.1791801466.png",
-    "checked": "2026-10-14T09:59:37Z",
+    "src": "https://www.ku.dk/_assets/12a46eea25fd08a7277319b85c785b6b/Icons/favicon-96x96.1794572521.png",
+    "checked": "2026-11-13T22:36:34Z",
     "error": null
   },
   "kunmedierne-dk": {
@@ -1166,7 +1166,7 @@
   "laesoe-kommune": {
     "file": null,
     "src": null,
-    "checked": "2026-11-06T15:01:54Z",
+    "checked": "2026-11-13T22:36:34Z",
     "error": "HTTP 404"
   },
   "langeland-kommune": {
@@ -1208,7 +1208,7 @@
   "lolland-kommune": {
     "file": null,
     "src": null,
-    "checked": "2026-11-06T15:01:54Z",
+    "checked": "2026-11-13T22:36:34Z",
     "error": "ikke et brugbart billede (kun PNG, ICO, GIF, JPEG og WebP på mindst 16 px)"
   },
   "ltf": {
@@ -1226,7 +1226,7 @@
   "maabjerg-energy-center": {
     "file": null,
     "src": null,
-    "checked": "2026-11-06T15:01:54Z",
+    "checked": "2026-11-13T22:36:34Z",
     "error": "HTTP 404"
   },
   "magasinetkbh-dk": {
@@ -1250,7 +1250,7 @@
   "middelfart-affald": {
     "file": null,
     "src": null,
-    "checked": "2026-11-06T15:01:54Z",
+    "checked": "2026-11-13T22:36:34Z",
     "error": "HTTP 404"
   },
   "middelfart-kommune": {
@@ -1394,7 +1394,7 @@
   "nomi4s": {
     "file": null,
     "src": null,
-    "checked": "2026-11-06T15:01:54Z",
+    "checked": "2026-11-13T22:36:34Z",
     "error": "svaret er for stort (over 0.195 MB)"
   },
   "norddjurs-kommune": {
@@ -1538,7 +1538,7 @@
   "ren-forsyning-mariagerfjord": {
     "file": null,
     "src": null,
-    "checked": "2026-11-06T15:01:54Z",
+    "checked": "2026-11-13T22:36:34Z",
     "error": "HTTP 404"
   },
   "renosyd": {
@@ -1670,7 +1670,7 @@
   "solroed-kommune": {
     "file": null,
     "src": null,
-    "checked": "2026-11-06T15:01:54Z",
+    "checked": "2026-11-13T22:36:34Z",
     "error": "HTTP 404"
   },
   "sonderborgnyt": {
@@ -1706,7 +1706,7 @@
   "struer-kommune": {
     "file": null,
     "src": null,
-    "checked": "2026-11-06T15:01:54Z",
+    "checked": "2026-11-13T22:36:34Z",
     "error": "HTTP 404"
   },
   "svendborg-kommune": {
@@ -1952,7 +1952,7 @@
   "wastetech": {
     "file": "wastetech.ico",
     "src": "https://pro.ing.dk/favicon.ico",
-    "checked": "2026-10-14T09:59:37Z",
+    "checked": "2026-11-13T22:36:34Z",
     "error": null
   },
   "weekendavisen-dk": {
