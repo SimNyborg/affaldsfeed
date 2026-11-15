@@ -3,11 +3,11 @@
     "last_modified": "Fri, 13 Nov 2026 15:27:44 GMT"
   },
   "https://aeroeforsyning.dk/nyheder/affaldshaandtering": {
-    "last_modified": "Sun, 15 Nov 2026 13:27:00 GMT"
+    "last_modified": "Sun, 15 Nov 2026 21:47:05 GMT"
   },
   "https://affaldplus.dk/rss.xml": {
-    "etag": "\"1794744647\"",
-    "last_modified": "Sun, 15 Nov 2026 12:10:47 GMT"
+    "etag": "\"1794774489\"",
+    "last_modified": "Sun, 15 Nov 2026 20:28:09 GMT"
   },
   "https://afld.dk/feed/": {
     "etag": "\"3a8b360e8a4cd3bbd765c59d7e301f43\"",
@@ -26,15 +26,15 @@
     "last_modified": "Sun, 15 Nov 2026 16:37:49 GMT"
   },
   "https://bornholmnyt.dk/feed/": {
-    "last_modified": "Sun, 15 Nov 2026 14:15:28 GMT"
+    "last_modified": "Sun, 15 Nov 2026 19:44:22 GMT"
   },
   "https://brammingposten.dk/feed/": {
     "etag": "\"90cef9dbdc05751856231ad0dea5681b\"",
     "last_modified": "Wed, 21 Oct 2026 06:40:14 GMT"
   },
   "https://byensnyt.dk/feed/": {
-    "etag": "\"16cc-66052cc980cd3\"",
-    "last_modified": "Sun, 15 Nov 2026 16:03:16 GMT"
+    "etag": "\"16cd-660573a20ce23\"",
+    "last_modified": "Sun, 15 Nov 2026 21:20:13 GMT"
   },
   "https://ctwatch.dk/sitemap1.xml": {
     "etag": "W/\"cd12cb186e7e61636d16f61f7942d93c-1\"",
@@ -63,12 +63,12 @@
     "last_modified": "Fri, 09 Oct 2026 02:13:23 GMT"
   },
   "https://energiwatch.dk/sitemap2.xml": {
-    "etag": "W/\"8845322ac23e3cd4d76cf693def601ca-1\"",
-    "last_modified": "Sat, 14 Nov 2026 02:12:52 GMT"
+    "etag": "W/\"2c3ec2f6ad4c93fa8514d1f32e252c31-1\"",
+    "last_modified": "Sun, 15 Nov 2026 02:12:54 GMT"
   },
   "https://energiwatch.dk/sitemapindex.xml": {
-    "etag": "\"64a545f8a85c80c785526537428c8064-1\"",
-    "last_modified": "Sat, 14 Nov 2026 02:12:55 GMT",
+    "etag": "\"cfcf591388245e43cd096498c1c1bab3-1\"",
+    "last_modified": "Sun, 15 Nov 2026 02:12:56 GMT",
     "sitemaps": [
       "https://energiwatch.dk/sitemap2.xml",
       "https://energiwatch.dk/sitemap1.xml"
@@ -248,17 +248,17 @@
     "last_modified": "Fri, 13 Nov 2026 14:19:51 GMT"
   },
   "https://www.avisen.dk/rss.aspx": {
-    "last_modified": "Thu, 15 Nov 2018 17:11:09 GMT"
+    "last_modified": "Thu, 15 Nov 2018 22:00:53 GMT"
   },
   "https://www.berlingske.dk/content/rss": {
-    "etag": "\"17bhidma6877hc\""
+    "etag": "\"q98g5zqa3w7ll\""
   },
   "https://www.biogas.dk/feed/": {
     "etag": "\"a98d27fc2ab808901a581cbdca34d27a\"",
     "last_modified": "Thu, 12 Nov 2026 13:53:33 GMT"
   },
   "https://www.brandebladet.dk/rss.xml": {
-    "last_modified": "Sun, 15 Nov 2026 12:35:47 GMT"
+    "last_modified": "Sun, 15 Nov 2026 20:40:53 GMT"
   },
   "https://www.cbs.dk/sitemap.xml": {
     "etag": "\"2952597d264c160dbad5c73b3219bd16\"",
@@ -273,8 +273,8 @@
     "last_modified": "Fri, 13 Nov 2026 11:30:56 GMT"
   },
   "https://www.fh.dk/sitemap.xml": {
-    "etag": "\"1794749402\"",
-    "last_modified": "Sun, 15 Nov 2026 13:30:02 GMT"
+    "etag": "\"1794779401\"",
+    "last_modified": "Sun, 15 Nov 2026 21:50:01 GMT"
   },
   "https://www.fredericia.dk/sitemap.xml": {
     "etag": "\"2ce4f93573d93b4288c3bdc7cc54ab52-gzip\"",
@@ -301,12 +301,12 @@
     "last_modified": "Wed, 11 Nov 2026 08:16:29 GMT"
   },
   "https://www.kk.dk/sitemap.xml?page=1": {
-    "etag": "\"1794749400\"",
-    "last_modified": "Sun, 15 Nov 2026 13:30:00 GMT"
+    "etag": "\"1794776400\"",
+    "last_modified": "Sun, 15 Nov 2026 21:00:00 GMT"
   },
   "https://www.kk.dk/sitemap.xml?page=2": {
-    "etag": "\"1794749400\"",
-    "last_modified": "Sun, 15 Nov 2026 13:30:00 GMT"
+    "etag": "\"1794776400\"",
+    "last_modified": "Sun, 15 Nov 2026 21:00:00 GMT"
   },
   "https://www.ku.dk/ifro/om-instituttet/nyheder": {
     "etag": "\"97c466abfbc49d3772c5a78be095ff49\""
@@ -332,6 +332,10 @@
   "https://www.refa.dk/feed/": {
     "etag": "\"0d64b325df8138cf71ead2a0e5b434ba\"",
     "last_modified": "Thu, 12 Nov 2026 13:07:58 GMT"
+  },
+  "https://www.rudersdal.dk/sitemap.xml": {
+    "etag": "W/\"a246387359953869ce3427f62e9d7c94\"",
+    "last_modified": "Sat, 14 Nov 2026 13:10:21 GMT"
   },
   "https://www.samsoposten.dk/da/pages/45-forside": {
     "etag": "W/\"770c41cca3634e70d04423c3d9dac10b\""
