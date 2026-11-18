@@ -28,7 +28,7 @@
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://affald.middelfart.dk/sitemap.xml\n"
   },
   "affaldoggenbrug.middelfart.dk": {
-    "fetched": "2026-11-17T06:27:44Z",
+    "fetched": "2026-11-18T06:27:46Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://affaldoggenbrug.middelfart.dk/sitemap.xml\n"
   },
   "affaldplus.dk": {
@@ -416,7 +416,7 @@
     "body": ""
   },
   "forsyningstilsynet.dk": {
-    "fetched": "2026-11-17T06:27:44Z",
+    "fetched": "2026-11-18T06:27:46Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://forsyningstilsynet.dk/sitemap.xml\n"
   },
   "frdb.dk": {
@@ -828,7 +828,7 @@
     "body": "NOFOLLOW:  *\nNOINDEX:  /aspnet_client/\nDisallow:  /bin/\nDisallow:  /config/\nDisallow:  /data/\nNOINDEX,NOFOLLOW,  /macroScripts/\nDisallow:  /umbraco/\nDisallow:  /umbraco_client/\nDisallow:  /usercontrols/\nDisallow:  /xslt/\nDisallow:  /?morecontrast=1\nDisallow:  /?morecontrast=0\nDisallow:  /?accessibility=1\nDisallow:  /?accessibility=0\nSitemap:  /sitemap.xml"
   },
   "renosyd.dk": {
-    "fetched": "2026-11-17T06:27:44Z",
+    "fetched": "2026-11-18T06:27:46Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://renosyd.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "rgo.dk": {
@@ -952,7 +952,7 @@
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://vesthimmerland.dk/sitemap.xml\n"
   },
   "vesthimmerlandsavis.dk": {
-    "fetched": "2026-11-17T06:27:44Z",
+    "fetched": "2026-11-18T06:27:46Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://vesthimmerlandsavis.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "vesthimmerlandsforsyning.dk": {
@@ -1384,7 +1384,7 @@
     "body": "    # robots.txt, www.mariagerfjord.dk/\n\nUser-Agent: *\nAllow: /DependencyHandler.axd\nDisallow: /aspnet_client/\nDisallow: /bin/\nDisallow: /config/\nDisallow: /umbraco/\nDisallow: /umbraco_client/\nDisallow: /usercontrols/\nDisallow: /*.axd\nSitemap: https://www.mariagerfjord.dk/sitemap.xml"
   },
   "www.middelfart.dk": {
-    "fetched": "2026-11-17T06:27:44Z",
+    "fetched": "2026-11-18T06:27:46Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://www.middelfart.dk/sitemap.xml\n"
   },
   "www.midtfynsposten.dk": {
@@ -1524,7 +1524,7 @@
     "body": "User-Agent:  *\nNOINDEX:  /aspnet_client/\nDisallow:  /bin/\nDisallow:  /config/\nDisallow:  /data/\nNOINDEX,NOFOLLOW:  /macroScripts/\nDisallow:  /umbraco/\nDisallow:  /umbraco_client/\nDisallow:  /usercontrols/\nDisallow:  /xslt/\nDisallow:  /?morecontrast=1\nDisallow:  /?morecontrast=0\nDisallow:  /?accessibility=1\nDisallow:  /?accessibility=0\nSitemap:  /sitemap.xml"
   },
   "www.sn.dk": {
-    "fetched": "2026-11-17T06:27:44Z",
+    "fetched": "2026-11-18T06:27:46Z",
     "body": "# AI crawler reference\n# The link below states what content may be used to train AI models on this website\n# https://www.sn.dk/ai.txt\n\nSitemap: https://www.sn.dk/sitemap.xml\n\n# Search engines\nUser-agent: *\nAllow: /\nDisallow: /soeg\n\n# Facebook link previews\nUser-agent: facebookexternalhit\nAllow: /\n\n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT training)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\n# Anthropic\nUser-agent: ClaudeBot\nDisallow: /\n\n# Keenable (AI search index)\nUser-agent: KeenableBot\nDisallow: /\n\n# Keenable (AI search index)\nUser-agent: Keenable-User\nDisallow: /\n\n# Unknown operator\nUser-agent: AionBot\nDisallow: /\n"
   },
   "www.solrod.dk": {
@@ -1568,7 +1568,7 @@
     "body": "Sitemap: https://www.teknologisk.dk/sitemap.xml\r\n\r\nUser-agent: *\r\nDisallow: /_/custom/itcert/\r\n\r\nUser-agent: MJ12bot\r\nDisallow: /\r\n"
   },
   "www.thisted.dk": {
-    "fetched": "2026-11-17T06:27:44Z",
+    "fetched": "2026-11-18T06:27:46Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://www.thisted.dk/sitemap.xml\n"
   },
   "www.thyforsyning.dk": {
