@@ -157,7 +157,7 @@ Kildernes egne regler (vilkår, robots.txt, forbehold efter ophavsretslovens § 
 ### 5.2 Normalisering (`normalize.py`)
 - `normalize_url(u)`: https, fjern `www.`, fragment, afsluttende `/` (ikke på rod), `utm_*`, `fbclid`, `gclid`, `ref`, `referrer`, `mc_cid`, `mc_eid`; sorter øvrige query-parametre. Et nyt sporingsparameter ændrer id'et for de indslag, der havde det; de hentes igen én gang som nye, mens de står i feedet.
 - `item_id(url) = sha1(normalize_url(url)).hexdigest()[:12]`.
-- `clean_text(s, max_len)`: fjern HTML, afkod entiteter, saml whitespace, afkort ved ord + "…".
+- `clean_text(s, max_len)`: fjern HTML og CDATA-indpakning (`<![CDATA[…]]>`, også escapet), afkod entiteter, saml whitespace, afkort ved ord + "…".
 - `normalize_title(t)`: små bogstaver, fjern tegnsætning og kildehaler (`" | Altinget"`, `" - DR"`), saml whitespace. Bruges til historier og dedupe af søgeresultater.
 - `strip_title_prefix(t, prefixes)`: fjern ét præfiks uden indhold først i titlen (fx `"Nyhed:"`), uanset store og små bogstaver. Titlen beholdes, hvis intet ord er tilbage. Bruges kun i visningen (8).
 
@@ -402,7 +402,7 @@ De vigtigste begivenheder på affaldsområdet, valgt og skrevet af Claude-routin
 `{id, story, url, title, teaser, source, published, date_quality, first_seen, baseline, topics, places, genre, lang, summary_da, reviewed, reason, also: [{id, source, url, title, published}], why}`
 - `overview.dag` er `null`, når dagsoverblikkets `window.end` ligger på en tidligere dag (dansk tid) end `generated`. I dag er nyhederne siden midnat, så siden viser heller ikke et dagsoverblik fra en tidligere dag. `uge`, `maaned` og `aar` er de seneste 7, 30 og 365 døgn regnet fra overblikkets `window.end` (7.1).
 - `teaser` er altid tom i `feed.json`. Previewet er `summary_da`, resuméet med egne ord (6.2a), eller `null`.
-- `title`: kandidatens (eller sweep-fundets) titel uden præfikserne i `settings.title_prefixes` (fx "Nyhed: X" → "X"). Kandidaten på disk er uændret, og historierne samles på den viste titel.
+- `title`: kandidatens (eller sweep-fundets) titel uden CDATA-indpakning og uden præfikserne i `settings.title_prefixes` (fx "Nyhed: X" → "X"). Kandidaten på disk er uændret, og historierne samles på den viste titel.
 - `window_start`: feedets første dag i København (`Settings.window_since`): `settings.window_start`, når den er sat, ellers dagen `window_days` før `generated`. Kun indslag fra og med det tidspunkt er med. `window_days` er antallet af hele døgn fra vinduets start til `generated` (mindst 1).
 - `items` sorteret efter `published` (faldende), derefter `id`. Kun hovedindslag for historier står i `items`; øvrige ligger i `also` (sorteret efter published).
 - `topics[].short`: kort navn til brugerfladen, `null` når temaet ikke har et (brug så `name`).

@@ -17,6 +17,9 @@ TRANSLIT = str.maketrans({"æ": "ae", "ø": "oe", "å": "aa", "Æ": "AE", "Ø": 
 
 _SCRIPT_RE = re.compile(r"<(script|style)\b[^>]*>.*?</\1\s*>", re.IGNORECASE | re.DOTALL)
 _TAG_RE = re.compile(r"<!--.*?-->|</?[a-zA-Z][^<>]*>", re.DOTALL)
+# CDATA-indpakning, som nogle feeds sender som tekst (fx escapet: &lt;![CDATA[...]]&gt;)
+_CDATA_RE = re.compile(r"<!\[CDATA\[(.*?)\]\]>", re.DOTALL)
+_CDATA_REST_RE = re.compile(r"<!\[CDATA\[|\]\]>")
 _ZERO_WIDTH_RE = re.compile("[​‌‍⁠﻿­]")
 _WS_RE = re.compile(r"\s+")
 _PUNCT_RE = re.compile(r"[\W_]+")
@@ -84,13 +87,21 @@ def host_of(url: str) -> str:
     return host[4:] if host.startswith("www.") else host
 
 
+def strip_cdata(s: str) -> str:
+    """Pak tekst ud af en synlig CDATA-indpakning ("<![CDATA[Titel]]>" → "Titel")."""
+    if "CDATA" not in s and "]]>" not in s:
+        return s
+    return _CDATA_REST_RE.sub("", _CDATA_RE.sub(r"\1", s))
+
+
 def clean_text(s: str | None, max_len: int) -> str:
-    """Fjern HTML, afkod entiteter, saml whitespace og afkort ved ord med "…" (max_len ≤ 0 = ingen grænse)."""
+    """Fjern HTML og CDATA-indpakning, afkod entiteter, saml whitespace og afkort ved ord med "…"
+    (max_len ≤ 0 = ingen grænse)."""
     if not s:
         return ""
-    t = _SCRIPT_RE.sub(" ", s)
+    t = _SCRIPT_RE.sub(" ", strip_cdata(s))
     t = _TAG_RE.sub(" ", t)
-    t = html.unescape(t)
+    t = strip_cdata(html.unescape(t))
     # Dobbelt-escapet HTML ("&lt;p&gt;") bliver først til tags efter unescape
     t = _TAG_RE.sub(" ", t)
     t = _ZERO_WIDTH_RE.sub("", t)

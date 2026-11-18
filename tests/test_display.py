@@ -269,6 +269,10 @@ def test_title_prefix_is_removed_in_display_only(base_config):
     assert out[plain.id].title == "Nyheder om pant"
     assert c.title == "Nyhed: Ny emballagebekendtgørelse"  # kandidaten er uændret
 
+    # En ældre kandidat med CDATA-indpakning i titlen vises også rent
+    wrapped = cand("cdata", title="<![CDATA[Bofa: Alt for meget affald bliver fejlsorteret ]]>")
+    assert build(cfg, [wrapped], [judge(wrapped)])[0].title == "Bofa: Alt for meget affald bliver fejlsorteret"
+
     sweep = judge("sweep-praefiks", new_item={"url": "https://altinget.dk/sweep", "title": "nyhed: Fund fra sweep",
                                               "teaser": "", "source": "altinget", "published": "2026-10-07T08:00:00Z"})
     out = build(cfg, [], [sweep])
