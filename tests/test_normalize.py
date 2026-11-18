@@ -86,6 +86,17 @@ def test_clean_text_handles_double_escaped_html():
     assert clean_text("&lt;p&gt;Nyt gebyr&lt;/p&gt;", 300) == "Nyt gebyr"
 
 
+@pytest.mark.parametrize(("raw", "clean"), [
+    ("<![CDATA[Bofa: Alt for meget affald bliver fejlsorteret]]>", "Bofa: Alt for meget affald bliver fejlsorteret"),
+    ("&lt;![CDATA[Bofa: Affald er ikke afslutningen ]]&gt;", "Bofa: Affald er ikke afslutningen"),  # escapet i feedet
+    ("<![CDATA[<b>Nyt</b> gebyr]]>", "Nyt gebyr"),
+    ("<![CDATA[Uden afslutning", "Uden afslutning"),
+])
+def test_clean_text_unwraps_cdata(raw, clean):
+    """Nogle feeds (fx Bornholms Tidende) sender CDATA-indpakningen som tekst i titlen."""
+    assert clean_text(raw, 300) == clean
+
+
 def test_clean_text_none_and_empty():
     assert clean_text(None, 100) == ""
     assert clean_text("   ", 100) == ""

@@ -21,7 +21,7 @@ from affaldsfeed.models import (
     full_text,
     sort_places,
 )
-from affaldsfeed.normalize import clean_text, strip_title_prefix
+from affaldsfeed.normalize import clean_text, strip_cdata, strip_title_prefix
 from affaldsfeed.places import PlaceMatcher, compile_places, rule_places
 from affaldsfeed.timeutil import ensure_utc
 
@@ -145,8 +145,9 @@ def _known_places(places: list[str], known: set[str]) -> list[str]:
 
 
 def _without_prefix(item: DisplayItem, prefixes: list[str]) -> DisplayItem:
-    """Titlen uden præfikser uden indhold (settings.title_prefixes); kandidaten gemmes uændret."""
-    title = strip_title_prefix(item.title, prefixes)
+    """Titlen uden CDATA-indpakning og præfikser uden indhold (settings.title_prefixes); kandidaten gemmes
+    uændret, så også ældre kandidater vises rent."""
+    title = strip_title_prefix(strip_cdata(item.title).strip(), prefixes)
     return item if title == item.title else item.model_copy(update={"title": title})
 
 
