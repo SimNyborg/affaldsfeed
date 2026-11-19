@@ -552,11 +552,11 @@
     "body": "<style>.drift-butto { display:none !important; }</style>User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://htkforsyning.dk/wp-sitemap.xml\n"
   },
   "hvidovreavis.dk": {
-    "fetched": "2026-11-18T04:17:48Z",
+    "fetched": "2026-11-19T08:26:48Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://hvidovreavis.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "hvidovrenyt.dk": {
-    "fetched": "2026-11-18T04:17:48Z",
+    "fetched": "2026-11-19T08:26:48Z",
     "body": "# START YOAST BLOCK\r\n# ---------------------------\r\nUser-agent: LinkedInBot\r\nAllow: /\r\n\r\nSitemap: https://hvidovrenyt.dk/sitemap_index.xml\r\n# ---------------------------\r\n# END YOAST BLOCK"
   },
   "i0.wp.com": {
@@ -828,7 +828,7 @@
     "body": "NOFOLLOW:  *\nNOINDEX:  /aspnet_client/\nDisallow:  /bin/\nDisallow:  /config/\nDisallow:  /data/\nNOINDEX,NOFOLLOW,  /macroScripts/\nDisallow:  /umbraco/\nDisallow:  /umbraco_client/\nDisallow:  /usercontrols/\nDisallow:  /xslt/\nDisallow:  /?morecontrast=1\nDisallow:  /?morecontrast=0\nDisallow:  /?accessibility=1\nDisallow:  /?accessibility=0\nSitemap:  /sitemap.xml"
   },
   "renosyd.dk": {
-    "fetched": "2026-11-18T06:27:46Z",
+    "fetched": "2026-11-19T08:26:48Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://renosyd.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "rgo.dk": {
@@ -952,7 +952,7 @@
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://vesthimmerland.dk/sitemap.xml\n"
   },
   "vesthimmerlandsavis.dk": {
-    "fetched": "2026-11-18T06:27:46Z",
+    "fetched": "2026-11-19T08:26:48Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: https://vesthimmerlandsavis.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "vesthimmerlandsforsyning.dk": {
@@ -1292,7 +1292,7 @@
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://www.kalundborg.dk/sitemap.xml\n"
   },
   "www.kanalfrederikshavn.dk": {
-    "fetched": "2026-11-18T04:17:48Z",
+    "fetched": "2026-11-19T08:26:48Z",
     "body": ""
   },
   "www.kefm.dk": {
