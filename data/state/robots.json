@@ -960,7 +960,7 @@
     "body": "Sitemap: https://vesthimmerlandsforsyning.dk/Sitemap.xml\r\n\r\n"
   },
   "via.ritzau.dk": {
-    "fetched": "2026-11-18T13:28:03Z",
+    "fetched": "2026-11-19T13:28:09Z",
     "body": "User-agent: *\nDisallow: /data/attachments/\nCrawl-delay: 1\n\nsitemap: https://via.ritzau.dk/sitemap.xml\n"
   },
   "viborg-folkeblad.dk": {
