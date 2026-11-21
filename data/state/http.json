@@ -6,8 +6,8 @@
     "last_modified": "Fri, 20 Nov 2026 20:13:34 GMT"
   },
   "https://affaldplus.dk/rss.xml": {
-    "etag": "\"1795177165\"",
-    "last_modified": "Fri, 20 Nov 2026 12:19:25 GMT"
+    "etag": "\"1795207016\"",
+    "last_modified": "Fri, 20 Nov 2026 20:36:56 GMT"
   },
   "https://afld.dk/feed/": {
     "etag": "\"87321c796a2fc5eae20497b386ab6e2b\"",
@@ -36,8 +36,8 @@
     "last_modified": "Wed, 18 Nov 2026 10:51:59 GMT"
   },
   "https://byensnyt.dk/feed/": {
-    "etag": "\"1722-660ba2338f14c\"",
-    "last_modified": "Fri, 20 Nov 2026 19:20:31 GMT"
+    "etag": "\"1723-660bf2979f5d5\"",
+    "last_modified": "Sat, 21 Nov 2026 01:20:11 GMT"
   },
   "https://ctwatch.dk/sitemap1.xml": {
     "etag": "W/\"634b6057c5f12f875611e75dc15d2093-1\"",
@@ -89,7 +89,7 @@
     "last_modified": "Fri, 20 Nov 2026 09:14:37 GMT"
   },
   "https://folkebladet.info/": {
-    "last_modified": "Fri, 20 Nov 2026 20:19:58 GMT"
+    "last_modified": "Sat, 21 Nov 2026 01:32:55 GMT"
   },
   "https://gate21.dk/feed/": {
     "etag": "W/\"e27a0122b6cc15bcbef0125695d09193\"",
@@ -111,14 +111,14 @@
     "etag": "\"428-1795084858;gz\""
   },
   "https://hvidovrenyt.dk/": {
-    "last_modified": "Fri, 20 Nov 2026 13:14:33 GMT"
+    "last_modified": "Sat, 21 Nov 2026 00:11:18 GMT"
   },
   "https://ing.dk/rss": {
-    "etag": "\"1795202943-gzip\"",
-    "last_modified": "Fri, 20 Nov 2026 19:29:03 GMT"
+    "etag": "\"1795215243-gzip\"",
+    "last_modified": "Fri, 20 Nov 2026 22:54:03 GMT"
   },
   "https://jammerbugtposten.dk/feed/": {
-    "etag": "\"rss-chimp-113b0cf6ca5ead48667cbb5dda463c274c03a43f67a5808752310f805acc2363-gzip\""
+    "etag": "\"rss-chimp-f6600365e33e25b35f8345f0c6d5dae79fca53c2e3c0db28742585cec7253020-gzip\""
   },
   "https://klimaraadet.dk/da/rss.xml": {
     "etag": "\"1795091706-gzip\"",
@@ -142,38 +142,38 @@
     "last_modified": "Thu, 19 Nov 2026 12:39:10 GMT"
   },
   "https://migogaalborg.dk/feed/": {
-    "etag": "\"2d691b1825c1b9801a8ba27eef4c06c2\"",
-    "last_modified": "Fri, 20 Nov 2026 20:06:06 GMT"
+    "etag": "\"1302490b2f1255cecf8a41553bd5e004\"",
+    "last_modified": "Fri, 20 Nov 2026 21:21:58 GMT"
   },
   "https://migogaarhus.dk/feed/": {
     "etag": "\"6cb6e82e8778b360100e9c9ea572c9ed\"",
     "last_modified": "Fri, 20 Nov 2026 16:03:59 GMT"
   },
   "https://migogesbjerg.dk/feed/": {
-    "etag": "\"4c64ae4e33c0e515509d52c70cc4aa24\"",
-    "last_modified": "Fri, 20 Nov 2026 19:51:53 GMT"
+    "etag": "\"be9624d2b19bb7c9d26e93d6105c18a5\"",
+    "last_modified": "Fri, 20 Nov 2026 23:02:57 GMT"
   },
   "https://migogkbh.dk/feed/": {
-    "etag": "\"8505e8e9b7e4422af44afb394d9a69aa\"",
-    "last_modified": "Fri, 20 Nov 2026 14:49:44 GMT"
+    "etag": "\"ac3bfebcfcc26f7f53ef2680913d7c44\"",
+    "last_modified": "Fri, 20 Nov 2026 22:19:45 GMT"
   },
   "https://migogodense.dk/feed/": {
     "etag": "\"f3c09f0138bb5d9b49ee559f9db827e9\"",
     "last_modified": "Fri, 20 Nov 2026 16:08:15 GMT"
   },
   "https://migogvejen.dk/": {
-    "last_modified": "Fri, 20 Nov 2026 20:20:50 GMT"
+    "last_modified": "Sat, 21 Nov 2026 01:34:14 GMT"
   },
   "https://netavisen-sjaelland.dk/feed/": {
-    "etag": "\"7a69d5531b33d4957e11e99787ae621a\"",
-    "last_modified": "Thu, 19 Nov 2026 17:18:07 GMT"
+    "etag": "\"daf4060802b78af997c9ab102ccda6c5\"",
+    "last_modified": "Fri, 20 Nov 2026 22:06:34 GMT"
   },
   "https://nibeavis.dk/?format=feed&type=rss": {
-    "last_modified": "Fri, 20 Nov 2026 20:20:54 GMT"
+    "last_modified": "Sat, 21 Nov 2026 01:34:19 GMT"
   },
   "https://noah.dk/rss.xml": {
-    "etag": "\"1795191265\"",
-    "last_modified": "Fri, 20 Nov 2026 16:14:25 GMT"
+    "etag": "\"1795223553\"",
+    "last_modified": "Sat, 21 Nov 2026 01:12:33 GMT"
   },
   "https://nordjyske.dk/sitemap.xml": {
     "sitemaps": [
@@ -181,12 +181,8 @@
     ]
   },
   "https://nordsoeposten.dk/feed/": {
-    "etag": "\"74027a03f0c42f698e016ba6a8f79b92-gzip\"",
-    "last_modified": "Fri, 20 Nov 2026 20:16:20 GMT"
-  },
-  "https://nyheder.ku.dk/alle_nyheder/?get_rss=1": {
-    "etag": "\"8366a-660bab1d6efcb\"",
-    "last_modified": "Fri, 20 Nov 2026 20:00:24 GMT"
+    "etag": "\"3fe29f32079ef88d98728f467c823b5f-gzip\"",
+    "last_modified": "Fri, 20 Nov 2026 21:12:17 GMT"
   },
   "https://pingvinnyt.dk/feed/": {
     "etag": "\"ff1-660b1447f7fe3\"",
@@ -240,12 +236,12 @@
     "last_modified": "Thu, 19 Nov 2026 14:30:12 GMT"
   },
   "https://taenk.dk/rss.xml": {
-    "etag": "W/\"1795206050\"",
-    "last_modified": "Fri, 20 Nov 2026 20:20:50 GMT"
+    "etag": "W/\"1795222247\"",
+    "last_modified": "Sat, 21 Nov 2026 00:50:47 GMT"
   },
   "https://tjekfredensborg.dk/feed/": {
-    "etag": "\"5b0f9b5183ca0ae0e472a6abfa256f05-gzip\"",
-    "last_modified": "Fri, 20 Nov 2026 19:41:46 GMT"
+    "etag": "\"d6cd63bb274c787f50aff61de16626a6-gzip\"",
+    "last_modified": "Fri, 20 Nov 2026 23:01:00 GMT"
   },
   "https://vardekommune.dk/feed/": {
     "last_modified": "Fri, 20 Nov 2026 08:07:42 GMT"
@@ -255,17 +251,17 @@
     "last_modified": "Wed, 18 Nov 2026 07:10:38 GMT"
   },
   "https://www.avisen.dk/rss.aspx": {
-    "last_modified": "Tue, 20 Nov 2018 20:19:18 GMT"
+    "last_modified": "Wed, 21 Nov 2018 01:31:05 GMT"
   },
   "https://www.berlingske.dk/content/rss": {
-    "etag": "\"853hy8tsg980y\""
+    "etag": "\"n1n951rmct7de\""
   },
   "https://www.biogas.dk/feed/": {
     "etag": "\"2100aab0eea1ebb278d194d1d031f1c2\"",
     "last_modified": "Thu, 19 Nov 2026 13:48:39 GMT"
   },
   "https://www.brandebladet.dk/rss.xml": {
-    "last_modified": "Fri, 20 Nov 2026 15:00:25 GMT"
+    "last_modified": "Sat, 21 Nov 2026 00:00:25 GMT"
   },
   "https://www.cbs.dk/sitemap.xml": {
     "etag": "\"027f7bdf7c97bcc29504deb5c6dbaa08\"",
@@ -322,9 +318,12 @@
     "etag": "\"72ab107b7cc3ec2231d2bfc2457de295\"",
     "last_modified": "Wed, 28 Oct 2026 08:29:00 GMT"
   },
+  "https://www.netavisen.nu/feed/": {
+    "last_modified": "Fri, 20 Nov 2026 13:30:19 GMT"
+  },
   "https://www.norden.org/da/rss.xml": {
-    "etag": "W/\"1795205227\"",
-    "last_modified": "Fri, 20 Nov 2026 20:07:07 GMT"
+    "etag": "W/\"1795224862\"",
+    "last_modified": "Sat, 21 Nov 2026 01:34:22 GMT"
   },
   "https://www.nordhavn-avis.dk/feed/": {
     "etag": "\"0d44bb519259b7c1f62085b279439b18\"",
@@ -338,7 +337,7 @@
     "last_modified": "Fri, 20 Nov 2026 10:49:43 GMT"
   },
   "https://www.samsoposten.dk/da/pages/45-forside": {
-    "etag": "W/\"e44811afafad116e5cad099130cc9491\""
+    "etag": "W/\"826bfe1d8a6828d3f2aceddf62d46c82\""
   },
   "https://www.tekniskfokus.dk/feed/": {
     "etag": "\"65787972ce292d3555dc4cdf34e0c70d\"",
