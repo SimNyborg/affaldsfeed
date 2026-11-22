@@ -439,14 +439,6 @@
     "fetched": "2026-11-21T13:27:37Z",
     "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://frederiksbergliv.dk/ai.txt                                                                               ###\n########################################################################################################################\n                        \n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n             \nUser-agent: FacebookBot\nDisallow: /\n\n# META - Product improvement and AI\nUser-agent: meta-externalagent\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: PiplBot\nDisallow: /\n\n# Search engines\nUser-agent: *\nDisallow: /editors/signature/*\nDisallow: /contimo/layout/native\nDisallow: /*noHeader=*\nAllow: /\n\n# Sitemap\nSitemap: https://frederiksbergliv.dk/sitemap\nSitemap: https://frederiksbergliv.dk/advertorials/sitemap.xml\nSitemap: https://frederiksbergliv.dk/kandidattest/sitemap.xml"
   },
-  "frederiksborgamtsavis.dk": {
-    "fetched": "2026-10-23T05:28:55Z",
-    "body": "# AI crawler reference\n# The link below states what content may be used to train AI models on this website\n# https://frederiksborgamtsavis.sn.dk/ai.txt\n\nSitemap: https://frederiksborgamtsavis.sn.dk/sitemap.xml\nSitemap: https://frederiksborgamtsavis.sn.dk/sitemap-news.xml\n\n# Search engines\nUser-agent: *\nAllow: /\nDisallow: /soeg\n\n# Facebook link previews\nUser-agent: facebookexternalhit\nAllow: /\n\n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT training)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\n# Anthropic\nUser-agent: ClaudeBot\nDisallow: /\n"
-  },
-  "frederiksborgamtsavis.sn.dk": {
-    "fetched": "2026-10-23T05:28:55Z",
-    "body": "# AI crawler reference\n# The link below states what content may be used to train AI models on this website\n# https://frederiksborgamtsavis.sn.dk/ai.txt\n\nSitemap: https://frederiksborgamtsavis.sn.dk/sitemap.xml\nSitemap: https://frederiksborgamtsavis.sn.dk/sitemap-news.xml\n\n# Search engines\nUser-agent: *\nAllow: /\nDisallow: /soeg\n\n# Facebook link previews\nUser-agent: facebookexternalhit\nAllow: /\n\n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT training)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\n# Anthropic\nUser-agent: ClaudeBot\nDisallow: /\n"
-  },
   "frederikshavn.dk": {
     "fetched": "2026-11-21T13:27:37Z",
     "body": "User-Agent: *\nAllow: /DependencyHandler.axd\nDisallow: /aspnet_client/\nDisallow: /bin/\nDisallow: /config/\nDisallow: /umbraco/\nDisallow: /umbraco_client/\nDisallow: /usercontrols/\nDisallow: /*.axd\nSitemap: https://www.frederikshavn.dk/sitemap.xml"
@@ -752,7 +744,7 @@
     "body": "#\n# robots.txt\n#\n# This file is to prevent the crawling and indexing of certain parts\n# of your site by web crawlers and spiders run by sites like Yahoo!\n# and Google. By telling these \"robots\" where not to go on your site,\n# you save bandwidth and server resources.\n#\n# This file will be ignored unless it is at the root of your host:\n# Used:    http://example.com/robots.txt\n# Ignored: http://example.com/site/robots.txt\n#\n# For more information about the robots.txt standard, see:\n# http://www.robotstxt.org/robotstxt.html\n\nUser-agent: *\n# CSS, JS, Images\nAllow: /core/*.css$\nAllow: /core/*.css?\nAllow: /core/*.js$\nAllow: /core/*.js?\nAllow: /core/*.gif\nAllow: /core/*.jpg\nAllow: /core/*.jpeg\nAllow: /core/*.png\nAllow: /core/*.svg\nAllow: /profiles/*.css$\nAllow: /profiles/*.css?\nAllow: /profiles/*.js$\nAllow: /profiles/*.js?\nAllow: /profiles/*.gif\nAllow: /profiles/*.jpg\nAllow: /profiles/*.jpeg\nAllow: /profiles/*.png\nAllow: /profiles/*.svg\n# Directories\nDisallow: /core/\nDisallow: /profiles/\n# Files\nDisallow: /README.md\nDisallow: /composer/Metapackage/README.txt\nDisallow: /composer/Plugin/ProjectMessage/README.md\nDisallow: /composer/Plugin/Scaffold/README.md\nDisallow: /composer/Plugin/VendorHardening/README.txt\nDisallow: /composer/Template/README.txt\nDisallow: /modules/README.txt\nDisallow: /sites/README.txt\nDisallow: /themes/README.txt\nDisallow: /web.config\n# Paths (clean URLs)\nDisallow: /admin/\nDisallow: /comment/reply/\nDisallow: /filter/tips\nDisallow: /node/add/\nDisallow: /search/\nDisallow: /user/register\nDisallow: /user/password\nDisallow: /user/login\nDisallow: /user/logout\nDisallow: /media/oembed\nDisallow: /*/media/oembed\n# Paths (no clean URLs)\nDisallow: /index.php/admin/\nDisallow: /index.php/comment/reply/\nDisallow: /index.php/filter/tips\nDisallow: /index.php/node/add/\nDisallow: /index.php/search/\nDisallow: /index.php/user/password\nDisallow: /index.php/user/register\nDisallow: /index.php/user/login\nDisallow: /index.php/user/logout\nDisallow: /index.php/media/oembed\nDisallow: /index.php/*/media/oembed\n"
   },
   "nomi4s.dk": {
-    "fetched": "2026-11-21T01:31:15Z",
+    "fetched": "2026-11-22T06:28:06Z",
     "body": "Sitemap: https://nomi4s.dk/Sitemap.xml\r\nUser-agent: *\r\nDisallow: /Files/Papirkurv/\r\n\r\n\r\n\r\nDisallow: /*?cartcmd=*"
   },
   "norddjurs.dk": {
@@ -1464,7 +1456,7 @@
     "body": ""
   },
   "www.renform.dk": {
-    "fetched": "2026-11-21T01:31:15Z",
+    "fetched": "2026-11-22T06:28:06Z",
     "body": "Sitemap: https://www.renform.dk/Sitemap.xml\r\n\r\n"
   },
   "www.revas.dk": {
