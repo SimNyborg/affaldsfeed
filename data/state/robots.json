@@ -272,7 +272,7 @@
     "body": "User-Agent: *\nAllow: /DependencyHandler.axd\nDisallow: /aspnet_client/\nDisallow: /bin/\nDisallow: /config/\nDisallow: /umbraco/\nDisallow: /umbraco_client/\nDisallow: /usercontrols/\nDisallow: /*.axd\nSitemap: http://www.danskekommuner.dk/sitemapxml"
   },
   "danskfjernvarme.dk": {
-    "fetched": "2026-11-21T06:28:19Z",
+    "fetched": "2026-11-22T11:19:16Z",
     "body": "    # robots.txt, danskfjernvarme.dk\n\nUser-Agent: *\nAllow: /DependencyHandler.axd\nDisallow: /aspnet_client/\nDisallow: /bin/\nDisallow: /config/\nDisallow: /umbraco/\nDisallow: /umbraco_client/\nDisallow: /usercontrols/\nDisallow: /*.axd\nSitemap: https://danskfjernvarme.dk/sitemap.xml"
   },
   "danskretursystem.dk": {
