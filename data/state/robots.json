@@ -1652,7 +1652,7 @@
     "body": ""
   },
   "zetland.dk": {
-    "fetched": "2026-11-17T06:27:44Z",
+    "fetched": "2026-11-24T06:27:46Z",
     "body": "# Search engines and link previews are welcome. Our content must not be used to train AI\n# models or to generate AI answers. The Content-Signal lines express that as a reservation\n# of rights under Article 4 of EU Directive 2019/790 (https://contentsignals.org).\n\nUser-agent: Googlebot\nUser-agent: Bingbot\nUser-agent: Twitterbot\nUser-agent: LinkedInBot\nUser-agent: facebookexternalhit\nContent-Signal: search=yes, ai-input=no, ai-train=no\nAllow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: *\nContent-Signal: search=yes, ai-input=no, ai-train=no\nDisallow: /\n\nSitemap: https://www.zetland.dk/sitemap.xml\n"
   }
 }
