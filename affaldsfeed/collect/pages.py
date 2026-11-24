@@ -1035,16 +1035,19 @@ class _Job:
         news: Counter[str] = Counter()  # sider hentet kun for betalingsmuren
         failures: list[str] = []
         page_failures: list[str] = []  # uden dem, der kun hentes for betalingsmuren
-        for n, t in enumerate(targets):
+
+        def rest_has_pages(n: int) -> bool:
             # Restkø kun for artikler; sider kun for betalingsmuren prøves bare igen næste gang (ikke set)
-            rest_has_pages = any(r.entry is None for r in targets[n:])
+            return any(r.entry is None for r in targets[n:])
+
+        for n, t in enumerate(targets):
             if attempts >= limit:
-                self.backlog = self.backlog or rest_has_pages
+                self.backlog = self.backlog or rest_has_pages(n)
                 self.diag(f"{len(targets) - n} sider venter til næste kørsel (højst {limit} pr. kørsel)")
                 break
             res = self.fetcher.get(t.url, conditional=False, max_bytes=max_bytes)
             if res.error == BUDGET_EXHAUSTED:
-                self.backlog = self.backlog or rest_has_pages
+                self.backlog = self.backlog or rest_has_pages(n)
                 rest = len(targets) - n
                 log.warning(
                     "%s: tidsbudgettet er brugt; %d sider venter til næste kørsel", self.source.id, rest

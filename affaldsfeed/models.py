@@ -54,11 +54,6 @@ Lang = Literal["da", "en", "sv"]
 Paywall = Literal["nej", "delvis", "ja"]
 # Betalingsmur for den enkelte artikel: isAccessibleForFree i artiklens JSON-LD (KONTRAKTER §5.6)
 ArticlePaywall = Literal["ja", "nej"]
-
-
-def _is_none(v: object) -> bool:
-    """Til Field(exclude_if=...): feltet skrives kun, når det har en værdi."""
-    return v is None
 Basis = Literal["redaktionelt", "offentlig", "forskning", "organisation"]
 # afventer: mediets regler forbyder det, feedet gør. Hentes ikke, men står låst i menuen (KONTRAKTER §3)
 Status = Literal["aktiv", "planlagt", "kandidat", "pause", "afventer", "fravalgt"]
@@ -70,6 +65,11 @@ Decision = Literal["vis", "graa", "afvist"]
 FoundVia = Literal["feed", "search", "sweep"]
 Health = Literal["groen", "gul", "roed", "graa"]
 Period = Literal["dag", "uge", "maaned", "aar"]
+
+
+def _is_none(v: object) -> bool:
+    """Til Field(exclude_if=...): feltet skrives kun, når det har en værdi."""
+    return v is None
 
 
 def full_text(ai: AiLevel) -> bool:
