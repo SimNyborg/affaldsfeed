@@ -553,20 +553,28 @@
   category: lokalmedie
   homepage: https://www.sn.dk
   method: sitemap
-  feeds: https://www.sn.dk/SitemapIndex.0.xml
-  match: /art\d+/
+  feeds:
+    - https://sjaellandske.sn.dk/sitemap-news.xml
+    - https://dagbladet.sn.dk/sitemap-news.xml
+    - https://nordvestnyt.sn.dk/sitemap-news.xml
+    - https://frederiksborgamtsavis.sn.dk/sitemap-news.xml
+  match: /article/\d+/
   domains: [sjnyheder.dk]
   filter: strict
   paywall: delvis
   replaces: [sn-dk]
-  ai: titel  # kun overskrift: robots.txt spærrer AI-crawlere (2026-10-14)
+  ai: titel  # kun overskrift: robots.txt spærrer AI-crawlere, ai.txt har forbehold efter § 11 b (2026-11-24)
   basis: redaktionelt
   status: aktiv
-  checked: 2026-10-08
+  checked: 2026-11-24
   note: >-
-    Dagblade og ugeaviser på Sjælland under sn.dk (fx Dagbladet Køge, Holbæk, Næstved og Sjællands Tidende).
-    Månedssitemaps med lastmod og ETag, men uden titler, så kun artikler med et affaldsord i URL'en hentes.
-    robots.txt fravælger AI-træning; indsamleren er ikke en AI-crawler (samme princip som DR og TV 2).
+    Dagblade og ugeaviser på Sjælland. Fra 20. oktober 2026 ligger alt stof, også ugeavisernes, på fire
+    underdomæner: sjaellandske (Næstved, Slagelse, Sorø, Faxe, Vordingborg), dagbladet (Roskilde, Køge, Ringsted
+    og fx Greve, Rødovre og Høje-Taastrup), nordvestnyt (Holbæk, Kalundborg, Odsherred) og frederiksborgamtsavis
+    (Nordsjælland og fx Gentofte, Lyngby og Ballerup). Hvert har et Google News-sitemap med titel og dato for de seneste cirka 48 timer; sitemap.xml er
+    et indeks med månedssitemaps uden titler, som ikke bruges, fordi fire indeks ville overskride loftet over
+    sitemap-hentninger. Artikelsiden hentes kun for betalingsmuren (isAccessibleForFree). robots.txt fravælger
+    AI-crawlere og ai.txt tekst- og datamining; indsamleren er ikke en AI-crawler, og Claude ser kun titlen.
 
 - id: bornholms-tidende
   name: Bornholms Tidende
