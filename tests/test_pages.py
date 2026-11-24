@@ -156,14 +156,32 @@ def _ld(*blocks: str) -> str:
              '[{"@type": "BreadcrumbList"}, {"@type": "ReportageNewsArticle", "isAccessibleForFree": false}]'), "ja"),
         (_ld('{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "isAccessibleForFree": false,'
              ' "mainEntity": {"@type": "NewsArticle", "isAccessibleForFree": true}}]}'), "nej"),
-        # Første artikel tæller; relaterede artikler længere nede gør ikke
+        # Uden adresser tæller den første artikel; relaterede artikler længere nede gør ikke
         (_ld('{"@type": "NewsArticle", "isAccessibleForFree": true, "relatedLink": ['
              '{"@type": "NewsArticle", "isAccessibleForFree": false}]}'), "nej"),
-        # Uden artikeltype bruges fx WebPage, ellers microdata
+        # Relaterede artikler før artiklens egen (som hos JFM): kun objektet med sidens adresse tæller
+        (_ld('{"@type": "NewsArticle", "url": "/nyheder/anden-artikel", "isAccessibleForFree": "False"}',
+             '{"@type": "NewsArticle", "url": "/nyheder/ny-genbrugsplads-aabner", "isAccessibleForFree": "True"}',
+             '{"@type": "NewsArticle", "url": "/nyheder/tredje-artikel", "isAccessibleForFree": "False"}'), "nej"),
+        (_ld('{"@type": "NewsArticle", "url": "https://www.kilde.dk/nyheder/anden", "isAccessibleForFree": true}',
+             '{"@type": "NewsArticle", "mainEntityOfPage": {"@type": "WebPage",'
+             ' "@id": "https://kilde.dk/nyheder/ny-genbrugsplads-aabner/"}, "isAccessibleForFree": false}'), "ja"),
+        (_ld('{"@type": "NewsArticle", "@id": "https://www.kilde.dk/nyheder/ny-genbrugsplads-aabner#artikel",'
+             ' "isAccessibleForFree": false}'), "ja"),
+        # Kun andre artiklers adresser: ingen markering for denne side
+        (_ld('{"@type": "NewsArticle", "url": "/nyheder/anden-artikel", "isAccessibleForFree": false}'), None),
+        # canonical og og:url tæller også som sidens adresse
+        ('<link rel="canonical" href="https://www.kilde.dk/nyheder/kanonisk">'
+         + _ld('{"@type": "NewsArticle", "url": "/nyheder/kanonisk", "isAccessibleForFree": false}'), "ja"),
+        ('<meta property="og:url" content="https://www.kilde.dk/nyheder/og">'
+         + _ld('{"@type": "NewsArticle", "url": "/nyheder/og", "isAccessibleForFree": true}'), "nej"),
+        # Uden artikeltype bruges fx WebPage med sidens adresse eller uden adresse
         (_ld('{"@type": "WebPage", "isAccessibleForFree": false}'), "ja"),
-        ('<meta itemprop="isAccessibleForFree" content="true">', "nej"),
-        (_ld('{"@type": "NewsArticle", "isAccessibleForFree": false}')
-         + '<meta itemprop="isAccessibleForFree" content="true">', "ja"),
+        (_ld('{"@type": "NewsArticle", "url": "/nyheder/anden-artikel", "isAccessibleForFree": true}',
+             '{"@type": "WebPage", "url": "https://www.kilde.dk/nyheder/ny-genbrugsplads-aabner",'
+             ' "isAccessibleForFree": false}'), "ja"),
+        # Microdata læses ikke (kun JSON-LD)
+        ('<meta itemprop="isAccessibleForFree" content="true">', None),
         # Ingen eller ugyldig markering: feltet udelades
         (_ld('{"@type": "NewsArticle", "headline": "Uden markering"}'), None),
         (_ld('{"@type": "NewsArticle", "isAccessibleForFree": "måske"}'), None),
@@ -736,9 +754,44 @@ def test_date_template_reads_todays_and_yesterdays_news_sitemaps(cfg):
     f = fetcher(table)
     res = COLLECTORS["sitemap"](src(feeds=["https://www.kilde.dk/sitemap/{dato}"]), f, ctx(cfg))
     assert res.error is None
-    assert urls_called(f, 0) == ["https://www.kilde.dk/sitemap/2026-10-07", "https://www.kilde.dk/sitemap/2026-10-06"]
+    assert urls_called(f, 0)[:2] == ["https://www.kilde.dk/sitemap/2026-10-07", "https://www.kilde.dk/sitemap/2026-10-06"]
     assert sorted(e.title for e in res.entries) == ["Genbrugspladsen udvides", "Ny affaldsordning i Vejle"]
     assert all(e.date_quality == "liste" for e in res.entries)  # dato uden klokkeslæt
+
+
+def test_google_news_fetches_article_once_for_the_paywall(cfg):
+    # Titel og dato fra sitemappet; siden hentes kun for betalingsmuren, når titlen har et stærkt ord (§5.6)
+    news = ('<url><loc>https://www.kilde.dk/nyheder/{slug}</loc><news:news><news:publication_date>2026-10-07T08:00:00Z'
+            '</news:publication_date><news:title>{title}</news:title></news:news></url>')
+    sitemap = (f'<urlset xmlns="{SM_NS}" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">'
+               + news.format(slug="ny-ordning", title="Ny affaldsordning i Vejle")
+               + news.format(slug="byraadsmoede", title="Byrådet holder møde i aften")
+               + news.format(slug="genbrugsplads", title="Genbrugspladsen udvides")
+               + "</urlset>").encode()
+    article = page("<title>Ny affaldsordning i Vejle</title>" + _ld(
+        '{"@type": "NewsArticle", "url": "/nyheder/relateret", "isAccessibleForFree": true}',
+        '{"@type": "NewsArticle", "url": "/nyheder/ny-ordning", "isAccessibleForFree": "False"}',
+    ), "<h1>En anden titel på siden</h1>")
+    table = {SITEMAP: (sitemap, XML), NEWS + "ny-ordning": (article, HTML), NEWS + "genbrugsplads": "timeout"}
+    seen: dict = {}
+    f = fetcher(table)
+    res = COLLECTORS["sitemap"](src(), f, ctx(cfg, seen=seen))
+    assert res.error is None and not res.backlog  # en side kun for betalingsmuren gør aldrig kilden fejlet
+    assert sorted(urls_called(f)) == [NEWS + "genbrugsplads", NEWS + "ny-ordning"]  # ikke byrådsmødet
+    by_url = {e.url: e for e in res.entries}
+    assert len(by_url) == 3
+    assert (by_url[NEWS + "ny-ordning"].title, by_url[NEWS + "ny-ordning"].paywall) == ("Ny affaldsordning i Vejle", "ja")
+    assert by_url[NEWS + "byraadsmoede"].paywall is None and by_url[NEWS + "genbrugsplads"].paywall is None
+    assert set(seen["kilde"]) == {item_id(NEWS + "ny-ordning")}  # forbigående fejl prøves igen
+    text = diag(res)
+    assert "3 fra Google News (2 med affaldsord hentes for betalingsmuren), 0 nye" in text
+    assert "betalingsmur: 1 ja og 0 nej" in text
+
+    # Næste kørsel: den hentede side hentes ikke igen, den fejlede prøves igen
+    f = fetcher(table)
+    res = COLLECTORS["sitemap"](src(), f, ctx(cfg, seen=seen))
+    assert urls_called(f) == [NEWS + "genbrugsplads"]
+    assert all(e.paywall is None for e in res.entries)
 
 
 def test_bare_ampersand_in_loc_is_kept():
@@ -886,15 +939,18 @@ def test_news_sitemap_uses_title_and_date_without_fetching(cfg):
     c = ctx(cfg)
     f = fetcher({SITEMAP: (P / "news.xml", XML), uden_titel: (P / "article_plain.html", HTML)})
     res = COLLECTORS["sitemap"](src(), f, c)
-    assert urls_called(f, 0) == [SITEMAP, uden_titel]  # kun posten uden news:title hentes
+    # Posten uden news:title hentes som artikel; derefter de to med affaldsord for betalingsmuren (§5.6)
+    assert urls_called(f, 0) == [SITEMAP, uden_titel, NEWS + "pant-paa-vinflasker", NEWS + "kun-dato"]
+    assert res.error is None and not res.backlog  # de to sider findes ikke (404)
     by_url = {e.url: e for e in res.entries}
     pant = by_url[NEWS + "pant-paa-vinflasker"]
     assert pant.title == "Pant på vinflasker & saftflasker fra 2027" and pant.teaser == ""
     assert pant.published == datetime(2026, 10, 7, 7, 12, tzinfo=UTC) and pant.date_quality == "kilde"
     assert by_url[NEWS + "kun-dato"].date_quality == "liste"
     assert by_url[uden_titel].title == "Sommerfest i parken"
-    assert set(c.seen["kilde"]) == {item_id(uden_titel)}  # Google News-poster behandles som RSS
-    assert "2 fra Google News" in diag(res)
+    # Google News-poster behandles som RSS; siderne med varig fejl (404) markeres, så de ikke prøves igen
+    assert set(c.seen["kilde"]) == {item_id(uden_titel), item_id(NEWS + "pant-paa-vinflasker"), item_id(NEWS + "kun-dato")}
+    assert "2 fra Google News (2 med affaldsord hentes for betalingsmuren)" in diag(res)
 
 
 def test_index_follows_five_newest_sub_sitemaps(cfg):
@@ -1682,3 +1738,16 @@ def test_backfill_backlog_continues_hourly_and_stops_after_max_runs(env, monkeyp
     assert "kilde-sitemap: bagudindsamlingen stopper efter 3 kørsler med en restkø" in caplog.text
     called, _ = run(start + timedelta(hours=3))
     assert called == []  # almindelig takt igen (hver 6. time)
+
+
+def test_paywall_pages_never_crowd_out_articles_or_leave_a_backlog(cfg):
+    # 16 Google News-poster med affaldsord: højst 15 sider pr. kørsel, men ingen restkø for betalingsmuren
+    news = ('<url><loc>https://www.kilde.dk/nyheder/affald-{n}</loc><news:news><news:publication_date>'
+            '2026-10-07T08:00:00Z</news:publication_date><news:title>Nyt om affald {n}</news:title></news:news></url>')
+    sitemap = (f'<urlset xmlns="{SM_NS}" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">'
+               + "".join(news.format(n=n) for n in range(16)) + "</urlset>").encode()
+    f = fetcher({SITEMAP: (sitemap, XML), NEWS: (page("<title>Affald</title>"), HTML)})
+    res = COLLECTORS["sitemap"](src(), f, ctx(cfg))
+    assert len(urls_called(f)) == 15 and not res.backlog and res.error is None
+    assert len(res.entries) == 16
+    assert "1 sider venter til næste kørsel (højst 15 pr. kørsel)" in diag(res)

@@ -553,7 +553,7 @@
   category: lokalmedie
   homepage: https://www.sn.dk
   method: sitemap
-  feeds: https://www.sn.dk/SitemapIndex.0.xml
+  feeds: https://www.sn.dk/sitemap.xml
   match: /art\d+/
   domains: [sjnyheder.dk]
   filter: strict
