@@ -11,6 +11,8 @@ Feedet henter et lokalmedie på en af to måder.
 
 Fra 14. oktober 2026 følger feedet også mediernes egne regler (BESLUTNINGER, Medier med forbehold vises kun med overskrift). Aviserne fra Jysk Fynske Medier, Sjællandske Medier, Nordjyske, Mediehusene Midtjylland og flere andre har forbehold mod AI eller tekst- og datamining. De hentes stadig direkte, men vises kun med overskrift og link. Din Avis, Lolland-Falsters Folketidende og Dragør Nyt afventer tilladelse, fordi deres regler forbyder et feed som dette. De hentes ikke og står med "(afventer)" i tabellerne.
 
+Sjællandske Medier skiftede platform 20. oktober 2026, og kilden var nede til 24. november. Nu hentes Sjællandske, DAGBLADET, Nordvestnyt og Frederiksborg Amts Avis fra hver sit Google News-sitemap på sn.dk, og koncernens ugeaviser ligger under de fire. Artikler fra perioden imellem mangler i feedet.
+
 Et medie, der hverken er kilde eller står i `medier.yaml`, dækkes ikke. Alle kommuner dækkes desuden af en TV 2-region, som hentes direkte med kun overskrift. DR's regionale redaktioner afventer DR's tilladelse.
 
 ## Huller i kortlægningen
