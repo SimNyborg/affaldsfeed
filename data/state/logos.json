@@ -728,8 +728,8 @@
   "fyens": {
     "file": "fyens.png",
     "src": "https://fyens.dk/assets/1793874506/kodus/jfm-brands/brands/fyens/favicons/apple-icon-57x57.png",
-    "checked": "2026-11-07T13:59:45Z",
-    "error": null
+    "checked": "2026-11-24T21:24:06Z",
+    "error": "springes over: HTTP 503"
   },
   "galtenfolkeblad": {
     "file": "galtenfolkeblad.png",
@@ -1015,8 +1015,8 @@
   },
   "jv": {
     "file": "jv.png",
-    "src": "https://jv.dk/assets/1793874506/kodus/jfm-brands/brands/jv/favicons/apple-icon-57x57.png",
-    "checked": "2026-11-07T13:59:45Z",
+    "src": "https://jv.dk/assets/1795416811/kodus/jfm-brands/brands/jv/favicons/apple-icon-57x57.png",
+    "checked": "2026-11-24T21:24:06Z",
     "error": null
   },
   "jyllands-posten-dk": {
@@ -1268,7 +1268,7 @@
   "midtjyllandsavis": {
     "file": "midtjyllandsavis.png",
     "src": "https://midtjyllandsavis.dk/images/favicons/apple-icon-57x57.png",
-    "checked": "2026-11-08T06:27:52Z",
+    "checked": "2026-11-24T21:24:06Z",
     "error": null
   },
   "midtvendsysselavis": {
@@ -1424,7 +1424,7 @@
   "nordjyske": {
     "file": "nordjyske.png",
     "src": "https://nordjyske.dk/favicon.ico",
-    "checked": "2026-11-07T13:59:45Z",
+    "checked": "2026-11-24T21:24:06Z",
     "error": null
   },
   "nordsoeposten": {

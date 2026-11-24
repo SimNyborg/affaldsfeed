@@ -1309,12 +1309,12 @@
   },
   "fyens": {
     "last_ok": "2026-11-24",
-    "last_attempt": "2026-11-24T17:39:57Z",
-    "fails": 0,
-    "last_error": null,
+    "last_attempt": "2026-11-24T21:24:06Z",
+    "fails": 1,
+    "last_error": "https://fyens.dk/sitemap/2026-11-24: HTTP 503; springes over i denne kørsel; https://fyens.dk/sitemap/2026-11-23: springes over: HTTP 503",
     "items_30d": 10,
     "first_run_done": true,
-    "health": "groen",
+    "health": "gul",
     "since": "2026-10-08",
     "backfilled_from": "2026-01-01",
     "backfill_runs": 0
@@ -1873,7 +1873,7 @@
   },
   "jv": {
     "last_ok": "2026-11-24",
-    "last_attempt": "2026-11-24T17:39:57Z",
+    "last_attempt": "2026-11-24T21:24:06Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 11,
@@ -2269,10 +2269,10 @@
   },
   "midtjyllandsavis": {
     "last_ok": "2026-11-24",
-    "last_attempt": "2026-11-24T17:39:57Z",
+    "last_attempt": "2026-11-24T21:24:06Z",
     "fails": 0,
     "last_error": null,
-    "items_30d": 2,
+    "items_30d": 3,
     "first_run_done": true,
     "health": "groen",
     "since": "2026-10-08",
@@ -2521,7 +2521,7 @@
   },
   "nordjyske": {
     "last_ok": "2026-11-24",
-    "last_attempt": "2026-11-24T17:39:57Z",
+    "last_attempt": "2026-11-24T21:24:06Z",
     "fails": 0,
     "last_error": null,
     "items_30d": 3,
