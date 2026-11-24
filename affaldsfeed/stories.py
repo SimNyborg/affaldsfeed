@@ -150,7 +150,8 @@ def build_stories(
         items, source_category, hints, title_window_days, max_age_days, no_merge=no_merge, bundle_day=bundle_day
     ):
         also = [
-            AlsoRef(id=o.id, source=o.source, url=o.url, title=o.title, published=o.published) for o in others
+            AlsoRef(id=o.id, source=o.source, url=o.url, title=o.title, published=o.published, paywall=o.paywall)
+            for o in others
         ]
         places = sort_places((p for it in (main, *others) for p in it.places), limit=None)
         out.append(main.model_copy(update={"story": main.id, "also": also, "places": places}))

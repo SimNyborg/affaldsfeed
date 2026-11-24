@@ -33,6 +33,7 @@ class RawEntry:
     publisher_name: str | None
     publisher_domain: str | None
     found_via: str
+    paywall: str | None = None  # "ja"/"nej" fra artiklens JSON-LD, når siden er hentet
 
 
 @dataclass

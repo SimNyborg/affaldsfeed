@@ -40,7 +40,10 @@ def test_sample_is_a_valid_feed(raw, feed):
     assert list(raw) == ["version", "generated", "window_days", "window_start", "mode", "last_judgment", "categories", "topics",
                          "genres", "sources", "geo", "overview", "items"]
     assert feed.version == FEED_VERSION
-    assert all(list(it) == list(DisplayItem.model_fields) for it in raw["items"])
+    # paywall skrives kun, når artiklen er markeret (KONTRAKTER §8)
+    assert all(list(it) == [k for k in DisplayItem.model_fields if k != "paywall" or k in it] for it in raw["items"])
+    assert {it.get("paywall") for it in raw["items"]} == {None, "ja", "nej"}
+    assert any("paywall" in a for it in raw["items"] for a in it["also"])
     assert [it.id for it in _sort_items(feed.items)] == [it.id for it in feed.items]
     assert SAMPLE.read_text(encoding="utf-8") == json.dumps(raw, ensure_ascii=False, indent=1) + "\n"
 

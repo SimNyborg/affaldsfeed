@@ -159,6 +159,11 @@ def test_build_stories_fills_story_and_also():
     assert main.also[0].url == "https://avisen.dk/med"
     assert main.also[0].published == T0
     assert out[1].also == []
+    # Betalingsmuren følger med ind i also, når artiklen er markeret
+    its[2] = its[2].model_copy(update={"paywall": "ja"})
+    also = build_stories(its, CATS, [], 3, 7)[0].also
+    assert [a.paywall for a in also] == [None, "ja"]
+    assert "paywall" not in also[0].model_dump(mode="json") and also[1].model_dump(mode="json")["paywall"] == "ja"
     assert out[1].story == "solo"
 
 

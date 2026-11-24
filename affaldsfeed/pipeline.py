@@ -255,6 +255,7 @@ class Processor:
                 baseline=first_run and not check_mode,
                 found_via=e.found_via if e.found_via in ("feed", "search", "sweep") else "feed",
                 categories=list(e.categories),
+                paywall=e.paywall if e.paywall in ("ja", "nej") else None,
             )
             out.new.append(cand)
             if not check_mode:

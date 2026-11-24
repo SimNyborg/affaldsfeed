@@ -52,6 +52,13 @@ Method = Literal["rss", "sitemap", "html", "oda", "search"]
 FilterLevel = Literal["none", "normal", "strict"]
 Lang = Literal["da", "en", "sv"]
 Paywall = Literal["nej", "delvis", "ja"]
+# Betalingsmur for den enkelte artikel: isAccessibleForFree i artiklens JSON-LD (KONTRAKTER §5.6)
+ArticlePaywall = Literal["ja", "nej"]
+
+
+def _is_none(v: object) -> bool:
+    """Til Field(exclude_if=...): feltet skrives kun, når det har en værdi."""
+    return v is None
 Basis = Literal["redaktionelt", "offentlig", "forskning", "organisation"]
 # afventer: mediets regler forbyder det, feedet gør. Hentes ikke, men står låst i menuen (KONTRAKTER §3)
 Status = Literal["aktiv", "planlagt", "kandidat", "pause", "afventer", "fravalgt"]
@@ -464,6 +471,7 @@ class Candidate(_Strict):
     baseline: bool = False
     found_via: FoundVia = "feed"
     categories: list[str] = Field(default_factory=list)
+    paywall: ArticlePaywall | None = Field(default=None, exclude_if=_is_none)
 
     @field_validator("places")
     @classmethod
@@ -677,6 +685,7 @@ class AlsoRef(_Strict):
     url: str
     title: str
     published: datetime | None = None
+    paywall: ArticlePaywall | None = Field(default=None, exclude_if=_is_none)
 
 
 class DisplayItem(_Strict):
@@ -700,6 +709,7 @@ class DisplayItem(_Strict):
     reason: str | None = None
     also: list[AlsoRef] = Field(default_factory=list)
     why: Why | None = None
+    paywall: ArticlePaywall | None = Field(default=None, exclude_if=_is_none)
 
     @field_validator("places")
     @classmethod

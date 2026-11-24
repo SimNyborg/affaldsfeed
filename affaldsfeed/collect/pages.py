@@ -8,7 +8,7 @@ import json
 import logging
 import re
 import zlib
-from collections import deque
+from collections import Counter, deque
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
 from datetime import UTC, date, datetime, time, timedelta, timezone, tzinfo
@@ -56,6 +56,7 @@ class Page(NamedTuple):
     published: datetime | None  # UTC
     date_quality: str  # kilde, url, liste eller fundet
     teaser: str  # rå; normalize.clean_text renser senere
+    paywall: str | None = None  # "ja"/"nej" efter isAccessibleForFree; None uden markering
 
 
 # ── Datoer ──────────────────────────────────────────────────
@@ -452,10 +453,8 @@ def _walk_ld(node: Any, depth: int = 0) -> Iterator[tuple[bool, str]]:
                 yield from _walk_ld(v, depth + 1)
 
 
-def _jsonld_dates(doc: Any) -> list[str]:
-    """datePublished fra JSON-LD; artikeltyper (NewsArticle, BlogPosting …) før fx WebPage."""
-    preferred: list[str] = []
-    other: list[str] = []
+def _jsonld_blocks(doc: Any) -> Iterator[Any]:
+    """Indholdet af sidens JSON-LD-blokke; blokke, der ikke kan læses, springes over."""
     for script in doc.iter("script"):
         if not (script.get("type") or "").strip().lower().startswith("application/ld+json"):
             continue
@@ -463,12 +462,77 @@ def _jsonld_dates(doc: Any) -> list[str]:
         if not raw.strip() or len(raw) > 1_000_000:
             continue
         try:
-            data = json.loads(raw, strict=False)
+            yield json.loads(raw, strict=False)
         except (ValueError, RecursionError):
             continue
+
+
+def _jsonld_dates(doc: Any) -> list[str]:
+    """datePublished fra JSON-LD; artikeltyper (NewsArticle, BlogPosting …) før fx WebPage."""
+    preferred: list[str] = []
+    other: list[str] = []
+    for data in _jsonld_blocks(doc):
         for is_article, value in _walk_ld(data):
             (preferred if is_article else other).append(value)
     return preferred + other
+
+
+def _free(value: Any) -> bool | None:
+    """isAccessibleForFree som bool: true/false, også som tekst ("False") eller schema.org-URL."""
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        word = value.strip().rstrip("/").rsplit("/", 1)[-1].lower()
+        return {"true": True, "false": False}.get(word)
+    return None
+
+
+def _node_free(node: dict[str, Any]) -> bool | None:
+    """Objektets egen markering; uden den er artiklen bag betalingsmur, hvis en del (hasPart) er det."""
+    own = _free(node.get("isAccessibleForFree"))
+    if own is not None:
+        return own
+    parts = node.get("hasPart")
+    flags = [_free(p.get("isAccessibleForFree")) for p in (parts if isinstance(parts, list) else [parts])
+             if isinstance(p, dict)]  # fmt: skip
+    if False in flags:
+        return False
+    return True if True in flags else None
+
+
+def _walk_free(node: Any, depth: int = 0) -> Iterator[tuple[bool, bool]]:
+    """(er artikeltype, gratis) for alle objekter med markering, også i @graph og lister."""
+    if depth > 10:
+        return
+    if isinstance(node, list):
+        for x in node:
+            yield from _walk_free(x, depth + 1)
+    elif isinstance(node, dict):
+        free = _node_free(node)
+        if free is not None:
+            types = node.get("@type")
+            types = types if isinstance(types, list) else [types]
+            yield any(isinstance(t, str) and _ARTICLE_TYPE_RE.search(t) for t in types), free
+        for k, v in node.items():
+            if k != "hasPart" and isinstance(v, dict | list):
+                yield from _walk_free(v, depth + 1)
+
+
+def _paywall(doc: Any, meta: dict[str, str]) -> str | None:
+    """Betalingsmur efter isAccessibleForFree (KONTRAKTER §5.6): "ja" (false), "nej" (true), None uden markering.
+
+    Første artikeltype i JSON-LD tæller før fx WebPage; derefter <meta itemprop="isAccessibleForFree">.
+    """
+    other: bool | None = None
+    for data in _jsonld_blocks(doc):
+        for is_article, free in _walk_free(data):
+            if is_article:
+                return "nej" if free else "ja"
+            if other is None:
+                other = free
+    if other is None:
+        other = _free(meta.get("isaccessibleforfree"))
+    return None if other is None else ("nej" if other else "ja")
 
 
 _HEADINGS = ("h1", "h2", "h3", "h4", "h5", "h6")
@@ -538,7 +602,7 @@ def extract_page(
     names: Iterable[str] = (),
     lang: str = "da",
 ) -> Page | None:
-    """Titel, dato, date_quality og teaser fra en artikelside. None, hvis svaret ikke er HTML.
+    """Titel, dato, date_quality, teaser og betalingsmur fra en artikelside. None, hvis svaret ikke er HTML.
 
     Ren funktion uden netværk. names (kildens navn og vært) bruges til at fjerne kildehaler fra titlen;
     now til at afvise datoer mere end 2 t ude i fremtiden; lang (kildens sprog) til datoer med engelske
@@ -554,7 +618,7 @@ def extract_page(
     main = _main(doc)
     published, quality = _published(doc, main, meta, url, now, lang)
     teaser = meta.get("og:description") or meta.get("description") or ""
-    return Page(_title(doc, main, meta, names), published, quality, teaser)
+    return Page(_title(doc, main, meta, names), published, quality, teaser, _paywall(doc, meta))
 
 
 # ── Sitemap ─────────────────────────────────────────────────
@@ -932,6 +996,7 @@ class _Job:
         limit = self.cfg.max_pages
         max_bytes = int(self.cfg.max_page_mb * MB)
         attempts = ok = permanent = blocked = not_html = untitled = broken = 0
+        marked: Counter[str] = Counter()  # betalingsmur fra sidernes markering
         failures: list[str] = []
         for n, t in enumerate(targets):
             if attempts >= limit:
@@ -998,12 +1063,16 @@ class _Job:
                     publisher_name=None,
                     publisher_domain=None,
                     found_via="feed",
+                    paywall=page.paywall,
                 )
             )
+            if page.paywall:
+                marked[page.paywall] += 1
         self.diag(
             f"sider: {attempts} hentet ({ok} ok, {len(failures)} fejl), {permanent} med varig fejl, "
             f"{blocked} blokeret af robots.txt, {not_html} ikke HTML, {untitled} uden titel"
             + (f", {broken} kunne ikke udtrækkes" if broken else "")
+            + (f", betalingsmur: {marked['ja']} ja og {marked['nej']} nej" if marked else "")
         )
         for f in failures[:DIAG_URLS]:
             self.diag(f"  fejl: {f}")

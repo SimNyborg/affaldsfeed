@@ -227,6 +227,7 @@ def _from_candidate(
         reviewed=state.reviewed,
         reason=reason if text else None,
         why=c.why,
+        paywall=c.paywall,
     )
 
 

@@ -133,16 +133,62 @@ def diag(res) -> str:
 # ── Sideudtræk ──────────────────────────────────────────────
 
 
+def _ld(*blocks: str) -> str:
+    return "".join(f'<script type="application/ld+json">{b}</script>' for b in blocks)
+
+
+@pytest.mark.parametrize(
+    ("head", "expected"),
+    [
+        # Bool og tekst, også schema.org-URL
+        (_ld('{"@type": "NewsArticle", "isAccessibleForFree": false}'), "ja"),
+        (_ld('{"@type": "NewsArticle", "isAccessibleForFree": true}'), "nej"),
+        (_ld('{"@type": "Article", "isAccessibleForFree": "false"}'), "ja"),
+        (_ld('{"@type": "Article", "isAccessibleForFree": " True "}'), "nej"),
+        (_ld('{"@type": "Article", "isAccessibleForFree": "https://schema.org/False"}'), "ja"),
+        # Googles betalingsmur-markering: kun delen bag muren er markeret
+        (_ld('{"@type": "NewsArticle", "hasPart": {"@type": "WebPageElement", "isAccessibleForFree": "False",'
+             ' "cssSelector": ".paywall"}}'), "ja"),
+        (_ld('{"@type": "NewsArticle", "isAccessibleForFree": true,'
+             ' "hasPart": [{"@type": "WebPageElement", "isAccessibleForFree": false}]}'), "nej"),
+        # Artiklen i @graph og i en liste vinder over WebPage, også i en senere blok
+        (_ld('{"@type": "WebPage", "isAccessibleForFree": true}',
+             '[{"@type": "BreadcrumbList"}, {"@type": "ReportageNewsArticle", "isAccessibleForFree": false}]'), "ja"),
+        (_ld('{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "isAccessibleForFree": false,'
+             ' "mainEntity": {"@type": "NewsArticle", "isAccessibleForFree": true}}]}'), "nej"),
+        # Første artikel tæller; relaterede artikler længere nede gør ikke
+        (_ld('{"@type": "NewsArticle", "isAccessibleForFree": true, "relatedLink": ['
+             '{"@type": "NewsArticle", "isAccessibleForFree": false}]}'), "nej"),
+        # Uden artikeltype bruges fx WebPage, ellers microdata
+        (_ld('{"@type": "WebPage", "isAccessibleForFree": false}'), "ja"),
+        ('<meta itemprop="isAccessibleForFree" content="true">', "nej"),
+        (_ld('{"@type": "NewsArticle", "isAccessibleForFree": false}')
+         + '<meta itemprop="isAccessibleForFree" content="true">', "ja"),
+        # Ingen eller ugyldig markering: feltet udelades
+        (_ld('{"@type": "NewsArticle", "headline": "Uden markering"}'), None),
+        (_ld('{"@type": "NewsArticle", "isAccessibleForFree": "måske"}'), None),
+        (_ld('{"@type": "NewsArticle", "isAccessibleForFree": 0}'), None),
+        (_ld('{"@type": "NewsArticle", "isAccessibleForFree": false'), None),  # ødelagt JSON
+        ("", None),
+    ],
+)
+def test_extract_paywall_from_is_accessible_for_free(head, expected):
+    p = pages.extract_page(page("<title>Affald</title>" + head, "<h1>Affald</h1>"), ART1, HTML, now=NOW)
+    assert p.paywall == expected
+
+
 def test_extract_jsonld_graph_prefers_article_over_webpage_and_meta():
     p = pages.extract_page((P / "article_jsonld.html").read_bytes(), ART1, HTML, now=NOW, names=NAMES)
     assert p.title == "Ny genbrugsplads åbner i Nordby"  # og:title
     assert p.published == datetime(2026, 10, 7, 5, 30, tzinfo=UTC)  # NewsArticle i @graph
     assert p.date_quality == "kilde"
     assert p.teaser == "Den nye plads har åbent alle ugens dage & tager imod 30 fraktioner."  # og:description
+    assert p.paywall == "ja"  # NewsArticle med "False" vinder over WebPage med true
 
 
 def test_extract_meta_published_time_and_h1_in_article():
     p = pages.extract_page((P / "article_meta.html").read_bytes(), ART2, HTML, now=NOW, names=NAMES)
+    assert p.paywall is None  # ingen markering: mediets betalingsmur gælder
     assert p.title == "Affaldsgebyret stiger i 2027"  # h1 i article, ikke logoets h1 i headeren
     assert p.published == datetime(2026, 10, 5, 12, 32, tzinfo=UTC) and p.date_quality == "kilde"
     assert p.teaser == "Gebyret for husstande stiger med 4 procent."  # meta description
@@ -728,6 +774,7 @@ def test_sitemap_window_order_and_entries(cfg):
     assert first.title == "Ny genbrugsplads åbner i Nordby" and first.source_id == "kilde"
     assert first.published == datetime(2026, 10, 7, 5, 30, tzinfo=UTC)  # sidens dato, aldrig lastmod
     assert first.date_quality == "kilde" and first.found_via == "feed" and first.lang == "da"
+    assert first.paywall == "ja" and by_url[ART2].paywall is None  # sidens isAccessibleForFree
     assert by_url[ART4].published == datetime(2026, 10, 6, 11, 45, tzinfo=UTC)
     assert c.seen["kilde"] == {item_id(u): "2026-10-07" for u in (ART1, ART2, ART4)}
     text = diag(res)
@@ -736,7 +783,7 @@ def test_sitemap_window_order_and_entries(cfg):
         "1 uden lastmod (0 registreret som baseline), 0 fra Google News, 3 nye, 0 sprunget over (strict)"
     ) in text
     assert "https://www.kilde.dk/om-os" in text and "https://andet-domaene.dk/nyheder/fremmed-artikel" in text
-    assert "sider: 3 hentet (3 ok, 0 fejl)" in text
+    assert "sider: 3 hentet (3 ok, 0 fejl)" in text and "betalingsmur: 1 ja og 0 nej" in text
 
 
 def test_sitemaps_and_lists_may_answer_slower_than_articles(cfg):
