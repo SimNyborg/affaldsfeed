@@ -8,7 +8,7 @@ import json
 import logging
 import re
 import zlib
-from collections import deque
+from collections import Counter, deque
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
 from datetime import UTC, date, datetime, time, timedelta, timezone, tzinfo
@@ -56,6 +56,7 @@ class Page(NamedTuple):
     published: datetime | None  # UTC
     date_quality: str  # kilde, url, liste eller fundet
     teaser: str  # rå; normalize.clean_text renser senere
+    paywall: str | None = None  # "ja"/"nej" efter isAccessibleForFree; None uden markering
 
 
 # ── Datoer ──────────────────────────────────────────────────
@@ -452,10 +453,8 @@ def _walk_ld(node: Any, depth: int = 0) -> Iterator[tuple[bool, str]]:
                 yield from _walk_ld(v, depth + 1)
 
 
-def _jsonld_dates(doc: Any) -> list[str]:
-    """datePublished fra JSON-LD; artikeltyper (NewsArticle, BlogPosting …) før fx WebPage."""
-    preferred: list[str] = []
-    other: list[str] = []
+def _jsonld_blocks(doc: Any) -> Iterator[Any]:
+    """Indholdet af sidens JSON-LD-blokke; blokke, der ikke kan læses, springes over."""
     for script in doc.iter("script"):
         if not (script.get("type") or "").strip().lower().startswith("application/ld+json"):
             continue
@@ -463,12 +462,102 @@ def _jsonld_dates(doc: Any) -> list[str]:
         if not raw.strip() or len(raw) > 1_000_000:
             continue
         try:
-            data = json.loads(raw, strict=False)
+            yield json.loads(raw, strict=False)
         except (ValueError, RecursionError):
             continue
+
+
+def _jsonld_dates(doc: Any) -> list[str]:
+    """datePublished fra JSON-LD; artikeltyper (NewsArticle, BlogPosting …) før fx WebPage."""
+    preferred: list[str] = []
+    other: list[str] = []
+    for data in _jsonld_blocks(doc):
         for is_article, value in _walk_ld(data):
             (preferred if is_article else other).append(value)
     return preferred + other
+
+
+def _free(value: Any) -> bool | None:
+    """isAccessibleForFree som bool: true/false, også som tekst ("False") eller schema.org-URL."""
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        word = value.strip().rstrip("/").rsplit("/", 1)[-1].lower()
+        return {"true": True, "false": False}.get(word)
+    return None
+
+
+def _node_free(node: dict[str, Any]) -> bool | None:
+    """Objektets egen markering; uden den er artiklen bag betalingsmur, hvis en del (hasPart) er det."""
+    own = _free(node.get("isAccessibleForFree"))
+    if own is not None:
+        return own
+    parts = node.get("hasPart")
+    flags = [_free(p.get("isAccessibleForFree")) for p in (parts if isinstance(parts, list) else [parts])
+             if isinstance(p, dict)]  # fmt: skip
+    if False in flags:
+        return False
+    return True if True in flags else None
+
+
+def _url_path(base: str, value: Any) -> str | None:
+    """Stien i en (evt. relativ) URL uden query, fragment og afsluttende /, til at sammenligne adresser."""
+    if not isinstance(value, str) or not value.strip():
+        return None
+    try:
+        path = urlsplit(urljoin(base, value.strip())).path
+    except ValueError:
+        return None
+    return unquote(path).rstrip("/").lower() or "/"
+
+
+def _node_paths(node: dict[str, Any], base: str) -> set[str]:
+    """Adresserne, et JSON-LD-objekt angiver for sig selv: url, @id og mainEntityOfPage."""
+    values = [node.get("url"), node.get("@id")]
+    main = node.get("mainEntityOfPage")
+    values += [main.get("@id"), main.get("url")] if isinstance(main, dict) else [main]
+    return {p for v in values if (p := _url_path(base, v)) is not None}
+
+
+def _walk_free(node: Any, base: str, depth: int = 0) -> Iterator[tuple[bool, bool, set[str]]]:
+    """(er artikeltype, gratis, adresser) for alle objekter med markering, også i @graph og lister."""
+    if depth > 10:
+        return
+    if isinstance(node, list):
+        for x in node:
+            yield from _walk_free(x, base, depth + 1)
+    elif isinstance(node, dict):
+        free = _node_free(node)
+        if free is not None:
+            types = node.get("@type")
+            types = types if isinstance(types, list) else [types]
+            is_article = any(isinstance(t, str) and _ARTICLE_TYPE_RE.search(t) for t in types)
+            yield is_article, free, _node_paths(node, base)
+        for k, v in node.items():
+            if k != "hasPart" and isinstance(v, dict | list):
+                yield from _walk_free(v, base, depth + 1)
+
+
+def _paywall(doc: Any, meta: dict[str, str], url: str) -> str | None:
+    """Betalingsmur efter isAccessibleForFree i JSON-LD (KONTRAKTER §5.6): "ja" (false), "nej" (true), ellers None.
+
+    Mange aviser har JSON-LD for relaterede artikler på siden, ofte før artiklens egen. Derfor tæller kun et objekt,
+    hvis adresse er sidens (URL, canonical eller og:url), eller et objekt uden adresse. Artikeltyper før fx WebPage.
+    """
+    canonical = next((el.get("href") for el in doc.iter("link")
+                      if "canonical" in (el.get("rel") or "").lower().split()), None)  # fmt: skip
+    page = {p for v in (url, canonical, meta.get("og:url")) if (p := _url_path(url, v)) is not None}
+    found: dict[bool, list[tuple[bool, set[str]]]] = {True: [], False: []}
+    for data in _jsonld_blocks(doc):
+        for is_article, free, paths in _walk_free(data, url):
+            found[is_article].append((free, paths))
+    for group in (found[True], found[False]):
+        free = next((f for f, paths in group if paths & page), None)
+        if free is None:
+            free = next((f for f, paths in group if not paths), None)
+        if free is not None:
+            return "nej" if free else "ja"
+    return None
 
 
 _HEADINGS = ("h1", "h2", "h3", "h4", "h5", "h6")
@@ -538,7 +627,7 @@ def extract_page(
     names: Iterable[str] = (),
     lang: str = "da",
 ) -> Page | None:
-    """Titel, dato, date_quality og teaser fra en artikelside. None, hvis svaret ikke er HTML.
+    """Titel, dato, date_quality, teaser og betalingsmur fra en artikelside. None, hvis svaret ikke er HTML.
 
     Ren funktion uden netværk. names (kildens navn og vært) bruges til at fjerne kildehaler fra titlen;
     now til at afvise datoer mere end 2 t ude i fremtiden; lang (kildens sprog) til datoer med engelske
@@ -554,7 +643,7 @@ def extract_page(
     main = _main(doc)
     published, quality = _published(doc, main, meta, url, now, lang)
     teaser = meta.get("og:description") or meta.get("description") or ""
-    return Page(_title(doc, main, meta, names), published, quality, teaser)
+    return Page(_title(doc, main, meta, names), published, quality, teaser, _paywall(doc, meta, url))
 
 
 # ── Sitemap ─────────────────────────────────────────────────
@@ -816,6 +905,7 @@ class _Target:
     order: int = 0
     text: str = ""  # linktekst (html)
     list_date: datetime | None = None  # dato ved linket på listen (html)
+    entry: RawEntry | None = None  # Google News-indslag: siden hentes kun for betalingsmuren
 
 
 class _Job:
@@ -843,6 +933,7 @@ class _Job:
         self.match = re.compile(source.match) if source.match else None
         self.names = site_names(source)
         self.strict = strict_patterns(ctx.config.keywords) if source.filter == "strict" else None
+        self._strong: list[tuple[str, re.Pattern]] | None = self.strict
         self.result = CollectResult()
         self.errors: list[str] = []  # hver af dem gør kilden fejlet i denne kørsel
         self.docs: list[str] = []  # sitemaps og lister, der er forespurgt i denne kørsel
@@ -902,6 +993,12 @@ class _Job:
             return True
         return bool(find_hits(slug_text(url), self.strict) or (text and find_hits(text, self.strict)))
 
+    def strong_title(self, title: str) -> bool:
+        """Stærkt ord eller navn fra keywords.yaml i titlen (uanset kildens filter)."""
+        if self._strong is None:
+            self._strong = strict_patterns(self.ctx.config.keywords)
+        return bool(find_hits(title, self._strong))
+
     def get_doc(self, url: str) -> FetchResult:
         """Hent et sitemap eller en listeside (conditional GET efter første kørsel). De må være længere om at
         svare end artikelsider (pages.doc_timeout_seconds), fordi mange dannes ved hver forespørgsel."""
@@ -928,40 +1025,56 @@ class _Job:
 
         Varige fejl (4xx undtagen 408/425/429, robots.txt-forbud, for stort svar) markeres som set, så siden ikke
         prøves ved hver kørsel. Forbigående fejl (5xx, timeout, 429) markeres ikke og prøves igen.
+        Sider, der kun hentes for betalingsmuren (Google News, t.entry), gør aldrig kilden fejlet og giver ingen
+        restkø: indslaget er allerede fundet, og siden prøves igen ved næste kørsel, så længe den ikke er set.
         """
         limit = self.cfg.max_pages
         max_bytes = int(self.cfg.max_page_mb * MB)
         attempts = ok = permanent = blocked = not_html = untitled = broken = 0
+        marked: Counter[str] = Counter()  # betalingsmur fra sidernes markering
+        news: Counter[str] = Counter()  # sider hentet kun for betalingsmuren
         failures: list[str] = []
+        page_failures: list[str] = []  # uden dem, der kun hentes for betalingsmuren
+
+        def rest_has_pages(n: int) -> bool:
+            # Restkø kun for artikler; sider kun for betalingsmuren prøves bare igen næste gang (ikke set)
+            return any(r.entry is None for r in targets[n:])
+
         for n, t in enumerate(targets):
             if attempts >= limit:
-                self.backlog = True
+                self.backlog = self.backlog or rest_has_pages(n)
                 self.diag(f"{len(targets) - n} sider venter til næste kørsel (højst {limit} pr. kørsel)")
                 break
             res = self.fetcher.get(t.url, conditional=False, max_bytes=max_bytes)
             if res.error == BUDGET_EXHAUSTED:
-                self.backlog = True
+                self.backlog = self.backlog or rest_has_pages(n)
                 rest = len(targets) - n
                 log.warning(
                     "%s: tidsbudgettet er brugt; %d sider venter til næste kørsel", self.source.id, rest
                 )
                 self.diag(f"tidsbudgettet er brugt: {rest} sider venter til næste kørsel")
                 break
+            only_paywall = t.entry is not None
             if res.error == ROBOTS_BLOCKED:
                 blocked += 1
+                news["blocked"] += only_paywall
                 self.mark(t.iid)  # forbudt af robots.txt: prøves ikke igen
                 log.info("%s: %s er blokeret af robots.txt", self.source.id, t.url)
                 continue
             attempts += 1
+            news["attempts"] += only_paywall
             if res.error or res.content is None:
                 failures.append(f"{t.url}: {res.error or 'intet indhold'}")
+                if not only_paywall:
+                    page_failures.append(failures[-1])
                 if res.permanent:
                     permanent += 1
                     self.mark(t.iid)  # varig fejl (fx 404 eller 410): prøves ikke igen
-                else:
+                elif not only_paywall:
                     self.backlog = True  # forbigående fejl: prøves igen ved næste kørsel
                 continue
             ok += 1
+            news["ok"] += only_paywall
             self.mark(t.iid)  # hentet og udtrukket: også hvis forfiltret afviser den bagefter
             try:
                 page = extract_page(
@@ -978,6 +1091,12 @@ class _Job:
                 continue
             if page is None:
                 not_html += 1
+                continue
+            if t.entry is not None:
+                # Google News-indslag: titel og dato er fra sitemappet; siden giver kun betalingsmuren
+                t.entry.paywall = page.paywall
+                if page.paywall:
+                    marked[page.paywall] += 1
                 continue
             if not page.title:
                 untitled += 1
@@ -998,17 +1117,23 @@ class _Job:
                     publisher_name=None,
                     publisher_domain=None,
                     found_via="feed",
+                    paywall=page.paywall,
                 )
             )
+            if page.paywall:
+                marked[page.paywall] += 1
         self.diag(
             f"sider: {attempts} hentet ({ok} ok, {len(failures)} fejl), {permanent} med varig fejl, "
             f"{blocked} blokeret af robots.txt, {not_html} ikke HTML, {untitled} uden titel"
             + (f", {broken} kunne ikke udtrækkes" if broken else "")
+            + (f", betalingsmur: {marked['ja']} ja og {marked['nej']} nej" if marked else "")
         )
         for f in failures[:DIAG_URLS]:
             self.diag(f"  fejl: {f}")
-        if failures and ok == 0:
-            self.errors.append(f"alle {attempts} sidehentninger fejlede ({failures[0]})")
+        page_ok, page_attempts = ok - news["ok"], attempts - news["attempts"]
+        page_blocked = blocked - news["blocked"]
+        if page_failures and page_ok == 0:
+            self.errors.append(f"alle {page_attempts} sidehentninger fejlede ({page_failures[0]})")
         elif failures:
             log.warning(
                 "%s: %d af %d sidehentninger fejlede, fx %s",
@@ -1017,8 +1142,8 @@ class _Job:
                 attempts,
                 failures[0],
             )
-        elif blocked and ok == 0:
-            self.errors.append(f"alle {blocked} sider er blokeret af robots.txt")
+        elif page_blocked and page_ok == 0:
+            self.errors.append(f"alle {page_blocked} sider er blokeret af robots.txt")
 
     def finish(self) -> CollectResult:
         if self.errors or self.backlog or self.ctx.backfill_since is not None:
@@ -1218,6 +1343,7 @@ def collect_sitemap(source: Source, fetcher: Fetcher, ctx: CollectContext) -> Co
     nonmatching: list[str] = []
     matched: list[str] = []
     targets: list[_Target] = []
+    news_targets: list[_Target] = []  # Google News-indslag, hvis side hentes for betalingsmuren
     done: set[str] = set()
     entries = [e for sm in urlsets for e in sm.entries]
     for order, e in enumerate(entries):
@@ -1232,23 +1358,26 @@ def collect_sitemap(source: Source, fetcher: Fetcher, ctx: CollectContext) -> Co
         matching += 1
         matched.append(e.loc)
         if e.news_title:
-            # Google News-sitemap: titel og dato står i sitemappet, så artiklen hentes ikke
+            # Google News-sitemap: titel og dato står i sitemappet. Artiklen hentes kun for betalingsmuren,
+            # én gang (seen), og kun når titlen har et stærkt ord eller navn
             news += 1
-            job.result.entries.append(
-                RawEntry(
-                    source_id=source.id,
-                    url=e.loc,
-                    title=e.news_title,
-                    teaser="",
-                    published=e.news_published,
-                    date_quality=e.news_quality,
-                    lang=source.lang,
-                    categories=[],
-                    publisher_name=None,
-                    publisher_domain=None,
-                    found_via="feed",
-                )
+            entry = RawEntry(
+                source_id=source.id,
+                url=e.loc,
+                title=e.news_title,
+                teaser="",
+                published=e.news_published,
+                date_quality=e.news_quality,
+                lang=source.lang,
+                categories=[],
+                publisher_name=None,
+                publisher_domain=None,
+                found_via="feed",
             )
+            job.result.entries.append(entry)
+            # Ikke under bagudindsamlingen: dagssitemaps tilbage til window_start ville give mange ekstra sider
+            if ctx.backfill_since is None and not job.seen_before(iid) and job.strong_title(e.news_title):
+                news_targets.append(_Target(e.loc, iid, e.lastmod or e.news_published, order, entry=entry))
             continue
         known = job.seen_before(iid)
         if e.lastmod is None:
@@ -1270,12 +1399,16 @@ def collect_sitemap(source: Source, fetcher: Fetcher, ctx: CollectContext) -> Co
 
     new = len(targets)
     targets = [t for t in targets if job.strict_ok(t.url)]
-    # Nyeste lastmod først; URL'er uden lastmod til sidst i dokumentets rækkefølge
+    skipped = new - len(targets)
+    # Nyeste lastmod først; URL'er uden lastmod til sidst i dokumentets rækkefølge. Sider, der kun hentes for
+    # betalingsmuren, kommer efter artiklerne, så de aldrig fortrænger en ny artikel
     targets.sort(key=lambda t: (t.lastmod is None, -(t.lastmod or OLDEST).timestamp(), t.order))
+    targets += news_targets
     job.diag(
         f"URL'er: {total} i alt, {matching} matcher, {in_window} med lastmod inden for {days} dage, "
-        f"{no_lastmod} uden lastmod ({baseline} registreret som baseline), {news} fra Google News, "
-        f"{new} nye, {new - len(targets)} sprunget over (strict)"
+        f"{no_lastmod} uden lastmod ({baseline} registreret som baseline), {news} fra Google News"
+        + (f" ({len(news_targets)} med affaldsord hentes for betalingsmuren)" if news_targets else "")
+        + f", {new} nye, {skipped} sprunget over (strict)"
     )
     if matched:
         job.diag(f"URL'er, der matcher (eksempler, match {source.match!r}):")

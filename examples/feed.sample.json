@@ -1822,7 +1822,8 @@
      "source": "fyens",
      "url": "https://example.org/fyens/ny-gebyrmodel-kan-give-lavere-affaldsgebyr-i-odense",
      "title": "Ny gebyrmodel kan give lavere affaldsgebyr i Odense",
-     "published": "2026-10-07T09:45:00Z"
+     "published": "2026-10-07T09:45:00Z",
+     "paywall": "ja"
     }
    ],
    "why": null
@@ -1963,7 +1964,8 @@
      "titel: kommuner"
     ],
     "reason": null
-   }
+   },
+   "paywall": "nej"
   },
   {
    "id": "c85fddc0cdfd",
@@ -2201,7 +2203,8 @@
    "reviewed": true,
    "reason": null,
    "also": [],
-   "why": null
+   "why": null,
+   "paywall": "ja"
   },
   {
    "id": "49ef94ae8e5c",

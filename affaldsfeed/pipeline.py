@@ -169,10 +169,16 @@ class Processor:
 
             # Kendt id: opdatér kun titlen (published/first_seen bevares). Kun fra samme slags fund,
             # så et søgeresultat og kildens eget feed ikke skiftes til at overskrive hinanden.
+            # En manglende betalingsmur udfyldes (siden kunne ikke hentes ved første fund), men ændres aldrig.
             old = None if check_mode else self.existing.get(iid)
             if old is not None:
+                update: dict[str, str] = {}
                 if old.title != title and old.found_via == e.found_via:
-                    upd = old.model_copy(update={"title": title})
+                    update["title"] = title
+                if old.paywall is None and e.paywall in ("ja", "nej"):
+                    update["paywall"] = e.paywall
+                if update:
+                    upd = old.model_copy(update=update)
                     self.existing[iid] = upd
                     out.updated.append(upd)
                 else:
@@ -255,6 +261,7 @@ class Processor:
                 baseline=first_run and not check_mode,
                 found_via=e.found_via if e.found_via in ("feed", "search", "sweep") else "feed",
                 categories=list(e.categories),
+                paywall=e.paywall if e.paywall in ("ja", "nej") else None,
             )
             out.new.append(cand)
             if not check_mode:

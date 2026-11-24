@@ -578,6 +578,7 @@ def _check_fetch(source_id: str, sources: list[Source], cfg: Config, explain: bo
             _print(
                 f"      hits: {hits} | tema: {', '.join(c.topics) or '-'} | genre: {c.genre}"
                 f" | steder: {', '.join(c.places) or '-'}"
+                + (f" | betalingsmur: {c.paywall}" if c.paywall else "")
             )
     if out.rejected:
         _print("\nAFVIST")

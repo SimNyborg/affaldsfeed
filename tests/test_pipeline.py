@@ -704,3 +704,28 @@ def test_backfill_is_not_finished_by_a_failing_run(backfill_env, monkeypatch):
     assert _run(monkeypatch, now=LATER)[0] == 0  # kilden svarer igen: bagudindsamlingen gøres færdig
     assert store.load_source_states()["testmedie"].backfilled_from == date(2026, 1, 1)
     assert "Gammel nyhed om affaldssortering i boligforeninger" in _by_title(_cands())
+
+
+def test_processor_keeps_paywall_and_fills_it_on_refind(env):
+    # Betalingsmuren følger med fra siden; ved genfund udfyldes en manglende, men en kendt ændres aldrig (§6.1)
+    from affaldsfeed.collect import RawEntry
+    from affaldsfeed.config import load_sources
+
+    sources = load_sources(env.sources)
+    cfg = load_config(env.config)
+    now = datetime(2026, 10, 7, 8, tzinfo=UTC)
+    testmedie = next(s for s in sources if s.id == "testmedie")
+
+    def raw(slug: str, paywall: str | None) -> RawEntry:
+        return RawEntry("testmedie", f"https://www.testmedie.dk/{slug}", f"Ny genbrugsplads åbner i {slug}", "",
+                        now - timedelta(hours=2), "kilde", "da", [], None, None, "feed", paywall=paywall)
+
+    out = pipeline.Processor(cfg, sources, now, {}, set()).process(
+        testmedie, [raw("vejle", "ja"), raw("kolding", None), raw("odense", "måske")], first_run=False)
+    by_url = {c.url.rsplit("/", 1)[1]: c for c in out.new}
+    assert {k: c.paywall for k, c in by_url.items()} == {"vejle": "ja", "kolding": None, "odense": None}
+
+    proc = pipeline.Processor(cfg, sources, now, {c.id: c for c in out.new}, set())
+    again = proc.process(testmedie, [raw("vejle", "nej"), raw("kolding", "nej"), raw("odense", None)], first_run=False)
+    assert again.new == [] and [(c.url.rsplit("/", 1)[1], c.paywall) for c in again.updated] == [("kolding", "nej")]
+    assert again.updated[0].title == by_url["kolding"].title and again.updated[0].first_seen == by_url["kolding"].first_seen

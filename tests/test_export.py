@@ -10,7 +10,7 @@ from datetime import date, timedelta
 import pytest
 
 from affaldsfeed import export, paths, store
-from affaldsfeed.models import Candidate, Rejected, SourceState, Why
+from affaldsfeed.models import Candidate, Feed, Rejected, SourceState, Why
 from affaldsfeed.normalize import item_id
 from affaldsfeed.timeutil import parse_iso
 
@@ -472,6 +472,27 @@ def test_feed_never_contains_the_source_teaser(repo):
     assert by_id[own.id]["summary_da"] == "Et resumé med egne ord fra vurderingen"
     assert by_id[later.id]["summary_da"] == "Et resumé med egne ord fra resumélinjen"
     assert by_id[none.id]["summary_da"] is None
+
+
+def test_paywall_is_written_only_for_marked_articles(repo):
+    # "ja"/"nej" efter artiklens isAccessibleForFree; uden markering udelades feltet (KONTRAKTER §8)
+    title = "Ny aftale om affaldsgebyrer i kommunerne"
+    main = cand("aftale", source="kefm", hours_ago=5, title=title)
+    paid = cand("aftale-betalt", hours_ago=4, title=title, paywall="ja")
+    free = cand("gratis", hours_ago=2, title="Genbrugspladsen holder åbent i julen", paywall="nej")
+    store.save_candidates([main, paid, free])
+    stored = (paths.CANDIDATES_DIR / "2026-10.jsonl").read_text(encoding="utf-8")
+    assert stored.count('"paywall"') == 2  # kandidater uden markering gemmes uden feltet
+    assert {c.id: c.paywall for c in store.load_candidates()} == {main.id: None, paid.id: "ja", free.id: "nej"}
+    judge(*({"id": c.id, "relevant": True} for c in (main, paid, free)))
+    heartbeat("2026-10-07T09:30:00Z")
+    feed = export.build_feed(NOW)
+    by_id = {i["id"]: i for i in feed["items"]}
+    assert set(by_id) == {main.id, free.id}
+    assert "paywall" not in by_id[main.id] and by_id[free.id]["paywall"] == "nej"
+    assert by_id[main.id]["also"] == [{"id": paid.id, "source": "altinget", "url": paid.url, "title": title,
+                                       "published": "2026-10-07T06:00:00Z", "paywall": "ja"}]
+    Feed.model_validate(feed)
 
 
 def test_waiting_sources_are_listed_locked_and_title_only_sources_have_no_text(repo):
