@@ -553,8 +553,12 @@
   category: lokalmedie
   homepage: https://www.sn.dk
   method: sitemap
-  feeds: https://www.sn.dk/SitemapIndex.0.xml
-  match: /art\d+/
+  feeds:
+    - https://sjaellandske.sn.dk/sitemap-news.xml
+    - https://dagbladet.sn.dk/sitemap-news.xml
+    - https://nordvestnyt.sn.dk/sitemap-news.xml
+    - https://frederiksborgamtsavis.sn.dk/sitemap-news.xml
+  match: /article/\d+/
   domains: [sjnyheder.dk]
   filter: strict
   paywall: delvis
