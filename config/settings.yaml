@@ -82,6 +82,7 @@ summaries:
   max_trigram_share: 0.5         # højst halvdelen af resuméets ordtrioer må stå i teaseren
   min_teaser_chars: 40           # kortere teasere får intet resumé og dermed intet preview
   rewrite_per_run: 150           # ældre godkendte indslag uden resumé, routinen omformulerer pr. kørsel
+  check_per_run: 150             # resuméer, routinen kontrollerer mod titel og teaser pr. kørsel (nyeste først)
 
 window_days: 60                  # så langt tilbage feed.json rækker, når window_start ikke er sat
 window_start: 2026-01-01         # feedets første dag; hver kilde hentes én gang bagud hertil (KONTRAKTER §5.8)

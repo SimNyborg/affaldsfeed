@@ -16,6 +16,8 @@ Pakken hedder `affaldsfeed`. Alt køres fra repoets rod med `python -m affaldsfe
 | `export [--out _site] [--now ISO]` | `export.py` | Bygger `_site/` (kopi af `site/` + `data/feed.json` + `data/status.json` + `data/timeline.json`). | 0 / 1 ved skemafejl |
 | `pending [--max 200] [--hours 336] [--now ISO]` | `judgments.py` | Udskriver JSON (stdout) med kandidater uden vurdering (se 6.1). | 0 |
 | `validate-judgments [--file PATH]` | `judgments.py` | Validerer alle (eller én) vurderingsfiler. Udskriver fejl og advarsler pr. linje (se 6.2). | 0 ok (også med advarsler), 1 fejl |
+| `summary-check-input [--max N] [--now ISO]` | `summary_checks.py` | Udskriver JSON med de viste resuméer, routinen skal kontrollere mod kilden (se 6.2b). | 0 |
+| `validate-summary-checks [--file PATH]` | `summary_checks.py` | Validerer alle (eller én) kontrolfiler (se 6.2b). | 0 ok, 1 fejl |
 | `heartbeat [--now ISO]` | `judgments.py` | Skriver `data/judgments/_heartbeat.json`. | 0 |
 | `overview-input --period dag\|uge\|maaned\|aar [--now ISO]` | `overview.py` | Udskriver JSON-input til Claudes overblik (se 7.2). | 0 |
 | `validate-overview [--period P] [--archive] [--now ISO]` | `overview.py` | Validerer `data/overview/<P>.json` (alle perioder uden `--period`). Med `--archive` kopieres gyldige filer til arkivet. | 0 ok, 1 fejl |
@@ -53,6 +55,8 @@ affaldsfeed/
   logos.py           logo_targets(), refresh_logos(), logo_files(): kildernes logoer (favicons), se 6.4
   pipeline.py        run-kommandoen (orkestrerer ovenstående)
   judgments.py       pending, validate-judgments, heartbeat, load_judgments(), fallback-logik
+  summaries.py       resuméer med egne ord: kopikontrol, effective_summaries(), rewrite-køen, validate-summaries (6.2a)
+  summary_checks.py  kontrol af resuméer mod kilden: summary-check-input, validate-summary-checks, rejected_summaries() (6.2b)
   overview.py        overview-input, validate-overview, load_overviews()
   timeline.py        timeline-input, validate-timeline, load_events(), export_timeline()
   export.py          export-kommandoen, bygger feed.json + status.json + timeline.json + _site/
@@ -252,6 +256,8 @@ data/
   rejected/ÅÅÅÅ-MM.jsonl       Rejected pr. linje (90 dage), sorteret efter id. Skrives KUN af run.
   judgments/ÅÅÅÅ-MM-DD.jsonl   Judgment pr. linje (dato = judged_at i København), rækkefølge som skrevet. Skrives KUN af Claude-routinen.
   judgments/_heartbeat.json    {"last_run": ISO, "pending_before": int, "judged": int}
+  judgments/resumeer/ÅÅÅÅ-MM-DD.jsonl   Summary pr. linje (6.2a). Skrives KUN af Claude-routinen.
+  judgments/kontrol/ÅÅÅÅ-MM-DD.jsonl    SummaryCheck pr. linje (6.2b), dato = checked_at i København. Skrives KUN af Claude-routinen.
   judgments/kildeforslag-sweep.md   ukendte udgivere fundet ved sweep (Claude)
   overview/{dag,uge,maaned,aar}.json   aktuelt Overview pr. periode. Skrives KUN af Claude-routinen.
   overview/archive/<periode>-ÅÅÅÅ-MM-DD.json   arkiv (validate-overview --archive)
@@ -304,6 +310,17 @@ Skrivning er atomisk (skriv `.tmp`, `os.replace`). Filer ændres kun, når indho
 - Kontrol mod ordret kopiering (`summaries.copy_problem`, `settings.summaries`): resuméet og kildens teaser sammenlignes ord for ord (små bogstaver, uden tegnsætning). Det er en fejl, når de deler mere end `max_shared_run` (5) ord i træk, eller når mere end `max_trigram_share` (50 %) af resuméets ordtrioer står i teaseren.
 - `validate-summaries [--file PATH]`: linjen skal kunne læses som `Summary`, `id` skal have en vurdering med `relevant: true`, kontrollen ovenfor skal bestå (ikke ved `null`), et indslag fra en kilde med `ai: titel` eller `false` skal have `null`, og `written_at` skal passe med filnavnet. Fejl skrives `fil:linje: besked`, og exit-koden er 1.
 - Kun indslag med en teaser på mindst `settings.summaries.min_teaser_chars` (40) tegn kommer i `rewrite`.
+
+### 6.2b `SummaryCheck` (models.SummaryCheck) — kontrol af resuméer i `data/judgments/kontrol/*.jsonl`
+```json
+{"id":"5d2e8a91f0c4","summary_sha":"a935ac024f44","ok":false,"problem":"Beløbet på 2 mia. kr. står ikke i kilden","checked_at":"2026-11-25T08:31:00Z","by":"claude-routine"}
+```
+- Efter at have skrevet resuméer kontrollerer routinen hvert resumé, feedet viser, mod indslagets titel og teaser (for sweep-fund `new_item`) med spørgsmålet "nævner resuméet noget, der ikke står i kilden?". `ok: false` betyder ja: indslaget vises uden resumé, kun med titlen. Kontrollen ændrer ikke vurderingen, og resuméet bliver stående på disk.
+- `summary_sha` = `models.summary_sha(tekst)`: de første 12 hex-tegn af SHA-256 af resuméet uden mellemrum i enderne. En kontrol gælder kun netop den tekst. Får indslaget et nyt resumé (6.2a), er det ikke afvist, og det skal kontrolleres igen.
+- `problem` (≤ 200 tegn) skal udfyldes, når `ok` er `false`: kort, hvad resuméet nævner, som ikke står i kilden. Filnavnet er dagen for `checked_at` i København. Den seneste linje pr. (`id`, `summary_sha`) gælder.
+- `summary-check-input [--max N]` udskriver `{"now": ISO, "items": [{id, title, teaser, source_name, lang, summary_da, summary_sha}], "total": int}`: de viste resuméer (`effective_summaries`) til godkendte indslag fra kilder med `ai: true` i feedets vindue, som ikke har en kontrol med samme `summary_sha`, nyeste først, højst `--max` (standard `settings.summaries.check_per_run`, 150). `total` er antallet i alt. Formatet er som `pending`.
+- `validate-summary-checks [--file PATH]`: linjen skal kunne læses som `SummaryCheck`, `summary_sha` skal passe med et resumé, der er skrevet til id'et (i en vurdering eller en resumélinje, også et ældre), og `checked_at` skal passe med filnavnet. Fejl skrives `fil:linje: besked`, og exit-koden er 1.
+- Visning (`display.build_display_items(..., rejected)`): et resumé, hvis (`id`, `summary_sha`) har en kontrol med `ok: false` (`summary_checks.rejected_summaries`), vises ikke, heller ikke via vurderingens `summary_da`. Det gælder feedet og input til overblik og tidslinje. Et resumé uden kontrol vises som før.
 
 ### 6.3 Fallback (judgments.py: `display_mode(now, heartbeat, settings) -> "claude"|"fallback"`)
 Rutinen kører kl. `settings.routine.minute` i timerne `settings.routine.hours` (København). En planlagt kørsel regnes først som misset, når `settings.routine.grace_hours` (standard 2) er gået siden dens tidspunkt: `S*` = seneste tidspunkt ≤ `now - grace_hours` på formen HH:MM i vinduet. Tilstand er `fallback`, når heartbeat mangler, eller `last_run < S*`. Ellers `claude`.
@@ -416,7 +433,7 @@ De vigtigste begivenheder på affaldsområdet, valgt og skrevet af Claude-routin
 - `logo`: stien til kildens logo relativt til sitet (`logos/<id>.<ext>`, se 6.4) eller `null`. Siden viser det i 16 px foran kildens navn og ellers afsendertypens ikon.
 - `domain_logos`: logoerne for kildens andre sites (6.4), domæne → sti; tom for de fleste kilder. Siden bruger logoet for artiklens domæne, når værtsnavnet (uden `www.`) er domænet eller et underdomæne af det, og ellers `logo`.
 - `feed.json` valideres mod `models.Feed` før skrivning (fejl giver exit 1). `examples/feed.sample.json` følger samme kontrakt (`tests/test_sample.py`).
-- `status.json`: `{generated, sources: [{id, name, category, status, health, last_ok, fails, last_error, items_30d, silent}], counts: {candidates_60d, shown_60d, rejected_30d}}`. `candidates_60d` og `shown_60d` tæller de seneste 60 dage, også når feedet rækker længere tilbage. `silent` ("tavs i lang tid") er sand, når kilden er fulgt i mindst 30 dage (`since`), svarer (0 fejl i træk) og har 0 indslag de seneste 30 dage.
+- `status.json`: `{generated, sources: [{id, name, category, status, health, last_ok, fails, last_error, items_30d, silent}], counts: {candidates_60d, shown_60d, rejected_30d, summaries_checked, summaries_rejected}}`. `summaries_checked` og `summaries_rejected` er antallet af kontrollerede og afviste resuméer i alt (6.2b), regnet pr. (`id`, `summary_sha`). `candidates_60d` og `shown_60d` tæller de seneste 60 dage, også når feedet rækker længere tilbage. `silent` ("tavs i lang tid") er sand, når kilden er fulgt i mindst 30 dage (`since`), svarer (0 fejl i træk) og har 0 indslag de seneste 30 dage.
 
 Historier (`stories.py`): niveau 1 = samme id; niveau 2 = samme `normalize_title` inden for ±3 døgn; niveau 3 (fase 3) = rapidfuzz. Desuden forenes `story_hint`-par fra vurderinger. Dagsbundter: i feedet (`export`) samles indslag fra en kilde med `bundle: day` pr. dag i København til én historie; overblik og tidslinje ser dem hver for sig, så et bundt ikke ligner en stor historie. En override `split` gælder også her. Hovedindslag = laveste kategori-rang, ved lighed tidligst publiceret. `story` = hovedindslagets id. En historie optager ikke indslag mere end 7 døgn efter hovedindslaget.
 
