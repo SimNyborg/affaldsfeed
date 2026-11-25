@@ -1,0 +1,150 @@
+{"id": "00220f3f8395", "summary_sha": "6b94b2160057", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "8cbc718fc923", "summary_sha": "5edaf50ea9bf", "ok": false, "problem": "Kilden siger nul-gebyrer for flasker og dåser, ikke for emballage generelt", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "0b71487ee4da", "summary_sha": "a935ac024f44", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "0f205957bd17", "summary_sha": "dc4bc0d09915", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "a603eddf2b51", "summary_sha": "c70d4feead43", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "6676be908613", "summary_sha": "a0bc7ed1fdc4", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "74be04c57989", "summary_sha": "3884f64d3e5e", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "6d1c544f6437", "summary_sha": "2d9802169369", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "7859f9f42823", "summary_sha": "46103ac26ae4", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "31d6859f36e1", "summary_sha": "5e6cf08e8d65", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "a283bcb84074", "summary_sha": "f3645e044468", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "25409186b7c2", "summary_sha": "c43e4453b7a1", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "49b28a44e0f8", "summary_sha": "21830d7633b6", "ok": false, "problem": "Aarhus Universitet står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "7bbc2218bc93", "summary_sha": "f107732324bd", "ok": false, "problem": "Kilden siger \"ikke nødvendigvis\", resuméet siger \"ofte\"", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "2ed21e437ab1", "summary_sha": "d74c2a23afb4", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "dfaa144a59f6", "summary_sha": "c15d06cd8f2a", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "4a9535f29f15", "summary_sha": "5c2ef1844932", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "0942aad6107c", "summary_sha": "5db1f5b3d4b0", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "10116e53468d", "summary_sha": "793bfa639cda", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "fe0aef5dce60", "summary_sha": "80bc244369f7", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "abe6d78de10e", "summary_sha": "3905f7917b6d", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "395d6174c751", "summary_sha": "28ff7dc80ad5", "ok": false, "problem": "Kilden siger registreret til genanvendelse, resuméet siger genanvendt", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "08cc2019f3d5", "summary_sha": "4f4eb719cc49", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "ba4fb4bc5a56", "summary_sha": "5a84c62587b4", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "321459d88bce", "summary_sha": "53b8fe48d4f7", "ok": false, "problem": "Miljøstyrelsen som udgiver står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "4eef94325855", "summary_sha": "246e6a6dfbd8", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "fdc7a6d7cd0b", "summary_sha": "0cad82d625ac", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "7c97e828b809", "summary_sha": "40ce3a266185", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "015bdc827428", "summary_sha": "4313c7e74031", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "d43052728b1f", "summary_sha": "82ae73820fd2", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "0e90870d4562", "summary_sha": "32c71e7a4a46", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "3fb0f6586f28", "summary_sha": "417c7a4cf9f1", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "5bf88af5f1fa", "summary_sha": "6a97e62b506b", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "a7b4598934d4", "summary_sha": "4ec7cdb64fba", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "996a4edbc5ad", "summary_sha": "8e5b14cf5b3d", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "708550e61608", "summary_sha": "57946bbdee99", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "75f7f5a198ae", "summary_sha": "c446561abece", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "c001ff810210", "summary_sha": "94e52b84bd5f", "ok": false, "problem": "Ministerens køn (\"han\") står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "c2dec4eb5e8c", "summary_sha": "cfb236d11814", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "9bbe5623052c", "summary_sha": "3117de5865fb", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "5b360626948b", "summary_sha": "19d82fb492b2", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "3182696c966b", "summary_sha": "30b2ead5cf76", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "8d1f2ea1ff79", "summary_sha": "a14e7f96b841", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "b1e914ed9b7c", "summary_sha": "02350874d6ef", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "4bd58fa7427e", "summary_sha": "1592973269bf", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "8d6295b2d446", "summary_sha": "984ee6d88d43", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "a020f5d9fbfd", "summary_sha": "f7d0fbd79ec6", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "7f6c4b3338f6", "summary_sha": "9d521594fe93", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "43a9e35276a8", "summary_sha": "7c01f759933c", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "c1b092c8527a", "summary_sha": "bc779743b5b3", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "3e39c9c701d6", "summary_sha": "c6ef4cb85965", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "0c9e44fb0b3b", "summary_sha": "43ac5cb1a5f2", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "9e28ff5a94d1", "summary_sha": "48fe51341c4e", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "0871aa750466", "summary_sha": "3e36d7b6da6c", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "2a41cd7f38e1", "summary_sha": "cc2c3371e4a3", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "6e17bfa90b1d", "summary_sha": "dfe1cf7c3f14", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "55b7f550f4f2", "summary_sha": "c5af3e24ad12", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "5ff6ffb3b5ae", "summary_sha": "d1b4534fa5e8", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "9b3bfe2e93ef", "summary_sha": "d5d68ebc2c56", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "e6f1be12d66d", "summary_sha": "07b3597e0ded", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "b1501d43b3e2", "summary_sha": "b1a137f55e52", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "a1b37c6a03b4", "summary_sha": "da776a7c896c", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "3c4904abbe85", "summary_sha": "41d0b4e82637", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "1dc4961f3d15", "summary_sha": "cfe144f9b557", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "3bc586558155", "summary_sha": "5bb9a60a6cbd", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "a49a86c7dc97", "summary_sha": "99a550b3af69", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "32d4dd19b3b2", "summary_sha": "95f52d3039fc", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "f9a07d9afecd", "summary_sha": "3bba11b81173", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "8302c70e7b56", "summary_sha": "c1316ce71a7a", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "1dbabfd6d3f5", "summary_sha": "a06676024d67", "ok": false, "problem": "Cirkulær kaldes brancheforening, hvilket ikke står i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "875c05d0499b", "summary_sha": "bf453ee0700e", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "b849c7228fe7", "summary_sha": "18c905f5222f", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "3d2143f6fa49", "summary_sha": "0d5d0bb8b6c2", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "a21acdbebc79", "summary_sha": "75588f8bc58b", "ok": false, "problem": "Navnet Dansk Emballageansvar for VANA står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "4d1019f10fb0", "summary_sha": "35d5833c947b", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "dce8794145c7", "summary_sha": "f2f1a3199c45", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "4ea49df3cee1", "summary_sha": "789e2cdf39f4", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "007f32577714", "summary_sha": "b9ea854212ef", "ok": false, "problem": "\"Hun\" og kønnet står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "30720b7a6269", "summary_sha": "38e6cef0a52f", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "0975bb232e12", "summary_sha": "5b65bd380e40", "ok": false, "problem": "Afsenderen Avfall Sverige står ikke i titel eller teaser", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "2b36d8b7c3b4", "summary_sha": "e6993cbeb835", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "9ec0dfaa0948", "summary_sha": "eb4dfd99e54b", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "f6e8a64c843f", "summary_sha": "7e3b316ff43e", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "c4595ca898ad", "summary_sha": "ab94d3919002", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "cd0eab9937d2", "summary_sha": "8c6680efba50", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "9c44e8176178", "summary_sha": "2bad58a0d38d", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "872d0a25f0f3", "summary_sha": "2bad58a0d38d", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "3da1711c45b7", "summary_sha": "804b32a4c4b0", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "258196474d13", "summary_sha": "3db946a73aee", "ok": false, "problem": "Cirkulær kaldes brancheforening, hvilket ikke står i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "31bb8dcd8333", "summary_sha": "530cc03e8e7a", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "f923052c82d6", "summary_sha": "baf9badbb23c", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "440b110e4c6b", "summary_sha": "0567c43573e1", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "991f6d1cf658", "summary_sha": "f27430c63b6a", "ok": false, "problem": "DAKOFA som afsender står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "3e941a9e951f", "summary_sha": "04781f4841b0", "ok": false, "problem": "Greenpeace står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "10f631192478", "summary_sha": "4aeb773aa56b", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "01a984a8efa2", "summary_sha": "791a05ea7dde", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "59c410b56aa7", "summary_sha": "0c731608e40f", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "f7efc2824731", "summary_sha": "359ca9a06550", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "ff055ab7fd4c", "summary_sha": "1a0bfa9363d4", "ok": false, "problem": "Rådet som part i forhandlingerne står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "0697119328ff", "summary_sha": "c2937d660975", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "4bb752cfc1a6", "summary_sha": "dc4dbfd7920b", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "78434fb9a7f5", "summary_sha": "49372b01a330", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "22d33ddea0e0", "summary_sha": "ee3e7f723daf", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "df92bb174532", "summary_sha": "f644f8a09566", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "ccf346634a8a", "summary_sha": "e8bb8ac84f0d", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "a9dc6e8a7669", "summary_sha": "18a1c87ac6fe", "ok": false, "problem": "Kilden siger vil indføre, ikke overvejer; DAKOFA står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "81f26c55239f", "summary_sha": "15429bce460c", "ok": false, "problem": "DAKOFA og dets krav står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "56880313da9a", "summary_sha": "2a85a9e9e56b", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "77662fcef31d", "summary_sha": "dba3a10fecc4", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "812b2070d592", "summary_sha": "1cddd7e80ef8", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "6bee49f1be50", "summary_sha": "f7e5eb56eff0", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "5ddd021e5f96", "summary_sha": "adcd5850cc23", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "5abe4886810f", "summary_sha": "88f4a81df3ad", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "565d4f669121", "summary_sha": "d480bf42ec76", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "cdc03e2b3a2b", "summary_sha": "64fbaaab6a80", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "afe6cb8dd696", "summary_sha": "4c1e3bde10bf", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "18305859182d", "summary_sha": "6c5be0514250", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "0d88444e73e7", "summary_sha": "d57a0ae5df7f", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "57220549038b", "summary_sha": "5ec5c8979bd3", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "7793d893c8dc", "summary_sha": "1722772ce644", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "16dd71845fb2", "summary_sha": "00332eeb37c3", "ok": false, "problem": "DAKOFA som kilde til ministerens udtalelse står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "3420c09e8ee9", "summary_sha": "4cf504a9bf5d", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "5431e37dbe67", "summary_sha": "3be902289c14", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "ad715a4131a4", "summary_sha": "63e738b064ab", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "dd6c2290909a", "summary_sha": "425ff2f1f5fe", "ok": false, "problem": "Kilden handler om forbrug af elektronik, ikke elforbrug", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "b6d5ef167eae", "summary_sha": "4b9c6eda54a7", "ok": false, "problem": "Dansk Retursystem som kilde til tallet står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "9e0f5084bb9d", "summary_sha": "e39c945df4af", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "dbdcced6c7e6", "summary_sha": "847eb12b0300", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "0ad7b1c60a88", "summary_sha": "24ad8395e7c9", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "e85c94d18a76", "summary_sha": "50bdf1a78cda", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "bdf2197c1aa7", "summary_sha": "174c28f699ee", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "7e258f7c5b1d", "summary_sha": "4d3c79ffa8f2", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "d0c5396ec30a", "summary_sha": "407e937900f4", "ok": false, "problem": "Dansk Retursystem som kilde står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "1d89435075bb", "summary_sha": "75bfff40fdd3", "ok": false, "problem": "Gladsaxe står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "7d3e2871ab11", "summary_sha": "75bfff40fdd3", "ok": false, "problem": "Gladsaxe står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "f24c0028b3e6", "summary_sha": "a0517e852fa9", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "c74ad326e545", "summary_sha": "2e45df610214", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "5803b024d547", "summary_sha": "6ab90b93cc2a", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "b08125fd536e", "summary_sha": "6ed7efde2958", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "0613d4f914cf", "summary_sha": "e416ad8d54e8", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "17c9ebe2ac83", "summary_sha": "5e8a93672d88", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "1578a78c5eb3", "summary_sha": "0be4e49c8f32", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "9b9fdc989cf7", "summary_sha": "ff546b1c86a2", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "f179cdb7fa3e", "summary_sha": "d791ad4ad028", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "c73d0e039545", "summary_sha": "49dd7ab9be2f", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "2ee35132d9f0", "summary_sha": "cc1519511814", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "a21118eb3033", "summary_sha": "71f538c7367e", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "51fa783583a3", "summary_sha": "6ab90b93cc2a", "ok": true, "problem": null, "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "1dff62ceb9c9", "summary_sha": "4b0e0ffe7d19", "ok": false, "problem": "At det er en kommentar, står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
+{"id": "25ea3e4e52e8", "summary_sha": "8514b161e408", "ok": false, "problem": "At franske gæster har besøgt Vestforbrænding, står ikke i kilden", "checked_at": "2026-11-25T13:26:49Z", "by": "claude-routine"}
