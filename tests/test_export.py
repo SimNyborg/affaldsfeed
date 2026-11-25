@@ -60,6 +60,7 @@ def repo(tmp_path, monkeypatch):
         "REJECTED_DIR": data / "rejected",
         "JUDGMENTS_DIR": data / "judgments",
         "SUMMARIES_DIR": data / "judgments" / "resumeer",
+        "SUMMARY_CHECKS_DIR": data / "judgments" / "kontrol",
         "OVERVIEW_DIR": data / "overview",
         "OVERVIEW_ARCHIVE_DIR": data / "overview" / "archive",
         "TIMELINE_DIR": data / "timeline",
@@ -219,7 +220,8 @@ def test_status_json(repo, scenario, tmp_path):
     assert by_id["gnews"]["silent"] is True
     assert by_id["dakofa"]["health"] == "graa"
     assert by_id["dakofa"]["silent"] is False  # fulgt i under 30 dage
-    assert status["counts"] == {"candidates_60d": 5, "shown_60d": 4, "rejected_30d": 1}
+    assert status["counts"] == {"candidates_60d": 5, "shown_60d": 4, "rejected_30d": 1,
+                                "summaries_checked": 0, "summaries_rejected": 0}
 
 
 def test_window_start_reaches_back_to_january_and_counts_stay_60_days(repo, scenario, tmp_path):
@@ -239,7 +241,8 @@ def test_window_start_reaches_back_to_january_and_counts_stay_60_days(repo, scen
     assert spring.id in ids and scenario["old"].id in ids  # 70 dage gammel: nu også med
     assert december.id not in ids
     _, status = read(out, "status.json")
-    assert status["counts"] == {"candidates_60d": 5, "shown_60d": 4, "rejected_30d": 1}  # stadig 60 dage
+    assert status["counts"] == {"candidates_60d": 5, "shown_60d": 4, "rejected_30d": 1,
+                                "summaries_checked": 0, "summaries_rejected": 0}  # stadig 60 dage
 
 
 def test_fallback_mode_shows_unreviewed(repo, scenario, tmp_path):
@@ -519,3 +522,133 @@ def test_waiting_sources_are_listed_locked_and_title_only_sources_have_no_text(r
     assert src["berlingske"]["status"] == "aktiv"
     text = json.dumps(feed, ensure_ascii=False)
     assert "resumé" not in text.lower() and "egen teaser" not in text
+
+
+# ── Kontrol af resuméer (KONTRAKTER §6.2b) ──────────────────
+
+
+def write_checks(day: str, *lines: dict | str) -> None:
+    d = paths.SUMMARY_CHECKS_DIR
+    d.mkdir(parents=True, exist_ok=True)
+    with (d / f"{day}.jsonl").open("a", encoding="utf-8") as f:
+        for line in lines:
+            f.write((line if isinstance(line, str) else json.dumps(line, ensure_ascii=False)) + "\n")
+
+
+def check_input(capsys, now: str = "2026-10-07T10:00:00Z", max_: int | None = None) -> dict:
+    from affaldsfeed import summary_checks
+
+    capsys.readouterr()
+    assert summary_checks.main_summary_check_input(argparse.Namespace(max=max_, now=now)) == 0
+    return json.loads(capsys.readouterr().out)
+
+
+def validate_checks(capsys, file: str | None = None) -> tuple[int, str]:
+    from affaldsfeed import summary_checks
+
+    capsys.readouterr()
+    code = summary_checks.main_validate_summary_checks(argparse.Namespace(file=file))
+    return code, capsys.readouterr().out
+
+
+def test_summary_check_needs_a_problem_when_rejected():
+    from pydantic import ValidationError
+
+    from affaldsfeed.models import SummaryCheck, summary_sha
+
+    sha = summary_sha("Kommunen åbner en ny genbrugsplads i foråret.")
+    assert sha == summary_sha("  Kommunen åbner en ny genbrugsplads i foråret. ") and len(sha) == 12
+    ok = SummaryCheck.model_validate({"id": "a", "summary_sha": sha, "ok": True, "checked_at": "2026-10-07T09:30:00Z"})
+    assert ok.problem is None
+    for bad in ({"ok": False}, {"ok": False, "problem": "  "}, {"ok": True, "summary_sha": "XYZ"}):
+        with pytest.raises(ValidationError):
+            SummaryCheck.model_validate({"id": "a", "summary_sha": sha, "checked_at": "2026-10-07T09:30:00Z", **bad})
+
+
+def test_rejected_summary_is_hidden_and_counted(repo, capsys):
+    from affaldsfeed import overview
+    from affaldsfeed.models import summary_sha
+
+    a = cand("aftale", source="kefm", hours_ago=3, teaser="Ministeriet foreslår nye regler for affaldsgebyrer.")
+    b = cand("plads", hours_ago=2, teaser="Kommunen åbner en genbrugsplads ved motorvejen.")
+    c = cand("uden", hours_ago=1)
+    store.save_candidates([a, b, c])
+    sweep_url = "https://kefm.dk/nyt-forslag"
+    sweep = item_id(sweep_url)
+    added = "Forslaget giver kommunerne 2 mia. kr. ekstra fra 2027."  # står ikke i kilden
+    judge(
+        {"id": a.id, "relevant": True, "summary_da": added},
+        {"id": b.id, "relevant": True, "summary_da": "Den nye genbrugsplads ligger ved motorvejen."},
+        {"id": c.id, "relevant": True},
+        {"id": sweep, "relevant": True, "summary_da": "Kommunerne skal sortere tekstiler fra 2027, og staten betaler.",
+         "new_item": {"url": sweep_url, "title": "Nyt forslag om tekstilaffald", "teaser": "Ministeriet sender et forslag om tekstilaffald i høring.",
+                      "source": "kefm", "published": "2026-10-07T09:00:00Z"}},
+    )
+    heartbeat("2026-10-07T09:30:00Z")
+
+    # Input: viste resuméer uden kontrol, nyeste først, med titel, teaser og fingeraftryk
+    out = check_input(capsys)
+    assert out["total"] == 3 and [i["id"] for i in out["items"]] == [sweep, b.id, a.id]
+    first = out["items"][2]
+    assert first == {"id": a.id, "title": a.title, "teaser": a.teaser, "source_name": "KEFM", "lang": "da",
+                     "summary_da": added, "summary_sha": summary_sha(added)}
+    assert [i["id"] for i in check_input(capsys, max_=1)["items"]] == [sweep]
+
+    by = {i["id"]: i for i in out["items"]}
+    write_checks(
+        "2026-10-07",
+        {"id": a.id, "summary_sha": by[a.id]["summary_sha"], "ok": False, "problem": "Beløbet og årstallet står ikke i kilden",
+         "checked_at": "2026-10-07T09:31:00Z"},
+        {"id": b.id, "summary_sha": by[b.id]["summary_sha"], "ok": True, "checked_at": "2026-10-07T09:31:00Z"},
+        {"id": sweep, "summary_sha": by[sweep]["summary_sha"], "ok": False, "problem": "At staten betaler, står ikke i kilden",
+         "checked_at": "2026-10-07T09:31:00Z"},
+    )
+    assert validate_checks(capsys) == (0, "validate-summary-checks: OK, 3 linjer i 1 filer\n")
+    assert check_input(capsys)["total"] == 0
+
+    # Feedet: afviste resuméer vises ikke, men nyheden står med titlen; status tæller dem
+    feed, status, _ = export.build_all(NOW)
+    items = {i["id"]: i for i in feed["items"]}
+    assert set(items) == {a.id, b.id, c.id, sweep}
+    assert items[a.id]["summary_da"] is None and items[sweep]["summary_da"] is None
+    assert items[a.id]["title"] == a.title
+    assert items[b.id]["summary_da"] == "Den nye genbrugsplads ligger ved motorvejen."
+    assert "2 mia." not in json.dumps(feed, ensure_ascii=False)
+    assert status["counts"]["summaries_checked"] == 3 and status["counts"]["summaries_rejected"] == 2
+    assert overview.load_data().rejected == {(a.id, summary_sha(added)), (sweep, by[sweep]["summary_sha"])}
+
+    # Et nyt resumé til samme indslag er ikke afvist: det vises og skal kontrolleres igen
+    new = "Ministeriet vil ændre reglerne for, hvordan kommunerne opkræver affaldsgebyrer."
+    paths.SUMMARIES_DIR.mkdir(parents=True, exist_ok=True)
+    (paths.SUMMARIES_DIR / "2026-10-07.jsonl").write_text(json.dumps(
+        {"id": a.id, "summary_da": new, "written_at": "2026-10-07T09:40:00Z"}, ensure_ascii=False) + "\n", encoding="utf-8")
+    assert [(i["id"], i["summary_sha"]) for i in check_input(capsys)["items"]] == [(a.id, summary_sha(new))]
+    assert {i["id"]: i for i in export.build_feed(NOW)["items"]}[a.id]["summary_da"] == new
+    assert validate_checks(capsys)[0] == 0  # kontrollen af det gamle resumé er stadig gyldig
+
+
+def test_validate_summary_checks_reports_errors(repo, capsys):
+    from affaldsfeed.models import summary_sha
+
+    a = cand("aftale", hours_ago=3)
+    store.save_candidates([a])
+    text = "Ministeriet vil ændre reglerne for affaldsgebyrer i kommunerne."
+    judge({"id": a.id, "relevant": True, "summary_da": text})
+    good = {"id": a.id, "summary_sha": summary_sha(text), "ok": True, "checked_at": "2026-10-07T09:31:00Z"}
+    write_checks(
+        "2026-10-07",
+        good,
+        {**good, "summary_sha": summary_sha("Et andet resumé")},
+        {**good, "id": "ukendt"},
+        {**good, "checked_at": "2026-10-08T09:31:00Z"},
+        {**good, "ok": False},
+        '{"id": "brudt"',
+    )
+    code, out = validate_checks(capsys, "data/judgments/kontrol/2026-10-07.jsonl")
+    assert code == 1
+    lines = out.splitlines()
+    assert lines[-1] == "validate-summary-checks: 5 fejl i 6 linjer (1 filer)"
+    assert sum("passer ikke med et resumé" in ln for ln in lines) == 2
+    assert any(ln.startswith("data/judgments/kontrol/2026-10-07.jsonl:4: checked_at er 2026-10-08") for ln in lines)
+    assert any(":5: " in ln and "problem skal udfyldes" in ln for ln in lines)
+    assert any(":6: ugyldig JSON" in ln for ln in lines)

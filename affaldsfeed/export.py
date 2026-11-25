@@ -30,6 +30,7 @@ from affaldsfeed.models import DisplayItem, Feed, Geo
 from affaldsfeed.overview import PERIODS, load_overviews
 from affaldsfeed.stories import build_stories
 from affaldsfeed.summaries import effective_summaries, load_summaries
+from affaldsfeed.summary_checks import check_counts, load_checks, rejected_summaries
 from affaldsfeed.timeline import export_timeline
 from affaldsfeed.timeutil import ensure_utc, iso, now_utc, to_cph
 
@@ -101,8 +102,11 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
     mode = display_mode(now, heartbeat, settings.routine)
 
     # Previewet er resuméet med egne ord (§6.2a); kildens egen teaser kommer aldrig i feedet
+    # Resuméer, kontrollen har afvist, vises ikke (§6.2b)
     summaries = effective_summaries(judgments, load_summaries())
-    shown = build_display_items(config, sources, candidates, judgments, mode, now, since, summaries)
+    checks = load_checks()
+    shown = build_display_items(config, sources, candidates, judgments, mode, now, since, summaries,
+                                rejected_summaries(checks))
     heads = build_stories(
         shown,
         source_category_map(sources, config.publishers),
@@ -225,6 +229,7 @@ def build_all(now: datetime) -> tuple[dict[str, Any], dict[str, Any], dict[str, 
             "candidates_60d": sum(item_time(c) >= cut60 for c in candidates),
             "shown_60d": sum(item_time(d) >= cut60 for d in shown),
             "rejected_30d": len(store.load_rejected(now - timedelta(days=REJECTED_DAYS))),
+            **check_counts(checks),
         },
     }
     timeline = export_timeline(now, config, heads)

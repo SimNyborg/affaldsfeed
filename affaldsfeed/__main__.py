@@ -24,6 +24,8 @@ COMMANDS: dict[str, tuple[str, str]] = {
     "pending": ("affaldsfeed.judgments", "main_pending"),
     "validate-judgments": ("affaldsfeed.judgments", "main_validate"),
     "validate-summaries": ("affaldsfeed.summaries", "main_validate_summaries"),
+    "summary-check-input": ("affaldsfeed.summary_checks", "main_summary_check_input"),
+    "validate-summary-checks": ("affaldsfeed.summary_checks", "main_validate_summary_checks"),
     "heartbeat": ("affaldsfeed.judgments", "main_heartbeat"),
     "overview-input": ("affaldsfeed.overview", "main_overview_input"),
     "validate-overview": ("affaldsfeed.overview", "main_validate_overview"),
@@ -67,6 +69,13 @@ def build_parser() -> argparse.ArgumentParser:
 
     vs = sub.add_parser("validate-summaries", help="valider data/judgments/resumeer/*.jsonl")
     vs.add_argument("--file", metavar="PATH", help="kun denne fil")
+
+    ci = sub.add_parser("summary-check-input", help="JSON med resuméer, routinen skal kontrollere mod kilden")
+    ci.add_argument("--max", type=int, default=None, help="højst så mange resuméer (standard settings.summaries.check_per_run)")
+    ci.add_argument("--now", metavar="ISO", help="overstyr nu (test)")
+
+    vc = sub.add_parser("validate-summary-checks", help="valider data/judgments/kontrol/*.jsonl")
+    vc.add_argument("--file", metavar="PATH", help="kun denne fil")
 
     hb = sub.add_parser("heartbeat", help="skriv data/judgments/_heartbeat.json")
     hb.add_argument("--now", metavar="ISO", help="overstyr nu (test)")

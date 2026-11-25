@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 from collections.abc import Iterable
@@ -75,6 +76,11 @@ def _is_none(v: object) -> bool:
 def full_text(ai: AiLevel) -> bool:
     """Teaseren må gemmes og læses af Claude, og indslaget får resumé. Ellers vises kun overskriften."""
     return ai is True
+
+
+def summary_sha(text: str) -> str:
+    """Fingeraftryk af et resumé (12 hex-tegn), så en kontrol kun gælder netop den tekst (KONTRAKTER §6.2b)."""
+    return hashlib.sha256(text.strip().encode("utf-8")).hexdigest()[:12]
 
 
 def claude_judges(ai: AiLevel) -> bool:
@@ -400,6 +406,7 @@ class SummarySettings(_Strict):
     max_trigram_share: float = Field(default=0.5, gt=0, le=1)  # højst denne andel af resuméets ordtrioer
     min_teaser_chars: int = Field(default=40, ge=0)  # kortere teasere får intet resumé og intet preview
     rewrite_per_run: int = Field(default=150, ge=0)  # ældre indslag, routinen omformulerer pr. kørsel
+    check_per_run: int = Field(default=150, ge=0)  # resuméer, routinen kontrollerer mod kilden pr. kørsel (§6.2b)
 
 
 class Settings(_Strict):
@@ -542,6 +549,26 @@ class Summary(_Strict):
     summary_da: str | None = Field(min_length=20, max_length=240)
     written_at: datetime
     by: str = "claude-routine"
+
+
+class SummaryCheck(_Strict):
+    """Kontrol af et resumé mod titel og teaser: én linje i data/judgments/kontrol/*.jsonl (KONTRAKTER §6.2b).
+
+    ok false: resuméet nævner noget, der ikke står i kilden, og indslaget vises uden resumé.
+    """
+
+    id: str
+    summary_sha: str = Field(pattern=r"^[0-9a-f]{12}$")  # models.summary_sha af det kontrollerede resumé
+    ok: bool
+    problem: str | None = Field(default=None, max_length=200)  # hvad der ikke står i kilden
+    checked_at: datetime
+    by: str = "claude-routine"
+
+    @model_validator(mode="after")
+    def _problem_when_rejected(self) -> SummaryCheck:
+        if not self.ok and not (self.problem or "").strip():
+            raise ValueError("problem skal udfyldes, når ok er false: skriv kort, hvad resuméet nævner, som ikke står i kilden")
+        return self
 
 
 class Heartbeat(_Strict):

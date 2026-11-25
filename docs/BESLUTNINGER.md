@@ -333,3 +333,15 @@ Hvert underdomæne har et sitemapindeks med et Google News-sitemap og et sitemap
 Afprøvningen 24. november gav 413 artikler fra de seneste to døgn. Fem havde et affaldsord i titlen, fx "Gribskov-borgerne har halveret mængden af restaffald" og "Brug og smid væk: 160.000 ton affald endte sidste år på genbrugsplads", og forfiltret viser alle fem. Artikelsiden blev hentet for betalingsmuren og gav fire `ja` og et `nej`, så Sjællandske Medier markerer artiklerne med `isAccessibleForFree`, som Affaldsviden havde set. I prøven stod samme artikel aldrig på flere underdomæner. Kilden bliver på `ai: titel`: robots.txt spærrer stadig AI-crawlere, og ai.txt tager nu også forbehold mod tekst- og datamining efter ophavsretslovens § 11 b.
 
 Bagudindsamlingen køres ikke igen. Kilden har `backfilled_from` 1. januar, og en ny runde ville ikke fylde hullet: Google News-sitemaps rækker kun to døgn tilbage, og månedssitemaps har ingen titler og nye adresser for alle årets artikler. Titeldubletter fanges kun blandt indslag fundet de seneste 7 dage, så en ny bagudindsamling over månedssitemaps ville give en ny kopi af hver artikel fra januar til oktober. Artiklerne fra 20. oktober til omkring 23. november mangler derfor i feedet.
+
+## 2026-11-25: Resuméerne kontrolleres mod kilden
+
+Daniel fra Affaldsviden bad om en ekstra AI-gennemgang af resuméerne. Hvert nyt resumé skal vurderes mod titlen og kildens beskrivelse med spørgsmålet "nævner resuméet noget, der ikke står i kilden?". Er svaret ja, vises nyheden uden resumé. Antallet af afviste skal gemmes, så vi kan se, om det overhovedet sker.
+
+- **Et nyt trin i routinen:** Efter vurderingerne og resuméerne (trin 4b) henter routinen de resuméer, der ikke er kontrolleret, og læser hvert af dem som korrekturlæser med kun titel og teaser. Svaret skrives i `data/judgments/kontrol/`. Claude vurderer i routinen, og koden gemmer og bruger kun svaret.
+- **Hellere uden resumé end et forkert:** Et faktum, som kilden ikke har, fx et tal, et navn, en årsag eller en vurdering, giver et afvist resumé. Det samme gør et resumé, der er mere sikkert end kilden ("skal", hvor kilden skriver "kan"). Er routinen i tvivl, afviser den.
+- **Kontrollen gælder netop den tekst:** Hver linje har et fingeraftryk af resuméet (`summary_sha`). Får indslaget senere et nyt resumé, kontrolleres det igen. Resuméet bliver stående på disk, men feedet viser det ikke, og det kommer heller ikke i input til overblik og tidslinje.
+- **Også de gamle resuméer:** Kontrollen tager højst 150 pr. kørsel, nyeste først. De 638 eksisterende resuméer er derfor kontrolleret efter cirka fem kørsler.
+- **Tallene står i `status.json`:** `counts.summaries_checked` og `counts.summaries_rejected` viser, hvor mange resuméer der er kontrolleret og afvist i alt. Linjerne i `data/judgments/kontrol/` har også begrundelsen for hver afvisning.
+
+Kontrollen laves af den samme model, der skrev resuméerne, så den fanger ikke alt. Den er et ekstra filter, ikke en garanti.

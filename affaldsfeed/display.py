@@ -20,6 +20,7 @@ from affaldsfeed.models import (
     TopicId,
     full_text,
     sort_places,
+    summary_sha,
 )
 from affaldsfeed.normalize import clean_text, strip_cdata, strip_title_prefix
 from affaldsfeed.places import PlaceMatcher, compile_places, rule_places
@@ -151,6 +152,13 @@ def _without_prefix(item: DisplayItem, prefixes: list[str]) -> DisplayItem:
     return item if title == item.title else item.model_copy(update={"title": title})
 
 
+def _checked(item_id: str, summary: str | None, rejected: set[tuple[str, str]]) -> str | None:
+    """Resuméet, medmindre kontrollen har afvist netop denne tekst (KONTRAKTER §6.2b)."""
+    if summary and (item_id, summary_sha(summary)) in rejected:
+        return None
+    return summary
+
+
 def _apply_overrides(found: list[Override], state: _Shown) -> _Shown:
     """Manuelle rettelser slår alt andet; de anvendes i filens rækkefølge."""
     for o in found:
@@ -177,9 +185,11 @@ def _from_candidate(
     known_places: set[str],
     summary: str | None = None,
     fallback_categories: list[str] | None = None,
+    rejected: set[tuple[str, str]] = frozenset(),
 ) -> DisplayItem | None:
     """summary: resuméet med egne ord (§6.2a); uden det bruges vurderingens summary_da.
-    fallback_categories: kategorier, hvis uvurderede indslag vises i fallback (None = alle)."""
+    fallback_categories: kategorier, hvis uvurderede indslag vises i fallback (None = alle).
+    rejected: (id, summary_sha) for resuméer, kontrollen har afvist (§6.2b)."""
     reason: str | None = None
     places = list(c.places)
     state = _Shown(show=False, reviewed=True, topics=list(c.topics), genre=c.genre)
@@ -206,6 +216,7 @@ def _from_candidate(
     state = _apply_overrides(overrides.find(c.id, c.url), state)
     if not state.show:
         return None
+    summary = _checked(c.id, summary, rejected)
     # Kun overskrift (ai: titel eller false): ingen teaser, intet resumé og ingen begrundelse fra Claude
     text = full_text(info.ai)
     return DisplayItem(
@@ -240,6 +251,7 @@ def _from_sweep(
     known_places: set[str],
     matcher: PlaceMatcher | None,
     summary: str | None = None,
+    rejected: set[tuple[str, str]] = frozenset(),
 ) -> DisplayItem | None:
     ni = j.new_item
     # Sweep-fund kommer fra Claude selv, så kun kilder, Claude må læse helt
@@ -273,7 +285,7 @@ def _from_sweep(
         places=_known_places(places, known_places),
         genre=state.genre,
         lang=info.lang,
-        summary_da=summary or j.summary_da,
+        summary_da=_checked(j.id, summary or j.summary_da, rejected),
         reviewed=state.reviewed,
         reason=j.reason,
         why=None,
@@ -289,14 +301,17 @@ def build_display_items(
     now: datetime,
     since: datetime,
     summaries: dict[str, str] | None = None,
+    rejected: set[tuple[str, str]] | None = None,
 ) -> list[DisplayItem]:
     """Alle indslag, der skal vises (før samling i historier), nyeste først.
 
     mode er "claude" eller "fallback" (judgments.display_mode). Kun indslag med
     published (ellers first_seen) >= since kommer med. summaries: resuméer med egne ord pr. id
-    (summaries.effective_summaries); uden dem bruges vurderingernes summary_da.
+    (summaries.effective_summaries); uden dem bruges vurderingernes summary_da. rejected: (id, summary_sha)
+    for resuméer, kontrollen har afvist (summary_checks.rejected_summaries); de vises ikke.
     """
     summaries = summaries or {}
+    rejected = rejected or set()
     now = ensure_utc(now)
     since = ensure_utc(since)
     info = known_sources(sources, config.publishers)
@@ -316,7 +331,7 @@ def build_display_items(
         if src is None or item_time(c) < since:
             continue
         item = _from_candidate(c, src, judgments.get(c.id), mode, overrides, teaser_max, known_places,
-                               summaries.get(c.id), fallback_categories)
+                               summaries.get(c.id), fallback_categories, rejected)
         if item is not None:
             out[item.id] = _without_prefix(item, prefixes)
 
@@ -329,7 +344,7 @@ def build_display_items(
         src = info.get(j.new_item.source)
         if src is None:
             continue
-        item = _from_sweep(j, src, overrides, now, teaser_max, known_places, matcher, summaries.get(j.id))
+        item = _from_sweep(j, src, overrides, now, teaser_max, known_places, matcher, summaries.get(j.id), rejected)
         if item is not None and item_time(item) >= since:
             out[item.id] = _without_prefix(item, prefixes)
 

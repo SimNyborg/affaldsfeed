@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 import logging
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any
@@ -35,6 +35,7 @@ from affaldsfeed.models import (
     full_text,
 )
 from affaldsfeed.stories import group_stories
+from affaldsfeed.summary_checks import load_checks, rejected_summaries
 from affaldsfeed.timeutil import cph_day_bounds, ensure_utc, iso, now_utc, to_cph
 
 log = logging.getLogger(__name__)
@@ -103,6 +104,7 @@ class Data:
     sources: list[Source]
     candidates: list[Candidate]
     judgments: dict[str, Judgment]
+    rejected: set[tuple[str, str]] = field(default_factory=set)  # afviste resuméer (§6.2b)
 
     @property
     def info(self) -> dict[str, SourceInfo]:
@@ -115,12 +117,14 @@ def load_data() -> Data:
         sources=load_sources(paths.SOURCES_FILE),
         candidates=load_all_candidates(),
         judgments=load_judgments(),
+        rejected=rejected_summaries(load_checks()),
     )
 
 
 def approved_items(data: Data, now: datetime, start: datetime, end: datetime) -> list[DisplayItem]:
     """Godkendte indslag (vurderet relevante eller vist manuelt) med tidspunkt i [start, end]."""
-    items = build_display_items(data.config, data.sources, data.candidates, data.judgments, "claude", now, start)
+    items = build_display_items(data.config, data.sources, data.candidates, data.judgments, "claude", now, start,
+                                rejected=data.rejected)
     end = ensure_utc(end)
     return [d for d in items if d.reviewed and item_time(d) <= end]
 
