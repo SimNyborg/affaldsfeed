@@ -59,7 +59,7 @@ def test_geography_workflow_commits_only_after_check():
 
 def test_routine_timeline_step():
     text = " ".join(REDAKTOER.split())
-    assert "Du skriver kun i `data/judgments/` (også `data/judgments/resumeer/`), `data/overview/` og `data/timeline/`." in text
+    assert "Du skriver kun i `data/judgments/` (også `data/judgments/resumeer/` og `data/judgments/kontrol/`), `data/overview/` og `data/timeline/`." in text
     assert "### 7. Tidslinje (kun når `TIME` er 14, eller når tidslinjen er tom)" in REDAKTOER
     assert ".venv/bin/python -m affaldsfeed timeline-input > /tmp/timeline.json" in REDAKTOER
     assert ".venv/bin/python -m affaldsfeed validate-timeline --file data/timeline/MÅNED.jsonl" in REDAKTOER
@@ -84,7 +84,7 @@ def test_routine_fills_the_timeline_backwards_month_by_month():
     assert "også når du ikke skrev nogen begivenheder" in text
     assert "til `fill_month` er `null`, eller du har fyldt fire måneder i denne kørsel." in text
     whole = " ".join(REDAKTOER.split())
-    assert "skal hverken trin 5, 6 eller 7 køres i denne kørsel, så gå direkte til trin 7b." in whole
+    assert "Er både `pending` og `rewrite` tomme, så gå direkte til trin 4b." in whole
     assert "gå direkte til trin 8" not in whole
 
 
@@ -103,7 +103,7 @@ def test_publish_runs_on_timeline():
     on = wf.get("on", wf.get(True))
     assert "data/timeline/**" in on["push"]["paths"]
     claude_md = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
-    assert "Claude-routinen skriver kun i `data/judgments/` (med `resumeer/`), `data/overview/` og `data/timeline/`." in claude_md
+    assert "Claude-routinen skriver kun i `data/judgments/` (med `resumeer/` og `kontrol/`), `data/overview/` og `data/timeline/`." in claude_md
     assert "data/judgments/**" in on["push"]["paths"]  # også resumeer/
 
 
@@ -162,3 +162,15 @@ def test_routine_follows_the_rules_of_media_with_reservations():
     for step in ("### 5. Opdatér overblikket", "### 7. Tidslinje"):
         part = " ".join(REDAKTOER.split(step, 1)[1].split("### ", 1)[0].split())
         assert "Indslag fra medier med kun overskrift er ikke med" in part
+
+
+def test_routine_checks_summaries_against_the_source():
+    # Trin 4b (KONTRAKTER §6.2b): hvert vist resumé kontrolleres mod titel og teaser
+    text = (ROOT / "routine" / "REDAKTOER.md").read_text(encoding="utf-8")
+    step = text.split("### 4b.", 1)[1].split("\n### 5.", 1)[0]
+    assert ".venv/bin/python -m affaldsfeed summary-check-input > /tmp/kontrol.json" in step
+    assert "Nævner `summary_da` noget, der ikke står i `title` eller `teaser`?" in step
+    assert "Er du i tvivl, så svar ja." in step
+    assert ".venv/bin/python -m affaldsfeed validate-summary-checks --file data/judgments/kontrol/DATO.jsonl" in step
+    assert "Kør trin 4 og 4b igen." in text
+    assert text.index("### 4b.") < text.index("### 5. Opdatér overblikket")
