@@ -104,7 +104,7 @@
     "body": "# Search engines\nUser-agent: *\nAllow: /\n\n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\n# Claude\nUser-agent: Claude-Web\nDisallow: /\n\n# Gemini\nUser-agent: Google-Extended\nDisallow: /\n\n# Sitemap\nSitemap: https://borsen.dk/sitemap.xml\nSitemap: https://borsen.dk/sitemap-news.xml\n"
   },
   "brammingposten.dk": {
-    "fetched": "2026-11-26T08:28:09Z",
+    "fetched": "2026-11-27T08:30:03Z",
     "body": "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://brammingposten.dk/wp-sitemap.xml\n"
   },
   "bryggebladet.dk": {
@@ -124,7 +124,7 @@
     "body": "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\n#User-agent: ChatGPT-User\n# Disallow: /\n\nSitemap: https://byensnyt.dk/sitemap_index.xml"
   },
   "byggeri-arkitektur.dk": {
-    "fetched": "2026-11-20T08:27:17Z",
+    "fetched": "2026-11-27T08:30:03Z",
     "body": "User-agent: Yandex\nUser-agent: baiduspider\nUser-agent: baiduspider+\nUser-agent: Baiduspider+\nUser-agent: Baiduspider\nUser-agent: SemrushBot\nUser-agent: AhrefsBot\nUser-agent: ahrefs.com\nUser-agent: Mediatoolkitbot\nUser-agent: MJ12bot\nDisallow: /\n\nUser-agent: *\nCrawl-delay: 10\nAllow: /\n"
   },
   "bygtek.dk": {
@@ -324,7 +324,7 @@
     "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n\nUser-agent: PiplBot\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://ditvinderup.dk/sitemap\n"
   },
   "dl2phipa8wx75.cloudfront.net": {
-    "fetched": "2026-11-20T08:27:17Z",
+    "fetched": "2026-11-27T08:30:03Z",
     "body": ""
   },
   "egedalkommune.dk": {
@@ -372,11 +372,11 @@
     "body": "    # robots.txt, fanoe.dk/\n\nUser-Agent: *\nAllow: /DependencyHandler.axd\nDisallow: /aspnet_client/\nDisallow: /bin/\nDisallow: /config/\nDisallow: /umbraco/\nDisallow: /umbraco_client/\nDisallow: /usercontrols/\nDisallow: /*.axd\nSitemap: https://faneo.dk/sitemap.xml"
   },
   "fanoeposten.dk": {
-    "fetched": "2026-11-20T08:27:17Z",
+    "fetched": "2026-11-27T08:30:03Z",
     "body": "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://fanoeposten.dk/wp-sitemap.xml\n\nSitemap: https://fanoeposten.dk/sitemap.xml\n\nUser-agent: *\nDisallow: /wp-content/uploads/wpo/wpo-plugins-tables-list.json\n"
   },
   "fanøposten.dk": {
-    "fetched": "2026-11-20T08:27:17Z",
+    "fetched": "2026-11-27T08:30:03Z",
     "body": "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://fanoeposten.dk/wp-sitemap.xml\n\nSitemap: https://fanoeposten.dk/sitemap.xml\n\nUser-agent: *\nDisallow: /wp-content/uploads/wpo/wpo-plugins-tables-list.json\n"
   },
   "farsoeavis.dk": {
@@ -1188,7 +1188,7 @@
     "body": "﻿User-agent: *\r\nSitemap: https://{HTTP_HOST}/sitemap.xml"
   },
   "www.ft.dk": {
-    "fetched": "2026-11-20T08:27:17Z",
+    "fetched": "2026-11-27T08:30:03Z",
     "body": ""
   },
   "www.furesoe.dk": {
