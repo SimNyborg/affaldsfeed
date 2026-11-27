@@ -47,3 +47,5 @@
 {"id":"0c5d6c05b1cf","summary_sha":"28c610edcfe2","ok":true,"problem":null,"checked_at":"2026-11-27T06:26:33Z","by":"claude-routine"}
 {"id":"83bfaead6d83","summary_sha":"e8bb719f7865","ok":true,"problem":null,"checked_at":"2026-11-27T06:26:33Z","by":"claude-routine"}
 {"id":"bc526cf1a611","summary_sha":"4824eeca3215","ok":true,"problem":null,"checked_at":"2026-11-27T06:26:33Z","by":"claude-routine"}
+{"id":"cd9c22febfd9","summary_sha":"3b966e8f1c6d","ok":false,"problem":"Et \"takstblad\" nævnes ikke i kilden, som kun taler om vedtagne og godkendte takster","checked_at":"2026-11-27T08:25:55Z","by":"claude-routine"}
+{"id":"4423edf41256","summary_sha":"db29e8536f48","ok":true,"problem":null,"checked_at":"2026-11-27T08:25:55Z","by":"claude-routine"}
