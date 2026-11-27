@@ -964,7 +964,7 @@
     "body": "Sitemap: https://vesthimmerlandsforsyning.dk/Sitemap.xml\r\n\r\n"
   },
   "via.ritzau.dk": {
-    "fetched": "2026-11-26T06:28:57Z",
+    "fetched": "2026-11-27T08:26:02Z",
     "body": "User-agent: *\nDisallow: /data/attachments/\nCrawl-delay: 1\n\nsitemap: https://via.ritzau.dk/sitemap.xml\n"
   },
   "viborg-folkeblad.dk": {
@@ -976,11 +976,11 @@
     "body": "User-Agent: *\nDisallow: /soeg/*\nDisallow: /db/instklub.nsf/*\nDisallow: /db/Annoncer.nsf/*\nDisallow: /db/Kommune.nsf/*\nDisallow: /db/Plan.nsf/*\nSitemap: https://viborg.dk/sitemap.xml"
   },
   "videnskab.dk": {
-    "fetched": "2026-11-26T05:00:17Z",
+    "fetched": "2026-11-27T08:26:02Z",
     "body": "User-agent: Semrushbot-SA\nAllow: /\n\nUser-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: *\nDisallow: /wp/wp-admin/\nAllow: /wp/wp-admin/admin-ajax.php\n\nSitemap: https://videnskab.dk/sitemap_index.xml\n"
   },
   "vodskovavis.dk": {
-    "fetched": "2026-11-26T05:00:17Z",
+    "fetched": "2026-11-27T08:26:02Z",
     "body": ""
   },
   "weekendavisen.dk": {
@@ -1640,7 +1640,7 @@
     "body": "User-Agent: *\nSitemap: https://www.vejle.dk/sitemap.xml\nContent-Signal: ai-train=no, search=yes, ai-input=yes"
   },
   "www.viborher.dk": {
-    "fetched": "2026-11-26T05:00:17Z",
+    "fetched": "2026-11-27T08:26:02Z",
     "body": "# START YOAST BLOCK\n# ---------------------------\nUser-agent: *\nDisallow:\n\nSitemap: http://www.viborher.dk/sitemap_index.xml\n# ---------------------------\n# END YOAST BLOCK"
   },
   "www.vordingborg.dk": {
@@ -1648,7 +1648,7 @@
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://www.vordingborg.dk/sitemap.xml\n"
   },
   "www.voreslokalavis.dk": {
-    "fetched": "2026-11-26T05:00:17Z",
+    "fetched": "2026-11-27T08:26:02Z",
     "body": "##################################################\n# robots.txt for voreslokalavis.dk\n##################################################\n\n# Disallow /admin from CmsAdmin\nUser-agent: *\nDisallow: /admin\n\n# Custom robots txt from CmsAdmin\nUser-agent: *\r\nDisallow: /admin\n\n# Default sitemap from CmsAdmin\nSitemap: https://www.voreslokalavis.dk/sitemap.xml"
   },
   "www.weekendavisen.dk": {
