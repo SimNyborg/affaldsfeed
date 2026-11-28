@@ -24,11 +24,11 @@
     "body": "# If the Joomla site is installed within a folder\n# eg www.example.com/joomla/ then the robots.txt file\n# MUST be moved to the site root\n# eg www.example.com/robots.txt\n# AND the joomla folder name MUST be prefixed to all of the\n# paths.\n# eg the Disallow rule for the /administrator/ folder MUST\n# be changed to read\n# Disallow: /joomla/administrator/\n#\n# For more information about the robots.txt standard, see:\n# https://www.robotstxt.org/orig.html\n\nUser-agent: *\nAllow: /*.js*\nAllow: /*.css*\nAllow: /*.png*\nAllow: /*.jpg*\nAllow: /*.gif*\n\nDisallow: /administrator/\nDisallow: /bin/\nDisallow: /cache/\nDisallow: /cli/\n\nDisallow: /includes/\nDisallow: /installation/\nDisallow: /language/\nDisallow: /layouts/\nDisallow: /libraries/\nDisallow: /logs/\n\n\nDisallow: /tmp/\n"
   },
   "affald.middelfart.dk": {
-    "fetched": "2026-11-21T01:31:15Z",
+    "fetched": "2026-11-28T06:28:16Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://affald.middelfart.dk/sitemap.xml\n"
   },
   "affaldoggenbrug.middelfart.dk": {
-    "fetched": "2026-11-26T06:28:57Z",
+    "fetched": "2026-11-28T06:28:16Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://affaldoggenbrug.middelfart.dk/sitemap.xml\n"
   },
   "affaldplus.dk": {
@@ -184,7 +184,7 @@
     "body": ""
   },
   "cdn.moliri.dk": {
-    "fetched": "2026-11-21T01:31:15Z",
+    "fetched": "2026-11-28T06:28:16Z",
     "body": ""
   },
   "cdn.norddjurs.dk": {
@@ -412,7 +412,7 @@
     "body": ""
   },
   "forsyningstilsynet.dk": {
-    "fetched": "2026-11-26T06:28:57Z",
+    "fetched": "2026-11-28T06:28:16Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://forsyningstilsynet.dk/sitemap.xml\n"
   },
   "frdb.dk": {
@@ -860,7 +860,7 @@
     "body": "User-Agent:  *\nNOINDEX:  /aspnet_client/\nDisallow:  /bin/\nDisallow:  /config/\nDisallow:  /data/\nNOINDEX,NOFOLLOW:  /macroScripts/\nDisallow:  /umbraco/\nDisallow:  /umbraco_client/\nDisallow:  /usercontrols/\nDisallow:  /xslt/\nDisallow:  /?morecontrast=1\nDisallow:  /?morecontrast=0\nDisallow:  /?accessibility=1\nDisallow:  /?accessibility=0\nSitemap:  /sitemap.xml"
   },
   "skivefolkeblad.dk": {
-    "fetched": "2026-11-26T23:49:59Z",
+    "fetched": "2026-11-28T06:28:16Z",
     "body": "# As a condition of accessing this website, you agree to abide by the following\n# content signals:\n\n# (a)  If a Content-Signal = yes, you may collect content for the corresponding\n#      use.\n# (b)  If a Content-Signal = no, you may not collect content for the\n#      corresponding use.\n# (c)  If the website operator does not include a Content-Signal for a\n#      corresponding use, the website operator neither grants nor restricts\n#      permission via Content-Signal with respect to the corresponding use.\n\n# The content signals and their meanings are:\n\n# search:   building a search index and providing search results (e.g., returning\n#           hyperlinks and short excerpts from your website's contents). Search does not\n#           include providing AI-generated search summaries.\n# ai-input: inputting content into one or more AI models (e.g., retrieval\n#           augmented generation, grounding, or other real-time taking of content for\n#           generative AI search answers).\n# ai-train: training or fine-tuning AI models.\n# use:      how AI systems may consume the content (immediate, reference, or full).\n\n# ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF\n# RIGHTS UNDER ARTICLE 4 OF THE EUROPEAN UNION DIRECTIVE 2019/790 ON COPYRIGHT\n# AND RELATED RIGHTS IN THE DIGITAL SINGLE MARKET.\n\n# BEGIN Cloudflare Managed content\n\n\nUser-agent: *\nContent-Signal: search=yes,ai-train=no,use=reference\nAllow: /\n\n# Training crawlers\nUser-agent: Amazonbot\nDisallow: /\n\nUser-agent: Applebot-Extended\nDisallow: /\n\nUser-agent: Bytespider\nDisallow: /\n\nUser-agent: CCBot\nDisallow: /\n\nUser-agent: ClaudeBot\nDisallow: /\n\nUser-agent: Diffbot\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: omgili\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n\nUser-agent: cohere-ai\nDisallow: /\n\nUser-agent: MistralAI-Training\nDisallow: /\n\nUser-agent: meta-externalagent\nDisallow: /\n\nUser-agent: GoogleOther\nDisallow: /\n\nUser-agent: Baiduspider\nDisallow: /\n\nUser-agent: PetalBot\nDisallow: /\n\nUser-agent: AwarioSmartBot\nUser-agent: AwarioRssBot\nDisallow: /\n\nUser-agent: Google-CloudVertexBot\nDisallow: /\n\nUser-agent: QualifiedBot\nDisallow: /\n\nUser-agent: Cotoyogi\nDisallow: /\n\nUser-agent: ICC-Crawler\nDisallow: /\n\nUser-agent: atlassian-bot\nDisallow: /\n\nUser-agent: FishBot\nDisallow: /\n\nUser-agent: BorderxBot\nDisallow: /\n\nUser-agent: NavuBot\nDisallow: /\n\nUser-agent: SemrushBot-SWA\nDisallow: /\n\nUser-agent: WARDBot\nDisallow: /\n\nUser-agent: magpie-crawler\nDisallow: /\n\nUser-agent: KimiBot\nDisallow: /\n\nUser-agent: CitibotSiteCrawler\nDisallow: /\n\n# END Cloudflare Managed Content\n\nUser-agent: CCBot\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ChatGPT-User\nDisallow: /\n\nUser-agent: anthropic-ai\nDisallow: /\n\nUser-agent: Claude-Web\nDisallow: /\n\nUser-agent: PiplBot\nDisallow: /\n\nUser-agent: SERankingBacklinksBot\nDisallow: / \n\nUser-agent: heritrix\nDisallow:\n\nSitemap: https://skivefolkeblad.dk/sitemap\n"
   },
   "skjerntarm-ugeblad.dk": {
@@ -1124,7 +1124,7 @@
     "body": "########################################################################################################################\n### AI crawler reference                                                                                             ###\n### The link below provides instructions to what kind of content can be used to train AI models on this website      ###\n### https://nordjyske.dk/ai.txt                                                                                      ###\n########################################################################################################################\n\nUser-agent: *\nDisallow: /announcement/management\nDisallow: /browser-support.html\nDisallow: /comment/activate.html\nDisallow: /comment/update.html\nDisallow: /competence/import\nDisallow: /error\nDisallow: /frame\nDisallow: /job/import\nDisallow: /log-out.html\nDisallow: /machine/import\nAllow: /newsletter/\nDisallow: /newsletter\nDisallow: /newsletter/subscriber/update.html\nDisallow: /newsletter/confirmSubscribe.html\nDisallow: /newsletter/confirmUnsubscribe.html\nDisallow: /newsletter/view.html\nDisallow: /product/import\nDisallow: /supplement/management\nDisallow: /trckr\nDisallow: /user/management\nDisallow: /xml/schemes\nDisallow: /js/notbot.js\nDisallow: /void/\n\nUser-agent: Meltwater\nDisallow: /\nUser-agent: MeltwaterNews\nDisallow: /\n\n# Common crawl\nUser-agent: CCBot\nDisallow: /\n\n# OpenAI (ChatGPT)\nUser-agent: GPTBot\nDisallow: /\n\n# OpenAI (ChatGPT realtime search)\nUser-agent: ChatGPT-User\nDisallow: /\n\n# Anthropic\nUser-agent: anthropic-ai\nDisallow: /\n\n# Google (only AI crawler)\nUser-agent: Google-Extended\nDisallow: /\n\nSitemap: /sitemap.xml"
   },
   "www.esbjerg.dk": {
-    "fetched": "2026-11-21T01:31:15Z",
+    "fetched": "2026-11-28T06:28:16Z",
     "body": ""
   },
   "www.fanoe.dk": {
@@ -1384,7 +1384,7 @@
     "body": "    # robots.txt, www.mariagerfjord.dk/\n\nUser-Agent: *\nAllow: /DependencyHandler.axd\nDisallow: /aspnet_client/\nDisallow: /bin/\nDisallow: /config/\nDisallow: /umbraco/\nDisallow: /umbraco_client/\nDisallow: /usercontrols/\nDisallow: /*.axd\nSitemap: https://www.mariagerfjord.dk/sitemap.xml"
   },
   "www.middelfart.dk": {
-    "fetched": "2026-11-26T06:28:57Z",
+    "fetched": "2026-11-28T06:28:16Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://www.middelfart.dk/sitemap.xml\n"
   },
   "www.midtfynsposten.dk": {
@@ -1500,7 +1500,7 @@
     "body": "User-agent: * \nDisallow: /app_browsers/\nDisallow: /app_code/\nDisallow: /app_data/\nDisallow: /app_plugins/\nDisallow: /bin/\nDisallow: /cdn-cgi/\nDisallow: /config/\nDisallow: /controllers/\nDisallow: /config/\nDisallow: /css/\nDisallow: /images/\nDisallow: /obj/\nDisallow: /properties/\nDisallow: /robots/\nDisallow: /scripts/\nDisallow: /umbraco/\nDisallow: /umbraco_client/\nDisallow: /views/\nDisallow: /pdfversion\nUser-agent: Sogou web spider\nCrawl-delay: 10\nDisallow: /\nsitemap:https://www.samsoe.dk/sitemap.xml\n"
   },
   "www.samsoposten.dk": {
-    "fetched": "2026-11-26T23:49:59Z",
+    "fetched": "2026-11-28T06:28:16Z",
     "body": "# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file\n"
   },
   "www.sdu.dk": {
@@ -1568,7 +1568,7 @@
     "body": "Sitemap: https://www.teknologisk.dk/sitemap.xml\r\n\r\nUser-agent: *\r\nDisallow: /_/custom/itcert/\r\n\r\nUser-agent: MJ12bot\r\nDisallow: /\r\n"
   },
   "www.thisted.dk": {
-    "fetched": "2026-11-26T06:28:57Z",
+    "fetched": "2026-11-28T06:28:16Z",
     "body": "User-agent: *\nAllow: /\n\nSitemap: https://www.thisted.dk/sitemap.xml\n"
   },
   "www.thyforsyning.dk": {
